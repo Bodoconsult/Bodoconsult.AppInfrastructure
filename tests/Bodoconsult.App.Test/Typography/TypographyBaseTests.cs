@@ -46,10 +46,10 @@ public class TypographyBaseTests
         // Assert
         Assert.That(t.TypeAreaRect.Size.Width - 175 < Tolerance);
         Assert.That(Math.Abs(t.MarginUnit - 0.875) < Tolerance);
-        Assert.That(Math.Abs(t.Margins.Left - 1.75) < Tolerance);
-        Assert.That(Math.Abs(t.Margins.Right - 1.75) < Tolerance);
-        Assert.That(Math.Abs(t.Margins.Top - 0.875) < Tolerance);
-        Assert.That(Math.Abs(t.Margins.Bottom - 1.75) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Left - 1.75) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Right - 1.75) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Top - 0.875) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Bottom - 1.75) < Tolerance);
 
 
         //var erg = t.GetPixelHeight(4);
@@ -213,14 +213,14 @@ public class TypographyBaseTests
         // Assert
         const double expectedValue = 1.75;
 
-        Assert.That(Math.Abs(typo.Margins.Left - expectedValue) < CompareToZeroValue);
-        Assert.That(Math.Abs(typo.Margins.Right - expectedValue) < CompareToZeroValue);
-        Assert.That(Math.Abs(typo.Margins.Top - expectedValue) < CompareToZeroValue);
-        Assert.That(Math.Abs(typo.Margins.Bottom -expectedValue) < CompareToZeroValue);
-        Assert.That(Math.Abs(typo.ColumnWidth - 2.5) < CompareToZeroValue);
+        Assert.That(Math.Abs(typo.TypoMargins.Left - expectedValue) < CompareToZeroValue);
+        Assert.That(Math.Abs(typo.TypoMargins.Right - expectedValue) < CompareToZeroValue);
+        Assert.That(Math.Abs(typo.TypoMargins.Top - expectedValue) < CompareToZeroValue);
+        Assert.That(Math.Abs(typo.TypoMargins.Bottom -expectedValue) < CompareToZeroValue);
+        Assert.That(Math.Abs(typo.GridColumnWidth - 2.5) < CompareToZeroValue);
 
         Assert.That(Math.Abs(typo.VerticalLines[0] - expectedValue) < CompareToZeroValue);
-        Assert.That(Math.Abs(typo.VerticalLines[1] - expectedValue - typo.ColumnWidth) < CompareToZeroValue);
+        Assert.That(Math.Abs(typo.VerticalLines[1] - expectedValue - typo.GridColumnWidth) < CompareToZeroValue);
         //Assert.That(Math.Abs(typo.VerticalLines[2] - 5.75) < CompareToZeroValue);
         //Assert.That(Math.Abs(typo.VerticalLines[3] - 7.75) < CompareToZeroValue);
         //Assert.That(Math.Abs(typo.VerticalLines[4] - 8.25) < CompareToZeroValue);

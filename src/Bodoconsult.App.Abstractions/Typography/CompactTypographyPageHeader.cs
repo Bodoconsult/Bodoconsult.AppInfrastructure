@@ -43,11 +43,11 @@ public class CompactTypographyPageHeader : TypographyBase
         HeadingFontSize1 = HeadingFontSize2 + 2;
 
         LineHeight = 0.5;
-        ColumnDividerWidth = 0.5;
-        ColumnWidth = 2.5;
-        ColumnCount = 6;
+        GridColumnDividerWidth = 0.5;
+        GridColumnWidth = 2.5;
+        GridColumnCount = 6;
         DotsPerInch = 300;
-        LogoWidth = 1 * ColumnWidth + ColumnDividerWidth;
+        LogoWidth = 1 * GridColumnWidth + GridColumnDividerWidth;
 
         TitleFontName = thirdFontName;
         SubTitleFontName = thirdFontName;
@@ -66,7 +66,7 @@ public class CompactTypographyPageHeader : TypographyBase
         PageFooterHeight = 0.5;
         PageHeaderHeight = 1;
         PageHeaderMargin = 1;
-        PageFooterMargin = ColumnDividerWidth;
+        PageFooterMargin = GridColumnDividerWidth;
 
 
         ChartStyle = new ChartStyle

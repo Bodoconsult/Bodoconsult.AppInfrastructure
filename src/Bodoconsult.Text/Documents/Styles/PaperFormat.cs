@@ -9,14 +9,14 @@ using Bodoconsult.Text.Interfaces;
 namespace Bodoconsult.Text.Documents;
 
 /// <summary>
-/// Page format
+/// Paper format
 /// </summary>
-public class PageFormat : TypoPaperFormat, IPropertyAsAttributeElement
+public class PaperFormat : TypoPaperFormat, IPropertyAsAttributeElement
 {
     /// <summary>
     /// Default ctor
     /// </summary>
-    public PageFormat()
+    public PaperFormat()
     {
         PaperFormatName = "A4";
         Size = new Size(21, 29.7);
@@ -26,7 +26,7 @@ public class PageFormat : TypoPaperFormat, IPropertyAsAttributeElement
     /// Ctor providing paper format name, width and height
     /// </summary>
     /// <param name="pageFormat">Pageformat as string like A4,21.0,29.7</param>
-    public PageFormat(string pageFormat)
+    public PaperFormat(string pageFormat)
     {
         var values = pageFormat.Split(',');
 
@@ -45,7 +45,7 @@ public class PageFormat : TypoPaperFormat, IPropertyAsAttributeElement
     /// <param name="paperFormatName">Name of the paper format like A4</param>
     /// <param name="width">Width of the paper format in cm</param>
     /// <param name="height">Height of the paper format in cm</param>
-    public PageFormat(string paperFormatName, double width, double height)
+    public PaperFormat(string paperFormatName, double width, double height)
     {
         PaperFormatName =paperFormatName;
         Size = new Size(width, height);
@@ -55,7 +55,7 @@ public class PageFormat : TypoPaperFormat, IPropertyAsAttributeElement
     /// Ctor providing paper format name, width and height
     /// </summary>
     /// <param name="typoPaperFormat">Typo paper format</param>
-    public PageFormat(TypoPaperFormat typoPaperFormat)
+    public PaperFormat(TypoPaperFormat typoPaperFormat)
     {
         PaperFormatName = typoPaperFormat.PaperFormatName;
         Size = new Size(typoPaperFormat.Size.Width, typoPaperFormat.Size.Height);

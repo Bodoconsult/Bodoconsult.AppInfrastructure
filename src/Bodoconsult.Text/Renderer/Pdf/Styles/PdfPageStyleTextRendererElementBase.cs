@@ -41,8 +41,8 @@ public abstract class PdfPageStyleTextRendererElementBase : IPdfTextRendererElem
         var pdfStyle = renderer.PdfDocument.PageSetup;
 
         pdfStyle.Orientation = Style.TypeAreaHeight < Style.TypeAreaWidth ? Orientation.Landscape : Orientation.Portrait;
-        pdfStyle.PageWidth = Unit.FromCentimeter(Style.PageFormat.Size.Width);
-        pdfStyle.PageHeight = Unit.FromCentimeter(Style.PageFormat.Size.Height);
+        pdfStyle.PageWidth = Unit.FromCentimeter(Style.PaperFormat.Size.Width);
+        pdfStyle.PageHeight = Unit.FromCentimeter(Style.PaperFormat.Size.Height);
         pdfStyle.LeftMargin = Unit.FromCentimeter(Style.Margins.Left);
         pdfStyle.RightMargin = Unit.FromCentimeter(Style.Margins.Right);
         pdfStyle.TopMargin = Unit.FromCentimeter(Style.Margins.Top);

@@ -6,27 +6,12 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// <summary>
 /// Interface for typographic data. Coordinates system origin is in the left top corner. X axis going to right. Y axis going down.
 /// </summary>
-public interface ITypography
+public interface ITypography: ITypoPageStyle
 {
     /// <summary>
     /// Indicator where to place the page number (or the field for it) in a footer text or header text
     /// </summary>
     public const string PageFieldIndicator = "<<page>>";
-
-    /// <summary>
-    /// Paper format
-    /// </summary>
-    TypoPaperFormat PaperFormat { get; set; }
-
-    /// <summary>
-    /// Width of the column divider in cm (Spaltenabstand in cm)
-    /// </summary>
-    double ColumnDividerWidth { get; set; }
-
-    /// <summary>
-    /// Column width in cm
-    /// </summary>
-    double ColumnWidth { get; set; }
 
     /// <summary>
     /// Sets the factor for the calculation of the left margin. See <see cref="SetMargins"/> for details
@@ -49,11 +34,6 @@ public interface ITypography
     double MarginBottomFactor { get; set; }
 
     /// <summary>
-    /// Number of columns to use for the layout in the type area
-    /// </summary>
-    int ColumnCount { get; set; }
-
-    /// <summary>
     /// Unit used for margin calculations in cm (Teil in cm)
     /// 
     /// <see cref="MarginUnit"/> = PaperSize.Size.Width - TypeAreaRect.Size.Width / (<see cref="SetMargins"/>.left + <see cref="SetMargins"/>.right)
@@ -61,9 +41,19 @@ public interface ITypography
     double MarginUnit { get; }
 
     /// <summary>
-    /// Current margins in cm
+    /// Width of the grid column divider in the type area in cm (Spaltenabstand in cm)
     /// </summary>
-    public TypoThickness Margins { get; set; }
+    double GridColumnDividerWidth { get; set; }
+
+    /// <summary>
+    /// Grid column width in cm
+    /// </summary>
+    double GridColumnWidth { get; set; }
+
+    /// <summary>
+    /// Number of grid columns to use for the layout of a column in the type area
+    /// </summary>
+    int GridColumnCount { get; set; }
 
     /// <summary>
     /// Type area rect dimensions in cm (Abmessungen des Satzspiegels in cm)

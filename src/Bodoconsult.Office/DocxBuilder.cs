@@ -289,34 +289,34 @@ public class DocxBuilder : IDisposable
         return part;
     }
 
-    /// <summary>
-    /// Set basic page properties like width and height and margins
-    /// </summary>
-    /// <param name="pageWidth">Page width in cm</param>
-    /// <param name="pageHeight">Page height in cm</param>
-    /// <param name="marginLeft">Margin left in cm</param>
-    /// <param name="marginTop">Margin top in cm</param>
-    /// <param name="marginRight">Margin right in cm</param>
-    /// <param name="marginBottom">Margin bottom in cm</param>
-    public void SetBasicPageProperties(double pageWidth, double pageHeight, double marginLeft, double marginTop, double marginRight, double marginBottom)
-    {
-        // Paper size
-        var width = MeasurementHelper.GetDxaFromCm(pageWidth);
-        var height = MeasurementHelper.GetDxaFromCm(pageHeight);
+    ///// <summary>
+    ///// Set basic page properties like width and height and margins
+    ///// </summary>
+    ///// <param name="pageWidth">Page width in cm</param>
+    ///// <param name="pageHeight">Page height in cm</param>
+    ///// <param name="marginLeft">Margin left in cm</param>
+    ///// <param name="marginTop">Margin top in cm</param>
+    ///// <param name="marginRight">Margin right in cm</param>
+    ///// <param name="marginBottom">Margin bottom in cm</param>
+    //public void SetBasicPageProperties(double pageWidth, double pageHeight, double marginLeft, double marginTop, double marginRight, double marginBottom)
+    //{
+    //    // Paper size
+    //    var width = MeasurementHelper.GetDxaFromCm(pageWidth);
+    //    var height = MeasurementHelper.GetDxaFromCm(pageHeight);
 
-        // Margins
-        var left = MeasurementHelper.GetDxaFromCm(marginLeft);
-        var top = MeasurementHelper.GetDxaFromCm(marginTop);
-        var right = MeasurementHelper.GetDxaFromCm(marginRight);
-        var bottom = MeasurementHelper.GetDxaFromCm(marginBottom);
+    //    // Margins
+    //    var left = MeasurementHelper.GetDxaFromCm(marginLeft);
+    //    var top = MeasurementHelper.GetDxaFromCm(marginTop);
+    //    var right = MeasurementHelper.GetDxaFromCm(marginRight);
+    //    var bottom = MeasurementHelper.GetDxaFromCm(marginBottom);
 
-        var pgSz = CurrentSection.ChildElements.OfType<PageSize>().FirstOrDefault() ?? CurrentSection.AppendChild(new PageSize { Width = width, Height = height });
+    //    var pgSz = CurrentSection.ChildElements.OfType<PageSize>().FirstOrDefault() ?? CurrentSection.AppendChild(new PageSize { Width = width, Height = height });
 
-        pgSz.Orient = pageWidth > pageHeight ? new EnumValue<PageOrientationValues>(PageOrientationValues.Landscape) : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
+    //    pgSz.Orient = pageWidth > pageHeight ? new EnumValue<PageOrientationValues>(PageOrientationValues.Landscape) : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
 
-        var pageMargin = new PageMargin { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left };
-        CurrentSection.Append(pageMargin);
-    }
+    //    var pageMargin = new PageMargin { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left };
+    //    CurrentSection.Append(pageMargin);
+    //}
 
     /// <summary>
     /// Add common metadata like author, company and title
@@ -1005,9 +1005,10 @@ public class DocxBuilder : IDisposable
     /// <summary>
     /// Add a section
     /// </summary>
+    /// <param name="pageStyle">Current page style</param>
     /// <param name="isLastSection">Is the new section the last section. Default: true</param>
     /// <param name="restartPageNumbering">Restart page numbering</param>
-    public SectionProperties AddSection(bool isLastSection = true, bool restartPageNumbering = false)
+    public SectionProperties AddSection(ITypoPageStyle pageStyle, bool isLastSection = true, bool restartPageNumbering = false)
     {
 
         if (CurrentSection != null)
@@ -1038,6 +1039,36 @@ public class DocxBuilder : IDisposable
         var sectionBreakType = new SectionType { Val = SectionMarkValues.NextPage };
         section.Append(sectionBreakType);
 
+        if (pageStyle.NumberOfColumns > 1)
+        {
+            var spaceString = MeasurementHelper.GetDxaFromCm(pageStyle.Space).ToString("0");
+            var columns = new Columns
+            {
+                EqualWidth = true,
+                ColumnCount = (short)pageStyle.NumberOfColumns,
+                Space = new StringValue(spaceString)
+            };
+            section.Append(columns);
+        }
+
+        // Paper size
+        var width = MeasurementHelper.GetDxaFromCm(pageStyle.TypoPaperFormat.Size .Width);
+        var height = MeasurementHelper.GetDxaFromCm(pageStyle.TypoPaperFormat.Size.Height);
+
+        // Margins
+        var left = MeasurementHelper.GetDxaFromCm(pageStyle.TypoMargins.Left);
+        var top = MeasurementHelper.GetDxaFromCm(pageStyle.TypoMargins.Top);
+        var right = MeasurementHelper.GetDxaFromCm(pageStyle.TypoMargins.Right);
+        var bottom = MeasurementHelper.GetDxaFromCm(pageStyle.TypoMargins.Bottom);
+
+        var pgSz = section.ChildElements.OfType<PageSize>().FirstOrDefault() ?? section.AppendChild(new PageSize { Width = width, Height = height });
+
+        pgSz.Orient = pageStyle.TypoPaperFormat.Size.Width > pageStyle.TypoPaperFormat.Size.Height ? new EnumValue<PageOrientationValues>(PageOrientationValues.Landscape) : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
+
+        var pageMargin = new PageMargin { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left };
+        section.Append(pageMargin);
+
+
         Sections.Add(section);
         CurrentSection = section;
 
@@ -1046,26 +1077,6 @@ public class DocxBuilder : IDisposable
             Body.AddChild(section);
         }
 
-        return section;
-    }
-
-    /// <summary>
-    /// Add a 2 column section
-    /// </summary>
-    /// <param name="space">The space between the equalwidth columns in cm</param>
-    /// <param name="isLastSection">Is the new section the last section. Default: true</param>
-    public SectionProperties Add2ColumnsSection(double space, bool isLastSection = true)
-    {
-        var spaceString = MeasurementHelper.GetDxaFromCm(space).ToString("0");
-
-        var section = AddSection(isLastSection);
-        var columns = new Columns
-        {
-            EqualWidth = true,
-            ColumnCount = 2,
-            Space = new StringValue(spaceString)
-        };
-        section.Append(columns);
         return section;
     }
 

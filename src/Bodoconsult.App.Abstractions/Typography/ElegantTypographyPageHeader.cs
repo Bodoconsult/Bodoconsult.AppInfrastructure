@@ -43,11 +43,11 @@ public class ElegantTypographyPageHeader : TypographyBase
         HeadingFontSize1 = HeadingFontSize2 + 2;
 
         LineHeight = 0.5;
-        ColumnDividerWidth = 0.5;
-        ColumnWidth = 2.0;
-        ColumnCount = 6;
+        GridColumnDividerWidth = 0.5;
+        GridColumnWidth = 2.0;
+        GridColumnCount = 6;
         DotsPerInch = 300;
-        LogoWidth = 2 * ColumnWidth + ColumnDividerWidth;
+        LogoWidth = 2 * GridColumnWidth + GridColumnDividerWidth;
 
         TitleFontName = thirdFontName;
         SubTitleFontName = thirdFontName;
@@ -66,7 +66,7 @@ public class ElegantTypographyPageHeader : TypographyBase
         PageFooterHeight = 0.5;
         PageHeaderHeight = 1.5;
         PageHeaderMargin = 1.5;
-        PageFooterMargin = ColumnDividerWidth;
+        PageFooterMargin = GridColumnDividerWidth;
 
 
         ChartStyle = new ChartStyle

@@ -43,7 +43,7 @@ public class DemoStyle : ITypoParagraphStyle
     /// <summary>
     /// Margins
     /// </summary>
-    public TypoThickness TypoMargins { get; set; } = new(0,0, 0, 0);
+    public TypoThickness TypoMargins { get; set; } = new(0, 0, 0, 0);
 
     /// <summary>
     /// Border brush

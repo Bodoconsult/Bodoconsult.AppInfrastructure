@@ -130,11 +130,13 @@ internal class DocxBuilderTests
     public void AddSection_ValidSetupMemoryStream_DocxCreated()
     {
         // Arrange 
+        var pageStyle1 = new DefaultPageStyle();
+
         var docx = new DocxBuilder();
         docx.CreateDocument();
 
         // Act  
-        docx.AddSection();
+        docx.AddSection(pageStyle1);
 
         // Assert
         Assert.That(docx.CurrentSection, Is.Not.Null);
@@ -153,9 +155,11 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
+        docx.AddSection(pageStyle1);
 
         // Act  
         docx.AddParagraph("Blubb", "Normal");
@@ -184,10 +188,12 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
 
         // Act  
         var runs = new List<OpenXmlElement>
@@ -229,18 +235,18 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection(false);
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1, false);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
 
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
-        var section = docx.AddSection();
-
-
-        docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
+        docx.AddSection(pageStyle1);
+        //docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
 
         var runs = new List<OpenXmlElement>
         {
@@ -276,19 +282,20 @@ internal class DocxBuilderTests
         {
             File.Delete(path);
         }
+        var pageStyle1 = new DefaultPageStyle();
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection(false);
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1, false);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
         docx.AddHeaderToCurrentSection("Header section 1", 10);
         docx.AddFooterToCurrentSection($"Footer section 1\t{ITypography.PageFieldIndicator}", 10);
 
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
-        var section = docx.AddSection(true, true);
-        docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
+        docx.AddSection(pageStyle1, true, true);
+        //docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
         docx.AddHeaderToCurrentSection("Header section 2", 10);
         docx.AddFooterToCurrentSection($"Footer section 2\t{ITypography.PageFieldIndicator}", 10);
 
@@ -325,20 +332,21 @@ internal class DocxBuilderTests
         {
             File.Delete(path);
         }
+        var pageStyle1 = new DefaultPageStyle();
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection(false);
+        docx.AddSection(pageStyle1, false);
         docx.AddHeaderToCurrentSection("Inhaltsverzeichnis", 10);
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
 
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
-        var section = docx.AddSection();
+        docx.AddSection(pageStyle1);
         docx.AddHeaderToCurrentSection("Hauptteil", 10);
 
-        docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
+        //docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
 
         var runs = new List<OpenXmlElement>
         {
@@ -374,19 +382,21 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection(false);
+        docx.AddSection(pageStyle1, false);
         docx.AddFooterToCurrentSection("Inhaltsverzeichnis", 10);
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
 
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
-        var section = docx.AddSection();
+        docx.AddSection(pageStyle1);
         docx.AddFooterToCurrentSection("Hauptteil", 10);
 
-        docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
+        //docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
 
         var runs = new List<OpenXmlElement>
         {
@@ -422,16 +432,19 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle2 = new ThreeColumnA4LandscapePageStyle();
+        var pageStyle1 = new DefaultPageStyle();
+
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection(false);
-        docx.SetBasicPageProperties(21, 29.4, 2, 2, 2, 2);
+        docx.AddSection(pageStyle1, false);
+        //docx.SetBasicPageProperties(21, 29.4, 2, 2, 2, 2);
 
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
-        docx.Add2ColumnsSection(0.5);
-        docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
+        docx.AddSection(pageStyle2);
+        //docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
 
         var runs = new List<OpenXmlElement>
         {
@@ -475,6 +488,8 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         // Heading 1
         var styleRunPropertiesH1 = new StyleRunProperties();
         var color1 = new Color { Val = "2F5496" };
@@ -490,7 +505,7 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
+        docx.AddSection(pageStyle1);
 
         // Act  
         docx.AddNewStyle( "heading1", "heading 1", styleRunPropertiesH1, 2);
@@ -522,6 +537,8 @@ internal class DocxBuilderTests
         {
             File.Delete(path);
         }
+
+        var pageStyle1 = new DefaultPageStyle();
 
         // Heading1 style
         var style = new DemoStyle
@@ -555,7 +572,7 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
+        docx.AddSection(pageStyle1);
 
         // Act  
         docx.AddNewStyle("heading1", "heading 1", style, 2);
@@ -587,6 +604,8 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         var imagePath = Path.Combine(TestHelper.TestDataPath, "image.png");
 
         // Heading 1
@@ -604,7 +623,7 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
+        docx.AddSection(pageStyle1);
 
         // Act  
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
@@ -637,6 +656,8 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         // Heading 1
         var styleRunPropertiesH1 = new StyleRunProperties();
         var color1 = new Color { Val = "2F5496" };
@@ -652,10 +673,10 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
+        docx.AddSection(pageStyle1);
         
         // Act 
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
         docx.AddParagraph("Heading 1", "heading1");
 
@@ -685,6 +706,8 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         // Heading 1
         var styleRunPropertiesH1 = new StyleRunProperties();
         var color1 = new Color { Val = "2F5496" };
@@ -698,8 +721,8 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
         docx.AddParagraph("Heading 1", "heading1");
 
@@ -730,6 +753,8 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+
+        var pageStyle1 = new DefaultPageStyle();
         // Heading 1
         var styleRunPropertiesH1 = new StyleRunProperties();
         var color1 = new Color { Val = "2F5496" };
@@ -743,8 +768,8 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
         docx.AddParagraph("Heading 1", "heading1");
 
@@ -784,6 +809,8 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         // Heading 1
         var styleRunPropertiesH1 = new StyleRunProperties();
         var color1 = new Color { Val = "2F5496" };
@@ -797,8 +824,8 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1);
+        //docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
         docx.AddParagraph("Heading 1", "heading1");
 
@@ -860,6 +887,8 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
+        var pageStyle1 = new DefaultPageStyle();
+
         // Heading 1
         var styleRunPropertiesH1 = new StyleRunProperties();
         var color1 = new Color { Val = "2F5496" };
@@ -873,8 +902,8 @@ internal class DocxBuilderTests
 
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
-        docx.AddSection();
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1);
+        //////docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
         docx.AddParagraph("Heading 1", "heading1");
 
@@ -928,6 +957,8 @@ internal class DocxBuilderTests
 
         List<OpenXmlElement> runs;
 
+        var pageStyle1 = new DefaultPageStyle();
+
         // Heading1 style
         var style = new DemoStyle
         {
@@ -966,8 +997,7 @@ internal class DocxBuilderTests
         docx.AddNewStyle("heading1", "heading 1", style, 2);
 
         // First section
-        docx.AddSection(false);
-        docx.SetBasicPageProperties(21, 29.4, 5, 2, 2, 2);
+        docx.AddSection(pageStyle1, false);
         docx.AddHeaderToCurrentSection("Header section 1", 10);
         docx.AddFooterToCurrentSection($"Footer section 1\t{ITypography.PageFieldIndicator}", 10);
 
@@ -1007,8 +1037,7 @@ internal class DocxBuilderTests
         docx.AddParagraph(TestHelper.MassText, "Normal");
 
         // New section
-        docx.AddSection(true, true);
-        docx.SetBasicPageProperties(21, 29.4, 8, 2, 2, 2);
+        docx.AddSection(pageStyle1, true, true);
         docx.AddHeaderToCurrentSection("Header section 2", 10);
         docx.AddFooterToCurrentSection($"Footer section 2\t{ITypography.PageFieldIndicator}", 10);
 

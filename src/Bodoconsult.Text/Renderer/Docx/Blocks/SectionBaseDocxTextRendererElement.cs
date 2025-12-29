@@ -42,11 +42,10 @@ public abstract class SectionBaseDocxTextRendererElement : DocxTextRendererEleme
 
         var isLastSection = index == sections.Count - 1;
 
+        var style = (PageStyleBase)renderer.Document.Styleset.FindStyle("DocumentStyle");
 
-        renderer.DocxDocument.AddSection(isLastSection, section.IsRestartPageNumberingRequired);
-        var style = (PageStyleBase )renderer.Document.Styleset.FindStyle("DocumentStyle");
-
-        renderer.DocxDocument.SetBasicPageProperties(style.PageFormat.Size.Width, style.PageFormat.Size.Height, style.Margins.Left, style.Margins.Top, style.Margins.Right, style.Margins.Bottom);
+        renderer.DocxDocument.AddSection(style, isLastSection, section.IsRestartPageNumberingRequired);
+        //renderer.DocxDocument.SetBasicPageProperties(style.PaperFormat.Size.Width, style.PaperFormat.Size.Height, style.Margins.Left, style.Margins.Top, style.Margins.Right, style.Margins.Bottom);
 
         var tabPosition = style.TypeAreaWidth;
 

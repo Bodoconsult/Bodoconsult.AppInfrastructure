@@ -22,6 +22,7 @@ using Bodoconsult.Text.Interfaces;
 using Bodoconsult.Text.Renderer;
 using PdfSharp.Xps;
 using Section = System.Windows.Documents.Section;
+using Size = System.Windows.Size;
 using Thickness = System.Windows.Thickness;
 
 namespace Bodoconsult.App.Wpf.Documents.Renderer;
@@ -57,12 +58,12 @@ public class WpfTextDocumentRenderer : BaseDocumentRenderer
     {
         // Load page settings
         var style = (PageStyleBase)Styleset.FindStyle("DocumentStyle");
-        PageSettings.PageSize = new Size(MeasurementHelper.GetDiuFromCm(style.PageWidth), MeasurementHelper.GetDiuFromCm(style.PageHeight));
+        PageSettings.PageSize = new Size(MeasurementHelper.GetDiuFromCm(style.PaperFormat.Size.Width), MeasurementHelper.GetDiuFromCm(style.PaperFormat.Size.Height));
         PageSettings.Margins = new Thickness(
-            MeasurementHelper.GetDiuFromCm(style.MarginLeft),
-            MeasurementHelper.GetDiuFromCm(style.MarginTop),
-            MeasurementHelper.GetDiuFromCm(style.MarginRight),
-            MeasurementHelper.GetDiuFromCm(style.MarginBottom));
+            MeasurementHelper.GetDiuFromCm(style.Margins.Left),
+            MeasurementHelper.GetDiuFromCm(style.Margins.Left),
+            MeasurementHelper.GetDiuFromCm(style.Margins.Left),
+            MeasurementHelper.GetDiuFromCm(style.Margins.Left));
         PageSettings.FooterHeight = MeasurementHelper.GetDiuFromCm(style.FooterHeight);
         PageSettings.FooterMarginTop = MeasurementHelper.GetDiuFromCm(style.FooterMarginTop);
         PageSettings.HeaderHeight = MeasurementHelper.GetDiuFromCm(style.HeaderHeight);

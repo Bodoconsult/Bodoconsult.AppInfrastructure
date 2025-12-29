@@ -31,14 +31,14 @@ public class TypographyBasedStyleSet : DefaultStyleSet
     {
         var ps = new PageSetup
         {
-            Orientation = _typography.PaperFormat.Size.Width <_typography.PaperFormat.Size.Height ?  Orientation.Portrait: Orientation.Landscape,
-            PageFormat = GetPageFormat(_typography.PaperFormat.PaperFormatName),
-            PageWidth = Unit.FromCentimeter(_typography.PaperFormat.Size.Width),
-            PageHeight = Unit.FromCentimeter(_typography.PaperFormat.Size.Height),
-            LeftMargin = Unit.FromCentimeter(_typography.Margins.Left),
-            TopMargin = Unit.FromCentimeter(_typography.Margins.Top),
-            RightMargin = Unit.FromCentimeter(_typography.Margins.Right),
-            BottomMargin = Unit.FromCentimeter(_typography.Margins.Bottom)
+            Orientation = _typography.TypoPaperFormat.Size.Width <_typography.TypoPaperFormat.Size.Height ?  Orientation.Portrait: Orientation.Landscape,
+            PageFormat = GetPageFormat(_typography.TypoPaperFormat.PaperFormatName),
+            PageWidth = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Width),
+            PageHeight = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Height),
+            LeftMargin = Unit.FromCentimeter(_typography.TypoMargins.Left),
+            TopMargin = Unit.FromCentimeter(_typography.TypoMargins.Top),
+            RightMargin = Unit.FromCentimeter(_typography.TypoMargins.Right),
+            BottomMargin = Unit.FromCentimeter(_typography.TypoMargins.Bottom)
         };
         TypeAreaWidth = ps.PageWidth - ps.LeftMargin - ps.RightMargin;
         return ps;

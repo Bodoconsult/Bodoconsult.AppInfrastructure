@@ -30,7 +30,7 @@ public class DocumentStyleHtmlTextRendererElement : HtmlPageStyleTextRendererEle
 
         sb.AppendLine("@page");
         sb.AppendLine("{");
-        sb.AppendLine($"     size: {Style.PageFormat.PaperFormatName} {(Style.PageFormat.Size.Width > Style.PageFormat.Size.Height ? " landscape" : string.Empty)};");
+        sb.AppendLine($"     size: {Style.PaperFormat.PaperFormatName} {(Style.PaperFormat.Size.Width > Style.PaperFormat.Size.Height ? " landscape" : string.Empty)};");
         sb.AppendLine($"     margin: {Style.Margins.Top}cm {Style.Margins.Right}cm {Style.Margins.Bottom}cm {Style.Margins.Left}cm;");
         sb.AppendLine("}");
 

@@ -1,16 +1,23 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
+
 namespace Bodoconsult.Text.Documents;
 
 /// <summary>
 /// Base style for styles with page settings
 /// </summary>
-public abstract class PageStyleBase : StyleBase
+public abstract class PageStyleBase : StyleBase, ITypoPageStyle
 {
     /// <summary>
     /// Paper format
     /// </summary>
-    public PageFormat PageFormat { get; set; } = new();
+    public PaperFormat PaperFormat { get; set; } = new();
+
+    /// <summary>
+    /// Paper format
+    /// </summary>
+    public TypoPaperFormat TypoPaperFormat => PaperFormat;
 
     /// <summary>
     /// Page margins for type area in cm
@@ -18,16 +25,37 @@ public abstract class PageStyleBase : StyleBase
     public Thickness Margins { get; set; } = new(3, 2, 2, 2);
 
     /// <summary>
+    /// Current margins in cm
+    /// </summary>
+    public TypoThickness TypoMargins => Margins;
+
+    /// <summary>
+    /// Number of text columns the type area is divided in
+    /// </summary>
+    public int NumberOfColumns { get; set; } = 1;
+
+    /// <summary>
+    /// The space between text columns in the type area in cm
+    /// </summary>
+    public double Space { get; set; } = 0;
+
+    /// <summary>
+    /// The resulting text column width in cm
+    /// </summary>
+    [DoNotSerialize]
+    public double ColumnWidth => (TypeAreaWidth - (NumberOfColumns - 1) * Space) / NumberOfColumns;
+
+    /// <summary>
     /// Type area width in cm
     /// </summary>
     [DoNotSerialize]
-    public double TypeAreaWidth => PageFormat.Size.Width - Margins.Left - Margins.Right;
+    public double TypeAreaWidth => PaperFormat.Size.Width - Margins.Left - Margins.Right;
 
     /// <summary>
     /// Type area height in cm
     /// </summary>
     [DoNotSerialize]
-    public double TypeAreaHeight => PageFormat.Size.Height - Margins.Top - Margins.Bottom;
+    public double TypeAreaHeight => PaperFormat.Size.Height - Margins.Top - Margins.Bottom;
 
     /// <summary>
     /// Max image width in cm

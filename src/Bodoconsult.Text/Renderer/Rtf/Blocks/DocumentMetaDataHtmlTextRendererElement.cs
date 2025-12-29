@@ -79,10 +79,10 @@ public class DocumentMetaDataRtfTextRendererElement : RtfTextRendererElementBase
         // Basic page settings
         var style = (DocumentStyle)renderer.Styleset.FindStyle("DocumentStyle");
 
-        sb.AppendLine(style.PageFormat.Size.Height < style.PageFormat.Size.Width ? "\\landscape" : "\\portrait");
+        sb.AppendLine(style.PaperFormat.Size.Height < style.PaperFormat.Size.Width ? "\\landscape" : "\\portrait");
 
         sb.AppendLine(
-            $@"\paperw{MeasurementHelper.GetTwipsFromCm((float)style.PageFormat.Size.Width)}\paperh{MeasurementHelper.GetTwipsFromCm((float)style.PageFormat.Size.Height)}\margl{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Left)}\margr{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Right)}\margt{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Top)}\margb{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Bottom)} ");
+            $@"\paperw{MeasurementHelper.GetTwipsFromCm((float)style.PaperFormat.Size.Width)}\paperh{MeasurementHelper.GetTwipsFromCm((float)style.PaperFormat.Size.Height)}\margl{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Left)}\margr{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Right)}\margt{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Top)}\margb{MeasurementHelper.GetTwipsFromCm((float)style.Margins.Bottom)} ");
 
 
         // Now add all to content
