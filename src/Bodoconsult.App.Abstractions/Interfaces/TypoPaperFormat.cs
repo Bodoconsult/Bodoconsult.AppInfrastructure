@@ -8,7 +8,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// Paper format information like name and size
 /// </summary>
 [DebuggerDisplay("FormatName = {PaperFormatName} Size = {Size.Width} cm x {Size.Height} cm")]
-public struct TypoPaperFormat
+public class TypoPaperFormat
 {
     /// <summary>
     /// Default ctor

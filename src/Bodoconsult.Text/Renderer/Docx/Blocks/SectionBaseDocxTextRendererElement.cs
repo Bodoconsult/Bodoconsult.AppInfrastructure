@@ -46,7 +46,7 @@ public abstract class SectionBaseDocxTextRendererElement : DocxTextRendererEleme
         renderer.DocxDocument.AddSection(isLastSection, section.IsRestartPageNumberingRequired);
         var style = (PageStyleBase )renderer.Document.Styleset.FindStyle("DocumentStyle");
 
-        renderer.DocxDocument.SetBasicPageProperties(style.PageWidth, style.PageHeight, style.MarginLeft, style.MarginTop, style.MarginRight, style.MarginBottom);
+        renderer.DocxDocument.SetBasicPageProperties(style.PageFormat.Size.Width, style.PageFormat.Size.Height, style.Margins.Left, style.Margins.Top, style.Margins.Right, style.Margins.Bottom);
 
         var tabPosition = style.TypeAreaWidth;
 

@@ -39,7 +39,7 @@ public static class DocumentReflectionHelper
 
             var propType = propInfo.PropertyType;
 
-            var isPropElement = typeof(PropertyAsAttributeElement).IsAssignableFrom(propType);
+            var isPropElement = typeof(IPropertyAsAttributeElement).IsAssignableFrom(propType);
 
             if (!propType.IsPrimitive && propType != typeof(string) && !propType.IsEnum && !isPropElement && !(propType.IsGenericType && propType.GetGenericTypeDefinition() == typeof(LdmlList<>)) && propType != typeof(Type))
             {

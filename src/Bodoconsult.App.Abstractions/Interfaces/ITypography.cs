@@ -13,7 +13,6 @@ public interface ITypography
     /// </summary>
     public const string PageFieldIndicator = "<<page>>";
 
-
     /// <summary>
     /// Paper format
     /// </summary>

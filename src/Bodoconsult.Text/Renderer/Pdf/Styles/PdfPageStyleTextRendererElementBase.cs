@@ -41,15 +41,15 @@ public abstract class PdfPageStyleTextRendererElementBase : IPdfTextRendererElem
         var pdfStyle = renderer.PdfDocument.PageSetup;
 
         pdfStyle.Orientation = Style.TypeAreaHeight < Style.TypeAreaWidth ? Orientation.Landscape : Orientation.Portrait;
-        pdfStyle.PageWidth = Unit.FromCentimeter(Style.PageWidth);
-        pdfStyle.PageHeight = Unit.FromCentimeter(Style.PageHeight);
-        pdfStyle.LeftMargin = Unit.FromCentimeter(Style.MarginLeft);
-        pdfStyle.RightMargin = Unit.FromCentimeter(Style.MarginRight);
-        pdfStyle.TopMargin = Unit.FromCentimeter(Style.MarginTop);
-        pdfStyle.BottomMargin = Unit.FromCentimeter(Style.MarginBottom);
+        pdfStyle.PageWidth = Unit.FromCentimeter(Style.PageFormat.Size.Width);
+        pdfStyle.PageHeight = Unit.FromCentimeter(Style.PageFormat.Size.Height);
+        pdfStyle.LeftMargin = Unit.FromCentimeter(Style.Margins.Left);
+        pdfStyle.RightMargin = Unit.FromCentimeter(Style.Margins.Right);
+        pdfStyle.TopMargin = Unit.FromCentimeter(Style.Margins.Top);
+        pdfStyle.BottomMargin = Unit.FromCentimeter(Style.Margins.Bottom);
 
         // ToDo: other formats
-        pdfStyle.PageFormat = PageFormat.A4;
+        pdfStyle.PageFormat = MigraDoc.DocumentObjectModel.PageFormat.A4;
     }
 
     /// <summary>

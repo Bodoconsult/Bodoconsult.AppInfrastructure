@@ -2,10 +2,12 @@
 
 using System;
 using System.Collections;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.Text.Helpers;
+using Bodoconsult.Text.Interfaces;
 
 namespace Bodoconsult.Text.Documents;
 
@@ -15,7 +17,7 @@ namespace Bodoconsult.Text.Documents;
 public abstract class TextElement : DocumentElement
 {
     /// <summary>
-    /// The XML tag to ue for the current instance
+    /// The XML tag to use for the current instance
     /// </summary>
     [DoNotSerialize]
     public string TagToUse { get; protected set; } = string.Intern("TextElement");
@@ -84,7 +86,7 @@ public abstract class TextElement : DocumentElement
                 continue;
             }
 
-            if (value is PropertyAsAttributeElement pe)
+            if (value is IPropertyAsAttributeElement pe)
             {
 
                 var propValue = pe.ToPropertyValue();
@@ -96,7 +98,21 @@ public abstract class TextElement : DocumentElement
                 continue;
             }
 
-            var v = value.ToString();
+            string v;
+
+            switch (value.GetType().Name.ToLowerInvariant())
+            {
+                case "double":
+                case "single":
+                case "float":
+                    var d = (double)value;
+                    v = d.ToString("0.0000", CultureInfo.InvariantCulture);
+                    break;
+
+                default:
+                    v = value.ToString();
+                    break;
+            }
 
             if (!string.IsNullOrEmpty(v))
             {

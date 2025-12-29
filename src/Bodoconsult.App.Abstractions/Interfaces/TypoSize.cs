@@ -5,10 +5,10 @@ using System.Diagnostics;
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
-/// Defines a size of an element on the paper with width and height
+/// Defines a size of an element on the paper with width and height in cm
 /// </summary>
 [DebuggerDisplay("Width = {Width} Height = {Height}")]
-public struct TypoSize
+public class TypoSize
 {
     /// <summary>
     /// Default ctor
@@ -29,6 +29,5 @@ public struct TypoSize
     /// <summary>
     /// Height in cm
     /// </summary>
-    public double Height { get;  }
-
+    public double Height { get; }
 }

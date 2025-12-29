@@ -2,15 +2,14 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.DependencyInjection;
-using Bodoconsult.I18N.LocalesProviders;
-using Bodoconsult.I18N.Test.Helpers;
+using Bodoconsult.I18N.Test.LocalesProviderPackages;
 
 namespace Bodoconsult.I18N.Test.Samples;
 
 /// <summary>
-/// Factory to create a fully configured I18N factory using providers directly
+/// Factory to create a fully configured I18N factory using a locales provider package
 /// </summary>
-public class TestI18NFactory: BaseI18NFactory
+public class TestI18NFactory2 : BaseI18NFactory
 {
     /// <summary>
     /// Creating a configured II18N instance
@@ -22,21 +21,13 @@ public class TestI18NFactory: BaseI18NFactory
         I18NInstance.SetFallbackLocale("en");
 
         // Load a provider
-        ILocalesProvider provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
-            "Bodoconsult.I18N.Test.Samples.Locales");
-
-        I18N.Current.AddProvider(provider);
-
-        // Add provider 2
-        provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
-            "Bodoconsult.I18N.Test.Locales");
-
-        I18N.Current.AddProvider(provider);
+        var sample = new SampleLocalesProviderPackage();
+        sample.LoadLocalesProviders(I18NInstance);
 
         // Load more providers or packages if necessary
         // ...
 
-        // Init instance with language from running thread
+        // Init instance with langugae from running thread
         I18NInstance.Init();
 
         // Return the instance

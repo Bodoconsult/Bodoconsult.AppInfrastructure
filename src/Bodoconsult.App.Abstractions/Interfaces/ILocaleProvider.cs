@@ -8,7 +8,6 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// </summary>
 public interface ILocalesProvider
 {
-
     /// <summary>
     /// Current logger action
     /// </summary>
@@ -26,12 +25,10 @@ public interface ILocalesProvider
     /// </summary>
     IDictionary<string, string> LocaleItems { get; }
 
-
     /// <summary>
     /// Register all available resource items
     /// </summary>
     void RegisterLocalesItems();
-
 
     /// <summary>
     /// Load key value pairs for string translations in a translation dictionary.
@@ -41,6 +38,4 @@ public interface ILocalesProvider
     /// <returns>Translation dictionary with key value pairs in.
     /// </returns>
     IDictionary<string, string> LoadLocaleItem(string language);
-
-
 }

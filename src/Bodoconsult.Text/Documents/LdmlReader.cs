@@ -22,7 +22,7 @@ public class LdmlReader
 
     private IDocumentElement _textElement;
 
-    private readonly Type _popertyElementTpye = typeof(PropertyAsAttributeElement);
+    private readonly Type _popertyElementTpye = typeof(IPropertyAsAttributeElement);
 
     /// <summary>
     /// Read-only access to current <see cref="IDocumentElement"/> instance

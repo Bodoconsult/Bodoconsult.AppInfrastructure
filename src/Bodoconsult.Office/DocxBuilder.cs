@@ -655,7 +655,6 @@ public class DocxBuilder : IDisposable
         var tblBorders = new ParagraphBorders();
         pPr.Append(tblBorders);
         var borderColor = (typoStyle.TypoBorderBrush?.Color ?? TypoColors.Black).ToHtml();
-        const uint size = 9 * 10; // 9 per mm
 
         // Top border
         if (typoStyle.TypoBorderThickness.Top > 0)

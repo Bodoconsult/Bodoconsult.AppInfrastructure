@@ -182,4 +182,20 @@ public class LdmlReaderTests
 
     }
 
+    [Test]
+    public void ToLdmlString_DcoumentStyle_DocParsed()
+    {
+        // Arrange 
+        var sb = new StringBuilder();
+
+        var ds = new DocumentStyle();
+
+        // Act
+        ds.ToLdmlString(sb, string.Empty);
+
+        Debug.Print(sb.ToString());
+
+        Assert.That(sb.ToString().Contains("PageFormat"));
+    }
+
 }

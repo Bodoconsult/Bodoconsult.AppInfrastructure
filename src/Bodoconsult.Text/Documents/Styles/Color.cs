@@ -54,6 +54,18 @@ public class Color: TypoColor, IPropertyAsAttributeElement
     }
 
     /// <summary>
+    /// Ctor for constructing from base class <see cref="TypoColor"/> instance
+    /// </summary>
+    /// <param name="color"></param>
+    public Color(TypoColor color)
+    {
+        R = color.R;
+        G = color.G;
+        B = color.B;
+        A = color.A;
+    }
+
+    /// <summary>
     /// Current indenttation for LDML creation
     /// </summary>
     [DoNotSerialize]

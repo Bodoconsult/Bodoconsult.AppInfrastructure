@@ -101,7 +101,7 @@ I18N.Current
 
 ## Using I18N without depencency injection
 
-The following code does not use Fluent to show the single steps necessary. It may be shortene by using Fluent. 
+The following code does not use Fluent to show the single steps necessary. It may be shortened by using Fluent. 
 
 ```csharp
 // **** Load all resources from one or more sources ****
@@ -186,6 +186,72 @@ public class TestI18NFactory: BaseI18NFactory
         return I18NInstance;
     }
 }
+```
+
+If you want to create your own assemblies using Bodoconsult.I18N it may be a good idea to work with locales provider packages based on ILocalesProviderPackage defined in your assemblies. The following code shows a simple sample implementation for such a locales provider package:
+
+``` csharp
+/// <summary>
+/// Sample implementation of an <see cref="ILocalesProviderPackage"/>
+/// </summary>
+internal class SampleLocalesProviderPackage: BaseLocalesProviderPackage
+{
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    public SampleLocalesProviderPackage()
+    {
+        var assembly = typeof(SampleLocalesProviderPackage).Assembly;
+
+        // Load a provider
+        ILocalesProvider provider = new I18NEmbeddedResourceLocalesProvider(assembly, "Bodoconsult.I18N.Test.Samples.Locales");
+
+        LocalesProviders.Add(provider);
+
+        // Add provider 2
+        provider = new I18NEmbeddedResourceLocalesProvider(assembly, "Bodoconsult.I18N.Test.Locales");
+
+        LocalesProviders.Add(provider);
+    }
+}
+```
+
+Use the package in your BaseI18NFactory derived factory class as shown here:
+
+``` csharp
+/// <summary>
+/// Factory to create a fully configured I18N factory using a locales provider package
+/// </summary>
+public class TestI18NFactory2 : BaseI18NFactory
+{
+    /// <summary>
+    /// Creating a configured II18N instance
+    /// </summary>
+    /// <returns>An II18N instance</returns>
+    public override II18N CreateInstance()
+    {
+        // Set the fallback language
+        I18NInstance.SetFallbackLocale("en");
+
+        // Load a provider
+        var sample = new SampleLocalesProviderPackage();
+        sample.LoadLocalesProviders(I18NInstance);
+
+        // Load more providers or packages if necessary
+        // ...
+
+        // Init instance with langugae from running thread
+        I18NInstance.Init();
+
+        // Return the instance
+        return I18NInstance;
+    }
+}
+```
+ILocalesProvider and ILocalesProviderPackage implementations may be used in the factory as required in a combined manner making the setup of I18N as easy as possible.
+
+``` csharp
+
 ```
 
 If you use Bodoconsult.App app start infrastructure you can add the DI related code to the implementation of the method IDiContainerServiceProvider.AddServices as shown here in the sample:

@@ -8,51 +8,26 @@ namespace Bodoconsult.Text.Documents;
 public abstract class PageStyleBase : StyleBase
 {
     /// <summary>
-    /// Name of the paper format, i.e. A4, Letter, Legal
+    /// Paper format
     /// </summary>
-    public string PaperFormatName { get; set; } = "A4";
+    public PageFormat PageFormat { get; set; } = new();
 
     /// <summary>
-    /// Page width in cm
+    /// Page margins for type area in cm
     /// </summary>
-    public double PageWidth { get; set; } = 21.0;
-
-    /// <summary>
-    /// Page height in cm
-    /// </summary>
-    public double PageHeight { get; set; } = 29.4;
-
-    /// <summary>
-    /// Left margin in cm
-    /// </summary>
-    public double MarginLeft { get; set; } = 3.0;
-
-    /// <summary>
-    /// Left margin in cm
-    /// </summary>
-    public double MarginTop { get; set; } = 2.0;
-
-    /// <summary>
-    /// Left margin in cm
-    /// </summary>
-    public double MarginRight { get; set; } = 2.0;
-
-    /// <summary>
-    /// Left margin in cm
-    /// </summary>
-    public double MarginBottom { get; set; } = 2.0;
+    public Thickness Margins { get; set; } = new(3, 2, 2, 2);
 
     /// <summary>
     /// Type area width in cm
     /// </summary>
     [DoNotSerialize]
-    public double TypeAreaWidth => PageWidth - MarginLeft - MarginRight;
+    public double TypeAreaWidth => PageFormat.Size.Width - Margins.Left - Margins.Right;
 
     /// <summary>
     /// Type area height in cm
     /// </summary>
     [DoNotSerialize]
-    public double TypeAreaHeight => PageHeight - MarginTop - MarginBottom;
+    public double TypeAreaHeight => PageFormat.Size.Height - Margins.Top - Margins.Bottom;
 
     /// <summary>
     /// Max image width in cm

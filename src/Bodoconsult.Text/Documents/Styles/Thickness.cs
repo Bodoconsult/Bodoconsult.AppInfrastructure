@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
-using System.Text;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Text.Interfaces;
+using System;
+using System.Globalization;
+using System.Text;
 
 namespace Bodoconsult.Text.Documents;
 
@@ -96,6 +97,6 @@ public class Thickness : TypoThickness, IPropertyAsAttributeElement
             return null;
         }
 
-        return $"{Left},{Top},{Right},{Bottom}";
+        return $"{Left.ToString("0.0000", CultureInfo.InvariantCulture)},{Top.ToString("0.0000", CultureInfo.InvariantCulture)},{Right.ToString("0.0000", CultureInfo.InvariantCulture)},{Bottom.ToString("0.0000", CultureInfo.InvariantCulture)}";
     }
 }
