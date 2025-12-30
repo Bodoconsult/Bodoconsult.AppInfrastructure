@@ -28,6 +28,7 @@ public class ParagraphStyleBase : StyleBase, ITypoParagraphStyle
     /// <summary>
     /// Font color
     /// </summary>
+    [DoNotSerialize] 
     public TypoColor TypoFontColor => FontColor;
 
     /// <summary>
@@ -53,6 +54,7 @@ public class ParagraphStyleBase : StyleBase, ITypoParagraphStyle
     /// <summary>
     /// Margins
     /// </summary>
+    [DoNotSerialize] 
     public TypoThickness TypoMargins => Margins;
 
     /// <summary>
@@ -63,6 +65,7 @@ public class ParagraphStyleBase : StyleBase, ITypoParagraphStyle
     /// <summary>
     /// Border brush
     /// </summary>
+    [DoNotSerialize]
     public TypoBrush TypoBorderBrush => BorderBrush;
 
     /// <summary>
@@ -73,6 +76,7 @@ public class ParagraphStyleBase : StyleBase, ITypoParagraphStyle
     /// <summary>
     /// Current borderline width setting
     /// </summary>
+    [DoNotSerialize]
     public TypoThickness TypoBorderThickness => BorderThickness;
 
     /// <summary>

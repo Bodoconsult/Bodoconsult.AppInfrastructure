@@ -16,16 +16,27 @@ public static class TestDataHelper
 
     public static Document CreateDocument()
     {
+        // Styleset (add after metadata)
+        var styleset = StylesetHelper.CreateTestStyleset();
+        var doc = CreateDocInternal(styleset);
+        return doc;
+    }
+
+    public static Document CreateDocumentLandscape3Columns()
+    {
+        // Styleset (add after metadata)
+        var styleset = StylesetHelper.CreateTestStylesetLandscape3Columns();
+        var doc = CreateDocInternal(styleset);
+        return doc;
+    }
+
+    private static Document CreateDocInternal(Styleset styleset)
+    {
         var doc = new Document
         {
             Name = "MyReport",
         };
-
-
-        // Styleset (add after metadata)
-        var styleset = StylesetHelper.CreateTestStyleset();
-        doc.AddBlock(styleset);
-
+        
         // Metadata (add before style set)
         var meta = new DocumentMetaData
         {
@@ -46,6 +57,9 @@ public static class TestDataHelper
         };
 
         doc.AddBlock(meta);
+
+        // Add styleset now
+        doc.AddBlock(styleset);
 
         // Add TOC, TOF and TOE
         doc.AddBaseSections();
@@ -276,7 +290,6 @@ public static class TestDataHelper
         // Keep distance
         paragraph = new Paragraph(MassText);
         section.AddBlock(paragraph);
-
         return doc;
     }
 

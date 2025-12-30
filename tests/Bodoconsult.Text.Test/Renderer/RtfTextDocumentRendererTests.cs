@@ -68,4 +68,40 @@ public class RtfTextDocumentRendererTests
         FileSystemHelper.RunInDebugMode(filePath);
     }
 
+    [Test]
+    public void RenderIt_ValidDocumentLandscape3Columns_PropsSetCorrectly()
+    {
+        // Arrange 
+        var document = TestDataHelper.CreateDocumentLandscape3Columns();
+
+        var calc = new LdmlCalculator(document);
+        calc.UpdateAllTables();
+        calc.EnumerateAllItems();
+        calc.PrepareAllItems();
+        calc.PrepareAllSections();
+
+        var factory = new RtfTextRendererElementFactory();
+
+        var renderer = new RtfTextDocumentRenderer(document, factory);
+
+        // Act  
+        renderer.RenderIt();
+
+        // Assert
+        Assert.That(renderer.Content.Length, Is.Not.EqualTo(0));
+
+        Debug.Print(renderer.Content.ToString());
+
+        if (!Debugger.IsAttached)
+        {
+            return;
+        }
+
+        var filePath = Path.Combine(Path.GetTempPath(), "test.rtf");
+
+        renderer.SaveAsFile(filePath);
+
+        FileSystemHelper.RunInDebugMode(filePath);
+    }
+
 }

@@ -17,6 +17,7 @@ public abstract class PageStyleBase : StyleBase, ITypoPageStyle
     /// <summary>
     /// Paper format
     /// </summary>
+    [DoNotSerialize]
     public TypoPaperFormat TypoPaperFormat => PaperFormat;
 
     /// <summary>
@@ -27,6 +28,7 @@ public abstract class PageStyleBase : StyleBase, ITypoPageStyle
     /// <summary>
     /// Current margins in cm
     /// </summary>
+    [DoNotSerialize]
     public TypoThickness TypoMargins => Margins;
 
     /// <summary>
@@ -61,7 +63,7 @@ public abstract class PageStyleBase : StyleBase, ITypoPageStyle
     /// Max image width in cm
     /// </summary>
     [DoNotSerialize]
-    public double MaxImageWidth => 0.95 * TypeAreaWidth;
+    public double MaxImageWidth => 0.95 * ColumnWidth;
 
     /// <summary>
     /// Max image height in cm

@@ -63,4 +63,36 @@ public class DocxTextDocumentRendererTests
         FileSystemHelper.RunInDebugMode(filePath);
     }
 
+    [Test]
+    public void RenderIt_ValidDocumentLandscape3Columns_PropsSetCorrectly()
+    {
+        // Arrange 
+        var document = TestDataHelper.CreateDocumentLandscape3Columns();
+
+        var calc = new LdmlCalculator(document);
+        calc.UpdateAllTables();
+        calc.EnumerateAllItems();
+        calc.PrepareAllItems();
+        calc.PrepareAllSections();
+
+        var factory = new DocxTextRendererElementFactory();
+
+        var renderer = new DocxTextDocumentRenderer(document, factory);
+
+        // Act  
+        renderer.RenderIt();
+
+        // Assert
+        if (!Debugger.IsAttached)
+        {
+            return;
+        }
+
+        var filePath = Path.Combine(Path.GetTempPath(), "test.docx");
+
+        renderer.SaveAsFile(filePath);
+
+        FileSystemHelper.RunInDebugMode(filePath);
+    }
+
 }

@@ -1,10 +1,9 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
-/// Interface for typographic data. Coordinates system origin is in the left top corner. X axis going to right. Y axis going down.
+/// Interface for typographic data. Coordinates system origin is in the left top corner. X-axis going to right. Y-axis going down.
 /// </summary>
 public interface ITypography: ITypoPageStyle
 {
@@ -236,9 +235,11 @@ public interface ITypography: ITypoPageStyle
     void CalculateVerticalLines();
 
     /// <summary>
-    /// Set ratios used to calculate margins. Margins are calculate as follows:
+    /// Calculate margins. Margins are calculate as follows:
+    ///
+    /// TypeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * Space
     /// 
-    /// <see cref="MarginUnit"/> = PaperSize.Size.Width - TypeAreaRect.Size.Width / (<see cref="MarginLeftFactor"/> + <see cref="MarginRightFactor"/>)
+    /// <see cref="MarginUnit"/> = (PaperSize.Size.Width - TypeAreaWidth) / (<see cref="MarginLeftFactor"/> + <see cref="MarginRightFactor"/>)
     /// 
     /// Margins.Left  = <see cref="MarginLeftFactor"/> * <see cref="MarginUnit"/>
     /// Margins.Right  = <see cref="MarginRightFactor"/> * <see cref="MarginUnit"/>
@@ -252,7 +253,7 @@ public interface ITypography: ITypoPageStyle
     /// Get the width of a landscape element which should a certain number of layout columns in cm
     /// </summary>
     /// <param name="numberOfColumnsUsed">Number of columns used</param>
-    /// <returns></returns>
+    /// <returns>Width in cm</returns>
     double GetWidth(int numberOfColumnsUsed);
 
     /// <summary>

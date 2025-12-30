@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
+using Bodoconsult.App.Test.Helpers;
 using Newtonsoft.Json;
 
 namespace Bodoconsult.App.Test.Typography;
@@ -72,7 +73,6 @@ public class TypographyBaseTests
             MarginBottomFactor = 1
         };
 
-
         t.SetMargins();
 
         var fileName = Path.Combine(_exportFolderName, "ElegantTypography.json");
@@ -99,7 +99,7 @@ public class TypographyBaseTests
     {
         var t = new ElegantTypographyPageHeader("Cambria", "Cambria", "Cambria")
         {
-            LogoPath = @"C:\bodoconsult\Logos\logoStatera.jpg"
+            LogoPath = Path.Combine(TestHelper.TestDataPath, @"logo.jpg")
         };
 
 

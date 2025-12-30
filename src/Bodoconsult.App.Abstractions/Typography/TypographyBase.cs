@@ -197,6 +197,11 @@ public class TypographyBase : ITypography
     public double GridColumnWidth { get; set; }
 
     /// <summary>
+    /// Number of grid columns to use for the layout of a column in the type area
+    /// </summary>
+    public int GridColumnCount { get; set; }
+
+    /// <summary>
     /// Sets the factor for the calculation of the left margin. See <see cref="ITypography.SetMargins"/> for details
     /// </summary>
     public double MarginLeftFactor { get; set; }
@@ -217,11 +222,6 @@ public class TypographyBase : ITypography
     public double MarginBottomFactor { get; set; }
 
     /// <summary>
-    /// Number of grid columns to use for the layout of a column in the type area
-    /// </summary>
-    public int GridColumnCount { get; set; }
-
-    /// <summary>
     /// Unit used for margin calculations in cm (Teil in cm)
     /// 
     /// <see cref="MarginUnit"/> = PaperSize.Size.Width - TypeAreaRect.Size.Width / (<see cref="SetMargins"/>.left + <see cref="SetMargins"/>.right)
@@ -231,7 +231,7 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Current margins in cm
     /// </summary>
-    public TypoThickness TypoMargins { get; set; }
+    public TypoThickness TypoMargins { get; } = new();
 
     /// <summary>
     /// Height of the page header in cm
@@ -268,14 +268,20 @@ public class TypographyBase : ITypography
     /// </summary>
     public void CalculateVerticalLines()
     {
-        var numberOfLines = GridColumnCount * 2;
+        var numberOfLines = GridColumnCount * 2 * NumberOfColumns;
 
         VerticalLines = new double[numberOfLines];
 
-        for (var i = 0; i < GridColumnCount; i++)
+        var left = TypoMargins.Left;
+        for (var column = 0; column < NumberOfColumns; column++)
         {
-            VerticalLines[i * 2] = TypoMargins.Left + i * (GridColumnWidth + GridColumnDividerWidth);
-            VerticalLines[i * 2 + 1] = TypoMargins.Left + i * (GridColumnWidth + GridColumnDividerWidth) + GridColumnWidth;
+            for (var i = 0; i < GridColumnCount; i++)
+            {
+                VerticalLines[i * 2] = left + i * (GridColumnWidth + GridColumnDividerWidth);
+                VerticalLines[i * 2 + 1] = left + i * (GridColumnWidth + GridColumnDividerWidth) + GridColumnWidth;
+            }
+
+            left += ColumnWidth + Space;
         }
     }
 
@@ -323,9 +329,11 @@ public class TypographyBase : ITypography
     #region Methods
 
     /// <summary>
-    /// Set ratios used to calculate margins. Margins are calculate as follows:
+    /// Calculate margins. Margins are calculate as follows:
+    ///
+    /// TypeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * Space
     /// 
-    /// <see cref="MarginUnit"/> = PaperSize.Size.Width - TypeAreaRect.Size.Width / (<see cref="MarginLeftFactor"/> + <see cref="MarginRightFactor"/>)
+    /// <see cref="MarginUnit"/> = (PaperSize.Size.Width - TypeAreaWidth) / (<see cref="MarginLeftFactor"/> + <see cref="MarginRightFactor"/>)
     /// 
     /// Margins.Left  = <see cref="MarginLeftFactor"/> * <see cref="MarginUnit"/>
     /// Margins.Right  = <see cref="MarginRightFactor"/> * <see cref="MarginUnit"/>
@@ -335,7 +343,7 @@ public class TypographyBase : ITypography
     /// </summary>
     public void SetMargins()
     {
-        var typeAreaWidth = GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth;
+        var typeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * Space;
 
         var mu = TypoPaperFormat.Size.Width - typeAreaWidth;
 
@@ -371,7 +379,7 @@ public class TypographyBase : ITypography
     /// Get the width of a landscape element which should a certain number of layout columns in cm
     /// </summary>
     /// <param name="numberOfColumnsUsed"></param>
-    /// <returns></returns>
+    /// <returns>Width in cm</returns>
     public double GetWidth(int numberOfColumnsUsed)
     {
         return numberOfColumnsUsed * GridColumnWidth + (numberOfColumnsUsed - 1) * GridColumnDividerWidth;
@@ -382,7 +390,7 @@ public class TypographyBase : ITypography
     /// </summary>
     /// <param name="numberOfColumnsUsed"></param>
     /// <param name="landscape"></param>
-    /// <returns></returns>
+    /// <returns>Height in cm</returns>
     public double GetHeight(int numberOfColumnsUsed, bool landscape = true)
     {
         return landscape

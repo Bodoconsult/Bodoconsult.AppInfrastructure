@@ -2,6 +2,7 @@
 
 using System;
 using System.Text;
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
@@ -61,6 +62,15 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
             default:
                 renderer.Content.Append("\\pgndec");
                 break;
+        }
+
+        var docStyle = (PageStyleBase)renderer.Document.Styleset.FindStyle("DocumentStyle");
+
+        // Columns
+        if (docStyle.NumberOfColumns > 1)
+        {
+            renderer.Content.Append($"\\cols{docStyle.NumberOfColumns}");
+            renderer.Content.Append($"\\colsx{MeasurementHelper.GetTwipsFromCm(docStyle.Space)}");
         }
 
         renderer.Content.Append('{');

@@ -39,7 +39,11 @@ public class DefinitionListDocxTextRendererElement : DocxTextRendererElementBase
         {
             var term = (DefinitionListTerm)childBlock;
 
-            var row = new DocxDefinitionListRow();
+            var row = new DocxDefinitionListRow
+            {
+                TermStyleId = "DefinitionListTerm",
+                ItemsStyleId = "DefinitionListItem"
+            };
 
             // Term
             var sb = new List<OpenXmlElement>();
@@ -57,6 +61,6 @@ public class DefinitionListDocxTextRendererElement : DocxTextRendererElementBase
             rows.Add(row);
         }
 
-        renderer.DocxDocument.AddDefinitionList(rows, 0.25 * ps.TypeAreaWidth, 0.75 * ps.TypeAreaWidth);
+        renderer.DocxDocument.AddDefinitionList(rows, 0.25 * ps.ColumnWidth, 0.75 * ps.ColumnWidth);
     }
 }

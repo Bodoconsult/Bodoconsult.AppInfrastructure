@@ -50,6 +50,9 @@ public abstract class PdfPageStyleTextRendererElementBase : IPdfTextRendererElem
 
         // ToDo: other formats
         pdfStyle.PageFormat = MigraDoc.DocumentObjectModel.PageFormat.A4;
+
+
+        // https://stackoverflow.com/questions/44578660/adding-multi-page-migradoc-document-to-a-pdfsharp-document
     }
 
     /// <summary>
