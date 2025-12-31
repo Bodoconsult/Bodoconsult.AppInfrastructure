@@ -4,13 +4,16 @@ using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Interfaces;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using MigraDoc.DocumentObjectModel;
 using PdfSharp.Fonts;
 using Color = MigraDoc.DocumentObjectModel.Color;
+using Document = Bodoconsult.Text.Documents.Document;
 
 namespace Bodoconsult.Text.Renderer.Pdf;
 
 /// <summary>
-/// Render a <see cref="Document"/> to a PDF file
+/// Render a <see cref="Documents.Document"/> to a PDF file
 /// </summary>
 public class PdfTextDocumentRenderer : BaseDocumentRenderer
 {
@@ -26,7 +29,34 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
         PdfTextRendererElementFactory = (IPdfTextRendererElementFactory)textRendererElementFactory;
         IStyleSet styleSet = new DefaultStyleSet();
+        styleSet.CreatePageSetup();
+
+        var style = (DocumentStyle)Styleset.FindStyle("DocumentStyle");
+        if (style != null)
+        {
+            PdfBuilderBase.SetPage(style, styleSet.PageSetup);
+
+            styleSet.NumberOfColumns = style.NumberOfColumns;
+            styleSet.Space = Unit.FromCentimeter(style.Space);
+
+            if (style.NumberOfColumns > 1)
+            {
+                styleSet.ColumnWidth = Unit.FromCentimeter(style.ColumnWidth);
+            }
+            else
+            {
+                styleSet.ColumnWidth = Unit.FromCentimeter(style.TypeAreaWidth);
+            }
+
+        }
+
+
+        styleSet.CalculateMeasures();
+        styleSet.InitializeStyles();
+
+
         PdfDocument = new PdfBuilder(styleSet, fontResolver);
+
         PdfDocument.TitleTableOfFigures = metaData.TofHeading;
         PdfDocument.TitleTableOfEquations = metaData.ToeHeading;
         PdfDocument.TitleTableOfTables = metaData.TotHeading;
@@ -56,6 +86,8 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
     /// </summary>
     public override void RenderIt()
     {
+
+
         var rendererElement = PdfTextRendererElementFactory.CreateInstancePdf(Document);
         rendererElement.RenderIt(this);
     }

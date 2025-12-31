@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.Text.Documents;
-using DocumentFormat.OpenXml.Vml.Spreadsheet;
 
 namespace Bodoconsult.Text.Renderer.Html.Styles;
 

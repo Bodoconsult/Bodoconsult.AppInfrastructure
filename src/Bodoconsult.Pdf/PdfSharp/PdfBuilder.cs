@@ -26,8 +26,6 @@ public class PdfBuilder : PdfBuilderBase
         LoadStyleset(styleSet);
     }
 
-    
-
     #endregion
 
 }

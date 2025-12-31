@@ -27,7 +27,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
     /// Create the page setup. This method should set <see cref="DefaultStyleSet.TypeAreaWidth"/>!
     /// </summary>
     /// <returns>Page setup</returns>
-    protected override PageSetup CreatePageSetup()
+    public override PageSetup CreatePageSetup()
     {
         var ps = new PageSetup
         {
@@ -40,7 +40,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
             RightMargin = Unit.FromCentimeter(_typography.TypoMargins.Right),
             BottomMargin = Unit.FromCentimeter(_typography.TypoMargins.Bottom)
         };
-        TypeAreaWidth = ps.PageWidth - ps.LeftMargin - ps.RightMargin;
+        PageSetup = ps;
         return ps;
     }
 

@@ -1,11 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Helpers;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
@@ -13,6 +8,12 @@ using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace Bodoconsult.Pdf.PdfSharp;
 
@@ -192,10 +193,10 @@ public abstract class PdfBuilderBase : IDisposable
 
             var ps = PageSetup;
 
-            if (Content != null)
-            {
-                ps = Content.PageSetup;
-            }
+            //if (Content != null)
+            //{
+            //    ps = Content.PageSetup;
+            //}
 
             if (ps.Orientation == Orientation.Landscape)
             {
@@ -266,33 +267,87 @@ public abstract class PdfBuilderBase : IDisposable
     }
 
     /// <summary>
-    /// Page setup for content section
+    /// Set the page settings for content section
     /// </summary>
-    /// <param name="pageFormat">page format</param>
-    /// <param name="orientation">Orientation</param>
-    /// <param name="pageHeight"></param>
-    /// <param name="leftMargin">Left margin</param>
-    /// <param name="topMargin">Top margin</param>
-    /// <param name="rightMargin">Right margin</param>
-    /// <param name="bottomMargin">Bottom margin</param>
-    /// <param name="pageWidth"></param>
+    /// <param name="style">Current page style</param>
+    /// <param name="pageSetup">Current page setup</param>
     /// <returns>Page setup for individual settings</returns>
-    public PageSetup SetPage(PageFormat pageFormat, Orientation orientation, Unit pageWidth, Unit pageHeight, Unit leftMargin, Unit topMargin,
-        Unit rightMargin, Unit bottomMargin)
+    public static void SetPage(ITypoPageStyle style, PageSetup pageSetup)
     {
-        PageSetup = new PageSetup
-        {
-            Orientation = orientation,
-            PageFormat = pageFormat,
-            LeftMargin = leftMargin,
-            TopMargin = topMargin,
-            RightMargin = rightMargin,
-            BottomMargin = bottomMargin,
-            PageHeight = pageHeight,
-            PageWidth = pageWidth
-        };
+        var format = PageFormat.A4;
 
-        return PageSetup;
+        switch (style.TypoPaperFormat.PaperFormatName.ToLowerInvariant())
+        {
+            case "a0":
+                format = PageFormat.A0;
+                break;
+            case "a1":
+                format = PageFormat.A1;
+                break;
+            case "a2":
+                format = PageFormat.A2;
+                break;
+            case "a3":
+                format = PageFormat.A3;
+                break;
+            case "a4":
+                format = PageFormat.A4;
+                break;
+            case "a5":
+                format = PageFormat.A5;
+                break;
+            case "b5":
+                format = PageFormat.B5;
+                break;
+            case "ledger":
+                format = PageFormat.Ledger;
+                break;
+            case "letter":
+                format = PageFormat.Letter;
+                break;
+            case "legal":
+                format = PageFormat.Legal;
+                break;
+            case "p11x17":
+                format = PageFormat.P11x17;
+                break;
+            //case "a0":
+            //    format = PageFormat.A0;
+            //    break;
+            //case "a0":
+            //    format = PageFormat.A0;
+            //    break;
+            //default:
+            //break;
+        }
+
+        // More than one column
+        if (style.NumberOfColumns > 1)
+        {
+            pageSetup.PageHeight = Unit.FromCentimeter(style.TypoPaperFormat.Size.Height);
+            pageSetup.PageWidth = Unit.FromCentimeter(style.ColumnWidth);
+            pageSetup.Orientation = Orientation.Portrait;
+            pageSetup.PageFormat = format;
+            pageSetup.LeftMargin = 0;
+            pageSetup.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
+            pageSetup.RightMargin = 0;
+            pageSetup.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
+            return;
+        }
+
+        // One column
+        pageSetup.PageHeight = Unit.FromCentimeter(style.TypoPaperFormat.Size.Height);
+        pageSetup.PageWidth = Unit.FromCentimeter(style.TypoPaperFormat.Size.Width);
+        pageSetup.Orientation = pageSetup.PageWidth > pageSetup.PageHeight
+            ? Orientation.Landscape
+            : Orientation.Portrait;
+        pageSetup.PageFormat = format;
+        pageSetup.LeftMargin = Unit.FromCentimeter(style.TypoMargins.Left);
+        pageSetup.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
+        pageSetup.RightMargin = Unit.FromCentimeter(style.TypoMargins.Right);
+        pageSetup.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
+
+
     }
 
     /// <summary>
@@ -911,13 +966,13 @@ public abstract class PdfBuilderBase : IDisposable
 
         var text = FooterText;
 
-        if (text.Contains("<<page>>"))
+        if (text.Contains(ITypography.PageFieldIndicator))
         {
             paragraph.Format.AddTabStop(Unit.FromCentimeter(Width), TabAlignment.Right);
 
-            var vorher = text[..text.IndexOf("<<page>>", StringComparison.Ordinal)];
-            var nachher = text.Substring(text.IndexOf("<<page>>", StringComparison.Ordinal) + 8,
-                text.Length - text.IndexOf("<<page>>", StringComparison.Ordinal) - 8);
+            var vorher = text[..text.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal)];
+            var nachher = text.Substring(text.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) + 8,
+                text.Length - text.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) - 8);
             paragraph.AddText(vorher);
 
             var p = paragraph.AddPageField();
@@ -926,11 +981,11 @@ public abstract class PdfBuilderBase : IDisposable
                 p.Format = pageNumberFormat;
             }
 
-            if (nachher.Contains("<<pages>>"))
+            if (nachher.Contains(ITypography.PageFieldIndicator))
             {
-                vorher = nachher[..nachher.IndexOf("<<pages>>", StringComparison.Ordinal)];
-                nachher = nachher.Substring(nachher.IndexOf("<<pages>>", StringComparison.Ordinal) + 9,
-                    nachher.Length - nachher.IndexOf("<<pages>>", StringComparison.Ordinal) - 9);
+                vorher = nachher[..nachher.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal)];
+                nachher = nachher.Substring(nachher.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) + 9,
+                    nachher.Length - nachher.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) - 9);
 
                 paragraph.AddText(vorher);
                 paragraph.AddNumPagesField();

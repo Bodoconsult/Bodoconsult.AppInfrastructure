@@ -4,10 +4,7 @@ using System;
 using System.Runtime.Versioning;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
-using MigraDoc.Rendering;
-using PdfSharp.Drawing;
 using PdfSharp.Fonts;
-using PdfSharp.Pdf;
 
 namespace Bodoconsult.Pdf.PdfSharp;
 
@@ -84,36 +81,9 @@ public class PdfCreator : PdfBuilderBase
 
     #endregion
 
-    //// Once you Prepare() the Migradoc document, you have the layout of your document, and the number of pages.So, you just need to loop over each page of the MigraDoc document, and for each one you need to create a page in the PdfDocument:
+    // https://github.com/empira/MigraDoc-samples-1.5/blob/master/samples/core/MixMigraDocAndPdfSharp/Program.cs
 
-    //private void SampleMultiplePage(ref PdfDocument document, Document migraDocument)
-    //{
-    //    var pdfRenderer = new DocumentRenderer(migraDocument);
-
-    //    pdfRenderer.PrepareDocument();
-
-    //    int pages = pdfRenderer.FormattedDocument.PageCount;
-    //    for (int i = 1; i <= pages; ++i)
-    //    {
-    //        var page = document.AddPage();
-
-    //        PageInfo pageInfo = pdfRenderer.FormattedDocument.GetPageInfo(i);
-    //        page.Width = pageInfo.Width;
-    //        page.Height = pageInfo.Height;
-    //        page.Orientation = pageInfo.Orientation;
-
-
-
-    //        using (XGraphics gfx = XGraphics.FromPdfPage(page))
-    //        {
-    //            //// HACK²
-    //            //gfx. = PdfFontEncoding.Unicode;
-    //            //gfx.MFEH = PdfFontEmbedding.Default;
-
-    //            pdfRenderer.RenderPage(gfx, i);
-    //        }
-    //    }
-    //}
+    // https://www.pdfsharp.net/wiki-1.5/MixMigraDocAndPdfSharp-sample.ashx
 
     /// <summary>
     /// Add a toc section to the document

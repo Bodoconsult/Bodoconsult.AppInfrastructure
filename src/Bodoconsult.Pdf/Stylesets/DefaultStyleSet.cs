@@ -16,9 +16,9 @@ public class DefaultStyleSet : IStyleSet
     protected Unit DefaultFontSize = 11;
 
     /// <summary>
-    /// Tyoe area width
+    /// Type area width
     /// </summary>
-    protected Unit TypeAreaWidth;
+    public Unit TypeAreaWidth { get; private set; }
 
     /// <summary>
     /// Default vertical margin
@@ -26,11 +26,26 @@ public class DefaultStyleSet : IStyleSet
     protected double DefaultVerticalMargin = 3;
 
     /// <summary>
-    /// Default ctor
+    /// Number of text columns the type area is divided in
     /// </summary>
-    public DefaultStyleSet()
+    public int NumberOfColumns { get; set; } = 1;
+
+    /// <summary>
+    /// The space between text columns in the type area in cm
+    /// </summary>
+    public Unit Space { get; set; } = 0;
+
+    /// <summary>
+    /// The resulting text column width
+    /// </summary>
+    public Unit ColumnWidth { get; set; }
+
+    /// <summary>
+    /// Calculate measures <see cref="IStyleSet.TypeAreaWidth"/> and ColumnWidth!
+    /// </summary>
+    public void CalculateMeasures()
     {
-        InitializeStyles();
+        TypeAreaWidth = PageSetup.PageWidth.Centimeter - PageSetup.LeftMargin.Centimeter - PageSetup.RightMargin.Centimeter;
     }
 
     /// <summary>
@@ -38,8 +53,6 @@ public class DefaultStyleSet : IStyleSet
     /// </summary>
     public void InitializeStyles()
     {
-        PageSetup = CreatePageSetup();
-
         Empty = CreateEmptyStyle();
         Normal = CreateNormalStyle();
         //Normal.ParagraphFormat.Borders.Left.Width = 1;
@@ -255,7 +268,7 @@ public class DefaultStyleSet : IStyleSet
         style.ParagraphFormat.Borders.Top.Visible = true;
         style.ParagraphFormat.Borders.Top.Width = 0.5;
         style.ParagraphFormat.Borders.Top.Color = Colors.Black;
-        style.ParagraphFormat.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.AddTabStop(ColumnWidth, TabAlignment.Right);
         return style;
     }
 
@@ -526,7 +539,7 @@ public class DefaultStyleSet : IStyleSet
         };
         style.ParagraphFormat.Borders.Bottom.Width = 1;
         style.ParagraphFormat.Borders.Bottom.Color = Colors.Black;
-        style.ParagraphFormat.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.AddTabStop(ColumnWidth, TabAlignment.Right);
         return style;
     }
 
@@ -551,7 +564,7 @@ public class DefaultStyleSet : IStyleSet
                 Alignment = ParagraphAlignment.Left
             }
         };
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
         return style;
     }
 
@@ -606,7 +619,7 @@ public class DefaultStyleSet : IStyleSet
             }
         };
 
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
         return style;
     }
 
@@ -659,7 +672,7 @@ public class DefaultStyleSet : IStyleSet
                 Alignment = ParagraphAlignment.Left
             }
         };
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
 
         return style;
     }
@@ -720,7 +733,7 @@ public class DefaultStyleSet : IStyleSet
         style.ParagraphFormat.Borders.Right.Width = 0;
         style.ParagraphFormat.Borders.Left.Width = 0;
         style.ParagraphFormat.LeftIndent = Unit.FromCentimeter(4);
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
 
         return style;
     }
@@ -751,7 +764,7 @@ public class DefaultStyleSet : IStyleSet
         style.ParagraphFormat.Borders.Right.Width = 0;
         style.ParagraphFormat.Borders.Left.Width = 0;
         style.ParagraphFormat.LeftIndent = Unit.FromCentimeter(3);
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
 
         return style;
     }
@@ -782,7 +795,7 @@ public class DefaultStyleSet : IStyleSet
         style.ParagraphFormat.Borders.Right.Width = 0;
         style.ParagraphFormat.Borders.Left.Width = 0;
         style.ParagraphFormat.LeftIndent = Unit.FromCentimeter(2);
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
 
         return style;
     }
@@ -812,7 +825,7 @@ public class DefaultStyleSet : IStyleSet
         style.ParagraphFormat.Borders.Right.Width = 0;
         style.ParagraphFormat.Borders.Left.Width = 0;
         style.ParagraphFormat.LeftIndent = Unit.FromCentimeter(1);
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
         return style;
     }
 
@@ -840,7 +853,7 @@ public class DefaultStyleSet : IStyleSet
         style.ParagraphFormat.Borders.Top.Width = 0;
         style.ParagraphFormat.Borders.Right.Width = 0;
         style.ParagraphFormat.Borders.Left.Width = 0;
-        style.ParagraphFormat.TabStops.AddTabStop(TypeAreaWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
         return style;
     }
 
@@ -1307,10 +1320,10 @@ public class DefaultStyleSet : IStyleSet
     }
 
     /// <summary>
-    /// Create the page setup. This method should set <see cref="TypeAreaWidth"/>!
+    /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!
     /// </summary>
     /// <returns>Page setup</returns>
-    protected virtual PageSetup CreatePageSetup()
+    public virtual PageSetup CreatePageSetup()
     {
         var ps = new PageSetup
         {
@@ -1323,7 +1336,8 @@ public class DefaultStyleSet : IStyleSet
             RightMargin = Unit.FromCentimeter(1.5),
             BottomMargin = Unit.FromCentimeter(2.5)
         };
-        TypeAreaWidth = ps.PageWidth - ps.LeftMargin - ps.RightMargin;
+        
+        PageSetup = ps;
         return ps;
     }
 

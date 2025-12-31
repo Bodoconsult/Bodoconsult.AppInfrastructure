@@ -10,9 +10,40 @@ namespace Bodoconsult.Pdf.Stylesets;
 public interface IStyleSet
 {
     /// <summary>
+    /// Create the page setup. This method must set <see cref="PageSetup"/>!
+    /// </summary>
+    /// <returns>Page setup</returns>
+    PageSetup CreatePageSetup();
+
+    /// <summary>
+    /// Calculate measures <see cref="TypeAreaWidth"/> and ColumnWidth!
+    /// </summary>
+    void CalculateMeasures();
+
+    /// <summary>
     /// Initialize all styles
     /// </summary>
     void InitializeStyles();
+
+    /// <summary>
+    /// Number of text columns the type area is divided in
+    /// </summary>
+    int NumberOfColumns { get; set; } 
+
+    /// <summary>
+    /// The space between text columns in the type area in cm
+    /// </summary>
+    Unit Space { get; set; }
+
+    /// <summary>
+    /// Type area width
+    /// </summary>
+    Unit TypeAreaWidth { get; }
+
+    /// <summary>
+    /// The resulting text column width
+    /// </summary>
+    Unit ColumnWidth { get; set; }
 
     /// <summary>
     /// Normal paragraphs (default style)
