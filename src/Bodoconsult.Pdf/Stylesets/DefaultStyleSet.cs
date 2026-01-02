@@ -1460,7 +1460,10 @@ public class DefaultStyleSet : IStyleSet
     /// </summary>
     public PageSetup PageSetup { get; set; }
 
-
+    /// <summary>
+    /// The original page setup. Used only for multi-column text PDF documents
+    /// </summary>
+    public PageSetup PageSetupOriginal { get; set; }
 
     /// <summary>
     /// Normal paragraphs (default style)

@@ -48,7 +48,7 @@ public class SectionPdfTextRendererElement : SectionBasePdfTextRendererElement
 
         if (_section.IsRestartPageNumberingRequired)
         {
-            renderer.PdfDocument.PageSetup.StartingNumber = 1;
+            renderer.PdfDocument.StyleSet.PageSetup.StartingNumber = 1;
         }
 
         renderer.PdfDocument.CreateContentSection();

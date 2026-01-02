@@ -231,6 +231,9 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
         DetailsColor = Colors.Black;
 
         StyleSet = new DefaultStyleSet();
+        StyleSet.CreatePageSetup();
+        StyleSet.CalculateMeasures();
+        StyleSet.InitializeStyles();
 
     }
 
@@ -246,7 +249,9 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
         DetailsColor = Colors.Black;
 
         StyleSet = styleSet;
-
+        StyleSet.CreatePageSetup();
+        StyleSet.CalculateMeasures();
+        StyleSet.InitializeStyles();
     }
 
 
@@ -262,6 +267,4 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
             // ignored
         }
     }
-
-
 }

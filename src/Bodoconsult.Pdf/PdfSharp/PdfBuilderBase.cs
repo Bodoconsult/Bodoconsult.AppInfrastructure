@@ -8,6 +8,9 @@ using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
+using PdfSharp;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -54,11 +57,6 @@ public abstract class PdfBuilderBase : IDisposable
     protected Section Tot;
 
     /// <summary>
-    /// Current page setup
-    /// </summary>
-    public PageSetup PageSetup { get; private set; }
-
-    /// <summary>
     /// Width of a <see cref="DateTime"/> value
     /// </summary>
     protected const double WidthDateTime = 8;
@@ -99,6 +97,11 @@ public abstract class PdfBuilderBase : IDisposable
     protected string FooterStyleName;
 
     #endregion
+
+    /// <summary>
+    /// Current styleset to use
+    /// </summary>
+    public IStyleSet StyleSet { get; private set; }
 
     /// <summary>
     /// Currently started table
@@ -191,7 +194,7 @@ public abstract class PdfBuilderBase : IDisposable
         {
             double w;
 
-            var ps = PageSetup;
+            var ps = StyleSet.PageSetup;
 
             //if (Content != null)
             //{
@@ -219,11 +222,21 @@ public abstract class PdfBuilderBase : IDisposable
     /// <param name="showPdfFile">Show Pdf-File in a viewer</param>
     public void RenderToPdf(string fileName, bool showPdfFile)
     {
-        var renderer = new PdfDocumentRenderer { Document = Document };
-        renderer.RenderDocument();
+        if (StyleSet.NumberOfColumns > 1)
+        {
+            var document = CreateMasterPdfDocument();
 
-        // Save the document...
-        renderer.PdfDocument.Save(fileName);
+            document.Save(fileName);
+        }
+        else
+        {
+            var renderer = new PdfDocumentRenderer { Document = Document };
+            renderer.RenderDocument();
+
+            // Save the document...
+            renderer.PdfDocument.Save(fileName);
+        }
+
 
         if (!showPdfFile)
         {
@@ -242,12 +255,89 @@ public abstract class PdfBuilderBase : IDisposable
 
     }
 
+    private PdfDocument CreateMasterPdfDocument()
+    {
+        var document = new PdfDocument();
+        document.Info.Title = Document.Info.Title;
+        document.Info.Subject = Document.Info.Subject;
+        document.Info.Author = Document.Info.Author;
+
+
+        // Create a renderer and prepare (=layout) the document
+        var docRenderer = new DocumentRenderer(Document);
+        docRenderer.PrepareDocument();
+
+        // For clarity, we use point as unit of measure in this sample.
+        // A4 is the standard letter size in Germany (21cm x 29.7cm).
+        var a4Rect = new XRect(0, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
+
+        var pageCount = docRenderer.FormattedDocument?.PageCount;
+
+        var idx = 0;
+
+        XGraphics gfx = null;
+        for (var pageNum = 0; pageNum < pageCount; pageNum++)
+        {
+            if (idx == 0)
+            {
+                var page = document.AddPage();
+                gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
+                page.Size = PageSize.A4;
+                page.Orientation = StyleSet.PageSetupOriginal.Orientation == Orientation.Landscape ? PageOrientation.Landscape : PageOrientation.Portrait;
+            }
+            else
+            {
+                if (gfx == null)
+                {
+                    throw new ArgumentNullException(nameof(gfx));
+                }
+            }
+
+            var rect = GetRect(idx);
+
+            // Use BeginContainer / EndContainer for simplicity only. You can naturaly use you own transformations.
+            var container = gfx.BeginContainer(rect, a4Rect, XGraphicsUnit.Point);
+
+            // Render the page. Note that page numbers start with 1.
+            docRenderer.RenderPage(gfx, pageNum + 1);
+
+            // Note: The outline and the hyperlinks (table of content) does not work in the produced PDF document.
+
+            // Pop the previous graphical state
+            gfx.EndContainer(container);
+
+            idx++;
+            if (idx >= StyleSet.NumberOfColumns)
+            {
+                idx = 0;
+            }
+        }
+
+        return document;
+    }
+
+    private XRect GetRect(int index)
+    {
+        var x = StyleSet.PageSetupOriginal.LeftMargin.Point + index * StyleSet.ColumnWidth.Point + (index) * StyleSet.Space.Point;
+
+        var rect = new XRect(x, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
+        return rect;
+    }
+
     /// <summary>
     /// Save Pdf to a stream
     /// </summary>
     /// <param name="stream">Stream</param>
     public void RenderToPdf(Stream stream)
     {
+        if (StyleSet.NumberOfColumns > 1)
+        {
+            var document = CreateMasterPdfDocument();
+            document.Save(stream);
+
+            return;
+        }
+
         var renderer = new PdfDocumentRenderer { Document = Document };
         renderer.RenderDocument();
         renderer.PdfDocument.Save(stream);
@@ -270,9 +360,9 @@ public abstract class PdfBuilderBase : IDisposable
     /// Set the page settings for content section
     /// </summary>
     /// <param name="style">Current page style</param>
-    /// <param name="pageSetup">Current page setup</param>
+    /// <param name="styleSet">Current page setup</param>
     /// <returns>Page setup for individual settings</returns>
-    public static void SetPage(ITypoPageStyle style, PageSetup pageSetup)
+    public static void SetPage(ITypoPageStyle style, IStyleSet styleSet)
     {
         var format = PageFormat.A4;
 
@@ -311,41 +401,57 @@ public abstract class PdfBuilderBase : IDisposable
             case "p11x17":
                 format = PageFormat.P11x17;
                 break;
-            //case "a0":
-            //    format = PageFormat.A0;
-            //    break;
-            //case "a0":
-            //    format = PageFormat.A0;
-            //    break;
-            //default:
-            //break;
+                //case "a0":
+                //    format = PageFormat.A0;
+                //    break;
+                //case "a0":
+                //    format = PageFormat.A0;
+                //    break;
+                //default:
+                //break;
         }
 
         // More than one column
         if (style.NumberOfColumns > 1)
         {
-            pageSetup.PageHeight = Unit.FromCentimeter(style.TypoPaperFormat.Size.Height);
-            pageSetup.PageWidth = Unit.FromCentimeter(style.ColumnWidth);
-            pageSetup.Orientation = Orientation.Portrait;
-            pageSetup.PageFormat = format;
-            pageSetup.LeftMargin = 0;
-            pageSetup.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
-            pageSetup.RightMargin = 0;
-            pageSetup.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
+            // Set up the page setup for the overall page
+            styleSet.PageSetupOriginal = new PageSetup
+            {
+                PageHeight = Unit.FromCentimeter(style.TypoPaperFormat.Size.Height),
+                PageWidth = Unit.FromCentimeter(style.TypoPaperFormat.Size.Width)
+            };
+            styleSet.PageSetupOriginal.Orientation = styleSet.PageSetupOriginal.PageWidth > styleSet.PageSetupOriginal.PageHeight
+                ? Orientation.Landscape
+                : Orientation.Portrait;
+            styleSet.PageSetupOriginal.PageFormat = format;
+            styleSet.PageSetupOriginal.LeftMargin = Unit.FromCentimeter(style.TypoMargins.Left);
+            styleSet.PageSetupOriginal.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
+            styleSet.PageSetupOriginal.RightMargin = Unit.FromCentimeter(style.TypoMargins.Right);
+            styleSet.PageSetupOriginal.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
+
+            // Set up the page setup for the page parts
+            styleSet.PageSetup.PageHeight = Unit.FromCentimeter(style.TypoPaperFormat.Size.Height);
+            styleSet.PageSetup.PageWidth = Unit.FromCentimeter(style.ColumnWidth);
+            styleSet.PageSetup.Orientation = Orientation.Portrait;
+            styleSet.PageSetup.PageFormat = format;
+            styleSet.PageSetup.LeftMargin = 0;
+            styleSet.PageSetup.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
+            styleSet.PageSetup.RightMargin = 0;
+            styleSet.PageSetup.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
             return;
         }
 
         // One column
-        pageSetup.PageHeight = Unit.FromCentimeter(style.TypoPaperFormat.Size.Height);
-        pageSetup.PageWidth = Unit.FromCentimeter(style.TypoPaperFormat.Size.Width);
-        pageSetup.Orientation = pageSetup.PageWidth > pageSetup.PageHeight
+        styleSet.PageSetup.PageHeight = Unit.FromCentimeter(style.TypoPaperFormat.Size.Height);
+        styleSet.PageSetup.PageWidth = Unit.FromCentimeter(style.TypoPaperFormat.Size.Width);
+        styleSet.PageSetup.Orientation = styleSet.PageSetup.PageWidth > styleSet.PageSetup.PageHeight
             ? Orientation.Landscape
             : Orientation.Portrait;
-        pageSetup.PageFormat = format;
-        pageSetup.LeftMargin = Unit.FromCentimeter(style.TypoMargins.Left);
-        pageSetup.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
-        pageSetup.RightMargin = Unit.FromCentimeter(style.TypoMargins.Right);
-        pageSetup.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
+        styleSet.PageSetup.PageFormat = format;
+        styleSet.PageSetup.LeftMargin = Unit.FromCentimeter(style.TypoMargins.Left);
+        styleSet.PageSetup.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
+        styleSet.PageSetup.RightMargin = Unit.FromCentimeter(style.TypoMargins.Right);
+        styleSet.PageSetup.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
 
 
     }
@@ -402,7 +508,7 @@ public abstract class PdfBuilderBase : IDisposable
         //if (_content == null)
         //{
         Content = Document.AddSection();
-        Content.PageSetup = PageSetup.Clone();
+        Content.PageSetup = StyleSet.PageSetup.Clone();
 
         AddHeaderInternal(Content);
         AddFooterInternal(Content);
@@ -417,7 +523,7 @@ public abstract class PdfBuilderBase : IDisposable
     public void CreateTocSection()
     {
         Toc = Document.AddSection();
-        Toc.PageSetup = PageSetup.Clone();
+        Toc.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toc;
 
         AddHeaderInternal(Toc);
@@ -433,7 +539,7 @@ public abstract class PdfBuilderBase : IDisposable
     public void CreateTofSection()
     {
         Tof = Document.AddSection();
-        Tof.PageSetup = PageSetup.Clone();
+        Tof.PageSetup = StyleSet.PageSetup.Clone();
         Content = Tof;
 
         AddHeaderInternal(Tof);
@@ -449,7 +555,7 @@ public abstract class PdfBuilderBase : IDisposable
     public void CreateToeSection()
     {
         Toe = Document.AddSection();
-        Toe.PageSetup = PageSetup.Clone();
+        Toe.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toe;
 
         AddHeaderInternal(Toe);
@@ -466,7 +572,7 @@ public abstract class PdfBuilderBase : IDisposable
     {
         Tot = Document.AddSection();
         Content = Tot;
-        Tot.PageSetup = PageSetup.Clone();
+        Tot.PageSetup = StyleSet.PageSetup.Clone();
 
         AddHeaderInternal(Tot);
         AddFooterInternal(Tot, "ROMAN");
@@ -1057,12 +1163,12 @@ public abstract class PdfBuilderBase : IDisposable
         paragraph.Format.TabStops.ClearAll();
         paragraph.Style = "Header";
 
-        var width = (PageSetup.Orientation == Orientation.Landscape) ? Unit.FromCentimeter(PageSetup.PageHeight.Centimeter -
-                PageSetup.LeftMargin.Centimeter -
-                PageSetup.RightMargin.Centimeter) :
-            Unit.FromCentimeter(PageSetup.PageWidth.Centimeter -
-                                PageSetup.LeftMargin.Centimeter -
-                                PageSetup.RightMargin.Centimeter);
+        var width = (StyleSet.PageSetup.Orientation == Orientation.Landscape) ? Unit.FromCentimeter(StyleSet.PageSetup.PageHeight.Centimeter -
+                StyleSet.PageSetup.LeftMargin.Centimeter -
+                StyleSet.PageSetup.RightMargin.Centimeter) :
+            Unit.FromCentimeter(StyleSet.PageSetup.PageWidth.Centimeter -
+                                StyleSet.PageSetup.LeftMargin.Centimeter -
+                                StyleSet.PageSetup.RightMargin.Centimeter);
 
         paragraph.Format.AddTabStop(width, TabAlignment.Right);
 
@@ -1987,7 +2093,7 @@ public abstract class PdfBuilderBase : IDisposable
     public void DefineContentSection()
     {
         var section = Document.AddSection();
-        section.PageSetup = PageSetup.Clone();
+        section.PageSetup = StyleSet.PageSetup.Clone();
         section.PageSetup.OddAndEvenPagesHeaderFooter = false;
         section.PageSetup.StartingNumber = 1;
 
@@ -2710,7 +2816,7 @@ public abstract class PdfBuilderBase : IDisposable
     /// <exception cref="ArgumentException">Style Normal is not existing</exception>
     protected void LoadStyleset(IStyleSet styleSet)
     {
-        PageSetup = styleSet.PageSetup;
+        StyleSet = styleSet;
 
         //ObjectHelper.MapProperties(_ps, _document.DefaultPageSetup);
 

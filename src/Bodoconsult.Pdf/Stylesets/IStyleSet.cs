@@ -271,6 +271,11 @@ public interface IStyleSet
     PageSetup PageSetup { get; set; }
 
     /// <summary>
+    /// The original page setup. Used only for multi-column text PDF documents
+    /// </summary>
+    PageSetup PageSetupOriginal { get; set; }
+
+    /// <summary>
     /// Centered paragraph style
     /// </summary>
     Style ParagraphCenter { get; set; }

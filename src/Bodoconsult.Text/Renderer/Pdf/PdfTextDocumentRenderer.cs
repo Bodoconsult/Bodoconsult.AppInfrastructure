@@ -34,20 +34,12 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
         var style = (DocumentStyle)Styleset.FindStyle("DocumentStyle");
         if (style != null)
         {
-            PdfBuilderBase.SetPage(style, styleSet.PageSetup);
+            PdfBuilderBase.SetPage(style, styleSet);
 
             styleSet.NumberOfColumns = style.NumberOfColumns;
             styleSet.Space = Unit.FromCentimeter(style.Space);
 
-            if (style.NumberOfColumns > 1)
-            {
-                styleSet.ColumnWidth = Unit.FromCentimeter(style.ColumnWidth);
-            }
-            else
-            {
-                styleSet.ColumnWidth = Unit.FromCentimeter(style.TypeAreaWidth);
-            }
-
+            styleSet.ColumnWidth = Unit.FromCentimeter(style.NumberOfColumns > 1 ? style.ColumnWidth : style.TypeAreaWidth);
         }
 
 
@@ -86,8 +78,6 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
     /// </summary>
     public override void RenderIt()
     {
-
-
         var rendererElement = PdfTextRendererElementFactory.CreateInstancePdf(Document);
         rendererElement.RenderIt(this);
     }

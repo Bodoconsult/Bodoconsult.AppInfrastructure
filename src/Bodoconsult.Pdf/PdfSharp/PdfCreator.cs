@@ -105,7 +105,7 @@ public class PdfCreator : PdfBuilderBase
         p.AddBookmark("Inhalt");
 
         Content = Toc;
-        Toc.PageSetup = PageSetup.Clone();
+        Toc.PageSetup = StyleSet.PageSetup.Clone();
     }
 
     /// <summary>
