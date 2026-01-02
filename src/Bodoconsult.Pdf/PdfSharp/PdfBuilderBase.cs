@@ -276,8 +276,24 @@ public abstract class PdfBuilderBase : IDisposable
         var idx = 0;
 
         XGraphics gfx = null;
+
+        var oldSection = GetSection(docRenderer, 1);
+
         for (var pageNum = 0; pageNum < pageCount; pageNum++)
         {
+            var section = GetSection(docRenderer, pageNum + 1);
+
+            if (section != oldSection)
+            {
+                var page = document.AddPage();
+                gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
+                page.Size = PageSize.A4;
+                page.Orientation = StyleSet.PageSetupOriginal.Orientation == Orientation.Landscape ? PageOrientation.Landscape : PageOrientation.Portrait;
+
+                idx = 0;
+                oldSection = section;
+            }
+
             if (idx == 0)
             {
                 var page = document.AddPage();
@@ -298,6 +314,7 @@ public abstract class PdfBuilderBase : IDisposable
             // Use BeginContainer / EndContainer for simplicity only. You can naturaly use you own transformations.
             var container = gfx.BeginContainer(rect, a4Rect, XGraphicsUnit.Point);
 
+
             // Render the page. Note that page numbers start with 1.
             docRenderer.RenderPage(gfx, pageNum + 1);
 
@@ -316,9 +333,14 @@ public abstract class PdfBuilderBase : IDisposable
         return document;
     }
 
+    private static Section GetSection(DocumentRenderer docRenderer, int pageNumber)
+    {
+        return docRenderer.GetDocumentObjectsFromPage(pageNumber)[0].Section;
+    }
+
     private XRect GetRect(int index)
     {
-        var x = StyleSet.PageSetupOriginal.LeftMargin.Point + index * StyleSet.ColumnWidth.Point + (index) * StyleSet.Space.Point;
+        var x = StyleSet.PageSetupOriginal.LeftMargin.Point + index * StyleSet.ColumnWidth.Point + index * StyleSet.Space.Point;
 
         var rect = new XRect(x, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
         return rect;
