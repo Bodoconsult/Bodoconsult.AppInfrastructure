@@ -6,7 +6,7 @@ using PdfSharp.Fonts;
 namespace Bodoconsult.Pdf.PdfSharp;
 
 /// <summary>
-/// Class representing a PDF document and basic functionality to add content to it. Adjust to use with LDML. Does not create TOC etc. automatically
+/// Class representing a single-column textPDF document and basic functionality to add content to it. Adjust to use with LDML. Does not create TOC etc. automatically
 /// </summary>
 public class PdfBuilder : PdfBuilderBase
 {

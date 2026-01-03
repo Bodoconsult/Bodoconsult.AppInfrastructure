@@ -2,15 +2,13 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Helpers;
+using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
-using PdfSharp;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +21,7 @@ namespace Bodoconsult.Pdf.PdfSharp;
 /// <summary>
 /// Base class for PDF builder classes
 /// </summary>
-public abstract class PdfBuilderBase : IDisposable
+public abstract class PdfBuilderBase : IPdfBuilder
 {
     #region Protected properties
 
@@ -220,29 +218,29 @@ public abstract class PdfBuilderBase : IDisposable
     /// </summary>
     /// <param name="fileName">Full path for pdf file's destination</param>
     /// <param name="showPdfFile">Show Pdf-File in a viewer</param>
-    public void RenderToPdf(string fileName, bool showPdfFile)
+    public virtual void RenderToPdf(string fileName, bool showPdfFile)
     {
-        if (StyleSet.NumberOfColumns > 1)
-        {
-            var document = CreateMasterPdfDocument();
 
-            document.Save(fileName);
-        }
-        else
-        {
-            var renderer = new PdfDocumentRenderer { Document = Document };
-            renderer.RenderDocument();
+        var renderer = new PdfDocumentRenderer { Document = Document };
+        renderer.RenderDocument();
 
-            // Save the document...
-            renderer.PdfDocument.Save(fileName);
-        }
-
+        // Save the document...
+        renderer.PdfDocument.Save(fileName);
 
         if (!showPdfFile)
         {
             return;
         }
 
+        OpenFile(fileName);
+    }
+
+    /// <summary>
+    /// Open the newly created file
+    /// </summary>
+    /// <param name="fileName">Full file patj</param>
+    protected static void OpenFile(string fileName)
+    {
         // ...and start a viewer.
         var p = new Process
         {
@@ -252,114 +250,14 @@ public abstract class PdfBuilderBase : IDisposable
             }
         };
         p.Start();
-
-    }
-
-    private PdfDocument CreateMasterPdfDocument()
-    {
-        var document = new PdfDocument();
-        document.Info.Title = Document.Info.Title;
-        document.Info.Subject = Document.Info.Subject;
-        document.Info.Author = Document.Info.Author;
-
-
-        // Create a renderer and prepare (=layout) the document
-        var docRenderer = new DocumentRenderer(Document);
-        docRenderer.PrepareDocument();
-
-        // For clarity, we use point as unit of measure in this sample.
-        // A4 is the standard letter size in Germany (21cm x 29.7cm).
-        var a4Rect = new XRect(0, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
-
-        var pageCount = docRenderer.FormattedDocument?.PageCount;
-
-        var idx = 0;
-
-        XGraphics gfx = null;
-
-        var oldSection = GetSection(docRenderer, 1);
-
-        for (var pageNum = 0; pageNum < pageCount; pageNum++)
-        {
-            var section = GetSection(docRenderer, pageNum + 1);
-
-            if (section != oldSection)
-            {
-                var page = document.AddPage();
-                gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
-                page.Size = PageSize.A4;
-                page.Orientation = StyleSet.PageSetupOriginal.Orientation == Orientation.Landscape ? PageOrientation.Landscape : PageOrientation.Portrait;
-
-                idx = 0;
-                oldSection = section;
-            }
-
-            if (idx == 0)
-            {
-                var page = document.AddPage();
-                gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
-                page.Size = PageSize.A4;
-                page.Orientation = StyleSet.PageSetupOriginal.Orientation == Orientation.Landscape ? PageOrientation.Landscape : PageOrientation.Portrait;
-            }
-            else
-            {
-                if (gfx == null)
-                {
-                    throw new ArgumentNullException(nameof(gfx));
-                }
-            }
-
-            var rect = GetRect(idx);
-
-            // Use BeginContainer / EndContainer for simplicity only. You can naturaly use you own transformations.
-            var container = gfx.BeginContainer(rect, a4Rect, XGraphicsUnit.Point);
-
-
-            // Render the page. Note that page numbers start with 1.
-            docRenderer.RenderPage(gfx, pageNum + 1);
-
-            // Note: The outline and the hyperlinks (table of content) does not work in the produced PDF document.
-
-            // Pop the previous graphical state
-            gfx.EndContainer(container);
-
-            idx++;
-            if (idx >= StyleSet.NumberOfColumns)
-            {
-                idx = 0;
-            }
-        }
-
-        return document;
-    }
-
-    private static Section GetSection(DocumentRenderer docRenderer, int pageNumber)
-    {
-        return docRenderer.GetDocumentObjectsFromPage(pageNumber)[0].Section;
-    }
-
-    private XRect GetRect(int index)
-    {
-        var x = StyleSet.PageSetupOriginal.LeftMargin.Point + index * StyleSet.ColumnWidth.Point + index * StyleSet.Space.Point;
-
-        var rect = new XRect(x, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
-        return rect;
     }
 
     /// <summary>
     /// Save Pdf to a stream
     /// </summary>
     /// <param name="stream">Stream</param>
-    public void RenderToPdf(Stream stream)
+    public virtual void RenderToPdf(Stream stream)
     {
-        if (StyleSet.NumberOfColumns > 1)
-        {
-            var document = CreateMasterPdfDocument();
-            document.Save(stream);
-
-            return;
-        }
-
         var renderer = new PdfDocumentRenderer { Document = Document };
         renderer.RenderDocument();
         renderer.PdfDocument.Save(stream);
@@ -532,6 +430,10 @@ public abstract class PdfBuilderBase : IDisposable
         Content = Document.AddSection();
         Content.PageSetup = StyleSet.PageSetup.Clone();
 
+        Paragraph par = Content.AddParagraph(string.Empty);
+        par.Format.SpaceBefore = 0;
+        par.Format.Font.Size = 2;
+
         AddHeaderInternal(Content);
         AddFooterInternal(Content);
 
@@ -547,6 +449,10 @@ public abstract class PdfBuilderBase : IDisposable
         Toc = Document.AddSection();
         Toc.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toc;
+
+        Paragraph par = Content.AddParagraph(string.Empty);
+        par.Format.SpaceBefore = 0;
+        par.Format.Font.Size = 2;
 
         AddHeaderInternal(Toc);
         AddFooterInternal(Toc, "ROMAN");
@@ -564,6 +470,10 @@ public abstract class PdfBuilderBase : IDisposable
         Tof.PageSetup = StyleSet.PageSetup.Clone();
         Content = Tof;
 
+        Paragraph par = Content.AddParagraph(string.Empty);
+        par.Format.SpaceBefore = 0;
+        par.Format.Font.Size = 2;
+
         AddHeaderInternal(Tof);
         AddFooterInternal(Tof, "ROMAN");
 
@@ -580,6 +490,10 @@ public abstract class PdfBuilderBase : IDisposable
         Toe.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toe;
 
+        Paragraph par = Content.AddParagraph(string.Empty);
+        par.Format.SpaceBefore = 0;
+        par.Format.Font.Size = 2;
+
         AddHeaderInternal(Toe);
         AddFooterInternal(Toe, "ROMAN");
 
@@ -595,6 +509,10 @@ public abstract class PdfBuilderBase : IDisposable
         Tot = Document.AddSection();
         Content = Tot;
         Tot.PageSetup = StyleSet.PageSetup.Clone();
+
+        Paragraph par = Content.AddParagraph(string.Empty);
+        par.Format.SpaceBefore = 0;
+        par.Format.Font.Size = 2;
 
         AddHeaderInternal(Tot);
         AddFooterInternal(Tot, "ROMAN");

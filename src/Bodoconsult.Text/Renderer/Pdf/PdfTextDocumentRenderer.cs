@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Interfaces;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using MigraDoc.DocumentObjectModel;
 using PdfSharp.Fonts;
 using Color = MigraDoc.DocumentObjectModel.Color;
@@ -46,8 +46,10 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
         styleSet.CalculateMeasures();
         styleSet.InitializeStyles();
 
+        var factory = new PdfBuilderFactory(fontResolver);
 
-        PdfDocument = new PdfBuilder(styleSet, fontResolver);
+
+        PdfDocument = factory.CreateInstance(styleSet);
 
         PdfDocument.TitleTableOfFigures = metaData.TofHeading;
         PdfDocument.TitleTableOfEquations = metaData.ToeHeading;
@@ -61,7 +63,7 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
     /// <summary>
     /// The current PDF document
     /// </summary>
-    public PdfBuilder PdfDocument { get; }
+    public IPdfBuilder PdfDocument { get; }
 
     /// <summary>
     /// Current styleset

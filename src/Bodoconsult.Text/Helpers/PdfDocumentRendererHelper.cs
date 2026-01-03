@@ -66,10 +66,10 @@ public static class PdfDocumentRendererHelper
         pdfStyle.Font.Color = GetPdfColor(style.FontColor);
         pdfStyle.Font.Size = style.FontSize;
 
-        pdfStyle.ParagraphFormat.SpaceBefore = Unit.FromPoint(style.Margins.Top);
-        pdfStyle.ParagraphFormat.SpaceAfter = Unit.FromPoint(style.Margins.Bottom);
-        pdfStyle.ParagraphFormat.LeftIndent = Unit.FromPoint(style.Margins.Left);
-        pdfStyle.ParagraphFormat.RightIndent = Unit.FromPoint(style.Margins.Right);
+        pdfStyle.ParagraphFormat.SpaceBefore = Unit.FromCentimeter(style.Margins.Top);
+        pdfStyle.ParagraphFormat.SpaceAfter = Unit.FromCentimeter(style.Margins.Bottom);
+        pdfStyle.ParagraphFormat.LeftIndent = Unit.FromCentimeter(style.Margins.Left);
+        pdfStyle.ParagraphFormat.RightIndent = Unit.FromCentimeter(style.Margins.Right);
         pdfStyle.ParagraphFormat.PageBreakBefore = style.PageBreakBefore;
         pdfStyle.ParagraphFormat.KeepTogether = style.KeepTogether;
         pdfStyle.ParagraphFormat.KeepWithNext = style.KeepWithNextParagraph;
