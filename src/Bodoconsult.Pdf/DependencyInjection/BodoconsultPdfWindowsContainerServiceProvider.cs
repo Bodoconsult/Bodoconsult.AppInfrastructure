@@ -10,7 +10,7 @@ using System.Runtime.Versioning;
 namespace Bodoconsult.Pdf.DependencyInjection;
 
 /// <summary>
-/// DI container service provider for loading PDF creation features like <see cref="IPdfBuilderFactory"/> on Windows OS
+/// DI container service provider for loading PDF creation features like <see cref="IPdfBuilderFactory"/> on Windows OS. Uses WindowsFontResolver class as fomt resolver.
 /// </summary>
 [SupportedOSPlatform("windows")]
 public class BodoconsultPdfWindowsContainerServiceProvider : IDiContainerServiceProvider

@@ -430,7 +430,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         Content = Document.AddSection();
         Content.PageSetup = StyleSet.PageSetup.Clone();
 
-        Paragraph par = Content.AddParagraph(string.Empty);
+        var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
@@ -450,7 +450,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         Toc.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toc;
 
-        Paragraph par = Content.AddParagraph(string.Empty);
+        var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
@@ -470,7 +470,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         Tof.PageSetup = StyleSet.PageSetup.Clone();
         Content = Tof;
 
-        Paragraph par = Content.AddParagraph(string.Empty);
+        var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
@@ -490,7 +490,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         Toe.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toe;
 
-        Paragraph par = Content.AddParagraph(string.Empty);
+        var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
@@ -510,7 +510,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         Content = Tot;
         Tot.PageSetup = StyleSet.PageSetup.Clone();
 
-        Paragraph par = Content.AddParagraph(string.Empty);
+        var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
@@ -578,7 +578,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="level">Heading level</param>
     /// <param name="text">Content to add</param>
     /// <param name="tag">Name of the tag of the referenced heading</param>
-    private Paragraph AddTocEntryInternal(int level, string text, string tag)
+    protected virtual Paragraph AddTocEntryInternal(int level, string text, string tag)
     {
         var p = Toc.AddParagraph();
         p.Style = $"TOC{level}";
@@ -595,7 +595,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// </summary>
     /// <param name="text">Content to add</param>
     /// <param name="tag">Name of the tag of the referenced equation</param>
-    public Paragraph AddToeEntry(string text, string tag)
+    public virtual Paragraph AddToeEntry(string text, string tag)
     {
         var p = Toe.AddParagraph();
         p.Style = "TOE";
@@ -612,7 +612,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// </summary>
     /// <param name="text">Content to add</param>
     /// <param name="tag">Name of the tag of the referenced figure</param>
-    public Paragraph AddTofEntry(string text, string tag)
+    public virtual Paragraph AddTofEntry(string text, string tag)
     {
         var p = Tof.AddParagraph();
         p.Style = "TOF";
@@ -629,7 +629,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// </summary>
     /// <param name="text">Content to add</param>
     /// <param name="tag">Name of the tag of the referenced table</param>
-    public Paragraph AddTotEntry(string text, string tag)
+    public virtual Paragraph AddTotEntry(string text, string tag)
     {
         var p = Tot.AddParagraph();
         p.Style = "TOT";
@@ -696,7 +696,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="level">Heading level</param>
     /// <param name="text">Content to add</param>
     /// <param name="tag">Name of the tag of the referenced table</param>
-    private Paragraph AddHeadingInternal(int level, string text, string tag)
+    protected virtual Paragraph AddHeadingInternal(int level, string text, string tag)
     {
         var paragraph = new Paragraph
         {
@@ -934,7 +934,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="tag">Link tag name</param>
     /// <param name="width">Width in cm</param>
     /// <param name="height">Height in cm</param>
-    public void AddFigure(string imagePath, string legend, string tag, double width, double height)
+    public virtual void AddFigure(string imagePath, string legend, string tag, double width, double height)
     {
         AddImage(imagePath, width, height);
 
@@ -998,7 +998,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// </summary>
     /// <param name="section">Section to add the footer to</param>
     /// <param name="pageNumberFormat">Null or ROMAN, roman, ALPHABETIC, alphabetic</param>
-    protected void AddFooterInternal(Section section, string pageNumberFormat = null)
+    protected virtual void AddFooterInternal(Section section, string pageNumberFormat = null)
     {
         if (section == null || string.IsNullOrEmpty(FooterText))
         {
@@ -1074,7 +1074,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// Add a header
     /// </summary>
     /// <param name="section">Section to add the header to</param>
-    protected void AddHeaderInternal(Section section)
+    protected virtual void AddHeaderInternal(Section section)
     {
         if (section == null || (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(BackgroundImagePath)))
         {
@@ -1084,8 +1084,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
         if (!string.IsNullOrEmpty(BackgroundImagePath) && File.Exists(BackgroundImagePath))
         {
             var image = section.Headers.Primary.AddImage(BackgroundImagePath);
-            image.Height = "21cm";
-            image.Width = "29.7cm";
+            image.Height = StyleSet.PageSetup.PageHeight;
+            image.Width = StyleSet.PageSetup.PageWidth;
             image.RelativeVertical = RelativeVertical.Page;
             image.RelativeHorizontal = RelativeHorizontal.Page;
             image.WrapFormat.Style = WrapStyle.Through;
@@ -1097,13 +1097,12 @@ public abstract class PdfBuilderBase : IPdfBuilder
             {
                 Alignment = ParagraphAlignment.Left
             }
-
         };
 
         paragraph.Format.TabStops.ClearAll();
         paragraph.Style = "Header";
 
-        var width = (StyleSet.PageSetup.Orientation == Orientation.Landscape) ? Unit.FromCentimeter(StyleSet.PageSetup.PageHeight.Centimeter -
+        var width = StyleSet.PageSetup.Orientation == Orientation.Landscape ? Unit.FromCentimeter(StyleSet.PageSetup.PageHeight.Centimeter -
                 StyleSet.PageSetup.LeftMargin.Centimeter -
                 StyleSet.PageSetup.RightMargin.Centimeter) :
             Unit.FromCentimeter(StyleSet.PageSetup.PageWidth.Centimeter -
@@ -1254,6 +1253,16 @@ public abstract class PdfBuilderBase : IPdfBuilder
             return;
         }
 
+        CreateTableLegend(legend, tag);
+    }
+
+    /// <summary>
+    /// Create a table legend
+    /// </summary>
+    /// <param name="legend">Legend text</param>
+    /// <param name="tag">Bookmark tag</param>
+    protected virtual void CreateTableLegend(string legend, string tag)
+    {
         var legendP = Content.AddParagraph(legend, "TableLegend");
         if (string.IsNullOrEmpty(tag))
         {

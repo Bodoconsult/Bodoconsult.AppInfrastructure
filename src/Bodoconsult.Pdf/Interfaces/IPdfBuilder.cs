@@ -587,14 +587,14 @@ public interface IPdfBuilder: IDisposable
     /// <param name="html">HTML code to add</param>
     void AddHtml(string html);
 
-    /// <summary>
-    /// Create a footer with three section left, middle and right
-    /// </summary>
-    /// <param name="footerLeft">Content of left footer section</param>
-    /// <param name="footerMiddle">Content of left middle section</param>
-    /// <param name="footerRight">Content of left right section</param>
-    /// <param name="styleName">Style to use for the footer</param>
-    void CreateFooter3(string footerLeft, string footerMiddle, string footerRight, string styleName);
+    ///// <summary>
+    ///// Create a footer with three section left, middle and right
+    ///// </summary>
+    ///// <param name="footerLeft">Content of left footer section</param>
+    ///// <param name="footerMiddle">Content of left middle section</param>
+    ///// <param name="footerRight">Content of left right section</param>
+    ///// <param name="styleName">Style to use for the footer</param>
+    //void CreateFooter3(string footerLeft, string footerMiddle, string footerRight, string styleName);
 
     /// <summary>
     /// Add a pagebreak to the content section
