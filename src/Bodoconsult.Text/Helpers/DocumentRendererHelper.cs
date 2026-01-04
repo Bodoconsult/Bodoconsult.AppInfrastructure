@@ -3,9 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Bodoconsult.App.Abstractions.Extensions;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Extensions;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Interfaces;
 using Bodoconsult.Text.Renderer.Html;
@@ -38,9 +38,9 @@ public static class DocumentRendererHelper
             case PageNumberFormatEnum.LowerRoman:
                 return page.ArabicToRoman().ToLowerInvariant();
             case PageNumberFormatEnum.UpperLatin:
-                return Convert.ToChar(64 + page).ToString();
+                return page.ToUpperLatin();
             case PageNumberFormatEnum.LowerLatin:
-                return Convert.ToChar(96 + page).ToString();
+                return page.ToLowerLatin();
             default:
                 throw new ArgumentOutOfRangeException(nameof(pageNumberFormat), pageNumberFormat, null);
         }

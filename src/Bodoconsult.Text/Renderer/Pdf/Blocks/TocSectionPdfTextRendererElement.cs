@@ -40,7 +40,7 @@ public class TocSectionPdfTextRendererElement : PdfTextRendererElementBase
         {
             renderer.PdfDocument.SetFooter(renderer.Document.DocumentMetaData.FooterText);
         }
-        renderer.PdfDocument.CreateTocSection();
+        renderer.PdfDocument.CreateTocSection(_tocSection.IsRestartPageNumberingRequired, _tocSection.PageNumberFormat);
 
         PdfDocumentRendererHelper.RenderBlockChildsToPdf(renderer, Block.ChildBlocks);
     }

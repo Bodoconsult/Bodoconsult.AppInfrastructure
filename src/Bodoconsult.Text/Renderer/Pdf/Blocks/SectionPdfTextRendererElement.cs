@@ -46,12 +46,7 @@ public class SectionPdfTextRendererElement : SectionBasePdfTextRendererElement
             renderer.PdfDocument.SetFooter(renderer.Document.DocumentMetaData.FooterText);
         }
 
-        if (_section.IsRestartPageNumberingRequired)
-        {
-            renderer.PdfDocument.StyleSet.PageSetup.StartingNumber = 1;
-        }
-
-        renderer.PdfDocument.CreateContentSection();
+        renderer.PdfDocument.CreateContentSection(_section.IsRestartPageNumberingRequired, _section.PageNumberFormat);
 
         PdfDocumentRendererHelper.RenderBlockChildsToPdf(renderer, Block.ChildBlocks);
     }

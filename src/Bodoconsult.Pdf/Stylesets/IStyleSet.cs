@@ -28,7 +28,7 @@ public interface IStyleSet
     /// <summary>
     /// Number of text columns the type area is divided in
     /// </summary>
-    int NumberOfColumns { get; set; } 
+    int NumberOfColumns { get; set; }
 
     /// <summary>
     /// The space between text columns in the type area in cm
@@ -128,12 +128,12 @@ public interface IStyleSet
     /// <summary>
     /// Style used for figure legends
     /// </summary>
-    Style FigureLegend { get; }
+    Style Figure { get; }
 
     /// <summary>
     /// Style used for equation legends
     /// </summary>
-    Style EquationLegend { get; }
+    Style Equation { get; }
 
     /// <summary>
     /// Style for TOC section heading

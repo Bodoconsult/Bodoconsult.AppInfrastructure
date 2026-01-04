@@ -209,12 +209,12 @@ public class TypographyBasedStyleSet : DefaultStyleSet
     }
 
     /// <summary>
-    /// Create <see cref="DefaultStyleSet.EquationLegend"/> style
+    /// Create <see cref="DefaultStyleSet.Equation"/> style
     /// </summary>
     /// <returns>Style</returns>
-    protected override Style CreateEquationLegendStyle()
+    protected override Style CreateEquationStyle()
     {
-        return new Style("EquationLegend", "Normal")
+        return new Style("Equation", "Normal")
         {
             Font =
             {
@@ -231,12 +231,12 @@ public class TypographyBasedStyleSet : DefaultStyleSet
     }
 
     /// <summary>
-    /// Create <see cref="DefaultStyleSet.FigureLegend"/> style
+    /// Create <see cref="DefaultStyleSet.Figure"/> style
     /// </summary>
     /// <returns>Style</returns>
-    protected override Style CreateFigureLegendStyle()
+    protected override Style CreateFigureStyle()
     {
-        return new Style("FigureLegend", "Normal")
+        return new Style("Figure", "Normal")
         {
             Font =
             {

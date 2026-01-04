@@ -114,9 +114,11 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
             return;
         }
 
+        // Todo: add logo
+
         var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("HeaderStyle");
 
-        renderer.Content.Append($@"{{\header{{\pard\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{{renderer.Document.DocumentMetaData.Title}}}\par}}}}");
+        renderer.Content.Append($@"{{\header{{\pard\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{{renderer.Document.DocumentMetaData.HeaderText}}}\par}}}}");
     }
 
     private static void AddFooter(ITextDocumentRenderer renderer, PageStyleBase pageStyle, SectionBase section)

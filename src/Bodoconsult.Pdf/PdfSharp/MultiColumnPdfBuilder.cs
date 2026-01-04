@@ -3,20 +3,17 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.Rendering;
 using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 using PdfSharp.Pdf;
-using PdfSharp.Quality;
-using PdfSharp.UniversalAccessibility.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Reflection;
+using System.Linq;
+using Bodoconsult.App.Abstractions.Extensions;
 
 namespace Bodoconsult.Pdf.PdfSharp;
 
@@ -83,7 +80,34 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             return;
         }
 
-        var p = Content.AddParagraph(legend, "FigureLegend");
+        var p = Content.AddParagraph(legend, "Figure");
+
+        if (string.IsNullOrEmpty(tag))
+        {
+            return;
+        }
+
+        p.Tag = tag;
+    }
+
+    /// <summary>
+    /// Add a figure to the document
+    /// </summary>
+    /// <param name="imagePath">Full file path to the equation image</param>
+    /// <param name="legend">Legend for the equation</param>
+    /// <param name="tag">Link tag name</param>
+    /// <param name="width">Width in cm</param>
+    /// <param name="height">Height in cm</param>
+    public override void AddEquation(string imagePath, string legend, string tag, double width, double height)
+    {
+        AddImage(imagePath, width, height);
+
+        if (string.IsNullOrEmpty(legend))
+        {
+            return;
+        }
+
+        var p = Content.AddParagraph(legend, "Equation");
 
         if (string.IsNullOrEmpty(tag))
         {
@@ -177,7 +201,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     /// </summary>
     /// <param name="section">Section to add the footer to</param>
     /// <param name="pageNumberFormat">Null or ROMAN, roman, ALPHABETIC, alphabetic</param>
-    protected override void AddFooterInternal(Section section, string pageNumberFormat = null)
+    protected override void AddFooterInternal(Section section, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     { }
 
     /// <summary>
@@ -239,7 +263,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         return rect;
     }
 
-    
+
 
     private PdfDocument CreateMasterPdfDocument()
     {
@@ -276,26 +300,11 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
     private XRect a4Rect;
 
-    private PageSetup headerPageSetup;
-
-    private PageSetup footerPageSetup;
-
     private void RenderPages(DocumentRenderer docRenderer, PdfDocument document)
     {
         // For clarity, we use point as unit of measure in this sample.
         // A4 is the standard letter size in Germany (21cm x 29.7cm).
         a4Rect = new XRect(0, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
-
-
-        headerPageSetup = new PageSetup();
-        headerPageSetup.PageWidth = StyleSet.PageSetupOriginal.PageWidth - StyleSet.PageSetupOriginal.LeftMargin -
-                                    StyleSet.PageSetupOriginal.RightMargin;
-        headerPageSetup.PageHeight = Unit.FromCentimeter(1.5);
-
-        footerPageSetup = new PageSetup();
-        footerPageSetup.PageWidth = headerPageSetup.PageWidth;
-        footerPageSetup.PageHeight = headerPageSetup.PageHeight;
-
 
         // Use a fresh renderer now
         //docRenderer = new DocumentRenderer(Document);
@@ -308,27 +317,32 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
         var oldSection = GetSection(docRenderer, 1);
 
-        PdfPage page = null;
-
+        var currentPageNum = 0;
         //var renderInfo = docRenderer.GetRenderInfoFromPage(1)[0];
         for (var pageNum = 0; pageNum < pageCount; pageNum++)
         {
             var section = GetSection(docRenderer, pageNum + 1);
 
+            var si = SectionInfos.FirstOrDefault(x => x.Section == section);
+
+            var pageNumberFormat = si?.PageNumberFormat ?? PageNumberFormatEnum.Decimal;
+
             if (idx != 0 && section != oldSection)
             {
-                //var page = document.AddPage();
-                //gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
-                //page.Size = PageSize.A4;
-                //page.Orientation = StyleSet.PageSetupOriginal.Orientation == Orientation.Landscape ? PageOrientation.Landscape : PageOrientation.Portrait;
+                if (section.PageSetup.StartingNumber == 1)
+                {
+                    currentPageNum = 0;
+                }
 
                 idx = 0;
+
                 oldSection = section;
             }
 
             if (idx == 0)
             {
-                page = document.AddPage();
+                currentPageNum++;
+                var page = document.AddPage();
                 gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
                 page.Size = PageSize.A4;
                 page.Orientation = StyleSet.PageSetupOriginal.Orientation == Orientation.Landscape ? PageOrientation.Landscape : PageOrientation.Portrait;
@@ -338,8 +352,10 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                 {
                     var image = XImage.FromFile(BackgroundImagePath);
                     gfx.DrawImage(image, 0, 0, page.Width.Point, page.Height.Point);
-
                 }
+
+                PrintHeader(page, gfx, currentPageNum, pageNumberFormat);
+                PrintFooter(page, gfx, currentPageNum, pageNumberFormat);
 
             }
             else
@@ -361,9 +377,6 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             // Pop the previous graphical state
             gfx.EndContainer(container);
 
-            PrintHeader(page, gfx, pageNum + 1);
-            PrintFooter(page, gfx, pageNum + 1);
-
             idx++;
             if (idx >= StyleSet.NumberOfColumns)
             {
@@ -372,7 +385,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         }
     }
 
-    private void PrintHeader(PdfPage page, XGraphics gfx, int pageNum)
+    private void PrintHeader(PdfPage page, XGraphics gfx, int pageNum, PageNumberFormatEnum siPageNumberFormat)
     {
         if (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(HeaderLogoPath))
         {
@@ -395,16 +408,16 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         if (!string.IsNullOrEmpty(HeaderText))
         {
             XFont font = new XFont("Arial", 8);
-            XBrush brush = new XSolidBrush(XColor.FromArgb(255,0,0,0 ));
+            XBrush brush = new XSolidBrush(XColor.FromArgb(255, 0, 0, 0));
 
-            x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(HeaderText, font).Width; 
+            x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(HeaderText, font).Width;
             var y = 0.5 * StyleSet.PageSetupOriginal.TopMargin.Point;
 
             gfx.DrawString(HeaderText, font, brush, x, y);
         }
     }
 
-    private void PrintFooter(PdfPage page, XGraphics gfx, int pageNum)
+    private void PrintFooter(PdfPage page, XGraphics gfx, int pageNum, PageNumberFormatEnum pageNumberFormat)
     {
         if (string.IsNullOrEmpty(FooterText))
         {
@@ -413,18 +426,57 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
         double x;
 
-        XFont font = new XFont("Arial", 8);
-        XBrush brush = new XSolidBrush(XColor.FromArgb(255, 0, 0, 0));
+        var font = new XFont("Arial", 8);
+        var brush = new XSolidBrush(XColor.FromArgb(255, 0, 0, 0));
 
         var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.5 * StyleSet.PageSetupOriginal.BottomMargin.Point;
 
-        if (!string.IsNullOrEmpty(FooterText))
+        var footerText = FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+        var isPageNumber = false;
+
+        if (footerText.Contains(ITypography.PageFieldIndicator, StringComparison.InvariantCultureIgnoreCase))
         {
-            x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-            gfx.DrawString(FooterText, font, brush, x, y);
+            isPageNumber = true;
+            footerText = footerText.Replace(ITypography.PageFieldIndicator, string.Empty,
+                StringComparison.InvariantCultureIgnoreCase);
         }
 
-        var pageNumStr = pageNum.ToString();
+        if (!string.IsNullOrEmpty(footerText))
+        {
+            x = StyleSet.PageSetupOriginal.LeftMargin.Point;
+            gfx.DrawString(footerText, font, brush, x, y);
+        }
+
+        if (!isPageNumber)
+        {
+            return;
+        }
+
+        // ToDo: add upper and lower latin
+
+        string pageNumStr;
+        switch (pageNumberFormat)
+        {
+            case PageNumberFormatEnum.UpperRoman:
+                pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToUpperInvariant()}";
+                break;
+            case PageNumberFormatEnum.LowerRoman:
+                pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToLowerInvariant()}";
+                break;
+            case PageNumberFormatEnum.UpperLatin:
+                pageNumStr = $"{PageNumberPrefix} {pageNum.ToUpperLatin()}";
+                break;
+            case PageNumberFormatEnum.LowerLatin:
+                pageNumStr = $"{PageNumberPrefix} {pageNum.ToLowerLatin()}";
+                break;
+            case PageNumberFormatEnum.Decimal:
+            default:
+                pageNumStr = $"{PageNumberPrefix} {pageNum}";
+                break;
+        }
+
+        Debug.Print(pageNumStr);
+
         x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(pageNumStr, font).Width;
         gfx.DrawString(pageNumStr, font, brush, x, y);
     }
@@ -475,8 +527,8 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         {
             return;
         }
-        
-        
+
+
         foreach (var docO in section.Elements)
         {
             var tag = (string)docO.Tag ?? "";
@@ -486,7 +538,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                 continue;
             }
 
-            Debug.Print(tag);
+            //Debug.Print(tag);
 
             if (!_pageInfo.TryGetValue(tag, out var pageNumber))
             {

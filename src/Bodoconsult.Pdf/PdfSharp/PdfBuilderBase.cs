@@ -55,6 +55,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
     protected Section Tot;
 
     /// <summary>
+    /// Current section infos
+    /// </summary>
+    protected List<SectionInfo> SectionInfos = new();
+
+    /// <summary>
     /// Width of a <see cref="DateTime"/> value
     /// </summary>
     protected const double WidthDateTime = 8;
@@ -125,6 +130,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// The title for the table of tables (TOT)
     /// </summary>
     public string TitleTableOfTables { get; set; } = "Table of tables";
+
+    /// <summary>
+    /// The word written before the page number in a page footer
+    /// </summary>
+    public string PageNumberPrefix { get; set; } = "Page";
 
     /// <summary>
     /// Increment
@@ -423,12 +433,27 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Add a content section to the document
     /// </summary>
-    public void CreateContentSection()
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    public void CreateContentSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
         //if (_content == null)
         //{
         Content = Document.AddSection();
         Content.PageSetup = StyleSet.PageSetup.Clone();
+
+        if (isRestartPageNumberingRequired)
+        {
+            Content.PageSetup.StartingNumber = 1;
+        }
+
+        var si = new SectionInfo
+        {
+            Section = Content,
+            IsRestartPageNumberingRequired = isRestartPageNumberingRequired,
+            PageNumberFormat = pageNumberFormat
+        };
+        SectionInfos.Add(si);
 
         var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
@@ -444,18 +469,33 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Add a TOC section to the document
     /// </summary>
-    public void CreateTocSection()
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    public void CreateTocSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
         Toc = Document.AddSection();
         Toc.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toc;
+
+        if (isRestartPageNumberingRequired)
+        {
+            Content.PageSetup.StartingNumber = 1;
+        }
+
+        var si = new SectionInfo
+        {
+            Section = Toc,
+            IsRestartPageNumberingRequired = isRestartPageNumberingRequired,
+            PageNumberFormat = pageNumberFormat
+        };
+        SectionInfos.Add(si);
 
         var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
         AddHeaderInternal(Toc);
-        AddFooterInternal(Toc, "ROMAN");
+        AddFooterInternal(Toc, pageNumberFormat);
 
         var p = Toc.AddParagraph(TitleTableOfContent, "TocHeading");
         p.AddBookmark("Content");
@@ -464,18 +504,33 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Add a TOF section to the document
     /// </summary>
-    public void CreateTofSection()
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    public void CreateTofSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
         Tof = Document.AddSection();
         Tof.PageSetup = StyleSet.PageSetup.Clone();
         Content = Tof;
+
+        if (isRestartPageNumberingRequired)
+        {
+            Content.PageSetup.StartingNumber = 1;
+        }
+
+        var si = new SectionInfo
+        {
+            Section = Tof,
+            IsRestartPageNumberingRequired = isRestartPageNumberingRequired,
+            PageNumberFormat = pageNumberFormat
+        };
+        SectionInfos.Add(si);
 
         var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
         AddHeaderInternal(Tof);
-        AddFooterInternal(Tof, "ROMAN");
+        AddFooterInternal(Tof, pageNumberFormat);
 
         var p = Tof.AddParagraph(TitleTableOfFigures, "TofHeading");
         p.AddBookmark("Figures");
@@ -484,18 +539,33 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Add a TOF section to the document
     /// </summary>
-    public void CreateToeSection()
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    public void CreateToeSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
         Toe = Document.AddSection();
         Toe.PageSetup = StyleSet.PageSetup.Clone();
         Content = Toe;
+
+        if (isRestartPageNumberingRequired)
+        {
+            Content.PageSetup.StartingNumber = 1;
+        }
+
+        var si = new SectionInfo
+        {
+            Section = Toe,
+            IsRestartPageNumberingRequired = isRestartPageNumberingRequired,
+            PageNumberFormat = pageNumberFormat
+        };
+        SectionInfos.Add(si);
 
         var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
         AddHeaderInternal(Toe);
-        AddFooterInternal(Toe, "ROMAN");
+        AddFooterInternal(Toe, pageNumberFormat);
 
         var p = Toe.AddParagraph(TitleTableOfEquations, "ToeHeading");
         p.AddBookmark("Equations");
@@ -504,18 +574,33 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Add a TOT section to the document
     /// </summary>
-    public void CreateTotSection()
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    public void CreateTotSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
         Tot = Document.AddSection();
         Content = Tot;
         Tot.PageSetup = StyleSet.PageSetup.Clone();
+
+        if (isRestartPageNumberingRequired)
+        {
+            Content.PageSetup.StartingNumber = 1;
+        }
+
+        var si = new SectionInfo
+        {
+            Section = Tot,
+            IsRestartPageNumberingRequired = isRestartPageNumberingRequired,
+            PageNumberFormat = pageNumberFormat
+        };
+        SectionInfos.Add(si);
 
         var par = Content.AddParagraph(string.Empty);
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
         AddHeaderInternal(Tot);
-        AddFooterInternal(Tot, "ROMAN");
+        AddFooterInternal(Tot, pageNumberFormat);
 
         var p = Tot.AddParagraph(TitleTableOfTables, "TotHeading");
         p.AddBookmark("Tables");
@@ -943,7 +1028,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             return;
         }
 
-        var p = Content.AddParagraph(legend, "FigureLegend");
+        var p = Content.AddParagraph(legend, "Figure");
 
         if (string.IsNullOrEmpty(tag))
         {
@@ -961,7 +1046,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="tag">Link tag name</param>
     /// <param name="width">Width in cm</param>
     /// <param name="height">Height in cm</param>
-    public void AddEquation(string imagePath, string legend, string tag, double width, double height)
+    public virtual void AddEquation(string imagePath, string legend, string tag, double width, double height)
     {
         AddImage(imagePath, width, height);
 
@@ -970,7 +1055,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             return;
         }
 
-        var p = Content.AddParagraph(legend, "EquationLegend");
+        var p = Content.AddParagraph(legend, "Equation");
 
         if (string.IsNullOrEmpty(tag))
         {
@@ -998,7 +1083,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// </summary>
     /// <param name="section">Section to add the footer to</param>
     /// <param name="pageNumberFormat">Null or ROMAN, roman, ALPHABETIC, alphabetic</param>
-    protected virtual void AddFooterInternal(Section section, string pageNumberFormat = null)
+    protected virtual void AddFooterInternal(Section section, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
         if (section == null || string.IsNullOrEmpty(FooterText))
         {
@@ -1022,9 +1107,24 @@ public abstract class PdfBuilderBase : IPdfBuilder
             paragraph.AddText(vorher);
 
             var p = paragraph.AddPageField();
-            if (!string.IsNullOrEmpty(pageNumberFormat))
+
+            switch (pageNumberFormat)
             {
-                p.Format = pageNumberFormat;
+                case PageNumberFormatEnum.UpperRoman:
+                    p.Format = "ROMAN";
+                    break;
+                case PageNumberFormatEnum.LowerRoman:
+                    p.Format = "roman";
+                    break;
+                case PageNumberFormatEnum.UpperLatin:
+                    p.Format = "ALPHABETIC";
+                    break;
+                case PageNumberFormatEnum.LowerLatin:
+                    p.Format = "alphabetic";
+                    break;
+                case PageNumberFormatEnum.Decimal:
+                default:
+                    break;
             }
 
             if (nachher.Contains(ITypography.PageFieldIndicator))
@@ -1034,6 +1134,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
                     nachher.Length - nachher.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) - 9);
 
                 paragraph.AddText(vorher);
+                paragraph.AddText($" {PageNumberPrefix} ");
                 paragraph.AddNumPagesField();
             }
             paragraph.AddText(nachher);
@@ -2817,8 +2918,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
         AddStyle(styleSet.NoHeading1);
         AddStyle(styleSet.Table);
         AddStyle(styleSet.TableLegend);
-        AddStyle(styleSet.FigureLegend);
-        AddStyle(styleSet.EquationLegend);
+        AddStyle(styleSet.Figure);
+        AddStyle(styleSet.Equation);
         AddStyle(styleSet.Title);
         AddStyle(styleSet.Subtitle);
         AddStyle(styleSet.SectionTitle);
@@ -2850,5 +2951,26 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public Style GetStyle(string styleName)
     {
         return Document.Styles[styleName];
+    }
+
+    /// <summary>
+    /// Section information
+    /// </summary>
+    protected class SectionInfo
+    {
+        /// <summary>
+        /// Current section
+        /// </summary>
+        public Section Section { get; set; }
+
+        /// <summary>
+        /// Is a restart of the page numbering required? Default: false
+        /// </summary>
+        public bool IsRestartPageNumberingRequired { get; set; } = false;
+
+        /// <summary>
+        /// Page number format
+        /// </summary>
+        public PageNumberFormatEnum PageNumberFormat { get; set; } = PageNumberFormatEnum.Decimal;
     }
 }

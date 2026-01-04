@@ -1,5 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
@@ -46,6 +47,11 @@ public interface IPdfBuilder: IDisposable
     /// The title for the table of tables (TOT)
     /// </summary>
     string TitleTableOfTables { get; set; }
+
+    /// <summary>
+    /// The word written before the page number in a page footer
+    /// </summary>
+    public string PageNumberPrefix { get; set; } 
 
     /// <summary>
     /// Increment
@@ -153,27 +159,37 @@ public interface IPdfBuilder: IDisposable
     /// <summary>
     /// Add a content section to the document
     /// </summary>
-    void CreateContentSection();
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    void CreateContentSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal);
 
     /// <summary>
     /// Add a TOC section to the document
     /// </summary>
-    void CreateTocSection();
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    void CreateTocSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal);
 
     /// <summary>
     /// Add a TOF section to the document
     /// </summary>
-    void CreateTofSection();
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    void CreateTofSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal);
 
     /// <summary>
     /// Add a TOF section to the document
     /// </summary>
-    void CreateToeSection();
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    void CreateToeSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal);
 
     /// <summary>
     /// Add a TOT section to the document
     /// </summary>
-    void CreateTotSection();
+    /// <param name="isRestartPageNumberingRequired">Is a restart of the page numbering required for this section?</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    void CreateTotSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal);
 
     /// <summary>
     /// Add an TOC entry level 1 to the TOC

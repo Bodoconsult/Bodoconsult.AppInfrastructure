@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
@@ -62,6 +63,8 @@ public class PdfParagraphStyleTextRendererElementBase : IPdfTextRendererElement
         }
 
         var pdfStyle = renderer.PdfDocument.GetStyle(styleName);
+
+        Debug.Print($"{Style.Name} => {pdfStyle?.Name}");
 
         PdfDocumentRendererHelper.RenderParagraphStyle(Style, pdfStyle);
     }

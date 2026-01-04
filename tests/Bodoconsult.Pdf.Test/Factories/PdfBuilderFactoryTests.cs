@@ -3,6 +3,7 @@
 using Bodoconsult.Pdf.PdfSharp;
 using NUnit.Framework;
 using System.Runtime.Versioning;
+using Bodoconsult.Pdf.Factories;
 using Bodoconsult.Pdf.Stylesets;
 
 namespace Bodoconsult.Pdf.Test.Factories;

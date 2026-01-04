@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.Pdf.Factories;
 using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using PdfSharp.Fonts;

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace Bodoconsult.App.Extensions;
+namespace Bodoconsult.App.Abstractions.Extensions;
 
 
 /// <summary>
@@ -224,5 +224,25 @@ public static class IntExtensions
         {
             throw new ArgumentException($"Conversion of {inputNumber} to Roman numeral failed", ex);
         }
+    }
+
+    /// <summary>
+    /// To upper latin. Use this method for page number conversions
+    /// </summary>
+    /// <param name="value">Value to convert to upper latin</param>
+    /// <returns>Upper lation for the given value</returns>
+    public static string ToUpperLatin(this int value)
+    {
+        return Convert.ToChar(64 + value).ToString();
+    }
+
+    /// <summary>
+    /// To lower latin. Use this method for page number conversions
+    /// </summary>
+    /// <param name="value">Value to convert to upper latin</param>
+    /// <returns>Lower lation for the given value</returns>
+    public static string ToLowerLatin(this int value)
+    {
+        return Convert.ToChar(96 + value).ToString();
     }
 }

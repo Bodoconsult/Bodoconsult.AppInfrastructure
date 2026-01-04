@@ -13,7 +13,7 @@ public class DefaultStyleSet : IStyleSet
     /// <summary>
     /// Default font size
     /// </summary>
-    protected Unit DefaultFontSize = 11;
+    public Unit DefaultFontSize { get; set; } = 11;
 
     /// <summary>
     /// Type area width
@@ -108,8 +108,8 @@ public class DefaultStyleSet : IStyleSet
         Info = CreateInfoStyle();
         Warning = CreateWarningStyle();
         Error = CreateErrorStyle();
-        FigureLegend = CreateFigureLegendStyle();
-        EquationLegend = CreateEquationLegendStyle();
+        Figure = CreateFigureStyle();
+        Equation = CreateEquationStyle();
 
         Table = CreateTableStyle();
         TableLegend = CreateTableLegendStyle();
@@ -285,12 +285,12 @@ public class DefaultStyleSet : IStyleSet
     }
 
     /// <summary>
-    /// Create <see cref="EquationLegend"/> style
+    /// Create <see cref="Equation"/> style
     /// </summary>
     /// <returns>Style</returns>
-    protected virtual Style CreateEquationLegendStyle()
+    protected virtual Style CreateEquationStyle()
     {
-        return new Style("EquationLegend", "Normal")
+        return new Style("Equation", "Normal")
         {
             Font =
             {
@@ -307,12 +307,12 @@ public class DefaultStyleSet : IStyleSet
     }
 
     /// <summary>
-    /// Create <see cref="FigureLegend"/> style
+    /// Create <see cref="Figure"/> style
     /// </summary>
     /// <returns>Style</returns>
-    protected virtual Style CreateFigureLegendStyle()
+    protected virtual Style CreateFigureStyle()
     {
-        return new Style("FigureLegend", "Normal")
+        return new Style("Figure", "Normal")
         {
             Font =
             {
@@ -846,9 +846,12 @@ public class DefaultStyleSet : IStyleSet
             ParagraphFormat =
             {
                 SpaceBefore = 2 * DefaultVerticalMargin,
-                SpaceAfter = DefaultVerticalMargin
+                SpaceAfter = DefaultVerticalMargin,
+                LeftIndent = 0,
+                RightIndent = 0
             }
         };
+
         style.ParagraphFormat.Borders.Bottom.Width = 0;
         style.ParagraphFormat.Borders.Top.Width = 0;
         style.ParagraphFormat.Borders.Right.Width = 0;
@@ -1503,12 +1506,12 @@ public class DefaultStyleSet : IStyleSet
     /// <summary>
     /// Style used for figure legends
     /// </summary>
-    public Style FigureLegend { get; set; }
-
+    public Style Figure{ get; set; }
+    
     /// <summary>
     /// Style used for equation legends
     /// </summary>
-    public Style EquationLegend { get; set; }
+    public Style Equation { get; set; }
 
     /// <summary>
     /// Style for TOC section heading

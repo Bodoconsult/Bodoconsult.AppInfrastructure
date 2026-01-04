@@ -1,10 +1,11 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.Pdf.Interfaces;
+using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using PdfSharp.Fonts;
 
-namespace Bodoconsult.Pdf.PdfSharp;
+namespace Bodoconsult.Pdf.Factories;
 
 /// <summary>
 /// Current implementation of <see cref="IPdfBuilder"/> delivering an instance of <see cref="PdfBuilder"/> for a single-column text PDF file to create or an instance of

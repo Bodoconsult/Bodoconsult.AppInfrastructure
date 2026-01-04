@@ -41,7 +41,7 @@ public class TofSectionPdfTextRendererElement : PdfTextRendererElementBase
             renderer.PdfDocument.SetFooter(renderer.Document.DocumentMetaData.FooterText);
         }
 
-        renderer.PdfDocument.CreateTofSection();
+        renderer.PdfDocument.CreateTofSection(_tofSection.IsRestartPageNumberingRequired, _tofSection.PageNumberFormat);
 
         PdfDocumentRendererHelper.RenderBlockChildsToPdf(renderer, Block.ChildBlocks);
     }
