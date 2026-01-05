@@ -52,7 +52,7 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
         PdfDocument = factory.CreateInstance(styleSet);
 
-        PdfDocument.SetHeader(metaData.HeaderText);
+        PdfDocument.SetHeader(metaData.HeaderText, "Header", metaData.LogoPath);
         PdfDocument.SetFooter(metaData.FooterText);
 
         PdfDocument.TitleTableOfFigures = metaData.TofHeading;

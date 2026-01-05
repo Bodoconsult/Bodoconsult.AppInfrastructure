@@ -137,6 +137,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public string PageNumberPrefix { get; set; } = "Page";
 
     /// <summary>
+    /// Logo height in cm
+    /// </summary>
+    public double HeaderLogoHeight { get; set; } = 0.75;
+
+    /// <summary>
     /// Increment
     /// </summary>
     public int Increment { get; set; }
@@ -1079,7 +1084,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     }
 
     /// <summary>
-    /// Add a footer
+    /// Add a footer. Override this method if you want to implement another footer
     /// </summary>
     /// <param name="section">Section to add the footer to</param>
     /// <param name="pageNumberFormat">Null or ROMAN, roman, ALPHABETIC, alphabetic</param>
@@ -1172,7 +1177,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     }
 
     /// <summary>
-    /// Add a header
+    /// Add a header. Override this method if you want to implement another header
     /// </summary>
     /// <param name="section">Section to add the header to</param>
     protected virtual void AddHeaderInternal(Section section)
@@ -1216,7 +1221,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         if (!string.IsNullOrEmpty(HeaderLogoPath))
         {
             var image = paragraph.AddImage(HeaderLogoPath);
-            image.Height = Unit.FromCentimeter(0.5);
+            image.Height = Unit.FromCentimeter(HeaderLogoHeight);
             image.RelativeVertical = RelativeVertical.Line;
             image.RelativeHorizontal = RelativeHorizontal.Margin;
             image.Left = ShapePosition.Left;

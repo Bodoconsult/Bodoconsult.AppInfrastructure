@@ -636,6 +636,12 @@ public class DocxBuilder : IDisposable
         };
         pPr.Append(pageBreakBefore);
 
+        // widow control
+        var widowControl = new WidowControl
+        {
+            Val = OnOffValue.FromBoolean(typoStyle.WidowControl)
+        };
+        pPr.Append(widowControl);
     }
 
     /// <summary>

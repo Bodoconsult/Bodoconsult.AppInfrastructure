@@ -86,4 +86,9 @@ public interface ITypoParagraphStyle
     /// Current line spacing rule
     /// </summary>
     LineSpacingRuleEnum LineSpacingRule { get; set; }
+
+    /// <summary>
+    /// Activate widow control
+    /// </summary>
+    bool WidowControl { get; set; }
 }

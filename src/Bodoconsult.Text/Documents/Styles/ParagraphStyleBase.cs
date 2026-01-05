@@ -119,4 +119,9 @@ public class ParagraphStyleBase : StyleBase, ITypoParagraphStyle
     /// Current line spacing rule
     /// </summary>
     public LineSpacingRuleEnum LineSpacingRule { get; set; } = LineSpacingRuleEnum.Auto;
+
+    /// <summary>
+    /// Activate widow control
+    /// </summary>
+    public bool WidowControl { get; set; } = true;
 }

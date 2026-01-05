@@ -298,13 +298,17 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         return document;
     }
 
-    private XRect a4Rect;
-
-    private void RenderPages(DocumentRenderer docRenderer, PdfDocument document)
+    /// <summary>
+    /// Render the pages
+    /// </summary>
+    /// <param name="docRenderer">Current renderer</param>
+    /// <param name="document">Current document</param>
+    /// <exception cref="ArgumentNullException">Thrown if there is no drawing surface creatable</exception>
+    protected void RenderPages(DocumentRenderer docRenderer, PdfDocument document)
     {
         // For clarity, we use point as unit of measure in this sample.
         // A4 is the standard letter size in Germany (21cm x 29.7cm).
-        a4Rect = new XRect(0, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
+        var a4Rect = new XRect(0, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
 
         // Use a fresh renderer now
         //docRenderer = new DocumentRenderer(Document);
@@ -354,9 +358,8 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                     gfx.DrawImage(image, 0, 0, page.Width.Point, page.Height.Point);
                 }
 
-                PrintHeader(page, gfx, currentPageNum, pageNumberFormat);
-                PrintFooter(page, gfx, currentPageNum, pageNumberFormat);
-
+                PrintHeader(gfx);
+                PrintFooter(gfx, currentPageNum, pageNumberFormat);
             }
             else
             {
@@ -385,50 +388,77 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         }
     }
 
-    private void PrintHeader(PdfPage page, XGraphics gfx, int pageNum, PageNumberFormatEnum siPageNumberFormat)
+    /// <summary>
+    /// Print header. Override this method if you want to implement another header
+    /// </summary>
+    /// <param name="gfx">Graphics</param>
+    protected virtual void PrintHeader(XGraphics gfx)
     {
         if (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(HeaderLogoPath))
         {
             return;
         }
 
+        var style = StyleSet.Footer;
+
+        var font = new XFont(style.Font.Name, style.Font.Size.Point);
+        var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
+
         var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
+        var y = 0.5 * StyleSet.PageSetupOriginal.TopMargin.Point;
 
-        // Use BeginContainer / EndContainer for simplicity only. You can naturaly use you own transformations.
-
-        if (!string.IsNullOrEmpty(HeaderLogoPath))
+        // Borderline
+        if (style.ParagraphFormat.Borders.Width.Point > 0)
         {
-            x = 150;
-            var y = 15;
-
-            var image = XImage.FromFile(HeaderLogoPath);
-            gfx.DrawImage(image, 0, 0, x, y);
+            var borderColor = style.ParagraphFormat.Borders.Color;
+            var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
+            {
+                Width = style.ParagraphFormat.Borders.Width.Point
+            };
+            gfx.DrawLine(pen, x, y + 3, StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point, y + 3);
         }
 
+        // Logo
+        if (!string.IsNullOrEmpty(HeaderLogoPath))
+        {
+            var height = Unit.FromCentimeter(HeaderLogoHeight);
+
+            var image = XImage.FromFile(HeaderLogoPath);
+
+            var rel = image.PointWidth / image.PixelHeight;
+
+            var width = height.Point / rel;
+
+            gfx.DrawImage(image, x, y - height.Point, width, height.Point);
+        }
+
+        // Header text
         if (!string.IsNullOrEmpty(HeaderText))
         {
-            XFont font = new XFont("Arial", 8);
-            XBrush brush = new XSolidBrush(XColor.FromArgb(255, 0, 0, 0));
-
             x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(HeaderText, font).Width;
-            var y = 0.5 * StyleSet.PageSetupOriginal.TopMargin.Point;
-
             gfx.DrawString(HeaderText, font, brush, x, y);
         }
     }
 
-    private void PrintFooter(PdfPage page, XGraphics gfx, int pageNum, PageNumberFormatEnum pageNumberFormat)
+    /// <summary>
+    /// Print footer. Override this method if you want to implement another header
+    /// </summary>
+    /// <param name="gfx">Graphics</param>
+    /// <param name="pageNum">Current page number</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    protected virtual void PrintFooter(XGraphics gfx, int pageNum, PageNumberFormatEnum pageNumberFormat)
     {
         if (string.IsNullOrEmpty(FooterText))
         {
             return;
         }
 
-        double x;
+        var style = StyleSet.Footer;
 
-        var font = new XFont("Arial", 8);
-        var brush = new XSolidBrush(XColor.FromArgb(255, 0, 0, 0));
+        var font = new XFont(style.Font.Name, style.Font.Size.Point);
+        var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
 
+        var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
         var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.5 * StyleSet.PageSetupOriginal.BottomMargin.Point;
 
         var footerText = FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
@@ -441,12 +471,25 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                 StringComparison.InvariantCultureIgnoreCase);
         }
 
+        // Borderline
+        if (style.ParagraphFormat.Borders.Width.Point > 0)
+        {
+            var borderColor = style.ParagraphFormat.Borders.Color;
+            var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
+            {
+                Width = style.ParagraphFormat.Borders.Width.Point
+            };
+            gfx.DrawLine(pen, x, y - style.Font.Size.Point - 3, StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point, y - style.Font.Size.Point - 3);
+        }
+
+        // Footer text
         if (!string.IsNullOrEmpty(footerText))
         {
             x = StyleSet.PageSetupOriginal.LeftMargin.Point;
             gfx.DrawString(footerText, font, brush, x, y);
         }
 
+        // Page number
         if (!isPageNumber)
         {
             return;

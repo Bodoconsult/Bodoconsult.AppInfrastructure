@@ -122,6 +122,12 @@ public static class RtfHelper
             sb.Append("\\keep");
         }
 
+        // Widow control
+        if (style.WidowControl)
+        {
+            sb.Append("\\widowctrl");
+        }
+
         return sb;
     }
 }

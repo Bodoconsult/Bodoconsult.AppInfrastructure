@@ -51,7 +51,12 @@ public interface IPdfBuilder: IDisposable
     /// <summary>
     /// The word written before the page number in a page footer
     /// </summary>
-    public string PageNumberPrefix { get; set; } 
+    string PageNumberPrefix { get; set; }
+
+    /// <summary>
+    /// Logo height in cm
+    /// </summary>
+    double HeaderLogoHeight { get; set; }
 
     /// <summary>
     /// Increment

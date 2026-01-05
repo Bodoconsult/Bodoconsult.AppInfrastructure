@@ -240,6 +240,4 @@ internal class StringExtensionsTests
         Assert.That(result, Is.Not.EqualTo(input));
 
     }
-
-
 }

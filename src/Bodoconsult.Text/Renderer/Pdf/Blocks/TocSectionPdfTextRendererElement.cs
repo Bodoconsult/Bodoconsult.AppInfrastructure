@@ -32,14 +32,17 @@ public class TocSectionPdfTextRendererElement : PdfTextRendererElementBase
             return;
         }
 
-        if (!string.IsNullOrEmpty(renderer.Document.DocumentMetaData.HeaderText))
+        var metaData = renderer.Document.DocumentMetaData;
+
+        if (!string.IsNullOrEmpty(metaData.HeaderText))
         {
-            renderer.PdfDocument.SetHeader(renderer.Document.DocumentMetaData.HeaderText);
+            renderer.PdfDocument.SetHeader(metaData.HeaderText, "Header", metaData.LogoPath);
         }
         if (!string.IsNullOrEmpty(renderer.Document.DocumentMetaData.FooterText))
         {
-            renderer.PdfDocument.SetFooter(renderer.Document.DocumentMetaData.FooterText);
+            renderer.PdfDocument.SetFooter(metaData.FooterText);
         }
+
         renderer.PdfDocument.CreateTocSection(_tocSection.IsRestartPageNumberingRequired, _tocSection.PageNumberFormat);
 
         PdfDocumentRendererHelper.RenderBlockChildsToPdf(renderer, Block.ChildBlocks);
