@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using System.IO;
 using Bodoconsult.App.Helpers;
+using Bodoconsult.Office.Helpers;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Renderer.Docx;
 using Bodoconsult.Text.Test.Helpers;
@@ -59,6 +60,8 @@ public class DocxTextDocumentRendererTests
         var filePath = Path.Combine(Path.GetTempPath(), "test.docx");
 
         renderer.SaveAsFile(filePath);
+
+        OpenXmlHelper.ValidateWordDocument(filePath);
 
         FileSystemHelper.RunInDebugMode(filePath);
     }

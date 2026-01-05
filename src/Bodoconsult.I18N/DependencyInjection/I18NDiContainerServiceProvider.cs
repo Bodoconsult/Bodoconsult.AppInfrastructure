@@ -1,13 +1,17 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.I18N.DependencyInjection;
 
 /// <summary>
-/// DI container service provider for loading I18N instance
-/// </summary>
+/// DI container service provider for loading I18N instance. The following interfaces and delegates are loaded in the DI container:
+/// - II18N
+/// - TranslateDelegate
+/// - TranslateWithParamsDelegate
+///  </summary>
 public class I18NDiContainerServiceProvider : IDiContainerServiceProvider
 {
     private readonly II18NFactory _i18NFactory;
@@ -29,6 +33,8 @@ public class I18NDiContainerServiceProvider : IDiContainerServiceProvider
     {
         var i18N = _i18NFactory.CreateInstance();
         diContainer.AddSingleton(i18N);
+        diContainer.AddSingleton<TranslateDelegate>(i18N.Translate);
+        diContainer.AddSingleton<TranslateWithParamsDelegate>(i18N.Translate);
     }
 
     /// <summary>

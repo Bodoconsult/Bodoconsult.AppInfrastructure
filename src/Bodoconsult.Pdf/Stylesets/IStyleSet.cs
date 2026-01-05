@@ -132,6 +132,11 @@ public interface IStyleSet
     Style TableLegend { get; }
 
     /// <summary>
+    /// Style used for images
+    /// </summary>
+    Style Image { get; }
+
+    /// <summary>
     /// Style used for figure legends
     /// </summary>
     Style Figure { get; }

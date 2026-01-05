@@ -30,7 +30,7 @@ public class DefinitionListPdfTextRendererElement : PdfTextRendererElementBase
     /// <param name="renderer">Current renderer</param>
     public override void RenderIt(PdfTextDocumentRenderer renderer)
     {
-        
+
         var dt = new List<PdfDefinitionListTerm>();
 
         foreach (var childBlock in _item.ChildBlocks)
@@ -44,7 +44,7 @@ public class DefinitionListPdfTextRendererElement : PdfTextRendererElementBase
             PdfDocumentRendererHelper.RenderBlockInlinesToStringForPdf(renderer, term.ChildInlines, sb);
             termItem.Term = sb.ToString();
 
-            foreach(var listItems in term.ChildBlocks)
+            foreach (var listItems in term.ChildBlocks)
             {
                 sb.Clear();
                 PdfDocumentRendererHelper.RenderBlockInlinesToStringForPdf(renderer, listItems.ChildInlines, sb);

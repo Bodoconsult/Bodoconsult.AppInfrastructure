@@ -1016,6 +1016,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="height">Height in cm</param>
     public virtual void AddFigure(string imagePath, string legend, string tag, double width, double height)
     {
+
+
         AddImage(imagePath, width, height);
 
         if (string.IsNullOrEmpty(legend))
@@ -1171,7 +1173,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="section">Section to add the header to</param>
     protected virtual void AddHeaderInternal(Section section)
     {
-        if (section == null || (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(BackgroundImagePath)))
+        var md = StyleSet.DocumentMetaData;
+        if (section == null || (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(BackgroundImagePath) && string.IsNullOrEmpty(md.LogoPath)))
         {
             return;
         }
@@ -1206,7 +1209,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         paragraph.Format.AddTabStop(width, TabAlignment.Right);
 
-        var md = StyleSet.DocumentMetaData;
 
         if (!string.IsNullOrEmpty(md.LogoPath))
         {
@@ -1271,6 +1273,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
         {
             throw new ArgumentNullException(nameof(style));
         }
+
+        // Add an empty paragraph to keep distance
+        var par = Content.AddParagraph(string.Empty);
+        par.Format.SpaceBefore = StyleSet.Table.ParagraphFormat.SpaceBefore;
+        par.Format.Font.Size = 2;
 
         // Create table now
         var table = Content.AddTable();
@@ -2172,14 +2179,19 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="height">Height of the image in cm</param>
     public void AddImage(string fileName, double width, double height)
     {
+        // Add an empty paragraph to keep distance
         var frame = Content.AddTextFrame();
         frame.Height = Unit.FromCentimeter(height);
         frame.Width = Unit.FromCentimeter(width);
         frame.Left = ShapePosition.Center;
-        var image = frame.AddImage(fileName);
+
+        var p = frame.AddParagraph();
+        p.Style = "Image";
+
+        var image = p.AddImage(fileName);
         image.Width = frame.Width;
         image.Height = frame.Height;
-        // image = null;
+        image = null;
     }
 
     /// <summary>
@@ -2516,6 +2528,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         AddStyle(styleSet.NoHeading1);
         AddStyle(styleSet.Table);
         AddStyle(styleSet.TableLegend);
+        AddStyle(styleSet.Image);
         AddStyle(styleSet.Figure);
         AddStyle(styleSet.Equation);
         AddStyle(styleSet.Title);

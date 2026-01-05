@@ -6,9 +6,11 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Vml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using A = DocumentFormat.OpenXml.Drawing;
 using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Paragraph = DocumentFormat.OpenXml.Wordprocessing.Paragraph;
@@ -338,23 +340,34 @@ public class DocxBuilder : IDisposable
 
         var posTwips = MeasurementHelper.GetTwipsFromCm(position);
 
-        var para = CreateHeaderFooterParagraph($"\t{headerText}", styleId, posTwips, pageNumberFormat);
+        var para = CreateHeaderFooterParagraph($"\t{headerText}", styleId, posTwips, pageNumberFormat, true);
 
         headerPart.Header = new Header(para);
 
         CurrentSection.PrependChild(new HeaderReference
         {
-            Id = headerPartId
+            Id = headerPartId,
+            Type = HeaderFooterValues.Default
         });
     }
 
-    private static Paragraph CreateHeaderFooterParagraph(string text, string styleId, int position, PageNumberFormatEnum pageNumberFormat)
+    private Paragraph CreateHeaderFooterParagraph(string text, string styleId, int position, PageNumberFormatEnum pageNumberFormat, bool header)
     {
         var pPr = new ParagraphProperties(new ParagraphStyleId { Val = styleId });
 
         var para = new Paragraph(pPr);
 
-        var runs = GetRuns(text, position, pPr, pageNumberFormat);
+        var runs = new List<Run>();
+
+        if (header && !string.IsNullOrEmpty(TypoMetaData?.LogoPath))
+        {
+            _imageCounter++;
+            var imageRun = CreateImageRun(MainDocumentPart, TypoMetaData.LogoPath, 190, 75, _imageCounter, "Header");
+            runs.Add(imageRun);
+
+        }
+
+        runs.AddRange(GetRuns(text, position, pPr, pageNumberFormat));
 
         foreach (var run in runs)
         {
@@ -381,13 +394,14 @@ public class DocxBuilder : IDisposable
 
         var posTwips = MeasurementHelper.GetTwipsFromCm(position);
 
-        var para = CreateHeaderFooterParagraph(footerText, styleId, posTwips, pageNumberFormat);
+        var para = CreateHeaderFooterParagraph(footerText, styleId, posTwips, pageNumberFormat, false);
 
         footerPart.Footer = new Footer(para);
 
         CurrentSection.PrependChild(new FooterReference
         {
-            Id = footerPartId
+            Id = footerPartId,
+            Type = HeaderFooterValues.Default
         });
     }
 
@@ -576,7 +590,26 @@ public class DocxBuilder : IDisposable
         };
         pPr.Append(spacing);
 
-        var indentation = new Indentation { Left = new StringValue(left.ToString()), Right = new StringValue(right.ToString()), FirstLine = new StringValue(leftFirstLine.ToString()) };
+        Debug.Print(left.ToString());
+
+
+        var indentation = new Indentation
+        {
+            Left = new StringValue(left.ToString()),
+            //Start = new StringValue(left.ToString()),
+            Right = new StringValue(right.ToString()),
+
+        };
+
+        if (leftFirstLine < 0)
+        {
+            indentation.Hanging = new StringValue(Math.Abs(leftFirstLine).ToString());
+        }
+        else
+        {
+            indentation.FirstLine = new StringValue(leftFirstLine.ToString());
+        }
+
         pPr.Append(indentation);
     }
 
@@ -631,7 +664,7 @@ public class DocxBuilder : IDisposable
         // Borders
         var tblBorders = new ParagraphBorders();
         pPr.Append(tblBorders);
-        var borderColor = (typoStyle.TypoBorderBrush?.Color ?? TypoColors.Black).ToHtml();
+        var borderColor = new StringValue { Value = (typoStyle.TypoBorderBrush?.Color ?? TypoColors.Black).ToHtml2() };
 
         // Top border
         if (typoStyle.TypoBorderThickness.Top > 0)
@@ -640,8 +673,8 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = MeasurementHelper.GetDxaFromCm(typoStyle.TypoBorderThickness.Top),
-                Space = MeasurementHelper.GetDxaFromCm(typoStyle.TypoPaddings.Top)
+                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Top),
+                Space = GetValidDxaValue(typoStyle.TypoPaddings.Top)
             };
             tblBorders.AppendChild(topBorder);
         }
@@ -653,8 +686,8 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = MeasurementHelper.GetDxaFromCm(typoStyle.TypoBorderThickness.Bottom),
-                Space = MeasurementHelper.GetDxaFromCm(typoStyle.TypoPaddings.Bottom)
+                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Bottom),
+                Space = GetValidDxaValue(typoStyle.TypoPaddings.Bottom)
             };
             tblBorders.AppendChild(bottomBorder);
         }
@@ -666,8 +699,8 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = MeasurementHelper.GetDxaFromCm(typoStyle.TypoBorderThickness.Right),
-                Space = MeasurementHelper.GetDxaFromCm(typoStyle.TypoPaddings.Right)
+                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Right),
+                Space = GetValidDxaValue(typoStyle.TypoPaddings.Right)
             };
             tblBorders.AppendChild(rightBorder);
         }
@@ -679,11 +712,22 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = MeasurementHelper.GetDxaFromCm(typoStyle.TypoBorderThickness.Left),
-                Space = MeasurementHelper.GetDxaFromCm(typoStyle.TypoPaddings.Left)
+                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Left),
+                Space = GetValidDxaValue(typoStyle.TypoPaddings.Left)
             };
             tblBorders.AppendChild(leftBorder);
         }
+    }
+
+    private static UInt32Value GetValidDxaValue(double value)
+    {
+        var result = MeasurementHelper.GetDxaFromCm(value);
+        if (result > 31)
+        {
+            result = 31;
+        }
+
+        return new UInt32Value(result);
     }
 
     /// <summary>
@@ -695,7 +739,7 @@ public class DocxBuilder : IDisposable
     {
         // Font color
         var fontColor = typoStyle.TypoFontColor ?? TypoColors.Black;
-        var color1 = new Color { Val = fontColor.ToHtml() };
+        var color1 = new Color { Val = fontColor.ToHtml2() };
         styleRunProperties.Append(color1);
 
         // Font size
@@ -707,9 +751,9 @@ public class DocxBuilder : IDisposable
 
         styleRunProperties.Append(fontSize1);
 
-        // Font name
-        var font = new RunFonts { Ascii = typoStyle.FontName };
-        styleRunProperties.Append(font);
+        //// Font name
+        //var font = new RunFonts { Ascii = typoStyle.FontName };
+        //styleRunProperties.Append(font);
 
         // Bold
         styleRunProperties.Append(new Bold { Val = OnOffValue.FromBoolean(typoStyle.Bold) });
@@ -827,11 +871,30 @@ public class DocxBuilder : IDisposable
     /// <param name="height">Height in pixels</param>
     public Paragraph AddImage(string path, string styleName, int width, int height)
     {
-        _imageCounter++;
-
         var para = CreateBaseParagraph(styleName);
 
         //para.ParagraphProperties?.AddChild(new Justification { Val = JustificationValues.Center });
+
+        _imageCounter++;
+        var rImg = CreateImageRun(MainDocumentPart, path, width, height, _imageCounter);
+        para.Append(rImg);
+
+        return para;
+    }
+
+    /// <summary>
+    /// Create a run with an image
+    /// </summary>
+    /// <param name="mainDocumentPart">Main document part</param>
+    /// <param name="path">Path to the image</param>
+    /// <param name="width">Width in px</param>
+    /// <param name="height">Height in px</param>
+    /// <param name="imageCounter">Current image counter</param>
+    /// <param name="prefix">Prefix to separate header / footer images</param>
+    /// <returns>Run with the image</returns>
+    public static Run CreateImageRun(MainDocumentPart mainDocumentPart, string path, int width, int height, int imageCounter, string prefix = null)
+    {
+        Debug.Print($"Image {imageCounter}");
 
         var xTwips = MeasurementHelper.GetEmuFromPx(width);
         var yTwips = MeasurementHelper.GetEmuFromPx(height);
@@ -843,8 +906,8 @@ public class DocxBuilder : IDisposable
 
         var ext = fi.Extension.ToLowerInvariant();
 
-        var ip = AddImagePart(path, ext);
-        var relationshipId = MainDocumentPart.GetIdOfPart(ip);
+        var ip = AddImagePart(mainDocumentPart, path, ext);
+        var relationshipId = mainDocumentPart.GetIdOfPart(ip);
 
         var inline = new DW.Inline(
             new DW.Extent { Cx = xTwips, Cy = yTwips },
@@ -866,8 +929,8 @@ public class DocxBuilder : IDisposable
             },
             new DW.DocProperties
             {
-                Id = (uint)_imageCounter,
-                Name = $"Image {_imageCounter}"
+                Id = (uint)imageCounter,
+                Name = $"{prefix}Image {imageCounter}"
             },
             new DW.NonVisualGraphicFrameDrawingProperties(new A.GraphicFrameLocks { NoChangeAspect = true }),
             new A.Graphic(
@@ -876,7 +939,7 @@ public class DocxBuilder : IDisposable
                             new PIC.NonVisualPictureProperties(
                                 new PIC.NonVisualDrawingProperties
                                 {
-                                    Id = (UInt32Value)0U,
+                                    Id = (uint)imageCounter,
                                     Name = fi.Name
                                 },
                                 new PIC.NonVisualPictureDrawingProperties()),
@@ -885,14 +948,12 @@ public class DocxBuilder : IDisposable
                                     new A.BlipExtensionList(
                                         new A.BlipExtension
                                         {
-                                            Uri =
-                                                "{28A0092B-C50C-407E-A947-70E740481C1C}"
+                                            Uri = "{28A0092B-C50C-407E-A947-70E740481C1C}"
                                         })
                                 )
                                 {
                                     Embed = relationshipId,
-                                    CompressionState =
-                                        A.BlipCompressionValues.Print
+                                    CompressionState = A.BlipCompressionValues.Print
                                 },
                                 new A.Stretch(
                                     new A.FillRectangle())),
@@ -916,14 +977,10 @@ public class DocxBuilder : IDisposable
             //EditId = "50D07946"
         };
 
-
-
         var element = new Drawing(inline);
 
         var rImg = new Run(element);
-        para.Append(rImg);
-
-        return para;
+        return rImg;
     }
 
     private Paragraph CreateBaseParagraph(string styleName)
@@ -948,7 +1005,7 @@ public class DocxBuilder : IDisposable
         return para;
     }
 
-    private ImagePart AddImagePart(string path, string ext)
+    private static ImagePart AddImagePart(MainDocumentPart mainDocumentPart, string path, string ext)
     {
         PartTypeInfo imageType;
 
@@ -966,14 +1023,16 @@ public class DocxBuilder : IDisposable
             case ".svg":
                 imageType = ImagePartType.Svg;
                 break;
+            //case ".jpg":
             default:
                 imageType = ImagePartType.Jpeg;
                 break;
         }
 
-        var imagePart = MainDocumentPart.AddImagePart(imageType);
+        var imagePart = mainDocumentPart.AddImagePart(imageType);
         using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
         imagePart.FeedData(fis);
+        fis.Close();
         return imagePart;
     }
 
@@ -1073,7 +1132,7 @@ public class DocxBuilder : IDisposable
                     new Run(
                         new RunProperties(
                             new RunStyle { Val = "Hyperlink" },
-                            new Color { ThemeColor = ThemeColorValues.Hyperlink }),
+                            new Color { Val = new StringValue(TypoColors.Blue.ToHtml2()) }),
                         new Text(text) { Space = SpaceProcessingModeValues.Preserve }
                     ))
         { History = OnOffValue.FromBoolean(true), Id = hrContactId };
@@ -1094,7 +1153,7 @@ public class DocxBuilder : IDisposable
         var run = new Run(
             new RunProperties(
                 new RunStyle { Val = "Hyperlink" },
-                new Color { ThemeColor = ThemeColorValues.Hyperlink }));
+                new Color { Val = TypoColors.Blue.ToHtml2() }));
 
         foreach (var subRun in runs)
         {
@@ -1283,7 +1342,12 @@ public class DocxBuilder : IDisposable
     {
         // Paragraph properties
         var sblUl = new SpacingBetweenLines { After = "0" }; // Get rid of space between bullets
-        var iUl = new Indentation { Left = "360", Hanging = "360" }; // correct indentation
+        var iUl = new Indentation
+        {
+            Left = new StringValue { Value = "360" },
+            //Start = new StringValue { Value = "360" },
+            Hanging = new StringValue { Value = "360" }
+        }; // correct indentation
 
         var numberingId = 1;
 
@@ -1370,6 +1434,8 @@ public class DocxBuilder : IDisposable
 
         var borderValue = BorderValues.Single;
 
+        var color = new StringValue { Value = typoTableStyle.TypoBorderBrush.Color.ToHtml2() };
+
         var tblProp = new TableProperties(
             new TableJustification { Val = TableRowAlignmentValues.Center },
             new TableLayout { Type = TableLayoutValues.Autofit },
@@ -1377,38 +1443,47 @@ public class DocxBuilder : IDisposable
                 new TopBorder
                 {
                     Val = borderValue,
-                    Size = borderSizeTop
+                    Size = borderSizeTop,
+                    Color = color
                 },
                 new BottomBorder
                 {
                     Val = borderValue,
-                    Size = borderSizeBottom
+                    Size = borderSizeBottom,
+                    Color = color
                 },
                 new LeftBorder
                 {
                     Val = borderValue,
-                    Size = borderSizeLeft
+                    Size = borderSizeLeft,
+                    Color = color
                 },
                 new RightBorder
                 {
                     Val = borderValue,
-                    Size = borderSizeRight
+                    Size = borderSizeRight,
+                    Color = color
                 },
                 new InsideHorizontalBorder
                 {
                     Val = borderValue,
-                    Size = borderSizeHorizontal
+                    Size = borderSizeHorizontal,
+                    Color = color
                 },
                 new InsideVerticalBorder
                 {
                     Val = borderValue,
-                    Size = borderSizeVertical
+                    Size = borderSizeVertical,
+                    Color = color
                 }
             )
         );
 
         // Append the TableProperties object to the empty table.
         table.AppendChild(tblProp);
+
+        var grid = new TableGrid();
+        table.Append(grid);
 
 
         foreach (var row in rows)
@@ -1582,12 +1657,14 @@ public class DocxBuilder : IDisposable
                 {
                     Val = borderValue,
                     Size = borderSize
-                }
-            )
-        );
+                })
+            );
 
         // Append the TableProperties object to the empty table.
-        table.AppendChild(tblProp);
+        table.Append(tblProp);
+
+        var grid = new TableGrid();
+        table.Append(grid);
 
         // Append rows
         foreach (var row in rows)
@@ -1618,7 +1695,7 @@ public class DocxBuilder : IDisposable
         {
             TableCellWidth = new TableCellWidth
             {
-                Width = width.ToString("P", CultureInfo.InvariantCulture).Replace(" ", ""),
+                Width = $"{Math.Round(width * 100, 0).ToString("0", CultureInfo.InvariantCulture).Replace(" ", "")}",
                 Type = TableWidthUnitValues.Pct
             }
         };
@@ -1658,7 +1735,7 @@ public class DocxBuilder : IDisposable
         {
             TableCellWidth = new TableCellWidth
             {
-                Width = width.ToString("P", CultureInfo.InvariantCulture).Replace(" ", ""),
+                Width = $"{Math.Round(width * 100, 0).ToString("0", CultureInfo.InvariantCulture).Replace(" ", "")}",
                 Type = TableWidthUnitValues.Pct
             }
         };

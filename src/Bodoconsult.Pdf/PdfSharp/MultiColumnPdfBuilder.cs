@@ -407,7 +407,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
 
         var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-        var y = 0.5 * StyleSet.PageSetupOriginal.TopMargin.Point;
+        var y = 0.75 * StyleSet.PageSetupOriginal.TopMargin.Point;
 
         // Borderline
         if (style.ParagraphFormat.Borders.Width.Point > 0)
@@ -463,7 +463,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
 
         var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-        var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.5 * StyleSet.PageSetupOriginal.BottomMargin.Point;
+        var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.75 * StyleSet.PageSetupOriginal.BottomMargin.Point;
 
         var footerText = FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
         var isPageNumber = false;

@@ -30,6 +30,8 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
         PdfTextRendererElementFactory = (IPdfTextRendererElementFactory)textRendererElementFactory;
         IStyleSet styleSet = new DefaultStyleSet();
+        styleSet.DocumentMetaData = metaData;
+
         styleSet.CreatePageSetup();
 
         var style = (DocumentStyle)Styleset.FindStyle("DocumentStyle");
@@ -52,7 +54,7 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
         PdfDocument = factory.CreateInstance(styleSet);
 
-        PdfDocument.SetHeader(metaData.HeaderText, "Header", metaData.LogoPath);
+        PdfDocument.SetHeader(metaData.HeaderText);
         PdfDocument.SetFooter(metaData.FooterText);
 
         PdfDocument.TitleTableOfFigures = metaData.TofHeading;

@@ -110,6 +110,7 @@ public class DefaultStyleSet : IStyleSet
         Info = CreateInfoStyle();
         Warning = CreateWarningStyle();
         Error = CreateErrorStyle();
+        Image = CreateImageStyle();
         Figure = CreateFigureStyle();
         Equation = CreateEquationStyle();
 
@@ -303,6 +304,28 @@ public class DefaultStyleSet : IStyleSet
             ParagraphFormat =
             {
                 SpaceAfter = 3 * DefaultVerticalMargin,
+                Alignment = ParagraphAlignment.Center
+            }
+        };
+    }
+
+    /// <summary>
+    /// Create <see cref="Image"/> style
+    /// </summary>
+    /// <returns>Style</returns>
+    protected virtual Style CreateImageStyle()
+    {
+        return new Style("Image", "Normal")
+        {
+            Font =
+            {
+                Name = "Arial",
+                Size = DefaultFontSize,
+                Color = Colors.Black,
+            },
+            ParagraphFormat =
+            {
+                SpaceBefore= 3 * DefaultVerticalMargin,
                 Alignment = ParagraphAlignment.Center
             }
         };
@@ -1514,6 +1537,11 @@ public class DefaultStyleSet : IStyleSet
     /// Style used for table legends
     /// </summary>
     public Style TableLegend { get; set; }
+
+    /// <summary>
+    /// Style used for images
+    /// </summary>
+    public Style Image { get; set; }
 
     /// <summary>
     /// Style used for figure legends

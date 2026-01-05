@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.DependencyInjection;
@@ -51,6 +52,44 @@ internal class I18NDiContainerServiceProviderTests
         translation = "Contains".Translate();
         Assert.That(translation, Is.EqualTo("Contains"));
 
+    }
+
+    [Test]
+    public void AddServices_DefaultSetup_DelegatesDelivered()
+    {
+        // Arrange 
+        var diContainer = new DiContainer();
+
+        var factory = new TestI18NFactory();
+        var diProvider = new I18NDiContainerServiceProvider(factory);
+
+        // Act  
+        diProvider.AddServices(diContainer);
+
+        diContainer.BuildServiceProvider();
+
+        var i18N= diContainer.Get<II18N>();
+        i18N.Locale = "es";
+
+
+        // Assert
+        var instance = diContainer.Get<TranslateDelegate>();
+
+        Assert.That(instance, Is.Not.Null);
+
+        // **** Use it ****
+        var result = instance.Invoke("one");
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result, Is.EqualTo("uno"));
+
+        var instance2 = diContainer.Get<TranslateWithParamsDelegate>();
+
+        Assert.That(instance2, Is.Not.Null);
+
+        // **** Use it ****
+        result = instance2.Invoke("one");
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result, Is.EqualTo("uno"));
     }
 
 }
