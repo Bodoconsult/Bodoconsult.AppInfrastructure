@@ -23,7 +23,7 @@ public abstract class PageStyleBase : StyleBase, ITypoPageStyle
     /// <summary>
     /// Page margins for type area in cm
     /// </summary>
-    public Thickness Margins { get; set; } = new(3, 2, 2, 2);
+    public Thickness Margins { get; set; } = new(3, 2.5, 2, 2);
 
     /// <summary>
     /// Current margins in cm

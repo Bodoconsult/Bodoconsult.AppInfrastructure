@@ -11,6 +11,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using Bodoconsult.App.Abstractions.Typography;
 using A = DocumentFormat.OpenXml.Drawing;
 using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Paragraph = DocumentFormat.OpenXml.Wordprocessing.Paragraph;
@@ -362,7 +363,7 @@ public class DocxBuilder : IDisposable
         if (header && !string.IsNullOrEmpty(TypoMetaData?.LogoPath))
         {
             _imageCounter++;
-            var imageRun = CreateImageRun(docPart, TypoMetaData.LogoPath, 190, 75, _imageCounter, "Header");
+            var imageRun = CreateImageRun(docPart, TypoMetaData.LogoPath, MeasurementHelper.GetPxFromCm(TypoMetaData.LogoWidth), 0, _imageCounter, "Header");
             runs.Add(imageRun);
 
         }
@@ -673,8 +674,8 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Top),
-                Space = GetValidDxaValue(typoStyle.TypoPaddings.Top)
+                Size = GetValidPtValue(typoStyle.TypoBorderThickness.Top),
+                Space = GetValidPtValue(typoStyle.TypoPaddings.Top)
             };
             tblBorders.AppendChild(topBorder);
         }
@@ -686,8 +687,8 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Bottom),
-                Space = GetValidDxaValue(typoStyle.TypoPaddings.Bottom)
+                Size = GetValidPtValue(typoStyle.TypoBorderThickness.Bottom),
+                Space = GetValidPtValue(typoStyle.TypoPaddings.Bottom)
             };
             tblBorders.AppendChild(bottomBorder);
         }
@@ -699,8 +700,8 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Right),
-                Space = GetValidDxaValue(typoStyle.TypoPaddings.Right)
+                Size = GetValidPtValue(typoStyle.TypoBorderThickness.Right),
+                Space = GetValidPtValue(typoStyle.TypoPaddings.Right)
             };
             tblBorders.AppendChild(rightBorder);
         }
@@ -712,22 +713,22 @@ public class DocxBuilder : IDisposable
             {
                 Val = new EnumValue<BorderValues>(BorderValues.Thick),
                 Color = borderColor,
-                Size = GetValidDxaValue(typoStyle.TypoBorderThickness.Left),
-                Space = GetValidDxaValue(typoStyle.TypoPaddings.Left)
+                Size = GetValidPtValue(typoStyle.TypoBorderThickness.Left),
+                Space = GetValidPtValue(typoStyle.TypoPaddings.Left)
             };
             tblBorders.AppendChild(leftBorder);
         }
     }
 
-    private static UInt32Value GetValidDxaValue(double value)
+    private static UInt32Value GetValidPtValue(double value)
     {
-        var result = MeasurementHelper.GetDxaFromCm(value);
-        if (result > 31)
-        {
-            result = 31;
-        }
+        var result = MeasurementHelper.GetPtFromCm(value);
+        //if (result > 31)
+        //{
+        //    result = 31;
+        //}
 
-        return new UInt32Value(result);
+        return new UInt32Value((uint)result);
     }
 
     /// <summary>
@@ -897,6 +898,12 @@ public class DocxBuilder : IDisposable
         Debug.Print($"Image {imageCounter}");
 
         var xTwips = MeasurementHelper.GetEmuFromPx(width);
+
+        if (height == 0)
+        {
+            height = (int)(width / TypographicConstants.GoldenerSchnittRatio);
+        }
+
         var yTwips = MeasurementHelper.GetEmuFromPx(height);
 
         //var xTwips = 990000L;
@@ -1056,7 +1063,9 @@ public class DocxBuilder : IDisposable
                 return imagePart;
             }
             default:
+            {
                 return null;
+            }
         }
     }
 
@@ -1125,7 +1134,7 @@ public class DocxBuilder : IDisposable
 
         pgSz.Orient = pageStyle.TypoPaperFormat.Size.Width > pageStyle.TypoPaperFormat.Size.Height ? new EnumValue<PageOrientationValues>(PageOrientationValues.Landscape) : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
 
-        var pageMargin = new PageMargin { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left };
+        var pageMargin = new PageMargin { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left, Header = (uint)(top * 0.25) };
         section.Append(pageMargin);
 
 

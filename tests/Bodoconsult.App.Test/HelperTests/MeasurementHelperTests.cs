@@ -4,6 +4,8 @@ using Bodoconsult.App.Abstractions.Helpers;
 
 namespace Bodoconsult.App.Test.HelperTests;
 
+// EMU's (914400 EMUs is 1 inch, 12700 EMUs is 1pt).
+
 [TestFixture]
 internal class MeasurementHelperTests
 {
@@ -82,10 +84,22 @@ internal class MeasurementHelperTests
         var result = MeasurementHelper.GetCmFromPt(input);
 
         // Assert
-        Assert.That(result, Is.EqualTo(0.0352775));
+        Assert.That(result, Is.EqualTo(0.035));
     }
 
+    [Test]
+    public void GetDxaFromCm_1ptAsCm_ReturnsCm()
+    {
+        // Arrange 
+        double input = MeasurementHelper.GetCmFromPt(1);
 
+        // Act  
+        var result = MeasurementHelper.GetDxaFromCm(input);
+
+        // Assert
+        Assert.That(result, Is.EqualTo(19));
+    }
+    
     [Test]
     public void GetPtFromMm_1mm_ReturnsPt()
     {

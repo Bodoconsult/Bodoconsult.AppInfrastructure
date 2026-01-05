@@ -21,10 +21,10 @@ public class InfoStyle : ParagraphStyleBase
         BorderThickness.Left =   0.5 * Styleset.DefaultBorderWidth;
         BorderThickness.Right = 0.5 * Styleset.DefaultBorderWidth;
         BorderThickness.Top = 0.5 * Styleset.DefaultBorderWidth;
-        Paddings.Left = Styleset.DefaultPaddingWidth;
-        Paddings.Right = Styleset.DefaultPaddingWidth;
-        Paddings.Top = Styleset.DefaultPaddingWidth;
-        Paddings.Bottom = Styleset.DefaultPaddingWidth;
+        Paddings.Left = 0.5 * Styleset.DefaultPaddingWidth;
+        Paddings.Right = 0.5 * Styleset.DefaultPaddingWidth;
+        Paddings.Top = 0.5 * Styleset.DefaultPaddingWidth;
+        Paddings.Bottom = 0.5 * Styleset.DefaultPaddingWidth;
         Margins.Top = MeasurementHelper.GetCmFromPt(1 * Styleset.DefaultFontSize);
         Margins.Bottom = MeasurementHelper.GetCmFromPt(1 * Styleset.DefaultFontSize);
         KeepTogether = true;

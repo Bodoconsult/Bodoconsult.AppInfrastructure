@@ -40,12 +40,12 @@ public class Styleset : Block
     /// <summary>
     /// Default padding width in cm. Default 2pt
     /// </summary>
-    public static double DefaultPaddingWidth = 0.070555;
+    public static double DefaultPaddingWidth = 2 * TypoThickness.LineWidth1Pt;
 
     /// <summary>
     /// Default padding width in cm. Default 3pt
     /// </summary>
-    public static double DefaultTablePaddingWidth = 0.070555;
+    public static double DefaultTablePaddingWidth = 2 * TypoThickness.LineWidth1Pt;
 
     /// <summary>
     /// Default font size in pt
@@ -83,7 +83,7 @@ public class Styleset : Block
     /// Fonts list used i.e. for RTF rendering. Filled by the renderer instance
     /// </summary>
     [DoNotSerialize]
-    public List<string> Fonts { get;  }= new();
+    public List<string> Fonts { get; } = new();
 
 
     /// <summary>
