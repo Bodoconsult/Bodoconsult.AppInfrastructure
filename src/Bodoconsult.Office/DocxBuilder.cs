@@ -66,6 +66,11 @@ public class DocxBuilder : IDisposable
     public Body Body { get; private set; }
 
     /// <summary>
+    /// Document meta data
+    /// </summary>
+    public ITypoMetaData TypoMetaData { get; private set; }
+
+    /// <summary>
     /// Memory stream representing the document. Is only set if <see cref="CreateDocument()"/> was used to create the document
     /// </summary>
     public MemoryStream MemoryStream { get; private set; }
@@ -288,48 +293,18 @@ public class DocxBuilder : IDisposable
         return part;
     }
 
-    ///// <summary>
-    ///// Set basic page properties like width and height and margins
-    ///// </summary>
-    ///// <param name="pageWidth">Page width in cm</param>
-    ///// <param name="pageHeight">Page height in cm</param>
-    ///// <param name="marginLeft">Margin left in cm</param>
-    ///// <param name="marginTop">Margin top in cm</param>
-    ///// <param name="marginRight">Margin right in cm</param>
-    ///// <param name="marginBottom">Margin bottom in cm</param>
-    //public void SetBasicPageProperties(double pageWidth, double pageHeight, double marginLeft, double marginTop, double marginRight, double marginBottom)
-    //{
-    //    // Paper size
-    //    var width = MeasurementHelper.GetDxaFromCm(pageWidth);
-    //    var height = MeasurementHelper.GetDxaFromCm(pageHeight);
-
-    //    // Margins
-    //    var left = MeasurementHelper.GetDxaFromCm(marginLeft);
-    //    var top = MeasurementHelper.GetDxaFromCm(marginTop);
-    //    var right = MeasurementHelper.GetDxaFromCm(marginRight);
-    //    var bottom = MeasurementHelper.GetDxaFromCm(marginBottom);
-
-    //    var pgSz = CurrentSection.ChildElements.OfType<PageSize>().FirstOrDefault() ?? CurrentSection.AppendChild(new PageSize { Width = width, Height = height });
-
-    //    pgSz.Orient = pageWidth > pageHeight ? new EnumValue<PageOrientationValues>(PageOrientationValues.Landscape) : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
-
-    //    var pageMargin = new PageMargin { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left };
-    //    CurrentSection.Append(pageMargin);
-    //}
-
     /// <summary>
     /// Add common metadata like author, company and title
     /// </summary>
-    /// <param name="author">Author of the document</param>
-    /// <param name="company">Company</param>
-    /// <param name="title">Document title</param>
-
-    public void AddMetadata(string author, string company, string title)
+    /// <param name="metaData">Document metadata</param>
+    public void AddMetadata(ITypoMetaData metaData)
     {
 
+        TypoMetaData = metaData;
+
         var bProps = Docx.PackageProperties;
-        bProps.Title = title;
-        bProps.Creator = author;
+        bProps.Title = TypoMetaData.Title;
+        bProps.Creator = TypoMetaData.Authors;
 
         // ToDo: make ext props working and add title
 
@@ -340,9 +315,9 @@ public class DocxBuilder : IDisposable
 
         var props = epPart.Properties;
 
-        if (!string.IsNullOrEmpty(company))
+        if (!string.IsNullOrEmpty(TypoMetaData.Company))
         {
-            props.Company = new Company(company);
+            props.Company = new Company(TypoMetaData.Company);
         }
     }
 
@@ -363,7 +338,7 @@ public class DocxBuilder : IDisposable
 
         var posTwips = MeasurementHelper.GetTwipsFromCm(position);
 
-        var para = CreateHeaderFooterParagraph(headerText, styleId, posTwips, pageNumberFormat);
+        var para = CreateHeaderFooterParagraph($"\t{headerText}", styleId, posTwips, pageNumberFormat);
 
         headerPart.Header = new Header(para);
 
@@ -426,21 +401,21 @@ public class DocxBuilder : IDisposable
 
         var i = text.IndexOf(ITypography.PageFieldIndicator, StringComparison.InvariantCultureIgnoreCase);
 
+        // Add a tab for the page number
+        pPr.Tabs = new Tabs();
+        var tabStop = new TabStop
+        {
+            Val = TabStopValues.Right,
+            Position = position
+        };
+        pPr.Tabs.Append(tabStop);
+
         if (i < 0)
         {
             parts.Add(text);
         }
         else
         {
-            // Add a tab for the page number
-            pPr.Tabs = new Tabs();
-            var tabStop = new TabStop
-            {
-                Val = TabStopValues.Right,
-                Position = position
-            };
-            pPr.Tabs.Append(tabStop);
-
             // Split the text in runs
             var before = text[..i];
             var after = text[(i + ITypography.PageFieldIndicator.Length)..];
@@ -1054,7 +1029,7 @@ public class DocxBuilder : IDisposable
         }
 
         // Paper size
-        var width = MeasurementHelper.GetDxaFromCm(pageStyle.TypoPaperFormat.Size .Width);
+        var width = MeasurementHelper.GetDxaFromCm(pageStyle.TypoPaperFormat.Size.Width);
         var height = MeasurementHelper.GetDxaFromCm(pageStyle.TypoPaperFormat.Size.Height);
 
         // Margins
@@ -1570,7 +1545,7 @@ public class DocxBuilder : IDisposable
         var tblProp = new TableProperties(
             new TableWidth
             {
-                Width = total.ToString("0"), 
+                Width = total.ToString("0"),
                 Type = TableWidthUnitValues.Dxa
             },
             new TableJustification
@@ -1620,7 +1595,7 @@ public class DocxBuilder : IDisposable
             var tr = new TableRow();
 
             // Left column
-            var leftCell = CreateLeftColumn(row, leftColWidth/total);
+            var leftCell = CreateLeftColumn(row, leftColWidth / total);
             tr.Append(leftCell);
 
             // Right column
@@ -1643,7 +1618,7 @@ public class DocxBuilder : IDisposable
         {
             TableCellWidth = new TableCellWidth
             {
-                Width = width.ToString("P", CultureInfo.InvariantCulture).Replace(" ", ""), 
+                Width = width.ToString("P", CultureInfo.InvariantCulture).Replace(" ", ""),
                 Type = TableWidthUnitValues.Pct
             }
         };
@@ -1683,7 +1658,7 @@ public class DocxBuilder : IDisposable
         {
             TableCellWidth = new TableCellWidth
             {
-                Width = width.ToString("P", CultureInfo.InvariantCulture).Replace(" ", ""), 
+                Width = width.ToString("P", CultureInfo.InvariantCulture).Replace(" ", ""),
                 Type = TableWidthUnitValues.Pct
             }
         };

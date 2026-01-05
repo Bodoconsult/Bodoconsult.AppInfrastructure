@@ -68,7 +68,7 @@ public class PdfBuilderTests
 
         var pdf = new PdfBuilder(styleset, new WindowsFontResolver());
 
-        pdf.SetDocInfo("Test", "Subject", "Author");
+        //pdf.SetDocInfo("Test", "Subject", "Author");
 
         pdf.SetHeader("Kopfzeile", "Header1", TestHelper.TestLogoImage2);
         pdf.SetFooter("Footer \t<<page>> / <<pages>>");

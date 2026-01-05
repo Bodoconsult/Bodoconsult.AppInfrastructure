@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
+using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Abstractions.Typography;
 using MigraDoc.DocumentObjectModel;
 
 namespace Bodoconsult.Pdf.Stylesets;
@@ -1321,6 +1323,16 @@ public class DefaultStyleSet : IStyleSet
             }
         };
     }
+
+    /// <summary>
+    /// Document meta data
+    /// </summary>
+    public ITypoMetaData DocumentMetaData { get; set; } = new TypoMetaData
+                                                                {
+                                                                    Authors ="Robert Leisner",
+                                                                    Company = "Bodoconsult EDV-Dienstleistungen GmbH",
+                                                                    Description = "Document description"
+                                                                };
 
     /// <summary>
     /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!

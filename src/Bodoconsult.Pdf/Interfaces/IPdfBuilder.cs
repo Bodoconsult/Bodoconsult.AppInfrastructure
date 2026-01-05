@@ -54,11 +54,6 @@ public interface IPdfBuilder: IDisposable
     string PageNumberPrefix { get; set; }
 
     /// <summary>
-    /// Logo height in cm
-    /// </summary>
-    double HeaderLogoHeight { get; set; }
-
-    /// <summary>
     /// Increment
     /// </summary>
     int Increment { get; set; }
@@ -512,15 +507,15 @@ public interface IPdfBuilder: IDisposable
     /// </summary>
     void NewPage();
 
-    /// <summary>
-    /// Defines the styles used in the document.
-    /// </summary>
-    void DefineStyles();
+    ///// <summary>
+    ///// Defines the styles used in the document.
+    ///// </summary>
+    //void DefineStyles();
 
-    /// <summary>
-    /// Defines page setup, headers, and footers.
-    /// </summary>
-    void DefineContentSection();
+    ///// <summary>
+    ///// Defines page setup, headers, and footers.
+    ///// </summary>
+    //void DefineContentSection();
 
     /// <summary>
     /// Add a chart

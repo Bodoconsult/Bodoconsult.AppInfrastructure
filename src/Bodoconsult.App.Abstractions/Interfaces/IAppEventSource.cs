@@ -35,9 +35,6 @@ public interface IAppEventSource
     /// </summary>
     Dictionary<string, IncrementingPollingCounter> IncrementingPollingCounters { get; }
 
-
-
-
     /// <summary>
     /// Report a value as metric value to an <see cref="EventCounter"/>
     /// </summary>

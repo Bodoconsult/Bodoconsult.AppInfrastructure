@@ -394,7 +394,9 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     /// <param name="gfx">Graphics</param>
     protected virtual void PrintHeader(XGraphics gfx)
     {
-        if (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(HeaderLogoPath))
+        var md = StyleSet.DocumentMetaData;
+
+        if (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(md.LogoPath))
         {
             return;
         }
@@ -419,17 +421,19 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         }
 
         // Logo
-        if (!string.IsNullOrEmpty(HeaderLogoPath))
-        {
-            var height = Unit.FromCentimeter(HeaderLogoHeight);
+        
 
-            var image = XImage.FromFile(HeaderLogoPath);
+        if (!string.IsNullOrEmpty(md.LogoPath))
+        {
+            var width = Unit.FromCentimeter(md.LogoWidth);
+
+            var image = XImage.FromFile(md.LogoPath);
 
             var rel = image.PointWidth / image.PixelHeight;
 
-            var width = height.Point / rel;
+            var height = width.Point * rel;
 
-            gfx.DrawImage(image, x, y - height.Point, width, height.Point);
+            gfx.DrawImage(image, x, y - height, width.Point, height);
         }
 
         // Header text

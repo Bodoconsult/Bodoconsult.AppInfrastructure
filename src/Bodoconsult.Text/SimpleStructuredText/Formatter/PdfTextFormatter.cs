@@ -82,7 +82,7 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
             TableBorderColor = TableBorderColor
         };
 
-        Pdf.SetDocInfo(Title, Subject, Author);
+        //Pdf.SetDocInfo(Title, Subject, Author);
         Pdf.SetHeader(Author, "Header", LogoImagePath);
         Pdf.SetFooter($"{DateTime.Now:dd.MM.yyyy}\t<<page>>");
         // Pdf.BackgroundImagePath = BackgroundImagePath;

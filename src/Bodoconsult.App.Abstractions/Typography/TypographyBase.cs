@@ -112,6 +112,21 @@ public class TypographyBase : ITypography
     public string Copyright { get; set; }
 
     /// <summary>
+    /// Name(s) of the author(s)
+    /// </summary>
+    public string Authors { get; set; }
+
+    /// <summary>
+    /// Company name
+    /// </summary>
+    public string Company { get; set; }
+
+    /// <summary>
+    /// Company website
+    /// </summary>
+    public string CompanyWebsite { get; set; }
+
+    /// <summary>
     /// Default font name
     /// </summary>
     public string FontName { get; set; }
@@ -294,6 +309,10 @@ public class TypographyBase : ITypography
     /// Width of the logo in the page header in cm
     /// </summary>
     public double LogoWidth { get; set; }
+
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Keywords { get; set; }
 
     /// <summary>
     /// Styling for charts in the document

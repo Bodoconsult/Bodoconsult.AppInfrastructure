@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using MigraDoc.DocumentObjectModel;
 
 namespace Bodoconsult.Pdf.Stylesets;
@@ -9,6 +10,11 @@ namespace Bodoconsult.Pdf.Stylesets;
 /// </summary>
 public interface IStyleSet
 {
+    /// <summary>
+    /// Document meta data
+    /// </summary>
+    ITypoMetaData DocumentMetaData { get; set; }
+
     /// <summary>
     /// Create the page setup. This method must set <see cref="PageSetup"/>!
     /// </summary>

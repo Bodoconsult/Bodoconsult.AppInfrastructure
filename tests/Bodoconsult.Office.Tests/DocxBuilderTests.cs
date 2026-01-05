@@ -11,6 +11,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.Office.Tests.Helpers;
 using Bodoconsult.Office.Tests.Models;
@@ -726,8 +727,15 @@ internal class DocxBuilderTests
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
         docx.AddParagraph("Heading 1", "heading1");
 
+        var md = new TypoMetaData
+        {
+            Authors = "RL",
+            Company = "BCG",
+            Title = "Title"
+        };
+
         // Act  
-        docx.AddMetadata("RL", "BCG", "Blubb TitlePage");
+        docx.AddMetadata(md);
 
         // Assert
         Assert.That(File.Exists(path));

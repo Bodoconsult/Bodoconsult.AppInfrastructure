@@ -9,7 +9,7 @@ namespace Bodoconsult.Text.Documents;
 /// <summary>
 /// metadata for a document
 /// </summary>
-public class DocumentMetaData : Block
+public class DocumentMetaData : Block, ITypoMetaData
 {
     /// <summary>
     /// Default ctor

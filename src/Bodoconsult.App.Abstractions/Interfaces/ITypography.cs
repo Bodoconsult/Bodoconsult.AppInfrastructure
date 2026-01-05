@@ -5,7 +5,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// <summary>
 /// Interface for typographic data. Coordinates system origin is in the left top corner. X-axis going to right. Y-axis going down.
 /// </summary>
-public interface ITypography: ITypoPageStyle
+public interface ITypography: ITypoPageStyle, ITypoMetaData
 {
     /// <summary>
     /// Indicator where to place the page number (or the field for it) in a footer text or header text
@@ -175,24 +175,11 @@ public interface ITypography: ITypoPageStyle
     double[] VerticalLines { get; }
 
     /// <summary>
-    /// Path to logo to print in the page header
-    /// </summary>
-    string LogoPath { get; set; }
-
-    /// <summary>
-    /// Width of the logo in the page header
-    /// </summary>
-    double LogoWidth { get; set; }
-
-    /// <summary>
     /// Styling for charts in the document
     /// </summary>
     ChartStyle ChartStyle { get; set; }
 
-    /// <summary>
-    /// Copyright to print in charts and other items
-    /// </summary>
-    string Copyright { get; set; }
+
 
     /// <summary>
     /// Color for table header background
