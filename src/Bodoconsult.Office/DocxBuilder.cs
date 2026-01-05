@@ -340,7 +340,7 @@ public class DocxBuilder : IDisposable
 
         var posTwips = MeasurementHelper.GetTwipsFromCm(position);
 
-        var para = CreateHeaderFooterParagraph($"\t{headerText}", styleId, posTwips, pageNumberFormat, true);
+        var para = CreateHeaderFooterParagraph(headerPart, $"\t{headerText}", styleId, posTwips, pageNumberFormat, true);
 
         headerPart.Header = new Header(para);
 
@@ -351,7 +351,7 @@ public class DocxBuilder : IDisposable
         });
     }
 
-    private Paragraph CreateHeaderFooterParagraph(string text, string styleId, int position, PageNumberFormatEnum pageNumberFormat, bool header)
+    private Paragraph CreateHeaderFooterParagraph(OpenXmlPart docPart, string text, string styleId, int position, PageNumberFormatEnum pageNumberFormat, bool header)
     {
         var pPr = new ParagraphProperties(new ParagraphStyleId { Val = styleId });
 
@@ -362,7 +362,7 @@ public class DocxBuilder : IDisposable
         if (header && !string.IsNullOrEmpty(TypoMetaData?.LogoPath))
         {
             _imageCounter++;
-            var imageRun = CreateImageRun(MainDocumentPart, TypoMetaData.LogoPath, 190, 75, _imageCounter, "Header");
+            var imageRun = CreateImageRun(docPart, TypoMetaData.LogoPath, 190, 75, _imageCounter, "Header");
             runs.Add(imageRun);
 
         }
@@ -394,7 +394,7 @@ public class DocxBuilder : IDisposable
 
         var posTwips = MeasurementHelper.GetTwipsFromCm(position);
 
-        var para = CreateHeaderFooterParagraph(footerText, styleId, posTwips, pageNumberFormat, false);
+        var para = CreateHeaderFooterParagraph(footerPart, footerText, styleId, posTwips, pageNumberFormat, false);
 
         footerPart.Footer = new Footer(para);
 
@@ -892,7 +892,7 @@ public class DocxBuilder : IDisposable
     /// <param name="imageCounter">Current image counter</param>
     /// <param name="prefix">Prefix to separate header / footer images</param>
     /// <returns>Run with the image</returns>
-    public static Run CreateImageRun(MainDocumentPart mainDocumentPart, string path, int width, int height, int imageCounter, string prefix = null)
+    public static Run CreateImageRun(OpenXmlPart mainDocumentPart, string path, int width, int height, int imageCounter, string prefix = null)
     {
         Debug.Print($"Image {imageCounter}");
 
@@ -1005,7 +1005,7 @@ public class DocxBuilder : IDisposable
         return para;
     }
 
-    private static ImagePart AddImagePart(MainDocumentPart mainDocumentPart, string path, string ext)
+    private static ImagePart AddImagePart(OpenXmlPart docPart, string path, string ext)
     {
         PartTypeInfo imageType;
 
@@ -1029,11 +1029,35 @@ public class DocxBuilder : IDisposable
                 break;
         }
 
-        var imagePart = mainDocumentPart.AddImagePart(imageType);
-        using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
-        imagePart.FeedData(fis);
-        fis.Close();
-        return imagePart;
+        switch (docPart)
+        {
+            case MainDocumentPart m:
+            {
+                var imagePart = m.AddImagePart(imageType);
+                using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
+                imagePart.FeedData(fis);
+                fis.Close();
+                return imagePart;
+            }
+            case HeaderPart h:
+            {
+                var imagePart = h.AddImagePart(imageType);
+                using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
+                imagePart.FeedData(fis);
+                fis.Close();
+                return imagePart;
+            }
+            case FooterPart f:
+            {
+                var imagePart = f.AddImagePart(imageType);
+                using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
+                imagePart.FeedData(fis);
+                fis.Close();
+                return imagePart;
+            }
+            default:
+                return null;
+        }
     }
 
     // https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.sectionproperties?view=openxml-3.0.1
