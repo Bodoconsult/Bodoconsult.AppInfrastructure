@@ -832,7 +832,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         var paragraph = new Paragraph();
 
-        paragraph.AddText(text ?? string.Empty);
+        paragraph.AddText(text);
 
         var i = Document.Styles.GetIndex(styleName);
         if (i < 0)
@@ -1246,10 +1246,10 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="tableStyle">Name of the style to use for table. Default: NormalTable</param>
     public void AddTable(PdfTable dt, string legend, string tag, double width = 0, string tableStyle = "NormalTable")
     {
-        if (Math.Abs(width) < 0.000001)
-        {
-            width = Width;
-        }
+        //if (Math.Abs(width) < 0.000001)
+        //{
+        //    width = Width;
+        //}
 
         // Calculate maxlength for columns
         for (var i = 0; i < dt.Columns.Count; i++)
@@ -1276,6 +1276,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
         }
 
         var style = Document.Styles[tableStyle];
+
+        if (style == null)
+        {
+            throw new ArgumentNullException(nameof(style));
+        }
 
         // Create table now
         var table = Content.AddTable();
@@ -1390,10 +1395,10 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public void AddTable(DataTable dt, string heading, string headingStyleName, string additionalInfos, string additionalInfosStyleName, double width = 0, string tableStyle = "NormalTable")
     {
 
-        if (Math.Abs(width) < 0.000001)
-        {
-            width = Width;
-        }
+        //if (Math.Abs(width) < 0.000001)
+        //{
+        //    width = Width;
+        //}
 
         if (!string.IsNullOrEmpty(heading))
         {
@@ -1406,6 +1411,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
         }
 
         var style = Document.Styles[tableStyle];
+        if (style == null)
+        {
+            throw new ArgumentNullException(nameof(style));
+        }
+
 
         //frame.FillFormat.Color = Colors.White;
         var table = Content.AddTable();
@@ -1578,14 +1588,14 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
                 if (string.IsNullOrEmpty(format[i + korr]))
                 {
-                    var p = cell.AddParagraph(r[i + korr].ToString());
+                    var p = cell.AddParagraph(r[i + korr].ToString() ?? string.Empty);
                     p.Format.Font.Size = style.Font.Size;
                     p.Format.Font.Name = style.Font.Name;
                     //p.Format.Shading.Color = shadingColor;
                 }
                 else
                 {
-                    if (format[i + korr].ToLower().Contains("yy"))
+                    if (format[i + korr].ToLowerInvariant().Contains("yy"))
                     {
                         var z = r[i + korr].ToString();
                         if (!string.IsNullOrEmpty(z))
@@ -1599,14 +1609,15 @@ public abstract class PdfBuilderBase : IPdfBuilder
                     else
                     {
                         var z = r[i + korr].ToString();
-                        if (!string.IsNullOrEmpty(z))
+                        if (string.IsNullOrEmpty(z))
                         {
-                            var p = cell.AddParagraph(Convert.ToDouble(z).ToString(format[i + korr]));
-                            p.Format.Font.Size = style.Font.Size;
-                            p.Format.Font.Name = style.Font.Name;
-                            // p.Format.Shading.Color = shadingColor;
-
+                            continue;
                         }
+
+                        var p = cell.AddParagraph(Convert.ToDouble(z).ToString(format[i + korr]));
+                        p.Format.Font.Size = style.Font.Size;
+                        p.Format.Font.Name = style.Font.Name;
+                        // p.Format.Shading.Color = shadingColor;
                     }
                 }
             }
@@ -1726,9 +1737,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
                 {
                     p2.Style = style2;
                 }
-                ;
             }
-
         }
     }
 
@@ -1765,7 +1774,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
             var cell1 = row.Cells[0];
             cell1.Borders.Width = borderWidth;
-            var p1 = cell1.AddParagraph(r[0].ToString());
+            var p1 = cell1.AddParagraph(r[0].ToString() ?? string.Empty);
 
             if (!string.IsNullOrEmpty(style1))
             {
@@ -1775,7 +1784,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             var cell2 = row.Cells[1];
             cell2.Borders.Width = borderWidth;
 
-            var p2 = cell2.AddParagraph(r[1].ToString());
+            var p2 = cell2.AddParagraph(r[1].ToString() ?? string.Empty);
             if (!string.IsNullOrEmpty(style2))
             {
                 p2.Style = style2;
@@ -1795,8 +1804,10 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
 
         var style = Document.Styles[tableStyle];
-
-
+        if (style == null)
+        {
+            throw new ArgumentNullException(nameof(style));
+        }
 
         //frame.FillFormat.Color = Colors.White;
         var table = frame.AddTable();
@@ -1949,7 +1960,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
             var css = string.Empty;
             if (startCol == 2)
             {
-                css = r[0].ToString();
                 css = r[0].ToString();
             }
 
@@ -2693,7 +2703,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
                 if (string.IsNullOrEmpty(field.Format))
                 {
-                    value = info.GetValue(item, null).ToString();
+                    value = info.GetValue(item, null)?.ToString() ?? string.Empty;
                 }
                 else
                 {
@@ -2971,7 +2981,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         /// <summary>
         /// Is a restart of the page numbering required? Default: false
         /// </summary>
-        public bool IsRestartPageNumberingRequired { get; set; } = false;
+        public bool IsRestartPageNumberingRequired { get; set; }
 
         /// <summary>
         /// Page number format

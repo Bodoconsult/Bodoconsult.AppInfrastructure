@@ -328,11 +328,8 @@ public class DocxBuilder : IDisposable
     {
 
         var bProps = Docx.PackageProperties;
-
         bProps.Title = title;
-
         bProps.Creator = author;
-
 
         // ToDo: make ext props working and add title
 

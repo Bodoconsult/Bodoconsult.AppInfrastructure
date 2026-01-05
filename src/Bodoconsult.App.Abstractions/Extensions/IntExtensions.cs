@@ -39,7 +39,7 @@ public static class IntExtensions
     };
 
     /// <summary>
-    /// Convert a roman number to an arabic int number
+    /// Convert a roman number to an arabic int number. Works between 0 and 3999
     /// </summary>
     /// <param name="romanNumeral">Roman number string like XII. Blanks in the string are removed!</param>
     /// <returns>Arabic number</returns>
@@ -142,7 +142,7 @@ public static class IntExtensions
 
 
     /// <summary>
-    /// Convert arabic integer value to roman number string
+    /// Convert arabic integer value to roman number string. Works between 0 and 3999
     /// </summary>
     /// <param name="inputNumber">Arabic number to convert to Roman numeral</param>
     /// <returns>Roman numeral</returns>

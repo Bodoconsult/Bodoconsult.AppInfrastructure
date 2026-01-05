@@ -11,7 +11,7 @@ internal class IntExtensionsTests
     public void ArabicToRoman_ValidString_ReturnsString()
     {
         // Arrange 
-        var input = 1;
+        const int input = 1;
         const string expectedResult = "I";
 
         // Act  
@@ -25,7 +25,7 @@ internal class IntExtensionsTests
     public void ToLowerLatin_ValidString_ReturnsString()
     {
         // Arrange 
-        var input = 1;
+        const int input = 1;
         const string expectedResult = "a";
 
         // Act  
@@ -39,7 +39,7 @@ internal class IntExtensionsTests
     public void ToUpperLatin_ValidString_ReturnsString()
     {
         // Arrange 
-        var input = 1;
+        const int input = 1;
         const string expectedResult = "A";
 
         // Act  
