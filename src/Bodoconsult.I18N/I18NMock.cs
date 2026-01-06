@@ -56,7 +56,6 @@ public class I18NMock : II18N
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose() { }
 
-
     /// <summary>
     /// Indexer to translate string. Intended for usage with MVVM / WPF / Xamarin
     /// </summary>
@@ -184,9 +183,10 @@ public class I18NMock : II18N
     /// <summary>
     /// Initialize the system with the thread language
     /// </summary>
-    public void Init()
+    public II18N Init()
     {
         // Do nothing
+        return this;
     }
 
     /// <summary>

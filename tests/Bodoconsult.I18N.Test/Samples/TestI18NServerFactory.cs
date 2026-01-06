@@ -10,36 +10,30 @@ namespace Bodoconsult.I18N.Test.Samples;
 /// <summary>
 /// Factory to create a fully configured I18N factory using providers directly
 /// </summary>
-public class TestI18NFactory: BaseI18NFactory
+public class TestI18NServerFactory : BaseI18NServerFactory
 {
     /// <summary>
     /// Creating a configured II18N instance
     /// </summary>
     /// <returns>An II18N instance</returns>
-    public override II18N CreateInstance()
+    public override II18NServer CreateInstance()
     {
-        // Set the fallback language
-        I18NInstance.SetFallbackLocale("en");
-
         // Load a provider
         ILocalesProvider provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
             "Bodoconsult.I18N.Test.Samples.Locales");
 
-        I18NInstance.AddProvider(provider);
+        I18NServerInstance.AddProvider(provider);
 
         // Add provider 2
         provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
             "Bodoconsult.I18N.Test.Locales");
 
-        I18NInstance.AddProvider(provider);
+        I18NServerInstance.AddProvider(provider);
 
         // Load more providers or packages if necessary
         // ...
 
-        // Init instance with language from running thread
-        I18NInstance.Init();
-
         // Return the instance
-        return I18NInstance;
+        return I18NServerInstance;
     }
 }

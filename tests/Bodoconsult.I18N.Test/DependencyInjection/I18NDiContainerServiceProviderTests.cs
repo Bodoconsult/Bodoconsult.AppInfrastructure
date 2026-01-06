@@ -9,6 +9,7 @@ using NUnit.Framework;
 
 namespace Bodoconsult.I18N.Test.DependencyInjection;
 
+[TestFixture]
 internal class I18NDiContainerServiceProviderTests
 {
 
