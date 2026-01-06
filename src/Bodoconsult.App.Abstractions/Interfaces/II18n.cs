@@ -90,6 +90,11 @@ public interface II18N : INotifyPropertyChanged, IDisposable
     string GetDefaultLocale();
 
     /// <summary>
+    /// Initialize the system with the thread language
+    /// </summary>
+    void Init();
+
+    /// <summary>
     /// Translate the given key. If key is not existing an empty string is returned
     /// </summary>
     /// <param name="key">Key to translate</param>
@@ -132,9 +137,4 @@ public interface II18N : INotifyPropertyChanged, IDisposable
     /// <typeparam name="TEnum">Enum</typeparam>
     /// <returns>List with translated enum values as<see cref="Tuple"/> instances</returns>
     List<Tuple<TEnum, string>> TranslateEnumToTupleList<TEnum>();
-        
-    /// <summary>
-    /// Initialize the system with the thread language
-    /// </summary>
-    void Init();
 }

@@ -10,5 +10,5 @@ public abstract class TypoBrush
     /// <summary>
     /// Color to use if only one color is possible to render
     /// </summary>
-    public TypoColor Color { get; set; }
+    public TypoColor TypoColor { get; set; }
 }

@@ -48,7 +48,7 @@ public abstract class CellStyleHtmlTextRendererElement : HtmlParagraphStyleTextR
         sb.AppendLine($"     margin: {Style.Margins.Top.ToString("0.00")}cm {Style.Margins.Right.ToString("0.00")}cm {Style.Margins.Bottom.ToString("0.00")}cm {Style.Margins.Left.ToString("0.00")}cm;");
         sb.AppendLine($"     padding: {Style.Paddings.Top.ToString("0")}pt {Style.Paddings.Right.ToString("0")}pt {Style.Paddings.Bottom.ToString("0")}pt {Style.Paddings.Left.ToString("0")}pt;");
 
-        var color = tableStyle.BorderBrush.Color.ToHtml();
+        var color = tableStyle.BorderBrush.TypoColor.ToHtml();
         sb.AppendLine($"     border-left: {tableStyle.BorderThickness.Left.FromCmToPoint()}pt solid {color};");
         sb.AppendLine($"     border-top: {tableStyle.BorderThickness.Top.FromCmToPoint()}pt solid  {color};");
         sb.AppendLine($"     border-right: {tableStyle.BorderThickness.Right.FromCmToPoint()}pt solid  {color};");

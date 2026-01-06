@@ -70,7 +70,7 @@ public class HtmlParagraphStyleTextRendererElementBase: ITextRendererElement
         sb.AppendLine($"     padding: {Style.Paddings.Top.ToString("0")}pt {Style.Paddings.Right.ToString("0")}pt {Style.Paddings.Bottom.ToString("0")}pt {Style.Paddings.Left.ToString("0")}pt;");
         sb.AppendLine($"     border-width: {Style.BorderThickness.Top.FromCmToPoint()}pt {Style.BorderThickness.Right.FromCmToPoint()}pt {Style.BorderThickness.Bottom.FromCmToPoint()}pt {Style.BorderThickness.Left.FromCmToPoint()}pt;");
         
-        var color = (Color)Style.BorderBrush?.Color;
+        var color = (Color)Style.BorderBrush?.TypoColor;
         sb.AppendLine($"     border-color: {color?.ToHtml() ?? "#000000"};");
         sb.AppendLine("     border-style: solid;");
         sb.AppendLine($"     text-align: {Style.TextAlignment.ToString().ToLowerInvariant()};");

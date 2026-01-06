@@ -49,7 +49,7 @@ public static class RtfHelper
         // bordor top
         if (style.BorderBrush != null && !isTable)
         {
-            var colorIndex = styleset.GetIndexOfColor((Color)style.BorderBrush.Color) + 1;
+            var colorIndex = styleset.GetIndexOfColor((Color)style.BorderBrush.TypoColor) + 1;
 
             if (style.BorderThickness.Top > 0)
             {

@@ -139,17 +139,22 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Alternating background color for tables
     /// </summary>
-    public Color TableAlternateBackColor { get; set; }
+    public Color TableAlternateBackColor { get; set; } = Colors.White;
 
     /// <summary>
     /// Background color
     /// </summary>
-    public Color TableBackColor { get; set; }
+    public Color TableBackColor { get; set; } = Colors.White;
+
+    /// <summary>
+    /// Table header background color
+    /// </summary>
+    public Color TableHeaderBackgroundColor { get; set; } = Colors.LightGray;
 
     /// <summary>
     /// Table border color
     /// </summary>
-    public Color TableBorderColor { get; set; }
+    public Color TableBorderColor { get; set; } = Colors.Black;
 
     // Farben für Stylesheets wie "wr_cell_h1"
 
@@ -1320,7 +1325,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         // Kopfzeile schreiben
         var header = table.AddRow();
-        header.Shading.Color = TableBackColor;
+        header.Shading.Color = TableHeaderBackgroundColor;
         header.Format.Font.Color = Colors.Black;
         header.Format.Font.Size = style.Font.Size;
         header.Format.Font.Name = style.Font.Name;
@@ -1520,7 +1525,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         // Kopfzeile schreiben
         var header = table.AddRow();
-        header.Shading.Color = TableBackColor;
+        header.Shading.Color = TableHeaderBackgroundColor;
         header.Format.Font.Color = Colors.Black;
         header.Format.Font.Size = style.Font.Size;
         header.Format.Font.Name = style.Font.Name;

@@ -666,7 +666,7 @@ public class DocxBuilder : IDisposable
         // Borders
         var tblBorders = new ParagraphBorders();
         pPr.Append(tblBorders);
-        var borderColor = new StringValue { Value = (typoStyle.TypoBorderBrush?.Color ?? TypoColors.Black).ToHtml2() };
+        var borderColor = new StringValue { Value = (typoStyle.TypoBorderBrush?.TypoColor ?? TypoColors.Black).ToHtml2() };
 
         // Top border
         if (typoStyle.TypoBorderThickness.Top > 0)
@@ -1040,33 +1040,33 @@ public class DocxBuilder : IDisposable
         switch (docPart)
         {
             case MainDocumentPart m:
-            {
-                var imagePart = m.AddImagePart(imageType);
-                using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
-                imagePart.FeedData(fis);
-                fis.Close();
-                return imagePart;
-            }
+                {
+                    var imagePart = m.AddImagePart(imageType);
+                    using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
+                    imagePart.FeedData(fis);
+                    fis.Close();
+                    return imagePart;
+                }
             case HeaderPart h:
-            {
-                var imagePart = h.AddImagePart(imageType);
-                using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
-                imagePart.FeedData(fis);
-                fis.Close();
-                return imagePart;
-            }
+                {
+                    var imagePart = h.AddImagePart(imageType);
+                    using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
+                    imagePart.FeedData(fis);
+                    fis.Close();
+                    return imagePart;
+                }
             case FooterPart f:
-            {
-                var imagePart = f.AddImagePart(imageType);
-                using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
-                imagePart.FeedData(fis);
-                fis.Close();
-                return imagePart;
-            }
+                {
+                    var imagePart = f.AddImagePart(imageType);
+                    using var fis = new FileStream(path, FileMode.Open, FileAccess.Read);
+                    imagePart.FeedData(fis);
+                    fis.Close();
+                    return imagePart;
+                }
             default:
-            {
-                return null;
-            }
+                {
+                    return null;
+                }
         }
     }
 
@@ -1468,7 +1468,7 @@ public class DocxBuilder : IDisposable
 
         var borderValue = BorderValues.Single;
 
-        var color = new StringValue { Value = typoTableStyle.TypoBorderBrush.Color.ToHtml2() };
+        var color = new StringValue { Value = typoTableStyle.TypoBorderBrush.TypoColor.ToHtml2() };
 
         var tblProp = new TableProperties(
             new TableJustification { Val = TableRowAlignmentValues.Center },
@@ -1516,15 +1516,32 @@ public class DocxBuilder : IDisposable
         // Append the TableProperties object to the empty table.
         table.AppendChild(tblProp);
 
+        // Add a grid
         var grid = new TableGrid();
         table.Append(grid);
 
+        var headerColor = typoTableStyle.TypoTableHeaderBackColor.ToHtml2();
+        var backColor = typoTableStyle.TypoTableBackColor.ToHtml2();
+        var alternateBackColor = typoTableStyle.TypoTableAlternateBackColor.ToHtml2();
 
-        foreach (var row in rows)
+        // Add rows now
+        for (var index = 0; index < rows.Count; index++)
         {
+            var row = rows[index];
             var tr = new TableRow();
 
-            AddCells(tr, row.Cells);
+            string cellColor;
+
+            if (index == 0)
+            {
+                cellColor = headerColor;
+            }
+            else
+            {
+                cellColor = index % 2.0 < 0.01 ? alternateBackColor : backColor;
+            }
+
+            AddCells(tr, row.Cells, cellColor);
 
             table.Append(tr);
         }
@@ -1594,12 +1611,18 @@ public class DocxBuilder : IDisposable
         return para;
     }
 
-    private static void AddCells(TableRow row, List<DocxTableCell> cells)
+    private static void AddCells(TableRow row, List<DocxTableCell> cells, string cellColor)
     {
 
         foreach (var cell in cells)
         {
-            var tc = new TableCell();
+            var tc = new TableCell
+            {
+                TableCellProperties = new TableCellProperties
+                {
+                    Shading = new Shading { Fill = cellColor }
+                }
+            };
 
             foreach (var runs in cell.Items)
             {

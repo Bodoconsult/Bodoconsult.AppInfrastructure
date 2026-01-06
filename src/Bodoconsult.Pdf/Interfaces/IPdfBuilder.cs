@@ -69,6 +69,11 @@ public interface IPdfBuilder: IDisposable
     Color TableBackColor { get; set; }
 
     /// <summary>
+    /// Table header background color
+    /// </summary>
+    Color TableHeaderBackgroundColor { get; set; }
+
+    /// <summary>
     /// Table border color
     /// </summary>
     Color TableBorderColor { get; set; }

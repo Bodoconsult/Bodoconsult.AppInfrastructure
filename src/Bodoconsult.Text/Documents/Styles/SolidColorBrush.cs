@@ -23,7 +23,7 @@ public class SolidColorBrush : Brush
     /// <param name="color"></param>
     public SolidColorBrush(Color color)
     {
-        Color = color;
+        TypoColor = color;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class SolidColorBrush : Brush
     /// <param name="color"></param>
     public SolidColorBrush(string color)
     {
-        Color = Documents.Color.FromHtml(color);
+        TypoColor = Documents.Color.FromHtml(color);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public class SolidColorBrush : Brush
     /// <param name="indent">Current indent</param>
     public override void ToLdmlString(StringBuilder document, string indent)
     {
-        var color = (Color)Color;
+        var color = (Color)TypoColor;
         document.Append($"{indent}<SolidColorBrush Color=\"{color.ToHtml()}\"/>{Environment.NewLine}");
     }
 }

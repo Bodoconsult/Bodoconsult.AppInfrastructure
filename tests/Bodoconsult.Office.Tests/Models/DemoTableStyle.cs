@@ -51,4 +51,9 @@ public class DemoTableStyle : ITypoTableStyle
     /// Table border color
     /// </summary>
     public TypoColor TypoTableBorderColor { get; set; } = TypoColors.Black;
+
+    /// <summary>
+    /// Background color for the header row
+    /// </summary>
+    public TypoColor TypoTableHeaderBackColor { get; } = TypoColors.Green;
 }

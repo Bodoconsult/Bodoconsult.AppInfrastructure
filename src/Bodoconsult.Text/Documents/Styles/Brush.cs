@@ -17,7 +17,7 @@ public abstract class Brush : TypoBrush, IPropertyAsBlockElement
     /// </summary>
     protected Brush()
     {
-        Color = Styleset.DefaultColor;
+        TypoColor = Styleset.DefaultColor;
     }
 
     /// <summary>

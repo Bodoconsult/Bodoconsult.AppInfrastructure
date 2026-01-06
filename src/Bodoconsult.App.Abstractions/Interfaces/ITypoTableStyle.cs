@@ -53,4 +53,9 @@ public interface ITypoTableStyle
     /// Table border color
     /// </summary>
     TypoColor TypoTableBorderColor { get; }
+
+    /// <summary>
+    /// Background color for the header row
+    /// </summary>
+    TypoColor TypoTableHeaderBackColor { get; }
 }

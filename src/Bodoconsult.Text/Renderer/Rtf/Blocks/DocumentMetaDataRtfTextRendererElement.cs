@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Text;
 using Bodoconsult.App.Abstractions.Helpers;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Interfaces;
 
@@ -100,28 +101,22 @@ public class DocumentMetaDataRtfTextRendererElement : RtfTextRendererElementBase
                 continue;
             }
 
-            if (!styleset.Colors.Exists(x => x.R == paragraphStyle.FontColor.R &&
-                                             x.G == paragraphStyle.FontColor.G &&
-                                             x.B == paragraphStyle.FontColor.B &&
-                                             x.A == paragraphStyle.FontColor.A))
-            {
-                styleset.Colors.Add(paragraphStyle.FontColor);
-            }
+            CheckColor(styleset, paragraphStyle.FontColor);
 
             if (paragraphStyle.BorderBrush == null)
             {
                 continue;
             }
-
-            if (!styleset.Colors.Exists(x => x.R == paragraphStyle.BorderBrush.Color.R &&
-                                             x.G == paragraphStyle.BorderBrush.Color.G &&
-                                             x.B == paragraphStyle.BorderBrush.Color.B &&
-                                             x.A == paragraphStyle.BorderBrush.Color.A))
-            {
-                styleset.Colors.Add((Color)paragraphStyle.BorderBrush.Color);
-            }
+            CheckColor(styleset, paragraphStyle.BorderBrush.TypoColor);
+            
         }
 
+        var tableStyle = (TableStyle)styleset.FindStyle("TableStyle");
+
+        CheckColor(styleset, tableStyle.TableHeaderBackgroundColor);
+        CheckColor(styleset, tableStyle.TableBackColor);
+        CheckColor(styleset, tableStyle.TableAlternateBackColor);
+        CheckColor(styleset, tableStyle.TableBorderColor);
 
         sb.AppendLine("{\\colortbl;");
 
@@ -131,6 +126,17 @@ public class DocumentMetaDataRtfTextRendererElement : RtfTextRendererElementBase
         }
 
         sb.AppendLine("}");
+    }
+
+    private static void CheckColor(Styleset styleset, TypoColor colorTable)
+    {
+        if (!styleset.Colors.Exists(x => x.R == colorTable.R &&
+                                         x.G == colorTable.G &&
+                                         x.B == colorTable.B &&
+                                         x.A == colorTable.A))
+        {
+            styleset.Colors.Add(colorTable);
+        }
     }
 
     private void FontsParsing(Styleset styleset, StringBuilder sb)

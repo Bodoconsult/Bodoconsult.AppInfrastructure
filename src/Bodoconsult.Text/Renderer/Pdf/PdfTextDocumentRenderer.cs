@@ -57,10 +57,6 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
         var tableStyle = (TableStyle)Styleset.FindStyle("TableStyle");
 
-        PdfDocument.TableAlternateBackColor = tableStyle.TableAlternateBackColor.ToPdfColor();
-        PdfDocument.TableBackColor = tableStyle.TableBackColor.ToPdfColor();
-        PdfDocument.TableBorderColor = tableStyle.TableBorderColor.ToPdfColor();
-
         PdfDocument.SetHeader(metaData.HeaderText);
         PdfDocument.SetFooter(metaData.FooterText);
 
@@ -68,9 +64,11 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
         PdfDocument.TitleTableOfEquations = metaData.ToeHeading;
         PdfDocument.TitleTableOfTables = metaData.TotHeading;
         PdfDocument.TitleTableOfContent = metaData.TocHeading;
-        PdfDocument.TableBackColor = new Color(metaData.BackColor.A, metaData.BackColor.R, metaData.BackColor.G, metaData.BackColor.B);
-        PdfDocument.TableAlternateBackColor = new Color(metaData.AlternateBackColor.A, metaData.AlternateBackColor.R, metaData.AlternateBackColor.G, metaData.AlternateBackColor.B);
-        PdfDocument.TableBorderColor = new Color(metaData.TableBorderColor.A, metaData.TableBorderColor.R, metaData.TableBorderColor.G, metaData.TableBorderColor.B);
+
+        PdfDocument.TableAlternateBackColor = tableStyle.TableAlternateBackColor.ToPdfColor();
+        PdfDocument.TableBackColor = tableStyle.TableBackColor.ToPdfColor();
+        PdfDocument.TableBorderColor = tableStyle.TableBorderColor.ToPdfColor();
+        PdfDocument.TableHeaderBackgroundColor = tableStyle.TableHeaderBackgroundColor.ToPdfColor();
     }
 
     /// <summary>

@@ -19,7 +19,7 @@ public class TypoSolidColorBrush : TypoBrush
     /// <param name="color"></param>
     public TypoSolidColorBrush(TypoColor color)
     {
-        Color = color;
+        TypoColor = color;
     }
 
     /// <summary>
@@ -28,6 +28,6 @@ public class TypoSolidColorBrush : TypoBrush
     /// <param name="color"></param>
     public TypoSolidColorBrush(string color)
     {
-        Color = TypoColor.FromHtml(color);
+        TypoColor = TypoColor.FromHtml(color);
     }
 }

@@ -44,12 +44,14 @@ public class TableRtfTextRendererElement : ITextRendererElement
         ParagraphStyleBase style;
         var sb = new StringBuilder();
 
+        var colorIndex = renderer.Styleset.GetIndexOfColor(tableStyle.TableHeaderBackgroundColor) + 1;
+
         for (var index = 0; index < _table.Columns.Count; index++)
         {
             var column = _table.Columns[index];
             style = (ParagraphStyleBase)renderer.Styleset.FindStyle($"TableHeader{DocumentRendererHelper.GetAlignment(column.DataType)}Style");
 
-            renderer.Content.Append($@"\clbrdrt\brdrs\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx{index + 1}000");
+            renderer.Content.Append($@"\clbrdrt\brdrs\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\clcbpat{colorIndex}\cellx{index + 1}000");
 
             sb.Append(@"\intbl\pard\plain");
             sb.Append(RtfHelper.GetFormatSettings(style, renderer.Styleset, true));
@@ -59,7 +61,7 @@ public class TableRtfTextRendererElement : ITextRendererElement
         renderer.Content.Append(sb);
         renderer.Content.Append($"\\row{Environment.NewLine}");
 
-        DocumentRendererHelper.RenderRowsToRtf(renderer, _table.Rows);
+        DocumentRendererHelper.RenderRowsToRtf(renderer, _table.Rows, tableStyle);
 
         style = (ParagraphStyleBase)renderer.Styleset.FindStyle("TableLegendStyle");
         renderer.Content.Append($@"\pard\plain\q{renderer.Styleset.GetIndexOfStyle("TableLegendStyle")}{RtfHelper.GetFormatSettings(style, renderer.Styleset)}\sb{MeasurementHelper.GetTwipsFromCm(tableStyle.Margins.Bottom)}{{");

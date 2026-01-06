@@ -2,7 +2,6 @@
 
 using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.Text.Extensions;
 
 namespace Bodoconsult.Text.Documents;
 
@@ -139,21 +138,6 @@ public class DocumentMetaData : Block, ITypoMetaData
     /// Header text
     /// </summary>
     public string HeaderText { get; set; }
-
-    /// <summary>
-    /// Alternating background color for tables
-    /// </summary>
-    public Color AlternateBackColor { get; set; } = TypoColors.White.ToLdmlColor();
-
-    /// <summary>
-    /// Background color
-    /// </summary>
-    public Color BackColor { get; set; } = TypoColors.LightSteelBlue.ToLdmlColor();
-
-    /// <summary>
-    /// Table border color
-    /// </summary>
-    public Color TableBorderColor { get; set; } = TypoColors.DarkGray.ToLdmlColor();
 
     /// <summary>
     /// Add the current element to a document defined in LDML (Logical document markup language)

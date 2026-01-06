@@ -39,7 +39,7 @@ public class ListStylePdfTextRendererElement : PdfParagraphStyleTextRendererElem
         sb.AppendLine($"     margin: {Style.Margins.Top}pt {Style.Margins.Right}pt {Style.Margins.Bottom}pt {Style.Margins.Left}pt;");
         sb.AppendLine($"     border-width: {Style.BorderThickness.Top}pt {Style.BorderThickness.Right}pt {Style.BorderThickness.Bottom}pt {Style.BorderThickness.Left}pt;");
 
-        var color = (Color)Style.BorderBrush?.Color;
+        var color = (Color)Style.BorderBrush?.TypoColor;
         sb.AppendLine($"     border-color: {color?.ToHtml() ?? "#000000"};");
         sb.AppendLine("}");
         renderer.Content.Append(sb);

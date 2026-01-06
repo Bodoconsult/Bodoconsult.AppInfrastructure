@@ -78,7 +78,7 @@ public static class PdfDocumentRendererHelper
         // ToDo: Border
         var black = TypoColors.Black.ToLdmlColor();
 
-        var color = (Documents.Color)style.BorderBrush?.Color ?? black;
+        var color = (Documents.Color)style.BorderBrush?.TypoColor ?? black;
 
         var lb = pdfStyle.ParagraphFormat.Borders.Left;
         lb.Color = GetPdfColor(color);

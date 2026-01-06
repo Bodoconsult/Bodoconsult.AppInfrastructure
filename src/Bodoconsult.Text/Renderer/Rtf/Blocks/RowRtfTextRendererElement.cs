@@ -22,6 +22,11 @@ public class RowRtfTextRendererElement : ITextRendererElement
         _row = row;
     }
 
+    /// <summary>
+    /// Cell background color
+    /// </summary>
+    public Color Color { get; set; }
+
 
     /// <summary>
     /// Render the element
@@ -33,7 +38,7 @@ public class RowRtfTextRendererElement : ITextRendererElement
 
         //DocumentRendererHelper.RenderCellWidthsToRtf(renderer, _row.Cells);
 
-        DocumentRendererHelper.RenderCellsToRtf(renderer, _row.Cells);
+        DocumentRendererHelper.RenderCellsToRtf(renderer, _row.Cells, Color);
 
         renderer.Content.Append($"\\row{Environment.NewLine}");
     }

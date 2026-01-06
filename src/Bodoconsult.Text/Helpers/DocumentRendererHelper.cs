@@ -1,8 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Bodoconsult.App.Abstractions.Extensions;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
@@ -12,6 +9,10 @@ using Bodoconsult.Text.Renderer.Html;
 using Bodoconsult.Text.Renderer.PlainText;
 using Bodoconsult.Text.Renderer.Rtf.Blocks;
 using Bodoconsult.Text.Renderer.Rtf.Inlines;
+using DocumentFormat.OpenXml.Office2010.Word;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Bodoconsult.Text.Helpers;
 
@@ -155,11 +156,21 @@ public static class DocumentRendererHelper
     /// </summary>
     /// <param name="renderer">Current renderer instance</param>
     /// <param name="rows">Child blocks</param>
-    public static void RenderRowsToRtf(ITextDocumentRenderer renderer, List<Row> rows)
+    /// <param name="tableStyle"></param>
+    public static void RenderRowsToRtf(ITextDocumentRenderer renderer, List<Row> rows, TableStyle tableStyle)
     {
-        foreach (var row in rows)
+        
+        var backColor = tableStyle.TableBackColor;
+        var alternateBackColor = tableStyle.TableAlternateBackColor;
+
+        for (var index = 0; index < rows.Count; index++)
         {
-            var rendererElement = renderer.TextRendererElementFactory.CreateInstance(row);
+            var row = rows[index];
+
+            var cellColor = index % 2.0 < 0.01 ? alternateBackColor : backColor;
+            
+            var rendererElement = (RowRtfTextRendererElement)renderer.TextRendererElementFactory.CreateInstance(row);
+            rendererElement.Color = cellColor;
             rendererElement.RenderIt(renderer);
         }
     }
@@ -260,7 +271,8 @@ public static class DocumentRendererHelper
     /// </summary>
     /// <param name="renderer">Current renderer</param>
     /// <param name="cells">List of all cells to render</param>
-    public static void RenderCellsToRtf(ITextDocumentRenderer renderer, List<Cell> cells)
+    /// <param name="color"></param>
+    public static void RenderCellsToRtf(ITextDocumentRenderer renderer, List<Cell> cells, Color color)
     {
         //foreach (var cell in cells)
         //{
@@ -268,13 +280,15 @@ public static class DocumentRendererHelper
         //    rendererElement.RenderToString(renderer);
         //}
 
+        var colorIndex = renderer.Styleset.GetIndexOfColor(color) + 1;
+
         var sb = new StringBuilder();
 
         for (var index = 0; index < cells.Count; index++)
         {
             var cell = cells[index];
             //var twips = cell.Column.MaxLength * 200;
-            renderer.Content.Append($@"\clbrdrt\brdrs\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs \cellx{index + 1}000 ");
+            renderer.Content.Append($@"\clbrdrt\brdrs\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\clcbpat{colorIndex}\cellx{index + 1}000 ");
 
             var rendererElement = (CellRtfTextRendererElement)renderer.TextRendererElementFactory.CreateInstance(cell);
             rendererElement.RenderToString(renderer, sb);

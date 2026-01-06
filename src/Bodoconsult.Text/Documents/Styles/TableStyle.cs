@@ -99,4 +99,15 @@ public class TableStyle : StyleBase, ITypoTableStyle
     /// </summary>
     [DoNotSerialize]
     public TypoColor TypoTableBorderColor => TableBorderColor;
+
+    /// <summary>
+    /// Table header background color
+    /// </summary>
+    public Color TableHeaderBackgroundColor { get; set; } = new(TypoColors.LightGray);
+
+    /// <summary>
+    /// Background color for the header row
+    /// </summary>
+    [DoNotSerialize]
+    public TypoColor TypoTableHeaderBackColor => TableHeaderBackgroundColor;
 }

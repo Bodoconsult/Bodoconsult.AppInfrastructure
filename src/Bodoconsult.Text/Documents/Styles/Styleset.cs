@@ -90,7 +90,7 @@ public class Styleset : Block
     /// List of all colors i.e. for RTF rendering. Filled by the renderer instance
     /// </summary>
     [DoNotSerialize]
-    public List<Color> Colors { get; } = new();
+    public List<TypoColor> Colors { get; } = new();
 
     /// <summary>
     /// Get the index of the stylename
