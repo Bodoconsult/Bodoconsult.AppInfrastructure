@@ -1,9 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System;
+using System.Diagnostics;
 using System.Text;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
@@ -115,10 +117,52 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         }
 
         // Todo: add logo
+        var md = renderer.Document.DocumentMetaData;
 
         var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("HeaderStyle");
 
-        renderer.Content.Append($@"{{\header{{\pard\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{{renderer.Document.DocumentMetaData.HeaderText}}}\par}}}}");
+        if (string.IsNullOrEmpty(md.LogoPath))
+        {
+            renderer.Content.Append($@"{{\header{{\pard\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{\ptablnone\pindtabqr}}{{{md.HeaderText}}}\par}}}}");
+        }
+        else
+        {
+            // Get the content of all inlines as string
+            var sb = new StringBuilder();
+
+            var width = MeasurementHelper.GetTwipsFromCm( md.LogoWidth);
+            var height = (int)(width / TypographicConstants.GoldenerSchnittRatio);
+
+            // Add the image
+            var bytes = ImageHelper.GetBytes(md.LogoPath);
+
+            var path = md.LogoPath.ToLowerInvariant();
+
+            sb.Append(@"{{\*\shppict\pict");
+
+            if (path.EndsWith(".jpg") || path.EndsWith(".jpeg"))
+            {
+                sb.Append("\\jpegblip");
+            }
+            else if (path.EndsWith(".png"))
+            {
+                sb.Append("\\pngblip");
+            }
+            else
+            {
+                throw new NotSupportedException("Unsupported image format. Use JPEG or PNG images!");
+            }
+
+            sb.Append($@"\picw{width}\pich{height}\picwgoal{width}\pichgoal{height}\bin{{");
+
+            var str = BitConverter.ToString(bytes, 0).Replace("-", string.Empty);
+            sb.Append(str);
+            sb.Append("}}}");
+
+            Debug.Print(sb.ToString());
+
+            renderer.Content.Append($@"{{\header{{\pard\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{sb.ToString()}{{\ptablnone\pindtabqr}}{{{md.HeaderText}}}\par}}}}");
+        }
     }
 
     private static void AddFooter(ITextDocumentRenderer renderer, PageStyleBase pageStyle, SectionBase section)

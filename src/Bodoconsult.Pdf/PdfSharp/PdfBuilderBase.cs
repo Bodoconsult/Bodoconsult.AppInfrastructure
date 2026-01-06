@@ -139,12 +139,12 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Alternating background color for tables
     /// </summary>
-    public Color AlternateBackColor { get; set; }
+    public Color TableAlternateBackColor { get; set; }
 
     /// <summary>
     /// Background color
     /// </summary>
-    public Color BackColor { get; set; }
+    public Color TableBackColor { get; set; }
 
     /// <summary>
     /// Table border color
@@ -1320,7 +1320,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         // Kopfzeile schreiben
         var header = table.AddRow();
-        header.Shading.Color = BackColor;
+        header.Shading.Color = TableBackColor;
         header.Format.Font.Color = Colors.Black;
         header.Format.Font.Size = style.Font.Size;
         header.Format.Font.Name = style.Font.Name;
@@ -1340,7 +1340,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         foreach (var r in dt.Rows)
         {
             var row = table.AddRow();
-            row.Shading.Color = shadow ? BackColor : AlternateBackColor;
+            row.Shading.Color = shadow ? TableBackColor : TableAlternateBackColor;
 
             for (var i = 0; i < table.Columns.Count; i++)
             {
@@ -1520,7 +1520,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         // Kopfzeile schreiben
         var header = table.AddRow();
-        header.Shading.Color = BackColor;
+        header.Shading.Color = TableBackColor;
         header.Format.Font.Color = Colors.Black;
         header.Format.Font.Size = style.Font.Size;
         header.Format.Font.Name = style.Font.Name;
@@ -1550,7 +1550,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
             if (string.IsNullOrEmpty(css))
             {
-                shadingColor = shadow ? BackColor : AlternateBackColor;
+                shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
             }
             else
             {
@@ -1572,7 +1572,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
                         shadingColor = ShadingRisk2Color;
                         break;
                     default:
-                        shadingColor = shadow ? BackColor : AlternateBackColor;
+                        shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
                         break;
                 }
             }
@@ -1924,7 +1924,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         // Kopfzeile schreiben
         var header = table.AddRow();
-        header.Shading.Color = BackColor;
+        header.Shading.Color = TableBackColor;
         header.Format.Font.Color = Colors.Black;
         header.Format.Font.Size = style.Font.Size - 0.5;
         header.Format.Font.Name = style.Font.Name;
@@ -1964,7 +1964,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
             if (string.IsNullOrEmpty(css))
             {
-                shadingColor = shadow ? BackColor : AlternateBackColor;
+                shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
             }
             else
             {
@@ -1986,7 +1986,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
                         shadingColor = ShadingRisk2Color;
                         break;
                     default:
-                        shadingColor = shadow ? BackColor : AlternateBackColor;
+                        shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
                         break;
                 }
             }
@@ -2454,9 +2454,9 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         AddPageBreakIfNecessary = false;
 
-        BackColor = Colors.LightSteelBlue;
+        TableBackColor = Colors.LightSteelBlue;
         TableBorderColor = Colors.DarkGray;
-        AlternateBackColor = Colors.White;
+        TableAlternateBackColor = Colors.White;
         ShadingH1Color = Colors.GreenYellow;
         ShadingH2Color = Colors.YellowGreen;
         ShadingH3Color = Colors.Gold;

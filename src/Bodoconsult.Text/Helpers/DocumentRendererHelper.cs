@@ -380,7 +380,7 @@ public static class DocumentRendererHelper
 
         if (path.EndsWith(".jpg") || path.EndsWith(".jpeg"))
         {
-            sb.Append("\\jpgblip");
+            sb.Append("\\jpegblip");
         }
         else if (path.EndsWith(".png"))
         {

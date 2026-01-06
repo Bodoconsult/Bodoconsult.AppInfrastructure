@@ -23,6 +23,7 @@ using Style = DocumentFormat.OpenXml.Wordprocessing.Style;
 using Tabs = DocumentFormat.OpenXml.Wordprocessing.Tabs;
 using Text = DocumentFormat.OpenXml.Wordprocessing.Text;
 
+// http://officeopenxml.com/
 
 namespace Bodoconsult.Office;
 

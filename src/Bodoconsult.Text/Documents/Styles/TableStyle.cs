@@ -27,6 +27,7 @@ public class TableStyle : StyleBase, ITypoTableStyle
     /// <summary>
     /// Margins
     /// </summary>
+    [DoNotSerialize]
     public TypoThickness TypoMargins => Margins;
 
     /// <summary>
@@ -42,6 +43,7 @@ public class TableStyle : StyleBase, ITypoTableStyle
     /// <summary>
     /// Border brush
     /// </summary>
+    [DoNotSerialize]
     public TypoBrush TypoBorderBrush => BorderBrush;
 
     /// <summary>
@@ -52,6 +54,7 @@ public class TableStyle : StyleBase, ITypoTableStyle
     /// <summary>
     /// Current borderline width setting
     /// </summary>
+    [DoNotSerialize]
     public TypoThickness TypoBorderThickness => BorderThickness;
 
     /// <summary>
@@ -63,4 +66,37 @@ public class TableStyle : StyleBase, ITypoTableStyle
     /// Inside the table vertical border width in cm
     /// </summary>
     public double InsideVerticalBorderWidth { get; set; } = 0.5 * TypoThickness.LineWidth1Pt;
+
+    /// <summary>
+    /// Alternating background color for tables
+    /// </summary>
+    public Color TableAlternateBackColor { get; set; } = new(TypoColors.White);
+
+    /// <summary>
+    /// Alternating background color for tables
+    /// </summary>
+    [DoNotSerialize]
+    public TypoColor TypoTableAlternateBackColor => TableAlternateBackColor;
+
+    /// <summary>
+    /// Background color
+    /// </summary>
+    public Color TableBackColor { get; set; } = new(TypoColors.White);
+
+    /// <summary>
+    /// Background color
+    /// </summary>
+    [DoNotSerialize]
+    public TypoColor TypoTableBackColor => TableBackColor;
+
+    /// <summary>
+    /// Table border color
+    /// </summary>
+    public Color TableBorderColor { get; set; } = new(TypoColors.Black);
+
+    /// <summary>
+    /// Table border color
+    /// </summary>
+    [DoNotSerialize]
+    public TypoColor TypoTableBorderColor => TableBorderColor;
 }

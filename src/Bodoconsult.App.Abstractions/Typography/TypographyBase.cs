@@ -310,8 +310,19 @@ public class TypographyBase : ITypography
     /// </summary>
     public double LogoWidth { get; set; }
 
+    /// <summary>
+    /// Title of the document
+    /// </summary>
     public string Title { get; set; }
+
+    /// <summary>
+    /// Document description
+    /// </summary>
     public string Description { get; set; }
+
+    /// <summary>
+    /// Keywords separated by comma
+    /// </summary>
     public string Keywords { get; set; }
 
     /// <summary>

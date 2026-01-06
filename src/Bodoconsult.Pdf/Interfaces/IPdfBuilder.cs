@@ -61,12 +61,12 @@ public interface IPdfBuilder: IDisposable
     /// <summary>
     /// Alternating background color for tables
     /// </summary>
-    Color AlternateBackColor { get; set; }
+    Color TableAlternateBackColor { get; set; }
 
     /// <summary>
     /// Background color
     /// </summary>
-    Color BackColor { get; set; }
+    Color TableBackColor { get; set; }
 
     /// <summary>
     /// Table border color

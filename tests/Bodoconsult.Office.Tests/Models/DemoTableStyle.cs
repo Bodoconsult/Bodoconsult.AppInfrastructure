@@ -36,4 +36,19 @@ public class DemoTableStyle : ITypoTableStyle
     /// Inside the table vertical border width in cm
     /// </summary>
     public double InsideVerticalBorderWidth { get; set; } = 0.5 * TypoThickness.LineWidth1Pt;
+
+    /// <summary>
+    /// Alternating background color for tables
+    /// </summary>
+    public TypoColor TypoTableAlternateBackColor { get; set; } = TypoColors.LightBlue;
+
+    /// <summary>
+    /// Background color
+    /// </summary>
+    public TypoColor TypoTableBackColor { get; set; } = TypoColors.White;
+
+    /// <summary>
+    /// Table border color
+    /// </summary>
+    public TypoColor TypoTableBorderColor { get; set; } = TypoColors.Black;
 }

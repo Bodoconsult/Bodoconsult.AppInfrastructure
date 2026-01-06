@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Drawing;
+
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
@@ -30,10 +32,25 @@ public interface ITypoTableStyle
     /// <summary>
     /// Inside the table horizontal border width in cm
     /// </summary>
-    double InsideHorizontalBorderWidth { get;  }
+    double InsideHorizontalBorderWidth { get; }
 
     /// <summary>
     /// Inside the table vertical border width in cm
     /// </summary>
-    double InsideVerticalBorderWidth { get;  }
+    double InsideVerticalBorderWidth { get; }
+
+    /// <summary>
+    /// Alternating background color for tables
+    /// </summary>
+    TypoColor TypoTableAlternateBackColor { get; }
+
+    /// <summary>
+    /// Background color
+    /// </summary>
+    TypoColor TypoTableBackColor { get; }
+
+    /// <summary>
+    /// Table border color
+    /// </summary>
+    TypoColor TypoTableBorderColor { get; }
 }

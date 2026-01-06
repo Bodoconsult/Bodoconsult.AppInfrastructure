@@ -78,7 +78,7 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
         Pdf = new PdfCreator(StyleSet)
         {
             Increment = Increment,
-            BackColor = BackColor,
+            TableBackColor = BackColor,
             TableBorderColor = TableBorderColor
         };
 

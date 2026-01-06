@@ -29,4 +29,14 @@ public static class ColorExtensions
     {
         return new Color(color.A, color.R, color.G, color.B);
     }
+
+    /// <summary>
+    /// Get an HTML string like #000000 for a color
+    /// </summary>
+    /// <param name="color">Current color</param>
+    /// <returns>HTML color string like #000000</returns>
+    public static MigraDoc.DocumentObjectModel.Color ToPdfColor(this Color color)
+    {
+        return MigraDoc.DocumentObjectModel.Color.FromArgb(color.A, color.R, color.G, color.B);
+    }
 }
