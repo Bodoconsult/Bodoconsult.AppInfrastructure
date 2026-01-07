@@ -1,5 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Helpers;
+using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Wpf.Documents.General;
+using Bodoconsult.App.Wpf.Documents.Paginators;
+using Bodoconsult.App.Wpf.Documents.WpfElements;
+using Bodoconsult.App.Wpf.Helpers;
+using PdfSharp.Xps;
+using PropertyChanged;
 using System.IO;
 using System.IO.Packaging;
 using System.Runtime.Versioning;
@@ -12,14 +20,9 @@ using System.Windows.Threading;
 using System.Windows.Xps.Packaging;
 using System.Windows.Xps.Serialization;
 using System.Xaml;
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Wpf.Documents.General;
-using Bodoconsult.App.Wpf.Documents.Paginators;
-using Bodoconsult.App.Wpf.Documents.WpfElements;
-using Bodoconsult.App.Wpf.Helpers;
-using PdfSharp.Xps;
-using PropertyChanged;
+using Bodoconsult.App.Wpf.Documents.Helpers;
 using Figure = System.Windows.Documents.Figure;
+using FormattedText = System.Windows.Media.FormattedText;
 using Image = System.Windows.Controls.Image;
 using List = System.Windows.Documents.List;
 using ListItem = System.Windows.Documents.ListItem;
@@ -225,7 +228,7 @@ public class FlowDocumentService
     private bool _isPageBreak;
     private int _figureCounter;
     private int _imageCounter;
-    
+
 
     private readonly int[] _headlines = new int[5];
 
@@ -1494,7 +1497,7 @@ public class FlowDocumentService
     /// </summary>
     public void AddDefaultFooterAndHeader()
     {
-        if (!string.IsNullOrEmpty(TypographySettingsService.LogoPath))
+        if (!string.IsNullOrEmpty(TypographySettingsService.DocumentMetaData.LogoPath))
         {
             TypographySettingsService.DrawHeaderDelegate = DefaultHeader;
         }
@@ -1513,40 +1516,25 @@ public class FlowDocumentService
     /// <param name="pageNumberFormat">Page number format</param>
     private void DefaultFooter(DrawingContext context, Rect area, int page, double dpi, PageNumberFormatEnum pageNumberFormat)
     {
+        if (string.IsNullOrEmpty(TypographySettingsService.DocumentMetaData.FooterTemplate))
+        {
+            return;
+        }
+        var sections = TypographySettingsService.DocumentMetaData.FooterTemplate.ToLowerInvariant().Split('|');
 
         Dispatcher.Invoke(() =>
         {
-            // Create the initial formatted text string.
-            var formattedText = new FormattedText(
-                $"{TypographySettingsService.FooterPageText} {page + 1}",
-                TypographySettingsService.CultureInfo,
-                FlowDirection.LeftToRight,
-                new Typeface(TypographySettingsService.FooterFontName),
-                TypographySettingsService.FooterFontSize,
-                Brushes.Black, dpi);
+            // Draw left element
+            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[0], 0, dpi, false, page, pageNumberFormat, TypographySettingsService.FooterFontName, TypographySettingsService.FooterFontSize, TypographySettingsService.FooterMarginTop);
 
-            // Draw the formatted text string to the DrawingContext of the control.
-            context.DrawText(formattedText, new Point(area.X + area.Width - formattedText.Width,
-                area.Y + TypographySettingsService.FooterMarginTop + area.Height - formattedText.Height));
+            // Draw middle element
 
-            if (string.IsNullOrEmpty(TypographySettingsService.FooterText))
-            {
-                return;
-            }
-
-            formattedText = new FormattedText(
-                TypographySettingsService.FooterText,
-                TypographySettingsService.CultureInfo,
-                FlowDirection.LeftToRight,
-                new Typeface(TypographySettingsService.FooterFontName),
-                TypographySettingsService.FooterFontSize,
-                Brushes.Black, dpi);
-
-            context.DrawText(formattedText, new Point(area.X,
-                area.Y + TypographySettingsService.FooterMarginTop + area.Height - formattedText.Height));
-
+            // Draw right element
+            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[2], 2, dpi, false, page, pageNumberFormat, TypographySettingsService.FooterFontName, TypographySettingsService.FooterFontSize, TypographySettingsService.FooterMarginTop);
         });
     }
+
+
 
 
     /// <summary>
@@ -1559,51 +1547,21 @@ public class FlowDocumentService
     /// <param name="pageNumberFormat">Page number format</param>
     private void DefaultHeader(DrawingContext context, Rect area, int page, double dpi, PageNumberFormatEnum pageNumberFormat)
     {
+        if (string.IsNullOrEmpty(TypographySettingsService.DocumentMetaData.HeaderTemplate))
+        {
+            return;
+        }
+        var sections = TypographySettingsService.DocumentMetaData.HeaderTemplate.ToLowerInvariant().Split('|');
 
         Dispatcher.Invoke(() =>
         {
+            // Draw left element
+            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[0], 0, dpi, true, page, PageNumberFormatEnum.Decimal, TypographySettingsService.HeaderFontName, TypographySettingsService.HeaderFontSize, TypographySettingsService.HeaderMarginBottom);
 
-            try
-            {
-                var bimg = new BitmapImage();
-                bimg.BeginInit();
-                bimg.UriSource = new Uri(TypographySettingsService.LogoPath, UriKind.RelativeOrAbsolute);
-                //bimg.CacheOption = BitmapCacheOption.OnLoad;
-                bimg.EndInit();
+            // Draw middle element
 
-
-                var width = bimg.Width;
-                var height = bimg.Height;
-
-
-                double newWidth;
-                double newHeight;
-                if (TypographySettingsService.LogoWidth > 0.01)
-                {
-                    newWidth = TypographySettingsService.LogoWidth;
-                    newHeight = height * newWidth / width;
-                }
-                else
-                {
-                    newHeight = area.Height - TypographySettingsService.HeaderMarginBottom;
-
-                    if (newHeight > height)
-                    {
-                        newHeight = height;
-                    }
-
-                    newWidth = width / height * newHeight;
-                }
-
-
-                var rect = new Rect(new Point(area.X + area.Width - newWidth, area.Y), new Size(newWidth, newHeight));
-
-                context.DrawImage(bimg, rect);
-            }
-            catch
-            {
-                // ignored
-            }
+            // Draw right element
+            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[2], 2, dpi, true, page, PageNumberFormatEnum.Decimal, TypographySettingsService.HeaderFontName, TypographySettingsService.HeaderFontSize, TypographySettingsService.HeaderMarginBottom);
         });
     }
 
@@ -1628,7 +1586,6 @@ public class FlowDocumentService
         AddTable(data, TableTypes.NormalUnbordered);
     }
 
-
     /// <summary>
     /// Add a small table with border
     /// </summary>
@@ -1650,7 +1607,7 @@ public class FlowDocumentService
     }
 
     /// <summary>
-    /// Add an extra small table with border
+    /// Add an extrasmall table with border
     /// </summary>
     /// <param name="data"></param>
     /// <param name="keepTogether">Keep the table together on one page</param>
@@ -1660,7 +1617,7 @@ public class FlowDocumentService
     }
 
     /// <summary>
-    /// Add an extra small table with no border
+    /// Add an extrasmall table with no border
     /// </summary>
     /// <param name="keepTogether">Keep the table together on one page</param>
     /// <param name="data"></param>

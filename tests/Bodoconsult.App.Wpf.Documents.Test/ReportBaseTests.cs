@@ -71,8 +71,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             var typoService = new TypographySettingsService
             {
                 MaxImageHeight = 300,
-                LogoPath = TestHelper.TestLogoImage ,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
                 ShowFigureCounter = true,
             };
@@ -165,8 +169,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             //Arrange
             var typoService = new TypographySettingsService
             {
-                LogoPath = TestHelper.TestLogoImage ,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
             };
 
@@ -187,8 +195,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
 
             var typoService = new TypographySettingsService();
             DocumentHelper.A4ElegantPrintDefintion(typoService);
-            typoService.LogoPath = TestHelper.TestLogoImage ;
-            typoService.FooterText = "Bodoconsult GmbH";
+            typoService.DocumentMetaData = new TypoMetaData()
+            {
+                LogoPath = TestHelper.TestLogoImage,
+                FooterText = "Bodoconsult GmbH",
+                CurrentLanguage = "de"
+            };
             typoService.FigureCounterPrefix = "Abb.";
 
             var fileName = Path.Combine(_tempPath, "TestReportBase_ElegantPageSettings.xps");
@@ -213,8 +225,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             var typoService = new TypographySettingsService(typo)
             {
                 MaxImageHeight = 300,
-                LogoPath = TestHelper.TestLogoImage ,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
                 ShowFigureCounter = true
             };
@@ -236,8 +252,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             //Arrange
             var typoService = new TypographySettingsService();
             DocumentHelper.A4ElegantPrintDefintion(typoService);
-            typoService.LogoPath = TestHelper.TestLogoImage;
-            typoService.FooterText = "Bodoconsult GmbH";
+            typoService.DocumentMetaData = new TypoMetaData()
+            {
+                LogoPath = TestHelper.TestLogoImage,
+                FooterText = "Bodoconsult GmbH",
+                CurrentLanguage = "de"
+            };
             typoService.FigureCounterPrefix = "Abb.";
             typoService.UserDefinedTypographyFile =
                 Path.Combine(TestHelper.TestDataPath, "TypographyCustomer.xaml");
@@ -266,11 +286,14 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             var typoService = new TypographySettingsService(typo)
             {
                 MaxImageHeight = 300,
-                LogoPath = TestHelper.TestLogoImage,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
                 ShowFigureCounter = true,
-                CurrentLanguage = "de"
             };
             
             // Act
@@ -341,7 +364,7 @@ namespace Bodoconsult.App.Wpf.Documents.Test
                 File.Delete(fileName);
             }
 
-            typoService.CurrentLanguage = "de";
+            typoService.DocumentMetaData.CurrentLanguage = "de";
 
             var r = new ReportBase(typoService, _i18N);
 
@@ -461,8 +484,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             var typoService = new TypographySettingsService
             {
                 MaxImageHeight = 300,
-                LogoPath = TestHelper.TestLogoImage ,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
                 ShowFigureCounter = true,
             };

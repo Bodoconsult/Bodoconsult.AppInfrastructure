@@ -10,7 +10,7 @@ public interface ITypoPageStyle
     /// <summary>
     /// Current margins in cm
     /// </summary>
-    public TypoThickness TypoMargins { get; }
+    TypoThickness TypoMargins { get; }
 
     /// <summary>
     /// Paper format
@@ -20,16 +20,15 @@ public interface ITypoPageStyle
     /// <summary>
     /// Number of text columns the type area is divided in
     /// </summary>
-    public int NumberOfColumns { get; set; }
+    int NumberOfColumns { get; set; }
 
     /// <summary>
     /// The space between text columns in the type area in cm
     /// </summary>
-    public double ColumnGap { get; set; }
+    double ColumnGap { get; set; }
 
     /// <summary>
     /// The resulting text column width in cm
     /// </summary>
-    public double ColumnWidth { get; }
-
+    double ColumnWidth { get; }
 }

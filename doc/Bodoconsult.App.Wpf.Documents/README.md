@@ -1,16 +1,23 @@
 Bodoconsult.App.Wpf.Documents
 ================
 
-## What does the library
+# Overview
 
-Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting XPS or PDF export. 
+> [Using FlowDocumentService class to create and export WPF FlowDocuments to PDF (or XPS)](#using-flowdocumentservice-class-to-create-and-export-wpf-flowdocuments-to-pdf-or-xps)
 
+> [Using ReportBase class to create and export reports to PDF (or XPS)](#using-reportbase-class-to-create-and-export-reports-to-pdf-or-xps)
+
+>   []()
 
 ## WPF app start infrastructure basics
 
 See page [WPF app start infrastructure](../Bodoconsult.App.Wpf/README.md) for details.
 
-## Using FlowDocumentService class to create and export WPF FlowDocuments to PDF (or XPS)
+## What does the library
+
+Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting XPS or PDF export. 
+
+# Using FlowDocumentService class to create and export WPF FlowDocuments to PDF (or XPS)
 
 With FlowDoumentService it is easy to create WPF FlowDocuments and show them on the screen or export them to PDF or XPS.
 The layout of the output should follow to a minimum of typographic rules at least.
@@ -100,7 +107,7 @@ public void SaveAsPdf_Demo_FileIsCreated()
 }
 ```
 
-## Using ReportBase class to create and export reports to PDF (or XPS)
+# Using ReportBase class to create and export reports to PDF (or XPS)
 
 With ReportBase class you can create simply reports with text, tables, lists and charts to be exported to PDF and XPS. It is based on FlowDocumentService class.
 
@@ -185,6 +192,48 @@ public void TestReportBase_Demo_FileCreated()
     //Assert
     Assert.That(File.Exists(fileName));
     FileSystemHelper.RunInDebugMode(fileName);
+}
+```
+
+# Using WpfTextDocumentRenderer class to render LDML documents into a WPF FlowDocument
+
+For more information on Large Document Markup Language (LDML) siehe [LDML overview](../Bodoconsult.Text/Documents.md).
+
+With WpfTextDocumentRenderer class it is possible to render a LDNL document into a WPF FlowDocument. Due to technical reasons certain information like page numbers in table of content etc. are lost currently. If exported to PDF or XPS a multi-column text laxout will be lost. For such a purpose use PdfTextRendererClass directly.
+
+Here a sample how to use WpfTextDocumentRenderer class:
+
+``` csharp
+[Test]
+public void RenderIt_ValidDocument_PropsSetCorrectly()
+{
+    // Arrange 
+    var document = TestDataHelper.CreateDocument();
+
+    var calc = new LdmlCalculator(document);
+    calc.UpdateAllTables();
+    calc.EnumerateAllItems();
+    calc.PrepareAllItems();
+    calc.PrepareAllSections();
+
+    var factory = new WpfTextRendererElementFactory();
+
+    var renderer = new WpfTextDocumentRenderer(document, factory);
+
+    // Act  
+    renderer.RenderIt();
+
+    // Assert
+    if (!Debugger.IsAttached)
+    {
+        return;
+    }
+
+    var filePath = Path.Combine(Path.GetTempPath(), "test.pdf");
+
+    renderer.SaveAsFile(filePath);
+
+    FileSystemHelper.RunInDebugMode(filePath);
 }
 ```
 

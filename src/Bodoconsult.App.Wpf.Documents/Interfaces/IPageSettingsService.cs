@@ -13,16 +13,6 @@ namespace Bodoconsult.App.Wpf.Documents.Interfaces;
 public interface IPageSettingsService
 {
     /// <summary>
-    /// Language code like en or de (only first 2 letters needed). Default: de
-    /// </summary>
-    public string CurrentLanguage { get; set; } 
-
-    /// <summary>
-    /// Current culture info
-    /// </summary>
-    public CultureInfo CultureInfo { get; }
-
-    /// <summary>
     /// Page size in DIUs
     /// </summary>
     Size PageSize { get; set; }
@@ -53,6 +43,15 @@ public interface IPageSettingsService
     Rect FooterRect { get; }
 
 
+    #region Metadata
+
+    /// <summary>
+    /// Document metadata 
+    /// </summary>
+    ITypoMetaData DocumentMetaData { get; set; }
+
+    #endregion
+
     #region Delegates for drawing main page sections
 
     /// <summary>
@@ -63,12 +62,7 @@ public interface IPageSettingsService
     /// <summary>
     /// Delegate to print a footer to the document page
     /// </summary>
-    public DrawSectionDelegate DrawFooterDelegate { get; set; }
-
-    /// <summary>
-    /// Text to be printed in the page header
-    /// </summary>
-    string HeaderText { get; set; }
+    DrawSectionDelegate DrawFooterDelegate { get; set; }
 
     /// <summary>
     /// Font name to use for header
@@ -81,11 +75,6 @@ public interface IPageSettingsService
     double HeaderFontSize { get; set; }
 
     /// <summary>
-    /// Text to be printed in the page footer
-    /// </summary>
-    string FooterText { get; set; }
-
-    /// <summary>
     /// Font name to use for footer
     /// </summary>
     string FooterFontName { get; set; }
@@ -96,29 +85,14 @@ public interface IPageSettingsService
     double FooterFontSize { get; set; }
 
     /// <summary>
-    /// Text like page or Seite to write in front of the page number in the footer
-    /// </summary>
-    string FooterPageText { get; set; }
-
-    /// <summary>
-    /// Absolute or relative path to the logo to print in the page header
-    /// </summary>
-    string LogoPath { get; set; }
-
-    /// <summary>
-    /// Width of the logo to print in the page header in DIUs
-    /// </summary>
-    double LogoWidth { get; set; }
-
-    /// <summary>
     /// Page number format for TOC, TOE, TOF and TOT sections
     /// </summary>
-    public PageNumberFormatEnum TocPageNumberFormat { get; set; }
+    PageNumberFormatEnum TocPageNumberFormat { get; set; }
 
     /// <summary>
     /// Page number format for content sections
     /// </summary>
-    public PageNumberFormatEnum ContentPageNumberFormat { get; set; }
+    PageNumberFormatEnum ContentPageNumberFormat { get; set; }
 
     #endregion
 }

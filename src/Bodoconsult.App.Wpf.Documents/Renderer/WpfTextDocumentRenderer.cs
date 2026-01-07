@@ -1,17 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
-using System.IO.Packaging;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
-using System.Windows.Xps.Packaging;
-using System.Windows.Xps.Serialization;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
+using Bodoconsult.App.Wpf.Documents.Helpers;
 using Bodoconsult.App.Wpf.Documents.Interfaces;
 using Bodoconsult.App.Wpf.Documents.Paginators;
 using Bodoconsult.App.Wpf.Documents.Services;
@@ -21,6 +13,15 @@ using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
 using Bodoconsult.Text.Renderer;
 using PdfSharp.Xps;
+using System.IO;
+using System.IO.Packaging;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
+using System.Windows.Xps.Packaging;
+using System.Windows.Xps.Serialization;
 using Section = System.Windows.Documents.Section;
 using Size = System.Windows.Size;
 using Thickness = System.Windows.Thickness;
@@ -85,10 +86,8 @@ public class WpfTextDocumentRenderer : BaseDocumentRenderer
         PageSettings.HeaderHeight = MeasurementHelper.GetDiuFromCm(style.HeaderHeight);
         PageSettings.HeaderFontName = headerStyle.FontName;
         PageSettings.HeaderFontSize = MeasurementHelper.GetDiuFromPoint(headerStyle.FontSize);
-        PageSettings.HeaderText = Document.DocumentMetaData.HeaderText;
 
-        PageSettings.LogoPath = Document.DocumentMetaData.LogoPath;
-        PageSettings.LogoWidth = MeasurementHelper.GetDiuFromCm(Document.DocumentMetaData.LogoWidth);
+        PageSettings.DocumentMetaData = Document.DocumentMetaData;
         PageSettings.FooterPageText = $"{Document.DocumentMetaData.Company}\t{Document.DocumentMetaData.PageNumberPrefix}";
     }
 
@@ -175,23 +174,6 @@ public class WpfTextDocumentRenderer : BaseDocumentRenderer
                 using (var xpsDoc = new XpsDocument(container, CompressionOption.Maximum))
                 {
                     var rsm = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
-
-                    //var definition = new PrintDefinition();
-
-                    //if (PageFooter != null)
-                    //{
-                    //    definition.FooterHeight = FooterHeight;
-                    //    definition.Footer += PageFooter;
-                    //}
-                    //if (PageHeader != null)
-                    //{
-                    //    definition.HeaderHeight = HeaderHeight;
-                    //    definition.Header += PageHeader;
-                    //}
-
-                    //if (PageFooter != null) definition.Header += PageHeader;
-
-
                     rsm.SaveAsXaml(new HeaderFooterPaginator(wpfDocument, PageSettings, Dispatcher, pageNumberFormat));
 
                     //rsm.SaveAsXaml(((IDocumentPaginatorSource)wpfDocument).DocumentPaginator);
@@ -214,45 +196,66 @@ public class WpfTextDocumentRenderer : BaseDocumentRenderer
     /// <param name="pageNumberFormat">Page number format</param>
     private void DefaultFooter(DrawingContext context, Rect area, int page, double dpi, PageNumberFormatEnum pageNumberFormat)
     {
-        var footerText = PageSettings.FooterPageText.Split('\t');
+        if (string.IsNullOrEmpty(Document.DocumentMetaData.FooterTemplate))
+        {
+            return;
+        }
 
-        var f2 = footerText.Length == 2 ? footerText[1] : footerText[0];
-        var f1 = footerText.Length == 2 ? footerText[0] : string.Empty;
+        var style = (FooterStyle)Styleset.FindStyle("FooterStyle");
+        var sections = Document.DocumentMetaData.FooterTemplate.ToLowerInvariant().Split('|');
 
-        var pageNumber = DocumentRendererHelper.GetFormattedNumber(page+1, pageNumberFormat);
+        var margin = 25;
 
         Dispatcher.Invoke(() =>
         {
-            // Create the initial formatted text string.
-            var formattedText = new FormattedText(
-                $"{f2} {pageNumber}",
-                PageSettings.CultureInfo,
-                FlowDirection.LeftToRight,
-                new Typeface(PageSettings.FooterFontName),
-                PageSettings.FooterFontSize,
-                Brushes.Black, dpi);
+            // Draw left element
+            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[0], 0, dpi, false, page, PageNumberFormatEnum.Decimal, style.FontName, style.FontSize, margin);
 
-            // Draw the formatted text string to the DrawingContext of the control.
-            context.DrawText(formattedText, new Point(area.X + area.Width - formattedText.Width,
-                area.Y + PageSettings.FooterMarginTop + area.Height - formattedText.Height));
+            // Draw middle element
 
-            if (string.IsNullOrEmpty(f1))
-            {
-                return;
-            }
-
-            formattedText = new FormattedText(
-                f1,
-                PageSettings.CultureInfo,
-                FlowDirection.LeftToRight,
-                new Typeface(PageSettings.FooterFontName),
-                PageSettings.FooterFontSize,
-                Brushes.Black, dpi);
-
-            context.DrawText(formattedText, new Point(area.X,
-                area.Y + PageSettings.FooterMarginTop + area.Height - formattedText.Height));
-
+            // Draw right element
+            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[2], 2, dpi, false, page, PageNumberFormatEnum.Decimal, style.FontName, style.FontSize, margin);
         });
+
+        //var footerText = PageSettings.FooterPageText.Split('\t');
+
+        //var f2 = footerText.Length == 2 ? footerText[1] : footerText[0];
+        //var f1 = footerText.Length == 2 ? footerText[0] : string.Empty;
+
+        //var pageNumber = DocumentRendererHelper.GetFormattedNumber(page + 1, pageNumberFormat);
+
+        //Dispatcher.Invoke(() =>
+        //{
+        //    // Create the initial formatted text string.
+        //    var formattedText = new FormattedText(
+        //        $"{f2} {pageNumber}",
+        //        PageSettings.CultureInfo,
+        //        FlowDirection.LeftToRight,
+        //        new Typeface(PageSettings.FooterFontName),
+        //        PageSettings.FooterFontSize,
+        //        Brushes.Black, dpi);
+
+        //    // Draw the formatted text string to the DrawingContext of the control.
+        //    context.DrawText(formattedText, new Point(area.X + area.Width - formattedText.Width,
+        //        area.Y + PageSettings.FooterMarginTop + area.Height - formattedText.Height));
+
+        //    if (string.IsNullOrEmpty(f1))
+        //    {
+        //        return;
+        //    }
+
+        //    formattedText = new FormattedText(
+        //        f1,
+        //        PageSettings.CultureInfo,
+        //        FlowDirection.LeftToRight,
+        //        new Typeface(PageSettings.FooterFontName),
+        //        PageSettings.FooterFontSize,
+        //        Brushes.Black, dpi);
+
+        //    context.DrawText(formattedText, new Point(area.X,
+        //        area.Y + PageSettings.FooterMarginTop + area.Height - formattedText.Height));
+
+        //});
     }
 
 
@@ -268,51 +271,86 @@ public class WpfTextDocumentRenderer : BaseDocumentRenderer
     /// <param name="pageNumberFormat">Page number format</param>
     private void DefaultHeader(DrawingContext context, Rect area, int page, double dpi, PageNumberFormatEnum pageNumberFormat)
     {
+        if (string.IsNullOrEmpty(Document.DocumentMetaData.HeaderTemplate))
+        {
+            return;
+        }
+
+        var style = (HeaderStyle)Styleset.FindStyle("HeaderStyle");
+
+        var sections = Document.DocumentMetaData.HeaderTemplate.ToLowerInvariant().Split('|');
+
+        var margin = 25;
 
         Dispatcher.Invoke(() =>
         {
+            // Draw left element
+            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[0], 0, dpi, true, page, pageNumberFormat, style.FontName, style.FontSize, margin);
 
-            try
-            {
-                var bimg = new BitmapImage();
-                bimg.BeginInit();
-                bimg.UriSource = new Uri(PageSettings.LogoPath, UriKind.RelativeOrAbsolute);
-                //bimg.CacheOption = BitmapCacheOption.OnLoad;
-                bimg.EndInit();
+            // Draw middle element
 
-
-                var width = bimg.Width;
-                var height = bimg.Height;
-
-
-                double newWidth;
-                double newHeight;
-                if (PageSettings.LogoWidth > 0.01)
-                {
-                    newWidth = PageSettings.LogoWidth;
-                    newHeight = height * newWidth / width;
-                }
-                else
-                {
-                    newHeight = area.Height - PageSettings.HeaderMarginBottom;
-
-                    if (newHeight > height)
-                    {
-                        newHeight = height;
-                    }
-
-                    newWidth = width / height * newHeight;
-                }
-
-
-                var rect = new Rect(new Point(area.X + area.Width - newWidth, area.Y - PageSettings.HeaderHeight - PageSettings.HeaderHeight), new Size(newWidth, newHeight));
-
-                context.DrawImage(bimg, rect);
-            }
-            catch
-            {
-                // ignored
-            }
+            // Draw right element
+            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[2], 2, dpi, true, page, pageNumberFormat, style.FontName, style.FontSize, margin);
         });
+
+        //Dispatcher.Invoke(() =>
+        //{
+
+        //    try
+        //    {
+
+
+
+        //        var bimg = new BitmapImage();
+        //        bimg.BeginInit();
+        //        bimg.UriSource = new Uri(PageSettings.LogoPath, UriKind.RelativeOrAbsolute);
+        //        //bimg.CacheOption = BitmapCacheOption.OnLoad;
+        //        bimg.EndInit();
+
+        //        if (!string.IsNullOrEmpty(PageSettings.HeaderText))
+        //        {
+        //            var formattedText = new FormattedText(
+        //                PageSettings.HeaderText,
+        //                PageSettings.CultureInfo,
+        //                FlowDirection.LeftToRight,
+        //                new Typeface(PageSettings.FooterFontName),
+        //                PageSettings.FooterFontSize,
+        //                Brushes.Black, dpi);
+
+        //            context.DrawText(formattedText, new Point(area.X, area.Y - PageSettings.HeaderHeight - PageSettings.HeaderHeight - formattedText.Height));
+        //        }
+
+        //        var width = bimg.Width;
+        //        var height = bimg.Height;
+
+
+        //        double newWidth;
+        //        double newHeight;
+        //        if (PageSettings.LogoWidth > 0.01)
+        //        {
+        //            newWidth = PageSettings.LogoWidth;
+        //            newHeight = height * newWidth / width;
+        //        }
+        //        else
+        //        {
+        //            newHeight = area.Height - PageSettings.HeaderMarginBottom;
+
+        //            if (newHeight > height)
+        //            {
+        //                newHeight = height;
+        //            }
+
+        //            newWidth = width / height * newHeight;
+        //        }
+
+
+        //        var rect = new Rect(new Point(area.X + area.Width - newWidth, area.Y - PageSettings.HeaderHeight - PageSettings.HeaderHeight), new Size(newWidth, newHeight));
+        //        context.DrawImage(bimg, rect);
+        //    }
+        //    catch
+        //    {
+        //        // ignored
+        //    }
+        //});
     }
 }

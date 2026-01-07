@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using System.Globalization;
 
 namespace Bodoconsult.App.Abstractions.Typography;
 
@@ -59,6 +60,26 @@ public class TypographyBase : ITypography
         TableBorderWidth = 0.05;
         TableBorderColor = TypoColor.FromArgb(178, 204, 255);
     }
+
+    private string _currentLanguage = "en";
+
+    /// <summary>
+    /// Language code like en or de (only first 2 letters needed). Default: de
+    /// </summary>
+    public string CurrentLanguage
+    {
+        get => _currentLanguage;
+        set
+        {
+            _currentLanguage = value;
+            CultureInfo = new CultureInfo(value);
+        }
+    }
+
+    /// <summary>
+    /// Current culture info
+    /// </summary>
+    public CultureInfo CultureInfo { get; set; } = new("en");
 
     /// <summary>
     /// Paper format. Default: DIN A4
@@ -324,6 +345,31 @@ public class TypographyBase : ITypography
     /// Keywords separated by comma
     /// </summary>
     public string Keywords { get; set; }
+
+    /// <summary>
+    /// Footer text
+    /// </summary>
+    public string FooterText { get; set; }
+
+    /// <summary>
+    /// Header text
+    /// </summary>
+    public string HeaderText { get; set; }
+
+    /// <summary>
+    /// Defines a template for the header. Use ITypography.PageFieldIndicator, ITypography.TextIndicator and ITypography.LogoIndicator to position these elements in the left, middle or right segment. Segments separated by pipe.
+    /// </summary>
+    public string HeaderTemplate { get; set; } = "<<text>>||<<logo>>";
+
+    /// <summary>
+    /// Defines a template for the header. Use ITypography.PageFieldIndicator, ITypography.TextIndicator and ITypography.LogoIndicator to position these elements in the left, middle or right segment. Segments separated by pipe.
+    /// </summary>
+    public string FooterTemplate { get; set; } = "<<text>>||<<page>>";
+
+    /// <summary>
+    /// Text like page or Seite to write in front of the page number in the footer
+    /// </summary>
+    public string FooterPageText { get; set; } = "Page";
 
     /// <summary>
     /// Styling for charts in the document

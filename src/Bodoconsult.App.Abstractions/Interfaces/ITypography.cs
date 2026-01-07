@@ -13,6 +13,21 @@ public interface ITypography: ITypoPageStyle, ITypoMetaData
     public const string PageFieldIndicator = "<<page>>";
 
     /// <summary>
+    /// Indicator where to place the text of a header or footer
+    /// </summary>
+    public const string TextIndicator = "<<text>>";
+
+    /// <summary>
+    /// Indicator where to place the logo in a header or footer
+    /// </summary>
+    public const string LogoIndicator = "<<logo>>";
+
+    /// <summary>
+    /// Indicator where to place the logo in a header or footer
+    /// </summary>
+    public const string CompanyIndicator = "<<company>>";
+
+    /// <summary>
     /// Sets the factor for the calculation of the left margin. See <see cref="SetMargins"/> for details
     /// </summary>
     double MarginLeftFactor { get; set; }

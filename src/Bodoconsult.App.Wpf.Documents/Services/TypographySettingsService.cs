@@ -430,8 +430,6 @@ public class TypographySettingsService: BasePageSettingsService
             FooterHeight = MeasurementHelper.GetDiuFromCm(Typography.PageFooterHeight);
             FooterFontName = Typography.FontName;
             FooterFontSize = MeasurementHelper.GetDiuFromPoint(Typography.SmallFontSize);
-            LogoPath = Typography.LogoPath;
-            LogoWidth = MeasurementHelper.GetDiuFromCm(Typography.LogoWidth);
 
             HeaderHeight += HeaderMarginBottom;
             FooterHeight += FooterMarginTop;

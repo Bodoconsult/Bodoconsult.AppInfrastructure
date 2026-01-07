@@ -42,16 +42,17 @@ public class DocumentWpfTextRendererElement : WpfTextRendererElementBase
             renderer.WpfDocument.PageHeight = ps.PageSize.Height;
             renderer.WpfDocument.PagePadding = ps.Margins;
 
-            //if (style.NumberOfColumns > 1)
-            //{
-            //    renderer.WpfDocument.ColumnWidth = MeasurementHelper.GetPxFromCm(style.ColumnWidth);
-            //    //renderer.WpfDocument.ColumnGap = MeasurementHelper.GetPxFromCm(style.ColumnGap);
-            //}
-            //else
-            //{
+            // Multi-column text layout
+            if (style.NumberOfColumns > 1)
+            {
+                renderer.WpfDocument.ColumnWidth = MeasurementHelper.GetPxFromCm(style.ColumnWidth);
+                renderer.WpfDocument.ColumnGap = MeasurementHelper.GetPxFromCm(style.ColumnGap);
+            }
+            else // Singe-column text layout
+            {
                 renderer.WpfDocument.ColumnWidth = double.NaN;
                 renderer.WpfDocument.ColumnGap = double.NaN;
-            //}
+            }
 
         });
 

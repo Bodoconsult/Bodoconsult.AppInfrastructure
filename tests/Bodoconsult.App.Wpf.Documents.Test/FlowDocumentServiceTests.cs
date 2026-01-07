@@ -26,8 +26,6 @@ namespace Bodoconsult.App.Wpf.Documents.Test
 
         private static string _chartXamlPath;
 
-        private readonly string _logoPath = TestHelper.TestLogoImage;
-
         public FlowDocumentServiceTests()
         {
             var fi = new FileInfo(Assembly.GetExecutingAssembly().Location);
@@ -136,8 +134,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             var typoService = new TypographySettingsService
             {
                 MaxImageHeight = 300,
-                LogoPath = _logoPath,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
                 ShowFigureCounter = true,
                 
@@ -276,8 +278,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             var typoService = new TypographySettingsService(typo)
             {
                 MaxImageHeight = 300,
-                LogoPath = _logoPath,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
                 ShowFigureCounter = true
             };
@@ -296,8 +302,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
 
             typoService.LoadTypography(typo);
             typoService.MaxImageHeight = 300;
-            typoService.LogoPath = _logoPath;
-            typoService.FooterText = "Bodoconsult GmbH";
+            typoService.DocumentMetaData = new TypoMetaData()
+            {
+                LogoPath = TestHelper.TestLogoImage,
+                FooterText = "Bodoconsult GmbH",
+                CurrentLanguage = "de"
+            };
             typoService.FigureCounterPrefix = "Abb.";
             typoService.ShowFigureCounter = true;
 
@@ -378,8 +388,12 @@ namespace Bodoconsult.App.Wpf.Documents.Test
             var typoService = new TypographySettingsService(typo)
             {
                 MaxImageHeight = 300,
-                LogoPath = _logoPath,
-                FooterText = "Bodoconsult GmbH",
+                DocumentMetaData = new TypoMetaData()
+                {
+                    LogoPath = TestHelper.TestLogoImage,
+                    FooterText = "Bodoconsult GmbH",
+                    CurrentLanguage = "de"
+                },
                 FigureCounterPrefix = "Abb.",
                 ShowFigureCounter = true
             };

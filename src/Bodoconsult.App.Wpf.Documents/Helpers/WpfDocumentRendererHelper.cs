@@ -21,6 +21,7 @@ using Image = System.Windows.Controls.Image;
 using Inline = Bodoconsult.Text.Documents.Inline;
 using ListItem = System.Windows.Documents.ListItem;
 using Paragraph = System.Windows.Documents.Paragraph;
+using Size = System.Windows.Size;
 using SolidColorBrush = System.Windows.Media.SolidColorBrush;
 using Span = System.Windows.Documents.Span;
 using TextElement = System.Windows.Documents.TextElement;
@@ -415,5 +416,203 @@ public static class WpfDocumentRendererHelper
             drawDelegate(context, area, page, dpi, pageNumberFormat);
         }
         return visual;
+    }
+
+    public static void DrawElement(DrawingContext context, Rect area, ITypoMetaData metaData, string section, int xPosition, double dpi, bool isHeader, int page, PageNumberFormatEnum pageNumberFormat, string fontName, double fontSize, double marginHeaderFooter)
+    {
+        double x = 0;
+        double y = 0;
+
+        // Draw text
+        if (section == ITypography.TextIndicator)
+        {
+            var text = isHeader ? metaData.HeaderText : metaData.FooterText;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                text = metaData.Title;
+                if (string.IsNullOrEmpty(text))
+                {
+                    return;
+                }
+            }
+
+            var formattedText = new FormattedText(
+                text,
+                metaData.CultureInfo,
+                FlowDirection.LeftToRight,
+                new Typeface(fontName),
+               fontSize,
+                Brushes.Black, dpi);
+
+            if (xPosition == 0)
+            {
+                x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+
+            }
+            else
+            {
+                x = area.X + area.Width;
+            }
+
+            if (isHeader)
+            {
+                y = area.Y;
+            }
+            else
+            {
+                y = area.Y + marginHeaderFooter + area.Height - formattedText.Height;
+            }
+
+            context.DrawText(formattedText, new Point(x, y));
+        }
+
+        // Logo
+        if (section == ITypography.LogoIndicator)
+        {
+            try
+            {
+                var bimg = new BitmapImage();
+                bimg.BeginInit();
+                bimg.UriSource = new Uri(metaData.LogoPath, UriKind.RelativeOrAbsolute);
+                //bimg.CacheOption = BitmapCacheOption.OnLoad;
+                bimg.EndInit();
+
+                var width = bimg.Width;
+                var height = bimg.Height;
+
+                double newWidth;
+                double newHeight;
+                if (metaData.LogoWidth > 0.01)
+                {
+                    newWidth = MeasurementHelper.GetDiuFromCm(metaData.LogoWidth);
+                    newHeight = height * newWidth / width;
+                }
+                else
+                {
+                    newHeight = area.Height - marginHeaderFooter;
+
+                    if (newHeight > height)
+                    {
+                        newHeight = height;
+                    }
+
+                    newWidth = width / height * newHeight;
+                }
+
+                if (xPosition == 0)
+                {
+                    x = area.X;
+                }
+                else if (xPosition == 1)
+                {
+
+                }
+                else
+                {
+                    x = area.X + area.Width - newWidth;
+                }
+
+                if (isHeader)
+                {
+                    y = area.Y;
+                }
+                else
+                {
+                    y = area.Y + marginHeaderFooter;
+                }
+
+                var rect = new Rect(new Point(x, y), new Size(newWidth, newHeight));
+                context.DrawImage(bimg, rect);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        // Company
+        if (section == ITypography.CompanyIndicator)
+        {
+            var footerText = metaData.Company;
+
+            if (string.IsNullOrEmpty(footerText))
+            {
+                return;
+            }
+
+            var formattedText = new FormattedText(
+                footerText,
+                metaData.CultureInfo,
+                FlowDirection.LeftToRight,
+                new Typeface(fontName),
+                fontSize,
+                Brushes.Black, dpi);
+
+            if (xPosition == 0)
+            {
+                x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+
+            }
+            else
+            {
+                x = area.X + area.Width;
+            }
+
+            if (isHeader)
+            {
+                y = area.Y;
+            }
+            else
+            {
+                y = area.Y + marginHeaderFooter + area.Height - formattedText.Height;
+            }
+
+            context.DrawText(formattedText, new Point(x, y));
+        }
+
+        // Page
+        if (section == ITypography.PageFieldIndicator)
+        {
+            // Create the initial formatted text string.
+            var formattedText = new FormattedText(
+                $"{metaData.FooterPageText} {page + 1}",
+                metaData.CultureInfo,
+                FlowDirection.LeftToRight,
+                new Typeface(fontName),
+                fontSize,
+                Brushes.Black, dpi);
+
+            if (xPosition == 0)
+            {
+                x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+
+            }
+            else
+            {
+                x = area.X + area.Width - formattedText.Width;
+            }
+
+            if (isHeader)
+            {
+                y = area.Y;
+            }
+            else
+            {
+                y = area.Y + marginHeaderFooter + area.Height - formattedText.Height;
+            }
+
+            // Draw the formatted text string to the DrawingContext of the control.
+            context.DrawText(formattedText, new Point(x, y));
+        }
     }
 }

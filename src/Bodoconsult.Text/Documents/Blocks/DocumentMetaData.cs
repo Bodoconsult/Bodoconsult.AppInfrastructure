@@ -1,7 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
+using System.Globalization;
+using System.Text;
 
 namespace Bodoconsult.Text.Documents;
 
@@ -10,6 +11,8 @@ namespace Bodoconsult.Text.Documents;
 /// </summary>
 public class DocumentMetaData : Block, ITypoMetaData
 {
+    private string _currentLanguage = "en";
+
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -17,6 +20,24 @@ public class DocumentMetaData : Block, ITypoMetaData
     {
         IsSingleton = true;
     }
+
+    /// <summary>
+    /// Language code like en or de (only first 2 letters needed). Default: en
+    /// </summary>
+    public string CurrentLanguage
+    {
+        get => _currentLanguage;
+        set
+        {
+            _currentLanguage = value;
+            CultureInfo = new CultureInfo(value);
+        }
+    }
+
+    /// <summary>
+    /// Current culture info
+    /// </summary>
+    public CultureInfo CultureInfo { get; set; } = new("en");
 
     /// <summary>
     /// Copyright to print in charts and other items
@@ -130,7 +151,7 @@ public class DocumentMetaData : Block, ITypoMetaData
     public bool IsTablesTableRequired { get; set; }
 
     /// <summary>
-    /// Footer text. Use &lt;&lt;page&gt;&gt; as placeholder for the page number
+    /// Footer text
     /// </summary>
     public string FooterText { get; set; }
 
@@ -138,6 +159,25 @@ public class DocumentMetaData : Block, ITypoMetaData
     /// Header text
     /// </summary>
     public string HeaderText { get; set; }
+
+    /// <summary>
+    /// Defines a template for the header.
+    /// Use ITypography.PageFieldIndicator, ITypography.CompanyIndicator, ITypography.TextIndicator and ITypography.LogoIndicator to position these elements in the left, middle or right segment.
+    /// Segments separated by pipe.
+    /// </summary>
+    public string HeaderTemplate { get; set; } = "<<text>>||<<logo>>";
+
+    /// <summary>
+    /// Defines a template for the header.
+    /// Use ITypography.PageFieldIndicator, ITypography.TextIndicator, ITypography.CompanyIndicator and ITypography.LogoIndicator to position these elements in the left, middle or right segment.
+    /// Segments separated by pipe.
+    /// </summary>
+    public string FooterTemplate { get; set; } = "<<text>>||<<page>>";
+
+    /// <summary>
+    /// Text like page or Seite to write in front of the page number in the footer
+    /// </summary>
+    public string FooterPageText { get; set; } = "Page";
 
     /// <summary>
     /// Add the current element to a document defined in LDML (Logical document markup language)
@@ -148,5 +188,4 @@ public class DocumentMetaData : Block, ITypoMetaData
     {
         stringBuilder.AppendLine($"{indent}<DocumentMetaData{GetPropertiesAsAttributes()}/>");
     }
-
 }
