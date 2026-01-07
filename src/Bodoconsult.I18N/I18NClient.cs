@@ -31,6 +31,7 @@ public class I18NClient : II18NClient
     public I18NClient(II18NServer i18NServer)
     {
         I18NServer = i18NServer;
+        _locales = I18NServer.Locales;
     }
 
     // PropertyChanged

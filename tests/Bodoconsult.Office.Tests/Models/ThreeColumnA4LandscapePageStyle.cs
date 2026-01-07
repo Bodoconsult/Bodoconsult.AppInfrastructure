@@ -27,7 +27,7 @@ public class ThreeColumnA4LandscapePageStyle : ITypoPageStyle
     /// <summary>
     /// The space between text columns in the type area in cm
     /// </summary>
-    public double Space { get; set; } = 1;
+    public double ColumnGap { get; set; } = 1;
 
     /// <summary>
     /// The resulting text column width in cm

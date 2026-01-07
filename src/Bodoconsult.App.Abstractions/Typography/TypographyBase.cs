@@ -73,7 +73,7 @@ public class TypographyBase : ITypography
     /// <summary>
     /// The space between text columns in the type area in cm
     /// </summary>
-    public double Space { get; set; } = 0;
+    public double ColumnGap { get; set; } = 0;
 
 
     /// <summary>
@@ -296,7 +296,7 @@ public class TypographyBase : ITypography
                 VerticalLines[i * 2 + 1] = left + i * (GridColumnWidth + GridColumnDividerWidth) + GridColumnWidth;
             }
 
-            left += ColumnWidth + Space;
+            left += ColumnWidth + ColumnGap;
         }
     }
 
@@ -373,7 +373,7 @@ public class TypographyBase : ITypography
     /// </summary>
     public void SetMargins()
     {
-        var typeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * Space;
+        var typeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * ColumnGap;
 
         var mu = TypoPaperFormat.Size.Width - typeAreaWidth;
 
@@ -402,7 +402,7 @@ public class TypographyBase : ITypography
         FooterAreaRect = new TypoRect(fp1, fp2);
 
         // Effective column width
-        _columnWidth = (TypeAreaRect.Size.Width - (NumberOfColumns - 1) * Space) / NumberOfColumns;
+        _columnWidth = (TypeAreaRect.Size.Width - (NumberOfColumns - 1) * ColumnGap) / NumberOfColumns;
     }
 
     /// <summary>

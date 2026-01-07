@@ -128,7 +128,7 @@ public class I18NMock : II18N
     /// <summary>
     /// All loaded providers
     /// </summary>
-    public IList<ILocalesProvider> Providers { get; } = new List<ILocalesProvider>();
+    public List<ILocalesProvider> Providers { get; } = new List<ILocalesProvider>();
 
     /// <summary>
     /// Get the default locale

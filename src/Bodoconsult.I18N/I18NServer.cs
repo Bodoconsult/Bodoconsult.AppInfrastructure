@@ -25,7 +25,12 @@ public class I18NServer : II18NServer
     /// <summary>
     /// All loaded providers
     /// </summary>
-    public IList<ILocalesProvider> Providers { get; } = new List<ILocalesProvider>();
+    public List<ILocalesProvider> Providers { get; } = new();
+
+    /// <summary>
+    /// Current loaded locales
+    /// </summary>
+    public List<string> Locales => _locales.ToList();
 
     /// <summary>
     /// Set a logger action

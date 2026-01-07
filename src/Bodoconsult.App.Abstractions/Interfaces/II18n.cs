@@ -13,7 +13,7 @@ public interface II18N : INotifyPropertyChanged, IDisposable
     /// <summary>
     /// Tag prefix used to declare content als as resource key
     /// </summary>
-    public const string I18nTag = "I18N:";
+    public const string I18NTag = "I18N:";
 
     /// <summary>
     /// Indexer to translate string. Intended for usage with MVVM / WPF / Xamarin
@@ -81,7 +81,7 @@ public interface II18N : INotifyPropertyChanged, IDisposable
     /// <summary>
     /// All loaded providers
     /// </summary>
-    IList<ILocalesProvider> Providers { get; }
+    List<ILocalesProvider> Providers { get; }
 
     /// <summary>
     /// Get the default locale

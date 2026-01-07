@@ -499,7 +499,7 @@ public static class StylesetHelper
                 Bottom = 2
             },
             NumberOfColumns = 3,
-            Space = 1
+            ColumnGap = 1
         };
         styleSet.AddBlock(docStyle);
 

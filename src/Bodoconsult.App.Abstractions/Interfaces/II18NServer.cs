@@ -17,7 +17,12 @@ public interface II18NServer : IDisposable
     /// <summary>
     /// All loaded providers
     /// </summary>
-    IList<ILocalesProvider> Providers { get; }
+    List<ILocalesProvider> Providers { get; }
+
+    /// <summary>
+    /// Current loaded locales
+    /// </summary>
+    List<string> Locales { get; }
 
     /// <summary>
     /// Symbol to show that translation was not found

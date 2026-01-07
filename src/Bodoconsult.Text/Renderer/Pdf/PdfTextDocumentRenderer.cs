@@ -41,7 +41,7 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
             PdfBuilderBase.SetPage(style, styleSet);
 
             styleSet.NumberOfColumns = style.NumberOfColumns;
-            styleSet.Space = Unit.FromCentimeter(style.Space);
+            styleSet.Space = Unit.FromCentimeter(style.ColumnGap);
 
             styleSet.ColumnWidth = Unit.FromCentimeter(style.NumberOfColumns > 1 ? style.ColumnWidth : style.TypeAreaWidth);
         }

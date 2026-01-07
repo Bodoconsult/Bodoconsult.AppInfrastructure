@@ -26,13 +26,17 @@ internal class I18NClientServerDiContainerServiceProviderTests
 
         diContainer.BuildServiceProvider();
 
-        // Assert
+        // Assert server
         var instance = diContainer.Get<II18NServer>();
+        instance.FallBackLocale = "en";
 
         Assert.That(instance, Is.Not.Null);
         Assert.That(instance.Providers.Count, Is.Not.EqualTo(0));
 
+
+        // Assert scoped client
         var clientInstance = diContainer.Get<II18NClient>();
+        clientInstance.Init();
 
         // **** Use it ****
         // change to spanish (not necessary if thread language is ok)

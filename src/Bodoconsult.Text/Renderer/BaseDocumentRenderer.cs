@@ -110,8 +110,8 @@ public class BaseDocumentRenderer : IDocumentRenderer
             return content;
         }
 
-        return content.StartsWith(II18N.I18nTag, StringComparison.InvariantCultureIgnoreCase) ?
-            CurrentI18NInstance.Translate(content.Replace(II18N.I18nTag, string.Empty, StringComparison.InvariantCultureIgnoreCase)) :
+        return content.StartsWith(II18N.I18NTag, StringComparison.InvariantCultureIgnoreCase) ?
+            CurrentI18NInstance.Translate(content.Replace(II18N.I18NTag, string.Empty, StringComparison.InvariantCultureIgnoreCase)) :
             content;
     }
 }

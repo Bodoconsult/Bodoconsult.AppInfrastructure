@@ -3,6 +3,14 @@ Bodoconsult.I18N
 
 # What does the library
 
+> [Setup locales](#setup-locales)
+
+> [Single-instance I18N with I18N class](#single-instance-i18n-with-i18n-class)
+
+> [Multi-instance I18N with I18NServer and I18NClient classes]()
+
+> [Locales file formats](#locales-file-formats)
+
 ## Basic ideas
 
 Bodoconsult.I18N library is a simple localization library based on I18N-Portable <https://github.com/xleon/I18N-Portable> by Diego Ponce de León (xleon).
@@ -48,19 +56,19 @@ Bodoconsult.I18N supports the following localization sources hosted maybe in dif
 
 Implementing your own implemenation of IResourceProvider normally by deriving from BaseResourceProvider class you can implement your own localization provider based providing localization data from diverse source like file, databases, web resources via REST etc.. 
 
-# How to use the library
+## How to use the library
 
 The source code contains NUnit test classes, the following source code samples are extracted from. The samples below show the most helpful use cases for the library.
 
-## Setup locales
+# Setup locales
 
 - In your Net8 project, create a directory called "Locales".
 
-- Create a `{languageCode}.txt` file for each language you want to support. `languageCode` can be a two letter ISO code or a IETF culture name like "en-US" or "de-DE". See [full list here](https://msdn.microsoft.com/en-us/library/ee825488%28v=cs.20%29.aspx).
+- Create a `{languageCode}.txt` file for each language you want to support. `languageCode` can be a two letter ISO code or an IETF culture name like "en-US" or "de-DE". See [full list here](https://msdn.microsoft.com/en-us/library/ee825488%28v=cs.20%29.aspx).
 
 - Set "Build Action" to "Embedded Resource" on the properties of each file
 
--   For available file formats see [File formats for locales](#locales--file-formats)
+-   For available file formats see [File formats for locales](#locales-file-formats)
 
 **Locale content sample**
 
@@ -89,6 +97,10 @@ The source code contains NUnit test classes, the following source code samples a
         Line Three
 ```
 
+# Single-instance I18N with I18N class
+
+I18N class provides an easy to use way of using I18N in a UI based app with only one language used at a given timepoint. It is NOT intended to be used in background services or web applications accepting multiple requests with different lanuage requirements.
+
 ## Fluent initialization
 
 ```csharp
@@ -104,51 +116,65 @@ I18N.Current
 The following code does not use Fluent to show the single steps necessary. It may be shortened by using Fluent. 
 
 ```csharp
-// **** Load all resources from one or more sources ****
-// Add provider 1
-ILocalesProvider provider = new I18NEmbeddedResourceLocalesProvider(GetType().Assembly,
-    "Bodoconsult.I18N.Test.Samples.Locales");
+ [Test]
+ public void TestAddMultipleProvider()
+ {
+     // **** Load all resources from one or more sources ****
+     // Add provider 1
+     I18N.Current.Reset();
 
-I18N.Current.AddProvider(provider);
+     ILocalesProvider provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
+         "Bodoconsult.I18N.Test.Samples.Locales");
 
-// Add provider 2
-provider = new I18NEmbeddedResourceLocalesProvider(GetType().Assembly,
-    "Bodoconsult.I18N.Test.Locales");
+     I18N.Current.AddProvider(provider);
 
-I18N.Current.AddProvider(provider);
+     // Add provider 2
+     provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
+         "Bodoconsult.I18N.Test.Locales");
 
-Assert.IsTrue(I18N.Current.Languages.Any());
+     I18N.Current.AddProvider(provider);
 
-// **** Initialize all ****
-// Set a fallback locale for the case current thread language is not available in the resources
-I18N.Current.SetFallbackLocale("en");
+     Assert.That(I18N.Current.Languages.Any());
 
-// Load the default language from thread culture
-I18N.Current.Init();
+     // **** Initialize all ****
+     // Set a fallback locale for the case current thread language is not available in the resources
+     I18N.Current.SetFallbackLocale("en");
+
+     // Load the default language from thread culture
+     I18N.Current.Init();
+
+     // **** Use it ****
+     // change to spanish (not necessary if thread language is ok)
+     I18N.Current.Locale = "es";
+
+     var translation = I18N.Current.Translate("one");
+     Assert.That( translation, Is.EqualTo("uno"));
+
+     translation = "Contains".Translate();
+     Assert.That( translation, Is.EqualTo("Contains"));
 
 
-// **** Use it ****
-// change to spanish (not necessary if thread language is ok)
-I18N.Current.Locale = "es";
+     // Change to english
+     I18N.Current.Locale = "en";
 
-var translation = I18N.Current.Translate("one");
-Assert.AreEqual("uno", translation);
+     translation = I18N.Current.Translate("one");
+     Assert.That(translation, Is.EqualTo("one"));
 
-translation = "Contains".Translate();
-Assert.AreEqual("Contains", translation);
-
-
-// Change to english
-I18N.Current.Locale = "en";
-
-translation = I18N.Current.Translate("one");
-Assert.AreEqual("one", translation);
-
-translation = "Contains".Translate();
-Assert.AreEqual("Contains", translation);
+     translation = "Contains".Translate();
+     Assert.That(translation, Is.EqualTo("Contains"));
+ }
 ```
 
-## Using I18N with depencency injection and Bodoconsult.App.Abstractions.DiContainer class
+## Using I18N class with depencency injection and Bodoconsult.App.Abstractions.DiContainer class
+
+DI container service provider I18NDiContainerServiceProvider is intended for loading a singleton I18N instance. The following interfaces and delegates are loaded in the DI container:
+
+- II18N
+
+- TranslateDelegate
+
+- TranslateWithParamsDelegate
+
 
 ### Create your I18N factory based on BaseI18NFactory class
 
@@ -365,11 +391,99 @@ public class WinFormsApp1MainWindowViewModel : MainWindowViewModel
 ```
 See Form1 in WinFormsApp1 project in the repository.
 
-## Locales  file formats
+# Multi-instance I18N with I18NServer and I18NClient classes
+
+In web apps or background services you may have to dela with different lanuage requirements at a given timepoint. To handle them use the combo of I18NServer and I18NClient classes.
+
+I18NServer holds all central infrastructure required for I18N in the app. It should be loaded a singleton.
+
+I18NClient is intended to fullfill the requirements of a single request for I18N in a certain thread. Therefore it should be loaded scoped.
+
+The recommendation is to setup the combo of I18NServer and I18NClient classes via DI. You have to setup a II18NServerFactory based on BaseI18NServerFactory first:
+
+``` csharp
+/// <summary>
+/// Factory to create a fully configured I18N factory using providers directly
+/// </summary>
+public class TestI18NServerFactory : BaseI18NServerFactory
+{
+    /// <summary>
+    /// Creating a configured II18N instance
+    /// </summary>
+    /// <returns>An II18N instance</returns>
+    public override II18NServer CreateInstance()
+    {
+        // Load a provider
+        ILocalesProvider provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
+            "Bodoconsult.I18N.Test.Samples.Locales");
+
+        I18NServerInstance.AddProvider(provider);
+
+        // Add provider 2
+        provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
+            "Bodoconsult.I18N.Test.Locales");
+
+        I18NServerInstance.AddProvider(provider);
+
+        // Load more providers or packages if necessary
+        // ...
+
+        // Return the instance
+        return I18NServerInstance;
+    }
+}
+```
+
+Then you can setup the DIContainer by using I18NClientServerDiContainerServiceProvider:
+
+``` csharp
+[Test]
+public void AddServices_DefaultSetup_InstanceLoadedInDiContainer()
+{
+    // Arrange 
+    var diContainer = new DiContainer();
+
+    var factory = new TestI18NServerFactory();
+    var diProvider = new I18NClientServerDiContainerServiceProvider(factory);
+
+    // Act  
+    diProvider.AddServices(diContainer);
+
+    diContainer.BuildServiceProvider();
+
+    // Assert server
+    var instance = diContainer.Get<II18NServer>();
+    instance.FallBackLocale = "en";
+
+    Assert.That(instance, Is.Not.Null);
+    Assert.That(instance.Providers.Count, Is.Not.EqualTo(0));
+
+
+    // Assert scoped client
+    var clientInstance = diContainer.Get<II18NClient>();
+    clientInstance.Init();
+
+    // **** Use it ****
+    // change to spanish (not necessary if thread language is ok)
+    clientInstance.Locale = "es";
+
+    var translation = clientInstance.Translate("one");
+    Assert.That(translation, Is.EqualTo("uno"));
+
+    // Change to english
+    clientInstance.Locale = "en";
+
+    translation = clientInstance.Translate("one");
+    Assert.That(translation, Is.EqualTo("one"));
+}
+```
+
+
+# Locales file formats
 
 For all file formats currently implemented with Bodoconsult.I18N there are samples in the Bodoconsult.I18N.Test project in the repository.
 
-### Plain text files (.txt)
+## Plain text files (.txt)
 
 ```
 one = one
@@ -395,7 +509,7 @@ Fruit.Apple = big apple
 Fruit.Banana = nice banana
 ```
 
-### CSV text files
+## CSV text files
 
 ```
 one;one
@@ -413,7 +527,7 @@ Fruit.Apple;big apple
 Fruit.Banana;nice banana
 ```
 
-### JSON key-value-pairs file
+## JSON key-value-pairs file
 
 ``` json
 {
@@ -433,7 +547,7 @@ Fruit.Banana;nice banana
 }
 ```
 
-### JSON list file
+## JSON list file
 
 ``` json
 [
@@ -492,7 +606,7 @@ Fruit.Banana;nice banana
 ]
 ```
 
-### WPF XAML file as embedded resource or external file
+## WPF XAML file as embedded resource or external file
 
 ``` xaml
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -507,7 +621,7 @@ Fruit.Banana;nice banana
 </ResourceDictionary>
 ```
 
-### Avalonia XAML file only as external file
+## Avalonia XAML file only as external file
 
 For AvaloniaResource files there is currently no way to read the key value pairs.
 
@@ -526,13 +640,49 @@ For embedding localization as resource in an Avalonia project use file formats l
 </ResourceDictionary>
 ```
 
-### C# default localization with resx resource files
+## C# default localization with resx resource files
 
 For more information see [MS Learn: Localization in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/localization).
 
+``` csharp
+[Test]
+public void AddServices_DefaultSetup_InstanceLoadedInDiContainer()
+{
+    // Arrange 
+    var diContainer = new DiContainer();
 
+    var factory = new TestI18NServerFactory();
+    var diProvider = new I18NClientServerDiContainerServiceProvider(factory);
 
+    // Act  
+    diProvider.AddServices(diContainer);
 
+    diContainer.BuildServiceProvider();
+
+    // Assert
+    var instance = diContainer.Get<II18NServer>();
+    instance.FallBackLocale = "en";
+
+    Assert.That(instance, Is.Not.Null);
+    Assert.That(instance.Providers.Count, Is.Not.EqualTo(0));
+
+    var clientInstance = diContainer.Get<II18NClient>();
+    clientInstance.Init();
+
+    // **** Use it ****
+    // change to spanish (not necessary if thread language is ok)
+    clientInstance.Locale = "es";
+
+    var translation = clientInstance.Translate("one");
+    Assert.That(translation, Is.EqualTo("uno"));
+
+    // Change to english
+    clientInstance.Locale = "en";
+
+    translation = clientInstance.Translate("one");
+    Assert.That(translation, Is.EqualTo("one"));
+}
+```
 
 
 ```
@@ -541,9 +691,13 @@ For more information see [MS Learn: Localization in .NET](https://learn.microsof
 
 # To do
 
-## Supporting apps with multiple UI threads running on different languages
+## DONE: Supporting apps with multiple UI threads running on different languages
+
+Implementation: use  the combo of I18NServer and I18NClient classes
 
 New implementation taking the basic ideas of Bodoconsult.I18N to multithreaded environments like an ASP.NET web application or GRPC based services in an client server environment with central localization of the server side.
+
+
 
 # About us
 

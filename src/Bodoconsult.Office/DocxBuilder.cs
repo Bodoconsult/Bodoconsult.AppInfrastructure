@@ -1111,7 +1111,7 @@ public class DocxBuilder : IDisposable
 
         if (pageStyle.NumberOfColumns > 1)
         {
-            var spaceString = MeasurementHelper.GetDxaFromCm(pageStyle.Space).ToString("0");
+            var spaceString = MeasurementHelper.GetDxaFromCm(pageStyle.ColumnGap).ToString("0");
             var columns = new Columns
             {
                 EqualWidth = true,

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -7,6 +8,7 @@ using System.Windows.Media.Imaging;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Wpf.Documents.Delegates;
+using Bodoconsult.App.Wpf.Documents.Extensions;
 using Bodoconsult.App.Wpf.Documents.Renderer;
 using Bodoconsult.App.Wpf.Documents.Renderer.Blocks;
 using Bodoconsult.App.Wpf.Documents.Renderer.Inlines;
@@ -19,6 +21,7 @@ using Image = System.Windows.Controls.Image;
 using Inline = Bodoconsult.Text.Documents.Inline;
 using ListItem = System.Windows.Documents.ListItem;
 using Paragraph = System.Windows.Documents.Paragraph;
+using SolidColorBrush = System.Windows.Media.SolidColorBrush;
 using Span = System.Windows.Documents.Span;
 using TextElement = System.Windows.Documents.TextElement;
 using Thickness = System.Windows.Thickness;
@@ -47,7 +50,6 @@ public static class WpfDocumentRendererHelper
     /// <param name="childBlocks"></param>
     public static void RenderBlockChildsToWpf(WpfTextDocumentRenderer renderer, ReadOnlyLdmlList<Block> childBlocks)
     {
-
         foreach (var child in childBlocks)
         {
             var element = renderer.WpfTextRendererElementFactory.CreateInstanceWpf(child);
@@ -63,23 +65,96 @@ public static class WpfDocumentRendererHelper
     /// <exception cref="NotImplementedException"></exception>
     public static void RenderParagraphStyle(ParagraphStyleBase docStyle, Style wpfStyle)
     {
-        
+        // Text alginment
+        var alignment = GetTextAlignment(docStyle);
+
+        wpfStyle.Setters.Add(new Setter
+        {
+            Property = System.Windows.Documents.Block.TextAlignmentProperty,
+            Value = alignment
+        });
+
+        // Font size
         wpfStyle.Setters.Add(new Setter
         {
             Property = TextElement.FontSizeProperty,
             Value = MeasurementHelper.GetDiuFromPoint(docStyle.FontSize)
         });
+
+        // Font name
         wpfStyle.Setters.Add(new Setter
         {
             Property = TextElement.FontFamilyProperty,
             Value = new FontFamily(docStyle.FontName)
         });
 
+        // Bold
         wpfStyle.Setters.Add(new Setter
         {
             Property = TextElement.FontWeightProperty,
             Value = docStyle.Bold ? FontWeights.Bold : FontWeights.Normal
         });
+
+        // Italic
+        wpfStyle.Setters.Add(new Setter
+        {
+            Property = TextElement.FontStyleProperty,
+            Value = docStyle.Italic ? FontStyles.Italic : FontStyles.Normal
+        });
+
+        // Pagebreak before
+        wpfStyle.Setters.Add(new Setter
+        {
+            Property = System.Windows.Documents.Block.BreakPageBeforeProperty,
+            Value = docStyle.PageBreakBefore
+        });
+
+        // Hyphenation
+        wpfStyle.Setters.Add(new Setter
+        {
+            Property = System.Windows.Documents.Block.IsHyphenationEnabledProperty,
+            Value = true
+        });
+
+        // Keep together
+        wpfStyle.Setters.Add(new Setter
+        {
+            Property = System.Windows.Documents.Paragraph.KeepTogetherProperty,
+            Value = docStyle.KeepTogether
+        });
+
+        // Keep next
+        wpfStyle.Setters.Add(new Setter
+        {
+            Property = Paragraph.KeepWithNextProperty,
+            Value = docStyle.KeepWithNextParagraph
+        });
+
+        // Widow control
+        if (docStyle.WidowControl)
+        {
+            wpfStyle.Setters.Add(new Setter
+            {
+                Property = Paragraph.MinWidowLinesProperty,
+                Value = 3
+            });
+
+            wpfStyle.Setters.Add(new Setter
+            {
+                Property = Paragraph.MinOrphanLinesProperty,
+                Value = 3
+            });
+        }
+
+        // First line indent
+        wpfStyle.Setters.Add(new Setter
+        {
+            Property = Paragraph.TextIndentProperty,
+            Value = MeasurementHelper.GetDiuFromCm(docStyle.FirstLineIndent)
+        });
+
+
+        // Margins
         wpfStyle.Setters.Add(new Setter
         {
             Property = System.Windows.Documents.Block.MarginProperty,
@@ -88,6 +163,64 @@ public static class WpfDocumentRendererHelper
                 MeasurementHelper.GetDiuFromCm(docStyle.Margins.Right),
                 MeasurementHelper.GetDiuFromCm(docStyle.Margins.Bottom))
         });
+
+        // Borders
+        if (docStyle.BorderBrush != null)
+        {
+            wpfStyle.Setters.Add(new Setter
+            {
+                Property = System.Windows.Documents.Block.BorderBrushProperty,
+                Value = new SolidColorBrush(docStyle.BorderBrush.TypoColor.ToWpfColor())
+            });
+
+            wpfStyle.Setters.Add(new Setter
+            {
+                Property = System.Windows.Documents.Block.BorderThicknessProperty,
+                Value = new Thickness(MeasurementHelper.GetDiuFromCm(docStyle.BorderThickness.Left),
+                    MeasurementHelper.GetDiuFromCm(docStyle.BorderThickness.Top),
+                    MeasurementHelper.GetDiuFromCm(docStyle.BorderThickness.Right),
+                    MeasurementHelper.GetDiuFromCm(docStyle.BorderThickness.Bottom))
+            });
+
+            wpfStyle.Setters.Add(new Setter
+            {
+                Property = System.Windows.Documents.Block.PaddingProperty,
+                Value = new Thickness(MeasurementHelper.GetDiuFromCm(docStyle.Paddings.Left),
+                    MeasurementHelper.GetDiuFromCm(docStyle.Paddings.Top),
+                    MeasurementHelper.GetDiuFromCm(docStyle.Paddings.Right),
+                    MeasurementHelper.GetDiuFromCm(docStyle.Paddings.Bottom))
+            });
+        }
+
+    }
+
+    /// <summary>
+    /// Get the text alignment
+    /// </summary>
+    /// <param name="style">Current paragraph style</param>
+    /// <returns>Text alignment</returns>
+    public static TextAlignment GetTextAlignment(ParagraphStyleBase style)
+    {
+        TextAlignment alignment;
+
+        switch (style.TextAlignment)
+        {
+            case TypoTextAlignment.Center:
+                alignment = TextAlignment.Center;
+                break;
+            case TypoTextAlignment.Justify:
+                alignment = TextAlignment.Justify;
+                break;
+            case TypoTextAlignment.Right:
+                alignment = TextAlignment.Right;
+                break;
+            case TypoTextAlignment.Left:
+            default:
+                alignment = TextAlignment.Left;
+                break;
+        }
+
+        return alignment;
     }
 
     /// <summary>

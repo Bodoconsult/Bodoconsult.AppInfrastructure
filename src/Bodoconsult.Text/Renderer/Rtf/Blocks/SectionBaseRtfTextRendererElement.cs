@@ -72,7 +72,7 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         if (docStyle.NumberOfColumns > 1)
         {
             renderer.Content.Append($"\\cols{docStyle.NumberOfColumns}");
-            renderer.Content.Append($"\\colsx{MeasurementHelper.GetTwipsFromCm(docStyle.Space)}");
+            renderer.Content.Append($"\\colsx{MeasurementHelper.GetTwipsFromCm(docStyle.ColumnGap)}");
         }
 
         renderer.Content.Append('{');

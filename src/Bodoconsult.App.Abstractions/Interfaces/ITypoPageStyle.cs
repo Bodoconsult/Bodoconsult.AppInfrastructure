@@ -25,7 +25,7 @@ public interface ITypoPageStyle
     /// <summary>
     /// The space between text columns in the type area in cm
     /// </summary>
-    public double Space { get; set; }
+    public double ColumnGap { get; set; }
 
     /// <summary>
     /// The resulting text column width in cm

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.Text.Documents;
 
 namespace Bodoconsult.App.Wpf.Documents.Renderer.Blocks;
@@ -27,6 +28,9 @@ public class DocumentWpfTextRendererElement : WpfTextRendererElementBase
     public override void RenderIt(WpfTextDocumentRenderer renderer)
     {
 
+        var style = (PageStyleBase)renderer.Styleset.FindStyle("DocumentStyle");
+
+
         // Render TOC etc
         renderer.WpfDocument = renderer.WpfDocumentToc;
 
@@ -37,7 +41,18 @@ public class DocumentWpfTextRendererElement : WpfTextRendererElementBase
             renderer.WpfDocument.PageWidth = ps.PageSize.Width;
             renderer.WpfDocument.PageHeight = ps.PageSize.Height;
             renderer.WpfDocument.PagePadding = ps.Margins;
-            renderer.WpfDocument.ColumnWidth = double.NaN;
+
+            //if (style.NumberOfColumns > 1)
+            //{
+            //    renderer.WpfDocument.ColumnWidth = MeasurementHelper.GetPxFromCm(style.ColumnWidth);
+            //    //renderer.WpfDocument.ColumnGap = MeasurementHelper.GetPxFromCm(style.ColumnGap);
+            //}
+            //else
+            //{
+                renderer.WpfDocument.ColumnWidth = double.NaN;
+                renderer.WpfDocument.ColumnGap = double.NaN;
+            //}
+
         });
 
         foreach (var child in _document.ChildBlocks)

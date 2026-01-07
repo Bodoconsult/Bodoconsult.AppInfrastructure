@@ -673,7 +673,7 @@ public class FlowDocumentService
             }
             if (content.StartsWith("I18n:", StringComparison.InvariantCultureIgnoreCase))
             {
-                content = FindLanguageResource(content.Replace(II18N.I18nTag, string.Empty, StringComparison.InvariantCultureIgnoreCase));
+                content = FindLanguageResource(content.Replace(II18N.I18NTag, string.Empty, StringComparison.InvariantCultureIgnoreCase));
             }
             else
             {

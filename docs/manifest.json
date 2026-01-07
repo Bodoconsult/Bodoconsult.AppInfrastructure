@@ -342,6 +342,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Extensions.IntExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Extensions.IntExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Extensions.IntExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Extensions.IntExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for integer values</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Extensions.TypoColorExtensions.yml",
       "output": {
         ".html": {
@@ -409,6 +423,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Helpers",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.yml\" sourcestartlinenumber=\"1\">Base class for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1084,6 +1112,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.II18NClient",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.II18NClient.yml\" sourcestartlinenumber=\"1\">Interface for I18N client classes providing for scoped access to I18N</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NFactory.yml",
       "output": {
         ".html": {
@@ -1098,6 +1140,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.II18NServer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.yml\" sourcestartlinenumber=\"1\">Interface for I18N server classes. Instances have to be loaded as singleton in the app</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NServerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NServerFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.II18NServerFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.II18NServerFactory.yml\" sourcestartlinenumber=\"1\">Factory for creating an II18NServer instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider.yml",
       "output": {
         ".html": {
@@ -1109,6 +1179,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider.yml\" sourcestartlinenumber=\"1\">Base interface for localization data providers</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.yml\" sourcestartlinenumber=\"1\">Interface for creating <xref href=\"Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider\" data-throw-if-not-resolved=\"false\"></xref> packages for assemblies to simplify the locales providers handling for these assemblies</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1252,6 +1336,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.yml\" sourcestartlinenumber=\"1\">Interface for document metadata</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.yml\" sourcestartlinenumber=\"1\">Common page style settings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.yml",
       "output": {
         ".html": {
@@ -1290,7 +1402,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.ITypography",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ITypography.yml\" sourcestartlinenumber=\"1\">Interface for typographic data. Coordinates system origin is in the left top corner. X axis going to right. Y axis going down.</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ITypography.yml\" sourcestartlinenumber=\"1\">Interface for typographic data. Coordinates system origin is in the left top corner. X-axis going to right. Y-axis going down.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1500,7 +1612,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.TypoSize",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.TypoSize.yml\" sourcestartlinenumber=\"1\">Defines a size of an element on the paper with width and height</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.TypoSize.yml\" sourcestartlinenumber=\"1\">Defines a size of an element on the paper with width and height in cm</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1599,6 +1711,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Typography.ElegantTypographyPageHeader",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Typography.ElegantTypographyPageHeader.yml\" sourcestartlinenumber=\"1\">Provides an elegant typograph based on sans serif fonts at default. See non-default constructor to change fonts</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Typography.TypoMetaData",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.yml\" sourcestartlinenumber=\"1\">Document metadata</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11010,6 +11136,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.I18N.DependencyInjection.BaseI18NServerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.I18N.DependencyInjection.BaseI18NServerFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.I18N.DependencyInjection.BaseI18NServerFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.BaseI18NServerFactory.yml\" sourcestartlinenumber=\"1\">Base class for a II18NServerFactory instancing a singleton I18NServer instance. Access this instance with property I18NInstance when overriding CreateInstance() method</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">DI container service provider for loading I18N client server instances. The following interfaces and delegates are loaded in the DI container:</p>\n<ul sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider.yml\" sourcestartlinenumber=\"2\">\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider.yml\" sourcestartlinenumber=\"2\">II18NServer as singleton</li>\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider.yml\" sourcestartlinenumber=\"3\">II18NClient as scoped instances</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider.yml",
       "output": {
         ".html": {
@@ -11020,7 +11174,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">DI container service provider for loading I18N instance</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">DI container service provider for loading I18N instance. The following interfaces and delegates are loaded in the DI container:</p>\n<ul sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"2\">\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"2\">II18N</li>\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"3\">TranslateDelegate</li>\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.I18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"4\">TranslateWithParamsDelegate</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",
@@ -11108,6 +11262,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.I18N.I18NClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.I18N.I18NClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.I18N.I18NClient",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.I18NClient.yml\" sourcestartlinenumber=\"1\">Current implementation of an <xref href=\"Bodoconsult.App.Abstractions.Interfaces.II18NClient\" data-throw-if-not-resolved=\"false\"></xref> instance for scoped access to I18N</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.I18N.I18NException.yml",
       "output": {
         ".html": {
@@ -11133,6 +11301,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.I18N.I18NMock",
       "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.I18NMock.yml\" sourcestartlinenumber=\"1\">Mock class for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.II18N\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.I18N.I18NServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.I18N.I18NServer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.I18N.I18NServer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.I18NServer.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.II18NServer\" data-throw-if-not-resolved=\"false\"></xref> holding translation resources. Instances have to be loaded as singleton in the app</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11528,6 +11710,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Office.Helpers.OpenXmlHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Office.Helpers.OpenXmlHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Office.Helpers.OpenXmlHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Office.Helpers.OpenXmlHelper.yml\" sourcestartlinenumber=\"1\">Helper class for OpenXml documents</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Office.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Office.Helpers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Office.Helpers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Office.Interfaces.BorderStyle.yml",
       "output": {
         ".html": {
@@ -11724,6 +11934,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.DependencyInjection.BodoconsultPdfWindowsContainerServiceProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.DependencyInjection.BodoconsultPdfWindowsContainerServiceProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.DependencyInjection.BodoconsultPdfWindowsContainerServiceProvider",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.DependencyInjection.BodoconsultPdfWindowsContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">DI container service provider for loading PDF creation features like <xref href=\"Bodoconsult.Pdf.Interfaces.IPdfBuilderFactory\" data-throw-if-not-resolved=\"false\"></xref> on Windows OS. Uses WindowsFontResolver class as fomt resolver.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.DependencyInjection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.DependencyInjection",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Pdf.Extensions.DataTableExtensions.yml",
       "output": {
         ".html": {
@@ -11748,6 +11986,34 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Pdf.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.Factories.PdfBuilderFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.Factories.PdfBuilderFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.Factories.PdfBuilderFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.Factories.PdfBuilderFactory.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.Pdf.Interfaces.IPdfBuilder\" data-throw-if-not-resolved=\"false\"></xref> delivering an instance of <xref href=\"Bodoconsult.Pdf.PdfSharp.PdfBuilder\" data-throw-if-not-resolved=\"false\"></xref> for a single-column text PDF file to create or an instance of\n<xref href=\"Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder\" data-throw-if-not-resolved=\"false\"></xref> for a multi-column text PDF file to create</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.Factories.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.Factories.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.Factories",
       "Summary": null
     },
     {
@@ -11808,6 +12074,62 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.Interfaces.IPdfBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.yml\" sourcestartlinenumber=\"1\">Interface for PDF file builder instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.Interfaces.IPdfBuilderFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.Interfaces.IPdfBuilderFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.Interfaces.IPdfBuilderFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.Interfaces.IPdfBuilderFactory.yml\" sourcestartlinenumber=\"1\">Interface for creating instances of <xref href=\"Bodoconsult.Pdf.Interfaces.IPdfBuilder\" data-throw-if-not-resolved=\"false\"></xref> for creating a PDF file</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.yml\" sourcestartlinenumber=\"1\">Class representing a multi-column text PDF document and basic functionality to add content to it. Adjust to use with LDML. Does not create TOC etc. automatically</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Pdf.PdfSharp.PdfBuilder.yml",
       "output": {
         ".html": {
@@ -11818,7 +12140,21 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Pdf.PdfSharp.PdfBuilder",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.PdfSharp.PdfBuilder.yml\" sourcestartlinenumber=\"1\">Class representing a PDF document and basic functionality to add content to it. Adjust to use with LDML. Does not create TOC etc. automatically</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.PdfSharp.PdfBuilder.yml\" sourcestartlinenumber=\"1\">Class representing a single-column textPDF document and basic functionality to add content to it. Adjust to use with LDML. Does not create TOC etc. automatically</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SectionInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SectionInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SectionInfo",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SectionInfo.yml\" sourcestartlinenumber=\"1\">Section information</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13418,6 +13754,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Documents.PaperFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Documents.PaperFormat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Documents.PaperFormat",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Documents.PaperFormat.yml\" sourcestartlinenumber=\"1\">Paper format</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Text.Documents.Paragraph.yml",
       "output": {
         ".html": {
@@ -13751,6 +14101,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.Text.Documents.SectionTitleStyle",
       "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Documents.SectionTitleStyle.yml\" sourcestartlinenumber=\"1\">Style for <xref href=\"Bodoconsult.Text.Documents.SectionTitle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Documents.Size.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Documents.Size.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Documents.Size",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Documents.Size.yml\" sourcestartlinenumber=\"1\">Defines a size of an element on the paper with width and height in cm</p>\n"
     },
     {
       "type": "ManagedReference",
