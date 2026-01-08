@@ -1,37 +1,27 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
 using System.Collections.Generic;
+using Bodoconsult.App.Abstractions.Helpers;
+using Bodoconsult.Office;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Bodoconsult.Text.Renderer.Docx.Blocks;
 
 /// <summary>
-/// Base renderer implementation for HTML elements
+/// Docx rendering element for <see cref="Toc1"/> instances
 /// </summary>
-public abstract class ParagraphDocxTextRendererElementBase : DocxTextRendererElementBase
+public class TocxDocxTextRendererElement : ParagraphDocxTextRendererElementBase
 {
-    protected readonly ParagraphBase _paragraphBase;
-
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="block">Current block</param>
-    protected ParagraphDocxTextRendererElementBase(Block block) : base(block)
+    public TocxDocxTextRendererElement(ParagraphBase tocx) : base(tocx)
     {
-        if (block is not ParagraphBase paragraphBase)
-        {
-            throw new NotSupportedException($"block is {block.GetType().Name} not implementing ParagraphBase");
-        }
-        _paragraphBase = paragraphBase;
+        ClassName = tocx.StyleName;
     }
-
-    /// <summary>
-    /// Current paragraph to render in
-    /// </summary>
-    public Paragraph Paragraph { get; set; }
 
     /// <summary>
     /// Render the element
@@ -59,8 +49,27 @@ public abstract class ParagraphDocxTextRendererElementBase : DocxTextRendererEle
 
         var runs = new List<OpenXmlElement>();
 
-        DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, childs, runs);
-        renderer.DocxDocument.AddParagraph(runs, styleName);
-    }
 
+        DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, childs, runs);
+        runs.Add(new Run(new TabChar()));
+
+        
+
+        var para = renderer.DocxDocument.AddParagraph(runs, styleName);
+        para.ParagraphProperties ??= new ParagraphProperties();
+        para.ParagraphProperties.Tabs = new Tabs();
+        var docStyle = (PageStyleBase)renderer.Styleset.FindStyle("DocumentStyle");
+
+
+        var tabStop = new TabStop
+        {
+            Val = TabStopValues.Right,
+            Position = MeasurementHelper.GetTwipsFromCm(docStyle.ColumnWidth)
+        };
+        para.ParagraphProperties.Tabs.Append(tabStop);
+
+
+        // Add bookmark page ref
+        DocxBuilder.AddBookmarkRef(para, _paragraphBase.TagName);
+    }
 }

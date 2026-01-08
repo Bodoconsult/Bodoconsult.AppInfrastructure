@@ -27,7 +27,6 @@ public class SectionPdfTextRendererElement : SectionBasePdfTextRendererElement
     ///// <param name="renderer">Current renderer</param>
     //public override void RenderIt(ITextDocumentRenderer renderer)
     //{
-
     //    DocumentRendererHelper.RenderBlockChildsToHtml(renderer, _section.ChildBlocks);
     //}
 
@@ -41,11 +40,11 @@ public class SectionPdfTextRendererElement : SectionBasePdfTextRendererElement
 
         if (!string.IsNullOrEmpty(metaData.HeaderText))
         {
-            renderer.PdfDocument.SetHeader(metaData.HeaderText, "Header", metaData.LogoPath);
+            renderer.PdfDocument.SetHeader();
         }
         if (!string.IsNullOrEmpty(renderer.Document.DocumentMetaData.FooterText))
         {
-            renderer.PdfDocument.SetFooter(metaData.FooterText);
+            renderer.PdfDocument.SetFooter();
         }
 
         renderer.PdfDocument.CreateContentSection(_section.IsRestartPageNumberingRequired, _section.PageNumberFormat);

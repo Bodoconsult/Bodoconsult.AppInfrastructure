@@ -70,8 +70,8 @@ public class PdfBuilderTests
 
         //pdf.SetDocInfo("Test", "Subject", "Author");
 
-        pdf.SetHeader("Kopfzeile", "Header1", TestHelper.TestLogoImage2);
-        pdf.SetFooter("Footer \t<<page>> / <<pages>>");
+        pdf.SetHeader();
+        pdf.SetFooter();
 
         pdf.CreateTocSection();
         pdf.AddToc1Entry("Überschrift 1", "b1");

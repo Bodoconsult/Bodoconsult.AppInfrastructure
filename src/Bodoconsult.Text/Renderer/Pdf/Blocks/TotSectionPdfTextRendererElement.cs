@@ -36,11 +36,11 @@ public class TotSectionPdfTextRendererElement : PdfTextRendererElementBase
 
         if (!string.IsNullOrEmpty(metaData.HeaderText))
         {
-            renderer.PdfDocument.SetHeader(metaData.HeaderText, "Header", metaData.LogoPath);
+            renderer.PdfDocument.SetHeader();
         }
         if (!string.IsNullOrEmpty(renderer.Document.DocumentMetaData.FooterText))
         {
-            renderer.PdfDocument.SetFooter(metaData.FooterText);
+            renderer.PdfDocument.SetFooter();
         }
 
         renderer.PdfDocument.CreateTotSection(_totSection.IsRestartPageNumberingRequired, _totSection.PageNumberFormat);

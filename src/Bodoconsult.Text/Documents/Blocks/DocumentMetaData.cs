@@ -105,7 +105,7 @@ public class DocumentMetaData : Block, ITypoMetaData
     public string TotHeading { get; set; } = "Table of tables";
 
     /// <summary>
-    /// The word written before the page number in a page footer. Default: Page
+    /// The word like Page or Seite written before the page number in a page footer or header. Default: Page
     /// </summary>
     public string PageNumberPrefix { get; set; } = "Page";
 
@@ -160,24 +160,30 @@ public class DocumentMetaData : Block, ITypoMetaData
     /// </summary>
     public string HeaderText { get; set; }
 
+
     /// <summary>
-    /// Defines a template for the header.
-    /// Use ITypography.PageFieldIndicator, ITypography.CompanyIndicator, ITypography.TextIndicator and ITypography.LogoIndicator to position these elements in the left, middle or right segment.
-    /// Segments separated by pipe.
+    /// Defines a template for the header. Segments left, middle or right are separated by pipe.
+    /// Use the following indicators to position these elements in the left, middle or right segment:
+    /// - ITypography.PageFieldIndicator for a page number
+    /// - ITypography.CompanyIndicator for the company name
+    /// - ITypography.TextIndicator for header or footer text or if missing the title
+    /// - ITypography.LogoIndicator for a logo
+    /// - ITypography.DateIndicator for the current date
+    /// - ITypography.DateTimeIndicator for the current date and time
     /// </summary>
     public string HeaderTemplate { get; set; } = "<<text>>||<<logo>>";
 
     /// <summary>
-    /// Defines a template for the header.
-    /// Use ITypography.PageFieldIndicator, ITypography.TextIndicator, ITypography.CompanyIndicator and ITypography.LogoIndicator to position these elements in the left, middle or right segment.
-    /// Segments separated by pipe.
+    /// Defines a template for the header. Segments left, middle or right are separated by pipe.
+    /// Use the following indicators to position these elements in the left, middle or right segment:
+    /// - ITypography.PageFieldIndicator for a page number
+    /// - ITypography.CompanyIndicator for the company name
+    /// - ITypography.TextIndicator for header or footer text or if missing the title
+    /// - ITypography.LogoIndicator for a logo
+    /// - ITypography.DateIndicator for the current date
+    /// - ITypography.DateTimeIndicator for the current date and time
     /// </summary>
-    public string FooterTemplate { get; set; } = "<<text>>||<<page>>";
-
-    /// <summary>
-    /// Text like page or Seite to write in front of the page number in the footer
-    /// </summary>
-    public string FooterPageText { get; set; } = "Page";
+    public string FooterTemplate { get; set; } = "<<text>>|<<date>>|<<page>>";
 
     /// <summary>
     /// Add the current element to a document defined in LDML (Logical document markup language)

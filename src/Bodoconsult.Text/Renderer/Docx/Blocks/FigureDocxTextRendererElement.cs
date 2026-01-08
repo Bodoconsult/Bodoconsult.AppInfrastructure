@@ -49,7 +49,7 @@ public class FigureDocxTextRendererElement : DocxTextRendererElementBase
         var sb = new List<OpenXmlElement>();
         DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, childs, sb);
 
-        renderer.DocxDocument.AddParagraph(sb, "Figure");
+        renderer.DocxDocument.AddParagraph(sb, "Figure", _figure.TagName);
 
     }
 }

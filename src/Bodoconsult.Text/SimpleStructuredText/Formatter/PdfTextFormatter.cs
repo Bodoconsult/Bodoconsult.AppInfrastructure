@@ -83,13 +83,11 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
         };
 
         //Pdf.SetDocInfo(Title, Subject, Author);
-        Pdf.SetHeader(Author, "Header", LogoImagePath);
-        Pdf.SetFooter($"{DateTime.Now:dd.MM.yyyy}\t<<page>>");
+        Pdf.SetHeader();
+        Pdf.SetFooter();
         // Pdf.BackgroundImagePath = BackgroundImagePath;
         Pdf.CreateTocSection("Inhaltsverzeichnis");
         Pdf.CreateContentSection();
-
-
 
         for (var i = 0; i < StructuredText.TextItems.Count; i++)
         {

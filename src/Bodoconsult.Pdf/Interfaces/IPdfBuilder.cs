@@ -425,27 +425,21 @@ public interface IPdfBuilder: IDisposable
     void AddEquation(string imagePath, string legend, string tag, double width, double height);
 
     /// <summary>
-    /// Set a footer text for content and toc
-    /// Use &#60;&#60;page&#62;&#62; and &#60;&#60;pages&#62;&#62; fur current page number and number of pages in document
+    /// Set a footer text for content and toc. Use style Footer
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="styleName"></param>
-    void SetFooter(string text, string styleName = "Footer");
+
+    void SetFooter();
+
+    /// <summary>
+    /// Set a header for the document. Use style Header
+    /// </summary>
+    void SetHeader();
 
     /// <summary>
     /// Set a header for the document
     /// </summary>
-    /// <param name="text">Header text</param>
     /// <param name="styleName">Name of the style to use for the header</param>
-    void SetHeader(string text, string styleName = "Header");
-
-    /// <summary>
-    /// Set a header for the document
-    /// </summary>
-    /// <param name="text">Header text</param>
-    /// <param name="styleName">Name of the style to use for the header</param>
-    /// <param name="logoPath">Path to a logo image or null</param>
-    void SetHeader(string text, string styleName, string logoPath);
+    void SetHeader(string styleName);
 
     /// <summary>
     /// Add a table to the document

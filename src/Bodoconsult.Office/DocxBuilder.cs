@@ -3,15 +3,14 @@
 using Bodoconsult.App.Abstractions.Extensions;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Abstractions.Typography;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Vml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using Bodoconsult.App.Abstractions.Typography;
 using A = DocumentFormat.OpenXml.Drawing;
 using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Paragraph = DocumentFormat.OpenXml.Wordprocessing.Paragraph;
@@ -33,6 +32,7 @@ namespace Bodoconsult.Office;
 public class DocxBuilder : IDisposable
 {
     private int _imageCounter = -1;
+    private int _bookmarkCounter = -1;
 
     /// <summary>
     /// DOCX document
@@ -166,13 +166,15 @@ public class DocxBuilder : IDisposable
         //{
         //    Val = new OnOffValue(true)
         //};
-        //Settings.Settings.Append(updateFields);
+        //Settings.Settings.PrependChild(updateFields);
+        //Settings.Settings.Save();
 
         // Add style part
         StyleDefinitionsPart = Docx.MainDocumentPart.StyleDefinitionsPart ?? AddStylesPartToPackage();
         Styles = StyleDefinitionsPart?.Styles;
 
-        NumberingDefinitionsPart = MainDocumentPart.NumberingDefinitionsPart ?? MainDocumentPart.AddNewPart<NumberingDefinitionsPart>("NumberingDefinitionsPart001");
+        NumberingDefinitionsPart = MainDocumentPart.NumberingDefinitionsPart ??
+                                   MainDocumentPart.AddNewPart<NumberingDefinitionsPart>("NumberingDefinitionsPart001");
 
         // ReSharper disable once ConstantNullCoalescingCondition
         NumberingDefinitionsPart.Numbering ??= new Numbering();
@@ -328,11 +330,15 @@ public class DocxBuilder : IDisposable
     /// <summary>
     /// Add a header to the current section
     /// </summary>
-    /// <param name="headerText">Header text. May contain &lt;&lt;Page&gt;&gt; being replaced by page number field</param>
     /// <param name="position">Position of the page number (if &lt;&lt;Page&gt;&gt; is used) in cm relative to typearea</param>
     /// <param name="pageNumberFormat">Page number format</param>
-    public void AddHeaderToCurrentSection(string headerText, double position, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
+    public void AddHeaderToCurrentSection(double position,
+        PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
+        if (string.IsNullOrEmpty(TypoMetaData.HeaderTemplate))
+        {
+            return;
+        }
 
         var headerPart = MainDocumentPart.AddNewPart<HeaderPart>();
 
@@ -342,7 +348,26 @@ public class DocxBuilder : IDisposable
 
         var posTwips = MeasurementHelper.GetTwipsFromCm(position);
 
-        var para = CreateHeaderFooterParagraph(headerPart, $"\t{headerText}", styleId, posTwips, pageNumberFormat, true);
+        var pPr = new ParagraphProperties(new ParagraphStyleId { Val = styleId });
+
+        var para = new Paragraph(pPr);
+
+        var sections = TypoMetaData.HeaderTemplate.ToLowerInvariant().Split('|');
+
+        // Draw left element
+        CreateHeaderFooterElement(headerPart, TypoMetaData, sections[0], para, 0, true, posTwips, pageNumberFormat,
+            styleId);
+
+        // Draw middle element
+        CreateHeaderFooterElement(headerPart, TypoMetaData, sections[1], para, 1, true, posTwips, pageNumberFormat,
+            styleId);
+
+        // Draw right element
+        CreateHeaderFooterElement(headerPart, TypoMetaData, sections[2], para, 2, true, posTwips, pageNumberFormat,
+            styleId);
+
+
+        //var para = CreateHeaderFooterParagraph(headerPart, $"\t{headerText}", styleId, posTwips, pageNumberFormat, true);
 
         headerPart.Header = new Header(para);
 
@@ -353,93 +378,106 @@ public class DocxBuilder : IDisposable
         });
     }
 
-    private Paragraph CreateHeaderFooterParagraph(OpenXmlPart docPart, string text, string styleId, int position, PageNumberFormatEnum pageNumberFormat, bool header)
+    private void CreateHeaderFooterElement(OpenXmlPart docPart, ITypoMetaData typoMetaData, string section,
+        Paragraph para, int position, bool isHeader, int posTwips, PageNumberFormatEnum pageNumberFormat,
+        string styleId)
     {
-        var pPr = new ParagraphProperties(new ParagraphStyleId { Val = styleId });
-
-        var para = new Paragraph(pPr);
-
-        var runs = new List<Run>();
-
-        if (header && !string.IsNullOrEmpty(TypoMetaData?.LogoPath))
+        if (position == 1)
         {
-            _imageCounter++;
-            var imageRun = CreateImageRun(docPart, TypoMetaData.LogoPath, MeasurementHelper.GetPxFromCm(TypoMetaData.LogoWidth), 0, _imageCounter, "Header");
-            runs.Add(imageRun);
+            // Add a tab position
+            para.ParagraphProperties ??= new ParagraphProperties();
 
-        }
+            para.ParagraphProperties.Tabs = new Tabs();
+            var tabStop = new TabStop
+            {
+                Val = TabStopValues.Center,
+                Position = posTwips / 2
+            };
+            para.ParagraphProperties.Tabs.Append(tabStop);
 
-        runs.AddRange(GetRuns(text, position, pPr, pageNumberFormat));
+            tabStop = new TabStop
+            {
+                Val = TabStopValues.Right,
+                Position = posTwips
+            };
+            para.ParagraphProperties.Tabs.Append(tabStop);
 
-        foreach (var run in runs)
-        {
+            // Add the tab now
+            var run = CreateRun("\t");
             para.Append(run);
         }
 
-        return para;
-    }
-
-    /// <summary>
-    /// Add a footer to the current section
-    /// </summary>
-    /// <param name="footerText">Footer text. May contain &lt;&lt;Page&gt;&gt; being replaced by page number field</param>
-    /// <param name="position">Position of the page number (if &lt;&lt;Page&gt;&gt; is used) in cm relative to typearea</param>
-    /// <param name="pageNumberFormat">Page number format</param>
-    public void AddFooterToCurrentSection(string footerText, double position, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
-    {
-
-        var footerPart = MainDocumentPart.AddNewPart<FooterPart>();
-
-        var footerPartId = MainDocumentPart.GetIdOfPart(footerPart);
-
-        const string styleId = "Footer";
-
-        var posTwips = MeasurementHelper.GetTwipsFromCm(position);
-
-        var para = CreateHeaderFooterParagraph(footerPart, footerText, styleId, posTwips, pageNumberFormat, false);
-
-        footerPart.Footer = new Footer(para);
-
-        CurrentSection.PrependChild(new FooterReference
+        // Logo
+        if (section == ITypography.LogoIndicator && !string.IsNullOrEmpty(TypoMetaData?.LogoPath))
         {
-            Id = footerPartId,
-            Type = HeaderFooterValues.Default
-        });
-    }
-
-    private static List<Run> GetRuns(string text, int position, ParagraphProperties pPr, PageNumberFormatEnum pageNumberFormat)
-    {
-        var result = new List<Run>();
-
-        var parts = new List<string>();
-
-        var pNf = string.Empty;
-
-        var i = text.IndexOf(ITypography.PageFieldIndicator, StringComparison.InvariantCultureIgnoreCase);
-
-        // Add a tab for the page number
-        pPr.Tabs = new Tabs();
-        var tabStop = new TabStop
-        {
-            Val = TabStopValues.Right,
-            Position = position
-        };
-        pPr.Tabs.Append(tabStop);
-
-        if (i < 0)
-        {
-            parts.Add(text);
+            _imageCounter++;
+            var imageRun = CreateImageRun(docPart, TypoMetaData.LogoPath,
+                MeasurementHelper.GetPxFromCm(TypoMetaData.LogoWidth), 0, _imageCounter, "Header");
+            para.Append(imageRun);
         }
-        else
+
+        // Tab
+        if (section == "tab")
         {
-            // Split the text in runs
-            var before = text[..i];
-            var after = text[(i + ITypography.PageFieldIndicator.Length)..];
+            // Add a tab position
+            para.ParagraphProperties ??= new ParagraphProperties();
 
-            parts.Add(before);
-            parts.Add(ITypography.PageFieldIndicator);
-            parts.Add(after);
+            para.ParagraphProperties.Tabs = new Tabs();
+            var tabStop = new TabStop
+            {
+                Val = TabStopValues.Right,
+                Position = posTwips
+            };
+            para.ParagraphProperties.Tabs.Append(tabStop);
 
+            tabStop = new TabStop
+            {
+                Val = TabStopValues.Center,
+                Position = posTwips / 2
+            };
+            para.ParagraphProperties.Tabs.Append(tabStop);
+
+            // Add the tab now
+            var run = CreateRun("\t");
+            para.Append(run);
+        }
+
+        // Footer / header text
+        if (section == ITypography.TextIndicator)
+        {
+            var text = isHeader ? typoMetaData.HeaderText : typoMetaData.FooterText;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                text = typoMetaData.Title;
+                if (string.IsNullOrEmpty(text))
+                {
+                    return;
+                }
+            }
+
+            var run = CreateRun(text);
+            para.Append(run);
+        }
+
+        // Footer / header text
+        if (section == ITypography.CompanyIndicator)
+        {
+            var text = typoMetaData.Company;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            var run = CreateRun(text);
+            para.Append(run);
+        }
+
+        // Page number
+        if (section == ITypography.PageFieldIndicator)
+        {
+            string pNf;
             switch (pageNumberFormat)
             {
                 case PageNumberFormatEnum.UpperRoman:
@@ -459,28 +497,112 @@ public class DocxBuilder : IDisposable
                     pNf = "Arabic";
                     break;
             }
+
+            if (!string.IsNullOrEmpty(typoMetaData.PageNumberPrefix))
+            {
+                var run = CreateRun($"{typoMetaData.PageNumberPrefix} ");
+                para.Append(run);
+            }
+
+            para.Append(new Run(new FieldChar { FieldCharType = FieldCharValues.Begin }));
+            para.Append(new Run(new FieldCode
+            { Space = SpaceProcessingModeValues.Preserve, Text = $" PAGE  \\* {pNf}  \\* MERGEFORMAT " }));
+            para.Append(new Run(new FieldChar { FieldCharType = FieldCharValues.Separate }));
+            para.Append(new Run(new RunProperties(new NoProof()), new Text("1")));
+            para.Append(new Run(new FieldChar { FieldCharType = FieldCharValues.End }));
+
         }
 
-        foreach (var part in parts)
+        // Date
+        if (section == ITypography.DateIndicator)
         {
-            if (part == ITypography.PageFieldIndicator)
-            {
-                result.Add(new Run(new FieldChar { FieldCharType = FieldCharValues.Begin }));
-                result.Add(new Run(new FieldCode { Space = SpaceProcessingModeValues.Preserve, Text = $" PAGE  \\* {pNf}  \\* MERGEFORMAT " }));
-                result.Add(new Run(new FieldChar { FieldCharType = FieldCharValues.Separate }));
-                result.Add(new Run(new RunProperties(new NoProof()), new Text("1")));
-                result.Add(new Run(new FieldChar { FieldCharType = FieldCharValues.End }));
-            }
-            else
-            {
-                var run = new Run();
-                run.Append(new Text(part) { Space = SpaceProcessingModeValues.Preserve });
-                result.Add(run);
-            }
+            var text = DateTime.Now.ToString("d", typoMetaData.CultureInfo);
+            var run = CreateRun(text);
+            para.Append(run);
         }
-        return result;
+
+        // DateTime
+        if (section == ITypography.DateTimeIndicator)
+        {
+            var text = DateTime.Now.ToString("g", typoMetaData.CultureInfo);
+            var run = CreateRun(text);
+            para.Append(run);
+        }
+
+        if (position == 1)
+        {
+            // Add the second tab now
+            var run = CreateRun("\t");
+            para.Append(run);
+        }
     }
 
+    /// <summary>
+    /// Add a page refernece for a bookmark
+    /// </summary>
+    /// <param name="para">Paragraph to add the reference</param>
+    /// <param name="bookmark">Name of the bookmark</param>
+    public static void AddBookmarkRef(Paragraph para, string bookmark)
+    {
+        para.Append(new Run(new FieldChar { FieldCharType = FieldCharValues.Begin, Dirty = true }));
+        para.Append(new Run(new FieldCode
+        {
+            Space = SpaceProcessingModeValues.Preserve,
+            Text = $" PAGEREF {bookmark} \\# \"0\"  \\* MERGEFORMAT "
+        }));
+        para.Append(new Run(new FieldChar { FieldCharType = FieldCharValues.Separate }));
+        para.Append(new Run(new RunProperties(new NoProof())));
+        para.Append(new Run(new FieldChar { FieldCharType = FieldCharValues.End }));
+    }
+
+
+    /// <summary>
+    /// Add a footer to the current section
+    /// </summary>
+    /// <param name="position">Position of the page number (if &lt;&lt;Page&gt;&gt; is used) in cm relative to typearea</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    public void AddFooterToCurrentSection(double position,
+        PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
+    {
+        if (string.IsNullOrEmpty(TypoMetaData.FooterTemplate))
+        {
+            return;
+        }
+
+        var footerPart = MainDocumentPart.AddNewPart<FooterPart>();
+
+        var footerPartId = MainDocumentPart.GetIdOfPart(footerPart);
+
+        const string styleId = "Footer";
+
+        var posTwips = MeasurementHelper.GetTwipsFromCm(position);
+
+        var pPr = new ParagraphProperties(new ParagraphStyleId { Val = styleId });
+
+        var para = new Paragraph(pPr);
+
+        var sections = TypoMetaData.FooterTemplate.ToLowerInvariant().Split('|');
+
+        // Draw left element
+        CreateHeaderFooterElement(footerPart, TypoMetaData, sections[0], para, 0, false, posTwips, pageNumberFormat,
+            styleId);
+
+        // Draw middle element
+        CreateHeaderFooterElement(footerPart, TypoMetaData, sections[1], para, 1, false, posTwips, pageNumberFormat,
+            styleId);
+
+        // Draw right element
+        CreateHeaderFooterElement(footerPart, TypoMetaData, sections[2], para, 2, false, posTwips, pageNumberFormat,
+            styleId);
+
+        footerPart.Footer = new Footer(para);
+
+        CurrentSection.PrependChild(new FooterReference
+        {
+            Id = footerPartId,
+            Type = HeaderFooterValues.Default
+        });
+    }
 
     /// <summary>
     /// Create a new style with the specified styleid and stylename
@@ -521,9 +643,12 @@ public class DocxBuilder : IDisposable
     {
         Debug.Print($"{styleid}: Alignment {typoStyle.TextAlignment}");
         Debug.Print($"{styleid}: Bold {typoStyle.Bold}");
-        Debug.Print($"{styleid}: L{typoStyle.TypoMargins.Left} T{typoStyle.TypoMargins.Top} R{typoStyle.TypoMargins.Right} B{typoStyle.TypoMargins.Bottom}");
-        Debug.Print($"{styleid}: L{typoStyle.TypoPaddings.Left} T{typoStyle.TypoPaddings.Top} R{typoStyle.TypoPaddings.Right} B{typoStyle.TypoPaddings.Bottom}");
-        Debug.Print($"{styleid}: L{typoStyle.TypoBorderThickness.Left} T{typoStyle.TypoBorderThickness.Top} R{typoStyle.TypoBorderThickness.Right} B{typoStyle.TypoBorderThickness.Bottom}");
+        Debug.Print(
+            $"{styleid}: L{typoStyle.TypoMargins.Left} T{typoStyle.TypoMargins.Top} R{typoStyle.TypoMargins.Right} B{typoStyle.TypoMargins.Bottom}");
+        Debug.Print(
+            $"{styleid}: L{typoStyle.TypoPaddings.Left} T{typoStyle.TypoPaddings.Top} R{typoStyle.TypoPaddings.Right} B{typoStyle.TypoPaddings.Bottom}");
+        Debug.Print(
+            $"{styleid}: L{typoStyle.TypoBorderThickness.Left} T{typoStyle.TypoBorderThickness.Top} R{typoStyle.TypoBorderThickness.Right} B{typoStyle.TypoBorderThickness.Bottom}");
 
         StyleRunProperties styleRunProperties = new();
 
@@ -666,7 +791,8 @@ public class DocxBuilder : IDisposable
         // Borders
         var tblBorders = new ParagraphBorders();
         pPr.Append(tblBorders);
-        var borderColor = new StringValue { Value = (typoStyle.TypoBorderBrush?.TypoColor ?? TypoColors.Black).ToHtml2() };
+        var borderColor = new StringValue
+        { Value = (typoStyle.TypoBorderBrush?.TypoColor ?? TypoColors.Black).ToHtml2() };
 
         // Top border
         if (typoStyle.TypoBorderThickness.Top > 0)
@@ -802,7 +928,8 @@ public class DocxBuilder : IDisposable
     /// <param name="uiPriority">UI priority</param>
     /// <param name="styleRunProperties">Current style run properties</param>
     /// <returns></returns>
-    private static Style CreateStyle(Styles styles, string styleid, string stylename, int uiPriority, StyleRunProperties styleRunProperties)
+    private static Style CreateStyle(Styles styles, string styleid, string stylename, int uiPriority,
+        StyleRunProperties styleRunProperties)
     {
         var style = new Style
         {
@@ -831,6 +958,7 @@ public class DocxBuilder : IDisposable
         {
             return;
         }
+
         MemoryStream.Close();
         MemoryStream.Dispose();
     }
@@ -849,6 +977,55 @@ public class DocxBuilder : IDisposable
     }
 
     /// <summary>
+    /// Add a paragraphic
+    /// </summary>
+    /// <param name="text">Text for the paragraph</param>
+    /// <param name="styleName">Name of the style fosr the paragraph</param>
+    /// <param name="bookmark">Name of an empty bookmark to add</param>
+    public Paragraph AddParagraph(string text, string styleName, string bookmark)
+    {
+        _bookmarkCounter++;
+
+        var run = CreateRun(text);
+
+        var list = new List<OpenXmlElement> { run };
+        var para = AddParagraph(list, styleName);
+
+        var bstart = new BookmarkStart { Id = _bookmarkCounter.ToString(), Name = bookmark };
+        para.Append(bstart);
+
+        var bend = new BookmarkEnd { Id = _bookmarkCounter.ToString() };
+        para.Append(bend);
+        return para;
+    }
+
+    /// <summary>
+    /// Add a paragraph
+    /// </summary>
+    /// <param name="runs">Text parts to add to the paragraph</param>
+    /// <param name="styleName">Name of the style for the paragraph</param>
+    /// <param name="bookmark">Name of an empty bookmark to add</param>
+    public Paragraph AddParagraph(IList<OpenXmlElement> runs, string styleName, string bookmark)
+    {
+        _bookmarkCounter++;
+
+        var para = CreateBaseParagraph(styleName);
+
+        var bstart = new BookmarkStart { Id = _bookmarkCounter.ToString(), Name = bookmark };
+        para.Append(bstart);
+
+        var bend = new BookmarkEnd { Id = _bookmarkCounter.ToString() };
+        para.Append(bend);
+
+        foreach (var run in runs)
+        {
+            para.AppendChild(run);
+        }
+
+        return para;
+    }
+
+    /// <summary>
     /// Add a paragraph
     /// </summary>
     /// <param name="runs">Text parts to add to the paragraph</param>
@@ -861,8 +1038,10 @@ public class DocxBuilder : IDisposable
         {
             para.AppendChild(run);
         }
+
         return para;
     }
+
 
     /// <summary>
     /// Add a paragraph
@@ -894,7 +1073,8 @@ public class DocxBuilder : IDisposable
     /// <param name="imageCounter">Current image counter</param>
     /// <param name="prefix">Prefix to separate header / footer images</param>
     /// <returns>Run with the image</returns>
-    public static Run CreateImageRun(OpenXmlPart mainDocumentPart, string path, int width, int height, int imageCounter, string prefix = null)
+    public static Run CreateImageRun(OpenXmlPart mainDocumentPart, string path, int width, int height, int imageCounter,
+        string prefix = null)
     {
         Debug.Print($"Image {imageCounter}");
 
@@ -1078,7 +1258,8 @@ public class DocxBuilder : IDisposable
     /// <param name="pageStyle">Current page style</param>
     /// <param name="isLastSection">Is the new section the last section. Default: true</param>
     /// <param name="restartPageNumbering">Restart page numbering</param>
-    public SectionProperties AddSection(ITypoPageStyle pageStyle, bool isLastSection = true, bool restartPageNumbering = false)
+    public SectionProperties AddSection(ITypoPageStyle pageStyle, bool isLastSection = true,
+        bool restartPageNumbering = false)
     {
 
         if (CurrentSection != null)
@@ -1131,11 +1312,15 @@ public class DocxBuilder : IDisposable
         var right = MeasurementHelper.GetDxaFromCm(pageStyle.TypoMargins.Right);
         var bottom = MeasurementHelper.GetDxaFromCm(pageStyle.TypoMargins.Bottom);
 
-        var pgSz = section.ChildElements.OfType<PageSize>().FirstOrDefault() ?? section.AppendChild(new PageSize { Width = width, Height = height });
+        var pgSz = section.ChildElements.OfType<PageSize>().FirstOrDefault() ??
+                   section.AppendChild(new PageSize { Width = width, Height = height });
 
-        pgSz.Orient = pageStyle.TypoPaperFormat.Size.Width > pageStyle.TypoPaperFormat.Size.Height ? new EnumValue<PageOrientationValues>(PageOrientationValues.Landscape) : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
+        pgSz.Orient = pageStyle.TypoPaperFormat.Size.Width > pageStyle.TypoPaperFormat.Size.Height
+            ? new EnumValue<PageOrientationValues>(PageOrientationValues.Landscape)
+            : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
 
-        var pageMargin = new PageMargin { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left, Header = (uint)(top * 0.25) };
+        var pageMargin = new PageMargin
+        { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left, Header = (uint)(top * 0.25) };
         section.Append(pageMargin);
 
 
@@ -1162,13 +1347,13 @@ public class DocxBuilder : IDisposable
         var hr = mainPart.AddHyperlinkRelationship(new Uri(url), true);
         var hrContactId = hr.Id;
         return new Hyperlink(
-                    new ProofError { Type = ProofingErrorValues.GrammarStart },
-                    new Run(
-                        new RunProperties(
-                            new RunStyle { Val = "Hyperlink" },
-                            new Color { Val = new StringValue(TypoColors.Blue.ToHtml2()) }),
-                        new Text(text) { Space = SpaceProcessingModeValues.Preserve }
-                    ))
+                new ProofError { Type = ProofingErrorValues.GrammarStart },
+                new Run(
+                    new RunProperties(
+                        new RunStyle { Val = "Hyperlink" },
+                        new Color { Val = new StringValue(TypoColors.Blue.ToHtml2()) }),
+                    new Text(text) { Space = SpaceProcessingModeValues.Preserve }
+                ))
         { History = OnOffValue.FromBoolean(true), Id = hrContactId };
     }
 
@@ -1290,6 +1475,7 @@ public class DocxBuilder : IDisposable
         {
             run.AppendChild(subRun);
         }
+
         return run;
     }
 
@@ -1313,6 +1499,7 @@ public class DocxBuilder : IDisposable
         {
             run.AppendChild(subRun);
         }
+
         return run;
     }
 
@@ -1336,6 +1523,7 @@ public class DocxBuilder : IDisposable
         {
             run.AppendChild(subRun);
         }
+
         return run;
     }
 
@@ -1454,7 +1642,8 @@ public class DocxBuilder : IDisposable
     /// </summary>
     /// <param name="rows">List of rows</param>
     /// <param name="typoTableStyle">Style to use for the table</param>
-    public void AddTable(List<DocxTableRow> rows, ITypoTableStyle typoTableStyle)
+    /// <param name="bookmark">Name of an empty bookmark to add</param>
+    public void AddTable(List<DocxTableRow> rows, ITypoTableStyle typoTableStyle, string bookmark)
     {
         var table = new Table();
 
@@ -1547,9 +1736,31 @@ public class DocxBuilder : IDisposable
         }
 
         var para = CreateEmptyParagraph(typoTableStyle.TypoMargins.Top);
+        if (!string.IsNullOrEmpty(bookmark))
+        {
+            _bookmarkCounter++;
+
+            var bstart = new BookmarkStart { Id = _bookmarkCounter.ToString(), Name = bookmark };
+            para.Append(bstart);
+
+            var bend = new BookmarkEnd { Id = _bookmarkCounter.ToString() };
+            para.Append(bend);
+        }
+
+
         Body.AppendChild(para);
 
         Body.Append(table);
+    }
+
+    /// <summary>
+    /// Add a table
+    /// </summary>
+    /// <param name="rows">List of rows</param>
+    /// <param name="typoTableStyle">Style to use for the table</param>
+    public void AddTable(List<DocxTableRow> rows, ITypoTableStyle typoTableStyle)
+    {
+        AddTable(rows, typoTableStyle, null);
     }
 
     /// <summary>

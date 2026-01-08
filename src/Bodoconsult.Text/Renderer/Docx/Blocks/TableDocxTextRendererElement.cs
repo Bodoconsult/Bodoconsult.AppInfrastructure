@@ -62,7 +62,7 @@ public class TableDocxTextRendererElement : DocxTextRendererElementBase
 
         }
 
-        renderer.DocxDocument.AddTable(rows, (ITypoTableStyle)style);
+        renderer.DocxDocument.AddTable(rows, (ITypoTableStyle)style, _table.TagName);
 
         // Legend
         var childs = new List<Inline>();

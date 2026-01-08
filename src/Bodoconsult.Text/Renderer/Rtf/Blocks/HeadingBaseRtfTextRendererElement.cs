@@ -6,6 +6,7 @@ using System.Text;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Bodoconsult.Text.Renderer.Rtf.Blocks;
 

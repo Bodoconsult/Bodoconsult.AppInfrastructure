@@ -1,6 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.Text.Documents;
+using Bodoconsult.Text.Helpers;
+using DocumentFormat.OpenXml;
+using System.Collections.Generic;
 
 namespace Bodoconsult.Text.Renderer.Docx.Blocks;
 
@@ -18,5 +21,30 @@ public abstract class HeadingBaseDocxTextRendererElement : ParagraphDocxTextRend
     {
         _headingBase = headingBase;
         ClassName = headingBase.StyleName;
+    }
+
+    /// <summary>
+    /// Render the element
+    /// </summary>
+    /// <param name="renderer">Current renderer</param>
+    public override void RenderIt(DocxTextDocumentRenderer renderer)
+    {
+        var styleName = _paragraphBase.StyleName.Replace("Style", string.Empty);
+
+        //Debug.Print(styleName);
+
+        var childs = new List<Inline>();
+
+        if (string.IsNullOrEmpty(_paragraphBase.CurrentPrefix))
+        {
+            childs.Add(new Span(_paragraphBase.CurrentPrefix));
+        }
+
+        childs.AddRange(_paragraphBase.ChildInlines);
+
+        var runs = new List<OpenXmlElement>();
+
+        DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, childs, runs);
+        renderer.DocxDocument.AddParagraph(runs, styleName, _paragraphBase.TagName);
     }
 }

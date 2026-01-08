@@ -1525,12 +1525,12 @@ public class FlowDocumentService
         Dispatcher.Invoke(() =>
         {
             // Draw left element
-            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[0], 0, dpi, false, page, pageNumberFormat, TypographySettingsService.FooterFontName, TypographySettingsService.FooterFontSize, TypographySettingsService.FooterMarginTop);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, TypographySettingsService.DocumentMetaData, sections[0], 0, dpi, false, page, pageNumberFormat, TypographySettingsService.FooterFontName, TypographySettingsService.FooterFontSize, TypographySettingsService.FooterMarginTop);
 
             // Draw middle element
 
             // Draw right element
-            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[2], 2, dpi, false, page, pageNumberFormat, TypographySettingsService.FooterFontName, TypographySettingsService.FooterFontSize, TypographySettingsService.FooterMarginTop);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, TypographySettingsService.DocumentMetaData, sections[2], 2, dpi, false, page, pageNumberFormat, TypographySettingsService.FooterFontName, TypographySettingsService.FooterFontSize, TypographySettingsService.FooterMarginTop);
         });
     }
 
@@ -1556,12 +1556,12 @@ public class FlowDocumentService
         Dispatcher.Invoke(() =>
         {
             // Draw left element
-            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[0], 0, dpi, true, page, PageNumberFormatEnum.Decimal, TypographySettingsService.HeaderFontName, TypographySettingsService.HeaderFontSize, TypographySettingsService.HeaderMarginBottom);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, TypographySettingsService.DocumentMetaData, sections[0], 0, dpi, true, page, PageNumberFormatEnum.Decimal, TypographySettingsService.HeaderFontName, TypographySettingsService.HeaderFontSize, TypographySettingsService.HeaderMarginBottom);
 
             // Draw middle element
 
             // Draw right element
-            WpfDocumentRendererHelper.DrawElement(context, area, TypographySettingsService.DocumentMetaData, sections[2], 2, dpi, true, page, PageNumberFormatEnum.Decimal, TypographySettingsService.HeaderFontName, TypographySettingsService.HeaderFontSize, TypographySettingsService.HeaderMarginBottom);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, TypographySettingsService.DocumentMetaData, sections[2], 2, dpi, true, page, PageNumberFormatEnum.Decimal, TypographySettingsService.HeaderFontName, TypographySettingsService.HeaderFontSize, TypographySettingsService.HeaderMarginBottom);
         });
     }
 

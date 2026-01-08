@@ -1,6 +1,8 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.Pdf.Helpers;
 using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.Stylesets;
@@ -15,6 +17,8 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using static MigraDoc.DocumentObjectModel.TabStop;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Bodoconsult.Pdf.PdfSharp;
 
@@ -75,19 +79,9 @@ public abstract class PdfBuilderBase : IPdfBuilder
     protected const double WidthInteger = 8;
 
     /// <summary>
-    /// Current header text
-    /// </summary>
-    protected string HeaderText;
-
-    /// <summary>
     /// Current header style name
     /// </summary>
     protected string HeaderStyleName;
-
-    /// <summary>
-    /// Current footer text
-    /// </summary>
-    protected string FooterText;
 
     /// <summary>
     /// Current footer style name
@@ -459,8 +453,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
-        AddHeaderInternal(Content);
-        AddFooterInternal(Content);
+        AddHeaderInternal(Content, pageNumberFormat);
+        AddFooterInternal(Content, pageNumberFormat);
 
         //}
     }
@@ -494,7 +488,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
-        AddHeaderInternal(Toc);
+        AddHeaderInternal(Toc, pageNumberFormat);
         AddFooterInternal(Toc, pageNumberFormat);
 
         var p = Toc.AddParagraph(TitleTableOfContent, "TocHeading");
@@ -529,7 +523,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
-        AddHeaderInternal(Tof);
+        AddHeaderInternal(Tof, pageNumberFormat);
         AddFooterInternal(Tof, pageNumberFormat);
 
         var p = Tof.AddParagraph(TitleTableOfFigures, "TofHeading");
@@ -564,7 +558,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
-        AddHeaderInternal(Toe);
+        AddHeaderInternal(Toe, pageNumberFormat);
         AddFooterInternal(Toe, pageNumberFormat);
 
         var p = Toe.AddParagraph(TitleTableOfEquations, "ToeHeading");
@@ -599,7 +593,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         par.Format.SpaceBefore = 0;
         par.Format.Font.Size = 2;
 
-        AddHeaderInternal(Tot);
+        AddHeaderInternal(Tot, pageNumberFormat);
         AddFooterInternal(Tot, pageNumberFormat);
 
         var p = Tot.AddParagraph(TitleTableOfTables, "TotHeading");
@@ -1067,16 +1061,20 @@ public abstract class PdfBuilderBase : IPdfBuilder
         p.AddBookmark(tag);
     }
 
+    /// <summary>
+    /// Set a footer text for content and toc
+    /// </summary>
+    public void SetFooter()
+    {
+        SetFooter("Footer");
+    }
 
     /// <summary>
     /// Set a footer text for content and toc
-    /// Use &#60;&#60;page&#62;&#62; and &#60;&#60;pages&#62;&#62; fur current page number and number of pages in document
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="styleName"></param>
-    public void SetFooter(string text, string styleName = "Footer")
+
+    public void SetFooter(string styleName)
     {
-        FooterText = text;
         FooterStyleName = styleName;
     }
 
@@ -1087,28 +1085,104 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="pageNumberFormat">Null or ROMAN, roman, ALPHABETIC, alphabetic</param>
     protected virtual void AddFooterInternal(Section section, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
-        if (section == null || string.IsNullOrEmpty(FooterText))
+        var md = StyleSet.DocumentMetaData;
+
+        if (section == null || string.IsNullOrEmpty(md.FooterTemplate))
         {
             return;
         }
 
-        var paragraph = new Paragraph
+        var para = new Paragraph
         {
-            Style = "Footer"
+            Style = FooterStyleName
         };
 
-        var text = FooterText;
+        var sections = md.FooterTemplate.ToLowerInvariant().Split('|');
 
-        if (text.Contains(ITypography.PageFieldIndicator))
+        // Draw left element
+        CreateHeaderFooterElement(md, sections[0], para, 0, false, pageNumberFormat);
+
+        // Draw middle element
+        CreateHeaderFooterElement(md, sections[1], para, 1, false, pageNumberFormat);
+
+        // Draw right element
+        CreateHeaderFooterElement(md, sections[2], para, 2, false, pageNumberFormat);
+
+        section.Footers.Primary.Add(para);
+
+    }
+
+    private void CreateHeaderFooterElement(ITypoMetaData documentMetaData, string section, Paragraph para, int position, bool isHeader, PageNumberFormatEnum pageNumberFormat)
+    {
+        if (documentMetaData == null)
         {
-            paragraph.Format.AddTabStop(Unit.FromCentimeter(Width), TabAlignment.Right);
+            throw new ArgumentNullException(nameof(documentMetaData));
+        }
 
-            var vorher = text[..text.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal)];
-            var nachher = text.Substring(text.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) + 8,
-                text.Length - text.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) - 8);
-            paragraph.AddText(vorher);
+        var width = StyleSet.PageSetup.Orientation == Orientation.Landscape ? Unit.FromCentimeter(StyleSet.PageSetup.PageHeight.Centimeter -
+                StyleSet.PageSetup.LeftMargin.Centimeter -
+                StyleSet.PageSetup.RightMargin.Centimeter) :
+            Unit.FromCentimeter(StyleSet.PageSetup.PageWidth.Centimeter -
+                                StyleSet.PageSetup.LeftMargin.Centimeter -
+                                StyleSet.PageSetup.RightMargin.Centimeter);
 
-            var p = paragraph.AddPageField();
+        if (position == 1)
+        {
+            para.Format.TabStops.ClearAll();
+            para.Format.AddTabStop(width / 2, TabAlignment.Center);
+            para.Format.AddTabStop(width, TabAlignment.Right);
+            para.AddText("\t");
+        }
+
+        // Logo
+        if (section == ITypography.LogoIndicator && !string.IsNullOrEmpty(documentMetaData.LogoPath))
+        {
+            var image = para.AddImage(documentMetaData.LogoPath);
+            image.Width = Unit.FromCentimeter(documentMetaData.LogoWidth);
+            image.RelativeVertical = RelativeVertical.Line;
+            image.RelativeHorizontal = RelativeHorizontal.Margin;
+            image.Left = ShapePosition.Left;
+            image.Top = ShapePosition.Center;
+            image.LockAspectRatio = true;
+            image.WrapFormat.Style = WrapStyle.Through;
+        }
+
+        // Footer / header text
+        if (section == ITypography.TextIndicator)
+        {
+            var text = isHeader ? documentMetaData.HeaderText : documentMetaData.FooterText;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                text = documentMetaData.Title;
+                if (string.IsNullOrEmpty(text))
+                {
+                    return;
+                }
+            }
+
+            para.AddText(text);
+        }
+
+        // Footer / header text
+        if (section == ITypography.CompanyIndicator)
+        {
+            var text = documentMetaData.Company;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            para.AddText(text);
+        }
+
+        // Page number
+        if (section == ITypography.PageFieldIndicator)
+        {
+            para.AddText($"{PageNumberPrefix} ");
+
+            var p = para.AddPageField();
 
             switch (pageNumberFormat)
             {
@@ -1128,47 +1202,45 @@ public abstract class PdfBuilderBase : IPdfBuilder
                 default:
                     break;
             }
-
-            if (nachher.Contains(ITypography.PageFieldIndicator))
-            {
-                vorher = nachher[..nachher.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal)];
-                nachher = nachher.Substring(nachher.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) + 9,
-                    nachher.Length - nachher.IndexOf(ITypography.PageFieldIndicator, StringComparison.Ordinal) - 9);
-
-                paragraph.AddText(vorher);
-                paragraph.AddText($" {PageNumberPrefix} ");
-                paragraph.AddNumPagesField();
-            }
-            paragraph.AddText(nachher);
+            
+            //para.AddNumPagesField();
         }
-        else
+
+        // Date
+        if (section == ITypography.DateIndicator)
         {
-            paragraph.AddText(FooterText);
+            var text = DateTime.Now.ToString("d", documentMetaData.CultureInfo);
+            para.AddText(text);
         }
 
-        paragraph.Style = FooterStyleName;
-        section.Footers.Primary.Add(paragraph);
+        // DateTime
+        if (section == ITypography.DateTimeIndicator)
+        {
+            var text = DateTime.Now.ToString("g", documentMetaData.CultureInfo);
+            para.AddText(text);
+        }
+
+        if (position == 1)
+        {
+            para.AddText("\t");
+        }
     }
 
     /// <summary>
     /// Set a header for the document
     /// </summary>
-    /// <param name="text">Header text</param>
-    /// <param name="styleName">Name of the style to use for the header</param>
-    public void SetHeader(string text, string styleName = "Header")
+    public void SetHeader()
     {
-        SetHeader(text, styleName, null);
+        SetHeader("Header");
     }
 
     /// <summary>
     /// Set a header for the document
     /// </summary>
-    /// <param name="text">Header text</param>
+
     /// <param name="styleName">Name of the style to use for the header</param>
-    /// <param name="logoPath">Path to a logo image or null</param>
-    public void SetHeader(string text, string styleName, string logoPath)
+    public void SetHeader(string styleName)
     {
-        HeaderText = text;
         HeaderStyleName = styleName;
     }
 
@@ -1176,61 +1248,88 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// Add a header. Override this method if you want to implement another header
     /// </summary>
     /// <param name="section">Section to add the header to</param>
-    protected virtual void AddHeaderInternal(Section section)
+    /// <param name="pageNumberFormat">Null or ROMAN, roman, ALPHABETIC, alphabetic</param>
+    protected virtual void AddHeaderInternal(Section section, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
         var md = StyleSet.DocumentMetaData;
-        if (section == null || (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(BackgroundImagePath) && string.IsNullOrEmpty(md.LogoPath)))
+
+        if (section == null || string.IsNullOrEmpty(md.HeaderTemplate))
         {
             return;
         }
 
-        if (!string.IsNullOrEmpty(BackgroundImagePath) && File.Exists(BackgroundImagePath))
+        var para = new Paragraph
         {
-            var image = section.Headers.Primary.AddImage(BackgroundImagePath);
-            image.Height = StyleSet.PageSetup.PageHeight;
-            image.Width = StyleSet.PageSetup.PageWidth;
-            image.RelativeVertical = RelativeVertical.Page;
-            image.RelativeHorizontal = RelativeHorizontal.Page;
-            image.WrapFormat.Style = WrapStyle.Through;
-        }
-
-        var paragraph = new Paragraph
-        {
-            Format =
-            {
-                Alignment = ParagraphAlignment.Left
-            }
+            Style = HeaderStyleName
         };
 
-        paragraph.Format.TabStops.ClearAll();
-        paragraph.Style = "Header";
+        var sections = md.HeaderTemplate.ToLowerInvariant().Split('|');
 
-        var width = StyleSet.PageSetup.Orientation == Orientation.Landscape ? Unit.FromCentimeter(StyleSet.PageSetup.PageHeight.Centimeter -
-                StyleSet.PageSetup.LeftMargin.Centimeter -
-                StyleSet.PageSetup.RightMargin.Centimeter) :
-            Unit.FromCentimeter(StyleSet.PageSetup.PageWidth.Centimeter -
-                                StyleSet.PageSetup.LeftMargin.Centimeter -
-                                StyleSet.PageSetup.RightMargin.Centimeter);
+        // Draw left element
+        CreateHeaderFooterElement(md, sections[0], para, 0, true, pageNumberFormat);
 
-        paragraph.Format.AddTabStop(width, TabAlignment.Right);
+        // Draw middle element
+        CreateHeaderFooterElement(md, sections[1], para, 1, true, pageNumberFormat);
+
+        // Draw right element
+        CreateHeaderFooterElement(md, sections[2], para, 2, true, pageNumberFormat);
+
+        section.Headers.Primary.Add(para);
+
+        //var md = StyleSet.DocumentMetaData;
+        //if (section == null)
+        //{
+        //    return;
+        //}
+
+        //if (string.IsNullOrEmpty(md.HeaderTemplate))
+        //{
+        //    return;
+        //}
+
+        //if (!string.IsNullOrEmpty(BackgroundImagePath) && File.Exists(BackgroundImagePath))
+        //{
+        //    var image = section.Headers.Primary.AddImage(BackgroundImagePath);
+        //    image.Height = StyleSet.PageSetup.PageHeight;
+        //    image.Width = StyleSet.PageSetup.PageWidth;
+        //    image.RelativeVertical = RelativeVertical.Page;
+        //    image.RelativeHorizontal = RelativeHorizontal.Page;
+        //    image.WrapFormat.Style = WrapStyle.Through;
+        //}
+
+        //var para = new Paragraph
+        //{
+        //    Style = HeaderStyleName
+        //};
+        //para.Format.TabStops.ClearAll();
 
 
-        if (!string.IsNullOrEmpty(md.LogoPath))
-        {
-            var image = paragraph.AddImage(md.LogoPath);
-            image.Width = Unit.FromCentimeter(md.LogoWidth);
-            image.RelativeVertical = RelativeVertical.Line;
-            image.RelativeHorizontal = RelativeHorizontal.Margin;
-            image.Left = ShapePosition.Left;
-            image.Top = ShapePosition.Center;
-            image.LockAspectRatio = true;
-            image.WrapFormat.Style = WrapStyle.Through;
-        }
+        //var width = StyleSet.PageSetup.Orientation == Orientation.Landscape ? Unit.FromCentimeter(StyleSet.PageSetup.PageHeight.Centimeter -
+        //        StyleSet.PageSetup.LeftMargin.Centimeter -
+        //        StyleSet.PageSetup.RightMargin.Centimeter) :
+        //    Unit.FromCentimeter(StyleSet.PageSetup.PageWidth.Centimeter -
+        //                        StyleSet.PageSetup.LeftMargin.Centimeter -
+        //                        StyleSet.PageSetup.RightMargin.Centimeter);
 
-        paragraph.AddText($"\t{HeaderText}");
+        //para.Format.AddTabStop(width, TabAlignment.Right);
 
-        paragraph.Style = HeaderStyleName;
-        section.Headers.Primary.Add(paragraph);
+
+        //if (!string.IsNullOrEmpty(md.LogoPath))
+        //{
+        //    var image = para.AddImage(md.LogoPath);
+        //    image.Width = Unit.FromCentimeter(md.LogoWidth);
+        //    image.RelativeVertical = RelativeVertical.Line;
+        //    image.RelativeHorizontal = RelativeHorizontal.Margin;
+        //    image.Left = ShapePosition.Left;
+        //    image.Top = ShapePosition.Center;
+        //    image.LockAspectRatio = true;
+        //    image.WrapFormat.Style = WrapStyle.Through;
+        //}
+
+        //para.AddText($"\t{HeaderText}");
+
+        //para.Style = HeaderStyleName;
+        //section.Headers.Primary.Add(para);
     }
 
     /// <summary>

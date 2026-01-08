@@ -50,7 +50,7 @@ public static class TestDataHelper
             IsFiguresTableRequired = true,
             IsEquationsTableRequired = true,
             IsTablesTableRequired = true,
-            FooterText = $"Bodoconsult GmbH\t{ITypography.PageFieldIndicator}",
+            FooterText = "Bodoconsult GmbH",
             HeaderText = "HeaderText",
             LogoPath = TestHelper.TestLogoImage,
             LogoWidth = 2,

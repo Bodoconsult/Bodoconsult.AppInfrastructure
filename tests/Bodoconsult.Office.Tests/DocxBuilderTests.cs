@@ -285,15 +285,15 @@ internal class DocxBuilderTests
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
-        docx.AddHeaderToCurrentSection("Header section 1", 10);
-        docx.AddFooterToCurrentSection($"Footer section 1\t{ITypography.PageFieldIndicator}", 10);
+        docx.AddHeaderToCurrentSection( 10);
+        docx.AddFooterToCurrentSection(10);
 
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
         docx.AddSection(pageStyle1, true, true);
-        docx.AddHeaderToCurrentSection("Header section 2", 10);
-        docx.AddFooterToCurrentSection($"Footer section 2\t{ITypography.PageFieldIndicator}", 10);
+        docx.AddHeaderToCurrentSection(10);
+        docx.AddFooterToCurrentSection(10);
 
         var runs = new List<OpenXmlElement>
         {
@@ -333,12 +333,12 @@ internal class DocxBuilderTests
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
-        docx.AddHeaderToCurrentSection("Inhaltsverzeichnis", 10);
+        docx.AddHeaderToCurrentSection(10);
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
         docx.AddSection(pageStyle1);
-        docx.AddHeaderToCurrentSection("Hauptteil", 10);
+        docx.AddHeaderToCurrentSection(10);
 
         var runs = new List<OpenXmlElement>
         {
@@ -379,12 +379,12 @@ internal class DocxBuilderTests
         var docx = new DocxBuilder();
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
-        docx.AddFooterToCurrentSection("Inhaltsverzeichnis", 10);
+        docx.AddFooterToCurrentSection(10);
         docx.AddParagraph("Section1", "Normal");
 
         // Act  
         docx.AddSection(pageStyle1);
-        docx.AddFooterToCurrentSection("Hauptteil", 10);
+        docx.AddFooterToCurrentSection(10);
 
         var runs = new List<OpenXmlElement>
         {
@@ -986,8 +986,8 @@ internal class DocxBuilderTests
 
         // First section
         docx.AddSection(pageStyle1, false);
-        docx.AddHeaderToCurrentSection("Header section 1", 10);
-        docx.AddFooterToCurrentSection($"Footer section 1\t{ITypography.PageFieldIndicator}", 10);
+        docx.AddHeaderToCurrentSection(10);
+        docx.AddFooterToCurrentSection(10);
 
         docx.AddParagraph("Heading section 1", "heading1");
         docx.AddParagraph(TestHelper.MassText, "Normal");
@@ -1026,8 +1026,8 @@ internal class DocxBuilderTests
 
         // New section
         docx.AddSection(pageStyle1, true, true);
-        docx.AddHeaderToCurrentSection("Header section 2", 10);
-        docx.AddFooterToCurrentSection($"Footer section 2\t{ITypography.PageFieldIndicator}", 10);
+        docx.AddHeaderToCurrentSection(10);
+        docx.AddFooterToCurrentSection(10);
 
         // Heading and text
         docx.AddParagraph("Heading section 1", "heading1");

@@ -41,6 +41,8 @@ public abstract class ToxRtfTextRendererElementBase : RtfTextRendererElementBase
         CleanRtfString(sb);
 
         renderer.Content.Append($"{{{{\\field{{\\*\\fldinst HYPERLINK \"#{_tot.TagName}\"}}{{\\fldrslt {sb}}}}}");
+
+        renderer.Content.Append($"{{\\ptablnone\\pindtabqr}}{{\\field{{\\*\\fldinst PAGEREF {_tot.TagName} \\# \"0\"  \\* MERGEFORMAT  }}{{\\fldrslt 1}}}}");
         renderer.Content.Append($"\\par}}{Environment.NewLine}");
     }
 }

@@ -49,6 +49,6 @@ public class EquationDocxTextRendererElement : DocxTextRendererElementBase
         var sb = new List<OpenXmlElement>();
         DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, childs, sb);
 
-        renderer.DocxDocument.AddParagraph(sb, "Equation");
+        renderer.DocxDocument.AddParagraph(sb, "Equation", _equation.TagName);
     }
 }

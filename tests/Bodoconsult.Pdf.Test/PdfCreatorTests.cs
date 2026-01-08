@@ -66,8 +66,8 @@ public class PdfCreatorTests
 
         pdf.SetDocInfo("Test", "Subject", "Author");
 
-        pdf.SetHeader("Header", "Header1", TestHelper.TestLogoImage2);
-        pdf.SetFooter("Footer \t<<page>> / <<pages>>");
+        pdf.SetHeader();
+        pdf.SetFooter();
 
         pdf.CreateTocSection("Document title");
         pdf.CreateContentSection();

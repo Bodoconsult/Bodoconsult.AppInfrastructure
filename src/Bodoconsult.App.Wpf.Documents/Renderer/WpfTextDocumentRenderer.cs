@@ -209,53 +209,14 @@ public class WpfTextDocumentRenderer : BaseDocumentRenderer
         Dispatcher.Invoke(() =>
         {
             // Draw left element
-            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[0], 0, dpi, false, page, PageNumberFormatEnum.Decimal, style.FontName, style.FontSize, margin);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, Document.DocumentMetaData, sections[0], 0, dpi, false, page, PageNumberFormatEnum.Decimal, style.FontName, style.FontSize, margin);
 
             // Draw middle element
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, Document.DocumentMetaData, sections[1], 1, dpi, false, page, PageNumberFormatEnum.Decimal, style.FontName, style.FontSize, margin);
 
             // Draw right element
-            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[2], 2, dpi, false, page, PageNumberFormatEnum.Decimal, style.FontName, style.FontSize, margin);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, Document.DocumentMetaData, sections[2], 2, dpi, false, page, PageNumberFormatEnum.Decimal, style.FontName, style.FontSize, margin);
         });
-
-        //var footerText = PageSettings.FooterPageText.Split('\t');
-
-        //var f2 = footerText.Length == 2 ? footerText[1] : footerText[0];
-        //var f1 = footerText.Length == 2 ? footerText[0] : string.Empty;
-
-        //var pageNumber = DocumentRendererHelper.GetFormattedNumber(page + 1, pageNumberFormat);
-
-        //Dispatcher.Invoke(() =>
-        //{
-        //    // Create the initial formatted text string.
-        //    var formattedText = new FormattedText(
-        //        $"{f2} {pageNumber}",
-        //        PageSettings.CultureInfo,
-        //        FlowDirection.LeftToRight,
-        //        new Typeface(PageSettings.FooterFontName),
-        //        PageSettings.FooterFontSize,
-        //        Brushes.Black, dpi);
-
-        //    // Draw the formatted text string to the DrawingContext of the control.
-        //    context.DrawText(formattedText, new Point(area.X + area.Width - formattedText.Width,
-        //        area.Y + PageSettings.FooterMarginTop + area.Height - formattedText.Height));
-
-        //    if (string.IsNullOrEmpty(f1))
-        //    {
-        //        return;
-        //    }
-
-        //    formattedText = new FormattedText(
-        //        f1,
-        //        PageSettings.CultureInfo,
-        //        FlowDirection.LeftToRight,
-        //        new Typeface(PageSettings.FooterFontName),
-        //        PageSettings.FooterFontSize,
-        //        Brushes.Black, dpi);
-
-        //    context.DrawText(formattedText, new Point(area.X,
-        //        area.Y + PageSettings.FooterMarginTop + area.Height - formattedText.Height));
-
-        //});
     }
 
 
@@ -285,72 +246,13 @@ public class WpfTextDocumentRenderer : BaseDocumentRenderer
         Dispatcher.Invoke(() =>
         {
             // Draw left element
-            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[0], 0, dpi, true, page, pageNumberFormat, style.FontName, style.FontSize, margin);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, Document.DocumentMetaData, sections[0], 0, dpi, true, page, pageNumberFormat, style.FontName, style.FontSize, margin);
 
             // Draw middle element
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, Document.DocumentMetaData, sections[1], 1, dpi, true, page, pageNumberFormat, style.FontName, style.FontSize, margin);
 
             // Draw right element
-            WpfDocumentRendererHelper.DrawElement(context, area, Document.DocumentMetaData, sections[2], 2, dpi, true, page, pageNumberFormat, style.FontName, style.FontSize, margin);
+            WpfDocumentRendererHelper.CreateHeaderFooterElement(context, area, Document.DocumentMetaData, sections[2], 2, dpi, true, page, pageNumberFormat, style.FontName, style.FontSize, margin);
         });
-
-        //Dispatcher.Invoke(() =>
-        //{
-
-        //    try
-        //    {
-
-
-
-        //        var bimg = new BitmapImage();
-        //        bimg.BeginInit();
-        //        bimg.UriSource = new Uri(PageSettings.LogoPath, UriKind.RelativeOrAbsolute);
-        //        //bimg.CacheOption = BitmapCacheOption.OnLoad;
-        //        bimg.EndInit();
-
-        //        if (!string.IsNullOrEmpty(PageSettings.HeaderText))
-        //        {
-        //            var formattedText = new FormattedText(
-        //                PageSettings.HeaderText,
-        //                PageSettings.CultureInfo,
-        //                FlowDirection.LeftToRight,
-        //                new Typeface(PageSettings.FooterFontName),
-        //                PageSettings.FooterFontSize,
-        //                Brushes.Black, dpi);
-
-        //            context.DrawText(formattedText, new Point(area.X, area.Y - PageSettings.HeaderHeight - PageSettings.HeaderHeight - formattedText.Height));
-        //        }
-
-        //        var width = bimg.Width;
-        //        var height = bimg.Height;
-
-
-        //        double newWidth;
-        //        double newHeight;
-        //        if (PageSettings.LogoWidth > 0.01)
-        //        {
-        //            newWidth = PageSettings.LogoWidth;
-        //            newHeight = height * newWidth / width;
-        //        }
-        //        else
-        //        {
-        //            newHeight = area.Height - PageSettings.HeaderMarginBottom;
-
-        //            if (newHeight > height)
-        //            {
-        //                newHeight = height;
-        //            }
-
-        //            newWidth = width / height * newHeight;
-        //        }
-
-
-        //        var rect = new Rect(new Point(area.X + area.Width - newWidth, area.Y - PageSettings.HeaderHeight - PageSettings.HeaderHeight), new Size(newWidth, newHeight));
-        //        context.DrawImage(bimg, rect);
-        //    }
-        //    catch
-        //    {
-        //        // ignored
-        //    }
-        //});
     }
 }

@@ -418,7 +418,22 @@ public static class WpfDocumentRendererHelper
         return visual;
     }
 
-    public static void DrawElement(DrawingContext context, Rect area, ITypoMetaData metaData, string section, int xPosition, double dpi, bool isHeader, int page, PageNumberFormatEnum pageNumberFormat, string fontName, double fontSize, double marginHeaderFooter)
+    /// <summary>
+    /// Create header and footer elements
+    /// </summary>
+    /// <param name="context">Current context</param>
+    /// <param name="area">Header or footer area</param>
+    /// <param name="metaData">Current document metadata</param>
+    /// <param name="section">Current section</param>
+    /// <param name="xPosition">= left, 1 middle, 2 right</param>
+    /// <param name="dpi">dpi</param>
+    /// <param name="isHeader">Is a header?</param>
+    /// <param name="pageNumber">Current page number</param>
+    /// <param name="pageNumberFormat">Current page number format</param>
+    /// <param name="fontName">Font name</param>
+    /// <param name="fontSize">Font size</param>
+    /// <param name="marginHeaderFooter">Margin</param>
+    public static void CreateHeaderFooterElement(DrawingContext context, Rect area, ITypoMetaData metaData, string section, int xPosition, double dpi, bool isHeader, int pageNumber, PageNumberFormatEnum pageNumberFormat, string fontName, double fontSize, double marginHeaderFooter)
     {
         double x = 0;
         double y = 0;
@@ -451,7 +466,7 @@ public static class WpfDocumentRendererHelper
             }
             else if (xPosition == 1)
             {
-
+                x = area.X + area.Width / 2 -formattedText.Width / 2;
             }
             else
             {
@@ -460,7 +475,7 @@ public static class WpfDocumentRendererHelper
 
             if (isHeader)
             {
-                y = area.Y;
+                y = area.Y - marginHeaderFooter;
             }
             else
             {
@@ -468,6 +483,7 @@ public static class WpfDocumentRendererHelper
             }
 
             context.DrawText(formattedText, new Point(x, y));
+            return;
         }
 
         // Logo
@@ -509,7 +525,7 @@ public static class WpfDocumentRendererHelper
                 }
                 else if (xPosition == 1)
                 {
-
+                    x = area.X + area.Width / 2 - newWidth / 2;
                 }
                 else
                 {
@@ -518,7 +534,7 @@ public static class WpfDocumentRendererHelper
 
                 if (isHeader)
                 {
-                    y = area.Y;
+                    y = area.Y - marginHeaderFooter - newHeight;
                 }
                 else
                 {
@@ -532,6 +548,8 @@ public static class WpfDocumentRendererHelper
             {
                 // ignored
             }
+
+            return;
         }
 
         // Company
@@ -558,7 +576,7 @@ public static class WpfDocumentRendererHelper
             }
             else if (xPosition == 1)
             {
-
+                x = area.X + area.Width / 2 - formattedText.Width / 2;
             }
             else
             {
@@ -567,7 +585,7 @@ public static class WpfDocumentRendererHelper
 
             if (isHeader)
             {
-                y = area.Y;
+                y = area.Y - marginHeaderFooter;
             }
             else
             {
@@ -575,6 +593,7 @@ public static class WpfDocumentRendererHelper
             }
 
             context.DrawText(formattedText, new Point(x, y));
+            return;
         }
 
         // Page
@@ -582,7 +601,7 @@ public static class WpfDocumentRendererHelper
         {
             // Create the initial formatted text string.
             var formattedText = new FormattedText(
-                $"{metaData.FooterPageText} {page + 1}",
+                $"{metaData.PageNumberPrefix} {pageNumber + 1}",
                 metaData.CultureInfo,
                 FlowDirection.LeftToRight,
                 new Typeface(fontName),
@@ -595,7 +614,7 @@ public static class WpfDocumentRendererHelper
             }
             else if (xPosition == 1)
             {
-
+                x = area.X + area.Width / 2 - formattedText.Width / 2;
             }
             else
             {
@@ -604,7 +623,7 @@ public static class WpfDocumentRendererHelper
 
             if (isHeader)
             {
-                y = area.Y;
+                y = area.Y - marginHeaderFooter;
             }
             else
             {
@@ -612,6 +631,84 @@ public static class WpfDocumentRendererHelper
             }
 
             // Draw the formatted text string to the DrawingContext of the control.
+            context.DrawText(formattedText, new Point(x, y));
+            return;
+        }
+
+        // Date
+        if (section == ITypography.DateIndicator)
+        {
+            var footerText = DateTime.Now.ToString("d", metaData.CultureInfo);
+
+            var formattedText = new FormattedText(
+                footerText,
+                metaData.CultureInfo,
+                FlowDirection.LeftToRight,
+                new Typeface(fontName),
+                fontSize,
+                Brushes.Black, dpi);
+
+            if (xPosition == 0)
+            {
+                x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+                x = area.X + area.Width / 2 - formattedText.Width / 2;
+            }
+            else
+            {
+                x = area.X + area.Width;
+            }
+
+            if (isHeader)
+            {
+                y = area.Y - marginHeaderFooter;
+            }
+            else
+            {
+                y = area.Y + marginHeaderFooter + area.Height - formattedText.Height;
+            }
+
+            context.DrawText(formattedText, new Point(x, y));
+            return;
+        }
+
+        // DateTime
+        if (section == ITypography.DateTimeIndicator)
+        {
+            var footerText = DateTime.Now.ToString("g",metaData.CultureInfo);
+
+            var formattedText = new FormattedText(
+                footerText,
+                metaData.CultureInfo,
+                FlowDirection.LeftToRight,
+                new Typeface(fontName),
+                fontSize,
+                Brushes.Black, dpi);
+
+            if (xPosition == 0)
+            {
+                x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+                x = area.X + area.Width / 2 - formattedText.Width / 2;
+            }
+            else
+            {
+                x = area.X + area.Width;
+            }
+
+            if (isHeader)
+            {
+                y = area.Y - marginHeaderFooter;
+            }
+            else
+            {
+                y = area.Y + marginHeaderFooter + area.Height - formattedText.Height;
+            }
+
             context.DrawText(formattedText, new Point(x, y));
         }
     }

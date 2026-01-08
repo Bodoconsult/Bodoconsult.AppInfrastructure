@@ -51,11 +51,11 @@ public abstract class SectionBaseDocxTextRendererElement : DocxTextRendererEleme
 
         if (!string.IsNullOrEmpty(renderer.Document.DocumentMetaData.HeaderText))
         {
-            renderer.DocxDocument.AddHeaderToCurrentSection(renderer.Document.DocumentMetaData.HeaderText, tabPosition, section.PageNumberFormat);
+            renderer.DocxDocument.AddHeaderToCurrentSection(tabPosition, section.PageNumberFormat);
         }
         if (!string.IsNullOrEmpty(renderer.Document.DocumentMetaData.FooterText))
         {
-            renderer.DocxDocument.AddFooterToCurrentSection(renderer.Document.DocumentMetaData.FooterText, tabPosition, section.PageNumberFormat);
+            renderer.DocxDocument.AddFooterToCurrentSection( tabPosition, section.PageNumberFormat);
         }
 
         if (!string.IsNullOrEmpty(caption))
@@ -64,6 +64,8 @@ public abstract class SectionBaseDocxTextRendererElement : DocxTextRendererEleme
         }
 
         DocxDocumentRendererHelper.RenderBlockChildsToDocx(renderer, section.ChildBlocks);
+
+        renderer.DocxDocument.AddParagraph(" ", "Normal");
 
     }
 }

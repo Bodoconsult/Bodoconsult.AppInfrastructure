@@ -57,9 +57,6 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
         var tableStyle = (TableStyle)Styleset.FindStyle("TableStyle");
 
-        PdfDocument.SetHeader(metaData.HeaderText);
-        PdfDocument.SetFooter(metaData.FooterText);
-
         PdfDocument.TitleTableOfFigures = metaData.TofHeading;
         PdfDocument.TitleTableOfEquations = metaData.ToeHeading;
         PdfDocument.TitleTableOfTables = metaData.TotHeading;

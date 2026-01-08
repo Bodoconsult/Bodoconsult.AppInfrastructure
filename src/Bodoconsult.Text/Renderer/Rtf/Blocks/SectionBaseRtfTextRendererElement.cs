@@ -1,14 +1,17 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
-using System.Diagnostics;
-using System.Text;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System;
+using System.Diagnostics;
+using System.Text;
 
 namespace Bodoconsult.Text.Renderer.Rtf.Blocks;
 
@@ -116,27 +119,103 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
             return;
         }
 
-        // Todo: add logo
+        if (!section.IsFooterRequired)
+        {
+            return;
+        }
+
         var md = renderer.Document.DocumentMetaData;
 
-        var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("HeaderStyle");
-
-        if (string.IsNullOrEmpty(md.LogoPath))
+        if (string.IsNullOrEmpty(md.HeaderTemplate))
         {
-            renderer.Content.Append($@"{{\header{{\pard\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{\ptablnone\pindtabqr}}{{{md.HeaderText}}}\par}}}}");
+            return;
         }
-        else
+
+        var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("FooterStyle");
+
+        var sections = md.HeaderTemplate.ToLowerInvariant().Split('|');
+
+        var sb = new StringBuilder();
+
+        sb.Append($"{{\\header{{\\pard\\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{");
+
+        // Draw left element
+        CreateHeaderFooterElement(sb, md, sections[0], 0, true);
+
+        // Draw middle element
+        CreateHeaderFooterElement(sb, md, sections[1], 1, true);
+
+        // Draw right element
+        CreateHeaderFooterElement(sb, md, sections[2], 2, true);
+
+        sb.Append("}\\par}}");
+
+        Debug.Print(sb.ToString());
+
+        renderer.Content.Append(sb);
+    }
+
+    private static void AddFooter(ITextDocumentRenderer renderer, PageStyleBase pageStyle, SectionBase section)
+    {
+        if (!section.IsFooterRequired)
+        {
+            return;
+        }
+
+        var md = renderer.Document.DocumentMetaData;
+
+        if (string.IsNullOrEmpty(md.FooterTemplate))
+        {
+            return;
+        }
+
+        var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("FooterStyle");
+
+        var sections = md.FooterTemplate.ToLowerInvariant().Split('|');
+
+        var sb = new StringBuilder();
+
+        sb.Append($"{{\\footer{{\\pard\\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{");
+
+        // Draw left element
+        CreateHeaderFooterElement(sb, md, sections[0],  0, false);
+
+        // Draw middle element
+        CreateHeaderFooterElement(sb, md, sections[1],  1, false);
+
+        // Draw right element
+        CreateHeaderFooterElement(sb, md, sections[2],  2, false);
+
+        sb.Append("}\\par}}");
+
+        renderer.Content.Append(sb);
+    }
+
+    private static void CreateHeaderFooterElement(StringBuilder content, ITypoMetaData typoMetaData, string section, int position, bool isHeader)
+    {
+        if (typoMetaData == null)
+        {
+            throw new ArgumentNullException(nameof(typoMetaData));
+        }
+
+        if (position == 1)
+        {
+            content.Append("{\\ptablnone\\pindtabqc}");
+        }
+
+        // Logo
+        if (section == ITypography.LogoIndicator && !string.IsNullOrEmpty(typoMetaData?.LogoPath))
         {
             // Get the content of all inlines as string
             var sb = new StringBuilder();
 
-            var width = MeasurementHelper.GetTwipsFromCm( md.LogoWidth);
+            var width = MeasurementHelper.GetTwipsFromCm(typoMetaData.LogoWidth);
             var height = (int)(width / TypographicConstants.GoldenerSchnittRatio);
 
             // Add the image
-            var bytes = ImageHelper.GetBytes(md.LogoPath);
+            var bytes = ImageHelper.GetBytes(typoMetaData.LogoPath);
 
-            var path = md.LogoPath.ToLowerInvariant();
+            var path = typoMetaData.LogoPath.ToLowerInvariant();
 
             sb.Append(@"{{\*\shppict\pict");
 
@@ -161,21 +240,64 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
 
             Debug.Print(sb.ToString());
 
-            renderer.Content.Append($@"{{\header{{\pard\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{sb.ToString()}{{\ptablnone\pindtabqr}}{{{md.HeaderText}}}\par}}}}");
+            content.Append(sb);
         }
-    }
 
-    private static void AddFooter(ITextDocumentRenderer renderer, PageStyleBase pageStyle, SectionBase section)
-    {
-        if (!section.IsFooterRequired)
+        // Footer / header text
+        if (section == ITypography.TextIndicator)
         {
-            return;
+            var text = isHeader ? typoMetaData.HeaderText : typoMetaData.FooterText;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                text = typoMetaData.Title;
+                if (string.IsNullOrEmpty(text))
+                {
+                    return;
+                }
+            }
+
+            content.Append($"{{{text}}}");
         }
 
-        // /{\field{\*\fldinst SECTIONPAGES'}}
+        // Footer / header text
+        if (section == ITypography.CompanyIndicator)
+        {
+            var text = typoMetaData.Company;
 
-        var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("FooterStyle");
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
 
-        renderer.Content.Append($"{{\\footer{{\\pard\\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{{renderer.Document.DocumentMetaData.Company} {{\\ptablnone\\pindtabqr}}{renderer.Document.DocumentMetaData.PageNumberPrefix} {{\\field{{\\*\\fldinst PAGE}}}}}}\\par}}}}");
+            content.Append($"{{{typoMetaData.Company}}}");
+        }
+
+        // Page number
+        if (section == ITypography.PageFieldIndicator)
+        {
+
+            content.Append($"{typoMetaData.PageNumberPrefix} {{\\field{{\\*\\fldinst PAGE}}}}");
+        }
+
+        // Date
+        if (section == ITypography.DateIndicator)
+        {
+            var text = DateTime.Now.ToString("d", typoMetaData.CultureInfo);
+            content.Append($"{{{text}}}");
+        }
+
+        // DateTime
+        if (section == ITypography.DateTimeIndicator)
+        {
+            var text = DateTime.Now.ToString("g", typoMetaData.CultureInfo);
+            content.Append($"{{{text}}}");
+        }
+
+        if (position == 1)
+        {
+            content.Append("{\\ptablnone\\pindtabqr}");
+        }
     }
+
 }

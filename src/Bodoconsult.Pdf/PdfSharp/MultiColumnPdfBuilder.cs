@@ -193,7 +193,8 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     /// Add a header
     /// </summary>
     /// <param name="section">Section to add the header to</param>
-    protected override void AddHeaderInternal(Section section)
+    /// <param name="pageNumberFormat">Null or ROMAN, roman, ALPHABETIC, alphabetic</param>
+    protected override void AddHeaderInternal(Section section, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     { }
 
     /// <summary>
@@ -396,7 +397,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     {
         var md = StyleSet.DocumentMetaData;
 
-        if (string.IsNullOrEmpty(HeaderText) && string.IsNullOrEmpty(md.LogoPath))
+        if (string.IsNullOrEmpty(md.HeaderText) && string.IsNullOrEmpty(md.LogoPath))
         {
             return;
         }
@@ -437,10 +438,10 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         }
 
         // Header text
-        if (!string.IsNullOrEmpty(HeaderText))
+        if (!string.IsNullOrEmpty(md.HeaderText))
         {
-            x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(HeaderText, font).Width;
-            gfx.DrawString(HeaderText, font, brush, x, y);
+            x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(md.HeaderText, font).Width;
+            gfx.DrawString(md.HeaderText, font, brush, x, y);
         }
     }
 
@@ -452,7 +453,8 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     /// <param name="pageNumberFormat">Page number format</param>
     protected virtual void PrintFooter(XGraphics gfx, int pageNum, PageNumberFormatEnum pageNumberFormat)
     {
-        if (string.IsNullOrEmpty(FooterText))
+        var md = StyleSet.DocumentMetaData;
+        if (string.IsNullOrEmpty(md.FooterText))
         {
             return;
         }
@@ -465,7 +467,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
         var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.75 * StyleSet.PageSetupOriginal.BottomMargin.Point;
 
-        var footerText = FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+        var footerText = md.FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
         var isPageNumber = false;
 
         if (footerText.Contains(ITypography.PageFieldIndicator, StringComparison.InvariantCultureIgnoreCase))
