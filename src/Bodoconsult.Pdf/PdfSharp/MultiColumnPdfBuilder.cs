@@ -1,5 +1,7 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Extensions;
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
@@ -11,9 +13,9 @@ using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using Bodoconsult.App.Abstractions.Extensions;
 
 namespace Bodoconsult.Pdf.PdfSharp;
 
@@ -359,7 +361,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                     gfx.DrawImage(image, 0, 0, page.Width.Point, page.Height.Point);
                 }
 
-                PrintHeader(gfx);
+                PrintHeader(gfx, currentPageNum, pageNumberFormat);
                 PrintFooter(gfx, currentPageNum, pageNumberFormat);
             }
             else
@@ -393,55 +395,325 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     /// Print header. Override this method if you want to implement another header
     /// </summary>
     /// <param name="gfx">Graphics</param>
-    protected virtual void PrintHeader(XGraphics gfx)
+    /// <param name="pageNum">Current page number</param>
+    /// <param name="pageNumberFormat">Page number format</param>
+    protected virtual void PrintHeader(XGraphics gfx, int pageNum, PageNumberFormatEnum pageNumberFormat)
     {
         var md = StyleSet.DocumentMetaData;
 
-        if (string.IsNullOrEmpty(md.HeaderText) && string.IsNullOrEmpty(md.LogoPath))
+        if (string.IsNullOrEmpty(md.HeaderTemplate))
         {
             return;
         }
 
-        var style = StyleSet.Footer;
-
+        var style = StyleSet.Header;
         var font = new XFont(style.Font.Name, style.Font.Size.Point);
         var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
 
+        var sections = md.HeaderTemplate.ToLowerInvariant().Split('|');
+
+        // Draw left element
+        CreateHeaderFooterElement(md, sections[0], gfx, 0, true, pageNumberFormat, font, brush, style, 25, pageNum);
+
+        // Draw middle element
+        CreateHeaderFooterElement(md, sections[1], gfx, 1, true, pageNumberFormat, font, brush, style, 25, pageNum);
+
+        // Draw right element
+        CreateHeaderFooterElement(md, sections[2], gfx, 2, true, pageNumberFormat, font, brush, style, 25, pageNum);
+
+
+        //var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
+        //var y = 0.75 * StyleSet.PageSetupOriginal.TopMargin.Point;
+
+        //// Borderline
+        //if (style.ParagraphFormat.Borders.Width.Point > 0)
+        //{
+        //    var borderColor = style.ParagraphFormat.Borders.Color;
+        //    var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
+        //    {
+        //        Width = style.ParagraphFormat.Borders.Width.Point
+        //    };
+        //    gfx.DrawLine(pen, x, y + 3, StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point, y + 3);
+        //}
+
+        // Logo
+
+
+        //if (!string.IsNullOrEmpty(md.LogoPath))
+        //{
+        //    var width = Unit.FromCentimeter(md.LogoWidth);
+
+        //    var image = XImage.FromFile(md.LogoPath);
+
+        //    var rel = image.PointWidth / image.PixelHeight;
+
+        //    var height = width.Point * rel;
+
+        //    gfx.DrawImage(image, x, y - height, width.Point, height);
+        //}
+
+        //// Header text
+        //if (!string.IsNullOrEmpty(md.HeaderText))
+        //{
+        //    x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(md.HeaderText, font).Width;
+        //    gfx.DrawString(md.HeaderText, font, brush, x, y);
+        //}
+    }
+
+    private void CreateHeaderFooterElement(ITypoMetaData documentMetaData, string section, XGraphics gfx, int xPosition,
+        bool isHeader, PageNumberFormatEnum pageNumberFormat, XFont font, XBrush brush, Style style, double marginHeaderFooter, int pageNumber)
+    {
         var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
         var y = 0.75 * StyleSet.PageSetupOriginal.TopMargin.Point;
 
-        // Borderline
-        if (style.ParagraphFormat.Borders.Width.Point > 0)
+        var areaW = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.LeftMargin.Point - StyleSet.PageSetupOriginal.RightMargin.Point;
+        var areaH = StyleSet.PageSetupOriginal.PageHeight.Point - StyleSet.PageSetupOriginal.TopMargin.Point - StyleSet.PageSetupOriginal.BottomMargin.Point;
+
+        if (xPosition == 0)
         {
-            var borderColor = style.ParagraphFormat.Borders.Color;
-            var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
+            // Borderline
+            if (style.ParagraphFormat.Borders.Width.Point > 0)
             {
-                Width = style.ParagraphFormat.Borders.Width.Point
-            };
-            gfx.DrawLine(pen, x, y + 3, StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point, y + 3);
+                var borderColor = style.ParagraphFormat.Borders.Color;
+                var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
+                {
+                    Width = style.ParagraphFormat.Borders.Width.Point
+                };
+                gfx.DrawLine(pen, x, y + 3, areaW, y + 3);
+            }
+        }
+
+        // Draw text
+        if (section == ITypography.TextIndicator)
+        {
+            var text = isHeader ? documentMetaData.HeaderText : documentMetaData.FooterText;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                text = documentMetaData.Title;
+                if (string.IsNullOrEmpty(text))
+                {
+                    return;
+                }
+            }
+
+            if (xPosition == 0)
+            {
+                //x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+                x = x + areaW / 2 - gfx.MeasureString(text, font).Width / 2;
+            }
+            else
+            {
+                x = x + areaW - gfx.MeasureString(text, font).Width;
+            }
+
+            if (isHeader)
+            {
+                y = y - marginHeaderFooter;
+            }
+            else
+            {
+                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+            }
+
+            gfx.DrawString(text, font, brush, x, y);
+            return;
         }
 
         // Logo
-        
-
-        if (!string.IsNullOrEmpty(md.LogoPath))
+        if (section == ITypography.LogoIndicator)
         {
-            var width = Unit.FromCentimeter(md.LogoWidth);
+            try
+            {
+                var newWidth = Unit.FromCentimeter(documentMetaData.LogoWidth);
 
-            var image = XImage.FromFile(md.LogoPath);
+                var image = XImage.FromFile(documentMetaData.LogoPath);
 
-            var rel = image.PointWidth / image.PixelHeight;
+                var rel = image.PointWidth / image.PixelHeight;
 
-            var height = width.Point * rel;
+                var newHeight = newWidth.Point * rel;
 
-            gfx.DrawImage(image, x, y - height, width.Point, height);
+
+
+                if (xPosition == 0)
+                {
+                    //x = area.X;
+                }
+                else if (xPosition == 1)
+                {
+                    x = x + areaW / 2 - newWidth / 2;
+                }
+                else
+                {
+                    x = x + areaW - newWidth;
+                }
+
+                if (isHeader)
+                {
+                    y = y - marginHeaderFooter;
+                }
+                else
+                {
+                    y = y + marginHeaderFooter + areaH - newHeight;
+                }
+
+                gfx.DrawImage(image, x, y - newHeight, newWidth.Point, newHeight);
+            }
+            catch
+            {
+                // ignored
+            }
+
+            return;
         }
 
-        // Header text
-        if (!string.IsNullOrEmpty(md.HeaderText))
+        // Company
+        if (section == ITypography.CompanyIndicator)
         {
-            x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(md.HeaderText, font).Width;
-            gfx.DrawString(md.HeaderText, font, brush, x, y);
+            var text = documentMetaData.Company;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            if (xPosition == 0)
+            {
+                //x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+                x = x + areaW / 2 - gfx.MeasureString(text, font).Width / 2;
+            }
+            else
+            {
+                x = x + areaW - gfx.MeasureString(text, font).Width;
+            }
+
+            if (isHeader)
+            {
+                y = y - marginHeaderFooter;
+            }
+            else
+            {
+                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+            }
+
+            gfx.DrawString(text, font, brush, x, y);
+            return;
+        }
+
+        // Page
+        if (section == ITypography.PageFieldIndicator)
+        {
+            string text;
+            switch (pageNumberFormat)
+            {
+                case PageNumberFormatEnum.UpperRoman:
+                    text = $"{PageNumberPrefix} {(pageNumber + 1).ArabicToRoman().ToUpperInvariant()}";
+                    break;
+                case PageNumberFormatEnum.LowerRoman:
+                    text = $"{PageNumberPrefix} {(pageNumber + 1).ArabicToRoman().ToLowerInvariant()}";
+                    break;
+                case PageNumberFormatEnum.UpperLatin:
+                    text = $"{PageNumberPrefix} {(pageNumber + 1).ToUpperLatin()}";
+                    break;
+                case PageNumberFormatEnum.LowerLatin:
+                    text = $"{PageNumberPrefix} {(pageNumber + 1).ToLowerLatin()}";
+                    break;
+                case PageNumberFormatEnum.Decimal:
+                default:
+                    text = $"{PageNumberPrefix} {pageNumber + 1}";
+                    break;
+            }
+
+            if (xPosition == 0)
+            {
+                //x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+                x = x + areaW / 2 - gfx.MeasureString(text, font).Width / 2;
+            }
+            else
+            {
+                x = x + areaW - gfx.MeasureString(text, font).Width;
+            }
+
+            if (isHeader)
+            {
+                y = y - marginHeaderFooter;
+            }
+            else
+            {
+                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+            }
+
+            gfx.DrawString(text, font, brush, x, y);
+            return;
+        }
+
+        // Date
+        if (section == ITypography.DateIndicator)
+        {
+            var text = DateTime.Now.ToString("d", documentMetaData.CultureInfo);
+
+            if (xPosition == 0)
+            {
+                //x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+                x = x + areaW / 2 - gfx.MeasureString(text, font).Width / 2;
+            }
+            else
+            {
+                x = x + areaW - gfx.MeasureString(text, font).Width;
+            }
+
+            if (isHeader)
+            {
+                y = y - marginHeaderFooter;
+            }
+            else
+            {
+                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+            }
+
+            gfx.DrawString(text, font, brush, x, y);
+            return;
+        }
+
+        // DateTime
+        if (section == ITypography.DateTimeIndicator)
+        {
+            var text = DateTime.Now.ToString("g", documentMetaData.CultureInfo);
+            if (xPosition == 0)
+            {
+                //x = area.X;
+            }
+            else if (xPosition == 1)
+            {
+                x = x + areaW / 2 - gfx.MeasureString(text, font).Width / 2;
+            }
+            else
+            {
+                x = x + areaW - gfx.MeasureString(text, font).Width;
+            }
+
+            if (isHeader)
+            {
+                y = y - marginHeaderFooter;
+            }
+            else
+            {
+                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+            }
+
+            gfx.DrawString(text, font, brush, x, y);
         }
     }
 
@@ -454,80 +726,108 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     protected virtual void PrintFooter(XGraphics gfx, int pageNum, PageNumberFormatEnum pageNumberFormat)
     {
         var md = StyleSet.DocumentMetaData;
-        if (string.IsNullOrEmpty(md.FooterText))
+
+        if (string.IsNullOrEmpty(md.FooterTemplate))
+        {
+            return;
+        }
+
+        if (string.IsNullOrEmpty(md.HeaderText) && string.IsNullOrEmpty(md.LogoPath))
         {
             return;
         }
 
         var style = StyleSet.Footer;
-
         var font = new XFont(style.Font.Name, style.Font.Size.Point);
         var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
 
-        var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-        var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.75 * StyleSet.PageSetupOriginal.BottomMargin.Point;
+        var sections = md.FooterTemplate.ToLowerInvariant().Split('|');
 
-        var footerText = md.FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
-        var isPageNumber = false;
+        // Draw left element
+        CreateHeaderFooterElement(md, sections[0], gfx, 0, false, pageNumberFormat, font, brush, style, 25, pageNum);
 
-        if (footerText.Contains(ITypography.PageFieldIndicator, StringComparison.InvariantCultureIgnoreCase))
-        {
-            isPageNumber = true;
-            footerText = footerText.Replace(ITypography.PageFieldIndicator, string.Empty,
-                StringComparison.InvariantCultureIgnoreCase);
-        }
+        // Draw middle element
+        CreateHeaderFooterElement(md, sections[1], gfx, 1, false, pageNumberFormat, font, brush, style, 25, pageNum);
 
-        // Borderline
-        if (style.ParagraphFormat.Borders.Width.Point > 0)
-        {
-            var borderColor = style.ParagraphFormat.Borders.Color;
-            var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
-            {
-                Width = style.ParagraphFormat.Borders.Width.Point
-            };
-            gfx.DrawLine(pen, x, y - style.Font.Size.Point - 3, StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point, y - style.Font.Size.Point - 3);
-        }
+        // Draw right element
+        CreateHeaderFooterElement(md, sections[2], gfx, 2, false, pageNumberFormat, font, brush, style, 25, pageNum);
 
-        // Footer text
-        if (!string.IsNullOrEmpty(footerText))
-        {
-            x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-            gfx.DrawString(footerText, font, brush, x, y);
-        }
 
-        // Page number
-        if (!isPageNumber)
-        {
-            return;
-        }
+        //var md = StyleSet.DocumentMetaData;
+        //if (string.IsNullOrEmpty(md.FooterText))
+        //{
+        //    return;
+        //}
 
-        // ToDo: add upper and lower latin
+        //var style = StyleSet.Footer;
 
-        string pageNumStr;
-        switch (pageNumberFormat)
-        {
-            case PageNumberFormatEnum.UpperRoman:
-                pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToUpperInvariant()}";
-                break;
-            case PageNumberFormatEnum.LowerRoman:
-                pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToLowerInvariant()}";
-                break;
-            case PageNumberFormatEnum.UpperLatin:
-                pageNumStr = $"{PageNumberPrefix} {pageNum.ToUpperLatin()}";
-                break;
-            case PageNumberFormatEnum.LowerLatin:
-                pageNumStr = $"{PageNumberPrefix} {pageNum.ToLowerLatin()}";
-                break;
-            case PageNumberFormatEnum.Decimal:
-            default:
-                pageNumStr = $"{PageNumberPrefix} {pageNum}";
-                break;
-        }
+        //var font = new XFont(style.Font.Name, style.Font.Size.Point);
+        //var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
 
-        Debug.Print(pageNumStr);
+        //var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
+        //var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.75 * StyleSet.PageSetupOriginal.BottomMargin.Point;
 
-        x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(pageNumStr, font).Width;
-        gfx.DrawString(pageNumStr, font, brush, x, y);
+        //var footerText = md.FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+        //var isPageNumber = false;
+
+        //if (footerText.Contains(ITypography.PageFieldIndicator, StringComparison.InvariantCultureIgnoreCase))
+        //{
+        //    isPageNumber = true;
+        //    footerText = footerText.Replace(ITypography.PageFieldIndicator, string.Empty,
+        //        StringComparison.InvariantCultureIgnoreCase);
+        //}
+
+        //// Borderline
+        //if (style.ParagraphFormat.Borders.Width.Point > 0)
+        //{
+        //    var borderColor = style.ParagraphFormat.Borders.Color;
+        //    var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
+        //    {
+        //        Width = style.ParagraphFormat.Borders.Width.Point
+        //    };
+        //    gfx.DrawLine(pen, x, y - style.Font.Size.Point - 3, StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point, y - style.Font.Size.Point - 3);
+        //}
+
+        //// Footer text
+        //if (!string.IsNullOrEmpty(footerText))
+        //{
+        //    x = StyleSet.PageSetupOriginal.LeftMargin.Point;
+        //    gfx.DrawString(footerText, font, brush, x, y);
+        //}
+
+        //// Page number
+        //if (!isPageNumber)
+        //{
+        //    return;
+        //}
+
+        //// ToDo: add upper and lower latin
+
+        //string pageNumStr;
+        //switch (pageNumberFormat)
+        //{
+        //    case PageNumberFormatEnum.UpperRoman:
+        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToUpperInvariant()}";
+        //        break;
+        //    case PageNumberFormatEnum.LowerRoman:
+        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToLowerInvariant()}";
+        //        break;
+        //    case PageNumberFormatEnum.UpperLatin:
+        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ToUpperLatin()}";
+        //        break;
+        //    case PageNumberFormatEnum.LowerLatin:
+        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ToLowerLatin()}";
+        //        break;
+        //    case PageNumberFormatEnum.Decimal:
+        //    default:
+        //        pageNumStr = $"{PageNumberPrefix} {pageNum}";
+        //        break;
+        //}
+
+        //Debug.Print(pageNumStr);
+
+        //x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(pageNumStr, font).Width;
+        //gfx.DrawString(pageNumStr, font, brush, x, y);
     }
 
     private void FindPageNumbers(int pageCount, DocumentRenderer docRenderer, Section oldSection)

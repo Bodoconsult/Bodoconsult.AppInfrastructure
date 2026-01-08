@@ -191,11 +191,11 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         renderer.Content.Append(sb);
     }
 
-    private static void CreateHeaderFooterElement(StringBuilder content, ITypoMetaData typoMetaData, string section, int position, bool isHeader)
+    private static void CreateHeaderFooterElement(StringBuilder content, ITypoMetaData documentMetaData, string section, int position, bool isHeader)
     {
-        if (typoMetaData == null)
+        if (documentMetaData == null)
         {
-            throw new ArgumentNullException(nameof(typoMetaData));
+            throw new ArgumentNullException(nameof(documentMetaData));
         }
 
         if (position == 1)
@@ -204,18 +204,18 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         }
 
         // Logo
-        if (section == ITypography.LogoIndicator && !string.IsNullOrEmpty(typoMetaData?.LogoPath))
+        if (section == ITypography.LogoIndicator && !string.IsNullOrEmpty(documentMetaData?.LogoPath))
         {
             // Get the content of all inlines as string
             var sb = new StringBuilder();
 
-            var width = MeasurementHelper.GetTwipsFromCm(typoMetaData.LogoWidth);
+            var width = MeasurementHelper.GetTwipsFromCm(documentMetaData.LogoWidth);
             var height = (int)(width / TypographicConstants.GoldenerSchnittRatio);
 
             // Add the image
-            var bytes = ImageHelper.GetBytes(typoMetaData.LogoPath);
+            var bytes = ImageHelper.GetBytes(documentMetaData.LogoPath);
 
-            var path = typoMetaData.LogoPath.ToLowerInvariant();
+            var path = documentMetaData.LogoPath.ToLowerInvariant();
 
             sb.Append(@"{{\*\shppict\pict");
 
@@ -246,11 +246,11 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         // Footer / header text
         if (section == ITypography.TextIndicator)
         {
-            var text = isHeader ? typoMetaData.HeaderText : typoMetaData.FooterText;
+            var text = isHeader ? documentMetaData.HeaderText : documentMetaData.FooterText;
 
             if (string.IsNullOrEmpty(text))
             {
-                text = typoMetaData.Title;
+                text = documentMetaData.Title;
                 if (string.IsNullOrEmpty(text))
                 {
                     return;
@@ -263,34 +263,34 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         // Footer / header text
         if (section == ITypography.CompanyIndicator)
         {
-            var text = typoMetaData.Company;
+            var text = documentMetaData.Company;
 
             if (string.IsNullOrEmpty(text))
             {
                 return;
             }
 
-            content.Append($"{{{typoMetaData.Company}}}");
+            content.Append($"{{{documentMetaData.Company}}}");
         }
 
         // Page number
         if (section == ITypography.PageFieldIndicator)
         {
 
-            content.Append($"{typoMetaData.PageNumberPrefix} {{\\field{{\\*\\fldinst PAGE}}}}");
+            content.Append($"{documentMetaData.PageNumberPrefix} {{\\field{{\\*\\fldinst PAGE}}}}");
         }
 
         // Date
         if (section == ITypography.DateIndicator)
         {
-            var text = DateTime.Now.ToString("d", typoMetaData.CultureInfo);
+            var text = DateTime.Now.ToString("d", documentMetaData.CultureInfo);
             content.Append($"{{{text}}}");
         }
 
         // DateTime
         if (section == ITypography.DateTimeIndicator)
         {
-            var text = DateTime.Now.ToString("g", typoMetaData.CultureInfo);
+            var text = DateTime.Now.ToString("g", documentMetaData.CultureInfo);
             content.Append($"{{{text}}}");
         }
 

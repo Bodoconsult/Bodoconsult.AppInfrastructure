@@ -423,7 +423,7 @@ public static class WpfDocumentRendererHelper
     /// </summary>
     /// <param name="context">Current context</param>
     /// <param name="area">Header or footer area</param>
-    /// <param name="metaData">Current document metadata</param>
+    /// <param name="documentMetaData">Current document metadata</param>
     /// <param name="section">Current section</param>
     /// <param name="xPosition">= left, 1 middle, 2 right</param>
     /// <param name="dpi">dpi</param>
@@ -433,19 +433,19 @@ public static class WpfDocumentRendererHelper
     /// <param name="fontName">Font name</param>
     /// <param name="fontSize">Font size</param>
     /// <param name="marginHeaderFooter">Margin</param>
-    public static void CreateHeaderFooterElement(DrawingContext context, Rect area, ITypoMetaData metaData, string section, int xPosition, double dpi, bool isHeader, int pageNumber, PageNumberFormatEnum pageNumberFormat, string fontName, double fontSize, double marginHeaderFooter)
+    public static void CreateHeaderFooterElement(DrawingContext context, Rect area, ITypoMetaData documentMetaData, string section, int xPosition, double dpi, bool isHeader, int pageNumber, PageNumberFormatEnum pageNumberFormat, string fontName, double fontSize, double marginHeaderFooter)
     {
-        double x = 0;
-        double y = 0;
+        double x;
+        double y;
 
         // Draw text
         if (section == ITypography.TextIndicator)
         {
-            var text = isHeader ? metaData.HeaderText : metaData.FooterText;
+            var text = isHeader ? documentMetaData.HeaderText : documentMetaData.FooterText;
 
             if (string.IsNullOrEmpty(text))
             {
-                text = metaData.Title;
+                text = documentMetaData.Title;
                 if (string.IsNullOrEmpty(text))
                 {
                     return;
@@ -454,7 +454,7 @@ public static class WpfDocumentRendererHelper
 
             var formattedText = new FormattedText(
                 text,
-                metaData.CultureInfo,
+                documentMetaData.CultureInfo,
                 FlowDirection.LeftToRight,
                 new Typeface(fontName),
                fontSize,
@@ -493,7 +493,7 @@ public static class WpfDocumentRendererHelper
             {
                 var bimg = new BitmapImage();
                 bimg.BeginInit();
-                bimg.UriSource = new Uri(metaData.LogoPath, UriKind.RelativeOrAbsolute);
+                bimg.UriSource = new Uri(documentMetaData.LogoPath, UriKind.RelativeOrAbsolute);
                 //bimg.CacheOption = BitmapCacheOption.OnLoad;
                 bimg.EndInit();
 
@@ -502,9 +502,9 @@ public static class WpfDocumentRendererHelper
 
                 double newWidth;
                 double newHeight;
-                if (metaData.LogoWidth > 0.01)
+                if (documentMetaData.LogoWidth > 0.01)
                 {
-                    newWidth = MeasurementHelper.GetDiuFromCm(metaData.LogoWidth);
+                    newWidth = MeasurementHelper.GetDiuFromCm(documentMetaData.LogoWidth);
                     newHeight = height * newWidth / width;
                 }
                 else
@@ -555,7 +555,7 @@ public static class WpfDocumentRendererHelper
         // Company
         if (section == ITypography.CompanyIndicator)
         {
-            var footerText = metaData.Company;
+            var footerText = documentMetaData.Company;
 
             if (string.IsNullOrEmpty(footerText))
             {
@@ -564,7 +564,7 @@ public static class WpfDocumentRendererHelper
 
             var formattedText = new FormattedText(
                 footerText,
-                metaData.CultureInfo,
+                documentMetaData.CultureInfo,
                 FlowDirection.LeftToRight,
                 new Typeface(fontName),
                 fontSize,
@@ -601,8 +601,8 @@ public static class WpfDocumentRendererHelper
         {
             // Create the initial formatted text string.
             var formattedText = new FormattedText(
-                $"{metaData.PageNumberPrefix} {pageNumber + 1}",
-                metaData.CultureInfo,
+                $"{documentMetaData.PageNumberPrefix} {pageNumber + 1}",
+                documentMetaData.CultureInfo,
                 FlowDirection.LeftToRight,
                 new Typeface(fontName),
                 fontSize,
@@ -638,11 +638,11 @@ public static class WpfDocumentRendererHelper
         // Date
         if (section == ITypography.DateIndicator)
         {
-            var footerText = DateTime.Now.ToString("d", metaData.CultureInfo);
+            var footerText = DateTime.Now.ToString("d", documentMetaData.CultureInfo);
 
             var formattedText = new FormattedText(
                 footerText,
-                metaData.CultureInfo,
+                documentMetaData.CultureInfo,
                 FlowDirection.LeftToRight,
                 new Typeface(fontName),
                 fontSize,
@@ -677,11 +677,11 @@ public static class WpfDocumentRendererHelper
         // DateTime
         if (section == ITypography.DateTimeIndicator)
         {
-            var footerText = DateTime.Now.ToString("g",metaData.CultureInfo);
+            var footerText = DateTime.Now.ToString("g",documentMetaData.CultureInfo);
 
             var formattedText = new FormattedText(
                 footerText,
-                metaData.CultureInfo,
+                documentMetaData.CultureInfo,
                 FlowDirection.LeftToRight,
                 new Typeface(fontName),
                 fontSize,
