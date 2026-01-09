@@ -61,14 +61,19 @@ public class PdfBuilderTests
         }
 
         var styleset = new DefaultStyleSet();
+        styleset.CreatePageSetup();
+
         if (landscape)
         {
             LoadLandScapeSettings(styleset);
         }
+        else
+        {
+            styleset.CalculateMeasures();
+            styleset.InitializeStyles();
+        }
 
         var pdf = new PdfBuilder(styleset, new WindowsFontResolver());
-
-        //pdf.SetDocInfo("Test", "Subject", "Author");
 
         pdf.SetHeader();
         pdf.SetFooter();
@@ -203,13 +208,19 @@ public class PdfBuilderTests
     {
         var ps = styleSet.PageSetup;
         ps.Orientation = Orientation.Landscape;
+        var w = ps.PageWidth;
+        var h = ps.PageHeight;
+        ps.PageHeight = w;
+        ps.PageWidth = h;
         ps.LeftMargin = Unit.FromCentimeter(1.5);
         ps.RightMargin = Unit.FromCentimeter(1.5);
         ps.TopMargin = Unit.FromCentimeter(1.5);
         ps.BottomMargin = Unit.FromCentimeter(1.5);
 
+        styleSet.CalculateMeasures();
+        styleSet.InitializeStyles();
 
-        var width = Unit.FromCentimeter(ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
+        var width = ps.PageWidth.Point - ps.TopMargin.Point - ps.BottomMargin.Point;
 
         var style = styleSet.Normal;
         style.Font.Name = "Arial Narrow";

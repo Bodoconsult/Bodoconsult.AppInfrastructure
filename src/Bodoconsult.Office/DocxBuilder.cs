@@ -10,7 +10,6 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using A = DocumentFormat.OpenXml.Drawing;
 using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Paragraph = DocumentFormat.OpenXml.Wordprocessing.Paragraph;
@@ -33,6 +32,15 @@ public class DocxBuilder : IDisposable
 {
     private int _imageCounter = -1;
     private int _bookmarkCounter = -1;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="documentMetaData">Current document meta data</param>
+    public DocxBuilder(ITypoMetaData documentMetaData)
+    {
+        DocumentMetaData = documentMetaData;
+    }
 
     /// <summary>
     /// DOCX document
@@ -72,7 +80,7 @@ public class DocxBuilder : IDisposable
     /// <summary>
     /// Document meta data
     /// </summary>
-    public ITypoMetaData TypoMetaData { get; private set; }
+    public ITypoMetaData DocumentMetaData { get; }
 
     /// <summary>
     /// Memory stream representing the document. Is only set if <see cref="CreateDocument()"/> was used to create the document
@@ -115,6 +123,27 @@ public class DocxBuilder : IDisposable
     /// <param name="filePath">Full file path to save the document in</param>
     public void SaveDocument(string filePath)
     {
+        if (DocumentMetaData != null)
+        {
+            var bProps = Docx.PackageProperties;
+            bProps.Title = DocumentMetaData.Title;
+            bProps.Creator = DocumentMetaData.Authors;
+
+            // ToDo: make ext props working and add title
+
+            var epPart = Docx.ExtendedFilePropertiesPart ?? Docx.AddExtendedFilePropertiesPart();
+
+            // ReSharper disable once ConstantNullCoalescingCondition
+            epPart.Properties ??= new Properties();
+
+            var props = epPart.Properties;
+
+            if (!string.IsNullOrEmpty(DocumentMetaData.Company))
+            {
+                props.Company = new Company(DocumentMetaData.Company);
+            }
+        }
+
         if (MemoryStream == null)
         {
             Docx.Save();
@@ -300,34 +329,6 @@ public class DocxBuilder : IDisposable
     }
 
     /// <summary>
-    /// Add common metadata like author, company and title
-    /// </summary>
-    /// <param name="metaData">Document metadata</param>
-    public void AddMetadata(ITypoMetaData metaData)
-    {
-
-        TypoMetaData = metaData;
-
-        var bProps = Docx.PackageProperties;
-        bProps.Title = TypoMetaData.Title;
-        bProps.Creator = TypoMetaData.Authors;
-
-        // ToDo: make ext props working and add title
-
-        var epPart = Docx.ExtendedFilePropertiesPart ?? Docx.AddExtendedFilePropertiesPart();
-
-        // ReSharper disable once ConstantNullCoalescingCondition
-        epPart.Properties ??= new Properties();
-
-        var props = epPart.Properties;
-
-        if (!string.IsNullOrEmpty(TypoMetaData.Company))
-        {
-            props.Company = new Company(TypoMetaData.Company);
-        }
-    }
-
-    /// <summary>
     /// Add a header to the current section
     /// </summary>
     /// <param name="position">Position of the page number (if &lt;&lt;Page&gt;&gt; is used) in cm relative to typearea</param>
@@ -335,7 +336,7 @@ public class DocxBuilder : IDisposable
     public void AddHeaderToCurrentSection(double position,
         PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
-        if (string.IsNullOrEmpty(TypoMetaData.HeaderTemplate))
+        if (string.IsNullOrEmpty(DocumentMetaData.HeaderTemplate))
         {
             return;
         }
@@ -352,18 +353,18 @@ public class DocxBuilder : IDisposable
 
         var para = new Paragraph(pPr);
 
-        var sections = TypoMetaData.HeaderTemplate.ToLowerInvariant().Split('|');
+        var sections = DocumentMetaData.HeaderTemplate.ToLowerInvariant().Split('|');
 
         // Draw left element
-        CreateHeaderFooterElement(headerPart, TypoMetaData, sections[0], para, 0, true, posTwips, pageNumberFormat,
+        CreateHeaderFooterElement(headerPart, DocumentMetaData, sections[0], para, 0, true, posTwips, pageNumberFormat,
             styleId);
 
         // Draw middle element
-        CreateHeaderFooterElement(headerPart, TypoMetaData, sections[1], para, 1, true, posTwips, pageNumberFormat,
+        CreateHeaderFooterElement(headerPart, DocumentMetaData, sections[1], para, 1, true, posTwips, pageNumberFormat,
             styleId);
 
         // Draw right element
-        CreateHeaderFooterElement(headerPart, TypoMetaData, sections[2], para, 2, true, posTwips, pageNumberFormat,
+        CreateHeaderFooterElement(headerPart, DocumentMetaData, sections[2], para, 2, true, posTwips, pageNumberFormat,
             styleId);
 
 
@@ -408,11 +409,11 @@ public class DocxBuilder : IDisposable
         }
 
         // Logo
-        if (section == ITypography.LogoIndicator && !string.IsNullOrEmpty(TypoMetaData?.LogoPath))
+        if (section == ITypography.LogoIndicator && !string.IsNullOrEmpty(DocumentMetaData?.LogoPath))
         {
             _imageCounter++;
-            var imageRun = CreateImageRun(docPart, TypoMetaData.LogoPath,
-                MeasurementHelper.GetPxFromCm(TypoMetaData.LogoWidth), 0, _imageCounter, "Header");
+            var imageRun = CreateImageRun(docPart, DocumentMetaData.LogoPath,
+                MeasurementHelper.GetPxFromCm(DocumentMetaData.LogoWidth), 0, _imageCounter, "Header");
             para.Append(imageRun);
         }
 
@@ -564,7 +565,7 @@ public class DocxBuilder : IDisposable
     public void AddFooterToCurrentSection(double position,
         PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
-        if (string.IsNullOrEmpty(TypoMetaData.FooterTemplate))
+        if (string.IsNullOrEmpty(DocumentMetaData.FooterTemplate))
         {
             return;
         }
@@ -581,18 +582,18 @@ public class DocxBuilder : IDisposable
 
         var para = new Paragraph(pPr);
 
-        var sections = TypoMetaData.FooterTemplate.ToLowerInvariant().Split('|');
+        var sections = DocumentMetaData.FooterTemplate.ToLowerInvariant().Split('|');
 
         // Draw left element
-        CreateHeaderFooterElement(footerPart, TypoMetaData, sections[0], para, 0, false, posTwips, pageNumberFormat,
+        CreateHeaderFooterElement(footerPart, DocumentMetaData, sections[0], para, 0, false, posTwips, pageNumberFormat,
             styleId);
 
         // Draw middle element
-        CreateHeaderFooterElement(footerPart, TypoMetaData, sections[1], para, 1, false, posTwips, pageNumberFormat,
+        CreateHeaderFooterElement(footerPart, DocumentMetaData, sections[1], para, 1, false, posTwips, pageNumberFormat,
             styleId);
 
         // Draw right element
-        CreateHeaderFooterElement(footerPart, TypoMetaData, sections[2], para, 2, false, posTwips, pageNumberFormat,
+        CreateHeaderFooterElement(footerPart, DocumentMetaData, sections[2], para, 2, false, posTwips, pageNumberFormat,
             styleId);
 
         footerPart.Footer = new Footer(para);
@@ -774,6 +775,16 @@ public class DocxBuilder : IDisposable
             Val = OnOffValue.FromBoolean(typoStyle.WidowControl)
         };
         pPr.Append(widowControl);
+
+        // Shading
+        if (typoStyle.TypoShading != null)
+        {
+            var shading = new Shading
+            {
+                Fill = typoStyle.TypoShading.ToHtml2()
+            };
+            pPr.Append(shading);
+        }
     }
 
     /// <summary>

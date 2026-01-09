@@ -75,6 +75,8 @@ public class ChartHandler : IChartHandler
     /// </summary>
     public void Export()
     {
+
+
         if (File.Exists(ChartData.FileName))
         {
             File.Delete(ChartData.FileName);

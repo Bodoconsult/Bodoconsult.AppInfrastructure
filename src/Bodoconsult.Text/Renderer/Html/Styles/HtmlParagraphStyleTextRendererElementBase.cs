@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Text;
+using Bodoconsult.App.Abstractions.Extensions;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Extensions;
@@ -75,10 +76,17 @@ public class HtmlParagraphStyleTextRendererElementBase: ITextRendererElement
         sb.AppendLine("     border-style: solid;");
         sb.AppendLine($"     text-align: {Style.TextAlignment.ToString().ToLowerInvariant()};");
 
+        // Shading
+        if (Style.TypoShading != null)
+        {
+            sb.AppendLine($"     background-color: {Style.TypoShading.ToHtml()};");
+        }
+
         foreach (var css in AdditionalCss)
         {
             sb.AppendLine($"     {css}");
         }
+
         
         sb.AppendLine("}");
         renderer.Content.Append(sb);

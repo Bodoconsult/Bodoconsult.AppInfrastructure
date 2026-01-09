@@ -29,7 +29,7 @@ public class TocxDocxTextRendererElement : ParagraphDocxTextRendererElementBase
     /// <param name="renderer">Current renderer</param>
     public override void RenderIt(DocxTextDocumentRenderer renderer)
     {
-        var styleName = _paragraphBase.StyleName.Replace("Style", string.Empty);
+        var styleName = ParagraphBase.StyleName.Replace("Style", string.Empty);
 
         if (styleName == "Paragraph")
         {
@@ -40,12 +40,12 @@ public class TocxDocxTextRendererElement : ParagraphDocxTextRendererElementBase
 
         var childs = new List<Inline>();
 
-        if (string.IsNullOrEmpty(_paragraphBase.CurrentPrefix))
+        if (string.IsNullOrEmpty(ParagraphBase.CurrentPrefix))
         {
-            childs.Add(new Span(_paragraphBase.CurrentPrefix));
+            childs.Add(new Span(ParagraphBase.CurrentPrefix));
         }
 
-        childs.AddRange(_paragraphBase.ChildInlines);
+        childs.AddRange(ParagraphBase.ChildInlines);
 
         var runs = new List<OpenXmlElement>();
 
@@ -70,6 +70,6 @@ public class TocxDocxTextRendererElement : ParagraphDocxTextRendererElementBase
 
 
         // Add bookmark page ref
-        DocxBuilder.AddBookmarkRef(para, _paragraphBase.TagName);
+        DocxBuilder.AddBookmarkRef(para, ParagraphBase.TagName);
     }
 }

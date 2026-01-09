@@ -9,7 +9,6 @@ using Bodoconsult.Text.Extensions;
 using Bodoconsult.Text.Interfaces;
 using MigraDoc.DocumentObjectModel;
 using PdfSharp.Fonts;
-using Color = MigraDoc.DocumentObjectModel.Color;
 using Document = Bodoconsult.Text.Documents.Document;
 
 namespace Bodoconsult.Text.Renderer.Pdf;

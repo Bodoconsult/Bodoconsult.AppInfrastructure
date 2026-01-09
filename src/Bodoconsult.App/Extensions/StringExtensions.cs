@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -143,14 +144,22 @@ public static class StringExtensions
     /// <returns></returns>
     public static string Repeat(this string text, uint n)
     {
-        var textAsSpan = text.AsSpan();
-        var span = new Span<char>(new char[textAsSpan.Length * (int)n]);
-        for (var i = 0; i < n; i++)
+        try
         {
-            textAsSpan.CopyTo(span.Slice(i * textAsSpan.Length, textAsSpan.Length));
-        }
+            var textAsSpan = text.AsSpan();
+            var span = new Span<char>(new char[textAsSpan.Length * (int)n]);
+            for (var i = 0; i < n; i++)
+            {
+                textAsSpan.CopyTo(span.Slice(i * textAsSpan.Length, textAsSpan.Length));
+            }
 
-        return span.ToString();
+            return span.ToString();
+        }
+        catch (Exception e)
+        {
+            Debug.Print($"{n} {e.Message}");
+            return text;
+        }
     }
 
     /// <summary>
@@ -161,14 +170,22 @@ public static class StringExtensions
     /// <returns></returns>
     public static string Repeat(this string text, int n)
     {
-        var textAsSpan = text.AsSpan();
-        var span = new Span<char>(new char[textAsSpan.Length * n]);
-        for (var i = 0; i < n; i++)
+        try
         {
-            textAsSpan.CopyTo(span.Slice(i * textAsSpan.Length, textAsSpan.Length));
-        }
+            var textAsSpan = text.AsSpan();
+            var span = new Span<char>(new char[textAsSpan.Length * n]);
+            for (var i = 0; i < n; i++)
+            {
+                textAsSpan.CopyTo(span.Slice(i * textAsSpan.Length, textAsSpan.Length));
+            }
 
-        return span.ToString();
+            return span.ToString();
+        }
+        catch (Exception e)
+        {
+            Debug.Print($"{n} {e.Message}");
+            return text;
+        }
     }
 
     /// <summary>

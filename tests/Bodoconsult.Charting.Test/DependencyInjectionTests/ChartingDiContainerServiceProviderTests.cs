@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
+using System.IO;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.Charting.Base.Interfaces;
 using Bodoconsult.Charting.DependencyInjection;
@@ -28,7 +29,11 @@ public class ChartingDiContainerServiceProviderTests
         Assert.That(result, Is.Not.Null);
 
         // Use DI
-        var data = new ChartData(); // configuring chartdata as required has to be added here
+        var data = new ChartData
+        {
+            FileName = Path.Combine(Path.GetTempPath(), "test.png")
+            // configuring chartdata as required has to be added here
+        }; 
 
         var ch = result.CreateInstance(data); // Create a chart handler instance now
 

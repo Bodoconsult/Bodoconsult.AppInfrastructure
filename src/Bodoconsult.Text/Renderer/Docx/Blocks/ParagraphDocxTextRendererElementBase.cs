@@ -13,7 +13,10 @@ namespace Bodoconsult.Text.Renderer.Docx.Blocks;
 /// </summary>
 public abstract class ParagraphDocxTextRendererElementBase : DocxTextRendererElementBase
 {
-    protected readonly ParagraphBase _paragraphBase;
+    /// <summary>
+    /// Current paragraph
+    /// </summary>
+    protected readonly ParagraphBase ParagraphBase;
 
     /// <summary>
     /// Default ctor
@@ -25,7 +28,7 @@ public abstract class ParagraphDocxTextRendererElementBase : DocxTextRendererEle
         {
             throw new NotSupportedException($"block is {block.GetType().Name} not implementing ParagraphBase");
         }
-        _paragraphBase = paragraphBase;
+        ParagraphBase = paragraphBase;
     }
 
     /// <summary>
@@ -39,7 +42,7 @@ public abstract class ParagraphDocxTextRendererElementBase : DocxTextRendererEle
     /// <param name="renderer">Current renderer</param>
     public override void RenderIt(DocxTextDocumentRenderer renderer)
     {
-        var styleName = _paragraphBase.StyleName.Replace("Style", string.Empty);
+        var styleName = ParagraphBase.StyleName.Replace("Style", string.Empty);
 
         if (styleName == "Paragraph")
         {
@@ -50,17 +53,16 @@ public abstract class ParagraphDocxTextRendererElementBase : DocxTextRendererEle
 
         var childs = new List<Inline>();
 
-        if (string.IsNullOrEmpty(_paragraphBase.CurrentPrefix))
+        if (string.IsNullOrEmpty(ParagraphBase.CurrentPrefix))
         {
-            childs.Add(new Span(_paragraphBase.CurrentPrefix));
+            childs.Add(new Span(ParagraphBase.CurrentPrefix));
         }
 
-        childs.AddRange(_paragraphBase.ChildInlines);
+        childs.AddRange(ParagraphBase.ChildInlines);
 
         var runs = new List<OpenXmlElement>();
 
         DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, childs, runs);
         renderer.DocxDocument.AddParagraph(runs, styleName);
     }
-
 }

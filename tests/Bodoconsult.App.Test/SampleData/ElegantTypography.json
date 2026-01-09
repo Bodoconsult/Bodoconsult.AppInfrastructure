@@ -1,5 +1,7 @@
 ﻿{
   "$type": "Bodoconsult.App.Abstractions.Typography.ElegantTypographyPageHeader, Bodoconsult.App.Abstractions",
+  "CurrentLanguage": "en",
+  "CultureInfo": "en",
   "TypoPaperFormat": {
     "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPaperFormat, Bodoconsult.App.Abstractions",
     "PaperFormatName": "A4",
@@ -10,7 +12,7 @@
     }
   },
   "NumberOfColumns": 1,
-  "Space": 0.0,
+  "ColumnGap": 0.0,
   "ColumnWidth": 14.5,
   "TypeAreaRect": {
     "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoRect, Bodoconsult.App.Abstractions",
@@ -76,6 +78,9 @@
   },
   "TableBorderWidth": 0.05,
   "Copyright": "Bodoconsult GmbH",
+  "Authors": null,
+  "Company": null,
+  "CompanyWebsite": null,
   "FontName": "Cambria",
   "FontSize": 11.0,
   "SmallFontSize": 9.0,
@@ -114,6 +119,14 @@
   "VerticalLines": null,
   "LogoPath": null,
   "LogoWidth": 4.5,
+  "Title": null,
+  "Description": null,
+  "Keywords": null,
+  "FooterText": null,
+  "HeaderText": null,
+  "HeaderTemplate": "<<text>>||<<logo>>",
+  "FooterTemplate": "<<text>>|<<date>>|<<page>>",
+  "PageNumberPrefix": "Page",
   "ChartStyle": {
     "$type": "Bodoconsult.App.Abstractions.Interfaces.ChartStyle, Bodoconsult.App.Abstractions",
     "AxisLineColor": {

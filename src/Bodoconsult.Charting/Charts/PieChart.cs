@@ -37,7 +37,7 @@ public class PieChart<T> : BaseChart<T> where T : PieChartItemData
             var slice = new PieSlice
             {
                 Value = Convert.ToDouble(data.YValue), 
-                Label = data.XValue + "\r\n"+ $"{data.YValue/total*100:0.0}%", 
+                Label = $"{data.XValue}\r\n{data.YValue / total * 100:0.0}%", 
                 FillColor = GetColor(i),
             };
             slices.Add(slice);

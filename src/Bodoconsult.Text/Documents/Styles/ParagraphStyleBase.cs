@@ -124,4 +124,15 @@ public class ParagraphStyleBase : StyleBase, ITypoParagraphStyle
     /// Activate widow control
     /// </summary>
     public bool WidowControl { get; set; } = true;
+
+    /// <summary>
+    /// Background shading
+    /// </summary>
+    public Color Shading { get; set; }
+
+    /// <summary>
+    /// Background shading
+    /// </summary>
+    [DoNotSerialize]
+    public TypoColor TypoShading => Shading;
 }

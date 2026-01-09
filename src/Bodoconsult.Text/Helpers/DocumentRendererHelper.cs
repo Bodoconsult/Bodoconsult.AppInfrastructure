@@ -9,7 +9,6 @@ using Bodoconsult.Text.Renderer.Html;
 using Bodoconsult.Text.Renderer.PlainText;
 using Bodoconsult.Text.Renderer.Rtf.Blocks;
 using Bodoconsult.Text.Renderer.Rtf.Inlines;
-using DocumentFormat.OpenXml.Office2010.Word;
 using System;
 using System.Collections.Generic;
 using System.Text;

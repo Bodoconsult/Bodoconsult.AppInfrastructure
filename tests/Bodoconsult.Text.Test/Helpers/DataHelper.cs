@@ -102,4 +102,48 @@ public class DataHelper
 
         return dt;
     }
+
+    public static DataTable GetSmallDataTableWithCssInfo()
+    {
+        var dt = new DataTable();
+        dt.Columns.Add("CssStyle");
+        dt.Columns.Add("Key");
+        dt.Columns.Add("Value1").DataType = typeof(double);
+        dt.Columns.Add("Value2").DataType = typeof(DateTime);
+        dt.Columns.Add("Value3").DataType = typeof(bool);
+
+        var item = dt.NewRow();
+        item["CssStyle"] = "wr_cell_h1";
+        item["Key"] = "Content";
+        item["Value1"] = 5.97;
+        item["Value2"] = DateTime.Now;
+        item["Value3"] = true;
+        dt.Rows.Add(item);
+
+        item = dt.NewRow();
+        item["CssStyle"] = "";
+        item["Key"] = "Website";
+        item["Value1"] = 65.97;
+        item["Value2"] = DateTime.Now.AddDays(-25);
+        item["Value3"] = false;
+        dt.Rows.Add(item);
+
+        item = dt.NewRow();
+        item["CssStyle"] = "wr_cell_h1";
+        item["Key"] = "Marketing";
+        item["Value1"] = 45.97;
+        item["Value2"] = DateTime.Now;
+        item["Value3"] = true;
+        dt.Rows.Add(item);
+
+        item = dt.NewRow();
+        item["CssStyle"] = "blubb"; // Not existing
+        item["Key"] = "Sales";
+        item["Value1"] = 45.97;
+        item["Value2"] = DateTime.Now;
+        item["Value3"] = true;
+        dt.Rows.Add(item);
+
+        return dt;
+    }
 }

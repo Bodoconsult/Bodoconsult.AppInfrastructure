@@ -94,4 +94,9 @@ public class DemoStyle : ITypoParagraphStyle
     /// Activate widow control
     /// </summary>
     public bool WidowControl { get; set; } = true;
+
+    /// <summary>
+    /// Background shading
+    /// </summary>
+    public TypoColor TypoShading { get; set; }
 }

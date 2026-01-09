@@ -29,22 +29,22 @@ public abstract class HeadingBaseDocxTextRendererElement : ParagraphDocxTextRend
     /// <param name="renderer">Current renderer</param>
     public override void RenderIt(DocxTextDocumentRenderer renderer)
     {
-        var styleName = _paragraphBase.StyleName.Replace("Style", string.Empty);
+        var styleName = ParagraphBase.StyleName.Replace("Style", string.Empty);
 
         //Debug.Print(styleName);
 
         var childs = new List<Inline>();
 
-        if (string.IsNullOrEmpty(_paragraphBase.CurrentPrefix))
+        if (string.IsNullOrEmpty(ParagraphBase.CurrentPrefix))
         {
-            childs.Add(new Span(_paragraphBase.CurrentPrefix));
+            childs.Add(new Span(ParagraphBase.CurrentPrefix));
         }
 
-        childs.AddRange(_paragraphBase.ChildInlines);
+        childs.AddRange(ParagraphBase.ChildInlines);
 
         var runs = new List<OpenXmlElement>();
 
         DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, childs, runs);
-        renderer.DocxDocument.AddParagraph(runs, styleName, _paragraphBase.TagName);
+        renderer.DocxDocument.AddParagraph(runs, styleName, ParagraphBase.TagName);
     }
 }

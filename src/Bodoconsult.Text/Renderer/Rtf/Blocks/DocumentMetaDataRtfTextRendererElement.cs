@@ -103,12 +103,15 @@ public class DocumentMetaDataRtfTextRendererElement : RtfTextRendererElementBase
 
             CheckColor(styleset, paragraphStyle.FontColor);
 
-            if (paragraphStyle.BorderBrush == null)
+            if (paragraphStyle.BorderBrush != null)
             {
-                continue;
+                CheckColor(styleset, paragraphStyle.BorderBrush.TypoColor);
             }
-            CheckColor(styleset, paragraphStyle.BorderBrush.TypoColor);
-            
+
+            if (paragraphStyle.TypoShading != null)
+            {
+                CheckColor(styleset, paragraphStyle.TypoShading);
+            }
         }
 
         var tableStyle = (TableStyle)styleset.FindStyle("TableStyle");

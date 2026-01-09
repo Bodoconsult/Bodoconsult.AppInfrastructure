@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -190,6 +189,16 @@ public static class WpfDocumentRendererHelper
                     MeasurementHelper.GetDiuFromCm(docStyle.Paddings.Top),
                     MeasurementHelper.GetDiuFromCm(docStyle.Paddings.Right),
                     MeasurementHelper.GetDiuFromCm(docStyle.Paddings.Bottom))
+            });
+        }
+
+        // Keep next
+        if (docStyle.Shading != null)
+        {
+            wpfStyle.Setters.Add(new Setter
+            {
+                Property = TextElement.BackgroundProperty,
+                Value = new SolidColorBrush(docStyle.Shading.ToWpfColor())
             });
         }
 
@@ -466,7 +475,7 @@ public static class WpfDocumentRendererHelper
             }
             else if (xPosition == 1)
             {
-                x = area.X + area.Width / 2 -formattedText.Width / 2;
+                x = area.X + area.Width / 2 - formattedText.Width / 2;
             }
             else
             {
@@ -677,7 +686,7 @@ public static class WpfDocumentRendererHelper
         // DateTime
         if (section == ITypography.DateTimeIndicator)
         {
-            var footerText = DateTime.Now.ToString("g",documentMetaData.CultureInfo);
+            var footerText = DateTime.Now.ToString("g", documentMetaData.CultureInfo);
 
             var formattedText = new FormattedText(
                 footerText,

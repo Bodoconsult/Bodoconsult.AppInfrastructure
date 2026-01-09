@@ -99,6 +99,16 @@ public static class PdfDocumentRendererHelper
         bb.Color = GetPdfColor(color);
         bb.Visible = style.BorderThickness.Bottom > 0;
         bb.Width = Unit.FromCentimeter(style.BorderThickness.Bottom);
+
+        // Shading
+        if (style.TypoShading != null)
+        {
+            pdfStyle.ParagraphFormat.Shading = new Shading
+            {
+                Color = GetPdfColor(style.Shading),
+                Visible = true
+            };
+        }
     }
 
     private static Color GetPdfColor(Documents.Color color)

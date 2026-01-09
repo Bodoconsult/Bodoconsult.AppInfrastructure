@@ -1,7 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Extensions;
-using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
@@ -12,8 +11,6 @@ using PdfSharp.Fonts;
 using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -544,11 +541,11 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                 }
                 else if (xPosition == 1)
                 {
-                    x = x + areaW / 2 - newWidth / 2;
+                    x = x + areaW / 2 - newWidth.Point / 2;
                 }
                 else
                 {
-                    x = x + areaW - newWidth;
+                    x = x + areaW - newWidth.Point;
                 }
 
                 if (isHeader)

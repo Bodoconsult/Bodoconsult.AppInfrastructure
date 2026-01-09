@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Wpf.Documents.General;
 using Bodoconsult.App.Wpf.Documents.Paginators;
@@ -22,7 +21,6 @@ using System.Windows.Xps.Serialization;
 using System.Xaml;
 using Bodoconsult.App.Wpf.Documents.Helpers;
 using Figure = System.Windows.Documents.Figure;
-using FormattedText = System.Windows.Media.FormattedText;
 using Image = System.Windows.Controls.Image;
 using List = System.Windows.Documents.List;
 using ListItem = System.Windows.Documents.ListItem;

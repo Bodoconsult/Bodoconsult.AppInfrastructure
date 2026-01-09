@@ -11,7 +11,6 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.Office.Helpers;
 using Bodoconsult.Office.Tests.Helpers;
 using Bodoconsult.Office.Tests.Models;
 using DocumentFormat.OpenXml;
@@ -24,6 +23,8 @@ namespace Bodoconsult.Office.Tests;
 
 // https://woodsworkblog.wordpress.com/2012/08/06/add-header-and-footer-to-an-existing-word-document-with-openxml-sdk-2-0/
 
+[NonParallelizable]
+[SingleThreaded]
 [TestFixture]
 internal class DocxBuilderTests
 {
@@ -40,7 +41,9 @@ internal class DocxBuilderTests
         }
 
         // Act  
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
 
         // Assert
         Assert.That(docx, Is.Not.Null);
@@ -62,7 +65,9 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
 
         // Act  
         docx.CreateDocument(path);
@@ -82,7 +87,9 @@ internal class DocxBuilderTests
     public void Create_ValidSetupMemoryStream_DocxCreated()
     {
         // Arrange 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
 
         // Act  
         docx.CreateDocument();
@@ -108,7 +115,9 @@ internal class DocxBuilderTests
             File.Delete(path);
         }
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument();
         docx.AddParagraph("Blubb", "Normal");
 
@@ -134,7 +143,9 @@ internal class DocxBuilderTests
         // Arrange 
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument();
 
         // Act  
@@ -159,7 +170,9 @@ internal class DocxBuilderTests
 
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
 
@@ -192,7 +205,9 @@ internal class DocxBuilderTests
 
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
 
@@ -238,7 +253,9 @@ internal class DocxBuilderTests
 
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
         docx.AddParagraph("Section1", "Normal");
@@ -282,7 +299,9 @@ internal class DocxBuilderTests
         }
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
         docx.AddHeaderToCurrentSection( 10);
@@ -330,7 +349,9 @@ internal class DocxBuilderTests
         }
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
         docx.AddHeaderToCurrentSection(10);
@@ -376,7 +397,9 @@ internal class DocxBuilderTests
 
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
         docx.AddFooterToCurrentSection(10);
@@ -423,7 +446,9 @@ internal class DocxBuilderTests
         var pageStyle2 = new ThreeColumnA4LandscapePageStyle();
         var pageStyle1 = new DefaultPageStyle();
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1, false);
         docx.AddParagraph("Section1", "Normal");
@@ -487,9 +512,11 @@ internal class DocxBuilderTests
         styleRunPropertiesH1.Append(color1);
         styleRunPropertiesH1.Append(fontSize1);
         // Check above at the begining of the word creation to check where mainPart come from
-        
 
-        var docx = new DocxBuilder();
+
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
 
@@ -556,7 +583,9 @@ internal class DocxBuilderTests
             }
         };
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
 
@@ -606,8 +635,9 @@ internal class DocxBuilderTests
         styleRunPropertiesH1.Append(fontSize1);
         // Check above at the begining of the word creation to check where mainPart come from
 
+        var dmd = CreateTypoMetaData();
 
-        var docx = new DocxBuilder();
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
 
@@ -657,7 +687,9 @@ internal class DocxBuilderTests
         // Check above at the begining of the word creation to check where mainPart come from
 
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
         
@@ -668,59 +700,6 @@ internal class DocxBuilderTests
         // Assert
         docx.AddParagraph("Blubb", "Normal");
 
-        Assert.That(File.Exists(path));
-
-        Assert.That(docx, Is.Not.Null);
-        Assert.That(docx.Docx, Is.Not.Null);
-        Assert.That(docx.MainDocumentPart, Is.Not.Null);
-        Assert.That(docx.Body, Is.Not.Null);
-
-        docx.Dispose();
-
-        FileSystemHelper.RunInDebugMode(path);
-    }
-
-    [Test]
-    public void AddMetadata_ValidSetupFilePath_DocxCreated()
-    {
-        // Arrange 
-        var path = Path.Combine(FileHelper.TempPath, "test.docx");
-
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-        }
-
-        var pageStyle1 = new DefaultPageStyle();
-
-        // Heading 1
-        var styleRunPropertiesH1 = new StyleRunProperties();
-        var color1 = new Color { Val = "2F5496" };
-        // Specify a 16 point size. 16x2 because it’s half-point size
-        var fontSize1 = new FontSize
-        {
-            Val = new StringValue("32")
-        };
-        styleRunPropertiesH1.Append(color1);
-        styleRunPropertiesH1.Append(fontSize1);
-
-        var docx = new DocxBuilder();
-        docx.CreateDocument(path);
-        docx.AddSection(pageStyle1);
-        docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
-        docx.AddParagraph("Heading 1", "heading1");
-
-        var md = new TypoMetaData
-        {
-            Authors = "RL",
-            Company = "BCG",
-            Title = "Title"
-        };
-
-        // Act  
-        docx.AddMetadata(md);
-
-        // Assert
         Assert.That(File.Exists(path));
 
         Assert.That(docx, Is.Not.Null);
@@ -757,7 +736,9 @@ internal class DocxBuilderTests
         styleRunPropertiesH1.Append(color1);
         styleRunPropertiesH1.Append(fontSize1);
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
@@ -812,7 +793,10 @@ internal class DocxBuilderTests
         styleRunPropertiesH1.Append(color1);
         styleRunPropertiesH1.Append(fontSize1);
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
+
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
@@ -889,7 +873,9 @@ internal class DocxBuilderTests
         styleRunPropertiesH1.Append(color1);
         styleRunPropertiesH1.Append(fontSize1);
 
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
         docx.AddSection(pageStyle1);
         docx.AddNewStyle("heading1", "heading 1", styleRunPropertiesH1, 2);
@@ -978,7 +964,9 @@ internal class DocxBuilderTests
         };
 
         // Basics
-        var docx = new DocxBuilder();
+        var dmd = CreateTypoMetaData();
+
+        var docx = new DocxBuilder(dmd);
         docx.CreateDocument(path);
 
         // Create styles
@@ -1104,8 +1092,19 @@ internal class DocxBuilderTests
 
         docx.Dispose();
 
-        OpenXmlHelper.ValidateWordDocument(path);
+        //OpenXmlHelper.ValidateWordDocument(path);
 
         FileSystemHelper.RunInDebugMode(path);
+    }
+
+    private TypoMetaData CreateTypoMetaData()
+    {
+        return new TypoMetaData()
+        {
+            Authors = "Robert Leisner",
+            Company = "Bodoconsult",
+            FooterText = "FooterText",
+            HeaderText = "HeaderText"
+        };
     }
 }

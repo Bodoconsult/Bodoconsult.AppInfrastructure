@@ -74,6 +74,12 @@ public static class RtfHelper
                 sb.Append($@"\brdrr\brdrs\brdrw10\brsp60\brdrcf{colorIndex}");
             }
         }
+
+        if (style.Shading != null)
+        {
+            var colorIndex = styleset.GetIndexOfColor((Color)style.TypoShading) + 1;
+            sb.Append($@"\shading{colorIndex}");
+        }
         
         // Horizontal alignment
         switch (style.TextAlignment)

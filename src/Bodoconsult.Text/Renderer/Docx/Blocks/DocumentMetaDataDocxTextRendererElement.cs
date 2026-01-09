@@ -26,6 +26,6 @@ public class DocumentMetaDataDocxTextRendererElement : DocxTextRendererElementBa
     /// <param name="renderer">Current renderer</param>
     public override void RenderIt(DocxTextDocumentRenderer renderer)
     {
-        renderer.DocxDocument.AddMetadata(_documentMetaData);
+        // Do nothing
     }
 }

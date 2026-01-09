@@ -307,6 +307,7 @@ public static class StylesetHelper
 
         // Add style ErrorStyle for Error instances 
         var errorStyle = new ErrorStyle();
+        errorStyle.Shading = TypoColors.Red.ToLdmlColor();
         styleSet.AddBlock(errorStyle);
 
         // Add style FigureStyle for Figure instances 

@@ -80,15 +80,20 @@ public interface ITypoParagraphStyle
     /// <summary>
     /// Line height in cm
     /// </summary>
-    double LineHeight { get; set; }
+    double LineHeight { get; }
 
     /// <summary>
     /// Current line spacing rule
     /// </summary>
-    LineSpacingRuleEnum LineSpacingRule { get; set; }
+    LineSpacingRuleEnum LineSpacingRule { get;  }
 
     /// <summary>
     /// Activate widow control
     /// </summary>
-    bool WidowControl { get; set; }
+    bool WidowControl { get;  }
+
+    /// <summary>
+    /// Background shading
+    /// </summary>
+    TypoColor TypoShading { get; }
 }

@@ -57,9 +57,16 @@ public class PdfCreatorTests
         }
 
         var styleset = new DefaultStyleSet();
+        styleset.CreatePageSetup();
+
         if (landscape)
         {
             LoadLandScapeSettings(styleset);
+        }
+        else
+        {
+            styleset.CalculateMeasures();
+            styleset.InitializeStyles();
         }
 
         var pdf = new PdfCreator(styleset);
@@ -139,19 +146,23 @@ public class PdfCreatorTests
         Assert.That(File.Exists(fileName));
 
         FileSystemHelper.RunInDebugMode(fileName);
-
-
     }
 
     private void LoadLandScapeSettings(IStyleSet styleSet)
     {
         var ps = styleSet.PageSetup;
         ps.Orientation = Orientation.Landscape;
+        var w = ps.PageWidth;
+        var h = ps.PageHeight;
+        ps.PageHeight = w;
+        ps.PageWidth = h;
         ps.LeftMargin = Unit.FromCentimeter(1.5);
         ps.RightMargin = Unit.FromCentimeter(1.5);
         ps.TopMargin = Unit.FromCentimeter(1.5);
         ps.BottomMargin = Unit.FromCentimeter(1.5);
 
+        styleSet.CalculateMeasures();
+        styleSet.InitializeStyles();
 
         var width = Unit.FromCentimeter( ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
 

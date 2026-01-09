@@ -21,7 +21,7 @@ public class DocxTextDocumentRenderer : BaseDocumentRenderer
         DocumentMetaData = document.DocumentMetaData;
 
         PdfTextRendererElementFactory = (IDocxTextRendererElementFactory)textRendererElementFactory;
-        DocxDocument = new DocxBuilder();
+        DocxDocument = new DocxBuilder(DocumentMetaData);
         DocxDocument.CreateDocument();
 
         //DocxDocument.TitleTableOfFigures = metaData.TofHeading;

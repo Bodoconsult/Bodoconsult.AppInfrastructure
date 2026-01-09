@@ -3,6 +3,7 @@
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Charting.Factories;
+using Bodoconsult.Drawing.SkiaSharp.Factories;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using Bodoconsult.Drawing.SkiaSharp.Services;
 
@@ -19,7 +20,7 @@ namespace Bodoconsult.Charting.DependencyInjection
         /// <param name="diContainer">Current DI container</param>
         public void AddServices(DiContainer diContainer)
         {
-            diContainer.AddSingleton<IBitmapService, BitmapService>();
+            diContainer.AddSingleton<IBitmapServiceFactory, BitmapServiceFactory>();
             diContainer.AddSingleton<IChartHandlerFactory, ChartHandlerFactory>();
         }
 
