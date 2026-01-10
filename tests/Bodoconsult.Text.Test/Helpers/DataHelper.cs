@@ -129,7 +129,7 @@ public class DataHelper
         dt.Rows.Add(item);
 
         item = dt.NewRow();
-        item["CssStyle"] = "wr_cell_h1";
+        item["CssStyle"] = "wr_cell_h2";
         item["Key"] = "Marketing";
         item["Value1"] = 45.97;
         item["Value2"] = DateTime.Now;
@@ -142,6 +142,82 @@ public class DataHelper
         item["Value1"] = 45.97;
         item["Value2"] = DateTime.Now;
         item["Value3"] = true;
+        dt.Rows.Add(item);
+
+        return dt;
+    }
+
+    public static DataTable GetLargeDataTable()
+    {
+        var dt = new DataTable();
+        dt.Columns.Add("Key");
+        dt.Columns.Add("Value1").DataType = typeof(double);
+        dt.Columns.Add("Value2").DataType = typeof(DateTime);
+        dt.Columns.Add("Value3").DataType = typeof(bool);
+        dt.Columns.Add("Remark");
+
+        var item = dt.NewRow();
+        item["Key"] = "Content";
+        item["Value1"] = 5.97;
+        item["Value2"] = DateTime.Now;
+        item["Value3"] = true;
+        item["Remark"] = "Blubb blabb blobb blepp dhdhdh  ddddd dddd dd sddddd ssddds";
+        dt.Rows.Add(item);
+
+        item = dt.NewRow();
+        item["Key"] = "Website";
+        item["Value1"] = 65.97;
+        item["Value2"] = DateTime.Now.AddDays(-25);
+        item["Value3"] = false;
+        item["Remark"] = "Blubb";
+        dt.Rows.Add(item);
+
+        item = dt.NewRow();
+        item["Key"] = "Marketing";
+        item["Value1"] = 45.97;
+        item["Value2"] = DateTime.Now;
+        item["Value3"] = true;
+        item["Remark"] = "Blubb blabb blobb blepp";
+        dt.Rows.Add(item);
+
+        return dt;
+    }
+
+    public static DataTable GetLargeDataTableWithCssInfo()
+    {
+        var dt = new DataTable();
+        dt.Columns.Add("CssStyle");
+        dt.Columns.Add("Key");
+        dt.Columns.Add("Value1").DataType = typeof(double);
+        dt.Columns.Add("Value2").DataType = typeof(DateTime);
+        dt.Columns.Add("Value3").DataType = typeof(bool);
+        dt.Columns.Add("Remark");
+
+        var item = dt.NewRow();
+        item["CssStyle"] = "wr_cell_h1";
+        item["Key"] = "Content";
+        item["Value1"] = 5.97;
+        item["Value2"] = DateTime.Now;
+        item["Value3"] = true;
+        item["Remark"] = "Blubb blabb blobb blepp dhdhdh  ddddd dddd dd sddddd ssddds";
+        dt.Rows.Add(item);
+
+        item = dt.NewRow();
+        item["CssStyle"] = "";
+        item["Key"] = "Website";
+        item["Value1"] = 65.97;
+        item["Value2"] = DateTime.Now.AddDays(-25);
+        item["Value3"] = false;
+        item["Remark"] = "Blubb";
+        dt.Rows.Add(item);
+
+        item = dt.NewRow();
+        item["CssStyle"] = "wr_cell_h2";
+        item["Key"] = "Marketing";
+        item["Value1"] = 45.97;
+        item["Value2"] = DateTime.Now;
+        item["Value3"] = true;
+        item["Remark"] = "Blubb blabb blobb blepp";
         dt.Rows.Add(item);
 
         return dt;

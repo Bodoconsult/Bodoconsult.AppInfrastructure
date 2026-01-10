@@ -91,8 +91,10 @@ public class PdfCreatorTests
         pdf.AddDefinitionList(DataHelper.GetDefinitionListAsDataTable());
 
         pdf.AddParagraph(TestDataHelper.MassText, "Normal");
+#pragma warning disable CS0612 // Type or member is obsolete
         pdf.AddTable(DataHelper.GetSmallDataTable(), "Tabellenüberschrift", "NoHeading1", "some additional info",
             "Details", pdf.Width);
+#pragma warning restore CS0612 // Type or member is obsolete
 
 
         pdf.AddTableFrame(DataHelper.GetSmallDataTable(), "Tabellenüberschrift Frame", "NoHeading1", "some additional info",

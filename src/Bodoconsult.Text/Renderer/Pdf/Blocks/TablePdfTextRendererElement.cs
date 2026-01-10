@@ -87,6 +87,12 @@ public class TablePdfTextRendererElement : PdfTextRendererElementBase
             dt.Rows.Add(row);
         }
 
-        renderer.PdfDocument.AddTable(dt, legend, _table.TagName);
+        dt.Legend = legend;
+        dt.Tag = _table.TagName;
+
+        var tableStyle = (TableStyle)renderer.Styleset.FindStyle("TableStyle");
+        dt.TableStyle = tableStyle;
+
+        renderer.PdfDocument.AddTable(dt);
     }
 }

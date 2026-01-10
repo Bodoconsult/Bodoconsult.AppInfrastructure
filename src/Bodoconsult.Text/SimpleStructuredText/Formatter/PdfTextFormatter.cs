@@ -9,6 +9,7 @@ using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Enums;
 using Bodoconsult.Text.Interfaces;
 using Bodoconsult.Text.Model;
+using Bodoconsult.Pdf.Extensions;
 using MigraDoc.DocumentObjectModel;
 
 namespace Bodoconsult.Text.Formatter;
@@ -78,8 +79,6 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
         Pdf = new PdfCreator(StyleSet)
         {
             Increment = Increment,
-            TableBackColor = BackColor,
-            TableBorderColor = TableBorderColor
         };
 
         //Pdf.SetDocInfo(Title, Subject, Author);
@@ -171,7 +170,7 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
 
     private void GetTable(TableTextItem ti)
     {
-        var data = new DataTable();
+        var dt = new DataTable();
 
         using (var stream = new MemoryStream())
         {
@@ -179,10 +178,17 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
             writer.Write(ti.DataTableXml);
             writer.Flush();
             stream.Position = 0;
-            data.ReadXml(stream);
+            dt.ReadXml(stream);
         }
 
-        Pdf.AddTable(data, ti.Content, "NoHeading1", string.Empty, string.Empty, Pdf.Width);
+        var pdfTable = dt.Columns[0].ColumnName.ToLowerInvariant() == "cssstyle" ?
+            dt.ToPdfTableWithCssInfo(Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors) :
+            dt.ToPdfTable();
+
+        pdfTable.Heading = ti.Content;
+        pdfTable.HeadingStyleName = "NoHeading1";
+
+        Pdf.AddTable(pdfTable);
 
     }
 

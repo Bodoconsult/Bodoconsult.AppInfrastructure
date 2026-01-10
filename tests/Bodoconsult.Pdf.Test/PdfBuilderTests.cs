@@ -54,6 +54,9 @@ public class PdfBuilderTests
         var code = ResourceHelper.GetTextResource("code1.txt").Replace("\\t", "\t");
 
         var pdfTable = DataHelper.GetSmallDataTable().ToPdfTable();
+        var pdfTableWithCss = DataHelper.GetSmallDataTableWithCssInfo().ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors);
+        var pdfLargeTable = DataHelper.GetLargeDataTable().ToPdfTable();
+        var pdfLargeTableWithCss = DataHelper.GetLargeDataTableWithCssInfo().ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors);
 
         if (File.Exists(fileName))
         {
@@ -101,6 +104,31 @@ public class PdfBuilderTests
 
         pdf.AddParagraph(TestDataHelper.MassText, "Normal");
 
+        pdfTable.Heading = "Tabellenunterschrift (ohne CSS)";
+        pdfTable.HeadingStyleName = "NoHeading1";
+
+        pdf.AddTable(pdfTable);
+
+        pdf.AddParagraph(TestDataHelper.MassText, "Normal");
+
+        pdfTableWithCss.Legend = "Tabellenunterschrift (mit CSS)";
+
+        pdf.AddTable(pdfTableWithCss);
+
+        pdf.AddParagraph(TestDataHelper.MassText, "Normal");
+
+        pdfLargeTable.Legend = "Tabellenunterschrift (ohne CSS)";
+
+        pdf.AddTable(pdfLargeTable);
+
+        pdf.AddParagraph(TestDataHelper.MassText, "Normal");
+
+        pdfLargeTableWithCss.Legend = "Tabellenunterschrift (mit CSS)";
+
+        pdf.AddTable(pdfLargeTableWithCss);
+
+        pdf.AddParagraph(TestDataHelper.MassText, "Normal");
+
         pdf.AddDefinitionList(GetDefinitionList());
 
         pdf.AddParagraph(code, "Code");
@@ -115,12 +143,10 @@ public class PdfBuilderTests
 
         pdf.AddDefinitionList(DataHelper.GetDefinitionListAsDataTable());
 
-        pdf.AddParagraph(TestDataHelper.MassText, "Normal");
-
-        pdf.AddTable(pdfTable, "Tabellenunterschrift", "t1", pdf.Width);
-
+#pragma warning disable CS0612 // Type or member is obsolete
         pdf.AddTable(DataHelper.GetSmallDataTable(), "Tabellenüberschrift", "NoHeading1", "some additional info",
             "Details", pdf.Width);
+#pragma warning restore CS0612 // Type or member is obsolete
 
         pdf.AddTableFrame(DataHelper.GetSmallDataTable(), "Tabellenüberschrift Frame", "NoHeading1", "some additional info",
             "Details", pdf.Width / 2);

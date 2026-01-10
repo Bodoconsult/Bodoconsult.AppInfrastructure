@@ -51,20 +51,11 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
         var factory = new PdfBuilderFactory(fontResolver);
 
-
         PdfDocument = factory.CreateInstance(styleSet);
-
-        var tableStyle = (TableStyle)Styleset.FindStyle("TableStyle");
-
         PdfDocument.TitleTableOfFigures = metaData.TofHeading;
         PdfDocument.TitleTableOfEquations = metaData.ToeHeading;
         PdfDocument.TitleTableOfTables = metaData.TotHeading;
         PdfDocument.TitleTableOfContent = metaData.TocHeading;
-
-        PdfDocument.TableAlternateBackColor = tableStyle.TableAlternateBackColor.ToPdfColor();
-        PdfDocument.TableBackColor = tableStyle.TableBackColor.ToPdfColor();
-        PdfDocument.TableBorderColor = tableStyle.TableBorderColor.ToPdfColor();
-        PdfDocument.TableHeaderBackgroundColor = tableStyle.TableHeaderBackgroundColor.ToPdfColor();
     }
 
     /// <summary>

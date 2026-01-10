@@ -24,7 +24,7 @@ public interface IPdfBuilder : IDisposable
     IStyleSet StyleSet { get; }
 
     /// <summary>
-    /// Currently started table
+    /// Current started table
     /// </summary>
     Table Table { get; }
 
@@ -57,51 +57,6 @@ public interface IPdfBuilder : IDisposable
     /// Increment
     /// </summary>
     int Increment { get; set; }
-
-    /// <summary>
-    /// Alternating background color for tables
-    /// </summary>
-    Color TableAlternateBackColor { get; set; }
-
-    /// <summary>
-    /// Background color
-    /// </summary>
-    Color TableBackColor { get; set; }
-
-    /// <summary>
-    /// Table header background color
-    /// </summary>
-    Color TableHeaderBackgroundColor { get; set; }
-
-    /// <summary>
-    /// Table border color
-    /// </summary>
-    Color TableBorderColor { get; set; }
-
-    /// <summary>
-    /// Color for shading of risk class 1
-    /// </summary>
-    Color ShadingRisk2Color { get; set; }
-
-    /// <summary>
-    /// Color for shading of risk class 2
-    /// </summary>
-    Color ShadingRisk1Color { get; set; }
-
-    /// <summary>
-    /// Color for shading of headline 3
-    /// </summary>
-    Color ShadingH3Color { get; set; }
-
-    /// <summary>
-    /// Color for shading of headline 2
-    /// </summary>
-    Color ShadingH2Color { get; set; }
-
-    /// <summary>
-    /// Color for shading of headline 1
-    /// </summary>
-    Color ShadingH1Color { get; set; }
 
     /// <summary>
     /// Add a page break if necessary
@@ -445,26 +400,7 @@ public interface IPdfBuilder : IDisposable
     /// Add a table to the document
     /// </summary>
     /// <param name="dt">Current table data</param>
-    /// <param name="legend">Legend for the table</param>
-    /// <param name="tag">Link tag name</param>
-    /// <param name="width">Width in cm to use or 0 for textarea width</param>
-    /// <param name="tableStyle">Name of the style to use for table. Default: NormalTable</param>
-    void AddTable(PdfTable dt, string legend, string tag, double width = 0, string tableStyle = "NormalTable");
-
-    /// <summary>
-    /// Add a table to the document
-    /// </summary>
-    /// <param name="dt">Current table data</param>
-    /// <param name="legend">Legend for the table</param>
-    /// <param name="tag">Link tag name</param>
-    /// <param name="heading">Heading for the table to be presented before the table</param>
-    /// <param name="headingStyleName">Style name for the heading</param>
-    /// <param name="additionalInfos">Additional info for the table to be presented before the table</param>
-    /// <param name="additionalInfosStyleName">Style name for the additonal info</param>
-    /// <param name="width">Width in cm to use or 0 for textarea width</param>
-    /// <param name="tableStyle">Name of the style to use for table. Default: NormalTable</param>
-    void AddTable(PdfTable dt, string legend, string tag, string heading, string headingStyleName,
-        string additionalInfos, string additionalInfosStyleName, double width = 0, string tableStyle = "NormalTable");
+    void AddTable(PdfTable dt);
 
     /// <summary>
     /// Add a table to the content
@@ -476,6 +412,7 @@ public interface IPdfBuilder : IDisposable
     /// <param name="additionalInfosStyleName"></param>
     /// <param name="width"></param>
     /// <param name="tableStyle">Name of the style to use for table formatting (not all properties supported)</param>
+    [Obsolete]
     void AddTable(DataTable dt, string heading, string headingStyleName, string additionalInfos, string additionalInfosStyleName, double width = 0, string tableStyle = "NormalTable");
 
     /// <summary>
