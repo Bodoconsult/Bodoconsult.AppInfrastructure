@@ -1,14 +1,37 @@
+Bodoconsult.App.Wpf
+===========================
 
-# What does the library
+# Overview
+
+>   [Using app start infrastructure for a classical Wpf based apps](#using-app-start-infrastructure-for-a-classical-wpf-based-apps)
+
+>   [Using app start infrastructure for a console app employing a WPF dispatcher](#using-app-start-infrastructure-for-a-os-service-like-wpf-based-apps)
+
+>   [Using app start infrastructure for a OS service like WPF based apps](#using-app-start-infrastructure-for-a-console-app-employing-a-wpf-dispatcher)
+
+>   [Other tools](#other-tools)
+
+>   >   [SharedResourceDictionary](#sharedresourcedictionary)
+
+>   >   [Converters](#converters)
+
+>   >   [Sending TOAST messages from WPF app](#sending-toast-messages-from-wpf-app)
+
+>   >   [Starting WPD Dispatcher from console apps: DispatcherService class](#starting-wpd-dispatcher-from-console-apps-dispatcherservice-class)
+
+## What does the library
 
 Bodoconsult.App.Wpf is a library with basic functionality for multilayered monolithic WPF based applications. 
 
-
-# App start infrastructure basics
+## App start infrastructure basics
 
 See page [app start infrastructure](../Bodoconsult.App/AppStartInfrastructure.md) for details.
 
-## Using app start infrastructure for a classical Wpf based apps
+## How to use the library
+
+The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.
+
+# Using app start infrastructure for a classical Wpf based apps
 
 Here a sample from Program.cs Main() how to setup the Wpf app with a main form Forms1 in project AvaloniaApp1 contained in this repo:
 
@@ -80,7 +103,7 @@ base.OnStartup(e);
 
 Start by creating your own viewmodel class AvaloniaApp1MainWindowViewModel derived from MainWindowViewModel and override CreateWindow() method to load your custom start window.
 
-## Using app start infrastructure for a console app employing a WPF dispatcher
+# Using app start infrastructure for a console app employing a WPF dispatcher
 
 If you want to use WPF features like FlowDocuments in a console app you need to employ a WPF dispatcher. 
 In a classical WPF app starting the WPF dispatcher is done by the App.xaml start process internally. 
@@ -138,7 +161,7 @@ Environment.Exit(0);
 
 Start by creating your own app builder class similar to ConsoleAvaloniaApp1AppBuilder class based on BaseConsoleAvaloniaAppBuilderl.
 
-## Using app start infrastructure for a OS service like WPF based apps
+# Using app start infrastructure for a OS service like WPF based apps
 
 If you want to implement a OS service like application without implementing a real OS service you can use WpfStarterUi class. 
 
@@ -214,6 +237,68 @@ builder.StartApplication();
 
 base.OnStartup(e);
 ```
+
+# Other tools
+
+## SharedResourceDictionary
+
+Use SharedResourceDictionary class to avoid loading resources multiple times.
+
+## Use I18N providers for using Bodoocnsult.I18N with WPF resources
+
+For basic info how to use Bodoconsult.I18N and I18N providers see [Bodoconsult.I18N section](../Bodoconsult.I18N/README.md).
+
+Use WpfEmbeddedResourceProvider and WpfFileLocalesProvider to add I18N resources from WPF to Bodoocnsult.I18N.
+
+``` csharp
+    private const string Path = "Locales";
+
+    [Test]
+    public void RegisterResourceItems_ExistingResources_ResourceItemsLoaded()
+    {
+        // Arrange 
+        var ass = TestHelper.CurrentAssembly;
+
+        var provider = new WpfEmbeddedResourceProvider(ass, Path);
+
+        // Act  
+        provider.RegisterResourceItems();
+
+        // Assert
+        Assert.That(provider.ResourceItems, Is.Not.Null);
+        Assert.That(provider.ResourceItems.Count, Is.Not.EqualTo(0));
+    }
+```
+
+## Converters
+
+Bodoconsult.App.Wpf defines a set of converters based on IValueConverter interface:
+
+-   ColorToBrushConverter
+
+-   DateTimeConverter
+
+-   DateTimeUiConverter
+
+-   FlowDocumentContentToXamlConverter
+
+-   FlowDocumentToXamlConverter
+
+-   NullImageConverter
+
+-   NumberConverter
+
+-   PercentageConverter
+
+-   
+
+## Sending TOAST messages from WPF app
+
+WpfToastMessagingService class implements sending of simple TOAST messages to the OS.
+
+## Starting WPD Dispatcher from console apps: DispatcherService class
+
+Use the DispatcherService class to start a WPF Dispatcher in a console environment to use WPF features like Flowdocument.
 
 # About us
 

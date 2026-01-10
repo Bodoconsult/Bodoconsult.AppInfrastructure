@@ -3,6 +3,14 @@ Bodoconsult.Office
 
 # Overview
 
+>   [Use XlsxBuilder class to create OpenXML XSLX files](#use-xlsxbuilder-class-to-create-openxml-xslx-files)
+
+>   [Use XlsxLateBindingBuilder class to create XLSX via COM late binding](#use-xlsxlatebindingbuilder-class-to-create-xlsx-via-com-late-binding)
+
+>   [Use CsvBuilder class to create CSV files](#use-csvbuilder-class-to-create-csv-files)
+
+>   [Use DocxBuilder class to create OpenXML DOCX files](#use-docxbuilder-class-to-create-openxml-docx-files)
+
 ## What does the library
 
 Bodoconsult.Office library simplifies creating OpenXML spredsheets (XLSX) for database data in form of System.Data.DataTable objects.
@@ -21,7 +29,7 @@ For users of older versions of this library: the central classes were renamed st
 
 The source code contain NUnit test classes, the following source code is extracted from. The samples below show the most helpful use cases for the library.
 
-# Use XlsxBuilder class
+# Use XlsxBuilder class to create OpenXML XSLX files
 
 The XlsxBuilder class writes the content of a DataTable (in the sample code the variable dt) directly to an OpenXML spreadsheet file.
 
@@ -52,9 +60,11 @@ oe.FillDataTable(dt, 4, 1);
 oe.Quit();
 ```
 
-# Use XlsxLateBindingBuilder class
+# Use XlsxLateBindingBuilder class to create XLSX via COM late binding
 
 The XlsxLateBindingBuilder class uses COM late binding to export a DataTable (in the sample code the variable dt) to an Excel spreadsheet.
+
+This requires Microsoft Excel (TM) installed on the PC running the code.
 
 ``` csharp
 var dt = TestHelper.GetDataTable("LineChart.xml");
@@ -78,7 +88,7 @@ excel.FillDataTable(dt, 4, 1);
 excel.Dispose();
 ```
 
-# Use CsvBuilder class
+# Use CsvBuilder class to create CSV files
 
 Use the CsvBuilder class to create CSV formatted data files.
 
@@ -109,7 +119,7 @@ public void Export_ValidDataTable_FileCreated()
 }
 ```
 
-# Use DocxBuilder class
+# Use DocxBuilder class to create OpenXML DOCX files
 
 Use the DocxBuilder class to create DOCX word processing files. 
 
@@ -162,7 +172,9 @@ public void RealWorld_MultipleSectionsWithPageNumbering_DocxCreated()
     };
 
     // Basics
-    var docx = new DocxBuilder();
+    var dmd = CreateTypoMetaData();
+
+    var docx = new DocxBuilder(dmd);
     docx.CreateDocument(path);
 
     // Create styles
@@ -291,6 +303,17 @@ public void RealWorld_MultipleSectionsWithPageNumbering_DocxCreated()
     docx.Dispose();
 
     FileSystemHelper.RunInDebugMode(path);
+}
+
+private TypoMetaData CreateTypoMetaData()
+{
+    return new TypoMetaData()
+    {
+        Authors = "Robert Leisner",
+        Company = "Bodoconsult",
+        FooterText = "FooterText",
+        HeaderText = "HeaderText"
+    };
 }
 ```
 

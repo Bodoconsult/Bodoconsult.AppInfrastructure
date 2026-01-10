@@ -6903,6 +6903,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Copyright
   nameWithType: ITypoMetaData.Copyright
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CultureInfo
+  name: CultureInfo
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_CultureInfo
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CultureInfo
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CultureInfo
+  nameWithType: ITypoMetaData.CultureInfo
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CultureInfo*
+  name: CultureInfo
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_CultureInfo_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CultureInfo
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CultureInfo
+  nameWithType: ITypoMetaData.CultureInfo
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CurrentLanguage
+  name: CurrentLanguage
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_CurrentLanguage
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CurrentLanguage
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CurrentLanguage
+  nameWithType: ITypoMetaData.CurrentLanguage
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CurrentLanguage*
+  name: CurrentLanguage
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_CurrentLanguage_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CurrentLanguage
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.CurrentLanguage
+  nameWithType: ITypoMetaData.CurrentLanguage
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Description
   name: Description
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_Description
@@ -6916,6 +6942,58 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Description
   nameWithType: ITypoMetaData.Description
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterTemplate
+  name: FooterTemplate
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_FooterTemplate
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterTemplate
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterTemplate
+  nameWithType: ITypoMetaData.FooterTemplate
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterTemplate*
+  name: FooterTemplate
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_FooterTemplate_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterTemplate
+  nameWithType: ITypoMetaData.FooterTemplate
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterText
+  name: FooterText
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_FooterText
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterText
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterText
+  nameWithType: ITypoMetaData.FooterText
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterText*
+  name: FooterText
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_FooterText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.FooterText
+  nameWithType: ITypoMetaData.FooterText
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderTemplate
+  name: HeaderTemplate
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_HeaderTemplate
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderTemplate
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderTemplate
+  nameWithType: ITypoMetaData.HeaderTemplate
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderTemplate*
+  name: HeaderTemplate
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_HeaderTemplate_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderTemplate
+  nameWithType: ITypoMetaData.HeaderTemplate
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderText
+  name: HeaderText
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_HeaderText
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderText
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderText
+  nameWithType: ITypoMetaData.HeaderText
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderText*
+  name: HeaderText
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_HeaderText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.HeaderText
+  nameWithType: ITypoMetaData.HeaderText
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Keywords
   name: Keywords
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_Keywords
@@ -6955,6 +7033,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.LogoWidth
   nameWithType: ITypoMetaData.LogoWidth
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.PageNumberPrefix
+  name: PageNumberPrefix
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_PageNumberPrefix
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.PageNumberPrefix
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.PageNumberPrefix
+  nameWithType: ITypoMetaData.PageNumberPrefix
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.PageNumberPrefix*
+  name: PageNumberPrefix
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_PageNumberPrefix_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.PageNumberPrefix
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.PageNumberPrefix
+  nameWithType: ITypoMetaData.PageNumberPrefix
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Title
   name: Title
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_Title
@@ -6974,6 +7065,19 @@ references:
   commentId: T:Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle
   nameWithType: ITypoPageStyle
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.ColumnGap
+  name: ColumnGap
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoPageStyle_ColumnGap
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.ColumnGap
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.ColumnGap
+  nameWithType: ITypoPageStyle.ColumnGap
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.ColumnGap*
+  name: ColumnGap
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoPageStyle_ColumnGap_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.ColumnGap
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.ColumnGap
+  nameWithType: ITypoPageStyle.ColumnGap
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.ColumnWidth
   name: ColumnWidth
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoPageStyle_ColumnWidth
@@ -7000,19 +7104,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.NumberOfColumns
   nameWithType: ITypoPageStyle.NumberOfColumns
-- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.Space
-  name: Space
-  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoPageStyle_Space
-  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.Space
-  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.Space
-  nameWithType: ITypoPageStyle.Space
-- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.Space*
-  name: Space
-  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoPageStyle_Space_
-  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.Space
-  isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.Space
-  nameWithType: ITypoPageStyle.Space
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.TypoMargins
   name: TypoMargins
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoPageStyle_TypoMargins
@@ -7253,6 +7344,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.TypoPaddings
   nameWithType: ITypoParagraphStyle.TypoPaddings
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.TypoShading
+  name: TypoShading
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoParagraphStyle_TypoShading
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.TypoShading
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.TypoShading
+  nameWithType: ITypoParagraphStyle.TypoShading
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.TypoShading*
+  name: TypoShading
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoParagraphStyle_TypoShading_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.TypoShading
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.TypoShading
+  nameWithType: ITypoParagraphStyle.TypoShading
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.WidowControl
   name: WidowControl
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle.html#Bodoconsult_App_Abstractions_Interfaces_ITypoParagraphStyle_WidowControl
@@ -7434,6 +7538,24 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.ChartStyle
   nameWithType: ITypography.ChartStyle
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.CompanyIndicator
+  name: CompanyIndicator
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_CompanyIndicator
+  commentId: F:Bodoconsult.App.Abstractions.Interfaces.ITypography.CompanyIndicator
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.CompanyIndicator
+  nameWithType: ITypography.CompanyIndicator
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.DateIndicator
+  name: DateIndicator
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_DateIndicator
+  commentId: F:Bodoconsult.App.Abstractions.Interfaces.ITypography.DateIndicator
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.DateIndicator
+  nameWithType: ITypography.DateIndicator
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.DateTimeIndicator
+  name: DateTimeIndicator
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_DateTimeIndicator
+  commentId: F:Bodoconsult.App.Abstractions.Interfaces.ITypography.DateTimeIndicator
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.DateTimeIndicator
+  nameWithType: ITypography.DateTimeIndicator
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.DotsPerInch
   name: DotsPerInch
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_DotsPerInch
@@ -7706,6 +7828,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.LineHeight
   nameWithType: ITypography.LineHeight
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.LogoIndicator
+  name: LogoIndicator
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_LogoIndicator
+  commentId: F:Bodoconsult.App.Abstractions.Interfaces.ITypography.LogoIndicator
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.LogoIndicator
+  nameWithType: ITypography.LogoIndicator
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.MarginBottomFactor
   name: MarginBottomFactor
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_MarginBottomFactor
@@ -7972,6 +8100,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.TableHeaderUnborderedBackground
   nameWithType: ITypography.TableHeaderUnborderedBackground
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.TextIndicator
+  name: TextIndicator
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_TextIndicator
+  commentId: F:Bodoconsult.App.Abstractions.Interfaces.ITypography.TextIndicator
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypography.TextIndicator
+  nameWithType: ITypography.TextIndicator
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypography.TitleFontName
   name: TitleFontName
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypography.html#Bodoconsult_App_Abstractions_Interfaces_ITypography_TitleFontName
@@ -11111,6 +11245,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Copyright
   nameWithType: TypoMetaData.Copyright
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CultureInfo
+  name: CultureInfo
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_CultureInfo
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.CultureInfo
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CultureInfo
+  nameWithType: TypoMetaData.CultureInfo
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CultureInfo*
+  name: CultureInfo
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_CultureInfo_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.CultureInfo
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CultureInfo
+  nameWithType: TypoMetaData.CultureInfo
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CurrentLanguage
+  name: CurrentLanguage
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_CurrentLanguage
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.CurrentLanguage
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CurrentLanguage
+  nameWithType: TypoMetaData.CurrentLanguage
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CurrentLanguage*
+  name: CurrentLanguage
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_CurrentLanguage_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.CurrentLanguage
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.CurrentLanguage
+  nameWithType: TypoMetaData.CurrentLanguage
 - uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Description
   name: Description
   href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_Description
@@ -11124,6 +11284,58 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Description
   nameWithType: TypoMetaData.Description
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterTemplate
+  name: FooterTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_FooterTemplate
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterTemplate
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterTemplate
+  nameWithType: TypoMetaData.FooterTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterTemplate*
+  name: FooterTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_FooterTemplate_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterTemplate
+  nameWithType: TypoMetaData.FooterTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterText
+  name: FooterText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_FooterText
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterText
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterText
+  nameWithType: TypoMetaData.FooterText
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterText*
+  name: FooterText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_FooterText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.FooterText
+  nameWithType: TypoMetaData.FooterText
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderTemplate
+  name: HeaderTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_HeaderTemplate
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderTemplate
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderTemplate
+  nameWithType: TypoMetaData.HeaderTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderTemplate*
+  name: HeaderTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_HeaderTemplate_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderTemplate
+  nameWithType: TypoMetaData.HeaderTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderText
+  name: HeaderText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_HeaderText
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderText
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderText
+  nameWithType: TypoMetaData.HeaderText
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderText*
+  name: HeaderText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_HeaderText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.HeaderText
+  nameWithType: TypoMetaData.HeaderText
 - uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Keywords
   name: Keywords
   href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_Keywords
@@ -11163,6 +11375,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.LogoWidth
   nameWithType: TypoMetaData.LogoWidth
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.PageNumberPrefix
+  name: PageNumberPrefix
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_PageNumberPrefix
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.PageNumberPrefix
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.PageNumberPrefix
+  nameWithType: TypoMetaData.PageNumberPrefix
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.PageNumberPrefix*
+  name: PageNumberPrefix
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_PageNumberPrefix_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.PageNumberPrefix
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.PageNumberPrefix
+  nameWithType: TypoMetaData.PageNumberPrefix
 - uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Title
   name: Title
   href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_Title
@@ -11264,6 +11489,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.ChartStyle
   nameWithType: TypographyBase.ChartStyle
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.ColumnGap
+  name: ColumnGap
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_ColumnGap
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.ColumnGap
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.ColumnGap
+  nameWithType: TypographyBase.ColumnGap
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.ColumnGap*
+  name: ColumnGap
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_ColumnGap_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.ColumnGap
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.ColumnGap
+  nameWithType: TypographyBase.ColumnGap
 - uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.ColumnWidth
   name: ColumnWidth
   href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_ColumnWidth
@@ -11316,6 +11554,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.Copyright
   nameWithType: TypographyBase.Copyright
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.CultureInfo
+  name: CultureInfo
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_CultureInfo
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.CultureInfo
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.CultureInfo
+  nameWithType: TypographyBase.CultureInfo
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.CultureInfo*
+  name: CultureInfo
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_CultureInfo_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.CultureInfo
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.CultureInfo
+  nameWithType: TypographyBase.CultureInfo
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.CurrentLanguage
+  name: CurrentLanguage
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_CurrentLanguage
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.CurrentLanguage
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.CurrentLanguage
+  nameWithType: TypographyBase.CurrentLanguage
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.CurrentLanguage*
+  name: CurrentLanguage
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_CurrentLanguage_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.CurrentLanguage
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.CurrentLanguage
+  nameWithType: TypographyBase.CurrentLanguage
 - uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.Description
   name: Description
   href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_Description
@@ -11394,6 +11658,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterAreaRect
   nameWithType: TypographyBase.FooterAreaRect
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterTemplate
+  name: FooterTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_FooterTemplate
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterTemplate
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterTemplate
+  nameWithType: TypographyBase.FooterTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterTemplate*
+  name: FooterTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_FooterTemplate_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterTemplate
+  nameWithType: TypographyBase.FooterTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterText
+  name: FooterText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_FooterText
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterText
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterText
+  nameWithType: TypographyBase.FooterText
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterText*
+  name: FooterText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_FooterText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.FooterText
+  nameWithType: TypographyBase.FooterText
 - uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.GetHeight(System.Int32,System.Boolean)
   name: GetHeight(int, bool)
   href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_GetHeight_System_Int32_System_Boolean_
@@ -11510,6 +11800,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderAreaRect
   nameWithType: TypographyBase.HeaderAreaRect
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderTemplate
+  name: HeaderTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_HeaderTemplate
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderTemplate
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderTemplate
+  nameWithType: TypographyBase.HeaderTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderTemplate*
+  name: HeaderTemplate
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_HeaderTemplate_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderTemplate
+  nameWithType: TypographyBase.HeaderTemplate
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderText
+  name: HeaderText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_HeaderText
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderText
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderText
+  nameWithType: TypographyBase.HeaderText
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderText*
+  name: HeaderText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_HeaderText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeaderText
+  nameWithType: TypographyBase.HeaderText
 - uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.HeadingFontName
   name: HeadingFontName
   href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_HeadingFontName
@@ -11770,6 +12086,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.PageHeaderMargin
   nameWithType: TypographyBase.PageHeaderMargin
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.PageNumberPrefix
+  name: PageNumberPrefix
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_PageNumberPrefix
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.PageNumberPrefix
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.PageNumberPrefix
+  nameWithType: TypographyBase.PageNumberPrefix
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.PageNumberPrefix*
+  name: PageNumberPrefix
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_PageNumberPrefix_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.PageNumberPrefix
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.PageNumberPrefix
+  nameWithType: TypographyBase.PageNumberPrefix
 - uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.SetMargins
   name: SetMargins()
   href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_SetMargins
@@ -11796,19 +12125,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.SmallFontSize
   nameWithType: TypographyBase.SmallFontSize
-- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.Space
-  name: Space
-  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_Space
-  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.Space
-  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.Space
-  nameWithType: TypographyBase.Space
-- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.Space*
-  name: Space
-  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_Space_
-  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.Space
-  isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.Space
-  nameWithType: TypographyBase.Space
 - uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.SubTitleFontName
   name: SubTitleFontName
   href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_SubTitleFontName
@@ -37563,6 +37879,31 @@ references:
   commentId: T:Bodoconsult.App.Wpf.Documents.Delegates.DrawSectionDelegate
   fullName: Bodoconsult.App.Wpf.Documents.Delegates.DrawSectionDelegate
   nameWithType: DrawSectionDelegate
+- uid: Bodoconsult.App.Wpf.Documents.Extensions
+  name: Bodoconsult.App.Wpf.Documents.Extensions
+  href: api/Bodoconsult.App.Wpf.Documents.Extensions.html
+  commentId: N:Bodoconsult.App.Wpf.Documents.Extensions
+  fullName: Bodoconsult.App.Wpf.Documents.Extensions
+  nameWithType: Bodoconsult.App.Wpf.Documents.Extensions
+- uid: Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions
+  name: TypoColorExtensions
+  href: api/Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.html
+  commentId: T:Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions
+  fullName: Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions
+  nameWithType: TypoColorExtensions
+- uid: Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.ToWpfColor(Bodoconsult.App.Abstractions.Interfaces.TypoColor)
+  name: ToWpfColor(TypoColor)
+  href: api/Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.html#Bodoconsult_App_Wpf_Documents_Extensions_TypoColorExtensions_ToWpfColor_Bodoconsult_App_Abstractions_Interfaces_TypoColor_
+  commentId: M:Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.ToWpfColor(Bodoconsult.App.Abstractions.Interfaces.TypoColor)
+  fullName: Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.ToWpfColor(Bodoconsult.App.Abstractions.Interfaces.TypoColor)
+  nameWithType: TypoColorExtensions.ToWpfColor(TypoColor)
+- uid: Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.ToWpfColor*
+  name: ToWpfColor
+  href: api/Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.html#Bodoconsult_App_Wpf_Documents_Extensions_TypoColorExtensions_ToWpfColor_
+  commentId: Overload:Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.ToWpfColor
+  isSpec: "True"
+  fullName: Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.ToWpfColor
+  nameWithType: TypoColorExtensions.ToWpfColor
 - uid: Bodoconsult.App.Wpf.Documents.General
   name: Bodoconsult.App.Wpf.Documents.General
   href: api/Bodoconsult.App.Wpf.Documents.General.html
@@ -37749,6 +38090,22 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.AddImage
   nameWithType: WpfDocumentRendererHelper.AddImage
+- uid: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateHeaderFooterElement(System.Windows.Media.DrawingContext,System.Windows.Rect,Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData,System.String,System.Int32,System.Double,System.Boolean,System.Int32,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum,System.String,System.Double,System.Double)
+  name: CreateHeaderFooterElement(DrawingContext, Rect, ITypoMetaData, string, int, double, bool, int, PageNumberFormatEnum, string, double, double)
+  href: api/Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.html#Bodoconsult_App_Wpf_Documents_Helpers_WpfDocumentRendererHelper_CreateHeaderFooterElement_System_Windows_Media_DrawingContext_System_Windows_Rect_Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_System_String_System_Int32_System_Double_System_Boolean_System_Int32_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_System_String_System_Double_System_Double_
+  commentId: M:Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateHeaderFooterElement(System.Windows.Media.DrawingContext,System.Windows.Rect,Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData,System.String,System.Int32,System.Double,System.Boolean,System.Int32,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum,System.String,System.Double,System.Double)
+  name.vb: CreateHeaderFooterElement(DrawingContext, Rect, ITypoMetaData, String, Integer, Double, Boolean, Integer, PageNumberFormatEnum, String, Double, Double)
+  fullName: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateHeaderFooterElement(System.Windows.Media.DrawingContext, System.Windows.Rect, Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData, string, int, double, bool, int, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum, string, double, double)
+  fullName.vb: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateHeaderFooterElement(System.Windows.Media.DrawingContext, System.Windows.Rect, Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData, String, Integer, Double, Boolean, Integer, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum, String, Double, Double)
+  nameWithType: WpfDocumentRendererHelper.CreateHeaderFooterElement(DrawingContext, Rect, ITypoMetaData, string, int, double, bool, int, PageNumberFormatEnum, string, double, double)
+  nameWithType.vb: WpfDocumentRendererHelper.CreateHeaderFooterElement(DrawingContext, Rect, ITypoMetaData, String, Integer, Double, Boolean, Integer, PageNumberFormatEnum, String, Double, Double)
+- uid: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateHeaderFooterElement*
+  name: CreateHeaderFooterElement
+  href: api/Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.html#Bodoconsult_App_Wpf_Documents_Helpers_WpfDocumentRendererHelper_CreateHeaderFooterElement_
+  commentId: Overload:Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateHeaderFooterElement
+  isSpec: "True"
+  fullName: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateHeaderFooterElement
+  nameWithType: WpfDocumentRendererHelper.CreateHeaderFooterElement
 - uid: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateSection(Bodoconsult.App.Wpf.Documents.Renderer.WpfTextDocumentRenderer,Bodoconsult.Text.Documents.SectionBase,System.String,System.String)
   name: CreateSection(WpfTextDocumentRenderer, SectionBase, string, string)
   href: api/Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.html#Bodoconsult_App_Wpf_Documents_Helpers_WpfDocumentRendererHelper_CreateSection_Bodoconsult_App_Wpf_Documents_Renderer_WpfTextDocumentRenderer_Bodoconsult_Text_Documents_SectionBase_System_String_System_String_
@@ -37781,6 +38138,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.CreateSectionVisual
   nameWithType: WpfDocumentRendererHelper.CreateSectionVisual
+- uid: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.GetTextAlignment(Bodoconsult.Text.Documents.ParagraphStyleBase)
+  name: GetTextAlignment(ParagraphStyleBase)
+  href: api/Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.html#Bodoconsult_App_Wpf_Documents_Helpers_WpfDocumentRendererHelper_GetTextAlignment_Bodoconsult_Text_Documents_ParagraphStyleBase_
+  commentId: M:Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.GetTextAlignment(Bodoconsult.Text.Documents.ParagraphStyleBase)
+  fullName: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.GetTextAlignment(Bodoconsult.Text.Documents.ParagraphStyleBase)
+  nameWithType: WpfDocumentRendererHelper.GetTextAlignment(ParagraphStyleBase)
+- uid: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.GetTextAlignment*
+  name: GetTextAlignment
+  href: api/Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.html#Bodoconsult_App_Wpf_Documents_Helpers_WpfDocumentRendererHelper_GetTextAlignment_
+  commentId: Overload:Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.GetTextAlignment
+  isSpec: "True"
+  fullName: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.GetTextAlignment
+  nameWithType: WpfDocumentRendererHelper.GetTextAlignment
 - uid: Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.NoMarginThickness
   name: NoMarginThickness
   href: api/Bodoconsult.App.Wpf.Documents.Helpers.WpfDocumentRendererHelper.html#Bodoconsult_App_Wpf_Documents_Helpers_WpfDocumentRendererHelper_NoMarginThickness
@@ -37916,32 +38286,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.ContentSize
   nameWithType: IPageSettingsService.ContentSize
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CultureInfo
-  name: CultureInfo
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_CultureInfo
-  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CultureInfo
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CultureInfo
-  nameWithType: IPageSettingsService.CultureInfo
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CultureInfo*
-  name: CultureInfo
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_CultureInfo_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CultureInfo
+- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.DocumentMetaData
+  name: DocumentMetaData
+  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_DocumentMetaData
+  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.DocumentMetaData
+  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.DocumentMetaData
+  nameWithType: IPageSettingsService.DocumentMetaData
+- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.DocumentMetaData*
+  name: DocumentMetaData
+  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_DocumentMetaData_
+  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.DocumentMetaData
   isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CultureInfo
-  nameWithType: IPageSettingsService.CultureInfo
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CurrentLanguage
-  name: CurrentLanguage
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_CurrentLanguage
-  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CurrentLanguage
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CurrentLanguage
-  nameWithType: IPageSettingsService.CurrentLanguage
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CurrentLanguage*
-  name: CurrentLanguage
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_CurrentLanguage_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CurrentLanguage
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.CurrentLanguage
-  nameWithType: IPageSettingsService.CurrentLanguage
+  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.DocumentMetaData
+  nameWithType: IPageSettingsService.DocumentMetaData
 - uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.DrawFooterDelegate
   name: DrawFooterDelegate
   href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_DrawFooterDelegate
@@ -37994,19 +38351,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterFontSize
   nameWithType: IPageSettingsService.FooterFontSize
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterPageText
-  name: FooterPageText
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_FooterPageText
-  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterPageText
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterPageText
-  nameWithType: IPageSettingsService.FooterPageText
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterPageText*
-  name: FooterPageText
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_FooterPageText_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterPageText
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterPageText
-  nameWithType: IPageSettingsService.FooterPageText
 - uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterRect
   name: FooterRect
   href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_FooterRect
@@ -38020,19 +38364,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterRect
   nameWithType: IPageSettingsService.FooterRect
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterText
-  name: FooterText
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_FooterText
-  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterText
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterText
-  nameWithType: IPageSettingsService.FooterText
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterText*
-  name: FooterText
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_FooterText_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterText
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.FooterText
-  nameWithType: IPageSettingsService.FooterText
 - uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderFontName
   name: HeaderFontName
   href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_HeaderFontName
@@ -38072,45 +38403,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderRect
   nameWithType: IPageSettingsService.HeaderRect
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderText
-  name: HeaderText
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_HeaderText
-  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderText
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderText
-  nameWithType: IPageSettingsService.HeaderText
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderText*
-  name: HeaderText
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_HeaderText_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderText
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.HeaderText
-  nameWithType: IPageSettingsService.HeaderText
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoPath
-  name: LogoPath
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_LogoPath
-  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoPath
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoPath
-  nameWithType: IPageSettingsService.LogoPath
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoPath*
-  name: LogoPath
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_LogoPath_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoPath
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoPath
-  nameWithType: IPageSettingsService.LogoPath
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoWidth
-  name: LogoWidth
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_LogoWidth
-  commentId: P:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoWidth
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoWidth
-  nameWithType: IPageSettingsService.LogoWidth
-- uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoWidth*
-  name: LogoWidth
-  href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_LogoWidth_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoWidth
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.LogoWidth
-  nameWithType: IPageSettingsService.LogoWidth
 - uid: Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.PageSize
   name: PageSize
   href: api/Bodoconsult.App.Wpf.Documents.Interfaces.IPageSettingsService.html#Bodoconsult_App_Wpf_Documents_Interfaces_IPageSettingsService_PageSize
@@ -43484,32 +43776,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.ContentSize
   nameWithType: BasePageSettingsService.ContentSize
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CultureInfo
-  name: CultureInfo
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_CultureInfo
-  commentId: P:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CultureInfo
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CultureInfo
-  nameWithType: BasePageSettingsService.CultureInfo
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CultureInfo*
-  name: CultureInfo
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_CultureInfo_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CultureInfo
+- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.DocumentMetaData
+  name: DocumentMetaData
+  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_DocumentMetaData
+  commentId: P:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.DocumentMetaData
+  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.DocumentMetaData
+  nameWithType: BasePageSettingsService.DocumentMetaData
+- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.DocumentMetaData*
+  name: DocumentMetaData
+  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_DocumentMetaData_
+  commentId: Overload:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.DocumentMetaData
   isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CultureInfo
-  nameWithType: BasePageSettingsService.CultureInfo
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CurrentLanguage
-  name: CurrentLanguage
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_CurrentLanguage
-  commentId: P:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CurrentLanguage
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CurrentLanguage
-  nameWithType: BasePageSettingsService.CurrentLanguage
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CurrentLanguage*
-  name: CurrentLanguage
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_CurrentLanguage_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CurrentLanguage
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.CurrentLanguage
-  nameWithType: BasePageSettingsService.CurrentLanguage
+  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.DocumentMetaData
+  nameWithType: BasePageSettingsService.DocumentMetaData
 - uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.DrawFooterDelegate
   name: DrawFooterDelegate
   href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_DrawFooterDelegate
@@ -43614,19 +43893,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.FooterRect
   nameWithType: BasePageSettingsService.FooterRect
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.FooterText
-  name: FooterText
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_FooterText
-  commentId: P:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.FooterText
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.FooterText
-  nameWithType: BasePageSettingsService.FooterText
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.FooterText*
-  name: FooterText
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_FooterText_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.FooterText
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.FooterText
-  nameWithType: BasePageSettingsService.FooterText
 - uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderFontName
   name: HeaderFontName
   href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_HeaderFontName
@@ -43692,45 +43958,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderRect
   nameWithType: BasePageSettingsService.HeaderRect
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderText
-  name: HeaderText
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_HeaderText
-  commentId: P:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderText
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderText
-  nameWithType: BasePageSettingsService.HeaderText
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderText*
-  name: HeaderText
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_HeaderText_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderText
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.HeaderText
-  nameWithType: BasePageSettingsService.HeaderText
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoPath
-  name: LogoPath
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_LogoPath
-  commentId: P:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoPath
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoPath
-  nameWithType: BasePageSettingsService.LogoPath
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoPath*
-  name: LogoPath
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_LogoPath_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoPath
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoPath
-  nameWithType: BasePageSettingsService.LogoPath
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoWidth
-  name: LogoWidth
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_LogoWidth
-  commentId: P:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoWidth
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoWidth
-  nameWithType: BasePageSettingsService.LogoWidth
-- uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoWidth*
-  name: LogoWidth
-  href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_LogoWidth_
-  commentId: Overload:Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoWidth
-  isSpec: "True"
-  fullName: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.LogoWidth
-  nameWithType: BasePageSettingsService.LogoWidth
 - uid: Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.Margins
   name: Margins
   href: api/Bodoconsult.App.Wpf.Documents.Services.BasePageSettingsService.html#Bodoconsult_App_Wpf_Documents_Services_BasePageSettingsService_Margins
@@ -54074,6 +54301,41 @@ references:
   commentId: T:Bodoconsult.Office.DocxBuilder
   fullName: Bodoconsult.Office.DocxBuilder
   nameWithType: DocxBuilder
+- uid: Bodoconsult.Office.DocxBuilder.#ctor(Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData)
+  name: DocxBuilder(ITypoMetaData)
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder__ctor_Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_
+  commentId: M:Bodoconsult.Office.DocxBuilder.#ctor(Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData)
+  name.vb: New(ITypoMetaData)
+  fullName: Bodoconsult.Office.DocxBuilder.DocxBuilder(Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData)
+  fullName.vb: Bodoconsult.Office.DocxBuilder.New(Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData)
+  nameWithType: DocxBuilder.DocxBuilder(ITypoMetaData)
+  nameWithType.vb: DocxBuilder.New(ITypoMetaData)
+- uid: Bodoconsult.Office.DocxBuilder.#ctor*
+  name: DocxBuilder
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder__ctor_
+  commentId: Overload:Bodoconsult.Office.DocxBuilder.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.Office.DocxBuilder.DocxBuilder
+  fullName.vb: Bodoconsult.Office.DocxBuilder.New
+  nameWithType: DocxBuilder.DocxBuilder
+  nameWithType.vb: DocxBuilder.New
+- uid: Bodoconsult.Office.DocxBuilder.AddBookmarkRef(DocumentFormat.OpenXml.Wordprocessing.Paragraph,System.String)
+  name: AddBookmarkRef(Paragraph, string)
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddBookmarkRef_DocumentFormat_OpenXml_Wordprocessing_Paragraph_System_String_
+  commentId: M:Bodoconsult.Office.DocxBuilder.AddBookmarkRef(DocumentFormat.OpenXml.Wordprocessing.Paragraph,System.String)
+  name.vb: AddBookmarkRef(Paragraph, String)
+  fullName: Bodoconsult.Office.DocxBuilder.AddBookmarkRef(DocumentFormat.OpenXml.Wordprocessing.Paragraph, string)
+  fullName.vb: Bodoconsult.Office.DocxBuilder.AddBookmarkRef(DocumentFormat.OpenXml.Wordprocessing.Paragraph, String)
+  nameWithType: DocxBuilder.AddBookmarkRef(Paragraph, string)
+  nameWithType.vb: DocxBuilder.AddBookmarkRef(Paragraph, String)
+- uid: Bodoconsult.Office.DocxBuilder.AddBookmarkRef*
+  name: AddBookmarkRef
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddBookmarkRef_
+  commentId: Overload:Bodoconsult.Office.DocxBuilder.AddBookmarkRef
+  isSpec: "True"
+  fullName: Bodoconsult.Office.DocxBuilder.AddBookmarkRef
+  nameWithType: DocxBuilder.AddBookmarkRef
 - uid: Bodoconsult.Office.DocxBuilder.AddDefinitionList(System.Collections.Generic.List{Bodoconsult.Office.DocxDefinitionListRow},System.Double,System.Double)
   name: AddDefinitionList(List<DocxDefinitionListRow>, double, double)
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddDefinitionList_System_Collections_Generic_List_Bodoconsult_Office_DocxDefinitionListRow__System_Double_System_Double_
@@ -54090,15 +54352,15 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Office.DocxBuilder.AddDefinitionList
   nameWithType: DocxBuilder.AddDefinitionList
-- uid: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(System.String,System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  name: AddFooterToCurrentSection(string, double, PageNumberFormatEnum)
-  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddFooterToCurrentSection_System_String_System_Double_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
-  commentId: M:Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(System.String,System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  name.vb: AddFooterToCurrentSection(String, Double, PageNumberFormatEnum)
-  fullName: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(string, double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  fullName.vb: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(String, Double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  nameWithType: DocxBuilder.AddFooterToCurrentSection(string, double, PageNumberFormatEnum)
-  nameWithType.vb: DocxBuilder.AddFooterToCurrentSection(String, Double, PageNumberFormatEnum)
+- uid: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name: AddFooterToCurrentSection(double, PageNumberFormatEnum)
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddFooterToCurrentSection_System_Double_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
+  commentId: M:Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name.vb: AddFooterToCurrentSection(Double, PageNumberFormatEnum)
+  fullName: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  fullName.vb: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection(Double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  nameWithType: DocxBuilder.AddFooterToCurrentSection(double, PageNumberFormatEnum)
+  nameWithType.vb: DocxBuilder.AddFooterToCurrentSection(Double, PageNumberFormatEnum)
 - uid: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection*
   name: AddFooterToCurrentSection
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddFooterToCurrentSection_
@@ -54106,15 +54368,15 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Office.DocxBuilder.AddFooterToCurrentSection
   nameWithType: DocxBuilder.AddFooterToCurrentSection
-- uid: Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(System.String,System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  name: AddHeaderToCurrentSection(string, double, PageNumberFormatEnum)
-  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddHeaderToCurrentSection_System_String_System_Double_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
-  commentId: M:Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(System.String,System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  name.vb: AddHeaderToCurrentSection(String, Double, PageNumberFormatEnum)
-  fullName: Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(string, double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  fullName.vb: Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(String, Double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
-  nameWithType: DocxBuilder.AddHeaderToCurrentSection(string, double, PageNumberFormatEnum)
-  nameWithType.vb: DocxBuilder.AddHeaderToCurrentSection(String, Double, PageNumberFormatEnum)
+- uid: Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name: AddHeaderToCurrentSection(double, PageNumberFormatEnum)
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddHeaderToCurrentSection_System_Double_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
+  commentId: M:Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(System.Double,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name.vb: AddHeaderToCurrentSection(Double, PageNumberFormatEnum)
+  fullName: Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  fullName.vb: Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection(Double, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  nameWithType: DocxBuilder.AddHeaderToCurrentSection(double, PageNumberFormatEnum)
+  nameWithType.vb: DocxBuilder.AddHeaderToCurrentSection(Double, PageNumberFormatEnum)
 - uid: Bodoconsult.Office.DocxBuilder.AddHeaderToCurrentSection*
   name: AddHeaderToCurrentSection
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddHeaderToCurrentSection_
@@ -54154,19 +54416,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Office.DocxBuilder.AddList
   nameWithType: DocxBuilder.AddList
-- uid: Bodoconsult.Office.DocxBuilder.AddMetadata(Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData)
-  name: AddMetadata(ITypoMetaData)
-  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddMetadata_Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_
-  commentId: M:Bodoconsult.Office.DocxBuilder.AddMetadata(Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData)
-  fullName: Bodoconsult.Office.DocxBuilder.AddMetadata(Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData)
-  nameWithType: DocxBuilder.AddMetadata(ITypoMetaData)
-- uid: Bodoconsult.Office.DocxBuilder.AddMetadata*
-  name: AddMetadata
-  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddMetadata_
-  commentId: Overload:Bodoconsult.Office.DocxBuilder.AddMetadata
-  isSpec: "True"
-  fullName: Bodoconsult.Office.DocxBuilder.AddMetadata
-  nameWithType: DocxBuilder.AddMetadata
 - uid: Bodoconsult.Office.DocxBuilder.AddNewStyle(System.String,System.String,Bodoconsult.App.Abstractions.Interfaces.ITypoParagraphStyle,System.Int32)
   name: AddNewStyle(string, string, ITypoParagraphStyle, int)
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddNewStyle_System_String_System_String_Bodoconsult_App_Abstractions_Interfaces_ITypoParagraphStyle_System_Int32_
@@ -54201,6 +54450,15 @@ references:
   fullName.vb: Bodoconsult.Office.DocxBuilder.AddParagraph(System.Collections.Generic.IList(Of DocumentFormat.OpenXml.OpenXmlElement), String)
   nameWithType: DocxBuilder.AddParagraph(IList<OpenXmlElement>, string)
   nameWithType.vb: DocxBuilder.AddParagraph(IList(Of OpenXmlElement), String)
+- uid: Bodoconsult.Office.DocxBuilder.AddParagraph(System.Collections.Generic.IList{DocumentFormat.OpenXml.OpenXmlElement},System.String,System.String)
+  name: AddParagraph(IList<OpenXmlElement>, string, string)
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddParagraph_System_Collections_Generic_IList_DocumentFormat_OpenXml_OpenXmlElement__System_String_System_String_
+  commentId: M:Bodoconsult.Office.DocxBuilder.AddParagraph(System.Collections.Generic.IList{DocumentFormat.OpenXml.OpenXmlElement},System.String,System.String)
+  name.vb: AddParagraph(IList(Of OpenXmlElement), String, String)
+  fullName: Bodoconsult.Office.DocxBuilder.AddParagraph(System.Collections.Generic.IList<DocumentFormat.OpenXml.OpenXmlElement>, string, string)
+  fullName.vb: Bodoconsult.Office.DocxBuilder.AddParagraph(System.Collections.Generic.IList(Of DocumentFormat.OpenXml.OpenXmlElement), String, String)
+  nameWithType: DocxBuilder.AddParagraph(IList<OpenXmlElement>, string, string)
+  nameWithType.vb: DocxBuilder.AddParagraph(IList(Of OpenXmlElement), String, String)
 - uid: Bodoconsult.Office.DocxBuilder.AddParagraph(System.String,System.String)
   name: AddParagraph(string, string)
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddParagraph_System_String_System_String_
@@ -54210,6 +54468,15 @@ references:
   fullName.vb: Bodoconsult.Office.DocxBuilder.AddParagraph(String, String)
   nameWithType: DocxBuilder.AddParagraph(string, string)
   nameWithType.vb: DocxBuilder.AddParagraph(String, String)
+- uid: Bodoconsult.Office.DocxBuilder.AddParagraph(System.String,System.String,System.String)
+  name: AddParagraph(string, string, string)
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddParagraph_System_String_System_String_System_String_
+  commentId: M:Bodoconsult.Office.DocxBuilder.AddParagraph(System.String,System.String,System.String)
+  name.vb: AddParagraph(String, String, String)
+  fullName: Bodoconsult.Office.DocxBuilder.AddParagraph(string, string, string)
+  fullName.vb: Bodoconsult.Office.DocxBuilder.AddParagraph(String, String, String)
+  nameWithType: DocxBuilder.AddParagraph(string, string, string)
+  nameWithType.vb: DocxBuilder.AddParagraph(String, String, String)
 - uid: Bodoconsult.Office.DocxBuilder.AddParagraph*
   name: AddParagraph
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddParagraph_
@@ -54242,6 +54509,15 @@ references:
   fullName.vb: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List(Of Bodoconsult.Office.DocxTableRow), Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle)
   nameWithType: DocxBuilder.AddTable(List<DocxTableRow>, ITypoTableStyle)
   nameWithType.vb: DocxBuilder.AddTable(List(Of DocxTableRow), ITypoTableStyle)
+- uid: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List{Bodoconsult.Office.DocxTableRow},Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle,System.String)
+  name: AddTable(List<DocxTableRow>, ITypoTableStyle, string)
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddTable_System_Collections_Generic_List_Bodoconsult_Office_DocxTableRow__Bodoconsult_App_Abstractions_Interfaces_ITypoTableStyle_System_String_
+  commentId: M:Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List{Bodoconsult.Office.DocxTableRow},Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle,System.String)
+  name.vb: AddTable(List(Of DocxTableRow), ITypoTableStyle, String)
+  fullName: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List<Bodoconsult.Office.DocxTableRow>, Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle, string)
+  fullName.vb: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List(Of Bodoconsult.Office.DocxTableRow), Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle, String)
+  nameWithType: DocxBuilder.AddTable(List<DocxTableRow>, ITypoTableStyle, string)
+  nameWithType.vb: DocxBuilder.AddTable(List(Of DocxTableRow), ITypoTableStyle, String)
 - uid: Bodoconsult.Office.DocxBuilder.AddTable*
   name: AddTable
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddTable_
@@ -54490,6 +54766,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Office.DocxBuilder.Dispose
   nameWithType: DocxBuilder.Dispose
+- uid: Bodoconsult.Office.DocxBuilder.DocumentMetaData
+  name: DocumentMetaData
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_DocumentMetaData
+  commentId: P:Bodoconsult.Office.DocxBuilder.DocumentMetaData
+  fullName: Bodoconsult.Office.DocxBuilder.DocumentMetaData
+  nameWithType: DocxBuilder.DocumentMetaData
+- uid: Bodoconsult.Office.DocxBuilder.DocumentMetaData*
+  name: DocumentMetaData
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_DocumentMetaData_
+  commentId: Overload:Bodoconsult.Office.DocxBuilder.DocumentMetaData
+  isSpec: "True"
+  fullName: Bodoconsult.Office.DocxBuilder.DocumentMetaData
+  nameWithType: DocxBuilder.DocumentMetaData
 - uid: Bodoconsult.Office.DocxBuilder.Docx
   name: Docx
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_Docx
@@ -54610,19 +54899,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Office.DocxBuilder.Styles
   nameWithType: DocxBuilder.Styles
-- uid: Bodoconsult.Office.DocxBuilder.TypoMetaData
-  name: TypoMetaData
-  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_TypoMetaData
-  commentId: P:Bodoconsult.Office.DocxBuilder.TypoMetaData
-  fullName: Bodoconsult.Office.DocxBuilder.TypoMetaData
-  nameWithType: DocxBuilder.TypoMetaData
-- uid: Bodoconsult.Office.DocxBuilder.TypoMetaData*
-  name: TypoMetaData
-  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_TypoMetaData_
-  commentId: Overload:Bodoconsult.Office.DocxBuilder.TypoMetaData
-  isSpec: "True"
-  fullName: Bodoconsult.Office.DocxBuilder.TypoMetaData
-  nameWithType: DocxBuilder.TypoMetaData
 - uid: Bodoconsult.Office.DocxDefinitionListRow
   name: DocxDefinitionListRow
   href: api/Bodoconsult.Office.DocxDefinitionListRow.html
@@ -57334,6 +57610,19 @@ references:
   commentId: T:Bodoconsult.Pdf.Extensions.DataTableExtensions
   fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions
   nameWithType: DataTableExtensions
+- uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors
+  name: BodoconsultCssColors
+  href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_BodoconsultCssColors
+  commentId: P:Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors
+  fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors
+  nameWithType: DataTableExtensions.BodoconsultCssColors
+- uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors*
+  name: BodoconsultCssColors
+  href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_BodoconsultCssColors_
+  commentId: Overload:Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors
+  nameWithType: DataTableExtensions.BodoconsultCssColors
 - uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.EnumerateColumns(System.Data.DataTable)
   name: EnumerateColumns(DataTable)
   href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_EnumerateColumns_System_Data_DataTable_
@@ -57379,6 +57668,12 @@ references:
   commentId: M:Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTable(System.Data.DataTable)
   fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTable(System.Data.DataTable)
   nameWithType: DataTableExtensions.ToPdfTable(DataTable)
+- uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTable(System.Data.DataTable,System.Globalization.CultureInfo)
+  name: ToPdfTable(DataTable, CultureInfo)
+  href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_ToPdfTable_System_Data_DataTable_System_Globalization_CultureInfo_
+  commentId: M:Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTable(System.Data.DataTable,System.Globalization.CultureInfo)
+  fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTable(System.Data.DataTable, System.Globalization.CultureInfo)
+  nameWithType: DataTableExtensions.ToPdfTable(DataTable, CultureInfo)
 - uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTable*
   name: ToPdfTable
   href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_ToPdfTable_
@@ -57386,6 +57681,50 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTable
   nameWithType: DataTableExtensions.ToPdfTable
+- uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,MigraDoc.DocumentObjectModel.Color})
+  name: ToPdfTableWithCssInfo(DataTable, Dictionary<string, Color>)
+  href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_ToPdfTableWithCssInfo_System_Data_DataTable_System_Collections_Generic_Dictionary_System_String_MigraDoc_DocumentObjectModel_Color__
+  commentId: M:Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,MigraDoc.DocumentObjectModel.Color})
+  name.vb: ToPdfTableWithCssInfo(DataTable, Dictionary(Of String, Color))
+  fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable, System.Collections.Generic.Dictionary<string, MigraDoc.DocumentObjectModel.Color>)
+  fullName.vb: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable, System.Collections.Generic.Dictionary(Of String, MigraDoc.DocumentObjectModel.Color))
+  nameWithType: DataTableExtensions.ToPdfTableWithCssInfo(DataTable, Dictionary<string, Color>)
+  nameWithType.vb: DataTableExtensions.ToPdfTableWithCssInfo(DataTable, Dictionary(Of String, Color))
+- uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,MigraDoc.DocumentObjectModel.Color},System.Globalization.CultureInfo)
+  name: ToPdfTableWithCssInfo(DataTable, Dictionary<string, Color>, CultureInfo)
+  href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_ToPdfTableWithCssInfo_System_Data_DataTable_System_Collections_Generic_Dictionary_System_String_MigraDoc_DocumentObjectModel_Color__System_Globalization_CultureInfo_
+  commentId: M:Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,MigraDoc.DocumentObjectModel.Color},System.Globalization.CultureInfo)
+  name.vb: ToPdfTableWithCssInfo(DataTable, Dictionary(Of String, Color), CultureInfo)
+  fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable, System.Collections.Generic.Dictionary<string, MigraDoc.DocumentObjectModel.Color>, System.Globalization.CultureInfo)
+  fullName.vb: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo(System.Data.DataTable, System.Collections.Generic.Dictionary(Of String, MigraDoc.DocumentObjectModel.Color), System.Globalization.CultureInfo)
+  nameWithType: DataTableExtensions.ToPdfTableWithCssInfo(DataTable, Dictionary<string, Color>, CultureInfo)
+  nameWithType.vb: DataTableExtensions.ToPdfTableWithCssInfo(DataTable, Dictionary(Of String, Color), CultureInfo)
+- uid: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo*
+  name: ToPdfTableWithCssInfo
+  href: api/Bodoconsult.Pdf.Extensions.DataTableExtensions.html#Bodoconsult_Pdf_Extensions_DataTableExtensions_ToPdfTableWithCssInfo_
+  commentId: Overload:Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.Extensions.DataTableExtensions.ToPdfTableWithCssInfo
+  nameWithType: DataTableExtensions.ToPdfTableWithCssInfo
+- uid: Bodoconsult.Pdf.Extensions.TypoColorExtensions
+  name: TypoColorExtensions
+  href: api/Bodoconsult.Pdf.Extensions.TypoColorExtensions.html
+  commentId: T:Bodoconsult.Pdf.Extensions.TypoColorExtensions
+  fullName: Bodoconsult.Pdf.Extensions.TypoColorExtensions
+  nameWithType: TypoColorExtensions
+- uid: Bodoconsult.Pdf.Extensions.TypoColorExtensions.ToPdfColor(Bodoconsult.App.Abstractions.Interfaces.TypoColor)
+  name: ToPdfColor(TypoColor)
+  href: api/Bodoconsult.Pdf.Extensions.TypoColorExtensions.html#Bodoconsult_Pdf_Extensions_TypoColorExtensions_ToPdfColor_Bodoconsult_App_Abstractions_Interfaces_TypoColor_
+  commentId: M:Bodoconsult.Pdf.Extensions.TypoColorExtensions.ToPdfColor(Bodoconsult.App.Abstractions.Interfaces.TypoColor)
+  fullName: Bodoconsult.Pdf.Extensions.TypoColorExtensions.ToPdfColor(Bodoconsult.App.Abstractions.Interfaces.TypoColor)
+  nameWithType: TypoColorExtensions.ToPdfColor(TypoColor)
+- uid: Bodoconsult.Pdf.Extensions.TypoColorExtensions.ToPdfColor*
+  name: ToPdfColor
+  href: api/Bodoconsult.Pdf.Extensions.TypoColorExtensions.html#Bodoconsult_Pdf_Extensions_TypoColorExtensions_ToPdfColor_
+  commentId: Overload:Bodoconsult.Pdf.Extensions.TypoColorExtensions.ToPdfColor
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.Extensions.TypoColorExtensions.ToPdfColor
+  nameWithType: TypoColorExtensions.ToPdfColor
 - uid: Bodoconsult.Pdf.Factories
   name: Bodoconsult.Pdf.Factories
   href: api/Bodoconsult.Pdf.Factories.html
@@ -57999,15 +58338,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddSubtitle
   nameWithType: IPdfBuilder.AddSubtitle
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable,System.String,System.String,System.Double,System.String)
-  name: AddTable(PdfTable, string, string, double, string)
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_AddTable_Bodoconsult_Pdf_PdfSharp_PdfTable_System_String_System_String_System_Double_System_String_
-  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable,System.String,System.String,System.Double,System.String)
-  name.vb: AddTable(PdfTable, String, String, Double, String)
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable, string, string, double, string)
-  fullName.vb: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable, String, String, Double, String)
-  nameWithType: IPdfBuilder.AddTable(PdfTable, string, string, double, string)
-  nameWithType.vb: IPdfBuilder.AddTable(PdfTable, String, String, Double, String)
+- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable)
+  name: AddTable(PdfTable)
+  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_AddTable_Bodoconsult_Pdf_PdfSharp_PdfTable_
+  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable)
+  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable)
+  nameWithType: IPdfBuilder.AddTable(PdfTable)
 - uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddTable(System.Data.DataTable,System.String,System.String,System.String,System.String,System.Double,System.String)
   name: AddTable(DataTable, string, string, string, string, double, string)
   href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_AddTable_System_Data_DataTable_System_String_System_String_System_String_System_String_System_Double_System_String_
@@ -58395,15 +58731,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetDocInfo
   nameWithType: IPdfBuilder.SetDocInfo
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter(System.String,System.String)
-  name: SetFooter(string, string)
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetFooter_System_String_System_String_
-  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter(System.String,System.String)
-  name.vb: SetFooter(String, String)
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter(string, string)
-  fullName.vb: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter(String, String)
-  nameWithType: IPdfBuilder.SetFooter(string, string)
-  nameWithType.vb: IPdfBuilder.SetFooter(String, String)
+- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter
+  name: SetFooter()
+  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetFooter
+  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter
+  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter()
+  nameWithType: IPdfBuilder.SetFooter()
 - uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter*
   name: SetFooter
   href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetFooter_
@@ -58411,24 +58744,21 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetFooter
   nameWithType: IPdfBuilder.SetFooter
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(System.String,System.String)
-  name: SetHeader(string, string)
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetHeader_System_String_System_String_
-  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(System.String,System.String)
-  name.vb: SetHeader(String, String)
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(string, string)
-  fullName.vb: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(String, String)
-  nameWithType: IPdfBuilder.SetHeader(string, string)
-  nameWithType.vb: IPdfBuilder.SetHeader(String, String)
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(System.String,System.String,System.String)
-  name: SetHeader(string, string, string)
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetHeader_System_String_System_String_System_String_
-  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(System.String,System.String,System.String)
-  name.vb: SetHeader(String, String, String)
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(string, string, string)
-  fullName.vb: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(String, String, String)
-  nameWithType: IPdfBuilder.SetHeader(string, string, string)
-  nameWithType.vb: IPdfBuilder.SetHeader(String, String, String)
+- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader
+  name: SetHeader()
+  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetHeader
+  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader
+  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader()
+  nameWithType: IPdfBuilder.SetHeader()
+- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(System.String)
+  name: SetHeader(string)
+  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetHeader_System_String_
+  commentId: M:Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(System.String)
+  name.vb: SetHeader(String)
+  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(string)
+  fullName.vb: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader(String)
+  nameWithType: IPdfBuilder.SetHeader(string)
+  nameWithType.vb: IPdfBuilder.SetHeader(String)
 - uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader*
   name: SetHeader
   href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_SetHeader_
@@ -58436,71 +58766,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.SetHeader
   nameWithType: IPdfBuilder.SetHeader
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH1Color
-  name: ShadingH1Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingH1Color
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH1Color
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH1Color
-  nameWithType: IPdfBuilder.ShadingH1Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH1Color*
-  name: ShadingH1Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingH1Color_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH1Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH1Color
-  nameWithType: IPdfBuilder.ShadingH1Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH2Color
-  name: ShadingH2Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingH2Color
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH2Color
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH2Color
-  nameWithType: IPdfBuilder.ShadingH2Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH2Color*
-  name: ShadingH2Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingH2Color_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH2Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH2Color
-  nameWithType: IPdfBuilder.ShadingH2Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH3Color
-  name: ShadingH3Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingH3Color
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH3Color
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH3Color
-  nameWithType: IPdfBuilder.ShadingH3Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH3Color*
-  name: ShadingH3Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingH3Color_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH3Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingH3Color
-  nameWithType: IPdfBuilder.ShadingH3Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk1Color
-  name: ShadingRisk1Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingRisk1Color
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk1Color
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk1Color
-  nameWithType: IPdfBuilder.ShadingRisk1Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk1Color*
-  name: ShadingRisk1Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingRisk1Color_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk1Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk1Color
-  nameWithType: IPdfBuilder.ShadingRisk1Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk2Color
-  name: ShadingRisk2Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingRisk2Color
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk2Color
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk2Color
-  nameWithType: IPdfBuilder.ShadingRisk2Color
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk2Color*
-  name: ShadingRisk2Color
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_ShadingRisk2Color_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk2Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.ShadingRisk2Color
-  nameWithType: IPdfBuilder.ShadingRisk2Color
 - uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.StyleSet
   name: StyleSet
   href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_StyleSet
@@ -58556,45 +58821,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableAddRow
   nameWithType: IPdfBuilder.TableAddRow
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableAlternateBackColor
-  name: TableAlternateBackColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableAlternateBackColor
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableAlternateBackColor
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableAlternateBackColor
-  nameWithType: IPdfBuilder.TableAlternateBackColor
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableAlternateBackColor*
-  name: TableAlternateBackColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableAlternateBackColor_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableAlternateBackColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableAlternateBackColor
-  nameWithType: IPdfBuilder.TableAlternateBackColor
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBackColor
-  name: TableBackColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableBackColor
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBackColor
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBackColor
-  nameWithType: IPdfBuilder.TableBackColor
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBackColor*
-  name: TableBackColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableBackColor_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBackColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBackColor
-  nameWithType: IPdfBuilder.TableBackColor
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBorderColor
-  name: TableBorderColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableBorderColor
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBorderColor
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBorderColor
-  nameWithType: IPdfBuilder.TableBorderColor
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBorderColor*
-  name: TableBorderColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableBorderColor_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBorderColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableBorderColor
-  nameWithType: IPdfBuilder.TableBorderColor
 - uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableEnd
   name: TableEnd()
   href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableEnd
@@ -58608,19 +58834,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableEnd
   nameWithType: IPdfBuilder.TableEnd
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableHeaderBackgroundColor
-  name: TableHeaderBackgroundColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableHeaderBackgroundColor
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableHeaderBackgroundColor
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableHeaderBackgroundColor
-  nameWithType: IPdfBuilder.TableHeaderBackgroundColor
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableHeaderBackgroundColor*
-  name: TableHeaderBackgroundColor
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableHeaderBackgroundColor_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableHeaderBackgroundColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableHeaderBackgroundColor
-  nameWithType: IPdfBuilder.TableHeaderBackgroundColor
 - uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.TableSetContent(System.Int32,System.Int32,MigraDoc.DocumentObjectModel.Shapes.Charts.Chart)
   name: TableSetContent(int, int, Chart)
   href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_TableSetContent_System_Int32_System_Int32_MigraDoc_DocumentObjectModel_Shapes_Charts_Chart_
@@ -58853,12 +59066,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddFooterInternal
   nameWithType: MultiColumnPdfBuilder.AddFooterInternal
-- uid: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section)
-  name: AddHeaderInternal(Section)
-  href: api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.html#Bodoconsult_Pdf_PdfSharp_MultiColumnPdfBuilder_AddHeaderInternal_MigraDoc_DocumentObjectModel_Section_
-  commentId: M:Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section)
-  fullName: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section)
-  nameWithType: MultiColumnPdfBuilder.AddHeaderInternal(Section)
+- uid: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name: AddHeaderInternal(Section, PageNumberFormatEnum)
+  href: api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.html#Bodoconsult_Pdf_PdfSharp_MultiColumnPdfBuilder_AddHeaderInternal_MigraDoc_DocumentObjectModel_Section_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
+  commentId: M:Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  fullName: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  nameWithType: MultiColumnPdfBuilder.AddHeaderInternal(Section, PageNumberFormatEnum)
 - uid: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.AddHeaderInternal*
   name: AddHeaderInternal
   href: api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.html#Bodoconsult_Pdf_PdfSharp_MultiColumnPdfBuilder_AddHeaderInternal_
@@ -58978,12 +59191,15 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintFooter
   nameWithType: MultiColumnPdfBuilder.PrintFooter
-- uid: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader(PdfSharp.Drawing.XGraphics)
-  name: PrintHeader(XGraphics)
-  href: api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.html#Bodoconsult_Pdf_PdfSharp_MultiColumnPdfBuilder_PrintHeader_PdfSharp_Drawing_XGraphics_
-  commentId: M:Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader(PdfSharp.Drawing.XGraphics)
-  fullName: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader(PdfSharp.Drawing.XGraphics)
-  nameWithType: MultiColumnPdfBuilder.PrintHeader(XGraphics)
+- uid: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader(PdfSharp.Drawing.XGraphics,System.Int32,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name: PrintHeader(XGraphics, int, PageNumberFormatEnum)
+  href: api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.html#Bodoconsult_Pdf_PdfSharp_MultiColumnPdfBuilder_PrintHeader_PdfSharp_Drawing_XGraphics_System_Int32_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
+  commentId: M:Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader(PdfSharp.Drawing.XGraphics,System.Int32,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name.vb: PrintHeader(XGraphics, Integer, PageNumberFormatEnum)
+  fullName: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader(PdfSharp.Drawing.XGraphics, int, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  fullName.vb: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader(PdfSharp.Drawing.XGraphics, Integer, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  nameWithType: MultiColumnPdfBuilder.PrintHeader(XGraphics, int, PageNumberFormatEnum)
+  nameWithType.vb: MultiColumnPdfBuilder.PrintHeader(XGraphics, Integer, PageNumberFormatEnum)
 - uid: Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.PrintHeader*
   name: PrintHeader
   href: api/Bodoconsult.Pdf.PdfSharp.MultiColumnPdfBuilder.html#Bodoconsult_Pdf_PdfSharp_MultiColumnPdfBuilder_PrintHeader_
@@ -59204,12 +59420,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddFooterInternal
   nameWithType: PdfBuilderBase.AddFooterInternal
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section)
-  name: AddHeaderInternal(Section)
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_AddHeaderInternal_MigraDoc_DocumentObjectModel_Section_
-  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section)
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section)
-  nameWithType: PdfBuilderBase.AddHeaderInternal(Section)
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  name: AddHeaderInternal(Section, PageNumberFormatEnum)
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_AddHeaderInternal_MigraDoc_DocumentObjectModel_Section_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
+  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddHeaderInternal(MigraDoc.DocumentObjectModel.Section, Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
+  nameWithType: PdfBuilderBase.AddHeaderInternal(Section, PageNumberFormatEnum)
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddHeaderInternal*
   name: AddHeaderInternal
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_AddHeaderInternal_
@@ -59561,15 +59777,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddSubtitle
   nameWithType: PdfBuilderBase.AddSubtitle
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable,System.String,System.String,System.Double,System.String)
-  name: AddTable(PdfTable, string, string, double, string)
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_AddTable_Bodoconsult_Pdf_PdfSharp_PdfTable_System_String_System_String_System_Double_System_String_
-  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable,System.String,System.String,System.Double,System.String)
-  name.vb: AddTable(PdfTable, String, String, Double, String)
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable, string, string, double, string)
-  fullName.vb: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable, String, String, Double, String)
-  nameWithType: PdfBuilderBase.AddTable(PdfTable, string, string, double, string)
-  nameWithType.vb: PdfBuilderBase.AddTable(PdfTable, String, String, Double, String)
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable)
+  name: AddTable(PdfTable)
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_AddTable_Bodoconsult_Pdf_PdfSharp_PdfTable_
+  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable)
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(Bodoconsult.Pdf.PdfSharp.PdfTable)
+  nameWithType: PdfBuilderBase.AddTable(PdfTable)
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddTable(System.Data.DataTable,System.String,System.String,System.String,System.String,System.Double,System.String)
   name: AddTable(DataTable, string, string, string, string, double, string)
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_AddTable_System_Data_DataTable_System_String_System_String_System_String_System_String_System_Double_System_String_
@@ -59959,12 +60172,6 @@ references:
   commentId: F:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.FooterStyleName
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.FooterStyleName
   nameWithType: PdfBuilderBase.FooterStyleName
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.FooterText
-  name: FooterText
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_FooterText
-  commentId: F:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.FooterText
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.FooterText
-  nameWithType: PdfBuilderBase.FooterText
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.GetStyle(System.String)
   name: GetStyle(string)
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_GetStyle_System_String_
@@ -59987,12 +60194,6 @@ references:
   commentId: F:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.HeaderStyleName
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.HeaderStyleName
   nameWithType: PdfBuilderBase.HeaderStyleName
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.HeaderText
-  name: HeaderText
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_HeaderText
-  commentId: F:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.HeaderText
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.HeaderText
-  nameWithType: PdfBuilderBase.HeaderText
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.Increment
   name: Increment
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_Increment
@@ -60163,15 +60364,21 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetDocInfo
   nameWithType: PdfBuilderBase.SetDocInfo
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(System.String,System.String)
-  name: SetFooter(string, string)
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetFooter_System_String_System_String_
-  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(System.String,System.String)
-  name.vb: SetFooter(String, String)
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(string, string)
-  fullName.vb: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(String, String)
-  nameWithType: PdfBuilderBase.SetFooter(string, string)
-  nameWithType.vb: PdfBuilderBase.SetFooter(String, String)
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter
+  name: SetFooter()
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetFooter
+  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter()
+  nameWithType: PdfBuilderBase.SetFooter()
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(System.String)
+  name: SetFooter(string)
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetFooter_System_String_
+  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(System.String)
+  name.vb: SetFooter(String)
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(string)
+  fullName.vb: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter(String)
+  nameWithType: PdfBuilderBase.SetFooter(string)
+  nameWithType.vb: PdfBuilderBase.SetFooter(String)
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter*
   name: SetFooter
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetFooter_
@@ -60179,24 +60386,21 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetFooter
   nameWithType: PdfBuilderBase.SetFooter
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(System.String,System.String)
-  name: SetHeader(string, string)
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetHeader_System_String_System_String_
-  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(System.String,System.String)
-  name.vb: SetHeader(String, String)
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(string, string)
-  fullName.vb: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(String, String)
-  nameWithType: PdfBuilderBase.SetHeader(string, string)
-  nameWithType.vb: PdfBuilderBase.SetHeader(String, String)
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(System.String,System.String,System.String)
-  name: SetHeader(string, string, string)
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetHeader_System_String_System_String_System_String_
-  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(System.String,System.String,System.String)
-  name.vb: SetHeader(String, String, String)
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(string, string, string)
-  fullName.vb: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(String, String, String)
-  nameWithType: PdfBuilderBase.SetHeader(string, string, string)
-  nameWithType.vb: PdfBuilderBase.SetHeader(String, String, String)
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader
+  name: SetHeader()
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetHeader
+  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader()
+  nameWithType: PdfBuilderBase.SetHeader()
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(System.String)
+  name: SetHeader(string)
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetHeader_System_String_
+  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(System.String)
+  name.vb: SetHeader(String)
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(string)
+  fullName.vb: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader(String)
+  nameWithType: PdfBuilderBase.SetHeader(string)
+  nameWithType.vb: PdfBuilderBase.SetHeader(String)
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetHeader*
   name: SetHeader
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_SetHeader_
@@ -60217,71 +60421,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.SetPage
   nameWithType: PdfBuilderBase.SetPage
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH1Color
-  name: ShadingH1Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingH1Color
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH1Color
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH1Color
-  nameWithType: PdfBuilderBase.ShadingH1Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH1Color*
-  name: ShadingH1Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingH1Color_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH1Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH1Color
-  nameWithType: PdfBuilderBase.ShadingH1Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH2Color
-  name: ShadingH2Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingH2Color
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH2Color
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH2Color
-  nameWithType: PdfBuilderBase.ShadingH2Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH2Color*
-  name: ShadingH2Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingH2Color_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH2Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH2Color
-  nameWithType: PdfBuilderBase.ShadingH2Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH3Color
-  name: ShadingH3Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingH3Color
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH3Color
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH3Color
-  nameWithType: PdfBuilderBase.ShadingH3Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH3Color*
-  name: ShadingH3Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingH3Color_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH3Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingH3Color
-  nameWithType: PdfBuilderBase.ShadingH3Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk1Color
-  name: ShadingRisk1Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingRisk1Color
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk1Color
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk1Color
-  nameWithType: PdfBuilderBase.ShadingRisk1Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk1Color*
-  name: ShadingRisk1Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingRisk1Color_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk1Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk1Color
-  nameWithType: PdfBuilderBase.ShadingRisk1Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk2Color
-  name: ShadingRisk2Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingRisk2Color
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk2Color
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk2Color
-  nameWithType: PdfBuilderBase.ShadingRisk2Color
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk2Color*
-  name: ShadingRisk2Color
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_ShadingRisk2Color_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk2Color
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.ShadingRisk2Color
-  nameWithType: PdfBuilderBase.ShadingRisk2Color
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.StyleSet
   name: StyleSet
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_StyleSet
@@ -60337,45 +60476,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableAddRow
   nameWithType: PdfBuilderBase.TableAddRow
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableAlternateBackColor
-  name: TableAlternateBackColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableAlternateBackColor
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableAlternateBackColor
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableAlternateBackColor
-  nameWithType: PdfBuilderBase.TableAlternateBackColor
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableAlternateBackColor*
-  name: TableAlternateBackColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableAlternateBackColor_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableAlternateBackColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableAlternateBackColor
-  nameWithType: PdfBuilderBase.TableAlternateBackColor
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBackColor
-  name: TableBackColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableBackColor
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBackColor
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBackColor
-  nameWithType: PdfBuilderBase.TableBackColor
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBackColor*
-  name: TableBackColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableBackColor_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBackColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBackColor
-  nameWithType: PdfBuilderBase.TableBackColor
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBorderColor
-  name: TableBorderColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableBorderColor
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBorderColor
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBorderColor
-  nameWithType: PdfBuilderBase.TableBorderColor
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBorderColor*
-  name: TableBorderColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableBorderColor_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBorderColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableBorderColor
-  nameWithType: PdfBuilderBase.TableBorderColor
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableEnd
   name: TableEnd()
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableEnd
@@ -60389,19 +60489,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableEnd
   nameWithType: PdfBuilderBase.TableEnd
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableHeaderBackgroundColor
-  name: TableHeaderBackgroundColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableHeaderBackgroundColor
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableHeaderBackgroundColor
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableHeaderBackgroundColor
-  nameWithType: PdfBuilderBase.TableHeaderBackgroundColor
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableHeaderBackgroundColor*
-  name: TableHeaderBackgroundColor
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableHeaderBackgroundColor_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableHeaderBackgroundColor
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableHeaderBackgroundColor
-  nameWithType: PdfBuilderBase.TableHeaderBackgroundColor
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.TableSetContent(System.Int32,System.Int32,MigraDoc.DocumentObjectModel.Shapes.Charts.Chart)
   name: TableSetContent(int, int, Chart)
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_TableSetContent_System_Int32_System_Int32_MigraDoc_DocumentObjectModel_Shapes_Charts_Chart_
@@ -60963,6 +61050,142 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfCreator.CreateTocSection
   nameWithType: PdfCreator.CreateTocSection
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle
+  name: PdfDefaultTableStyle
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html
+  commentId: T:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle
+  nameWithType: PdfDefaultTableStyle
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.BorderSpacing
+  name: BorderSpacing
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_BorderSpacing
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.BorderSpacing
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.BorderSpacing
+  nameWithType: PdfDefaultTableStyle.BorderSpacing
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.BorderSpacing*
+  name: BorderSpacing
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_BorderSpacing_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.BorderSpacing
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.BorderSpacing
+  nameWithType: PdfDefaultTableStyle.BorderSpacing
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideHorizontalBorderWidth
+  name: InsideHorizontalBorderWidth
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_InsideHorizontalBorderWidth
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideHorizontalBorderWidth
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideHorizontalBorderWidth
+  nameWithType: PdfDefaultTableStyle.InsideHorizontalBorderWidth
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideHorizontalBorderWidth*
+  name: InsideHorizontalBorderWidth
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_InsideHorizontalBorderWidth_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideHorizontalBorderWidth
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideHorizontalBorderWidth
+  nameWithType: PdfDefaultTableStyle.InsideHorizontalBorderWidth
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideVerticalBorderWidth
+  name: InsideVerticalBorderWidth
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_InsideVerticalBorderWidth
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideVerticalBorderWidth
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideVerticalBorderWidth
+  nameWithType: PdfDefaultTableStyle.InsideVerticalBorderWidth
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideVerticalBorderWidth*
+  name: InsideVerticalBorderWidth
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_InsideVerticalBorderWidth_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideVerticalBorderWidth
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.InsideVerticalBorderWidth
+  nameWithType: PdfDefaultTableStyle.InsideVerticalBorderWidth
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderBrush
+  name: TypoBorderBrush
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoBorderBrush
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderBrush
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderBrush
+  nameWithType: PdfDefaultTableStyle.TypoBorderBrush
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderBrush*
+  name: TypoBorderBrush
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoBorderBrush_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderBrush
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderBrush
+  nameWithType: PdfDefaultTableStyle.TypoBorderBrush
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderThickness
+  name: TypoBorderThickness
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoBorderThickness
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderThickness
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderThickness
+  nameWithType: PdfDefaultTableStyle.TypoBorderThickness
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderThickness*
+  name: TypoBorderThickness
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoBorderThickness_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderThickness
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoBorderThickness
+  nameWithType: PdfDefaultTableStyle.TypoBorderThickness
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoMargins
+  name: TypoMargins
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoMargins
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoMargins
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoMargins
+  nameWithType: PdfDefaultTableStyle.TypoMargins
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoMargins*
+  name: TypoMargins
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoMargins_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoMargins
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoMargins
+  nameWithType: PdfDefaultTableStyle.TypoMargins
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableAlternateBackColor
+  name: TypoTableAlternateBackColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableAlternateBackColor
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableAlternateBackColor
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableAlternateBackColor
+  nameWithType: PdfDefaultTableStyle.TypoTableAlternateBackColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableAlternateBackColor*
+  name: TypoTableAlternateBackColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableAlternateBackColor_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableAlternateBackColor
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableAlternateBackColor
+  nameWithType: PdfDefaultTableStyle.TypoTableAlternateBackColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBackColor
+  name: TypoTableBackColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableBackColor
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBackColor
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBackColor
+  nameWithType: PdfDefaultTableStyle.TypoTableBackColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBackColor*
+  name: TypoTableBackColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableBackColor_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBackColor
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBackColor
+  nameWithType: PdfDefaultTableStyle.TypoTableBackColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBorderColor
+  name: TypoTableBorderColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableBorderColor
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBorderColor
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBorderColor
+  nameWithType: PdfDefaultTableStyle.TypoTableBorderColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBorderColor*
+  name: TypoTableBorderColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableBorderColor_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBorderColor
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableBorderColor
+  nameWithType: PdfDefaultTableStyle.TypoTableBorderColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableHeaderBackColor
+  name: TypoTableHeaderBackColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableHeaderBackColor
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableHeaderBackColor
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableHeaderBackColor
+  nameWithType: PdfDefaultTableStyle.TypoTableHeaderBackColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableHeaderBackColor*
+  name: TypoTableHeaderBackColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html#Bodoconsult_Pdf_PdfSharp_PdfDefaultTableStyle_TypoTableHeaderBackColor_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableHeaderBackColor
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.TypoTableHeaderBackColor
+  nameWithType: PdfDefaultTableStyle.TypoTableHeaderBackColor
 - uid: Bodoconsult.Pdf.PdfSharp.PdfDefinitionListTerm
   name: PdfDefinitionListTerm
   href: api/Bodoconsult.Pdf.PdfSharp.PdfDefinitionListTerm.html
@@ -61014,12 +61237,51 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfRow.Cells
   nameWithType: PdfRow.Cells
+- uid: Bodoconsult.Pdf.PdfSharp.PdfRow.ShadingColor
+  name: ShadingColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfRow.html#Bodoconsult_Pdf_PdfSharp_PdfRow_ShadingColor
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfRow.ShadingColor
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfRow.ShadingColor
+  nameWithType: PdfRow.ShadingColor
+- uid: Bodoconsult.Pdf.PdfSharp.PdfRow.ShadingColor*
+  name: ShadingColor
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfRow.html#Bodoconsult_Pdf_PdfSharp_PdfRow_ShadingColor_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfRow.ShadingColor
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfRow.ShadingColor
+  nameWithType: PdfRow.ShadingColor
 - uid: Bodoconsult.Pdf.PdfSharp.PdfTable
   name: PdfTable
   href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html
   commentId: T:Bodoconsult.Pdf.PdfSharp.PdfTable
   fullName: Bodoconsult.Pdf.PdfSharp.PdfTable
   nameWithType: PdfTable
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfos
+  name: AdditionalInfos
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_AdditionalInfos
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfos
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfos
+  nameWithType: PdfTable.AdditionalInfos
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfos*
+  name: AdditionalInfos
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_AdditionalInfos_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfos
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfos
+  nameWithType: PdfTable.AdditionalInfos
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfosStyleName
+  name: AdditionalInfosStyleName
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_AdditionalInfosStyleName
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfosStyleName
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfosStyleName
+  nameWithType: PdfTable.AdditionalInfosStyleName
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfosStyleName*
+  name: AdditionalInfosStyleName
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_AdditionalInfosStyleName_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfosStyleName
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.AdditionalInfosStyleName
+  nameWithType: PdfTable.AdditionalInfosStyleName
 - uid: Bodoconsult.Pdf.PdfSharp.PdfTable.Caption
   name: Caption
   href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_Caption
@@ -61046,6 +61308,45 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.Columns
   nameWithType: PdfTable.Columns
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.Heading
+  name: Heading
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_Heading
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfTable.Heading
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.Heading
+  nameWithType: PdfTable.Heading
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.Heading*
+  name: Heading
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_Heading_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfTable.Heading
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.Heading
+  nameWithType: PdfTable.Heading
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.HeadingStyleName
+  name: HeadingStyleName
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_HeadingStyleName
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfTable.HeadingStyleName
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.HeadingStyleName
+  nameWithType: PdfTable.HeadingStyleName
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.HeadingStyleName*
+  name: HeadingStyleName
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_HeadingStyleName_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfTable.HeadingStyleName
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.HeadingStyleName
+  nameWithType: PdfTable.HeadingStyleName
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.Legend
+  name: Legend
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_Legend
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfTable.Legend
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.Legend
+  nameWithType: PdfTable.Legend
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.Legend*
+  name: Legend
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_Legend_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfTable.Legend
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.Legend
+  nameWithType: PdfTable.Legend
 - uid: Bodoconsult.Pdf.PdfSharp.PdfTable.Rows
   name: Rows
   href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_Rows
@@ -61059,6 +61360,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.Rows
   nameWithType: PdfTable.Rows
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyle
+  name: TableStyle
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_TableStyle
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyle
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyle
+  nameWithType: PdfTable.TableStyle
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyle*
+  name: TableStyle
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_TableStyle_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyle
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyle
+  nameWithType: PdfTable.TableStyle
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyleName
+  name: TableStyleName
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_TableStyleName
+  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyleName
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyleName
+  nameWithType: PdfTable.TableStyleName
+- uid: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyleName*
+  name: TableStyleName
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_TableStyleName_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyleName
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfTable.TableStyleName
+  nameWithType: PdfTable.TableStyleName
 - uid: Bodoconsult.Pdf.PdfSharp.PdfTable.Tag
   name: Tag
   href: api/Bodoconsult.Pdf.PdfSharp.PdfTable.html#Bodoconsult_Pdf_PdfSharp_PdfTable_Tag
@@ -70841,6 +71168,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.DocumentMetaData.Copyright
   nameWithType: DocumentMetaData.Copyright
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.CultureInfo
+  name: CultureInfo
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_CultureInfo
+  commentId: P:Bodoconsult.Text.Documents.DocumentMetaData.CultureInfo
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.CultureInfo
+  nameWithType: DocumentMetaData.CultureInfo
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.CultureInfo*
+  name: CultureInfo
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_CultureInfo_
+  commentId: Overload:Bodoconsult.Text.Documents.DocumentMetaData.CultureInfo
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.CultureInfo
+  nameWithType: DocumentMetaData.CultureInfo
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.CurrentLanguage
+  name: CurrentLanguage
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_CurrentLanguage
+  commentId: P:Bodoconsult.Text.Documents.DocumentMetaData.CurrentLanguage
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.CurrentLanguage
+  nameWithType: DocumentMetaData.CurrentLanguage
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.CurrentLanguage*
+  name: CurrentLanguage
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_CurrentLanguage_
+  commentId: Overload:Bodoconsult.Text.Documents.DocumentMetaData.CurrentLanguage
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.CurrentLanguage
+  nameWithType: DocumentMetaData.CurrentLanguage
 - uid: Bodoconsult.Text.Documents.DocumentMetaData.Description
   name: Description
   href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_Description
@@ -70880,6 +71233,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.DocumentMetaData.FigurePrefix
   nameWithType: DocumentMetaData.FigurePrefix
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.FooterTemplate
+  name: FooterTemplate
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_FooterTemplate
+  commentId: P:Bodoconsult.Text.Documents.DocumentMetaData.FooterTemplate
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.FooterTemplate
+  nameWithType: DocumentMetaData.FooterTemplate
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.FooterTemplate*
+  name: FooterTemplate
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_FooterTemplate_
+  commentId: Overload:Bodoconsult.Text.Documents.DocumentMetaData.FooterTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.FooterTemplate
+  nameWithType: DocumentMetaData.FooterTemplate
 - uid: Bodoconsult.Text.Documents.DocumentMetaData.FooterText
   name: FooterText
   href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_FooterText
@@ -70893,6 +71259,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.DocumentMetaData.FooterText
   nameWithType: DocumentMetaData.FooterText
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.HeaderTemplate
+  name: HeaderTemplate
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_HeaderTemplate
+  commentId: P:Bodoconsult.Text.Documents.DocumentMetaData.HeaderTemplate
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.HeaderTemplate
+  nameWithType: DocumentMetaData.HeaderTemplate
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.HeaderTemplate*
+  name: HeaderTemplate
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_HeaderTemplate_
+  commentId: Overload:Bodoconsult.Text.Documents.DocumentMetaData.HeaderTemplate
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.HeaderTemplate
+  nameWithType: DocumentMetaData.HeaderTemplate
 - uid: Bodoconsult.Text.Documents.DocumentMetaData.HeaderText
   name: HeaderText
   href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_HeaderText
@@ -73102,6 +73481,19 @@ references:
   commentId: T:Bodoconsult.Text.Documents.PageStyleBase
   fullName: Bodoconsult.Text.Documents.PageStyleBase
   nameWithType: PageStyleBase
+- uid: Bodoconsult.Text.Documents.PageStyleBase.ColumnGap
+  name: ColumnGap
+  href: api/Bodoconsult.Text.Documents.PageStyleBase.html#Bodoconsult_Text_Documents_PageStyleBase_ColumnGap
+  commentId: P:Bodoconsult.Text.Documents.PageStyleBase.ColumnGap
+  fullName: Bodoconsult.Text.Documents.PageStyleBase.ColumnGap
+  nameWithType: PageStyleBase.ColumnGap
+- uid: Bodoconsult.Text.Documents.PageStyleBase.ColumnGap*
+  name: ColumnGap
+  href: api/Bodoconsult.Text.Documents.PageStyleBase.html#Bodoconsult_Text_Documents_PageStyleBase_ColumnGap_
+  commentId: Overload:Bodoconsult.Text.Documents.PageStyleBase.ColumnGap
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.PageStyleBase.ColumnGap
+  nameWithType: PageStyleBase.ColumnGap
 - uid: Bodoconsult.Text.Documents.PageStyleBase.ColumnWidth
   name: ColumnWidth
   href: api/Bodoconsult.Text.Documents.PageStyleBase.html#Bodoconsult_Text_Documents_PageStyleBase_ColumnWidth
@@ -73232,19 +73624,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.PageStyleBase.PaperFormat
   nameWithType: PageStyleBase.PaperFormat
-- uid: Bodoconsult.Text.Documents.PageStyleBase.Space
-  name: Space
-  href: api/Bodoconsult.Text.Documents.PageStyleBase.html#Bodoconsult_Text_Documents_PageStyleBase_Space
-  commentId: P:Bodoconsult.Text.Documents.PageStyleBase.Space
-  fullName: Bodoconsult.Text.Documents.PageStyleBase.Space
-  nameWithType: PageStyleBase.Space
-- uid: Bodoconsult.Text.Documents.PageStyleBase.Space*
-  name: Space
-  href: api/Bodoconsult.Text.Documents.PageStyleBase.html#Bodoconsult_Text_Documents_PageStyleBase_Space_
-  commentId: Overload:Bodoconsult.Text.Documents.PageStyleBase.Space
-  isSpec: "True"
-  fullName: Bodoconsult.Text.Documents.PageStyleBase.Space
-  nameWithType: PageStyleBase.Space
 - uid: Bodoconsult.Text.Documents.PageStyleBase.TypeAreaHeight
   name: TypeAreaHeight
   href: api/Bodoconsult.Text.Documents.PageStyleBase.html#Bodoconsult_Text_Documents_PageStyleBase_TypeAreaHeight
@@ -73949,6 +74328,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.ParagraphStyleBase.PageBreakBefore
   nameWithType: ParagraphStyleBase.PageBreakBefore
+- uid: Bodoconsult.Text.Documents.ParagraphStyleBase.Shading
+  name: Shading
+  href: api/Bodoconsult.Text.Documents.ParagraphStyleBase.html#Bodoconsult_Text_Documents_ParagraphStyleBase_Shading
+  commentId: P:Bodoconsult.Text.Documents.ParagraphStyleBase.Shading
+  fullName: Bodoconsult.Text.Documents.ParagraphStyleBase.Shading
+  nameWithType: ParagraphStyleBase.Shading
+- uid: Bodoconsult.Text.Documents.ParagraphStyleBase.Shading*
+  name: Shading
+  href: api/Bodoconsult.Text.Documents.ParagraphStyleBase.html#Bodoconsult_Text_Documents_ParagraphStyleBase_Shading_
+  commentId: Overload:Bodoconsult.Text.Documents.ParagraphStyleBase.Shading
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.ParagraphStyleBase.Shading
+  nameWithType: ParagraphStyleBase.Shading
 - uid: Bodoconsult.Text.Documents.ParagraphStyleBase.TextAlignment
   name: TextAlignment
   href: api/Bodoconsult.Text.Documents.ParagraphStyleBase.html#Bodoconsult_Text_Documents_ParagraphStyleBase_TextAlignment
@@ -74027,6 +74419,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.ParagraphStyleBase.TypoPaddings
   nameWithType: ParagraphStyleBase.TypoPaddings
+- uid: Bodoconsult.Text.Documents.ParagraphStyleBase.TypoShading
+  name: TypoShading
+  href: api/Bodoconsult.Text.Documents.ParagraphStyleBase.html#Bodoconsult_Text_Documents_ParagraphStyleBase_TypoShading
+  commentId: P:Bodoconsult.Text.Documents.ParagraphStyleBase.TypoShading
+  fullName: Bodoconsult.Text.Documents.ParagraphStyleBase.TypoShading
+  nameWithType: ParagraphStyleBase.TypoShading
+- uid: Bodoconsult.Text.Documents.ParagraphStyleBase.TypoShading*
+  name: TypoShading
+  href: api/Bodoconsult.Text.Documents.ParagraphStyleBase.html#Bodoconsult_Text_Documents_ParagraphStyleBase_TypoShading_
+  commentId: Overload:Bodoconsult.Text.Documents.ParagraphStyleBase.TypoShading
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.ParagraphStyleBase.TypoShading
+  nameWithType: ParagraphStyleBase.TypoShading
 - uid: Bodoconsult.Text.Documents.ParagraphStyleBase.WidowControl
   name: WidowControl
   href: api/Bodoconsult.Text.Documents.ParagraphStyleBase.html#Bodoconsult_Text_Documents_ParagraphStyleBase_WidowControl
@@ -85192,6 +85597,19 @@ references:
   fullName.vb: Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.New
   nameWithType: HeadingBaseDocxTextRendererElement.HeadingBaseDocxTextRendererElement
   nameWithType.vb: HeadingBaseDocxTextRendererElement.New
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.RenderIt(Bodoconsult.Text.Renderer.Docx.DocxTextDocumentRenderer)
+  name: RenderIt(DocxTextDocumentRenderer)
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.html#Bodoconsult_Text_Renderer_Docx_Blocks_HeadingBaseDocxTextRendererElement_RenderIt_Bodoconsult_Text_Renderer_Docx_DocxTextDocumentRenderer_
+  commentId: M:Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.RenderIt(Bodoconsult.Text.Renderer.Docx.DocxTextDocumentRenderer)
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.RenderIt(Bodoconsult.Text.Renderer.Docx.DocxTextDocumentRenderer)
+  nameWithType: HeadingBaseDocxTextRendererElement.RenderIt(DocxTextDocumentRenderer)
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.RenderIt*
+  name: RenderIt
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.html#Bodoconsult_Text_Renderer_Docx_Blocks_HeadingBaseDocxTextRendererElement_RenderIt_
+  commentId: Overload:Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.RenderIt
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.HeadingBaseDocxTextRendererElement.RenderIt
+  nameWithType: HeadingBaseDocxTextRendererElement.RenderIt
 - uid: Bodoconsult.Text.Renderer.Docx.Blocks.ImageDocxTextRendererElement
   name: ImageDocxTextRendererElement
   href: api/Bodoconsult.Text.Renderer.Docx.Blocks.ImageDocxTextRendererElement.html
@@ -85419,6 +85837,12 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Renderer.Docx.Blocks.ParagraphDocxTextRendererElementBase.Paragraph
   nameWithType: ParagraphDocxTextRendererElementBase.Paragraph
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.ParagraphDocxTextRendererElementBase.ParagraphBase
+  name: ParagraphBase
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.ParagraphDocxTextRendererElementBase.html#Bodoconsult_Text_Renderer_Docx_Blocks_ParagraphDocxTextRendererElementBase_ParagraphBase
+  commentId: F:Bodoconsult.Text.Renderer.Docx.Blocks.ParagraphDocxTextRendererElementBase.ParagraphBase
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.ParagraphDocxTextRendererElementBase.ParagraphBase
+  nameWithType: ParagraphDocxTextRendererElementBase.ParagraphBase
 - uid: Bodoconsult.Text.Renderer.Docx.Blocks.ParagraphDocxTextRendererElementBase.RenderIt(Bodoconsult.Text.Renderer.Docx.DocxTextDocumentRenderer)
   name: RenderIt(DocxTextDocumentRenderer)
   href: api/Bodoconsult.Text.Renderer.Docx.Blocks.ParagraphDocxTextRendererElementBase.html#Bodoconsult_Text_Renderer_Docx_Blocks_ParagraphDocxTextRendererElementBase_RenderIt_Bodoconsult_Text_Renderer_Docx_DocxTextDocumentRenderer_
@@ -85925,6 +86349,44 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Renderer.Docx.Blocks.TocSectionDocxTextRendererElement.RenderIt
   nameWithType: TocSectionDocxTextRendererElement.RenderIt
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement
+  name: TocxDocxTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.html
+  commentId: T:Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement
+  nameWithType: TocxDocxTextRendererElement
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.#ctor(Bodoconsult.Text.Documents.ParagraphBase)
+  name: TocxDocxTextRendererElement(ParagraphBase)
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.html#Bodoconsult_Text_Renderer_Docx_Blocks_TocxDocxTextRendererElement__ctor_Bodoconsult_Text_Documents_ParagraphBase_
+  commentId: M:Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.#ctor(Bodoconsult.Text.Documents.ParagraphBase)
+  name.vb: New(ParagraphBase)
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.TocxDocxTextRendererElement(Bodoconsult.Text.Documents.ParagraphBase)
+  fullName.vb: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.New(Bodoconsult.Text.Documents.ParagraphBase)
+  nameWithType: TocxDocxTextRendererElement.TocxDocxTextRendererElement(ParagraphBase)
+  nameWithType.vb: TocxDocxTextRendererElement.New(ParagraphBase)
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.#ctor*
+  name: TocxDocxTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.html#Bodoconsult_Text_Renderer_Docx_Blocks_TocxDocxTextRendererElement__ctor_
+  commentId: Overload:Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.TocxDocxTextRendererElement
+  fullName.vb: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.New
+  nameWithType: TocxDocxTextRendererElement.TocxDocxTextRendererElement
+  nameWithType.vb: TocxDocxTextRendererElement.New
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.RenderIt(Bodoconsult.Text.Renderer.Docx.DocxTextDocumentRenderer)
+  name: RenderIt(DocxTextDocumentRenderer)
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.html#Bodoconsult_Text_Renderer_Docx_Blocks_TocxDocxTextRendererElement_RenderIt_Bodoconsult_Text_Renderer_Docx_DocxTextDocumentRenderer_
+  commentId: M:Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.RenderIt(Bodoconsult.Text.Renderer.Docx.DocxTextDocumentRenderer)
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.RenderIt(Bodoconsult.Text.Renderer.Docx.DocxTextDocumentRenderer)
+  nameWithType: TocxDocxTextRendererElement.RenderIt(DocxTextDocumentRenderer)
+- uid: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.RenderIt*
+  name: RenderIt
+  href: api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.html#Bodoconsult_Text_Renderer_Docx_Blocks_TocxDocxTextRendererElement_RenderIt_
+  commentId: Overload:Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.RenderIt
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.RenderIt
+  nameWithType: TocxDocxTextRendererElement.RenderIt
 - uid: Bodoconsult.Text.Renderer.Docx.Blocks.ToeDocxTextRendererElement
   name: ToeDocxTextRendererElement
   href: api/Bodoconsult.Text.Renderer.Docx.Blocks.ToeDocxTextRendererElement.html

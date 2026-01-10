@@ -87,210 +87,443 @@
         <article data-uid="">
 <h1 id="bodoconsultpdf">Bodoconsult.Pdf</h1>
 
-<h1 id="what-does-the-library">What does the library</h1>
-<p>Bodoconsult.Pdf library simplifies the usage of the cool PDfSharp and Migradoc libraries <a href="https://http://pdfsharp.net/">https://http://pdfsharp.net/</a> to create PDF files.
-It uses the Nuget package PdfSharp.MigraDoc.netstandard 1.3.1.
-For more information on this package see <a href="https://www.nuget.org/packages/PdfSharp.MigraDoc.netstandard/1.3.1">https://www.nuget.org/packages/PdfSharp.MigraDoc.netstandard/1.3.1</a>.</p>
-<p>The central PdfCreator class provides easy to use methods for common tasks for PDF creation.</p>
+<h1 id="overview">Overview</h1>
+<blockquote>
+<p><a href="#pdfcreator-class-for-simple-reporting-to-pdf">PdfCreator class for simple reporting to PDF</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#pdfbuilder-class-for-more-complex-pdf-files">PdfBuilder class for more complex PDF files</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#adjusting-layout">Adjusting layout for PdfCreator and PdfBuilder</a></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#adjusting-layout-by-altering-the-defaultstyleset">Adjusting layout by altering the DefaultStyleSet</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#adjusting-layout-by-creating-an-own-styleset">Adjusting layout by creating an own StyleSet</a></p>
+</blockquote>
+</blockquote>
+<h2 id="what-does-the-library">What does the library</h2>
+<p>Bodoconsult.Pdf library simplifies the usage of the cool PDfSharp and Migradoc libraries <a href="https://http://pdfsharp.net/">https://http://pdfsharp.net/</a> to create PDF files.</p>
+<p>The more simple PdfCreator class provides easy to use methods for common tasks for PDF creation.</p>
+<p>The more complex PdfBuilder class is the more raw access to PDF creation with more features.</p>
 <p>Bodoconsult.Pdf library was developed originally to create reports from databases with tables and charts from databases.</p>
-<h1 id="how-to-use-the-library">How to use the library</h1>
+<h2 id="how-to-use-the-library">How to use the library</h2>
 <p>The source code contain NUnit test classes, the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
-<h2 id="basic-usage">Basic usage</h2>
-<pre><code>        var styleset = new DefaultStyleSet();
-        if (landscape) LoadLandScapeSettings(styleset);
+<h1 id="pdfcreator-class-for-simple-reporting-to-pdf">PdfCreator class for simple reporting to PDF</h1>
+<p>PdfCreator class is intended to be used for simple reports saved as PDF files. It provides a reduced set of features compared to PDFBuilder class. The following code shows most of the features of PdfCreator class:</p>
+<pre><code class="lang-csharp">[Test]
+public void TestPdfCreatorWithDefaultStyleSheet()
+{
+    var fileName = Path.Combine(TestHelper.TempPath, &quot;pdf1.pdf&quot;);
+    CreateFile(fileName);
+}
 
-        var pdf = new PdfCreator(styleset);
+private void CreateFile(string fileName, bool landscape = false)
+{
+    var code = ResourceHelper.GetTextResource(&quot;code1.txt&quot;).Replace(&quot;\\t&quot;, &quot;\t&quot;);
 
-        pdf.SetDocInfo(&quot;Test&quot;, &quot;Susbject&quot;, &quot;Author&quot;);
 
-        pdf.SetHeader(&quot;Kopfzeile&quot;, &quot;Header1&quot;, logoFileName);
-        pdf.SetFooter(&quot;Footer \t&lt;&lt;page&gt;&gt; / &lt;&lt;pages&gt;&gt;&quot;);
+    if (File.Exists(fileName))
+    {
+        File.Delete(fileName);
+    }
 
-        pdf.CreateTocSection(&quot;Inhaltsverzeichnis&quot;);
-        pdf.CreateContentSection();
+    var styleset = new DefaultStyleSet();
+    styleset.CreatePageSetup();
+
+    if (landscape)
+    {
+        LoadLandScapeSettings(styleset);
+    }
+    else
+    {
+        styleset.CalculateMeasures();
+        styleset.InitializeStyles();
+    }
+
+    var pdf = new PdfCreator(styleset);
+
+    pdf.SetDocInfo(&quot;Test&quot;, &quot;Subject&quot;, &quot;Author&quot;);
+
+    pdf.SetHeader();
+    pdf.SetFooter();
+
+    pdf.CreateTocSection(&quot;Document title&quot;);
+    pdf.CreateContentSection();
 
      
-        pdf.AddParagraph(&quot;Überschrift 1&quot;, &quot;Heading1&quot;);
+    pdf.AddParagraph(&quot;Heading 1&quot;, &quot;Heading1&quot;);
 
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
 
-        pdf.AddParagraph(code, &quot;Code&quot;);
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
-
-
-        pdf.AddDefinitionList(TestHelper.GetDefinitionList(), &quot;Normal&quot;, &quot;Normal&quot;);
-
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
-        pdf.AddTable(TestHelper.GetDataTable(), &quot;Tabellenüberschrift&quot;, &quot;NoHeading1&quot;, &quot;some additional info&quot;,
-            &quot;Details&quot;, pdf.Width);
+    pdf.AddParagraph(code, &quot;Code&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
 
 
-        pdf.AddTableFrame(TestHelper.GetDataTable(), &quot;Tabellenüberschrift Frame&quot;, &quot;NoHeading1&quot;, &quot;some additional info&quot;,
-            &quot;Details&quot;, pdf.Width / 2);
+    pdf.AddDefinitionList(DataHelper.GetDefinitionListAsDataTable());
 
-        pdf.AddTableFrame(TestHelper.GetDataTable(), &quot;Tabellenüberschrift Frame&quot;, &quot;NoHeading1&quot;, null,
-            &quot;Details&quot;, pdf.Width / 2);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+    pdf.AddTable(DataHelper.GetSmallDataTable(), &quot;Tabellenüberschrift&quot;, &quot;NoHeading1&quot;, &quot;some additional info&quot;,
+        &quot;Details&quot;, pdf.Width);
 
 
-        pdf.AddParagraph(&quot;Überschrift 2&quot;, &quot;Heading1&quot;);
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
+    pdf.AddTableFrame(DataHelper.GetSmallDataTable(), &quot;Tabellenüberschrift Frame&quot;, &quot;NoHeading1&quot;, &quot;some additional info&quot;,
+        &quot;Details&quot;, pdf.Width / 2);
 
-        pdf.AddParagraph(&quot;Überschrift 2-1&quot;, &quot;Heading2&quot;);
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
-		
-		pdf.AddImage(imageFileName, 150, 50);
+    pdf.AddTableFrame(DataHelper.GetSmallDataTable(), &quot;Tabellenüberschrift Frame&quot;, &quot;NoHeading1&quot;, null,
+        &quot;Details&quot;, pdf.Width / 2);
 
-        pdf.AddParagraph(&quot;Überschrift 2-2&quot;, &quot;Heading2&quot;);
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
 
-        pdf.AddParagraph(&quot;Aufzählung 1&quot;, &quot;Bullet1&quot;);
-        pdf.AddParagraph(&quot;Aufzählung 2&quot;, &quot;Bullet1&quot;);
-        pdf.AddParagraph(&quot;Aufzählung 3&quot;, &quot;Bullet1&quot;);
-        pdf.AddParagraph(&quot;Aufzählung 4&quot;, &quot;Bullet1&quot;);
+    pdf.AddParagraph(&quot;Heading 2&quot;, &quot;Heading1&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
 
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
+    pdf.AddParagraph(&quot;Heading 2-1&quot;, &quot;Heading2&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
 
-        pdf.AddParagraph(code, &quot;Code&quot;);
+    pdf.AddImage(TestHelper.TestChartImage, 10, 6);
 
-        pdf.AddParagraph(TestHelper.Masstext1, &quot;Normal&quot;);
+    pdf.AddParagraph(&quot;Heading 2-2&quot;, &quot;Heading2&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
 
-        pdf.RenderToPdf(fileName, false);
+    pdf.AddParagraph(&quot;Aufzählung 1&quot;, &quot;Bullet1&quot;);
+    pdf.AddParagraph(&quot;Aufzählung 2&quot;, &quot;Bullet1&quot;);
+    pdf.AddParagraph(&quot;Aufzählung 3&quot;, &quot;Bullet1&quot;);
+    pdf.AddParagraph(&quot;Aufzählung 4&quot;, &quot;Bullet1&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(code, &quot;Code&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Info&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Warning&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Error&quot;);
+
+    pdf.AddParagraph(&quot;Blubb blabb blubb&quot;, &quot;Citation&quot;);
+
+    pdf.AddParagraph(&quot;Robert Leisner&quot;, &quot;CitationSource&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.RenderToPdf(fileName, false);
+
+    Assert.That(File.Exists(fileName));
+
+    FileSystemHelper.RunInDebugMode(fileName);
+}
 </code></pre>
-<h2 id="adjusting-layout">Adjusting layout</h2>
+<h1 id="pdfbuilder-class-for-more-complex-pdf-files">PdfBuilder class for more complex PDF files</h1>
+<p>PdfBuilder class is intended to be used for simple reports saved as PDF files. The following code shows most of the features of PdfBuilder class:</p>
+<pre><code class="lang-csharp">[Test]
+public void TestPdfCreatorWithDefaultStyleSheet()
+{
+    var fileName = Path.Combine(TestHelper.TempPath, &quot;pdf1.pdf&quot;);
+    CreateFile(fileName);
+}
+
+private void CreateFile(string fileName, bool landscape = false)
+{
+    var code = ResourceHelper.GetTextResource(&quot;code1.txt&quot;).Replace(&quot;\\t&quot;, &quot;\t&quot;);
+
+    var pdfTable = DataHelper.GetSmallDataTable().ToPdfTable();
+    var pdfTableWithCss = DataHelper.GetSmallDataTableWithCssInfo().ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors);
+    var pdfLargeTable = DataHelper.GetLargeDataTable().ToPdfTable();
+    var pdfLargeTableWithCss = DataHelper.GetLargeDataTableWithCssInfo().ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors);
+
+    if (File.Exists(fileName))
+    {
+        File.Delete(fileName);
+    }
+
+    var styleset = new DefaultStyleSet();
+    styleset.CreatePageSetup();
+
+    if (landscape)
+    {
+        LoadLandScapeSettings(styleset);
+    }
+    else
+    {
+        styleset.CalculateMeasures();
+        styleset.InitializeStyles();
+    }
+
+    var pdf = new PdfBuilder(styleset, new WindowsFontResolver());
+
+    pdf.SetHeader();
+    pdf.SetFooter();
+
+    pdf.CreateTocSection();
+    pdf.AddToc1Entry(&quot;Überschrift 1&quot;, &quot;b1&quot;);
+    pdf.AddToc1Entry(&quot;Überschrift 2&quot;, &quot;b2&quot;);
+    pdf.AddToc2Entry(&quot;Überschrift 2&quot;, &quot;b3&quot;);
+    pdf.AddToc2Entry(&quot;Überschrift 2&quot;, &quot;b4&quot;);
+
+    pdf.CreateTofSection();
+    pdf.AddTofEntry(&quot;Figure 1&quot;, &quot;f1&quot;);
+
+    pdf.CreateToeSection();
+    pdf.AddToeEntry(&quot;Equation 1&quot;, &quot;e1&quot;);
+
+    pdf.CreateTotSection();
+    pdf.AddTotEntry(&quot;Table 1&quot;, &quot;t1&quot;);
+
+    pdf.CreateContentSection();
+
+    pdf.AddParagraph(&quot;Document title&quot;, &quot;Title&quot;);
+
+    pdf.AddHeading1(&quot;Überschrift 1&quot;, &quot;b1&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdfTable.Heading = &quot;Tabellenunterschrift (ohne CSS)&quot;;
+    pdfTable.HeadingStyleName = &quot;NoHeading1&quot;;
+
+    pdf.AddTable(pdfTable);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdfTableWithCss.Legend = &quot;Tabellenunterschrift (mit CSS)&quot;;
+
+    pdf.AddTable(pdfTableWithCss);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdfLargeTable.Legend = &quot;Tabellenunterschrift (ohne CSS)&quot;;
+
+    pdf.AddTable(pdfLargeTable);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdfLargeTableWithCss.Legend = &quot;Tabellenunterschrift (mit CSS)&quot;;
+
+    pdf.AddTable(pdfLargeTableWithCss);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddDefinitionList(GetDefinitionList());
+
+    pdf.AddParagraph(code, &quot;Code&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddFigure(TestHelper.TestChartImage, &quot;Distribution&quot;, &quot;f1&quot;, 15, 10);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddEquation(TestHelper.TestEquationImage, &quot;Equation&quot;, &quot;e1&quot;, 7, 3);
+
+
+    pdf.AddDefinitionList(DataHelper.GetDefinitionListAsDataTable());
+
+#pragma warning disable CS0612 // Type or member is obsolete
+    pdf.AddTable(DataHelper.GetSmallDataTable(), &quot;Tabellenüberschrift&quot;, &quot;NoHeading1&quot;, &quot;some additional info&quot;,
+        &quot;Details&quot;, pdf.Width);
+#pragma warning restore CS0612 // Type or member is obsolete
+
+    pdf.AddTableFrame(DataHelper.GetSmallDataTable(), &quot;Tabellenüberschrift Frame&quot;, &quot;NoHeading1&quot;, &quot;some additional info&quot;,
+        &quot;Details&quot;, pdf.Width / 2);
+
+    pdf.AddTableFrame(DataHelper.GetSmallDataTable(), &quot;Tabellenüberschrift Frame&quot;, &quot;NoHeading1&quot;, null,
+        &quot;Details&quot;, pdf.Width / 2);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddHeading1(&quot;Überschrift 2&quot;, &quot;b2&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddHeading2(&quot;Überschrift 2-1&quot;, &quot;b3&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddImage(TestHelper.TestChartImage, 10, 6);
+
+    pdf.AddHeading2(&quot;Überschrift 2-2&quot;, &quot;b4&quot;);
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(&quot;Aufzählung 1&quot;, &quot;Bullet1&quot;);
+    pdf.AddParagraph(&quot;Aufzählung 2&quot;, &quot;Bullet1&quot;);
+    pdf.AddParagraph(&quot;Aufzählung 3&quot;, &quot;Bullet1&quot;);
+    pdf.AddParagraph(&quot;Aufzählung 4&quot;, &quot;Bullet1&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(code, &quot;Code&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Info&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Warning&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Error&quot;);
+
+    pdf.AddParagraph(&quot;Blubb blabb blubb&quot;, &quot;Citation&quot;);
+
+    pdf.AddParagraph(&quot;Robert Leisner&quot;, &quot;CitationSource&quot;);
+
+    pdf.AddParagraph(TestDataHelper.MassText, &quot;Normal&quot;);
+
+    pdf.RenderToPdf(fileName, false);
+
+    Assert.That(File.Exists(fileName));
+
+    FileSystemHelper.RunInDebugMode(fileName);
+}
+</code></pre>
+<h1 id="adjusting-layout">Adjusting layout</h1>
 <p>If you need to adjust the layout of the PDF file, start with a DefaultStyleSet and change the properties of the stylesheet as required or create an own StyleSet</p>
-<h3 id="adjusting-layout-by-altering-the-defaultstyleset">Adjusting layout by altering the DefaultStyleSet</h3>
-<p>In the above sample this is done in a separate method in the following code line for paper orientation landscape:</p>
-<pre><code>        if (landscape) LoadLandScapeSettings(styleset);
+<h2 id="adjusting-layout-by-altering-the-defaultstyleset">Adjusting layout by altering the DefaultStyleSet</h2>
+<p>In the above samples this is done in a separate method in the following code line for paper orientation landscape:</p>
+<pre><code class="lang-csharp">if (landscape)
+{
+    LoadLandScapeSettings(styleset);
+}
 </code></pre>
 <p>Here the code of the method to set paper orientation to landscape:</p>
-<pre><code>    private void LoadLandScapeSettings(IStyleSet styleSet)
-    {
-        var ps = styleSet.PageSetup;
-        ps.Orientation = Orientation.Landscape;
-        ps.LeftMargin = Unit.FromCentimeter(1.5);
-        ps.RightMargin = Unit.FromCentimeter(1.5);
-        ps.TopMargin = Unit.FromCentimeter(1.5);
-        ps.BottomMargin = Unit.FromCentimeter(1.5);
+<pre><code class="lang-csharp">private void LoadLandScapeSettings(IStyleSet styleSet)
+{
+    var ps = styleSet.PageSetup;
+    ps.Orientation = Orientation.Landscape;
+    var w = ps.PageWidth;
+    var h = ps.PageHeight;
+    ps.PageHeight = w;
+    ps.PageWidth = h;
+    ps.LeftMargin = Unit.FromCentimeter(1.5);
+    ps.RightMargin = Unit.FromCentimeter(1.5);
+    ps.TopMargin = Unit.FromCentimeter(1.5);
+    ps.BottomMargin = Unit.FromCentimeter(1.5);
+
+    var width = Unit.FromCentimeter( ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
+
+    var style = styleSet.Normal;
+    style.Font.Name = &quot;Arial Narrow&quot;;
+    style.Font.Size = 9;
+
+    // Spezielles Format für Tabellenbasis (nicht ändern!)
+    style = styleSet.NormalTable;
+    style.Font.Name = &quot;Arial Narrow&quot;;
+    style.Font.Size = 8;
+    style.ParagraphFormat.SpaceBefore = 0;
+    style.ParagraphFormat.SpaceAfter = 0;
+    style.ParagraphFormat.PageBreakBefore = false;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+    style = styleSet.Heading1;
+    style.Font.Name = &quot;Arial Black&quot;;
+    style.Font.Size = 12;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.PageBreakBefore = true;
+    style.ParagraphFormat.KeepTogether = true;
+    style.ParagraphFormat.KeepWithNext = true;
+    style.ParagraphFormat.SpaceAfter = 2;
+    style.ParagraphFormat.SpaceBefore = 4;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+    style = styleSet.Title;
+    style.Font.Name = &quot;Arial Black&quot;;
+    style.Font.Size = 16;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.SpaceAfter = 9;
+    style.ParagraphFormat.SpaceBefore = 12;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+    style = styleSet.NoHeading1;
+    style.Font.Name = &quot;Arial Black&quot;;
+    style.Font.Size = 10;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.SpaceAfter = 2;
+    style.ParagraphFormat.SpaceBefore = 4;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+    style = styleSet.ChartTitle;
+    style.Font.Name = &quot;Arial Narrow&quot;;
+    style.Font.Size = 10;
+    style.Font.Bold = true;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.SpaceBefore = 3;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+    style.ParagraphFormat.SpaceAfter = 3;
+
+    style = styleSet.ChartYLabel;
+    style.Font.Name = &quot;Arial Narrow&quot;;
+    style.Font.Size = 8;
+    style.Font.Color = Colors.Black;
+
+    style = styleSet.Toc1;
+    style.Font.Name = &quot;Arial&quot;;
+    style.Font.Size = 10;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.SpaceBefore = 3;
+    style.ParagraphFormat.TabStops.ClearAll();
+    style.ParagraphFormat.AddTabStop(width, TabAlignment.Right);
+    style.ParagraphFormat.SpaceAfter = 0;
+    style.ParagraphFormat.Borders.Bottom.Width = 0;
+    style.ParagraphFormat.Borders.Top.Width = 0;
+    style.ParagraphFormat.Borders.Right.Width = 0;
+    style.ParagraphFormat.Borders.Left.Width = 0;
 
 
-        var width = Unit.FromCentimeter( ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
+    style = styleSet.TocHeading;
+    style.Font.Name = &quot;Arial Black&quot;;
+    style.Font.Size = 12;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.SpaceAfter = 3;
+    style.ParagraphFormat.SpaceAfter = 6;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
-        var style = styleSet.Normal;
-        style.Font.Name = &quot;Arial Narrow&quot;;
-        style.Font.Size = 9;
+    // Kopfzeile
+    style = styleSet.Header;
+    style.Font.Name = &quot;Arial Narrow&quot;;
+    style.Font.Size = 8;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Right;
+    style.ParagraphFormat.SpaceAfter = Unit.FromCentimeter(0.2);
+    style.ParagraphFormat.SpaceBefore = Unit.FromCentimeter(0.5);
+    style.ParagraphFormat.Borders.Bottom.Width = 1;
+    style.ParagraphFormat.Borders.Bottom.Color = Colors.Black;
 
-        // Spezielles Format für Tabellenbasis (nicht ändern!)
-        style = styleSet.NormalTable;
-        style.Font.Name = &quot;Arial Narrow&quot;;
-        style.Font.Size = 8;
-        style.ParagraphFormat.SpaceBefore = 0;
-        style.ParagraphFormat.SpaceAfter = 0;
-        style.ParagraphFormat.PageBreakBefore = false;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+    style = styleSet.Details;
+    style.Font.Name = &quot;Arial Narrow&quot;;
+    style.Font.Size = 10;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.SpaceAfter = 6;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
-        style = styleSet.Heading1;
-        style.Font.Name = &quot;Arial Black&quot;;
-        style.Font.Size = 12;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.PageBreakBefore = true;
-        style.ParagraphFormat.KeepTogether = true;
-        style.ParagraphFormat.KeepWithNext = true;
-        style.ParagraphFormat.SpaceAfter = 2;
-        style.ParagraphFormat.SpaceBefore = 4;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+    style = styleSet.ChartCell;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
-        style = styleSet.Title;
-        style.Font.Name = &quot;Arial Black&quot;;
-        style.Font.Size = 16;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.SpaceAfter = 9;
-        style.ParagraphFormat.SpaceBefore = 12;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-        style = styleSet.NoHeading1;
-        style.Font.Name = &quot;Arial Black&quot;;
-        style.Font.Size = 10;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.SpaceAfter = 2;
-        style.ParagraphFormat.SpaceBefore = 4;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-        style = styleSet.ChartTitle;
-        style.Font.Name = &quot;Arial Narrow&quot;;
-        style.Font.Size = 10;
-        style.Font.Bold = true;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.SpaceBefore = 3;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-        style.ParagraphFormat.SpaceAfter = 3;
-
-        style = styleSet.ChartYLabel;
-        style.Font.Name = &quot;Arial Narrow&quot;;
-        style.Font.Size = 8;
-        style.Font.Color = Colors.Black;
-
-        style = styleSet.Toc1;
-        style.Font.Name = &quot;Arial&quot;;
-        style.Font.Size = 10;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.SpaceBefore = 3;
-        style.ParagraphFormat.TabStops.ClearAll();
-        style.ParagraphFormat.AddTabStop(width, TabAlignment.Right);
-        style.ParagraphFormat.SpaceAfter = 0;
-        style.ParagraphFormat.Borders.Bottom.Width = 0;
-        style.ParagraphFormat.Borders.Top.Width = 0;
-        style.ParagraphFormat.Borders.Right.Width = 0;
-        style.ParagraphFormat.Borders.Left.Width = 0;
-
-
-        style = styleSet.TocHeading;
-        style.Font.Name = &quot;Arial Black&quot;;
-        style.Font.Size = 12;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.SpaceAfter = 3;
-        style.ParagraphFormat.SpaceAfter = 6;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-        // Kopfzeile
-        style = styleSet.Header;
-        style.Font.Name = &quot;Arial Narrow&quot;;
-        style.Font.Size = 8;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Right;
-        style.ParagraphFormat.SpaceAfter = Unit.FromCentimeter(0.2);
-        style.ParagraphFormat.SpaceBefore = Unit.FromCentimeter(0.5);
-        style.ParagraphFormat.Borders.Bottom.Width = 1;
-        style.ParagraphFormat.Borders.Bottom.Color = Colors.Black;
-
-
-        style = styleSet.Details;
-        style.Font.Name = &quot;Arial Narrow&quot;;
-        style.Font.Size = 10;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.SpaceAfter = 6;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-        style = styleSet.ChartCell;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-        style = styleSet.Footer;
-        style.Font.Name = &quot;Arial Narrow&quot;;
-        style.Font.Size = 8;
-        style.Font.Color = Colors.Black;
-        style.ParagraphFormat.Alignment = ParagraphAlignment.Left;
-        //style.ParagraphFormat.SpaceAfter = Unit.FromCentimeter(0.5);
-        style.ParagraphFormat.SpaceBefore = Unit.FromCentimeter(0.5);
-        style.ParagraphFormat.TabStops.ClearAll();
-        style.ParagraphFormat.AddTabStop(width, TabAlignment.Right);
-        style.ParagraphFormat.Borders.Top.Width = 1;
-        style.ParagraphFormat.Borders.Top.Color = Colors.Black;
-
-    
-    }
+    style = styleSet.Footer;
+    style.Font.Name = &quot;Arial Narrow&quot;;
+    style.Font.Size = 8;
+    style.Font.Color = Colors.Black;
+    style.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+    //style.ParagraphFormat.SpaceAfter = Unit.FromCentimeter(0.5);
+    style.ParagraphFormat.SpaceBefore = Unit.FromCentimeter(0.5);
+    style.ParagraphFormat.TabStops.ClearAll();
+    style.ParagraphFormat.AddTabStop(width, TabAlignment.Right);
+    style.ParagraphFormat.Borders.Top.Width = 1;
+    style.ParagraphFormat.Borders.Top.Color = Colors.Black;
+}
 </code></pre>
-<h3 id="adjusting-layout-by-creating-an-own-styleset">Adjusting layout by creating an own StyleSet</h3>
+<h2 id="adjusting-layout-by-creating-an-own-styleset">Adjusting layout by creating an own StyleSet</h2>
 <p>Below you can see the current implementation of the DefaultStyleSet. Feel free to use this implementation to build a new StyleSet for your own purposes.</p>
-<pre><code>/// &lt;summary&gt;
+<pre><code class="lang-csharp">/// &lt;summary&gt;
 /// Defines a default style set.Use subclassing for creating advanced stylesets
 /// &lt;/summary&gt;
 public class DefaultStyleSet : IStyleSet

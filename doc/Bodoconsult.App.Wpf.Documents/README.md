@@ -3,11 +3,11 @@ Bodoconsult.App.Wpf.Documents
 
 # Overview
 
-> [Using FlowDocumentService class to create and export WPF FlowDocuments to PDF (or XPS)](#using-flowdocumentservice-class-to-create-and-export-wpf-flowdocuments-to-pdf-or-xps)
+>   [Using FlowDocumentService class to create and export WPF FlowDocuments to PDF (or XPS)](#using-flowdocumentservice-class-to-create-and-export-wpf-flowdocuments-to-pdf-or-xps)
 
-> [Using ReportBase class to create and export reports to PDF (or XPS)](#using-reportbase-class-to-create-and-export-reports-to-pdf-or-xps)
+>   [Using ReportBase class to create and export reports to PDF (or XPS)](#using-reportbase-class-to-create-and-export-reports-to-pdf-or-xps)
 
->   []()
+>   [Using WpfTextDocumentRenderer class to render LDML documents into a WPF FlowDocument](#using-wpftextdocumentrenderer-class-to-render-ldml-documents-into-a-wpf-flowdocument)
 
 ## WPF app start infrastructure basics
 
@@ -16,6 +16,10 @@ See page [WPF app start infrastructure](../Bodoconsult.App.Wpf/README.md) for de
 ## What does the library
 
 Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting XPS or PDF export. 
+
+## How to use the library
+
+The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.
 
 # Using FlowDocumentService class to create and export WPF FlowDocuments to PDF (or XPS)
 

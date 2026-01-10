@@ -1,11 +1,13 @@
 Bodoconsult.Drawing.SkiaSharp
 ===========================================
 
-# What does Bodoconsult.Drawing.SkiaSharp library
+# Overview
+
+## What does Bodoconsult.Drawing.SkiaSharp library
 
 Bodoconsult.Drawing.SkiaSharp is library to simplify bitmap handling. The main class is BitmapService. 
 
-# How to use the library
+## How to use the library
 
 The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.
 

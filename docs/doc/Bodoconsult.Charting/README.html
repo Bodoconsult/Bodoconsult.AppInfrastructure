@@ -88,18 +88,6 @@
 <h1 id="bodoconsultcharting">Bodoconsult.Charting</h1>
 
 <h1 id="overview">Overview</h1>
-<h2 id="what-does-bodoconsultcharting-library">What does Bodoconsult.Charting library</h2>
-<p>Bodoconsult.Charting is a library for creating charts from database data.</p>
-<p>Here a sample chart created with Bodoconsult.Charting:</p>
-<p><img src="../../images/StackedColumn100Chart.png" alt="Sample for stacked column chart 100%"></p>
-<p>The workflow for using the library is generally as follows:</p>
-<ol>
-<li>Getting data as DataTable from a database</li>
-<li>Create a ChartData object to make general settings for the chart and load the data from the DataTable as list of IChartItemData items</li>
-<li>Create a ChartHandler and deliver the ChartData object to it</li>
-<li>Export the data to a file</li>
-</ol>
-<p>To work properly the DataTable objects must have a certain logical structure depending on the type of chart you want to create.</p>
 <blockquote>
 <p><a href="#chart-data-input">Chart data input</a></p>
 </blockquote>
@@ -155,6 +143,18 @@
 <blockquote>
 <p><a href="#extension-methods-for-charting">Extension methods for charting</a></p>
 </blockquote>
+<h2 id="what-does-bodoconsultcharting-library">What does Bodoconsult.Charting library</h2>
+<p>Bodoconsult.Charting is a library for creating charts from database data.</p>
+<p>Here a sample chart created with Bodoconsult.Charting:</p>
+<p><img src="../../images/StackedColumn100Chart.png" alt="Sample for stacked column chart 100%"></p>
+<p>The workflow for using the library is generally as follows:</p>
+<ol>
+<li>Getting data as DataTable from a database</li>
+<li>Create a ChartData object to make general settings for the chart and load the data from the DataTable as list of IChartItemData items</li>
+<li>Create a ChartHandler and deliver the ChartData object to it</li>
+<li>Export the data to a file</li>
+</ol>
+<p>To work properly the DataTable objects must have a certain logical structure depending on the type of chart you want to create.</p>
 <h2 id="how-to-use-the-library">How to use the library</h2>
 <p>The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
 <h1 id="chart-data-input">Chart data input</h1>

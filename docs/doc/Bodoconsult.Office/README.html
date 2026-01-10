@@ -88,6 +88,18 @@
 <h1 id="bodoconsultoffice">Bodoconsult.Office</h1>
 
 <h1 id="overview">Overview</h1>
+<blockquote>
+<p><a href="#use-xlsxbuilder-class-to-create-openxml-xslx-files">Use XlsxBuilder class to create OpenXML XSLX files</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#use-xlsxlatebindingbuilder-class-to-create-xlsx-via-com-late-binding">Use XlsxLateBindingBuilder class to create XLSX via COM late binding</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#use-csvbuilder-class-to-create-csv-files">Use CsvBuilder class to create CSV files</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#use-docxbuilder-class-to-create-openxml-docx-files">Use DocxBuilder class to create OpenXML DOCX files</a></p>
+</blockquote>
 <h2 id="what-does-the-library">What does the library</h2>
 <p>Bodoconsult.Office library simplifies creating OpenXML spredsheets (XLSX) for database data in form of System.Data.DataTable objects.</p>
 <p>It was developed with the intention to easily export database data to OpenXML XLSX spreadsheet files for use in Microsoft Excel (R).</p>
@@ -102,7 +114,7 @@
 </ul>
 <h2 id="how-to-use-the-library">How to use the library</h2>
 <p>The source code contain NUnit test classes, the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
-<h1 id="use-xlsxbuilder-class">Use XlsxBuilder class</h1>
+<h1 id="use-xlsxbuilder-class-to-create-openxml-xslx-files">Use XlsxBuilder class to create OpenXML XSLX files</h1>
 <p>The XlsxBuilder class writes the content of a DataTable (in the sample code the variable dt) directly to an OpenXML spreadsheet file.</p>
 <pre><code class="lang-csharp">var path = Path.Combine(FileHelper.TempPath, &quot;openxml.xlsx&quot;);
 
@@ -129,8 +141,9 @@ oe.FillDataTable(dt, 4, 1);
 
 oe.Quit();
 </code></pre>
-<h1 id="use-xlsxlatebindingbuilder-class">Use XlsxLateBindingBuilder class</h1>
+<h1 id="use-xlsxlatebindingbuilder-class-to-create-xlsx-via-com-late-binding">Use XlsxLateBindingBuilder class to create XLSX via COM late binding</h1>
 <p>The XlsxLateBindingBuilder class uses COM late binding to export a DataTable (in the sample code the variable dt) to an Excel spreadsheet.</p>
+<p>This requires Microsoft Excel (TM) installed on the PC running the code.</p>
 <pre><code class="lang-csharp">var dt = TestHelper.GetDataTable(&quot;LineChart.xml&quot;);
 
 var excel = new XlsxLateBindingBuilder();
@@ -151,7 +164,7 @@ excel.FillDataTable(dt, 4, 1);
 
 excel.Dispose();
 </code></pre>
-<h1 id="use-csvbuilder-class">Use CsvBuilder class</h1>
+<h1 id="use-csvbuilder-class-to-create-csv-files">Use CsvBuilder class to create CSV files</h1>
 <p>Use the CsvBuilder class to create CSV formatted data files.</p>
 <pre><code class="lang-csharp">[Test]
 public void Export_ValidDataTable_FileCreated()
@@ -178,7 +191,7 @@ public void Export_ValidDataTable_FileCreated()
     Assert.That(File.Exists(path));
 }
 </code></pre>
-<h1 id="use-docxbuilder-class">Use DocxBuilder class</h1>
+<h1 id="use-docxbuilder-class-to-create-openxml-docx-files">Use DocxBuilder class to create OpenXML DOCX files</h1>
 <p>Use the DocxBuilder class to create DOCX word processing files.</p>
 <p>Here a sample showing the most important features of DocxBuilder class:</p>
 <pre><code class="lang-csharp">[Test]
@@ -227,7 +240,9 @@ public void RealWorld_MultipleSectionsWithPageNumbering_DocxCreated()
     };
 
     // Basics
-    var docx = new DocxBuilder();
+    var dmd = CreateTypoMetaData();
+
+    var docx = new DocxBuilder(dmd);
     docx.CreateDocument(path);
 
     // Create styles
@@ -356,6 +371,17 @@ public void RealWorld_MultipleSectionsWithPageNumbering_DocxCreated()
     docx.Dispose();
 
     FileSystemHelper.RunInDebugMode(path);
+}
+
+private TypoMetaData CreateTypoMetaData()
+{
+    return new TypoMetaData()
+    {
+        Authors = &quot;Robert Leisner&quot;,
+        Company = &quot;Bodoconsult&quot;,
+        FooterText = &quot;FooterText&quot;,
+        HeaderText = &quot;HeaderText&quot;
+    };
 }
 </code></pre>
 <h1 id="about-us">About us</h1>

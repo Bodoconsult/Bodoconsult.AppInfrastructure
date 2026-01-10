@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>What does the library | Bodoconsult.AppInfrastructure </title>
+      <title>Bodoconsult.App.Wpf | Bodoconsult.AppInfrastructure </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="What does the library | Bodoconsult.AppInfrastructure ">
+      <meta name="title" content="Bodoconsult.App.Wpf | Bodoconsult.AppInfrastructure ">
       
       
       <link rel="icon" href="../../favicon.ico">
@@ -85,12 +85,51 @@
         </div>
 
         <article data-uid="">
-<h1 id="what-does-the-library">What does the library</h1>
+<h1 id="bodoconsultappwpf">Bodoconsult.App.Wpf</h1>
 
+<h1 id="overview">Overview</h1>
+<blockquote>
+<p><a href="#wpf-app-start-infrastructure-basics">WPF app start infrastructure basics</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#using-app-start-infrastructure-for-a-classical-wpf-based-apps">Using app start infrastructure for a classical Wpf based apps</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#using-app-start-infrastructure-for-a-os-service-like-wpf-based-apps">Using app start infrastructure for a console app employing a WPF dispatcher</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#using-app-start-infrastructure-for-a-console-app-employing-a-wpf-dispatcher">Using app start infrastructure for a OS service like WPF based apps</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#other-tools">Other tools</a></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#sharedresourcedictionary">SharedResourceDictionary</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#converters">Converters</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#sending-toast-messages-from-wpf-app">Sending TOAST messages from WPF app</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#starting-wpd-dispatcher-from-console-apps-dispatcherservice-class">Starting WPD Dispatcher from console apps: DispatcherService class</a></p>
+</blockquote>
+</blockquote>
+<h2 id="what-does-the-library">What does the library</h2>
 <p>Bodoconsult.App.Wpf is a library with basic functionality for multilayered monolithic WPF based applications.</p>
-<h1 id="app-start-infrastructure-basics">App start infrastructure basics</h1>
+<h2 id="app-start-infrastructure-basics">App start infrastructure basics</h2>
 <p>See page <a href="../Bodoconsult.App/AppStartInfrastructure.html">app start infrastructure</a> for details.</p>
-<h2 id="using-app-start-infrastructure-for-a-classical-wpf-based-apps">Using app start infrastructure for a classical Wpf based apps</h2>
+<h2 id="how-to-use-the-library">How to use the library</h2>
+<p>The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<h1 id="using-app-start-infrastructure-for-a-classical-wpf-based-apps">Using app start infrastructure for a classical Wpf based apps</h1>
 <p>Here a sample from Program.cs Main() how to setup the Wpf app with a main form Forms1 in project AvaloniaApp1 contained in this repo:</p>
 <pre><code class="lang-csharp">var type = typeof(App);
 
@@ -157,7 +196,7 @@ builder.StartApplication();
 base.OnStartup(e);
 </code></pre>
 <p>Start by creating your own viewmodel class AvaloniaApp1MainWindowViewModel derived from MainWindowViewModel and override CreateWindow() method to load your custom start window.</p>
-<h2 id="using-app-start-infrastructure-for-a-console-app-employing-a-wpf-dispatcher">Using app start infrastructure for a console app employing a WPF dispatcher</h2>
+<h1 id="using-app-start-infrastructure-for-a-console-app-employing-a-wpf-dispatcher">Using app start infrastructure for a console app employing a WPF dispatcher</h1>
 <p>If you want to use WPF features like FlowDocuments in a console app you need to employ a WPF dispatcher.
 In a classical WPF app starting the WPF dispatcher is done by the App.xaml start process internally.
 In a console app you do not have a App.xaml so the disptacher has to be started separately.
@@ -209,7 +248,7 @@ builder.StartApplication();
 Environment.Exit(0);
 </code></pre>
 <p>Start by creating your own app builder class similar to ConsoleAvaloniaApp1AppBuilder class based on BaseConsoleAvaloniaAppBuilderl.</p>
-<h2 id="using-app-start-infrastructure-for-a-os-service-like-wpf-based-apps">Using app start infrastructure for a OS service like WPF based apps</h2>
+<h1 id="using-app-start-infrastructure-for-a-os-service-like-wpf-based-apps">Using app start infrastructure for a OS service like WPF based apps</h1>
 <p>If you want to implement a OS service like application without implementing a real OS service you can use WpfStarterUi class.</p>
 <p>By default WpfStarterUi class loads the app as a simple window not shown on Windows task bar but task tray. The app can be closed only with keys STRC + C / CTRL + C or from task tray.</p>
 <p>Here a sample from App.Xaml.cs OnStartup() how to setup the WPF console app in project WpfConsoleApp1 contained in this repo:</p>
@@ -280,6 +319,55 @@ builder.StartApplication();
 
 base.OnStartup(e);
 </code></pre>
+<h1 id="other-tools">Other tools</h1>
+<h2 id="sharedresourcedictionary">SharedResourceDictionary</h2>
+<p>Use SharedResourceDictionary class to avoid loading resources multiple times.</p>
+<h2 id="use-i18n-providers-for-using-bodoocnsulti18n-with-wpf-resources">Use I18N providers for using Bodoocnsult.I18N with WPF resources</h2>
+<p>For basic info how to use Bodoconsult.I18N and I18N providers see <a href="../Bodoconsult.I18N/README.html">Bodoconsult.I18N section</a>.</p>
+<p>Use WpfEmbeddedResourceProvider and WpfFileLocalesProvider to add I18N resources from WPF to Bodoocnsult.I18N.</p>
+<pre><code class="lang-csharp">    private const string Path = &quot;Locales&quot;;
+
+    [Test]
+    public void RegisterResourceItems_ExistingResources_ResourceItemsLoaded()
+    {
+        // Arrange 
+        var ass = TestHelper.CurrentAssembly;
+
+        var provider = new WpfEmbeddedResourceProvider(ass, Path);
+
+        // Act  
+        provider.RegisterResourceItems();
+
+        // Assert
+        Assert.That(provider.ResourceItems, Is.Not.Null);
+        Assert.That(provider.ResourceItems.Count, Is.Not.EqualTo(0));
+    }
+</code></pre>
+<h2 id="converters">Converters</h2>
+<p>Bodoconsult.App.Wpf defines a set of converters based on IValueConverter interface:</p>
+<ul>
+<li><p>ColorToBrushConverter</p>
+</li>
+<li><p>DateTimeConverter</p>
+</li>
+<li><p>DateTimeUiConverter</p>
+</li>
+<li><p>FlowDocumentContentToXamlConverter</p>
+</li>
+<li><p>FlowDocumentToXamlConverter</p>
+</li>
+<li><p>NullImageConverter</p>
+</li>
+<li><p>NumberConverter</p>
+</li>
+<li><p>PercentageConverter</p>
+</li>
+<li></li>
+</ul>
+<h2 id="sending-toast-messages-from-wpf-app">Sending TOAST messages from WPF app</h2>
+<p>WpfToastMessagingService class implements sending of simple TOAST messages to the OS.</p>
+<h2 id="starting-wpd-dispatcher-from-console-apps-dispatcherservice-class">Starting WPD Dispatcher from console apps: DispatcherService class</h2>
+<p>Use the DispatcherService class to start a WPF Dispatcher in a console environment to use WPF features like Flowdocument.</p>
 <h1 id="about-us">About us</h1>
 <p>Bodoconsult <a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a> is a Munich based software company from Germany.</p>
 <p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>

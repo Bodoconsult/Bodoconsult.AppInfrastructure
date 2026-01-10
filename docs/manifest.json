@@ -7608,6 +7608,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Documents.Extensions.TypoColorExtensions.yml\" sourcestartlinenumber=\"1\">WPF relevante extensions for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.TypoColor\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Documents.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Documents.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Documents.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Wpf.Documents.General.FontSize.yml",
       "output": {
         ".html": {
@@ -10180,7 +10208,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Wpf.Toast.WpfToastMessagingService",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.yml\" sourcestartlinenumber=\"1\">WinFormsimplementation for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IToastMessagingService\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.yml\" sourcestartlinenumber=\"1\">WPF implementation for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IToastMessagingService\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11976,6 +12004,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.Extensions.TypoColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.Extensions.TypoColorExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.Extensions.TypoColorExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.Extensions.TypoColorExtensions.yml\" sourcestartlinenumber=\"1\">Extensions for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.TypoColor\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Pdf.Extensions.yml",
       "output": {
         ".html": {
@@ -12225,6 +12267,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.Pdf.PdfSharp.PdfCreator",
       "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.PdfSharp.PdfCreator.yml\" sourcestartlinenumber=\"1\">Class representing a PDF document and basic functionality to add content to it</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.PdfSharp.PdfDefaultTableStyle.yml\" sourcestartlinenumber=\"1\">Default PDF table style</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -17909,6 +17965,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.Text.Renderer.Docx.Blocks.TocSectionDocxTextRendererElement",
       "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Docx.Blocks.TocSectionDocxTextRendererElement.yml\" sourcestartlinenumber=\"1\">Docx rendering element for <xref href=\"Bodoconsult.Text.Documents.TocSection\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Docx.Blocks.TocxDocxTextRendererElement.yml\" sourcestartlinenumber=\"1\">Docx rendering element for <xref href=\"Bodoconsult.Text.Documents.Toc1\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
     },
     {
       "type": "ManagedReference",

@@ -6,7 +6,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 namespace Bodoconsult.App.Wpf.Toast
 {
     /// <summary>
-    /// WinFormsimplementation for <see cref="IToastMessagingService"/>
+    /// WPF implementation for <see cref="IToastMessagingService"/>
     /// </summary>
     public class WpfToastMessagingService : IToastMessagingService
     {

@@ -3,23 +3,6 @@ Bodoconsult.Charting
 
 # Overview
 
-## What does Bodoconsult.Charting library
-
-Bodoconsult.Charting is a library for creating charts from database data. 
-
-Here a sample chart created with Bodoconsult.Charting:
-
-![Sample for stacked column chart 100%](../../images/StackedColumn100Chart.png)
-
-The workflow for using the library is generally as follows:
-
-1. Getting data as DataTable from a database
-2. Create a ChartData object to make general settings for the chart and load the data from the DataTable as list of IChartItemData items 
-3. Create a ChartHandler and deliver the ChartData object to it
-4. Export the data to a file
-
-To work properly the DataTable objects must have a certain logical structure depending on the type of chart you want to create.
-
 >   [Chart data input](#chart-data-input)
 
 >   [Styling the charts](#styling-the-charts)
@@ -45,6 +28,23 @@ To work properly the DataTable objects must have a certain logical structure dep
 >   [Using Bodoconsult.Charting in a DI container environment](#using-bodoconsultcharting-in-a-di-container-environment)
 
 >   [Extension methods for charting](#extension-methods-for-charting)
+
+## What does Bodoconsult.Charting library
+
+Bodoconsult.Charting is a library for creating charts from database data. 
+
+Here a sample chart created with Bodoconsult.Charting:
+
+![Sample for stacked column chart 100%](../../images/StackedColumn100Chart.png)
+
+The workflow for using the library is generally as follows:
+
+1. Getting data as DataTable from a database
+2. Create a ChartData object to make general settings for the chart and load the data from the DataTable as list of IChartItemData items 
+3. Create a ChartHandler and deliver the ChartData object to it
+4. Export the data to a file
+
+To work properly the DataTable objects must have a certain logical structure depending on the type of chart you want to create.
 
 ## How to use the library
 

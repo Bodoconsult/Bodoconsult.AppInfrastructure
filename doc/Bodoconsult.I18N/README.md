@@ -1,7 +1,7 @@
 Bodoconsult.I18N
 =================
 
-# What does the library
+# Overview
 
 > [Setup locales](#setup-locales)
 
@@ -11,7 +11,7 @@ Bodoconsult.I18N
 
 > [Locales file formats](#locales-file-formats)
 
-## Basic ideas
+## What does the library
 
 Bodoconsult.I18N library is a simple localization library based on I18N-Portable <https://github.com/xleon/I18N-Portable> by Diego Ponce de León (xleon).
 
