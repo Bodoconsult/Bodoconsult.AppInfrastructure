@@ -25271,6 +25271,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Abstractions/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Abstractions/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.Abstractions/Typography.md",
       "output": {
         ".html": {
@@ -25303,6 +25313,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Avalonia/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Avalonia/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.App.Avalonia/toc.yml",
       "output": {
@@ -25321,6 +25341,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.App.BackgroundService/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.BackgroundService/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.BackgroundService/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -25349,6 +25379,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.GrpcBackgroundService/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.GrpcBackgroundService/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.App.GrpcBackgroundService/toc.yml",
       "output": {
@@ -25367,6 +25407,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.App.WinForms/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.WinForms/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.WinForms/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -25395,6 +25445,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Windows/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Windows/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.App.Windows/toc.yml",
       "output": {
@@ -25418,6 +25478,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf.Documents/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf.Documents/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.App.Wpf.Documents/toc.yml",
       "output": {
@@ -25436,6 +25506,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.App.Wpf/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -25525,6 +25605,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App/di.md",
       "output": {
         ".html": {
@@ -25557,6 +25647,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Charting.Base/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Charting.Base/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.Charting.Base/toc.yml",
       "output": {
@@ -25575,6 +25675,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.Charting/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Charting/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Charting/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -25603,6 +25713,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Drawing.SkiaSharp/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Drawing.SkiaSharp/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.Drawing.SkiaSharp/toc.yml",
       "output": {
@@ -25621,6 +25741,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.Drawing/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Drawing/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Drawing/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -25649,6 +25779,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.I18N/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.I18N/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.I18N/toc.yml",
       "output": {
@@ -25667,6 +25807,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.Office/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Office/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Office/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -25695,6 +25845,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Pdf/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Pdf/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "doc/Bodoconsult.Pdf/toc.yml",
       "output": {
@@ -25713,6 +25873,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.Test/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Test/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Test/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -25746,6 +25916,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.Text/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Text/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Text/ReleaseNotes.html"
         }
       },
       "version": ""

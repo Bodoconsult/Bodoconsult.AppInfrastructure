@@ -2,3 +2,5 @@
   href: README.md
 - name: Long structured documents
   href: Documents.md
+- name: Release notes
+  href: ReleaseNotes.md

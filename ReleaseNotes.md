@@ -1,88 +1,48 @@
 Release notes for Bodoconsult.App
 ==========================
 
-# Bodoconsult.App.Abstractions
+>   [Current packages](#current-packages)
 
-## 1.0.5 
+>   [Removed packages](#removed-packages)
 
-Extracted abstractions to Bodoconsult.App.Abstractions
+# Current packages
 
-## 1.0.6
+>	[Release notes for Bodoconsult.App.Abstractions package](doc/Bodoconsult.App.Abstractions/ReleaseNotes.md)
 
-Added some properties for I18N to IAppGlobals
+>	[Release notes for Bodoconsult.App package](doc/Bodoconsult.App/ReleaseNotes.md)
 
+>	[Release notes for Bodoconsult.App.Avalonia package](doc/Bodoconsult.App.Avalonia/ReleaseNotes.md)
 
+>	[Release notes for Bodoconsult.App.WinForms package](doc/Bodoconsult.App.WinForms/ReleaseNotes.md)
 
-# Bodoconsult.App
+>	[Release notes for Bodoconsult.App.Wpf package](doc/Bodoconsult.App.Wpf/ReleaseNotes.md)
 
-## 1.0.0
+>	[Release notes for Bodoconsult.App.Wpf.Documents package](doc/Bodoconsult.App.Wpf.Documents/ReleaseNotes.md)
 
-New package
+>	[Release notes for Bodoconsult.App.BackgroundService package](doc/Bodoconsult.App.BackgroundService/ReleaseNotes.md)
 
-## 1.0.1
+>	[Release notes for Bodoconsult.App.GrpcBackgroundService package](doc/Bodoconsult.App.GrpcBackgroundService/ReleaseNotes.md)
 
-Bugfixes 
+>	[Release notes for Bodoconsult.App.Windows package](doc/Bodoconsult.App.Windows/ReleaseNotes.md)
 
-## 1.0.2
+>	[Release notes for Bodoconsult.I18N package](doc/Bodoconsult.I18N/ReleaseNotes.md)
 
+>	[Release notes for Bodoconsult.Drawing.SkiaSharp package](doc/Bodoconsult.Drawing.SkiaSharp/ReleaseNotes.md)
 
-## 1.0.2
+>	[Release notes for Bodoconsult.Drawing package](doc/Bodoconsult.Drawing/ReleaseNotes.md)
 
+>	[Release notes for Bodoconsult.Charting.Base package](doc/Bodoconsult.Charting.Base/ReleaseNotes.md)
 
-## 1.0.4
+>	[Release notes for Bodoconsult.Charting package](doc/Bodoconsult.Charting/ReleaseNotes.md)
 
-Migrated CredentialManager implementation to Bodoconsult.App.Windows package
+>	[Release notes for Bodoconsult.Pdf package](doc/Bodoconsult.Pdf/ReleaseNotes.md)
 
-## 1.0.5 
+>	[Release notes for Bodoconsult.Text package](doc/Bodoconsult.Text/ReleaseNotes.md)
 
-Extracted abstractions to Bodoconsult.App.Abstractions
+>	[Release notes for Bodoconsult.Test package](doc/Bodoconsult.Test/ReleaseNotes.md)
 
-## 1.0.6
+# Removed packages
 
-Using Bodoconsult.App.Abstractions 1.0.6
-
-
-
-# Bodoconsult.App.Windows
-
-## 1.0.0
-
-New package
-
-## 1.0.4
-
-Moved AD, DNS and DHCP related classes to Bodoconsult.Network repo and removed dependencies Microsoft.Management.Infrastructure and Microsoft.Windows.Compatibility to get a smaller footprint for package
-
-## 1.0.5
-
-Migrated interfaces to Bodoconsult.App.Abstractions
-
-## 1.0.6
-
-Using Bodoconsult.App.Abstractions 1.0.6
-
-
-# Bodoconsult.App.Wpf
-
-## 1.0.5
-
-First draft
-
-## 1.0.6
-
-Bugfixing and improvements to central classes
-
-
-# Bodoconsult.App.WinForms
-
-## 1.0.5 
-
-Extracted abstractions to Bodoconsult.App.Abstractions
-
-## 1.0.6
-
-Using Bodoconsult.App.Abstractions 1.0.6
-
-# Bodoconsult.Typography
+## Bodoconsult.Typography
 
 Content of Nuget package Bodoconsult.Typography moved to package Bodoconsult.App.Abstractions in Bodoconsult.App.Abstractions.Typography namespace.
