@@ -386,6 +386,16 @@ public class TypographyBase : ITypography
     public string PageNumberPrefix { get; set; } = "Page";
 
     /// <summary>
+    /// Path to the background image or null if no background image should be used. For a A4 portrait page the size of the image should be 1400 px x 1980 px
+    /// </summary>
+    public string BackgroundImagePath { get; set; }
+
+    /// <summary>
+    /// Watermark text
+    /// </summary>
+    public string WatermarkText { get; set; }
+
+    /// <summary>
     /// Styling for charts in the document
     /// </summary>
     public ChartStyle ChartStyle { get; set; }

@@ -295,6 +295,9 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         // Now render the pages
         RenderPages(docRenderer, document);
 
+        // Create watermarks
+        CreateWatermark(document);
+
         return document;
     }
 
@@ -306,6 +309,8 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
     /// <exception cref="ArgumentNullException">Thrown if there is no drawing surface creatable</exception>
     protected void RenderPages(DocumentRenderer docRenderer, PdfDocument document)
     {
+        var md = StyleSet.DocumentMetaData;
+
         // For clarity, we use point as unit of measure in this sample.
         // A4 is the standard letter size in Germany (21cm x 29.7cm).
         var a4Rect = new XRect(0, 0, StyleSet.PageSetup.PageWidth.Point, StyleSet.PageSetup.PageHeight.Point);
@@ -347,14 +352,17 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             {
                 currentPageNum++;
                 var page = document.AddPage();
+
+                gfx?.Dispose();
+
                 gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
                 page.Size = PageSize.A4;
                 page.Orientation = StyleSet.PageSetupOriginal.Orientation == Orientation.Landscape ? PageOrientation.Landscape : PageOrientation.Portrait;
 
                 // Draw background image if necessary
-                if (!string.IsNullOrEmpty(BackgroundImagePath) && File.Exists(BackgroundImagePath))
+                if (!string.IsNullOrEmpty(md.BackgroundImagePath) && File.Exists(md.BackgroundImagePath))
                 {
-                    var image = XImage.FromFile(BackgroundImagePath);
+                    var image = XImage.FromFile(md.BackgroundImagePath);
                     gfx.DrawImage(image, 0, 0, page.Width.Point, page.Height.Point);
                 }
 
@@ -386,6 +394,8 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                 idx = 0;
             }
         }
+
+        gfx?.Dispose();
     }
 
     /// <summary>
@@ -461,7 +471,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         bool isHeader, PageNumberFormatEnum pageNumberFormat, XFont font, XBrush brush, Style style, double marginHeaderFooter, int pageNumber)
     {
         var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-        var y = 0.75 * StyleSet.PageSetupOriginal.TopMargin.Point;
+        var y = 0.85 * StyleSet.PageSetupOriginal.TopMargin.Point;
 
         var areaW = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.LeftMargin.Point - StyleSet.PageSetupOriginal.RightMargin.Point;
         var areaH = StyleSet.PageSetupOriginal.PageHeight.Point - StyleSet.PageSetupOriginal.TopMargin.Point - StyleSet.PageSetupOriginal.BottomMargin.Point;
@@ -509,11 +519,11 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
             if (isHeader)
             {
-                y = y - marginHeaderFooter;
+                y = y - marginHeaderFooter - gfx.MeasureString(text, font).Height;
             }
             else
             {
-                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+                y = y + marginHeaderFooter + areaH;
             }
 
             gfx.DrawString(text, font, brush, x, y);
@@ -596,7 +606,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             }
             else
             {
-                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+                y = y + marginHeaderFooter + areaH;
             }
 
             gfx.DrawString(text, font, brush, x, y);
@@ -646,7 +656,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             }
             else
             {
-                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+                y = y + marginHeaderFooter + areaH;
             }
 
             gfx.DrawString(text, font, brush, x, y);
@@ -677,7 +687,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             }
             else
             {
-                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+                y = y + marginHeaderFooter + areaH;
             }
 
             gfx.DrawString(text, font, brush, x, y);
@@ -703,11 +713,11 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
             if (isHeader)
             {
-                y = y - marginHeaderFooter;
+                y = y - marginHeaderFooter ;
             }
             else
             {
-                y = y + marginHeaderFooter + areaH - gfx.MeasureString(text, font).Height;
+                y = y + marginHeaderFooter + areaH;
             }
 
             gfx.DrawString(text, font, brush, x, y);
@@ -749,82 +759,6 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
         // Draw right element
         CreateHeaderFooterElement(md, sections[2], gfx, 2, false, pageNumberFormat, font, brush, style, 25, pageNum);
 
-
-        //var md = StyleSet.DocumentMetaData;
-        //if (string.IsNullOrEmpty(md.FooterText))
-        //{
-        //    return;
-        //}
-
-        //var style = StyleSet.Footer;
-
-        //var font = new XFont(style.Font.Name, style.Font.Size.Point);
-        //var brush = new XSolidBrush(XColor.FromArgb((int)style.Font.Color.A, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
-
-        //var x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-        //var y = StyleSet.PageSetupOriginal.PageHeight.Point - 0.75 * StyleSet.PageSetupOriginal.BottomMargin.Point;
-
-        //var footerText = md.FooterText.Replace("\t", string.Empty, StringComparison.InvariantCultureIgnoreCase);
-        //var isPageNumber = false;
-
-        //if (footerText.Contains(ITypography.PageFieldIndicator, StringComparison.InvariantCultureIgnoreCase))
-        //{
-        //    isPageNumber = true;
-        //    footerText = footerText.Replace(ITypography.PageFieldIndicator, string.Empty,
-        //        StringComparison.InvariantCultureIgnoreCase);
-        //}
-
-        //// Borderline
-        //if (style.ParagraphFormat.Borders.Width.Point > 0)
-        //{
-        //    var borderColor = style.ParagraphFormat.Borders.Color;
-        //    var pen = new XPen(XColor.FromArgb((int)borderColor.A, (int)borderColor.R, (int)borderColor.G, (int)borderColor.B))
-        //    {
-        //        Width = style.ParagraphFormat.Borders.Width.Point
-        //    };
-        //    gfx.DrawLine(pen, x, y - style.Font.Size.Point - 3, StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point, y - style.Font.Size.Point - 3);
-        //}
-
-        //// Footer text
-        //if (!string.IsNullOrEmpty(footerText))
-        //{
-        //    x = StyleSet.PageSetupOriginal.LeftMargin.Point;
-        //    gfx.DrawString(footerText, font, brush, x, y);
-        //}
-
-        //// Page number
-        //if (!isPageNumber)
-        //{
-        //    return;
-        //}
-
-        //// ToDo: add upper and lower latin
-
-        //string pageNumStr;
-        //switch (pageNumberFormat)
-        //{
-        //    case PageNumberFormatEnum.UpperRoman:
-        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToUpperInvariant()}";
-        //        break;
-        //    case PageNumberFormatEnum.LowerRoman:
-        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ArabicToRoman().ToLowerInvariant()}";
-        //        break;
-        //    case PageNumberFormatEnum.UpperLatin:
-        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ToUpperLatin()}";
-        //        break;
-        //    case PageNumberFormatEnum.LowerLatin:
-        //        pageNumStr = $"{PageNumberPrefix} {pageNum.ToLowerLatin()}";
-        //        break;
-        //    case PageNumberFormatEnum.Decimal:
-        //    default:
-        //        pageNumStr = $"{PageNumberPrefix} {pageNum}";
-        //        break;
-        //}
-
-        //Debug.Print(pageNumStr);
-
-        //x = StyleSet.PageSetupOriginal.PageWidth.Point - StyleSet.PageSetupOriginal.RightMargin.Point - gfx.MeasureString(pageNumStr, font).Width;
-        //gfx.DrawString(pageNumStr, font, brush, x, y);
     }
 
     private void FindPageNumbers(int pageCount, DocumentRenderer docRenderer, Section oldSection)

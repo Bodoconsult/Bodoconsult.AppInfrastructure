@@ -13,8 +13,8 @@ public interface ILocalesProviderPackage
     IList<ILocalesProvider> LocalesProviders { get; }
 
     /// <summary>
-    /// Load the providers in an existing <see cref="II18N"/> instance
+    /// Load the providers in an existing <see cref="II18NBase"/> instance
     /// </summary>
-    /// <param name="i18Ninstance">Existing <see cref="II18N"/> instance to load the locales providers in</param>
-    void LoadLocalesProviders(II18N i18Ninstance);
+    /// <param name="i18Ninstance">Existing <see cref="II18NBase"/> instance to load the locales providers in</param>
+    void LoadLocalesProviders(II18NBase i18Ninstance);
 }

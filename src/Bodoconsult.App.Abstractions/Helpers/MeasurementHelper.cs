@@ -227,6 +227,16 @@ public static class MeasurementHelper
     }
 
     /// <summary>
+    /// Get EM from pt
+    /// </summary>
+    /// <param name="pt">pt</param>
+    /// <returns>em</returns>
+    public static int GetEmFromPt(double pt)
+    {
+        return (int)(pt * 0.083);
+    }
+
+    /// <summary>
     /// Get DXA (twentieths of a point) from cm (72dpi)
     /// </summary>
     /// <param name="cm"></param>

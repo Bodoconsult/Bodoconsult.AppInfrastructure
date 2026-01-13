@@ -5,17 +5,12 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// <summary>
 /// Interface for I18N server classes. Instances have to be loaded as singleton in the app
 /// </summary>
-public interface II18NServer : IDisposable
+public interface II18NServer : II18NBase, IDisposable
 {
     /// <summary>
     /// Fallback locale to use
     /// </summary>
     string FallBackLocale { get; set; }
-
-    /// <summary>
-    /// All loaded providers
-    /// </summary>
-    List<ILocalesProvider> Providers { get; }
 
     /// <summary>
     /// Current loaded locales
@@ -28,6 +23,19 @@ public interface II18NServer : IDisposable
     public string NotFoundSymbol { get; set; }
 
     /// <summary>
+    /// Reset all providers (fluid version)
+    /// </summary>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    public II18NServer Reset2();
+
+    /// <summary>
+    ///  Add a provider as data source for translations (fluid version)
+    /// </summary>
+    /// <param name="provider">Provider for translation data</param>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    public II18NServer AddProvider2(ILocalesProvider provider);
+
+    /// <summary>
     /// Set a logger action
     /// </summary>
     /// <param name="output">Logger action</param>
@@ -38,16 +46,4 @@ public interface II18NServer : IDisposable
     /// </summary>
     /// <param name="symbol">Symbol to set as not-found-symbol</param>
     II18NServer SetNotFoundSymbol(string symbol);
-
-    /// <summary>
-    ///  Add a provider as data source for translations
-    /// </summary>
-    /// <param name="provider">Provider for translation data</param>
-    /// <returns>Current I18N instance for FluentAPI</returns>
-    II18NServer AddProvider(ILocalesProvider provider);
-
-    /// <summary>
-    /// Reset all providers
-    /// </summary>
-    II18NServer Reset();
 }

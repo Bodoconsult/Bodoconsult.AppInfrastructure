@@ -12,7 +12,7 @@
 	  <PackageOutputPath>..\..\packages\</PackageOutputPath>
 	  <Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
 	  <Authors>Robert Leisner</Authors>
-	  <VersionPrefix>1.0.8</VersionPrefix>
+	  <VersionPrefix>1.0.9</VersionPrefix>
 	  <Version />
 	  <Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
 	  <Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
@@ -26,7 +26,7 @@
 	  <PackageTags>OpenXml Excel xlsx database DataTable</PackageTags>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Description>Library to export database data like System.Data.DataTable as xlsx Excel files</Description>
-	  <PackageReleaseNotes>New repo and migration to .NET9 and updated dependencies</PackageReleaseNotes>
+	  <PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
 	  <PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
 	  <NeutralLanguage>en</NeutralLanguage>
 

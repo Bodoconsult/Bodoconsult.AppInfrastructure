@@ -20,3 +20,9 @@ Release notes for Bodoconsult.App.Abstractions
 -	Added IntExtensions and TypoColorExtensions classes
 
 -	Enhanced MeasurementHelper class for new units like DIU, DXA, Twips etc.
+
+# 1.0.9
+
+-   New interface II18NBase as common base interface for I18N and I18NServer class to make ILocalesProviderPackage more flexible
+
+-   Added properties BackgroundImagePath and WatermarkText to ITypoMetaData

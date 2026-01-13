@@ -64,11 +64,6 @@ public interface IPdfBuilder : IDisposable
     bool AddPageBreakIfNecessary { get; set; }
 
     /// <summary>
-    /// Path to the background image or null if no background image should be used
-    /// </summary>
-    string BackgroundImagePath { get; set; }
-
-    /// <summary>
     /// Get the current width of the page.
     /// </summary>
     double Width { get; }

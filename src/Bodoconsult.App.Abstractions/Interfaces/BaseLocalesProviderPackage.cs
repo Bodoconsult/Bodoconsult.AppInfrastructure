@@ -5,7 +5,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// <summary>
 /// Base class for <see cref="ILocalesProviderPackage"/> implementations
 /// </summary>
-public abstract class BaseLocalesProviderPackage:ILocalesProviderPackage
+public abstract class BaseLocalesProviderPackage : ILocalesProviderPackage
 {
     /// <summary>
     /// List of all locales providers in this package
@@ -13,10 +13,10 @@ public abstract class BaseLocalesProviderPackage:ILocalesProviderPackage
     public IList<ILocalesProvider> LocalesProviders { get; } = new List<ILocalesProvider>();
 
     /// <summary>
-    /// Load the providers in an existing <see cref="II18N"/> instance
+    /// Load the providers in an existing <see cref="II18NBase"/> instance
     /// </summary>
-    /// <param name="i18Ninstance">Existing <see cref="II18N"/> instance to load the locales providers in</param>
-    public void LoadLocalesProviders(II18N i18Ninstance)
+    /// <param name="i18Ninstance">Existing <see cref="II18NBase"/> instance to load the locales providers in</param>
+    public void LoadLocalesProviders(II18NBase i18Ninstance)
     {
         foreach (var localesProvider in LocalesProviders)
         {

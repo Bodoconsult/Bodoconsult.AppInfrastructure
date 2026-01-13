@@ -110,7 +110,7 @@ public class I18NMock : II18N
     /// Reset all providers
     /// </summary>
     /// <returns>Current I18N instance for FluentAPI</returns>
-    public II18N Reset()
+    public void Reset()
     {
         throw new NotImplementedException();
     }
@@ -120,7 +120,26 @@ public class I18NMock : II18N
     /// </summary>
     /// <param name="provider">Provider for translation data</param>
     /// <returns>Current I18N instance for FluentAPI</returns>
-    public II18N AddProvider(ILocalesProvider provider)
+    public void AddProvider(ILocalesProvider provider)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Reset all providers (fluid version)
+    /// </summary>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    public II18N Reset2()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    ///  Add a provider as data source for translations (fluid version)
+    /// </summary>
+    /// <param name="provider">Provider for translation data</param>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    public II18N AddProvider2(ILocalesProvider provider)
     {
         throw new NotImplementedException();
     }

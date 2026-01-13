@@ -11,3 +11,11 @@ Release notes for Bodoconsult.Office
 -   Using Bodoconsult.App 1.0.8
 
 -   Added DocxBuilder class to create OpenXML DOCX files
+
+## 1.0.9
+
+-   Using Bodoconsult.App.Abstractions 1.0.9
+
+-   Adding background image added to DocxBuilder (ITypoMetaData.BackgroundImagePath)
+
+-   Adding watermark added to DocxBuilder ((ITypoMetaData.WatermarkText)

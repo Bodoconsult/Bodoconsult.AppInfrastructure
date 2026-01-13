@@ -286,6 +286,59 @@ internal class DocxBuilderTests
         FileSystemHelper.RunInDebugMode(path);
     }
 
+    [Test]
+    public void AddWatermark_MultipleSections_DocxCreated()
+    {
+        // Arrange 
+        var path = Path.Combine(FileHelper.TempPath, "test.docx");
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+
+        var pageStyle1 = new DefaultPageStyle();
+
+        var dmd = CreateTypoMetaData();
+        dmd.WatermarkText = "DRAFT";
+
+        var docx = new DocxBuilder(dmd);
+        docx.CreateDocument(path);
+        docx.AddSection(pageStyle1, false);
+        docx.AddHeaderToCurrentSection(10);
+        docx.AddFooterToCurrentSection(10);
+        docx.AddParagraph("Section1", "Normal");
+
+        docx.AddSection(pageStyle1);
+        docx.AddHeaderToCurrentSection(10);
+        docx.AddFooterToCurrentSection(10);
+
+        var runs = new List<OpenXmlElement>
+        {
+            DocxBuilder.CreateRun("Das ist "),
+            DocxBuilder.CreateRunBold("ein "),
+            DocxBuilder.CreateRunItalic("Test für einen Hyperlink "),
+            DocxBuilder.CreateHyperlink("http://www.bodoconsult.de", "Bodoconsult", docx.MainDocumentPart),
+            DocxBuilder.CreateRun(" im Text!"),
+            DocxBuilder.CreateLineBreak(),
+            DocxBuilder.CreateRun("Das ist 1 ..."),
+            DocxBuilder.CreatePageBreak(),
+            DocxBuilder.CreateRun("Das ist 2 ..."),
+        };
+
+        docx.AddParagraph(runs, "Normal");
+
+        // Act  
+        docx.AddWatermark();
+
+        // Assert
+        Assert.That(File.Exists(path));
+
+        docx.Dispose();
+
+        FileSystemHelper.RunInDebugMode(path);
+    }
+
 
     [Test]
     public void AddFooterToCurrentSection_MultipleSectionsWithPageNumbering_DocxCreated()

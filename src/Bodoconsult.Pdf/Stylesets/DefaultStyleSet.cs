@@ -121,6 +121,32 @@ public class DefaultStyleSet : IStyleSet
 
         DefinitionListTerm = CreateDefinitionListTermStyle();
         DefinitionListItem = CreateDefinitionListItemStyle();
+
+        Watermark = CreateWatermarkStyle();
+    }
+
+    /// <summary>
+    /// Create a watermark style
+    /// </summary>
+    /// <returns></returns>
+    protected Style CreateWatermarkStyle()
+    {
+        return new Style("Watermark", "Normal")
+        {
+            Font =
+            {
+                Name = "Arial",
+                Size =  1800,
+                Color = Colors.LightGray
+            },
+            ParagraphFormat =
+            {
+                SpaceBefore = DefaultVerticalMargin,
+                SpaceAfter = DefaultVerticalMargin,
+                PageBreakBefore = false,
+                Alignment = ParagraphAlignment.Left,
+            }
+        };
     }
 
     /// <summary>
@@ -1522,6 +1548,11 @@ public class DefaultStyleSet : IStyleSet
     /// Justified paragraph style
     /// </summary>
     public Style ParagraphJustify { get; set; }
+
+    /// <summary>
+    /// Watermark paragraph style
+    /// </summary>
+    public Style Watermark { get; set; }
 
     /// <summary>
     /// Style used a table base. Do NOT change this style

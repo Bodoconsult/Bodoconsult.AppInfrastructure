@@ -8,7 +8,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// <summary>
 /// Interface for I18N
 /// </summary>
-public interface II18N : INotifyPropertyChanged, IDisposable
+public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
 {
     /// <summary>
     /// Tag prefix used to declare content als as resource key
@@ -66,24 +66,6 @@ public interface II18N : INotifyPropertyChanged, IDisposable
     II18N SetFallbackLocale(string locale);
 
     /// <summary>
-    /// Reset all providers
-    /// </summary>
-    /// <returns>Current I18N instance for FluentAPI</returns>
-    II18N Reset();
-
-    /// <summary>
-    ///  Add a provider as data source for translations
-    /// </summary>
-    /// <param name="provider">Provider for translation data</param>
-    /// <returns>Current I18N instance for FluentAPI</returns>
-    II18N AddProvider(ILocalesProvider provider);
-
-    /// <summary>
-    /// All loaded providers
-    /// </summary>
-    List<ILocalesProvider> Providers { get; }
-
-    /// <summary>
     /// Get the default locale
     /// </summary>
     /// <returns>Default local as string</returns>
@@ -93,6 +75,19 @@ public interface II18N : INotifyPropertyChanged, IDisposable
     /// Initialize the system with the thread language
     /// </summary>
     II18N Init();
+
+    /// <summary>
+    /// Reset all providers (fluid version)
+    /// </summary>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    II18N Reset2();
+
+    /// <summary>
+    ///  Add a provider as data source for translations (fluid version)
+    /// </summary>
+    /// <param name="provider">Provider for translation data</param>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    II18N AddProvider2(ILocalesProvider provider);
 
     /// <summary>
     /// Translate the given key. If key is not existing an empty string is returned

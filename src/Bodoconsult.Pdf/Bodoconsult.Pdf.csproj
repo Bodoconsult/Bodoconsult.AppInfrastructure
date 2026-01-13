@@ -9,7 +9,7 @@
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
 		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.8</VersionPrefix>
+		<VersionPrefix>1.0.9</VersionPrefix>
 		<Version />
 		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -21,7 +21,7 @@
 		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageTags>Migradoc;simplify;PDF;creation</PackageTags>
 		<Description>Simplifies creation of PDF files based on MigraDoc</Description>
-		<PackageReleaseNotes>Added API docu and new packages</PackageReleaseNotes>
+		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		

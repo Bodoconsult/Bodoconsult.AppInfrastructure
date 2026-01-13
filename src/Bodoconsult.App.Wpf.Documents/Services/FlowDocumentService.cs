@@ -1683,7 +1683,7 @@ public class FlowDocumentService
 
     /// <summary>
     /// Find a resource string an external assembly. Used for resolution of Resx: tags in <see cref="CheckContent"/>.
-    /// Makes use of <see cref="II18N"/> which requires resources to registered before using via <see cref="II18N.AddProvider"/>.
+    /// Makes use of <see cref="II18N"/> which requires resources to registered before using via <see cref="II18NBase.AddProvider"/>.
     /// Language is injected via <see cref="TypographySettingsService"/>.
     /// </summary>
     /// <param name="resourceKey"></param>

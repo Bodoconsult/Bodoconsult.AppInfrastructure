@@ -53,6 +53,8 @@ public static class TestDataHelper
             HeaderText = "HeaderText",
             LogoPath = TestHelper.TestLogoImage,
             LogoWidth = 2,
+            //BackgroundImagePath = TestHelper.TestBackgroundImage, 
+            WatermarkText = "Draft"
         };
 
         doc.AddBlock(meta);

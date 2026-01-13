@@ -185,11 +185,20 @@ public class I18N : II18N
     /// Reset all providers
     /// </summary>
     /// <returns>Current I18N instance for FluentAPI</returns>
-    public II18N Reset()
+    public void Reset()
     {
         _locales.Clear();
         _translations?.Clear();
         Providers.Clear();
+    }
+
+    /// <summary>
+    /// Reset all providers
+    /// </summary>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    public II18N Reset2()
+    {
+        Reset();
         return this;
     }
 
@@ -198,7 +207,7 @@ public class I18N : II18N
     /// </summary>
     /// <param name="provider">Provider for translation data</param>
     /// <returns>Current I18N instance for FluentAPI</returns>
-    public II18N AddProvider(ILocalesProvider provider)
+    public void AddProvider(ILocalesProvider provider)
     {
 
         if (provider == null)
@@ -219,7 +228,16 @@ public class I18N : II18N
 
             _locales.Add(lo);
         }
+    }
 
+    /// <summary>
+    ///  Add a provider as data source for translations
+    /// </summary>
+    /// <param name="provider">Provider for translation data</param>
+    /// <returns>Current I18N instance for FluentAPI</returns>
+    public II18N AddProvider2(ILocalesProvider provider)
+    {
+        AddProvider(provider);
         return this;
     }
 

@@ -300,4 +300,9 @@ public interface IStyleSet
     /// Justified paragraph style
     /// </summary>
     Style ParagraphJustify { get; set; }
+
+    /// <summary>
+    /// Watermark paragraph style
+    /// </summary>
+    Style Watermark { get; set; }
 }

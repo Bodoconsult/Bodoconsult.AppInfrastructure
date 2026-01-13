@@ -13,7 +13,7 @@
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
 		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.8</VersionPrefix>
+		<VersionPrefix>1.0.9</VersionPrefix>
 		<Version />
 		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -25,7 +25,7 @@
 		<PackageId>Bodoconsult.App.Avalonia</PackageId>
 		<PackageTags>App;Avalonia</PackageTags>
 		<Description>App infrastructure for Avalonia based apps</Description>
-		<PackageReleaseNotes>Added API docu and new packages</PackageReleaseNotes>
+		<PackageReleaseNotes>Enhancements, new features snd bugfixes</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 

@@ -1,6 +1,7 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.Pdf.Extensions;
 using Bodoconsult.Pdf.Helpers;
 using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.Stylesets;
@@ -9,14 +10,19 @@ using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using Bodoconsult.Pdf.Extensions;
+using Bodoconsult.App.Abstractions.Helpers;
 using DataTableExtensions = Bodoconsult.Pdf.Extensions.DataTableExtensions;
+
+// https://www.pdfsharp.net/wiki-1.5/Print.aspx?Page=Watermark-sample
 
 namespace Bodoconsult.Pdf.PdfSharp;
 
@@ -128,62 +134,10 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// </summary>
     public int Increment { get; set; }
 
-    ///// <summary>
-    ///// Alternating background color for tables
-    ///// </summary>
-    //public Color TableAlternateBackColor { get; set; } = Colors.White;
-
-    ///// <summary>
-    ///// Background color
-    ///// </summary>
-    //public Color TableBackColor { get; set; } = Colors.White;
-
-    ///// <summary>
-    ///// Table header background color
-    ///// </summary>
-    //public Color TableHeaderBackgroundColor { get; set; } = Colors.LightGray;
-
-    ///// <summary>
-    ///// Table border color
-    ///// </summary>
-    //public Color TableBorderColor { get; set; } = Colors.Black;
-
-    //// Farben für Stylesheets wie "wr_cell_h1"
-
-    ///// <summary>
-    ///// Color for shading of risk class 1
-    ///// </summary>
-    //public Color ShadingRisk2Color { get; set; }
-
-    ///// <summary>
-    ///// Color for shading of risk class 2
-    ///// </summary>
-    //public Color ShadingRisk1Color { get; set; }
-
-    ///// <summary>
-    ///// Color for shading of headline 3
-    ///// </summary>
-    //public Color ShadingH3Color { get; set; }
-
-    ///// <summary>
-    ///// Color for shading of headline 2
-    ///// </summary>
-    //public Color ShadingH2Color { get; set; }
-
-    ///// <summary>
-    ///// Color for shading of headline 1
-    ///// </summary>
-    //public Color ShadingH1Color { get; set; }
-
     /// <summary>
     /// Add a page break if necessary
     /// </summary>
     public bool AddPageBreakIfNecessary { get; set; }
-
-    /// <summary>
-    /// Path to the background image or null if no background image should be used
-    /// </summary>
-    public string BackgroundImagePath { get; set; }
 
     /// <summary>
     /// Get the current width of the page.
@@ -221,6 +175,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
         var renderer = new PdfDocumentRenderer { Document = Document };
         renderer.RenderDocument();
 
+        if (!string.IsNullOrEmpty(StyleSet.DocumentMetaData.WatermarkText))
+        {
+            CreateWatermark(renderer.PdfDocument);
+        }
+
         // Save the document...
         renderer.PdfDocument.Save(fileName);
 
@@ -230,6 +189,51 @@ public abstract class PdfBuilderBase : IPdfBuilder
         }
 
         OpenFile(fileName);
+    }
+
+    /// <summary>
+    /// Create a watermark
+    /// </summary>
+    /// <param name="pdf">Current PDF document</param>
+    protected void CreateWatermark(PdfDocument pdf)
+    {
+        var watermark = StyleSet.DocumentMetaData.WatermarkText;
+
+        var style = StyleSet.Watermark;
+
+        var emSize = MeasurementHelper.GetEmFromPt(style.Font.Size.Point);
+
+        var font = new XFont(style.Font.Name, emSize, XFontStyleEx.BoldItalic);
+
+        for (var idx = 0; idx < pdf.Pages.Count; idx++)
+        {
+            var page = pdf.Pages[idx];
+            // Get an XGraphics object for drawing above the existing content
+            var gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Append);
+
+            // Get the size (in point) of the text
+            var size = gfx.MeasureString(watermark, font);
+
+            // Define a rotation transformation at the center of the page
+            gfx.TranslateTransform(page.Width.Point / 2, page.Height.Point / 2);
+            gfx.RotateTransform(-Math.Atan(page.Height.Point / page.Width.Point) * 180 / Math.PI);
+            gfx.TranslateTransform(-page.Width.Point / 2, -page.Height.Point / 2);
+
+            // Create a dimmed brush
+            XBrush brush = new XSolidBrush(XColor.FromArgb(128, (int)style.Font.Color.R, (int)style.Font.Color.G, (int)style.Font.Color.B));
+
+            // Create a string format
+            var format = new XStringFormat
+            {
+                Alignment = XStringAlignment.Near,
+                LineAlignment = XLineAlignment.Near
+            };
+
+            // Draw the string
+            gfx.DrawString(watermark, font, brush,
+                new XPoint((page.Width.Point - size.Width) / 2, (page.Height.Point - size.Height) / 2),
+                format);
+        }
     }
 
     /// <summary>
@@ -257,6 +261,12 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         var renderer = new PdfDocumentRenderer { Document = Document };
         renderer.RenderDocument();
+
+        if (!string.IsNullOrEmpty(StyleSet.DocumentMetaData.WatermarkText))
+        {
+            CreateWatermark(renderer.PdfDocument);
+        }
+
         renderer.PdfDocument.Save(stream);
     }
 
@@ -1247,6 +1257,18 @@ public abstract class PdfBuilderBase : IPdfBuilder
             return;
         }
 
+        // Background image
+        if (!string.IsNullOrEmpty(md.BackgroundImagePath) && File.Exists(md.BackgroundImagePath))
+        {
+            var image = section.Headers.Primary.AddImage(md.BackgroundImagePath);
+            image.Height = section.PageSetup.PageHeight;
+            image.Width = section.PageSetup.PageWidth;
+            image.RelativeVertical = RelativeVertical.Page;
+            image.RelativeHorizontal = RelativeHorizontal.Page;
+            image.WrapFormat.Style = WrapStyle.Through;
+        }
+
+        // Header
         var para = new Paragraph
         {
             Style = HeaderStyleName

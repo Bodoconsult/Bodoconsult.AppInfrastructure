@@ -37,6 +37,7 @@ public class TestHelper
 
         TestLogoImage2 = Path.Combine(TestDataPath, "logo_bre.png");
 
+        TestBackgroundImage = Path.Combine(TestDataPath, "background.png");
 
         TempPath = Path.GetTempPath();
 
@@ -91,4 +92,9 @@ public class TestHelper
     /// A logo image 2
     /// </summary>
     public static string TestLogoImage2 { get; }
+
+    /// <summary>
+    /// An image as backgrounf
+    /// </summary>
+    public static string TestBackgroundImage { get; }
 }

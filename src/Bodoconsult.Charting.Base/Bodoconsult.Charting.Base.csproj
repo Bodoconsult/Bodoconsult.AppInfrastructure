@@ -10,7 +10,7 @@
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
 		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.8</VersionPrefix>
+		<VersionPrefix>1.0.9</VersionPrefix>
 		<Version />
 		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -22,7 +22,7 @@
 		<PackageId>Bodoconsult.Charting.Base</PackageId>
 		<PackageTags>Chart database datatable ScottPlot piechart linechart risk return barchart pointchart</PackageTags>
 		<Description>Charting library based on ScottPlot library for easy charting of database data</Description>
-		<PackageReleaseNotes>First draft</PackageReleaseNotes>
+		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructures</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 

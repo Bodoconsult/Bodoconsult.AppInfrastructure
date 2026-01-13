@@ -102,4 +102,14 @@ public interface ITypoMetaData
     /// Text like page or Seite to write in front of the page number in the footer
     /// </summary>
     string PageNumberPrefix { get; set; }
+
+    /// <summary>
+    /// Path to the background image or null if no background image should be used. For a A4 portrait page the size of the image should be 1400 px x 1980 px
+    /// </summary>
+    string BackgroundImagePath { get; set; }
+
+    /// <summary>
+    /// Watermark text
+    /// </summary>
+    string WatermarkText { get; set; }
 }

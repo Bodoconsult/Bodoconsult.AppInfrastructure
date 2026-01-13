@@ -1,4 +1,4 @@
-// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+ï»¿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Extensions;
 using Bodoconsult.App.Abstractions.Helpers;
@@ -7,11 +7,15 @@ using Bodoconsult.App.Abstractions.Typography;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Vml;
+using DocumentFormat.OpenXml.Vml.Office;
+using DocumentFormat.OpenXml.Vml.Wordprocessing;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Diagnostics;
 using System.Globalization;
 using A = DocumentFormat.OpenXml.Drawing;
 using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
+using W = DocumentFormat.OpenXml.Wordprocessing;
 using Paragraph = DocumentFormat.OpenXml.Wordprocessing.Paragraph;
 using ParagraphProperties = DocumentFormat.OpenXml.Wordprocessing.ParagraphProperties;
 using PIC = DocumentFormat.OpenXml.Drawing.Pictures;
@@ -20,8 +24,15 @@ using Run = DocumentFormat.OpenXml.Wordprocessing.Run;
 using Style = DocumentFormat.OpenXml.Wordprocessing.Style;
 using Tabs = DocumentFormat.OpenXml.Wordprocessing.Tabs;
 using Text = DocumentFormat.OpenXml.Wordprocessing.Text;
+using HorizontalAnchorValues = DocumentFormat.OpenXml.Vml.Wordprocessing.HorizontalAnchorValues;
+using Lock = DocumentFormat.OpenXml.Vml.Office.Lock;
+using VerticalAnchorValues = DocumentFormat.OpenXml.Vml.Wordprocessing.VerticalAnchorValues;
 
 // http://officeopenxml.com/
+
+// https://stackoverflow.com/questions/79451553/add-background-image-in-word-with-openxml
+
+// https://psp-it.com/blogs/open-xml-usage-part-one/
 
 namespace Bodoconsult.Office;
 
@@ -32,6 +43,10 @@ public class DocxBuilder : IDisposable
 {
     private int _imageCounter = -1;
     private int _bookmarkCounter = -1;
+
+    private readonly Dictionary<SectionProperties, HeaderPart> _headerParts = new();
+    private readonly Dictionary<SectionProperties, FooterPart> _footerParts = new();
+    private readonly Dictionary<SectionProperties, ITypoPageStyle> _pageStyles = new();
 
     /// <summary>
     /// Default ctor
@@ -96,6 +111,16 @@ public class DocxBuilder : IDisposable
     /// Current section in the document
     /// </summary>
     public SectionProperties CurrentSection { get; private set; }
+
+    /// <summary>
+    /// The style to use for the watermark. Default: font-family:\"Calibri\";font-size:medium
+    /// </summary>
+    public string WatermarkStyle { get; set; } = "font-family:\"Calibri\";font-size:medium";
+
+    /// <summary>
+    /// Fill color for a watermark. Default: TypoColors.LightGray
+    /// </summary>
+    public TypoColor WatermarkFillColor { get; set; } = TypoColors.LightGray;
 
     /// <summary>
     /// Create document in memory
@@ -208,7 +233,7 @@ public class DocxBuilder : IDisposable
         // ReSharper disable once ConstantNullCoalescingCondition
         NumberingDefinitionsPart.Numbering ??= new Numbering();
 
-        AddBulletedNumbering(NumberFormatValues.Bullet, "•");
+        AddBulletedNumbering(NumberFormatValues.Bullet, "â€¢");
         AddBulletedNumbering(NumberFormatValues.Bullet, "-");
 
         AddBulletedNumbering(NumberFormatValues.Decimal, null);
@@ -222,7 +247,7 @@ public class DocxBuilder : IDisposable
         //        new AbstractNum(
         //                new Level(
         //                        new NumberingFormat() { Val = NumberFormatValues.Bullet },
-        //                        new LevelText() { Val = "•" }
+        //                        new LevelText() { Val = "â€¢" }
         //                    )
         //                    { LevelIndex = 0 }
         //            )
@@ -248,6 +273,41 @@ public class DocxBuilder : IDisposable
         //            )
         //        { NumberID = 2 });
         //element.Save(numberingPart);
+
+        // Background image
+        if (!string.IsNullOrEmpty(DocumentMetaData.BackgroundImagePath))
+        {
+            var fi = new FileInfo(DocumentMetaData.BackgroundImagePath);
+            var ip = AddImagePart(MainDocumentPart, DocumentMetaData.BackgroundImagePath, fi.Extension);
+            var id = MainDocumentPart.GetIdOfPart(ip);
+
+            var docBg = new DocumentBackground
+            {
+                Color = "FFFFFF",
+                Background = new Background
+                {
+                    Id = "_background",
+                    //BlackWhiteMode = BlackAndWhiteModeValues.White,
+                    //TargetScreenSize = ScreenSizeValues.Sz1024x768,
+                    Fill = new Fill
+                    {
+                        RelationshipId = id,
+                        Title = "background",
+                        Recolor = false,
+                        Type = FillTypeValues.Frame,
+                        Aspect = ImageAspectValues.AtLeast,
+                        AlignShape = true,
+                        //Position = new StringValue("0")
+                    },
+                    Filled = true
+                }
+            };
+
+            MainDocumentPart.Document.InsertAt(docBg, 0);
+
+            var dbs = new DisplayBackgroundShape { Val = new OnOffValue(true) };
+            Settings.Settings.Append(dbs);
+        }
     }
 
     private void AddBulletedNumbering(NumberFormatValues numberFormat, string bullet)
@@ -341,7 +401,10 @@ public class DocxBuilder : IDisposable
             return;
         }
 
-        var headerPart = MainDocumentPart.AddNewPart<HeaderPart>();
+        if (!_headerParts.TryGetValue(CurrentSection, out var headerPart))
+        {
+            return;
+        }
 
         var headerPartId = MainDocumentPart.GetIdOfPart(headerPart);
 
@@ -565,14 +628,13 @@ public class DocxBuilder : IDisposable
     public void AddFooterToCurrentSection(double position,
         PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
-        if (string.IsNullOrEmpty(DocumentMetaData.FooterTemplate))
+
+        if (!_footerParts.TryGetValue(CurrentSection, out var footerPart))
         {
             return;
         }
 
-        var footerPart = MainDocumentPart.AddNewPart<FooterPart>();
-
-        var footerPartId = MainDocumentPart.GetIdOfPart(footerPart);
+        var footerPartId = MainDocumentPart.GetIdOfPart(footerPart );
 
         const string styleId = "Footer";
 
@@ -808,9 +870,9 @@ public class DocxBuilder : IDisposable
         // Top border
         if (typoStyle.TypoBorderThickness.Top > 0)
         {
-            var topBorder = new TopBorder
+            var topBorder = new W.TopBorder
             {
-                Val = new EnumValue<BorderValues>(BorderValues.Thick),
+                Val = new EnumValue<W.BorderValues>(W.BorderValues.Thick),
                 Color = borderColor,
                 Size = GetValidPtValue(typoStyle.TypoBorderThickness.Top),
                 Space = GetValidPtValue(typoStyle.TypoPaddings.Top)
@@ -821,9 +883,9 @@ public class DocxBuilder : IDisposable
         // Bottom border
         if (typoStyle.TypoBorderThickness.Bottom > 0)
         {
-            var bottomBorder = new BottomBorder
+            var bottomBorder = new W.BottomBorder
             {
-                Val = new EnumValue<BorderValues>(BorderValues.Thick),
+                Val = new EnumValue<W.BorderValues>(W.BorderValues.Thick),
                 Color = borderColor,
                 Size = GetValidPtValue(typoStyle.TypoBorderThickness.Bottom),
                 Space = GetValidPtValue(typoStyle.TypoPaddings.Bottom)
@@ -834,9 +896,9 @@ public class DocxBuilder : IDisposable
         // Right border
         if (typoStyle.TypoBorderThickness.Right > 0)
         {
-            var rightBorder = new RightBorder
+            var rightBorder = new W.RightBorder
             {
-                Val = new EnumValue<BorderValues>(BorderValues.Thick),
+                Val = new EnumValue<W.BorderValues>(W.BorderValues.Thick),
                 Color = borderColor,
                 Size = GetValidPtValue(typoStyle.TypoBorderThickness.Right),
                 Space = GetValidPtValue(typoStyle.TypoPaddings.Right)
@@ -847,9 +909,9 @@ public class DocxBuilder : IDisposable
         // Left border
         if (typoStyle.TypoBorderThickness.Left > 0)
         {
-            var leftBorder = new LeftBorder
+            var leftBorder = new W.LeftBorder
             {
-                Val = new EnumValue<BorderValues>(BorderValues.Thick),
+                Val = new EnumValue<W.BorderValues>(W.BorderValues.Thick),
                 Color = borderColor,
                 Size = GetValidPtValue(typoStyle.TypoBorderThickness.Left),
                 Space = GetValidPtValue(typoStyle.TypoPaddings.Left)
@@ -882,7 +944,7 @@ public class DocxBuilder : IDisposable
         styleRunProperties.Append(color1);
 
         // Font size
-        // Specify a 16 point size. 16x2 because it’s half-point size
+        // Specify a 16 point size. 16x2 because itâ€™s half-point size
         var fontSize1 = new FontSize
         {
             Val = new StringValue((typoStyle.FontSize * 2).ToString("0"))
@@ -1291,6 +1353,7 @@ public class DocxBuilder : IDisposable
 
 
         var section = new SectionProperties();
+        _pageStyles.Add(section, pageStyle);
 
         if (restartPageNumbering)
         {
@@ -1331,9 +1394,28 @@ public class DocxBuilder : IDisposable
             : new EnumValue<PageOrientationValues>(PageOrientationValues.Portrait);
 
         var pageMargin = new PageMargin
-        { Top = (int)top, Right = right, Bottom = (int)bottom, Left = left, Header = (uint)(top * 0.25) };
+        {
+            Top = (int)top,
+            Right = right,
+            Bottom = (int)bottom,
+            Left = left,
+            Header = (uint)(top * 0.25)
+        };
         section.Append(pageMargin);
 
+
+        // Footer part
+        if (!string.IsNullOrEmpty(DocumentMetaData.FooterTemplate) || string.IsNullOrEmpty(DocumentMetaData.WatermarkText))
+        {
+            var fp = MainDocumentPart.AddNewPart<FooterPart>();
+            _footerParts.Add(section, fp);
+        }
+
+        if (!string.IsNullOrEmpty(DocumentMetaData.HeaderTemplate))
+        {
+            var hp = MainDocumentPart.AddNewPart<HeaderPart>();
+            _headerParts.Add(section, hp);
+        }
 
         Sections.Add(section);
         CurrentSection = section;
@@ -1666,7 +1748,7 @@ public class DocxBuilder : IDisposable
         var borderSizeHorizontal = (uint)MeasurementHelper.GetTwipsFromCm(typoTableStyle.InsideHorizontalBorderWidth);
         var borderSizeVertical = (uint)MeasurementHelper.GetTwipsFromCm(typoTableStyle.InsideVerticalBorderWidth);
 
-        var borderValue = BorderValues.Single;
+        var borderValue = W.BorderValues.Single;
 
         var color = new StringValue { Value = typoTableStyle.TypoBorderBrush.TypoColor.ToHtml2() };
 
@@ -1674,37 +1756,37 @@ public class DocxBuilder : IDisposable
             new TableJustification { Val = TableRowAlignmentValues.Center },
             new TableLayout { Type = TableLayoutValues.Autofit },
             new TableBorders(
-                new TopBorder
+                new W.TopBorder
                 {
                     Val = borderValue,
                     Size = borderSizeTop,
                     Color = color
                 },
-                new BottomBorder
+                new W.BottomBorder
                 {
                     Val = borderValue,
                     Size = borderSizeBottom,
                     Color = color
                 },
-                new LeftBorder
+                new W.LeftBorder
                 {
                     Val = borderValue,
                     Size = borderSizeLeft,
                     Color = color
                 },
-                new RightBorder
+                new W.RightBorder
                 {
                     Val = borderValue,
                     Size = borderSizeRight,
                     Color = color
                 },
-                new InsideHorizontalBorder
+                new W.InsideHorizontalBorder
                 {
                     Val = borderValue,
                     Size = borderSizeHorizontal,
                     Color = color
                 },
-                new InsideVerticalBorder
+                new W.InsideVerticalBorder
                 {
                     Val = borderValue,
                     Size = borderSizeVertical,
@@ -1893,7 +1975,7 @@ public class DocxBuilder : IDisposable
         var rightColWidth = (double)MeasurementHelper.GetDxaFromCm(itemsWidth);
         var total = leftColWidth + rightColWidth;
 
-        var borderValue = BorderValues.None;
+        var borderValue = W.BorderValues.None;
         const uint borderSize = 0u;
 
         var tblProp = new TableProperties(
@@ -1907,22 +1989,22 @@ public class DocxBuilder : IDisposable
                 Val = TableRowAlignmentValues.Left
             },
             new TableBorders(
-                new TopBorder
+                new W.TopBorder
                 {
                     Val = borderValue,
                     Size = borderSize
                 },
-                new BottomBorder
+                new W.BottomBorder
                 {
                     Val = borderValue,
                     Size = borderSize
                 },
-                new LeftBorder
+                new W.LeftBorder
                 {
                     Val = borderValue,
                     Size = borderSize
                 },
-                new RightBorder
+                new W.RightBorder
                 {
                     Val = borderValue,
                     Size = borderSize
@@ -2050,5 +2132,175 @@ public class DocxBuilder : IDisposable
         }
 
         return tc;
+    }
+
+    /// <summary>
+    /// Adds the watermark if given WatermarkText in <see cref="DocumentMetaData"/> is given
+    /// </summary>
+    public void AddWatermark()
+    {
+        var id = 0;
+
+        foreach (var kvp in _headerParts)
+        {
+            var headerPart = kvp.Value;
+            var section = kvp.Key;
+
+            if (!_pageStyles.TryGetValue(section, out var pageStyle))
+            {
+                continue;
+            }
+
+            var sdtBlock1 = new SdtBlock();
+            var sdtProperties1 = new SdtProperties();
+            var sdtId1 = new SdtId { Val = 87908844 };
+            var sdtContentDocPartObject1 = new SdtContentDocPartObject();
+            var docPartGallery1 = new DocPartGallery { Val = "Watermarks" };
+            var docPartUnique1 = new DocPartUnique();
+
+            sdtContentDocPartObject1.Append(docPartGallery1);
+            sdtContentDocPartObject1.Append(docPartUnique1);
+            sdtProperties1.Append(sdtId1);
+            sdtProperties1.Append(sdtContentDocPartObject1);
+
+            var sdtContentBlock1 = new SdtContentBlock();
+            var paragraph2 = new Paragraph
+            {
+                RsidParagraphAddition = "00656E18",
+                RsidRunAdditionDefault = "00656E18"
+            };
+
+            var paragraphProperties2 = new ParagraphProperties();
+            var paragraphStyleId2 = new ParagraphStyleId { Val = "Header" };
+            paragraphProperties2.Append(paragraphStyleId2);
+
+            var run1 = new Run();
+            var runProperties1 = new RunProperties();
+            var noProof1 = new NoProof();
+            var languages1 = new Languages { EastAsia = "en-US" };
+            runProperties1.Append(noProof1);
+            runProperties1.Append(languages1);
+            var picture1 = new Picture();
+            var shapetype1 = new Shapetype
+            {
+                Id = "_x0000_t136",
+                CoordinateSize = "21600,21600",
+                OptionalNumber = 136,
+                Adjustment = "10800",
+                EdgePath = "m@7,l@8,m@5,21600l@6,21600e"
+            };
+
+            var formulas1 = new Formulas();
+            var formula1 = new Formula { Equation = "sum #0 0 10800" };
+            var formula2 = new Formula { Equation = "prod #0 2 1" };
+            var formula3 = new Formula { Equation = "sum 21600 0 @1" };
+            var formula4 = new Formula { Equation = "sum 0 0 @2" };
+            var formula5 = new Formula { Equation = "sum 21600 0 @3" };
+            var formula6 = new Formula { Equation = "if @0 @3 0" };
+            var formula7 = new Formula { Equation = "if @0 21600 @1" };
+            var formula8 = new Formula { Equation = "if @0 0 @2" };
+            var formula9 = new Formula { Equation = "if @0 @4 21600" };
+            var formula10 = new Formula { Equation = "mid @5 @6" };
+            var formula11 = new Formula { Equation = "mid @8 @5" };
+            var formula12 = new Formula { Equation = "mid @7 @8" };
+            var formula13 = new Formula { Equation = "mid @6 @7" };
+            var formula14 = new Formula { Equation = "sum @6 0 @5" };
+
+            formulas1.Append(formula1);
+            formulas1.Append(formula2);
+            formulas1.Append(formula3);
+            formulas1.Append(formula4);
+            formulas1.Append(formula5);
+            formulas1.Append(formula6);
+            formulas1.Append(formula7);
+            formulas1.Append(formula8);
+            formulas1.Append(formula9);
+            formulas1.Append(formula10);
+            formulas1.Append(formula11);
+            formulas1.Append(formula12);
+            formulas1.Append(formula13);
+            formulas1.Append(formula14);
+
+            var path1 = new DocumentFormat.OpenXml.Vml.Path
+            {
+                AllowTextPath = true,
+                ConnectionPointType = ConnectValues.Custom,
+                ConnectionPoints = "@9,0;@10,10800;@11,21600;@12,10800",
+                ConnectAngles = "270,180,90,0"
+            };
+
+            var textPath1 = new TextPath
+            {
+                On = true,
+                FitShape = true
+            };
+
+            var shapeHandles1 = new ShapeHandles();
+
+            var shapeHandle1 = new ShapeHandle { Position = "#0,bottomRight", XRange = "6629,14971" };
+
+            shapeHandles1.Append(shapeHandle1);
+
+            var lock1 = new Lock
+            {
+                Extension = ExtensionHandlingBehaviorValues.Edit,
+                TextLock = true,
+                ShapeType = true
+            };
+
+            shapetype1.Append(formulas1);
+            shapetype1.Append(path1);
+            shapetype1.Append(textPath1);
+            shapetype1.Append(shapeHandles1);
+            shapetype1.Append(lock1);
+
+            //// Create the diagonal watermark shape
+            var width = MeasurementHelper.GetPtFromCm(pageStyle.TypoPaperFormat.Size.Width - pageStyle.TypoMargins.Left -
+                                                  pageStyle.TypoMargins.Right);
+            var shape1 = new Shape
+            {
+                Id = $"WMO{id}",
+                Style = $"position:absolute;left:0;text-align:left;margin-left:0;margin-top:0;width:{width}pt;height:{MeasurementHelper.GetPtFromCm(pageStyle.TypoPaperFormat.Size.Height)}pt;rotation:315;z-index:-251656192;mso-position-horizontal:center;mso-position-horizontal-relative:margin;mso-position-vertical:center;mso-position-vertical-relative:margin",
+                OptionalString = "_x0000_s2049",
+                AllowInCell = true,
+                FillColor = WatermarkFillColor.ToHtml(),
+                Stroked = false,
+                Type = "#_x0000_t136"
+            };
+
+            //// Switches on the transparency
+            var fill1 = new Fill { Opacity = ".5" };
+
+            //// Font Style and display text
+            var textPath2 = new TextPath
+            {
+                Style = WatermarkStyle,
+                String = DocumentMetaData.WatermarkText
+            };
+
+            var textWrap1 = new TextWrap
+            {
+                AnchorX = HorizontalAnchorValues.Margin,
+                AnchorY = VerticalAnchorValues.Margin
+            };
+
+            shape1.Append(fill1);
+            shape1.Append(textPath2);
+            shape1.Append(textWrap1);
+            picture1.Append(shapetype1);
+            picture1.Append(shape1);
+            run1.Append(runProperties1);
+            run1.Append(picture1);
+            paragraph2.Append(paragraphProperties2);
+            paragraph2.Append(run1);
+            sdtContentBlock1.Append(paragraph2);
+            sdtBlock1.Append(sdtProperties1);
+            sdtBlock1.Append(sdtContentBlock1);
+
+            headerPart.Header ??= new Header();
+            headerPart.Header.Append(sdtBlock1);
+
+            id++;
+        }
     }
 }

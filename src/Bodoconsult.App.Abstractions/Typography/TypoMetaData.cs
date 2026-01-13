@@ -115,4 +115,14 @@ public class TypoMetaData: ITypoMetaData
     /// Text like page or Seite to write in front of the page number
     /// </summary>
     public string PageNumberPrefix { get; set; } = "Page";
+
+    /// <summary>
+    /// Path to the background image or null if no background image should be used. For a A4 portrait page the size of the image should be 1400 px x 1980 px
+    /// </summary>
+    public string BackgroundImagePath { get; set; }
+
+    /// <summary>
+    /// Watermark text
+    /// </summary>
+    public string WatermarkText { get; set; }
 }
