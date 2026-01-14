@@ -574,6 +574,11 @@ public class RtfTextRendererElementFactory : ITextRendererElementFactory
             return new WarningStyleRtfTextRendererElement(warningStyle);
         }
 
+        if (textElement is WatermarkStyle watermarkStyle)
+        {
+            return new WatermarkStyleRtfTextRendererElement(watermarkStyle);
+        }
+
         return null;
     }
 

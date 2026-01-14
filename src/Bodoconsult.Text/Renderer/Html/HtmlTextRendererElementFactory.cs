@@ -571,6 +571,11 @@ public class HtmlTextRendererElementFactory : ITextRendererElementFactory
             return new WarningStyleHtmlTextRendererElement(warningStyle);
         }
 
+        if (textElement is WatermarkStyle watermarkStyle)
+        {
+            return new WatermarkStyleHtmlTextRendererElement(watermarkStyle);
+        }
+
         return null;
     }
 

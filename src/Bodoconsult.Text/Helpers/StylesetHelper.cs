@@ -237,6 +237,10 @@ public static class StylesetHelper
         var warningStyle = new WarningStyle();
         styleSet.AddBlock(warningStyle);
 
+        // Add style WatermarkStyle for Watermark instances 
+        var watermarkStyle = new WatermarkStyle();
+        styleSet.AddBlock(watermarkStyle);
+
         return styleSet;
     }
 
@@ -468,6 +472,10 @@ public static class StylesetHelper
         // Add style WarningStyle for Warning instances 
         var warningStyle = new WarningStyle();
         styleSet.AddBlock(warningStyle);
+
+        // Add style WatermarkStyle for Watermark instances 
+        var watermarkStyle = new WatermarkStyle();
+        styleSet.AddBlock(watermarkStyle);
 
         return styleSet;
     }
@@ -716,6 +724,10 @@ public static class StylesetHelper
         // Add style WarningStyle for Warning instances 
         var warningStyle = new WarningStyle();
         styleSet.AddBlock(warningStyle);
+
+        // Add style WatermarkStyle for Watermark instances 
+        var watermarkStyle = new WatermarkStyle();
+        styleSet.AddBlock(watermarkStyle);
 
         return styleSet;
     }

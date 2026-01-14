@@ -584,6 +584,11 @@ public class PdfTextRendererElementFactory : IPdfTextRendererElementFactory
             return new WarningStylePdfTextRendererElement(warningStyle);
         }
 
+        if (textElement is WatermarkStyle watermarkStyle)
+        {
+            return new WatermarkStylePdfTextRendererElement(watermarkStyle);
+        }
+
         return null;
 
     }

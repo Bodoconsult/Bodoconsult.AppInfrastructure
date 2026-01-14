@@ -20,4 +20,3 @@ public class WarningStylePdfTextRendererElement : PdfParagraphStyleTextRendererE
         ClassName = "WarningStyle";
     }
 }
-

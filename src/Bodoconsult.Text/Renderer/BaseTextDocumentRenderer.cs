@@ -1,9 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Interfaces;
+using PdfSharp.Pdf.Content.Objects;
 
 namespace Bodoconsult.Text.Renderer;
 
@@ -24,6 +26,11 @@ public class BaseTextDocumentRenderer : BaseDocumentRenderer, ITextDocumentRende
     /// Is the rendering of the styles required
     /// </summary>
     public bool IsRenderingStylesRequired { get; set; } = true;
+
+    /// <summary>
+    /// Images to store to target path
+    /// </summary>
+    public Dictionary<string, string> Images { get; } = new();
 
     /// <summary>
     /// Template to place the structered text. Must contain placeholder {0} for the structured text
@@ -60,7 +67,23 @@ public class BaseTextDocumentRenderer : BaseDocumentRenderer, ITextDocumentRende
         return content;
     }
 
+    /// <summary>
+    /// Register an image file for later copying
+    /// </summary>
+    /// <param name="imagePath">Image path</param>
+    /// <returns>Image filename without path</returns>
+    public string RegisterImage(string imagePath)
+    {
+        var fi = new FileInfo(imagePath);
 
+        if (!fi.Exists)
+        {
+            return null;
+        }
+        Images.TryAdd(fi.Name, imagePath);
+        return fi.Name;
+
+    }
 
     /// <summary>
     /// Save the rendered document as file
@@ -68,6 +91,23 @@ public class BaseTextDocumentRenderer : BaseDocumentRenderer, ITextDocumentRende
     /// <param name="fileName">Full file path. Existing file will be overwritten</param>
     public override void SaveAsFile(string fileName)
     {
+
+        var fi = new FileInfo(fileName);
+
+        // Copy images to target dir
+        foreach (var image in Images)
+        {
+            var target = Path.Combine(fi.DirectoryName ?? "", image.Key);
+
+            if (File.Exists(target))
+            {
+                File.Delete(target);
+            }
+
+            File.Copy(image.Value, target, true);
+        }
+
+        // Now save the file
         File.WriteAllText(fileName, GetRenderedText());
     }
 }

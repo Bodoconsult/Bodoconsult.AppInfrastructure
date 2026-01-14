@@ -439,6 +439,16 @@ public static class DocumentRendererHelper
     public static void CreateImageHtml(ITextDocumentRenderer renderer, ImageBase image, string tagToUse,
         string localCss, string className)
     {
+
+        // Get the image file name
+        var uri = renderer.RegisterImage(image.Uri);
+
+        if (string.IsNullOrEmpty(uri))
+        {
+            return;
+        }
+
+
         // Get the content of all inlines as string
         var sb = new StringBuilder();
 
@@ -470,7 +480,7 @@ public static class DocumentRendererHelper
             MeasurementHelper.GetTwipsFromPx(image.OriginalHeight), maxWidth, maxHeight, out var width, out var height);
 
         renderer.Content.Append(
-            $"<img src=\"{image.Uri}\" alt=\"{sb}\" width=\"{MeasurementHelper.GetPxFromTwips(width)}px\" height=\"{MeasurementHelper.GetPxFromTwips(height)}px\"/><br/>");
+            $"<img src=\"{uri}\" alt=\"{sb}\" width=\"{MeasurementHelper.GetPxFromTwips(width)}px\" height=\"{MeasurementHelper.GetPxFromTwips(height)}px\"/><br/>");
         renderer.Content.Append(sb);
         renderer.Content.Append($"</{tagToUse}>{Environment.NewLine}");
     }

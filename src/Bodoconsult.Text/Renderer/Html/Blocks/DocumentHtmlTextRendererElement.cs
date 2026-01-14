@@ -1,4 +1,6 @@
-﻿using Bodoconsult.Text.Documents;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
 
@@ -33,6 +35,7 @@ public class DocumentHtmlTextRendererElement : HtmlTextRendererElementBase
 
         DocumentRendererHelper.RenderBlockChildsToHtml(renderer, _document.ChildBlocks);
 
+        //renderer.Content.AppendLine("</div>");
         renderer.Content.AppendLine("</body>");
         renderer.Content.AppendLine("</html>");
 

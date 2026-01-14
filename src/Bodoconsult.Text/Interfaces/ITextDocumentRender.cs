@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Collections.Generic;
 using System.Text;
 
 namespace Bodoconsult.Text.Interfaces;
@@ -9,6 +10,12 @@ namespace Bodoconsult.Text.Interfaces;
 /// </summary>
 public interface ITextDocumentRenderer: IDocumentRenderer
 {
+
+    /// <summary>
+    /// Images to store to target path
+    /// </summary>
+    public Dictionary<string, string> Images { get;  }
+
 
     /// <summary>
     /// Template to place the structered text. Must contain placeholder {0} for the structured text
@@ -38,5 +45,12 @@ public interface ITextDocumentRenderer: IDocumentRenderer
     /// <param name="content">Content</param>
     /// <returns>Checked content string</returns>
     string CheckContent(string content);
+
+    /// <summary>
+    /// Register an image file for later copying
+    /// </summary>
+    /// <param name="imagePath">Image path</param>
+    /// <returns>Image filename without path</returns>
+    string RegisterImage(string imagePath);
 
 }
