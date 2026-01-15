@@ -1,16 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System;
+using System.Diagnostics;
+using System.Text;
+using Bodoconsult.App.Abstractions.Extensions;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
-using System;
-using System.Diagnostics;
-using System.Text;
-using Bodoconsult.App.Abstractions.Extensions;
-using Color = System.Drawing.Color;
 
 namespace Bodoconsult.Text.Renderer.Rtf.Blocks;
 
@@ -118,51 +117,48 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         var sb = new StringBuilder();
         string s;
 
-
-        bool isHeader = false;
+        var isHeader = false;
 
         if (!string.IsNullOrEmpty(md.WatermarkText))
         {
             var wStyle = (ParagraphStyleBase)renderer.Styleset.FindStyle("WatermarkStyle");
 
-            System.Drawing.Color color = Color.AliceBlue;
-            color.ToArgb();
-
-            sb.Append($"{{\\header");
+            sb.Append("{\\header");
             isHeader = true;
 
-            sb.Append(@"{\shp{\*\shpinst\shpleft0\shptop0\shpright13335\shpbottom3525\shpfhdr0\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shpwr3\shpwrk0\shpfblwtxt0\shpz6\shplid1031{\sp{\sn shapeType} {\sv 136} }");
-            sb.Append(@"{\sp{\sn fFlipH} {\sv 0} }");
-            sb.Append(@"{\sp{\sn fFlipV} {\sv 0} }");
-            sb.Append(@"{\sp{\sn rotation} {\sv 20643840} }");
-            sb.Append($@"{{\sp{{\sn gtextUNICODE}} {{\sv {md.WatermarkText}}} }}");
-            //sb.Append($@"{{\sp{{\sn gtextSize}} {{\sv 9437184}} }}");
-            sb.Append($@"{{\sp{{\sn gtextSize}} {{\sv {MeasurementHelper.GetTwipsFromPt(wStyle.FontSize)}}} }}");
-            sb.Append($@"{{\sp{{\sn gtextFont}} {{\sv {wStyle.FontName}}} }}");
-            //sb.Append($@"{{\sp{{\sn gtextFont}} {{\sv Calibri}} }}");
-            sb.Append(@"{\sp{\sn gtextFReverseRows} {\sv 0} }");
-            sb.Append(@"{\sp{\sn fGtext} {\sv 1} }");
-            sb.Append(@"{\sp{\sn gtextFNormalize} {\sv 0} }");
-            sb.Append($@"{{\sp{{\sn fillColor}} {{\sv 12632256}} }}");
-            //sb.Append($@"{{\sp{{\sn fillColor}} {{\sv {wStyle.FontColor.ToInt()}}} }}");
-            sb.Append(@"{\sp{\sn fillOpacity} {\sv 32768} }");
-            sb.Append(@"{\sp{\sn fFilled} {\sv 1} }");
-            sb.Append(@"{\sp{\sn fLine} {\sv 0} }");
-            sb.Append(@"{\sp{\sn wzName} {\sv PowerPlusWaterMarkObject113197969} }");
-            sb.Append(@"{\sp{\sn posh} {\sv 2} }");
-            sb.Append(@"{\sp{\sn posrelh} {\sv 0} }");
-            sb.Append(@"{\sp{\sn posv} {\sv 2} }");
-            sb.Append(@"{\sp{\sn posrelv} {\sv 0} }");
-            sb.Append(@"{\sp{\sn dhgt} {\sv 251671552} }");
-            sb.Append(@"{\sp{\sn fLayoutInCell} {\sv 0} }");
-            sb.Append(@"{\sp{\sn fBehindDocument} {\sv 1} }");
-            sb.Append(@"{\sp{\sn fLayoutInCell} {\sv 0} }");
-            sb.Append(@" }");
-            sb.Append(@"}");
+            sb.Append(@"{\shp{\*\shpinst\shpleft0\shptop0\shpright13335\shpbottom3525\shpfhdr0\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shpwr3\shpwrk0\shpfblwtxt0\shpz6\shplid1031{\sp{\sn shapeType}{\sv 136}}");
+            sb.Append(@"{\sp{\sn fFlipH}{\sv 0}}");
+            sb.Append(@"{\sp{\sn fFlipV}{\sv 0}}");
+            sb.Append(@"{\sp{\sn rotation}{\sv 20643840}}");
+            sb.Append($@"{{\sp{{\sn gtextUNICODE}}{{\sv {md.WatermarkText}}}}}");
+            //sb.Append($@"{{\sp{{\sn gtextSize}}{{\sv 9437184}} }}");
+            sb.Append($@"{{\sp{{\sn gtextSize}}{{\sv {MeasurementHelper.GetTwipsFromPt(wStyle.FontSize)}}}}}");
+            sb.Append($@"{{\sp{{\sn gtextFont}}{{\sv {wStyle.FontName}}}}}");
+            //sb.Append($@"{{\sp{{\sn gtextFont}}{{\sv Calibri}} }");
+            sb.Append(@"{\sp{\sn gtextFReverseRows}{\sv 0}}");
+            sb.Append(@"{\sp{\sn fGtext}{\sv 1}}");
+            sb.Append(@"{\sp{\sn gtextFNormalize}{\sv 0}}");
+            //sb.Append($@"{{\sp{{\sn fillColor}}{{\sv 12632256}}}}");
+            sb.Append($@"{{\sp{{\sn fillColor}}{{\sv {wStyle.FontColor.ToRgbInt()}}}}}");
+            sb.Append(@"{\sp{\sn fillOpacity}{\sv 32768}}");
+            sb.Append(@"{\sp{\sn fFilled}{\sv 1}}");
+            sb.Append(@"{\sp{\sn fLine}{\sv 0}}");
+            sb.Append(@"{\sp{\sn wzName}{\sv PowerPlusWaterMarkObject113197969}}");
+            sb.Append(@"{\sp{\sn posh}{\sv 2}}");
+            sb.Append(@"{\sp{\sn posrelh}{\sv 0}}");
+            sb.Append(@"{\sp{\sn posv}{\sv 2}}");
+            sb.Append(@"{\sp{\sn posrelv}{\sv 0}}");
+            sb.Append(@"{\sp{\sn dhgt}{\sv 251671552}}");
+            sb.Append(@"{\sp{\sn fLayoutInCell}{\sv 0}}");
+            sb.Append(@"{\sp{\sn fBehindDocument}{\sv 1}}");
+            sb.Append(@"{\sp{\sn fLayoutInCell}{\sv 0}}");
+            sb.Append('}');
+            sb.Append('}');
 
-            s = sb.ToString();
-            Debug.Print(s);
-
+            //#if DEBUG
+            //            s = sb.ToString();
+            //            Debug.Print(s);
+            //#endif
         }
 
         // section.IsFirstSection  && 
@@ -170,7 +166,7 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         {
             if (!isHeader)
             {
-                sb.Append($"{{\\header");
+                sb.Append("{\\header");
             }
             isHeader = true;
 
@@ -226,24 +222,20 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         }
         //sb.Append("}\\pard\\s13\\ql\\sb0\\sa0\\widctlpar\\fi0\\li0\\lin0\\ri0\\rin0\\slmult1\\f1\\fs20\\b0\\ulnone\\i0\\cf0\\brdrbtw HeaderText\\par}");
 
+#if DEBUG
         s = sb.ToString();
         Debug.Print(s);
+#endif
 
-        if (!section.IsHeaderRequired)
+        if (!section.IsHeaderRequired || string.IsNullOrEmpty(md.HeaderTemplate))
         {
-            sb.Append("}");
-            return;
-        }
-
-        if (string.IsNullOrEmpty(md.HeaderTemplate))
-        {
-            sb.Append("}");
+            sb.Append('}');
             return;
         }
 
         if (!isHeader)
         {
-            sb.Append($"{{\\header");
+            sb.Append("{\\header");
         }
 
         var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("HeaderStyle");
@@ -263,9 +255,10 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
 
         sb.Append("}\\par}}");
 
+#if DEBUG
         s = sb.ToString();
         Debug.Print(s);
-
+#endif
 
         //sb.Append("}");
         renderer.Content.Append(sb);

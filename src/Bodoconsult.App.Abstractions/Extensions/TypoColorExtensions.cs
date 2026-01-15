@@ -54,6 +54,18 @@ public static class TypoColorExtensions
         return argb;
     }
 
+    /// <summary>
+    /// Converts a <see cref="TypoColor"/> to an RGB int value
+    /// </summary>
+    /// <param name="color">The color to convert</param>
+    /// <returns>The int representation of the color</returns>
+    public static int ToRgbInt(this TypoColor color)
+    {
+        ToRgba(color, out var r, out var g, out var b, out var a);
+        var rgb = (color.R << 16) | (color.G << 8) | color.B;
+        return rgb;
+    }
+
     private static void ToRgba(TypoColor color, out byte r, out byte g, out byte b, out byte a)
     {
         a = (byte)(color.A * 255f);
