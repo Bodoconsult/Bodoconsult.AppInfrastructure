@@ -76,6 +76,8 @@ public class DocumentMetaDataRtfTextRendererElement : RtfTextRendererElementBase
 
         sb.AppendLine("}");
 
+        sb.AppendLine("\\viewkind1\\viewbksp1");
+
 
         // Basic page settings
         var style = (DocumentStyle)renderer.Styleset.FindStyle("DocumentStyle");

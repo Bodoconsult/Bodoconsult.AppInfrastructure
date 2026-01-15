@@ -1112,6 +1112,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.II18NBase",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.yml\" sourcestartlinenumber=\"1\">Base interface for I18N implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.II18NClient.yml",
       "output": {
         ".html": {
@@ -14874,6 +14888,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Documents.WatermarkStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Documents.WatermarkStyle.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Documents.WatermarkStyle",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Documents.WatermarkStyle.yml\" sourcestartlinenumber=\"1\">Style used for watermarks</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Text.Documents.yml",
       "output": {
         ".html": {
@@ -20586,6 +20614,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.yml\" sourcestartlinenumber=\"1\">HTML rendering element for <xref href=\"Bodoconsult.Text.Documents.WatermarkStyle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Text.Renderer.Html.Styles.yml",
       "output": {
         ".html": {
@@ -22627,6 +22669,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.Text.Renderer.Pdf.Styles.WarningStylePdfTextRendererElement",
       "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Pdf.Styles.WarningStylePdfTextRendererElement.yml\" sourcestartlinenumber=\"1\">PDF rendering element for <xref href=\"Bodoconsult.Text.Documents.WarningStyle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.yml\" sourcestartlinenumber=\"1\">PDF rendering element for <xref href=\"Bodoconsult.Text.Documents.WatermarkStyle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -25203,6 +25259,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.Text.Renderer.Rtf.Styles.WarningStyleRtfTextRendererElement",
       "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Rtf.Styles.WarningStyleRtfTextRendererElement.yml\" sourcestartlinenumber=\"1\">Rtf rendering element for <xref href=\"Bodoconsult.Text.Documents.WarningStyle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.yml\" sourcestartlinenumber=\"1\">Rtf rendering element for <xref href=\"Bodoconsult.Text.Documents.WatermarkStyle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
     },
     {
       "type": "ManagedReference",

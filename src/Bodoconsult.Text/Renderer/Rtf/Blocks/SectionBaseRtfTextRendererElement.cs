@@ -42,7 +42,7 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         // Page break before?
         if (!_section.IsFirstSection)
         {
-            renderer.Content.Append(_section.PageBreakBefore ? @"\sect\sectd\sbkpage" : @"\sect\sectd\sbknone");
+            renderer.Content.Append(_section.PageBreakBefore ? @"\sect\sectd\sftnbj\headery509\footery509\sbkpage" : @"\sect\sectd\sftnbj\sbknone");
             renderer.Content.Append(_section.IsRestartPageNumberingRequired ? @"\pgnstarts1\pgnrestart" : @"\pgncont");
         }
 
@@ -111,30 +111,132 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
 
     private static void AddHeader(ITextDocumentRenderer renderer, PageStyleBase pageStyle, SectionBase section)
     {
-        if (!section.IsHeaderRequired)
-        {
-            return;
-        }
-
-        if (!section.IsFooterRequired)
-        {
-            return;
-        }
 
         var md = renderer.Document.DocumentMetaData;
+        var sb = new StringBuilder();
+
+
+        bool isHeader = false;
+
+        if (!string.IsNullOrEmpty(md.WatermarkText))
+        {
+            sb.Append($"{{\\header");
+            isHeader = true;
+
+            sb.Append(@"{\shp{\*\shpinst\shpleft0\shptop0\shpright13335\shpbottom3525\shpfhdr0\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shpwr3\shpwrk0\shpfblwtxt0\shpz6\shplid1031{\sp{\sn shapeType} {\sv 136} }");
+            sb.Append(@"{\sp{\sn fFlipH} {\sv 0} }");
+            sb.Append(@"        {\sp{\sn fFlipV} {\sv 0} }");
+            sb.Append(@"        {\sp{\sn rotation} {\sv 20643840} }");
+            sb.Append($@"        {{\sp{{\sn gtextUNICODE}} {{\sv {md.WatermarkText}}} }}");
+            sb.Append(@"       {\sp{\sn gtextSize} {\sv 9437184} }");
+            sb.Append(@"        {\sp{\sn gtextFont} {\sv Calibri} }");
+            sb.Append(@"        {\sp{\sn gtextFReverseRows} {\sv 0} }");
+            sb.Append(@"        {\sp{\sn fGtext} {\sv 1} }");
+            sb.Append(@"        {\sp{\sn gtextFNormalize} {\sv 0} }");
+            sb.Append(@"        {\sp{\sn fillColor} {\sv 12632256} }");
+            sb.Append(@"        {\sp{\sn fillOpacity} {\sv 32768} }");
+            sb.Append(@"        {\sp{\sn fFilled} {\sv 1} }");
+            sb.Append(@"        {\sp{\sn fLine} {\sv 0} }");
+            sb.Append(@"        {\sp{\sn wzName} {\sv PowerPlusWaterMarkObject113197969} }");
+            sb.Append(@"{\sp{\sn posh} {\sv 2} }");
+            sb.Append(@"{\sp{\sn posrelh} {\sv 0} }");
+            sb.Append(@"{\sp{\sn posv} {\sv 2} }");
+            sb.Append(@"{\sp{\sn posrelv} {\sv 0} }");
+            sb.Append(@"{\sp{\sn dhgt} {\sv 251671552} }");
+            sb.Append(@"{\sp{\sn fLayoutInCell} {\sv 0} }");
+            sb.Append(@"{\sp{\sn fBehindDocument} {\sv 1} }");
+            sb.Append(@"{\sp{\sn fLayoutInCell} {\sv 0} }");
+            sb.Append(@" }");
+            sb.Append(@"}");
+
+        }
+
+        // section.IsFirstSection  && 
+        if (!string.IsNullOrEmpty(md.BackgroundImagePath))
+        {
+            if (!isHeader)
+            {
+                sb.Append($"{{\\header");
+            }
+            isHeader = true;
+
+            var widthCm = renderer.PageStyleBase.PaperFormat.Size.Width - renderer.PageStyleBase.TypoMargins.Left -
+                         renderer.PageStyleBase.TypoMargins.Right;
+
+            var heightCm = renderer.PageStyleBase.PaperFormat.Size.Height - renderer.PageStyleBase.TypoMargins.Top - renderer.PageStyleBase.TypoMargins.Bottom;
+
+            var width = MeasurementHelper.GetPxFromCm(widthCm);
+            var height = MeasurementHelper.GetPxFromCm(heightCm);
+
+            var widthTwips = MeasurementHelper.GetTwipsFromCm(widthCm);
+            var heightTwips = MeasurementHelper.GetTwipsFromCm(heightCm);
+
+            
+            sb.Append(
+                $"{{\\shp{{\\*\\shpinst\\shptop0\\shpbottom{heightTwips}\\shpleft0\\shpright{widthTwips}\\shpfhdr1\\shpwr3\\shpbxpage\\shpbxignore{{\\sp{{\\sn shapeType}}{{\\sv 75}}}}{{\\sp{{\\sn fFlipH}}{{\\sv 0}}}}{{\\sp{{\\sn fFlipV}}{{\\sv 0}}}}{{\\sp{{\\sn pib}}{{\\sv");
+
+            var image = new Image
+            {
+                Uri = md.BackgroundImagePath
+            };
+
+            // Add the image
+            var bytes = ImageHelper.GetBytes(image.Uri);
+
+            var path = image.Uri.ToLowerInvariant();
+
+            sb.Append(@"{\*\shppict\pict");
+
+            //sb.Append($@"\picscalex43\picscaley43\picw{width}\pich{height}\picwgoal{width}\pichgoal{height}");
+
+            sb.Append($@"\picwgoal{width}\pichgoal{height}");
+
+            if (path.EndsWith(".jpg") || path.EndsWith(".jpeg"))
+            {
+                sb.Append("\\jpegblip ");
+            }
+            else if (path.EndsWith(".png"))
+            {
+                sb.Append("\\pngblip ");
+            }
+            else
+            {
+                throw new NotSupportedException("Unsupported image format. Use JPEG or PNG images!");
+            }
+
+            var str = BitConverter.ToString(bytes, 0).Replace("-", string.Empty);
+            sb.Append(str);
+
+            sb.Append("}");
+            sb.Append("}}}}");
+        }
+        //sb.Append("}\\pard\\s13\\ql\\sb0\\sa0\\widctlpar\\fi0\\li0\\lin0\\ri0\\rin0\\slmult1\\f1\\fs20\\b0\\ulnone\\i0\\cf0\\brdrbtw HeaderText\\par}");
+
+        var s = sb.ToString();
+        Debug.Print(s);
+
+        if (!section.IsHeaderRequired)
+        {
+            sb.Append("}");
+            return;
+        }
 
         if (string.IsNullOrEmpty(md.HeaderTemplate))
         {
+            sb.Append("}");
             return;
         }
 
-        var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("FooterStyle");
+        if (!isHeader)
+        {
+            sb.Append($"{{\\header");
+        }
+
+        var style = (ParagraphStyleBase)renderer.Styleset.FindStyle("HeaderStyle");
 
         var sections = md.HeaderTemplate.ToLowerInvariant().Split('|');
 
-        var sb = new StringBuilder();
-
-        sb.Append($"{{\\header{{\\pard\\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{");
+        sb.Append($"{{\\pard\\plain{RtfHelper.GetFormatSettings(style, renderer.Styleset)}{{");
 
         // Draw left element
         CreateHeaderFooterElement(sb, md, sections[0], 0, true);
@@ -147,8 +249,11 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
 
         sb.Append("}\\par}}");
 
-        Debug.Print(sb.ToString());
+        s = sb.ToString();
+        Debug.Print(s);
 
+
+        //sb.Append("}");
         renderer.Content.Append(sb);
     }
 

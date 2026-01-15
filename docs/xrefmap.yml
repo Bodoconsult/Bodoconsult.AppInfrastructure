@@ -1069,6 +1069,22 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetDxaFromInch
   nameWithType: MeasurementHelper.GetDxaFromInch
+- uid: Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmFromPt(System.Double)
+  name: GetEmFromPt(double)
+  href: api/Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.html#Bodoconsult_App_Abstractions_Helpers_MeasurementHelper_GetEmFromPt_System_Double_
+  commentId: M:Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmFromPt(System.Double)
+  name.vb: GetEmFromPt(Double)
+  fullName: Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmFromPt(double)
+  fullName.vb: Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmFromPt(Double)
+  nameWithType: MeasurementHelper.GetEmFromPt(double)
+  nameWithType.vb: MeasurementHelper.GetEmFromPt(Double)
+- uid: Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmFromPt*
+  name: GetEmFromPt
+  href: api/Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.html#Bodoconsult_App_Abstractions_Helpers_MeasurementHelper_GetEmFromPt_
+  commentId: Overload:Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmFromPt
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmFromPt
+  nameWithType: MeasurementHelper.GetEmFromPt
 - uid: Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.GetEmuFromCm(System.Double)
   name: GetEmuFromCm(double)
   href: api/Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.html#Bodoconsult_App_Abstractions_Helpers_MeasurementHelper_GetEmuFromCm_System_Double_
@@ -1374,12 +1390,12 @@ references:
   commentId: T:Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage
   fullName: Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage
   nameWithType: BaseLocalesProviderPackage
-- uid: Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18N)
-  name: LoadLocalesProviders(II18N)
-  href: api/Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.html#Bodoconsult_App_Abstractions_Interfaces_BaseLocalesProviderPackage_LoadLocalesProviders_Bodoconsult_App_Abstractions_Interfaces_II18N_
-  commentId: M:Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18N)
-  fullName: Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18N)
-  nameWithType: BaseLocalesProviderPackage.LoadLocalesProviders(II18N)
+- uid: Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18NBase)
+  name: LoadLocalesProviders(II18NBase)
+  href: api/Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.html#Bodoconsult_App_Abstractions_Interfaces_BaseLocalesProviderPackage_LoadLocalesProviders_Bodoconsult_App_Abstractions_Interfaces_II18NBase_
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18NBase)
+  fullName: Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18NBase)
+  nameWithType: BaseLocalesProviderPackage.LoadLocalesProviders(II18NBase)
 - uid: Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.LoadLocalesProviders*
   name: LoadLocalesProviders
   href: api/Bodoconsult.App.Abstractions.Interfaces.BaseLocalesProviderPackage.html#Bodoconsult_App_Abstractions_Interfaces_BaseLocalesProviderPackage_LoadLocalesProviders_
@@ -5649,19 +5665,19 @@ references:
   commentId: T:Bodoconsult.App.Abstractions.Interfaces.II18N
   fullName: Bodoconsult.App.Abstractions.Interfaces.II18N
   nameWithType: II18N
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
-  name: AddProvider(ILocalesProvider)
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_AddProvider_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
-  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
-  nameWithType: II18N.AddProvider(ILocalesProvider)
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider*
-  name: AddProvider
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_AddProvider_
-  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  name: AddProvider2(ILocalesProvider)
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_AddProvider2_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  nameWithType: II18N.AddProvider2(ILocalesProvider)
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider2*
+  name: AddProvider2
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_AddProvider2_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider2
   isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider
-  nameWithType: II18N.AddProvider
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.AddProvider2
+  nameWithType: II18N.AddProvider2
 - uid: Bodoconsult.App.Abstractions.Interfaces.II18N.GetDefaultLocale
   name: GetDefaultLocale()
   href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_GetDefaultLocale
@@ -5752,32 +5768,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.Locale
   nameWithType: II18N.Locale
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.Providers
-  name: Providers
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_Providers
-  commentId: P:Bodoconsult.App.Abstractions.Interfaces.II18N.Providers
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.Providers
-  nameWithType: II18N.Providers
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.Providers*
-  name: Providers
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_Providers_
-  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18N.Providers
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset2
+  name: Reset2()
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_Reset2
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18N.Reset2
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset2()
+  nameWithType: II18N.Reset2()
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset2*
+  name: Reset2
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_Reset2_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18N.Reset2
   isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.Providers
-  nameWithType: II18N.Providers
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset
-  name: Reset()
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_Reset
-  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18N.Reset
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset()
-  nameWithType: II18N.Reset()
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset*
-  name: Reset
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_Reset_
-  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18N.Reset
-  isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset
-  nameWithType: II18N.Reset
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.Reset2
+  nameWithType: II18N.Reset2
 - uid: Bodoconsult.App.Abstractions.Interfaces.II18N.SetFallbackLocale(System.String)
   name: SetFallbackLocale(string)
   href: api/Bodoconsult.App.Abstractions.Interfaces.II18N.html#Bodoconsult_App_Abstractions_Interfaces_II18N_SetFallbackLocale_System_String_
@@ -5931,6 +5934,51 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.II18N.TranslateOrNull
   nameWithType: II18N.TranslateOrNull
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NBase
+  name: II18NBase
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html
+  commentId: T:Bodoconsult.App.Abstractions.Interfaces.II18NBase
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NBase
+  nameWithType: II18NBase
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NBase.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  name: AddProvider(ILocalesProvider)
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html#Bodoconsult_App_Abstractions_Interfaces_II18NBase_AddProvider_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18NBase.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NBase.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  nameWithType: II18NBase.AddProvider(ILocalesProvider)
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NBase.AddProvider*
+  name: AddProvider
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html#Bodoconsult_App_Abstractions_Interfaces_II18NBase_AddProvider_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NBase.AddProvider
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NBase.AddProvider
+  nameWithType: II18NBase.AddProvider
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Providers
+  name: Providers
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html#Bodoconsult_App_Abstractions_Interfaces_II18NBase_Providers
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.II18NBase.Providers
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Providers
+  nameWithType: II18NBase.Providers
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Providers*
+  name: Providers
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html#Bodoconsult_App_Abstractions_Interfaces_II18NBase_Providers_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NBase.Providers
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Providers
+  nameWithType: II18NBase.Providers
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Reset
+  name: Reset()
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html#Bodoconsult_App_Abstractions_Interfaces_II18NBase_Reset
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18NBase.Reset
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Reset()
+  nameWithType: II18NBase.Reset()
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Reset*
+  name: Reset
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NBase.html#Bodoconsult_App_Abstractions_Interfaces_II18NBase_Reset_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NBase.Reset
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NBase.Reset
+  nameWithType: II18NBase.Reset
 - uid: Bodoconsult.App.Abstractions.Interfaces.II18NClient
   name: II18NClient
   href: api/Bodoconsult.App.Abstractions.Interfaces.II18NClient.html
@@ -6167,19 +6215,19 @@ references:
   commentId: T:Bodoconsult.App.Abstractions.Interfaces.II18NServer
   fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer
   nameWithType: II18NServer
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
-  name: AddProvider(ILocalesProvider)
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_AddProvider_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
-  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
-  nameWithType: II18NServer.AddProvider(ILocalesProvider)
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider*
-  name: AddProvider
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_AddProvider_
-  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  name: AddProvider2(ILocalesProvider)
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_AddProvider2_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  nameWithType: II18NServer.AddProvider2(ILocalesProvider)
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider2*
+  name: AddProvider2
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_AddProvider2_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider2
   isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider
-  nameWithType: II18NServer.AddProvider
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.AddProvider2
+  nameWithType: II18NServer.AddProvider2
 - uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.FallBackLocale
   name: FallBackLocale
   href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_FallBackLocale
@@ -6219,32 +6267,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.NotFoundSymbol
   nameWithType: II18NServer.NotFoundSymbol
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Providers
-  name: Providers
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_Providers
-  commentId: P:Bodoconsult.App.Abstractions.Interfaces.II18NServer.Providers
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Providers
-  nameWithType: II18NServer.Providers
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Providers*
-  name: Providers
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_Providers_
-  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NServer.Providers
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset2
+  name: Reset2()
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_Reset2
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset2
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset2()
+  nameWithType: II18NServer.Reset2()
+- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset2*
+  name: Reset2
+  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_Reset2_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset2
   isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Providers
-  nameWithType: II18NServer.Providers
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset
-  name: Reset()
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_Reset
-  commentId: M:Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset()
-  nameWithType: II18NServer.Reset()
-- uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset*
-  name: Reset
-  href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_Reset_
-  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset
-  isSpec: "True"
-  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset
-  nameWithType: II18NServer.Reset
+  fullName: Bodoconsult.App.Abstractions.Interfaces.II18NServer.Reset2
+  nameWithType: II18NServer.Reset2
 - uid: Bodoconsult.App.Abstractions.Interfaces.II18NServer.SetLogger(System.Action{System.String})
   name: SetLogger(Action<string>)
   href: api/Bodoconsult.App.Abstractions.Interfaces.II18NServer.html#Bodoconsult_App_Abstractions_Interfaces_II18NServer_SetLogger_System_Action_System_String__
@@ -6379,12 +6414,12 @@ references:
   commentId: T:Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage
   fullName: Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage
   nameWithType: ILocalesProviderPackage
-- uid: Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18N)
-  name: LoadLocalesProviders(II18N)
-  href: api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.html#Bodoconsult_App_Abstractions_Interfaces_ILocalesProviderPackage_LoadLocalesProviders_Bodoconsult_App_Abstractions_Interfaces_II18N_
-  commentId: M:Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18N)
-  fullName: Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18N)
-  nameWithType: ILocalesProviderPackage.LoadLocalesProviders(II18N)
+- uid: Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18NBase)
+  name: LoadLocalesProviders(II18NBase)
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.html#Bodoconsult_App_Abstractions_Interfaces_ILocalesProviderPackage_LoadLocalesProviders_Bodoconsult_App_Abstractions_Interfaces_II18NBase_
+  commentId: M:Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18NBase)
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.LoadLocalesProviders(Bodoconsult.App.Abstractions.Interfaces.II18NBase)
+  nameWithType: ILocalesProviderPackage.LoadLocalesProviders(II18NBase)
 - uid: Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.LoadLocalesProviders*
   name: LoadLocalesProviders
   href: api/Bodoconsult.App.Abstractions.Interfaces.ILocalesProviderPackage.html#Bodoconsult_App_Abstractions_Interfaces_ILocalesProviderPackage_LoadLocalesProviders_
@@ -6864,6 +6899,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Authors
   nameWithType: ITypoMetaData.Authors
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.BackgroundImagePath
+  name: BackgroundImagePath
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_BackgroundImagePath
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.BackgroundImagePath
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.BackgroundImagePath
+  nameWithType: ITypoMetaData.BackgroundImagePath
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.BackgroundImagePath*
+  name: BackgroundImagePath
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_BackgroundImagePath_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.BackgroundImagePath
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.BackgroundImagePath
+  nameWithType: ITypoMetaData.BackgroundImagePath
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Company
   name: Company
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_Company
@@ -7059,6 +7107,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.Title
   nameWithType: ITypoMetaData.Title
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.WatermarkText
+  name: WatermarkText
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_WatermarkText
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.WatermarkText
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.WatermarkText
+  nameWithType: ITypoMetaData.WatermarkText
+- uid: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.WatermarkText*
+  name: WatermarkText
+  href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.html#Bodoconsult_App_Abstractions_Interfaces_ITypoMetaData_WatermarkText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.WatermarkText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.ITypoMetaData.WatermarkText
+  nameWithType: ITypoMetaData.WatermarkText
 - uid: Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle
   name: ITypoPageStyle
   href: api/Bodoconsult.App.Abstractions.Interfaces.ITypoPageStyle.html
@@ -11206,6 +11267,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Authors
   nameWithType: TypoMetaData.Authors
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.BackgroundImagePath
+  name: BackgroundImagePath
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_BackgroundImagePath
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.BackgroundImagePath
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.BackgroundImagePath
+  nameWithType: TypoMetaData.BackgroundImagePath
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.BackgroundImagePath*
+  name: BackgroundImagePath
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_BackgroundImagePath_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.BackgroundImagePath
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.BackgroundImagePath
+  nameWithType: TypoMetaData.BackgroundImagePath
 - uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Company
   name: Company
   href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_Company
@@ -11401,6 +11475,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.Title
   nameWithType: TypoMetaData.Title
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.WatermarkText
+  name: WatermarkText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_WatermarkText
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypoMetaData.WatermarkText
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.WatermarkText
+  nameWithType: TypoMetaData.WatermarkText
+- uid: Bodoconsult.App.Abstractions.Typography.TypoMetaData.WatermarkText*
+  name: WatermarkText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypoMetaData.html#Bodoconsult_App_Abstractions_Typography_TypoMetaData_WatermarkText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypoMetaData.WatermarkText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypoMetaData.WatermarkText
+  nameWithType: TypoMetaData.WatermarkText
 - uid: Bodoconsult.App.Abstractions.Typography.TypographicConstants
   name: TypographicConstants
   href: api/Bodoconsult.App.Abstractions.Typography.TypographicConstants.html
@@ -11463,6 +11550,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.Authors
   nameWithType: TypographyBase.Authors
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.BackgroundImagePath
+  name: BackgroundImagePath
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_BackgroundImagePath
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.BackgroundImagePath
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.BackgroundImagePath
+  nameWithType: TypographyBase.BackgroundImagePath
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.BackgroundImagePath*
+  name: BackgroundImagePath
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_BackgroundImagePath_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.BackgroundImagePath
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.BackgroundImagePath
+  nameWithType: TypographyBase.BackgroundImagePath
 - uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.CalculateVerticalLines
   name: CalculateVerticalLines()
   href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_CalculateVerticalLines
@@ -12333,6 +12433,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.VerticalLines
   nameWithType: TypographyBase.VerticalLines
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.WatermarkText
+  name: WatermarkText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_WatermarkText
+  commentId: P:Bodoconsult.App.Abstractions.Typography.TypographyBase.WatermarkText
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.WatermarkText
+  nameWithType: TypographyBase.WatermarkText
+- uid: Bodoconsult.App.Abstractions.Typography.TypographyBase.WatermarkText*
+  name: WatermarkText
+  href: api/Bodoconsult.App.Abstractions.Typography.TypographyBase.html#Bodoconsult_App_Abstractions_Typography_TypographyBase_WatermarkText_
+  commentId: Overload:Bodoconsult.App.Abstractions.Typography.TypographyBase.WatermarkText
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Typography.TypographyBase.WatermarkText
+  nameWithType: TypographyBase.WatermarkText
 - uid: Bodoconsult.App.AppConfigurationProvider
   name: AppConfigurationProvider
   href: api/Bodoconsult.App.AppConfigurationProvider.html
@@ -52146,6 +52259,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.I18N.I18N.AddProvider
   nameWithType: I18N.AddProvider
+- uid: Bodoconsult.I18N.I18N.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  name: AddProvider2(ILocalesProvider)
+  href: api/Bodoconsult.I18N.I18N.html#Bodoconsult_I18N_I18N_AddProvider2_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
+  commentId: M:Bodoconsult.I18N.I18N.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  fullName: Bodoconsult.I18N.I18N.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  nameWithType: I18N.AddProvider2(ILocalesProvider)
+- uid: Bodoconsult.I18N.I18N.AddProvider2*
+  name: AddProvider2
+  href: api/Bodoconsult.I18N.I18N.html#Bodoconsult_I18N_I18N_AddProvider2_
+  commentId: Overload:Bodoconsult.I18N.I18N.AddProvider2
+  isSpec: "True"
+  fullName: Bodoconsult.I18N.I18N.AddProvider2
+  nameWithType: I18N.AddProvider2
 - uid: Bodoconsult.I18N.I18N.Current
   name: Current
   href: api/Bodoconsult.I18N.I18N.html#Bodoconsult_I18N_I18N_Current
@@ -52288,6 +52414,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.I18N.I18N.Reset
   nameWithType: I18N.Reset
+- uid: Bodoconsult.I18N.I18N.Reset2
+  name: Reset2()
+  href: api/Bodoconsult.I18N.I18N.html#Bodoconsult_I18N_I18N_Reset2
+  commentId: M:Bodoconsult.I18N.I18N.Reset2
+  fullName: Bodoconsult.I18N.I18N.Reset2()
+  nameWithType: I18N.Reset2()
+- uid: Bodoconsult.I18N.I18N.Reset2*
+  name: Reset2
+  href: api/Bodoconsult.I18N.I18N.html#Bodoconsult_I18N_I18N_Reset2_
+  commentId: Overload:Bodoconsult.I18N.I18N.Reset2
+  isSpec: "True"
+  fullName: Bodoconsult.I18N.I18N.Reset2
+  nameWithType: I18N.Reset2
 - uid: Bodoconsult.I18N.I18N.SetFallbackLocale(System.String)
   name: SetFallbackLocale(string)
   href: api/Bodoconsult.I18N.I18N.html#Bodoconsult_I18N_I18N_SetFallbackLocale_System_String_
@@ -52763,6 +52902,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.I18N.I18NMock.AddProvider
   nameWithType: I18NMock.AddProvider
+- uid: Bodoconsult.I18N.I18NMock.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  name: AddProvider2(ILocalesProvider)
+  href: api/Bodoconsult.I18N.I18NMock.html#Bodoconsult_I18N_I18NMock_AddProvider2_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
+  commentId: M:Bodoconsult.I18N.I18NMock.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  fullName: Bodoconsult.I18N.I18NMock.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  nameWithType: I18NMock.AddProvider2(ILocalesProvider)
+- uid: Bodoconsult.I18N.I18NMock.AddProvider2*
+  name: AddProvider2
+  href: api/Bodoconsult.I18N.I18NMock.html#Bodoconsult_I18N_I18NMock_AddProvider2_
+  commentId: Overload:Bodoconsult.I18N.I18NMock.AddProvider2
+  isSpec: "True"
+  fullName: Bodoconsult.I18N.I18NMock.AddProvider2
+  nameWithType: I18NMock.AddProvider2
 - uid: Bodoconsult.I18N.I18NMock.Current
   name: Current
   href: api/Bodoconsult.I18N.I18NMock.html#Bodoconsult_I18N_I18NMock_Current
@@ -52905,6 +53057,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.I18N.I18NMock.Reset
   nameWithType: I18NMock.Reset
+- uid: Bodoconsult.I18N.I18NMock.Reset2
+  name: Reset2()
+  href: api/Bodoconsult.I18N.I18NMock.html#Bodoconsult_I18N_I18NMock_Reset2
+  commentId: M:Bodoconsult.I18N.I18NMock.Reset2
+  fullName: Bodoconsult.I18N.I18NMock.Reset2()
+  nameWithType: I18NMock.Reset2()
+- uid: Bodoconsult.I18N.I18NMock.Reset2*
+  name: Reset2
+  href: api/Bodoconsult.I18N.I18NMock.html#Bodoconsult_I18N_I18NMock_Reset2_
+  commentId: Overload:Bodoconsult.I18N.I18NMock.Reset2
+  isSpec: "True"
+  fullName: Bodoconsult.I18N.I18NMock.Reset2
+  nameWithType: I18NMock.Reset2
 - uid: Bodoconsult.I18N.I18NMock.SetFallbackLocale(System.String)
   name: SetFallbackLocale(string)
   href: api/Bodoconsult.I18N.I18NMock.html#Bodoconsult_I18N_I18NMock_SetFallbackLocale_System_String_
@@ -53090,6 +53255,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.I18N.I18NServer.AddProvider
   nameWithType: I18NServer.AddProvider
+- uid: Bodoconsult.I18N.I18NServer.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  name: AddProvider2(ILocalesProvider)
+  href: api/Bodoconsult.I18N.I18NServer.html#Bodoconsult_I18N_I18NServer_AddProvider2_Bodoconsult_App_Abstractions_Interfaces_ILocalesProvider_
+  commentId: M:Bodoconsult.I18N.I18NServer.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  fullName: Bodoconsult.I18N.I18NServer.AddProvider2(Bodoconsult.App.Abstractions.Interfaces.ILocalesProvider)
+  nameWithType: I18NServer.AddProvider2(ILocalesProvider)
+- uid: Bodoconsult.I18N.I18NServer.AddProvider2*
+  name: AddProvider2
+  href: api/Bodoconsult.I18N.I18NServer.html#Bodoconsult_I18N_I18NServer_AddProvider2_
+  commentId: Overload:Bodoconsult.I18N.I18NServer.AddProvider2
+  isSpec: "True"
+  fullName: Bodoconsult.I18N.I18NServer.AddProvider2
+  nameWithType: I18NServer.AddProvider2
 - uid: Bodoconsult.I18N.I18NServer.Dispose
   name: Dispose()
   href: api/Bodoconsult.I18N.I18NServer.html#Bodoconsult_I18N_I18NServer_Dispose
@@ -53181,6 +53359,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.I18N.I18NServer.Reset
   nameWithType: I18NServer.Reset
+- uid: Bodoconsult.I18N.I18NServer.Reset2
+  name: Reset2()
+  href: api/Bodoconsult.I18N.I18NServer.html#Bodoconsult_I18N_I18NServer_Reset2
+  commentId: M:Bodoconsult.I18N.I18NServer.Reset2
+  fullName: Bodoconsult.I18N.I18NServer.Reset2()
+  nameWithType: I18NServer.Reset2()
+- uid: Bodoconsult.I18N.I18NServer.Reset2*
+  name: Reset2
+  href: api/Bodoconsult.I18N.I18NServer.html#Bodoconsult_I18N_I18NServer_Reset2_
+  commentId: Overload:Bodoconsult.I18N.I18NServer.Reset2
+  isSpec: "True"
+  fullName: Bodoconsult.I18N.I18NServer.Reset2
+  nameWithType: I18NServer.Reset2
 - uid: Bodoconsult.I18N.I18NServer.SetLogger(System.Action{System.String})
   name: SetLogger(Action<string>)
   href: api/Bodoconsult.I18N.I18NServer.html#Bodoconsult_I18N_I18NServer_SetLogger_System_Action_System_String__
@@ -54525,6 +54716,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Office.DocxBuilder.AddTable
   nameWithType: DocxBuilder.AddTable
+- uid: Bodoconsult.Office.DocxBuilder.AddWatermark
+  name: AddWatermark()
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddWatermark
+  commentId: M:Bodoconsult.Office.DocxBuilder.AddWatermark
+  fullName: Bodoconsult.Office.DocxBuilder.AddWatermark()
+  nameWithType: DocxBuilder.AddWatermark()
+- uid: Bodoconsult.Office.DocxBuilder.AddWatermark*
+  name: AddWatermark
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddWatermark_
+  commentId: Overload:Bodoconsult.Office.DocxBuilder.AddWatermark
+  isSpec: "True"
+  fullName: Bodoconsult.Office.DocxBuilder.AddWatermark
+  nameWithType: DocxBuilder.AddWatermark
 - uid: Bodoconsult.Office.DocxBuilder.Body
   name: Body
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_Body
@@ -54899,6 +55103,32 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Office.DocxBuilder.Styles
   nameWithType: DocxBuilder.Styles
+- uid: Bodoconsult.Office.DocxBuilder.WatermarkFillColor
+  name: WatermarkFillColor
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_WatermarkFillColor
+  commentId: P:Bodoconsult.Office.DocxBuilder.WatermarkFillColor
+  fullName: Bodoconsult.Office.DocxBuilder.WatermarkFillColor
+  nameWithType: DocxBuilder.WatermarkFillColor
+- uid: Bodoconsult.Office.DocxBuilder.WatermarkFillColor*
+  name: WatermarkFillColor
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_WatermarkFillColor_
+  commentId: Overload:Bodoconsult.Office.DocxBuilder.WatermarkFillColor
+  isSpec: "True"
+  fullName: Bodoconsult.Office.DocxBuilder.WatermarkFillColor
+  nameWithType: DocxBuilder.WatermarkFillColor
+- uid: Bodoconsult.Office.DocxBuilder.WatermarkStyle
+  name: WatermarkStyle
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_WatermarkStyle
+  commentId: P:Bodoconsult.Office.DocxBuilder.WatermarkStyle
+  fullName: Bodoconsult.Office.DocxBuilder.WatermarkStyle
+  nameWithType: DocxBuilder.WatermarkStyle
+- uid: Bodoconsult.Office.DocxBuilder.WatermarkStyle*
+  name: WatermarkStyle
+  href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_WatermarkStyle_
+  commentId: Overload:Bodoconsult.Office.DocxBuilder.WatermarkStyle
+  isSpec: "True"
+  fullName: Bodoconsult.Office.DocxBuilder.WatermarkStyle
+  nameWithType: DocxBuilder.WatermarkStyle
 - uid: Bodoconsult.Office.DocxDefinitionListRow
   name: DocxDefinitionListRow
   href: api/Bodoconsult.Office.DocxDefinitionListRow.html
@@ -58545,19 +58775,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.AddWarning
   nameWithType: IPdfBuilder.AddWarning
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.BackgroundImagePath
-  name: BackgroundImagePath
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_BackgroundImagePath
-  commentId: P:Bodoconsult.Pdf.Interfaces.IPdfBuilder.BackgroundImagePath
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.BackgroundImagePath
-  nameWithType: IPdfBuilder.BackgroundImagePath
-- uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.BackgroundImagePath*
-  name: BackgroundImagePath
-  href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_BackgroundImagePath_
-  commentId: Overload:Bodoconsult.Pdf.Interfaces.IPdfBuilder.BackgroundImagePath
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.Interfaces.IPdfBuilder.BackgroundImagePath
-  nameWithType: IPdfBuilder.BackgroundImagePath
 - uid: Bodoconsult.Pdf.Interfaces.IPdfBuilder.CreateContentSection(System.Boolean,Bodoconsult.App.Abstractions.Interfaces.PageNumberFormatEnum)
   name: CreateContentSection(bool, PageNumberFormatEnum)
   href: api/Bodoconsult.Pdf.Interfaces.IPdfBuilder.html#Bodoconsult_Pdf_Interfaces_IPdfBuilder_CreateContentSection_System_Boolean_Bodoconsult_App_Abstractions_Interfaces_PageNumberFormatEnum_
@@ -60000,19 +60217,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.AddWarning
   nameWithType: PdfBuilderBase.AddWarning
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.BackgroundImagePath
-  name: BackgroundImagePath
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_BackgroundImagePath
-  commentId: P:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.BackgroundImagePath
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.BackgroundImagePath
-  nameWithType: PdfBuilderBase.BackgroundImagePath
-- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.BackgroundImagePath*
-  name: BackgroundImagePath
-  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_BackgroundImagePath_
-  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.BackgroundImagePath
-  isSpec: "True"
-  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.BackgroundImagePath
-  nameWithType: PdfBuilderBase.BackgroundImagePath
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.Content
   name: Content
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_Content
@@ -60147,6 +60351,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.CreateTotSection
   nameWithType: PdfBuilderBase.CreateTotSection
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.CreateWatermark(PdfSharp.Pdf.PdfDocument)
+  name: CreateWatermark(PdfDocument)
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_CreateWatermark_PdfSharp_Pdf_PdfDocument_
+  commentId: M:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.CreateWatermark(PdfSharp.Pdf.PdfDocument)
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.CreateWatermark(PdfSharp.Pdf.PdfDocument)
+  nameWithType: PdfBuilderBase.CreateWatermark(PdfDocument)
+- uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.CreateWatermark*
+  name: CreateWatermark
+  href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_CreateWatermark_
+  commentId: Overload:Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.CreateWatermark
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.CreateWatermark
+  nameWithType: PdfBuilderBase.CreateWatermark
 - uid: Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.Dispose
   name: Dispose()
   href: api/Bodoconsult.Pdf.PdfSharp.PdfBuilderBase.html#Bodoconsult_Pdf_PdfSharp_PdfBuilderBase_Dispose
@@ -62310,6 +62527,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.CreateWarningStyle
   nameWithType: DefaultStyleSet.CreateWarningStyle
+- uid: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.CreateWatermarkStyle
+  name: CreateWatermarkStyle()
+  href: api/Bodoconsult.Pdf.Stylesets.DefaultStyleSet.html#Bodoconsult_Pdf_Stylesets_DefaultStyleSet_CreateWatermarkStyle
+  commentId: M:Bodoconsult.Pdf.Stylesets.DefaultStyleSet.CreateWatermarkStyle
+  fullName: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.CreateWatermarkStyle()
+  nameWithType: DefaultStyleSet.CreateWatermarkStyle()
+- uid: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.CreateWatermarkStyle*
+  name: CreateWatermarkStyle
+  href: api/Bodoconsult.Pdf.Stylesets.DefaultStyleSet.html#Bodoconsult_Pdf_Stylesets_DefaultStyleSet_CreateWatermarkStyle_
+  commentId: Overload:Bodoconsult.Pdf.Stylesets.DefaultStyleSet.CreateWatermarkStyle
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.CreateWatermarkStyle
+  nameWithType: DefaultStyleSet.CreateWatermarkStyle
 - uid: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.DefaultFontSize
   name: DefaultFontSize
   href: api/Bodoconsult.Pdf.Stylesets.DefaultStyleSet.html#Bodoconsult_Pdf_Stylesets_DefaultStyleSet_DefaultFontSize
@@ -62969,6 +63199,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.Warning
   nameWithType: DefaultStyleSet.Warning
+- uid: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.Watermark
+  name: Watermark
+  href: api/Bodoconsult.Pdf.Stylesets.DefaultStyleSet.html#Bodoconsult_Pdf_Stylesets_DefaultStyleSet_Watermark
+  commentId: P:Bodoconsult.Pdf.Stylesets.DefaultStyleSet.Watermark
+  fullName: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.Watermark
+  nameWithType: DefaultStyleSet.Watermark
+- uid: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.Watermark*
+  name: Watermark
+  href: api/Bodoconsult.Pdf.Stylesets.DefaultStyleSet.html#Bodoconsult_Pdf_Stylesets_DefaultStyleSet_Watermark_
+  commentId: Overload:Bodoconsult.Pdf.Stylesets.DefaultStyleSet.Watermark
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.Stylesets.DefaultStyleSet.Watermark
+  nameWithType: DefaultStyleSet.Watermark
 - uid: Bodoconsult.Pdf.Stylesets.IStyleSet
   name: IStyleSet
   href: api/Bodoconsult.Pdf.Stylesets.IStyleSet.html
@@ -63729,6 +63972,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Stylesets.IStyleSet.Warning
   nameWithType: IStyleSet.Warning
+- uid: Bodoconsult.Pdf.Stylesets.IStyleSet.Watermark
+  name: Watermark
+  href: api/Bodoconsult.Pdf.Stylesets.IStyleSet.html#Bodoconsult_Pdf_Stylesets_IStyleSet_Watermark
+  commentId: P:Bodoconsult.Pdf.Stylesets.IStyleSet.Watermark
+  fullName: Bodoconsult.Pdf.Stylesets.IStyleSet.Watermark
+  nameWithType: IStyleSet.Watermark
+- uid: Bodoconsult.Pdf.Stylesets.IStyleSet.Watermark*
+  name: Watermark
+  href: api/Bodoconsult.Pdf.Stylesets.IStyleSet.html#Bodoconsult_Pdf_Stylesets_IStyleSet_Watermark_
+  commentId: Overload:Bodoconsult.Pdf.Stylesets.IStyleSet.Watermark
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.Stylesets.IStyleSet.Watermark
+  nameWithType: IStyleSet.Watermark
 - uid: Bodoconsult.Pdf.Stylesets.TypographyBasedStyleSet
   name: TypographyBasedStyleSet
   href: api/Bodoconsult.Pdf.Stylesets.TypographyBasedStyleSet.html
@@ -71116,6 +71372,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.DocumentMetaData.Authors
   nameWithType: DocumentMetaData.Authors
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.BackgroundImagePath
+  name: BackgroundImagePath
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_BackgroundImagePath
+  commentId: P:Bodoconsult.Text.Documents.DocumentMetaData.BackgroundImagePath
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.BackgroundImagePath
+  nameWithType: DocumentMetaData.BackgroundImagePath
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.BackgroundImagePath*
+  name: BackgroundImagePath
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_BackgroundImagePath_
+  commentId: Overload:Bodoconsult.Text.Documents.DocumentMetaData.BackgroundImagePath
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.BackgroundImagePath
+  nameWithType: DocumentMetaData.BackgroundImagePath
 - uid: Bodoconsult.Text.Documents.DocumentMetaData.CitationSourcePrefix
   name: CitationSourcePrefix
   href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_CitationSourcePrefix
@@ -71483,6 +71752,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Documents.DocumentMetaData.TotHeading
   nameWithType: DocumentMetaData.TotHeading
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.WatermarkText
+  name: WatermarkText
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_WatermarkText
+  commentId: P:Bodoconsult.Text.Documents.DocumentMetaData.WatermarkText
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.WatermarkText
+  nameWithType: DocumentMetaData.WatermarkText
+- uid: Bodoconsult.Text.Documents.DocumentMetaData.WatermarkText*
+  name: WatermarkText
+  href: api/Bodoconsult.Text.Documents.DocumentMetaData.html#Bodoconsult_Text_Documents_DocumentMetaData_WatermarkText_
+  commentId: Overload:Bodoconsult.Text.Documents.DocumentMetaData.WatermarkText
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Documents.DocumentMetaData.WatermarkText
+  nameWithType: DocumentMetaData.WatermarkText
 - uid: Bodoconsult.Text.Documents.DocumentStyle
   name: DocumentStyle
   href: api/Bodoconsult.Text.Documents.DocumentStyle.html
@@ -77233,6 +77515,31 @@ references:
   fullName.vb: Bodoconsult.Text.Documents.WarningStyle.New
   nameWithType: WarningStyle.WarningStyle
   nameWithType.vb: WarningStyle.New
+- uid: Bodoconsult.Text.Documents.WatermarkStyle
+  name: WatermarkStyle
+  href: api/Bodoconsult.Text.Documents.WatermarkStyle.html
+  commentId: T:Bodoconsult.Text.Documents.WatermarkStyle
+  fullName: Bodoconsult.Text.Documents.WatermarkStyle
+  nameWithType: WatermarkStyle
+- uid: Bodoconsult.Text.Documents.WatermarkStyle.#ctor
+  name: WatermarkStyle()
+  href: api/Bodoconsult.Text.Documents.WatermarkStyle.html#Bodoconsult_Text_Documents_WatermarkStyle__ctor
+  commentId: M:Bodoconsult.Text.Documents.WatermarkStyle.#ctor
+  name.vb: New()
+  fullName: Bodoconsult.Text.Documents.WatermarkStyle.WatermarkStyle()
+  fullName.vb: Bodoconsult.Text.Documents.WatermarkStyle.New()
+  nameWithType: WatermarkStyle.WatermarkStyle()
+  nameWithType.vb: WatermarkStyle.New()
+- uid: Bodoconsult.Text.Documents.WatermarkStyle.#ctor*
+  name: WatermarkStyle
+  href: api/Bodoconsult.Text.Documents.WatermarkStyle.html#Bodoconsult_Text_Documents_WatermarkStyle__ctor_
+  commentId: Overload:Bodoconsult.Text.Documents.WatermarkStyle.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.Text.Documents.WatermarkStyle.WatermarkStyle
+  fullName.vb: Bodoconsult.Text.Documents.WatermarkStyle.New
+  nameWithType: WatermarkStyle.WatermarkStyle
+  nameWithType.vb: WatermarkStyle.New
 - uid: Bodoconsult.Text.Enums
   name: Bodoconsult.Text.Enums
   href: api/Bodoconsult.Text.Enums.html
@@ -79502,6 +79809,35 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.GetRenderedText
   nameWithType: ITextDocumentRenderer.GetRenderedText
+- uid: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.Images
+  name: Images
+  href: api/Bodoconsult.Text.Interfaces.ITextDocumentRenderer.html#Bodoconsult_Text_Interfaces_ITextDocumentRenderer_Images
+  commentId: P:Bodoconsult.Text.Interfaces.ITextDocumentRenderer.Images
+  fullName: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.Images
+  nameWithType: ITextDocumentRenderer.Images
+- uid: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.Images*
+  name: Images
+  href: api/Bodoconsult.Text.Interfaces.ITextDocumentRenderer.html#Bodoconsult_Text_Interfaces_ITextDocumentRenderer_Images_
+  commentId: Overload:Bodoconsult.Text.Interfaces.ITextDocumentRenderer.Images
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.Images
+  nameWithType: ITextDocumentRenderer.Images
+- uid: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.RegisterImage(System.String)
+  name: RegisterImage(string)
+  href: api/Bodoconsult.Text.Interfaces.ITextDocumentRenderer.html#Bodoconsult_Text_Interfaces_ITextDocumentRenderer_RegisterImage_System_String_
+  commentId: M:Bodoconsult.Text.Interfaces.ITextDocumentRenderer.RegisterImage(System.String)
+  name.vb: RegisterImage(String)
+  fullName: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.RegisterImage(string)
+  fullName.vb: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.RegisterImage(String)
+  nameWithType: ITextDocumentRenderer.RegisterImage(string)
+  nameWithType.vb: ITextDocumentRenderer.RegisterImage(String)
+- uid: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.RegisterImage*
+  name: RegisterImage
+  href: api/Bodoconsult.Text.Interfaces.ITextDocumentRenderer.html#Bodoconsult_Text_Interfaces_ITextDocumentRenderer_RegisterImage_
+  commentId: Overload:Bodoconsult.Text.Interfaces.ITextDocumentRenderer.RegisterImage
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.RegisterImage
+  nameWithType: ITextDocumentRenderer.RegisterImage
 - uid: Bodoconsult.Text.Interfaces.ITextDocumentRenderer.Template
   name: Template
   href: api/Bodoconsult.Text.Interfaces.ITextDocumentRenderer.html#Bodoconsult_Text_Interfaces_ITextDocumentRenderer_Template
@@ -84855,6 +85191,19 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.GetRenderedText
   nameWithType: BaseTextDocumentRenderer.GetRenderedText
+- uid: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.Images
+  name: Images
+  href: api/Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.html#Bodoconsult_Text_Renderer_BaseTextDocumentRenderer_Images
+  commentId: P:Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.Images
+  fullName: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.Images
+  nameWithType: BaseTextDocumentRenderer.Images
+- uid: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.Images*
+  name: Images
+  href: api/Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.html#Bodoconsult_Text_Renderer_BaseTextDocumentRenderer_Images_
+  commentId: Overload:Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.Images
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.Images
+  nameWithType: BaseTextDocumentRenderer.Images
 - uid: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.IsRenderingStylesRequired
   name: IsRenderingStylesRequired
   href: api/Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.html#Bodoconsult_Text_Renderer_BaseTextDocumentRenderer_IsRenderingStylesRequired
@@ -84868,6 +85217,22 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.IsRenderingStylesRequired
   nameWithType: BaseTextDocumentRenderer.IsRenderingStylesRequired
+- uid: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RegisterImage(System.String)
+  name: RegisterImage(string)
+  href: api/Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.html#Bodoconsult_Text_Renderer_BaseTextDocumentRenderer_RegisterImage_System_String_
+  commentId: M:Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RegisterImage(System.String)
+  name.vb: RegisterImage(String)
+  fullName: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RegisterImage(string)
+  fullName.vb: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RegisterImage(String)
+  nameWithType: BaseTextDocumentRenderer.RegisterImage(string)
+  nameWithType.vb: BaseTextDocumentRenderer.RegisterImage(String)
+- uid: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RegisterImage*
+  name: RegisterImage
+  href: api/Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.html#Bodoconsult_Text_Renderer_BaseTextDocumentRenderer_RegisterImage_
+  commentId: Overload:Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RegisterImage
+  isSpec: "True"
+  fullName: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RegisterImage
+  nameWithType: BaseTextDocumentRenderer.RegisterImage
 - uid: Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.RenderIt
   name: RenderIt()
   href: api/Bodoconsult.Text.Renderer.BaseTextDocumentRenderer.html#Bodoconsult_Text_Renderer_BaseTextDocumentRenderer_RenderIt
@@ -91830,6 +92195,31 @@ references:
   fullName.vb: Bodoconsult.Text.Renderer.Html.Styles.WarningStyleHtmlTextRendererElement.New
   nameWithType: WarningStyleHtmlTextRendererElement.WarningStyleHtmlTextRendererElement
   nameWithType.vb: WarningStyleHtmlTextRendererElement.New
+- uid: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement
+  name: WatermarkStyleHtmlTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.html
+  commentId: T:Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement
+  fullName: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement
+  nameWithType: WatermarkStyleHtmlTextRendererElement
+- uid: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.#ctor(Bodoconsult.Text.Documents.WatermarkStyle)
+  name: WatermarkStyleHtmlTextRendererElement(WatermarkStyle)
+  href: api/Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.html#Bodoconsult_Text_Renderer_Html_Styles_WatermarkStyleHtmlTextRendererElement__ctor_Bodoconsult_Text_Documents_WatermarkStyle_
+  commentId: M:Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.#ctor(Bodoconsult.Text.Documents.WatermarkStyle)
+  name.vb: New(WatermarkStyle)
+  fullName: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.WatermarkStyleHtmlTextRendererElement(Bodoconsult.Text.Documents.WatermarkStyle)
+  fullName.vb: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.New(Bodoconsult.Text.Documents.WatermarkStyle)
+  nameWithType: WatermarkStyleHtmlTextRendererElement.WatermarkStyleHtmlTextRendererElement(WatermarkStyle)
+  nameWithType.vb: WatermarkStyleHtmlTextRendererElement.New(WatermarkStyle)
+- uid: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.#ctor*
+  name: WatermarkStyleHtmlTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.html#Bodoconsult_Text_Renderer_Html_Styles_WatermarkStyleHtmlTextRendererElement__ctor_
+  commentId: Overload:Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.WatermarkStyleHtmlTextRendererElement
+  fullName.vb: Bodoconsult.Text.Renderer.Html.Styles.WatermarkStyleHtmlTextRendererElement.New
+  nameWithType: WatermarkStyleHtmlTextRendererElement.WatermarkStyleHtmlTextRendererElement
+  nameWithType.vb: WatermarkStyleHtmlTextRendererElement.New
 - uid: Bodoconsult.Text.Renderer.Html.StylesetHtmlTextRendererElement
   name: StylesetHtmlTextRendererElement
   href: api/Bodoconsult.Text.Renderer.Html.StylesetHtmlTextRendererElement.html
@@ -96484,6 +96874,31 @@ references:
   fullName.vb: Bodoconsult.Text.Renderer.Pdf.Styles.WarningStylePdfTextRendererElement.New
   nameWithType: WarningStylePdfTextRendererElement.WarningStylePdfTextRendererElement
   nameWithType.vb: WarningStylePdfTextRendererElement.New
+- uid: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement
+  name: WatermarkStylePdfTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.html
+  commentId: T:Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement
+  fullName: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement
+  nameWithType: WatermarkStylePdfTextRendererElement
+- uid: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.#ctor(Bodoconsult.Text.Documents.WatermarkStyle)
+  name: WatermarkStylePdfTextRendererElement(WatermarkStyle)
+  href: api/Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.html#Bodoconsult_Text_Renderer_Pdf_Styles_WatermarkStylePdfTextRendererElement__ctor_Bodoconsult_Text_Documents_WatermarkStyle_
+  commentId: M:Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.#ctor(Bodoconsult.Text.Documents.WatermarkStyle)
+  name.vb: New(WatermarkStyle)
+  fullName: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.WatermarkStylePdfTextRendererElement(Bodoconsult.Text.Documents.WatermarkStyle)
+  fullName.vb: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.New(Bodoconsult.Text.Documents.WatermarkStyle)
+  nameWithType: WatermarkStylePdfTextRendererElement.WatermarkStylePdfTextRendererElement(WatermarkStyle)
+  nameWithType.vb: WatermarkStylePdfTextRendererElement.New(WatermarkStyle)
+- uid: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.#ctor*
+  name: WatermarkStylePdfTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.html#Bodoconsult_Text_Renderer_Pdf_Styles_WatermarkStylePdfTextRendererElement__ctor_
+  commentId: Overload:Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.WatermarkStylePdfTextRendererElement
+  fullName.vb: Bodoconsult.Text.Renderer.Pdf.Styles.WatermarkStylePdfTextRendererElement.New
+  nameWithType: WatermarkStylePdfTextRendererElement.WatermarkStylePdfTextRendererElement
+  nameWithType.vb: WatermarkStylePdfTextRendererElement.New
 - uid: Bodoconsult.Text.Renderer.PlainText
   name: Bodoconsult.Text.Renderer.PlainText
   href: api/Bodoconsult.Text.Renderer.PlainText.html
@@ -102134,3 +102549,28 @@ references:
   fullName.vb: Bodoconsult.Text.Renderer.Rtf.Styles.WarningStyleRtfTextRendererElement.New
   nameWithType: WarningStyleRtfTextRendererElement.WarningStyleRtfTextRendererElement
   nameWithType.vb: WarningStyleRtfTextRendererElement.New
+- uid: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement
+  name: WatermarkStyleRtfTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.html
+  commentId: T:Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement
+  fullName: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement
+  nameWithType: WatermarkStyleRtfTextRendererElement
+- uid: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.#ctor(Bodoconsult.Text.Documents.WatermarkStyle)
+  name: WatermarkStyleRtfTextRendererElement(WatermarkStyle)
+  href: api/Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.html#Bodoconsult_Text_Renderer_Rtf_Styles_WatermarkStyleRtfTextRendererElement__ctor_Bodoconsult_Text_Documents_WatermarkStyle_
+  commentId: M:Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.#ctor(Bodoconsult.Text.Documents.WatermarkStyle)
+  name.vb: New(WatermarkStyle)
+  fullName: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.WatermarkStyleRtfTextRendererElement(Bodoconsult.Text.Documents.WatermarkStyle)
+  fullName.vb: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.New(Bodoconsult.Text.Documents.WatermarkStyle)
+  nameWithType: WatermarkStyleRtfTextRendererElement.WatermarkStyleRtfTextRendererElement(WatermarkStyle)
+  nameWithType.vb: WatermarkStyleRtfTextRendererElement.New(WatermarkStyle)
+- uid: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.#ctor*
+  name: WatermarkStyleRtfTextRendererElement
+  href: api/Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.html#Bodoconsult_Text_Renderer_Rtf_Styles_WatermarkStyleRtfTextRendererElement__ctor_
+  commentId: Overload:Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.WatermarkStyleRtfTextRendererElement
+  fullName.vb: Bodoconsult.Text.Renderer.Rtf.Styles.WatermarkStyleRtfTextRendererElement.New
+  nameWithType: WatermarkStyleRtfTextRendererElement.WatermarkStyleRtfTextRendererElement
+  nameWithType.vb: WatermarkStyleRtfTextRendererElement.New

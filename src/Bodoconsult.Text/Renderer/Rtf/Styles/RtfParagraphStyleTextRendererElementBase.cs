@@ -46,7 +46,7 @@ public class RtfParagraphStyleTextRendererElementBase : ITextRendererElement
 
         var sb = new StringBuilder();
 
-        sb.Append($"{{p{renderer.Styleset.GetIndexOfStyle(name)} {RtfHelper.GetFormatSettings(Style, renderer.Styleset)} {{name}}");
+        sb.Append($"{{p{renderer.Styleset.GetIndexOfStyle(name)} {RtfHelper.GetFormatSettings(Style, renderer.Styleset)} {name};");
 
         sb.Append($"}}{Environment.NewLine}");
         renderer.Content.Append(sb);

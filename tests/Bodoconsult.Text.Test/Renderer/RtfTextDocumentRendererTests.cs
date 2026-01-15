@@ -1,12 +1,17 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
-using System.IO;
 using Bodoconsult.App.Helpers;
+using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Renderer.Rtf;
 using Bodoconsult.Text.Test.Helpers;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Shapes;
+using MigraDoc.RtfRendering;
 using NUnit.Framework;
+using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace Bodoconsult.Text.Test.Renderer;
 
@@ -102,6 +107,50 @@ public class RtfTextDocumentRendererTests
         renderer.SaveAsFile(filePath);
 
         FileSystemHelper.RunInDebugMode(filePath);
+    }
+
+    [Test]
+    public void Rtf_ValidDocument_RtfFileCreated()
+    {
+        var workingDir = Path.GetTempPath();
+
+        var filePath = Path.Combine(workingDir, "test.rtf");
+
+
+        var styleset = new DefaultStyleSet();
+        styleset.CreatePageSetup();
+        styleset.CalculateMeasures();
+        styleset.InitializeStyles();
+
+        // Create a new MigraDoc document.
+        var document = new MigraDoc.DocumentObjectModel.Document();
+
+        // Add a section to the document.
+        var section = document.AddSection();
+        section.PageSetup = styleset.PageSetup.Clone();
+
+
+        // Add a paragraph
+        section.AddParagraph("Blubb");
+
+        var image = section.Headers.Primary.AddImage(TestHelper.TestBackgroundImage);
+        image.Height = section.PageSetup.PageHeight;
+        image.Width = section.PageSetup.PageWidth;
+        image.RelativeVertical = RelativeVertical.Page;
+        image.RelativeHorizontal = RelativeHorizontal.Page;
+        image.WrapFormat.Style = WrapStyle.Through;
+
+        section.Headers.Primary.AddParagraph("HeaderText");
+
+
+        // Create an RTF renderer for the MigraDoc document.
+        var rtfRenderer = new RtfDocumentRenderer();
+
+        // Layout and render document to RTF.
+        rtfRenderer.Render(document, filePath, workingDir);
+
+
+        //FileSystemHelper.RunInDebugMode(filePath);
     }
 
 }
