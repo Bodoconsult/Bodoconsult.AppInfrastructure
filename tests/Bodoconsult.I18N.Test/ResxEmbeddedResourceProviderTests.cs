@@ -17,7 +17,7 @@ public class ResxEmbeddedResourceProviderTests
     //}
 
     [Test]
-    public void RegisterResourceItems_ValidLocales_ResourceItems()
+    public void RegisterLocaleItems_ValidLocales_ResourceItems()
     {
 
         // Arrange
@@ -25,18 +25,18 @@ public class ResxEmbeddedResourceProviderTests
         const string resourceFolder = "Bodoconsult.I18N.Test.Resources.Language";
         //const string value = "Is not null";
 
-        IResourceProvider provider = new ResxEmbeddedResourceProvider(TestHelper.CurrentAssembly,
+        ILocalesProvider provider = new ResxEmbeddedResourceProvider(TestHelper.CurrentAssembly,
             resourceFolder);
 
-        Assert.That(!provider.ResourceItems.Any());
+        Assert.That(!provider.LocaleItems.Any());
 
         // Act
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
         // Assert
-        Assert.That(provider.ResourceItems.Any());
+        Assert.That(provider.LocaleItems.Any());
 
-        var success = provider.ResourceItems.TryGetValue(key.ToUpperInvariant(), out var result);
+        var success = provider.LocaleItems.TryGetValue(key.ToUpperInvariant(), out var result);
 
         Assert.That(success);
         //Assert.That(value, result);
@@ -48,26 +48,25 @@ public class ResxEmbeddedResourceProviderTests
     public void LoadResourceItem_De_ValuesLoaded()
     {
         // Arrange
-        IDictionary<string, string> translations = new Dictionary<string, string>();
         const string key = "de-DE";
         const string resourceFolder = "Bodoconsult.I18N.Test.Resources.Language";
         //const string value = "Is not null";
 
-        IResourceProvider provider = new ResxEmbeddedResourceProvider(TestHelper.CurrentAssembly,
+        ILocalesProvider provider = new ResxEmbeddedResourceProvider(TestHelper.CurrentAssembly,
             resourceFolder);
 
-        Assert.That(!provider.ResourceItems.Any());
+        Assert.That(!provider.LocaleItems.Any());
 
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
-        Assert.That(provider.ResourceItems.Any());
+        Assert.That(provider.LocaleItems.Any());
 
-        var success = provider.ResourceItems.TryGetValue(key.ToUpperInvariant(), out var result);
+        var success = provider.LocaleItems.TryGetValue(key.ToUpperInvariant(), out var result);
 
         Assert.That(success);
 
         // Act
-        provider.LoadResourceItem(key, translations);
+        var translations = provider.LoadLocaleItem(key);
 
         // Assert
         Assert.That(translations.Any());
@@ -82,26 +81,25 @@ public class ResxEmbeddedResourceProviderTests
     public void LoadResourceItem_En_ValuesLoaded()
     {
         // Arrange
-        IDictionary<string, string> translations = new Dictionary<string, string>();
         const string key = "en-US";
         const string resourceFolder = "Bodoconsult.I18N.Test.Resources.Language";
         //const string value = "Is not null";
 
-        IResourceProvider provider = new ResxEmbeddedResourceProvider(TestHelper.CurrentAssembly,
+        ILocalesProvider provider = new ResxEmbeddedResourceProvider(TestHelper.CurrentAssembly,
             resourceFolder);
 
-        Assert.That(!provider.ResourceItems.Any());
+        Assert.That(!provider.LocaleItems.Any());
 
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
-        Assert.That(provider.ResourceItems.Any());
+        Assert.That(provider.LocaleItems.Any());
 
-        var success = provider.ResourceItems.TryGetValue(key.ToUpperInvariant(), out var result);
+        var success = provider.LocaleItems.TryGetValue(key.ToUpperInvariant(), out var result);
 
         Assert.That(success);
 
         // Act
-        provider.LoadResourceItem(key, translations);
+        var translations = provider.LoadLocaleItem(key);
 
         // Assert
         Assert.That(translations.Any());

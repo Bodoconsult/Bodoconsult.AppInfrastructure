@@ -17,62 +17,56 @@ public class I18NEmbeddedResourceProviderTests
     //}
 
     [Test]
-    public void RegisterResourceItems_ValidLocales_ResourceItems()
+    public void RegisterLocaleItems_ValidLocales_ResourceItems()
     {
-
         // Arrange
         const string key = "de";
         const string resourceFolder = "Bodoconsult.I18N.Test.Locales";
         //const string value = "Is not null";
 
-        IResourceProvider provider = new I18NEmbeddedResourceProvider(TestHelper.CurrentAssembly,
+        ILocalesProvider provider = new I18NEmbeddedResourceProvider(TestHelper.CurrentAssembly,
             resourceFolder);
 
-        Assert.That(!provider.ResourceItems.Any());
+        Assert.That(!provider.LocaleItems.Any());
 
         // Act
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
         // Assert
-        Assert.That(provider.ResourceItems.Any());
+        Assert.That(provider.LocaleItems.Any());
 
-        var success = provider.ResourceItems.TryGetValue(key.ToUpperInvariant(), out var result);
+        var success = provider.LocaleItems.TryGetValue(key.ToUpperInvariant(), out var result);
 
         Assert.That(success);
         //Assert.That(value, result);
-
     }
 
 
     [Test]
     public void LoadResourceItem_De_ValuesLoaded()
     {
-
         // Arrange
-
-        IDictionary<string, string> translations  = new Dictionary<string, string>();
         const string key = "de";
         const string resourceFolder = "Bodoconsult.I18N.Test.Locales";
         //const string value = "Is not null";
 
-        IResourceProvider provider = new I18NEmbeddedResourceProvider(TestHelper.CurrentAssembly,
+        ILocalesProvider provider = new I18NEmbeddedResourceProvider(TestHelper.CurrentAssembly,
             resourceFolder);
 
-        Assert.That(!provider.ResourceItems.Any());
+        Assert.That(!provider.LocaleItems.Any());
 
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
-        Assert.That(provider.ResourceItems.Any());
+        Assert.That(provider.LocaleItems.Any());
 
-        var success = provider.ResourceItems.TryGetValue(key.ToUpperInvariant(), out var result);
+        var success = provider.LocaleItems.TryGetValue(key.ToUpperInvariant(), out var result);
 
         Assert.That(success);
 
         // Act
-        provider.LoadResourceItem("de", translations);
+        var translations = provider.LoadLocaleItem("de");
 
         // Assert
         Assert.That(translations.Any());
-
     }
 }

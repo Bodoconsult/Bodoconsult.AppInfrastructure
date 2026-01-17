@@ -1,0 +1,115 @@
+﻿<Window x:Class="Bodoconsult.App.Wpf.ReactiveUI.Views.InputBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="clr-namespace:Bodoconsult.Wpf.Application.Models;assembly=Bodoconsult.Wpf.Application"
+        Title="InputBox" Height="300" Width="500"
+   WindowStartupLocation="CenterScreen"
+   AllowsTransparency="True"
+   Background="Transparent"
+   WindowStyle="None"
+   SizeToContent="WidthAndHeight"
+   FocusManager.FocusedElement=
+          "{Binding ElementName=TxtPassword}"
+       
+        >
+    <Window.Resources>
+        <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.Wpf.Base;component/Resources/Styling/LookAndFeel.xaml" />
+        
+    </Window.Resources>
+
+    <Border CornerRadius="10"
+                            BorderBrush="Gray"
+                            BorderThickness="3"
+                            Background="{ StaticResource DialogBackgroundBrush01}"
+                            Margin="24"
+                            Padding="15">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray"
+                                  Opacity=".50"
+                                  ShadowDepth="16" />
+        </Border.Effect>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*" />
+                <ColumnDefinition Width="300*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0"
+            Grid.Row="0"
+            Grid.RowSpan="3">
+                <Image Name="ImgKey"
+                       Width="50"
+                       Height="50"
+                         Margin="8"
+                         Source="/Bodoconsult.Wpf.Base;component/Resources/Styling/BitmapGraphics/Assets/LogonImage.png">
+                    <Image.Effect>
+                        <DropShadowEffect Color="Gray"
+                        Opacity=".50"
+                        ShadowDepth="8" />
+                    </Image.Effect>
+                </Image>
+            </StackPanel>
+
+            <Label Grid.Column="1"
+       Grid.Row="0"
+       FontSize="18"
+       Margin="10" Content="{ Binding WindowTitle }"
+                    Foreground="{ StaticResource BaseBlackBrush}"
+                   />
+
+
+            
+            <Label Grid.Column="1"
+                     Margin ="0 0 0 5"
+         Grid.Row="1"
+         Name="TxtUserName"
+                    Foreground="{ StaticResource BaseBlackBrush}"
+                     Content="{ Binding UserInstruction }"/>
+
+
+            <TextBox Grid.Column="1"
+             Grid.Row="2"
+             Text="{ Binding UserInput }"
+             Name="TxtPassword"
+                      Foreground="{ StaticResource BaseBlackBrush}" />
+
+
+            <StackPanel Grid.Column="1"
+            Grid.Row="3"
+            Margin="10"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+                <Button Name="BtnLogin"
+                  IsCancel="True"
+                        Padding="25 15 25 15"
+                  Content="{ Binding OkButtonText }"
+                        Style="{StaticResource DefaultButtonStyle01}"
+                  Click="BtnLoginClick">
+
+
+                </Button>
+                <Button Name="BtnCancel"
+                        Margin="25 0 0 0"
+                        Padding="25 15 25 15"
+                  IsDefault="True"
+                  Content="{ Binding EscButtonText }"
+                        Style="{StaticResource DefaultButtonStyle01}"
+                  Click="BtnCancelClick">
+
+                </Button>
+            </StackPanel>
+        </Grid>
+
+    </Border>
+    <!--ShowInTaskBar="False"-->
+
+
+</Window>
+

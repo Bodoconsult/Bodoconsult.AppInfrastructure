@@ -16,7 +16,7 @@ internal class WpfEmbeddedResourceProviderTests
     private const string Path = "Locales";
 
     [Test]
-    public void RegisterResourceItems_ExistingResources_ResourceItemsLoaded()
+    public void RegisterLocaleItems_ExistingResources_ResourceItemsLoaded()
     {
         // Arrange 
         var ass = TestHelper.CurrentAssembly;
@@ -24,44 +24,39 @@ internal class WpfEmbeddedResourceProviderTests
         var provider = new WpfEmbeddedResourceProvider(ass, Path);
 
         // Act  
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
         // Assert
-        Assert.That(provider.ResourceItems, Is.Not.Null);
-        Assert.That(provider.ResourceItems.Count, Is.Not.EqualTo(0));
+        Assert.That(provider.LocaleItems.Count, Is.Not.EqualTo(0));
     }
 
     [Test]
-    public void RegisterResourceItems_ExistingResources_TranslationsLoaded()
+    public void RegisterLocaleItems_ExistingResources_TranslationsLoaded()
     {
         // Arrange 
-        IDictionary<string, string> translations = new Dictionary<string, string>();
-
         var ass = TestHelper.CurrentAssembly;
 
         var provider = new WpfEmbeddedResourceProvider(ass, Path);
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
         // Act  
-        provider.LoadResourceItem("de", translations);
+        var translations = provider.LoadLocaleItem("de");
 
         // Assert
         Assert.That(translations.Count, Is.Not.EqualTo(0));
     }
 
     [Test]
-    public void RegisterResourceItems_ExistingResourcesTrailingSlashes_TranslationsLoaded()
+    public void RegisterLocaleItems_ExistingResourcesTrailingSlashes_TranslationsLoaded()
     {
         // Arrange 
-        IDictionary<string, string> translations = new Dictionary<string, string>();
-
         var ass = TestHelper.CurrentAssembly;
 
         var provider = new WpfEmbeddedResourceProvider(ass, Path);
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
         // Act  
-        provider.LoadResourceItem("de", translations);
+        var translations = provider.LoadLocaleItem("de");
 
         // Assert
         Assert.That(translations.Count, Is.Not.EqualTo(0));

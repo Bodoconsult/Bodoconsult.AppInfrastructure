@@ -45,7 +45,7 @@ public class CsvFileLocalesProvider : BaseResourceProvider
     /// <summary>
     /// Register all available resource items
     /// </summary>
-    public override void RegisterLocalesItems()
+    public override void RegisterLocaleItems()
     {
         if (string.IsNullOrEmpty(_resourceFolder))
         {

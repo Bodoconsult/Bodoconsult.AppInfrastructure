@@ -45,7 +45,7 @@
 //    /// <summary>
 //    /// Register all available resource items
 //    /// </summary>
-//    public override void RegisterResourceItems()
+//    public override void RegisterLocaleItems()
 //    {
 //        var assName = _assembly.GetName().Name;
 

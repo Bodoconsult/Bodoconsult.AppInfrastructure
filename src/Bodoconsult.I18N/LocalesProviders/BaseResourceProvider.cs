@@ -12,7 +12,6 @@ namespace Bodoconsult.I18N.LocalesProviders;
 /// </summary>
 public class BaseResourceProvider : ILocalesProvider
 {
-
     /// <summary>
     /// Current logger action
     /// </summary>
@@ -34,28 +33,22 @@ public class BaseResourceProvider : ILocalesProvider
         return this;
     }
 
-
     /// <summary>
     /// Register all available resource items
     /// </summary>
-    public virtual void RegisterLocalesItems()
+    public virtual void RegisterLocaleItems()
     {
         throw new NotImplementedException();
     }
-
 
     /// <summary>
     /// Load key value pairs for string translations in a translation dictionary.
     /// If a key is already contained in the translation dictionary it should not be added again.
     /// </summary>
     /// <param name="language">Requested language</param>
-    /// <returns>Translation dictionary with key value pairs in.
-    /// </returns>
+    /// <returns>Translation dictionary with key value pairs in.</returns>
     public virtual IDictionary<string, string> LoadLocaleItem(string language)
     {
         throw new NotImplementedException();
     }
-
-
-
 }

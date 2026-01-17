@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using Bodoconsult.App.Wpf.Helpers;
 using NUnit.Framework;
 
-namespace Bodoconsult.App.Wpf.Test;
+namespace Bodoconsult.App.Wpf.Test.HelperTests;
 
 [TestFixture]
 [RequiresThread(ApartmentState.STA)]
@@ -23,41 +23,39 @@ public class WpfUtilityTests
     //    Assert.IsNotNull(brush);
     //}
 
+    private const string XamlFile = @"C:\temp\XamlTestFile.xaml";
+
     [Test]
     public void TestSaveElementAsXamlFile()
     {
-
-        const string xamlFile = @"C:\temp\XamlTestFile.xaml";
-
-        if (File.Exists(xamlFile)) File.Delete(xamlFile);
+        if (File.Exists(XamlFile))
+        {
+            File.Delete(XamlFile);
+        }
 
         var button = new Button { Content = "Hallo" };
 
-        WpfHelper.SaveElementAsXamlFile(button, xamlFile);
+        WpfHelper.SaveElementAsXamlFile(button, XamlFile);
 
-        Assert.That(File.Exists(xamlFile));
-
+        Assert.That(File.Exists(XamlFile));
     }
 
 
     [Test]
     public void TestLoadElementFromXamlFile()
     {
-
-        const string xamlFile = @"C:\temp\XamlTestFile.xaml";
-
-        if (File.Exists(xamlFile))
+        if (File.Exists(XamlFile))
         {
-            File.Delete(xamlFile);
+            File.Delete(XamlFile);
         }
 
         var button = new Button { Content = "Hallo" };
 
-        WpfHelper.SaveElementAsXamlFile(button, xamlFile);
+        WpfHelper.SaveElementAsXamlFile(button, XamlFile);
 
-        Assert.That(File.Exists(xamlFile));
+        Assert.That(File.Exists(XamlFile));
 
-        var buttonErg = (Button)WpfHelper.LoadElementFromXamlFile(xamlFile);
+        var buttonErg = (Button)WpfHelper.LoadElementFromXamlFile(XamlFile);
 
         Assert.That(buttonErg != null);
         Assert.That(buttonErg.Content.ToString() == "Hallo");

@@ -2,7 +2,7 @@
 
 using NUnit.Framework;
 
-namespace Bodoconsult.App.Wpf.Test;
+namespace Bodoconsult.App.Wpf.Test.Services;
 
 [TestFixture]
 public class DispatcherServiceTests

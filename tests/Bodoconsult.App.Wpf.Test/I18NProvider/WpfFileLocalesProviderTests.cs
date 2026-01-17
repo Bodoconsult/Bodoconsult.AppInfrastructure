@@ -13,13 +13,13 @@ internal class WpfFileLocalesProviderTests
     private const string LocalesFiles = "LocalesFiles";
 
     [Test]
-    public void RegisterResourceItems_ExistingLocales_LocalesLoaded()
+    public void RegisterLocaleItems_ExistingLocales_LocalesLoaded()
     {
         // Arrange 
         var provider = new WpfFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
 
         // Act  
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         // Assert
         Assert.That(provider.LocaleItems, Is.Not.Null);
@@ -31,7 +31,7 @@ internal class WpfFileLocalesProviderTests
     {
         // Arrange 
         var provider = new WpfFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         // Act  
         var translations = provider.LoadLocaleItem("en");
@@ -46,7 +46,7 @@ internal class WpfFileLocalesProviderTests
     {
         // Arrange 
         var provider = new WpfFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         // Act  
         var translations = provider.LoadLocaleItem("de");

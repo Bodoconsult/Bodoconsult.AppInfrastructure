@@ -12,13 +12,13 @@ namespace Bodoconsult.App.Avalonia.Test.I18NProvider
         private const string LocalesFiles = "LocalesFiles";
 
         [Test]
-        public void RegisterResourceItems_ExistingLocales_LocalesLoaded()
+        public void RegisterLocaleItems_ExistingLocales_LocalesLoaded()
         {
             // Arrange 
             var provider = new AvaloniaFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
 
             // Act  
-            provider.RegisterLocalesItems();
+            provider.RegisterLocaleItems();
 
             // Assert
             Assert.That(provider.LocaleItems, Is.Not.Null);
@@ -30,7 +30,7 @@ namespace Bodoconsult.App.Avalonia.Test.I18NProvider
         {
             // Arrange 
             var provider = new AvaloniaFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
-            provider.RegisterLocalesItems();
+            provider.RegisterLocaleItems();
 
             // Act  
             var translations = provider.LoadLocaleItem("en");
@@ -45,7 +45,7 @@ namespace Bodoconsult.App.Avalonia.Test.I18NProvider
         {
             // Arrange 
             var provider = new AvaloniaFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
-            provider.RegisterLocalesItems();
+            provider.RegisterLocaleItems();
 
             // Act  
             var translations = provider.LoadLocaleItem("de");

@@ -10,7 +10,7 @@
 //{
 
 //    [Test]
-//    public void RegisterResourceItems_ExistingResources_ResourceItemsLoaded()
+//    public void RegisterLocaleItems_ExistingResources_ResourceItemsLoaded()
 //    {
 //        // Arrange 
 //        var ass = TestHelper.CurrentAssembly;
@@ -19,15 +19,15 @@
 //        var provider = new AvaloniaEmbeddedResourceProvider(ass, path);
 
 //        // Act  
-//        provider.RegisterResourceItems();
+//        provider.RegisterLocaleItems();
 
 //        // Assert
 //        Assert.That(provider.ResourceItems, Is.Not.Null);
-//        Assert.That(provider.ResourceItems.Count, Is.Not.EqualTo(0));
+//        Assert.That(provider.LocaleItems.Count, Is.Not.EqualTo(0));
 //    }
 
 //    [Test]
-//    public void RegisterResourceItems_ExistingResources_TranslationsLoaded()
+//    public void RegisterLocaleItems_ExistingResources_TranslationsLoaded()
 //    {
 //        // Arrange 
 //        IDictionary<string, string> translations = new Dictionary<string, string>();
@@ -36,7 +36,7 @@
 //        var path = "Resources";
 
 //        var provider = new AvaloniaEmbeddedResourceProvider(ass, path);
-//        provider.RegisterResourceItems();
+//        provider.RegisterLocaleItems();
 
 //        // Act  
         
@@ -47,7 +47,7 @@
 //    }
 
 //    [Test]
-//    public void RegisterResourceItems_ExistingResourcesTrailingSlashes_TranslationsLoaded()
+//    public void RegisterLocaleItems_ExistingResourcesTrailingSlashes_TranslationsLoaded()
 //    {
 //        // Arrange 
 //        IDictionary<string, string> translations = new Dictionary<string, string>();
@@ -56,7 +56,7 @@
 //        var path = "/Resources/";
 
 //        var provider = new AvaloniaEmbeddedResourceProvider(ass, path);
-//        provider.RegisterResourceItems();
+//        provider.RegisterLocaleItems();
 
 //        // Act  
 

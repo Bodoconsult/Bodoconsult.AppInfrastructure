@@ -106,7 +106,7 @@ public class I18NServer : II18NServer
 
         Providers.Add(provider);
 
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         foreach (var lo in provider.LocaleItems.Keys)
         {
@@ -134,7 +134,7 @@ public class I18NServer : II18NServer
 
         Providers.Add(provider);
 
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         foreach (var lo in provider.LocaleItems.Keys)
         {

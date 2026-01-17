@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
+using Bodoconsult.I18N.LocalesProviders;
 
 namespace Bodoconsult.I18N.ResourceProviders;
 
@@ -39,7 +40,7 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
     /// <summary>
     /// Register all available resource items
     /// </summary>
-    public override void RegisterResourceItems()
+    public override void RegisterLocaleItems()
     {
 
         var rm = new ResourceManager(_resourcePath, _assembly);
@@ -69,7 +70,7 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
                 {
                     var kvp = new KeyValuePair<string, string>(ietf.ToUpperInvariant(), ietf);
 
-                    ResourceItems.Add(kvp);
+                    LocaleItems.Add(kvp);
                 }
             }
             catch
@@ -79,15 +80,17 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
         }
     }
 
+
     /// <summary>
     /// Load key value pairs for string translations in a translation dictionary.
     /// If a key is already contained in the translation dictionary it should not be added again.
     /// </summary>
     /// <param name="language">Requested language</param>
-    /// <param name="translations">Central translation dictionary to store the key value pairs in.
-    /// </param>
-    public override void LoadResourceItem(string language, IDictionary<string, string> translations)
+    /// <returns>Translation dictionary with key value pairs in.</returns>
+    public override IDictionary<string, string> LoadLocaleItem(string language)
     {
+        var translations = new Dictionary<string, string>();
+
         // Check if language exists
         var success = _cultures.TryGetValue(language.ToUpperInvariant(), out var result);
 
@@ -103,18 +106,17 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
 
         if (result == null)
         {
-            return;
+            return translations;
         }
 
         foreach (DictionaryEntry entry in result)
         {
             var key = entry.Key.ToString() ?? "";
             var translation = result.GetString(entry.Key.ToString() ?? "");
-
-            var p = new KeyValuePair<string, string>(key, translation);
-
-            translations.Add(p);
+            translations.Add(key, translation);
         }
+
+        return translations;
 
         //var content = FileHelper.GetTextResource(_assembly, result);
 

@@ -44,7 +44,7 @@ public class CsvEmbeddedResourceLocalesProvider : BaseResourceProvider
     /// <summary>
     /// Register all available resource items
     /// </summary>
-    public override void RegisterLocalesItems()
+    public override void RegisterLocaleItems()
     {
 
         var len = _resourceFolder.Length;
@@ -70,9 +70,10 @@ public class CsvEmbeddedResourceLocalesProvider : BaseResourceProvider
     /// <param name="language">Requested language</param>
     /// <returns>Translation dictionary with key value pairs in.
     /// </returns>
-    public override IDictionary<string, string> LoadLocaleItem(string language)
+    public override IDictionary<string, string>  LoadLocaleItem(string language )
     {
-        var translations = new Dictionary<string, string>();
+
+        IDictionary<string, string> translations = new Dictionary<string, string>();
 
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);

@@ -1,0 +1,24 @@
+﻿<models:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:models="clr-namespace:Bodoconsult.App.Wpf.Models;assembly=Bodoconsult.App.Wpf">
+
+    <Style x:Key="FrameworkElementStyle" TargetType="FrameworkElement">
+        <!--<Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />-->
+        <!--<Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>-->
+    </Style>
+
+    <Style x:Key="FrameworkElementWithoutOpacityStyle" TargetType="FrameworkElement">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+</models:SharedResourceDictionary>

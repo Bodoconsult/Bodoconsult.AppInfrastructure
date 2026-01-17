@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Bodoconsult.I18N.Helpers;
+using Bodoconsult.I18N.LocalesProviders;
 
 namespace Bodoconsult.I18N.ResourceProviders;
 
@@ -42,7 +43,7 @@ public class I18NEmbeddedResourceProvider: BaseResourceProvider
     /// <summary>
     /// Register all available resource items
     /// </summary>
-    public override void RegisterResourceItems()
+    public override void RegisterLocaleItems()
     {
         var len = _resourceFolder.Length;
 
@@ -54,21 +55,23 @@ public class I18NEmbeddedResourceProvider: BaseResourceProvider
 
             var kvp = new KeyValuePair<string, string>(key, locales);
 
-            ResourceItems.Add(kvp);
+            LocaleItems.Add(kvp);
         }
     }
+
 
     /// <summary>
     /// Load key value pairs for string translations in a translation dictionary.
     /// If a key is already contained in the translation dictionary it should not be added again.
     /// </summary>
     /// <param name="language">Requested language</param>
-    /// <param name="translations">Central translation dictionary to store the key value pairs in.
-    /// </param>
-    public override void LoadResourceItem(string language, IDictionary<string, string> translations)
+    /// <returns>Translation dictionary with key value pairs in.</returns>
+    public override IDictionary<string, string> LoadLocaleItem(string language)
     {
+        IDictionary<string, string> translations = new Dictionary<string, string>();
+
         // Check if language exists
-        var success = ResourceItems.TryGetValue(language.ToUpperInvariant(), out var result);
+        var success = LocaleItems.TryGetValue(language.ToUpperInvariant(), out var result);
 
         if (!success)
         {
@@ -87,5 +90,7 @@ public class I18NEmbeddedResourceProvider: BaseResourceProvider
 
             translations.Add(p);
         }
+
+        return translations;
     }
 }

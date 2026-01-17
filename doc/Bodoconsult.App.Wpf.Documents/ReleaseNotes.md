@@ -1,4 +1,4 @@
-Release notes for Bodoconsult.Wpf.Documents
+Release notes for Bodoconsult.App.Wpf.Documents
 ==========================
 
 # 1.0.8

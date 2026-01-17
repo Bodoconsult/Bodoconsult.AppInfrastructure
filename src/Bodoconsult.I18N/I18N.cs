@@ -217,7 +217,7 @@ public class I18N : II18N
 
         Providers.Add(provider);
 
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         foreach (var lo in provider.LocaleItems.Keys)
         {

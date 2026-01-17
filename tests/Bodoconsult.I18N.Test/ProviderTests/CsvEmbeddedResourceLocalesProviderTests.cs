@@ -17,7 +17,7 @@ internal class CsvEmbeddedResourceLocalesProviderTests
     //}
 
     [Test]
-    public void TestRegisterResourceItems()
+    public void TestRegisterLocaleItems()
     {
 
         // Arrange
@@ -31,7 +31,7 @@ internal class CsvEmbeddedResourceLocalesProviderTests
         Assert.That(!provider.LocaleItems.Any());
 
         // Act
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         // Assert
         Assert.That(provider.LocaleItems.Any());
@@ -58,7 +58,7 @@ internal class CsvEmbeddedResourceLocalesProviderTests
 
         Assert.That(!provider.LocaleItems.Any());
 
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         Assert.That(provider.LocaleItems.Any());
 

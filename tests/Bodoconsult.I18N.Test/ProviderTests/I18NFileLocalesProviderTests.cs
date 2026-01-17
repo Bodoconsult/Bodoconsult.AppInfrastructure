@@ -17,7 +17,7 @@ internal class I18NFileLocalesProviderTests
     //}
 
     [Test]
-    public void TestRegisterResourceItems()
+    public void TestRegisterLocaleItems()
     {
 
         // Arrange
@@ -31,7 +31,7 @@ internal class I18NFileLocalesProviderTests
         Assert.That(!provider.LocaleItems.Any());
 
         // Act
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         // Assert
         Assert.That(provider.LocaleItems.Any());
@@ -60,7 +60,7 @@ internal class I18NFileLocalesProviderTests
 
         Assert.That(!provider.LocaleItems.Any());
 
-        provider.RegisterLocalesItems();
+        provider.RegisterLocaleItems();
 
         Assert.That(provider.LocaleItems.Any());
 

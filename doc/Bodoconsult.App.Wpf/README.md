@@ -254,7 +254,7 @@ Use WpfEmbeddedResourceProvider and WpfFileLocalesProvider to add I18N resources
     private const string Path = "Locales";
 
     [Test]
-    public void RegisterResourceItems_ExistingResources_ResourceItemsLoaded()
+    public void RegisterLocaleItems_ExistingResources_ResourceItemsLoaded()
     {
         // Arrange 
         var ass = TestHelper.CurrentAssembly;
@@ -262,11 +262,11 @@ Use WpfEmbeddedResourceProvider and WpfFileLocalesProvider to add I18N resources
         var provider = new WpfEmbeddedResourceProvider(ass, Path);
 
         // Act  
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
         // Assert
         Assert.That(provider.ResourceItems, Is.Not.Null);
-        Assert.That(provider.ResourceItems.Count, Is.Not.EqualTo(0));
+        Assert.That(provider.LocaleItems.Count, Is.Not.EqualTo(0));
     }
 ```
 

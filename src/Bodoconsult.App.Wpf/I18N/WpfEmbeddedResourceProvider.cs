@@ -1,9 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 using System.Resources;
 using Bodoconsult.App.Wpf.Models;
+using Bodoconsult.I18N.LocalesProviders;
 using Bodoconsult.I18N.ResourceProviders;
 
 namespace Bodoconsult.App.Wpf.I18N;
@@ -28,12 +30,12 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
         _assembly = assembly;
         _resourceFolder = resourceFolder;
 
-        if (_resourceFolder.StartsWith("/"))
+        if (_resourceFolder.StartsWith('/'))
         {
             _resourceFolder = _resourceFolder[1..];
         }
 
-        if (_resourceFolder.EndsWith("/"))
+        if (_resourceFolder.EndsWith('/'))
         {
             _resourceFolder = _resourceFolder[..^1];
         }
@@ -43,7 +45,7 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
     /// <summary>
     /// Register all available resource items
     /// </summary>
-    public override void RegisterResourceItems()
+    public override void RegisterLocaleItems()
     {
 
         var assName = _assembly.GetName().Name;
@@ -65,11 +67,16 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
                 continue;
             }
 
-            var key = lEesource.Key.ToString().Split(',')[0]
-                .ToLowerInvariant()
-                .Replace($"{_resourceFolder}/", string.Empty, StringComparison.InvariantCultureIgnoreCase).Replace(".baml", string.Empty);
+            Debug.Print(_resourceFolder);
 
-            if (!key.StartsWith("culture."))
+            Debug.Print(lEesource.Key.ToString());
+
+            var key = lEesource.Key.ToString().Split(',')[0]
+                .Replace($"{_resourceFolder}/", string.Empty, StringComparison.InvariantCultureIgnoreCase).Replace(".baml", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+
+            Debug.Print(key);
+
+            if (!key.StartsWith("culture.", StringComparison.InvariantCultureIgnoreCase))
             {
                 continue;
             }
@@ -77,30 +84,37 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
             var path = $"pack://application:,,,/{assName};component/{_resourceFolder}/{key}.xaml";
             var kvp = new KeyValuePair<string, string>(key.Replace("culture.", string.Empty), path);
 
-            ResourceItems.Add(kvp);
+            LocaleItems.Add(kvp);
         }
     }
+
 
     /// <summary>
     /// Load key value pairs for string translations in a translation dictionary.
     /// If a key is already contained in the translation dictionary it should not be added again.
     /// </summary>
     /// <param name="language">Requested language</param>
-    /// <param name="translations">Central translation dictionary to store the key value pairs in.
-    /// </param>
-    public override void LoadResourceItem(string language, IDictionary<string, string> translations)
+    /// <returns>Translation dictionary with key value pairs in.</returns>
+    public override IDictionary<string, string> LoadLocaleItem(string language )
     {
+        var translations = new Dictionary<string, string>();
+
+
         // Check if language exists
-        var success = ResourceItems.TryGetValue(language, out var path);
+        var success = LocaleItems.TryGetValue(language, out var path);
 
         if (!success)
         {
-            return;
+            return translations;
         }
+
+        string s = System.IO.Packaging.PackUriHelper.UriSchemePack;
+
+        var uri = new Uri(path, UriKind.RelativeOrAbsolute);
 
         var rd = new SharedResourceDictionary
         {
-            Source = new Uri(path, UriKind.RelativeOrAbsolute)
+            Source = uri
         };
 
         foreach (var key in rd.Keys)
@@ -109,14 +123,17 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
             {
                 continue;
             }
+
             var value = rd[key];
             if (value == null)
             {
                 continue;
             }
 
-            var kvp = new KeyValuePair<string, string>(key.ToString(), value.ToString());
-            translations.Add(kvp);
+            var keyValue = (string)key;
+            translations.Add(keyValue, value.ToString());
         }
+
+        return translations;
     }
 }

@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Bodoconsult.App.Wpf.ReactiveUI.Views.FlowDocumentViewerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:Bodoconsult.Wpf.Base"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <!--<UserControl.Resources >
+        <base:SharedResourceDictionary Source="/Bodoconsult.Wpf.Base;component/Resources/Styling/LookAndFeel.xaml" />
+    </UserControl.Resources>-->
+
+    <DockPanel Background="{Binding Background}">
+
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Button Width="50" Height="50" Command="{Binding PrintDocumentCommand}" Style="{ DynamicResource MetroCircleButtonStyle}">
+                <!--{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}-->
+                <Rectangle Width="28" Height="28" Fill="DarkGray">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_printer}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <Button.ToolTip>
+                    <Label Content="{ DynamicResource Wpf.Base.PrintDocumentButtonTooltip  }" />
+                </Button.ToolTip>
+            </Button>
+
+        </StackPanel>
+
+        <FlowDocumentPageViewer x:Name="FlowDocViewer"  
+                                Margin="0,0,0,0"  
+                                Background="#FFFFFFFF" 
+                                Zoom="100" 
+                                DockPanel.Dock="Top">
+            <FlowDocument x:Name="FlowDoc" 
+                          Foreground="Black" 
+                          FontFamily="Arial"  >
+                
+                <Paragraph x:Name="Para1" FontSize="11">
+                    Blab labal SDADCX dfdsss
+                </Paragraph>
+                <Paragraph x:Name="Para2" FontSize="11">
+                    Blablab alabsdNS ADFAS
+                </Paragraph>
+                
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </DockPanel>
+</UserControl>

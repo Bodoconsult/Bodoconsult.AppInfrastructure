@@ -37,7 +37,7 @@ public class JsonKvpEmbeddedResourceLocalesProvider : BaseResourceProvider
     /// <summary>
     /// Register all available resource items
     /// </summary>
-    public override void RegisterLocalesItems()
+    public override void RegisterLocaleItems()
     {
 
 
