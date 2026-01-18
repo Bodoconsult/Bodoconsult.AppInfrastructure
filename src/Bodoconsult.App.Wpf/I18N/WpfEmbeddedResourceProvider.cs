@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Resources;
 using Bodoconsult.App.Wpf.Models;
 using Bodoconsult.I18N.LocalesProviders;
-using Bodoconsult.I18N.ResourceProviders;
 
 namespace Bodoconsult.App.Wpf.I18N;
 

@@ -1,9 +1,7 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using MigraDoc.DocumentObjectModel;
 using System.Collections.Generic;
-using Bodoconsult.App.Abstractions.Typography;
 
 namespace Bodoconsult.Pdf.PdfSharp;
 

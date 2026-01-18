@@ -1,44 +1,43 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace Bodoconsult.App.Wpf.ReactiveUI.Models
-{
-    //public class MenuCommand : ICommand
-    //{
-    //    private readonly Action _execute;
+namespace Bodoconsult.App.Wpf.ReactiveUI.Models;
 
-    //    private readonly Func<bool> _canExecute;
+//public class MenuCommand : ICommand
+//{
+//    private readonly Action _execute;
 
-    //    public MenuCommand(Action execute, Func<bool> canExecute)
-    //    {
-    //        _execute = execute;
-    //        _canExecute = canExecute;
-    //    }
+//    private readonly Func<bool> _canExecute;
 
-    //    public void Execute(object parameter)
-    //    {
-    //        _execute();
-    //    }
+//    public MenuCommand(Action execute, Func<bool> canExecute)
+//    {
+//        _execute = execute;
+//        _canExecute = canExecute;
+//    }
 
-    //    public bool CanExecute(object parameter)
-    //    {
-    //        return _canExecute();
-    //    }
+//    public void Execute(object parameter)
+//    {
+//        _execute();
+//    }
 
-    //    private void RaiseCanExecuteChanged()
-    //    {
-    //        CommandManager.InvalidateRequerySuggested();
-    //    }
+//    public bool CanExecute(object parameter)
+//    {
+//        return _canExecute();
+//    }
 
-    //    public event EventHandler CanExecuteChanged
-    //    {
-    //        add
-    //        {
-    //            CommandManager.RequerySuggested += value;
-    //        }
-    //        remove
-    //        {
-    //            CommandManager.RequerySuggested -= value;
-    //        }
-    //    }
-    //}
-}
+//    private void RaiseCanExecuteChanged()
+//    {
+//        CommandManager.InvalidateRequerySuggested();
+//    }
+
+//    public event EventHandler CanExecuteChanged
+//    {
+//        add
+//        {
+//            CommandManager.RequerySuggested += value;
+//        }
+//        remove
+//        {
+//            CommandManager.RequerySuggested -= value;
+//        }
+//    }
+//}

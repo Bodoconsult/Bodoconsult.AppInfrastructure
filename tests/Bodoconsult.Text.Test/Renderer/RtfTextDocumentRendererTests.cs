@@ -5,11 +5,9 @@ using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Renderer.Rtf;
 using Bodoconsult.Text.Test.Helpers;
-using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.RtfRendering;
 using NUnit.Framework;
-using System;
 using System.Diagnostics;
 using System.IO;
 

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Collections.Generic;
 using Bodoconsult.App.Wpf.I18N;
 using Bodoconsult.App.Wpf.Test.Helpers;
 using NUnit.Framework;

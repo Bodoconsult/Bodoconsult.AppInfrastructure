@@ -6,74 +6,73 @@ using Avalonia.Interactivity;
 using Bodoconsult.App.Avalonia.Helpers;
 using Bodoconsult.App.Avalonia.Interfaces;
 
-namespace Bodoconsult.App.Avalonia.AppStarter.Views
+namespace Bodoconsult.App.Avalonia.AppStarter.Views;
+
+/// <summary>
+/// Main app window
+/// </summary>
+public partial class MainWindow : Window
 {
     /// <summary>
-    /// Main app window
+    /// View model
     /// </summary>
-    public partial class MainWindow : Window
+    public IMainWindowViewModel MainWindowViewModel { get; private set; }
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    public MainWindow()
     {
-        /// <summary>
-        /// View model
-        /// </summary>
-        public IMainWindowViewModel MainWindowViewModel { get; private set; }
+        InitializeComponent();
+    }
 
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        public MainWindow()
+    /// <summary>
+    /// Inject the view model
+    /// </summary>
+    /// <param name="mainWindowViewModel"></param>
+    public void InjectViewModel(IMainWindowViewModel mainWindowViewModel)
+    {
+        MainWindowViewModel = mainWindowViewModel;
+        DataContext = MainWindowViewModel;
+
+        ResizeWindow();
+
+        MainWindowViewModel.StartEventListener();
+    }
+
+    private void ResizeWindow()
+    {
+        MainWindowViewModel.Width = Width;
+        MainWindowViewModel.Height = Header.Height;
+    }
+
+    private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        ResizeWindow();
+    }
+
+
+    private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        AvaloniaHelper.DisableMaximizeButton(this);
+        AvaloniaHelper.DisableCloseButton(this);
+    }
+
+    private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
+    {
+        // Check if STRG+C is pressed: if no break here else shutdown
+        if (e.Key != Key.C && e.KeyModifiers == KeyModifiers.Control)
         {
-            InitializeComponent();
+            return;
         }
 
-        /// <summary>
-        /// Inject the view model
-        /// </summary>
-        /// <param name="mainWindowViewModel"></param>
-        public void InjectViewModel(IMainWindowViewModel mainWindowViewModel)
-        {
-            MainWindowViewModel = mainWindowViewModel;
-            DataContext = MainWindowViewModel;
+        //if (MessageBox.Show(_mainWindowViewModel.MsgExit, _mainWindowViewModel.AppName, MessageBoxButton.YesNo,
+        //        MessageBoxImage.Stop, MessageBoxResult.No) == MessageBoxResult.No)
+        //{
+        //    return;
+        //}
+        MainWindowViewModel.ShutDown();
 
-            ResizeWindow();
-
-            MainWindowViewModel.StartEventListener();
-        }
-
-        private void ResizeWindow()
-        {
-            MainWindowViewModel.Width = Width;
-            MainWindowViewModel.Height = Header.Height;
-        }
-
-        private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ResizeWindow();
-        }
-
-
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            AvaloniaHelper.DisableMaximizeButton(this);
-            AvaloniaHelper.DisableCloseButton(this);
-        }
-
-        private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
-        {
-            // Check if STRG+C is pressed: if no break here else shutdown
-            if (e.Key != Key.C && e.KeyModifiers == KeyModifiers.Control)
-            {
-                return;
-            }
-
-            //if (MessageBox.Show(_mainWindowViewModel.MsgExit, _mainWindowViewModel.AppName, MessageBoxButton.YesNo,
-            //        MessageBoxImage.Stop, MessageBoxResult.No) == MessageBoxResult.No)
-            //{
-            //    return;
-            //}
-            MainWindowViewModel.ShutDown();
-
-            Close();
-        }
+        Close();
     }
 }

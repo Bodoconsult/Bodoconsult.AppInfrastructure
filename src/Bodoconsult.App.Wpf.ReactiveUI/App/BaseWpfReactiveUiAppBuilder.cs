@@ -3,7 +3,6 @@
 
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using Microsoft.Extensions.Hosting;
 using ReactiveUI;
 using Splat;

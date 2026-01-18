@@ -2,75 +2,70 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ReactiveUI;
 
-namespace Bodoconsult.App.Wpf.ReactiveUI.Interfaces
+namespace Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+
+/// <summary>
+/// Region of the UI
+/// </summary>
+public class UiRegion
 {
-    
-    /// <summary>
-    /// Region of the UI
-    /// </summary>
-    public class UiRegion
+    public UiRegion(string regionName)
     {
-        public UiRegion(string regionName)
-        {
-            RegionName = regionName;
-            Router = new RoutingState();
-        }
-
-
-        public string RegionName { get;  }
-
-
-        public RoutingState Router { get; }
-
-    }
-
-    public class WpfUiRegion : UiRegion
-    {
-        public WpfUiRegion(RoutedViewHost routedViewHost) : base(routedViewHost.Name)
-        {
-            routedViewHost.Router = Router;
-        }
+        RegionName = regionName;
+        Router = new RoutingState();
     }
 
 
-    public interface IRegionManager
+    public string RegionName { get;  }
+
+
+    public RoutingState Router { get; }
+
+}
+
+public class WpfUiRegion : UiRegion
+{
+    public WpfUiRegion(RoutedViewHost routedViewHost) : base(routedViewHost.Name)
     {
+        routedViewHost.Router = Router;
+    }
+}
 
-        Dictionary<string, UiRegion> Regions { get; }
 
-        void RegisterRegion(UiRegion region);
+public interface IRegionManager
+{
 
-        void Navigate<T>(string regionName, T viewModel) where T : class, IRoutableViewModel;
+    Dictionary<string, UiRegion> Regions { get; }
+
+    void RegisterRegion(UiRegion region);
+
+    void Navigate<T>(string regionName, T viewModel) where T : class, IRoutableViewModel;
+}
+
+public class RegionManager: IRegionManager
+{
+
+    public Dictionary<string, UiRegion> Regions { get; } = new();
+
+    public void RegisterRegion(UiRegion region)
+    {
+        Regions.Add(region.RegionName ,region);
     }
 
-    public class RegionManager: IRegionManager
+    public void Navigate<T>(string regionName, T viewModel) where T : class, IRoutableViewModel
     {
-
-        public Dictionary<string, UiRegion> Regions { get; } = new();
-
-        public void RegisterRegion(UiRegion region)
+        if (viewModel == null)
         {
-            Regions.Add(region.RegionName ,region);
+            throw new ArgumentNullException(nameof(viewModel));
         }
 
-        public void Navigate<T>(string regionName, T viewModel) where T : class, IRoutableViewModel
+        if (!Regions.TryGetValue(regionName, out var region))
         {
-            if (viewModel == null)
-            {
-                throw new ArgumentNullException(nameof(viewModel));
-            }
-
-            if (!Regions.TryGetValue(regionName, out var region))
-            {
-                return;
-            }
-
-            region.Router.Navigate.Execute(viewModel);
+            return;
         }
+
+        region.Router.Navigate.Execute(viewModel);
     }
 }

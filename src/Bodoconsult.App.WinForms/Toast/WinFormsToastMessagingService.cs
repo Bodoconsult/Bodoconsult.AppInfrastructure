@@ -3,23 +3,22 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Microsoft.Toolkit.Uwp.Notifications;
 
-namespace Bodoconsult.App.WinForms.Toast
+namespace Bodoconsult.App.WinForms.Toast;
+
+/// <summary>
+/// WinFormsimplementation for <see cref="IToastMessagingService"/>
+/// </summary>
+public class WinFormsToastMessagingService : IToastMessagingService
 {
     /// <summary>
-    /// WinFormsimplementation for <see cref="IToastMessagingService"/>
+    /// Send a simple toast notification to the operating system
     /// </summary>
-    public class WinFormsToastMessagingService : IToastMessagingService
+    /// <param name="notificationRequest">Notification request</param>
+    public void SendSimpleToastMessage(NotifyRequestRecord notificationRequest)
     {
-        /// <summary>
-        /// Send a simple toast notification to the operating system
-        /// </summary>
-        /// <param name="notificationRequest">Notification request</param>
-        public void SendSimpleToastMessage(NotifyRequestRecord notificationRequest)
-        {
-            new ToastContentBuilder()
-                .AddText(notificationRequest.Title)
-                .AddText(notificationRequest.Text)
-                .Show();
-        }
+        new ToastContentBuilder()
+            .AddText(notificationRequest.Title)
+            .AddText(notificationRequest.Text)
+            .Show();
     }
 }

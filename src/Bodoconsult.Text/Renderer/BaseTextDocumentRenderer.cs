@@ -5,7 +5,6 @@ using System.IO;
 using System.Text;
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Interfaces;
-using PdfSharp.Pdf.Content.Objects;
 
 namespace Bodoconsult.Text.Renderer;
 

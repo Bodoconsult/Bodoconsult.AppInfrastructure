@@ -2,45 +2,38 @@
 
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WpfReactiveUiDemoApp.ViewModels
+namespace WpfReactiveUiDemoApp.ViewModels;
+
+/// <summary>
+/// Viewmodel 1
+/// </summary>
+public partial class ViewModel1: ReactiveObject, IRoutableViewModel
 {
+    public ViewModel1(IScreen hostScreen)
+    {
+        HostScreen = hostScreen;
+
+        //this.Back = HostScreen.Router.NavigateBack;
+    }
 
     /// <summary>
-    /// Viewmodel 1
+    /// Text
     /// </summary>
-    public partial class ViewModel1: ReactiveObject, IRoutableViewModel
-    {
-        public ViewModel1(IScreen hostScreen)
-        {
-            HostScreen = hostScreen;
+    [Reactive] private string _text = "View1";
 
-            //this.Back = HostScreen.Router.NavigateBack;
-        }
+    /// <summary>
+    /// Gets a string token representing the current ViewModel, such as 'login' or 'user'.
+    /// </summary>
+    public string UrlPathSegment => "View1";
 
-        /// <summary>
-        /// Text
-        /// </summary>
-        [Reactive] private string _text = "View1";
+    /// <summary>
+    /// Gets the IScreen that this ViewModel is currently being shown in. This
+    /// is usually passed into the ViewModel in the Constructor and saved
+    /// as a ReadOnly Property.
+    /// </summary>
+    public IScreen HostScreen { get; }
 
-        /// <summary>
-        /// Gets a string token representing the current ViewModel, such as 'login' or 'user'.
-        /// </summary>
-        public string UrlPathSegment => "View1";
-
-        /// <summary>
-        /// Gets the IScreen that this ViewModel is currently being shown in. This
-        /// is usually passed into the ViewModel in the Constructor and saved
-        /// as a ReadOnly Property.
-        /// </summary>
-        public IScreen HostScreen { get; }
-
-        public ReactiveCommand<Unit, IRoutableViewModel> Back { get; }
-    }
+    public ReactiveCommand<Unit, IRoutableViewModel> Back { get; }
 }

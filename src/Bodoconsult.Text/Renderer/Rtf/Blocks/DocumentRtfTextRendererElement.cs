@@ -3,11 +3,6 @@
 using Bodoconsult.Text.Documents;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using System;
-using System.Diagnostics;
-using System.Text;
-using Bodoconsult.App.Abstractions.Helpers;
 
 namespace Bodoconsult.Text.Renderer.Rtf.Blocks;
 

@@ -5,30 +5,29 @@ using System.Windows;
 using Bodoconsult.App.Wpf.Services;
 using NUnit.Framework;
 
-namespace Bodoconsult.App.Wpf.Documents.Test
+namespace Bodoconsult.App.Wpf.Documents.Test;
+
+/// <summary>
+/// Setup for the assembly for all tests
+/// </summary>
+[SupportedOSPlatform("windows")]
+[SetUpFixture]
+public static class AssemblySetup
 {
     /// <summary>
-    /// Setup for the assembly for all tests
+    /// At startup of the assembly
     /// </summary>
-    [SupportedOSPlatform("windows")]
-    [SetUpFixture]
-    public static class AssemblySetup
+    [OneTimeSetUp]
+    public static void AssemblyStartUp()
     {
-        /// <summary>
-        /// At startup of the assembly
-        /// </summary>
-        [OneTimeSetUp]
-        public static void AssemblyStartUp()
-        {
-            DispatcherService.OpenDispatcher();
+        DispatcherService.OpenDispatcher();
 
-            var x = Application.Current.Dispatcher;
-        }
+        var x = Application.Current.Dispatcher;
+    }
 
-        [OneTimeTearDown]
-        public static void AssemblyTearDown()
-        {
-            DispatcherService.OpenDispatcher();
-        }
+    [OneTimeTearDown]
+    public static void AssemblyTearDown()
+    {
+        DispatcherService.OpenDispatcher();
     }
 }
