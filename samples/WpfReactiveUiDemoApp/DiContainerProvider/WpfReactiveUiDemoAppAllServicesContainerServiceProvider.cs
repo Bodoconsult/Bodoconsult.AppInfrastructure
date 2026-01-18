@@ -2,14 +2,19 @@
 
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
-using WorkerService1.App;
+using Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
+using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+using ReactiveUI;
+using WpfReactiveUiDemoApp.AppData;
+using WpfReactiveUiDemoApp.ViewLocation;
+using WpfReactiveUiDemoApp.ViewModels;
 
-namespace WorkerService1.DiContainerProvider;
+namespace WpfReactiveUiDemoApp.DiContainerProvider;
 
 /// <summary>
-/// Load all specific WorkerService1 services to DI container. Intended mainly for production
+/// Load all specific WpfReactiveUiDemoApp services to DI container. Intended mainly for production
 /// </summary>
-public class WorkerService1AllServicesContainerServiceProvider : IDiContainerServiceProvider
+public class WpfReactiveUiDemoAppAllServicesContainerServiceProvider : IDiContainerServiceProvider
 {
     /// <summary>
     /// Add DI container services to a DI container
@@ -18,10 +23,13 @@ public class WorkerService1AllServicesContainerServiceProvider : IDiContainerSer
     public void AddServices(DiContainer diContainer)
     {
         // Load all other services required for the app now
-        //var factory = (IDiContainerServiceProviderPackageFactory)new WorkerService1ProductionDiContainerServiceProviderPackageFactory(Globals.Instance);
+        diContainer.AddSingleton<IRegionManager>(new RegionManager());
+        diContainer.AddTransient<MainWindowViewModel, MainWindowViewModel>();
+        diContainer.AddTransient<ViewModel1, ViewModel1>();
+        diContainer.AddTransient<ViewModel2, ViewModel2>();
 
-        //diContainer.AddSingleton(factory);
-        diContainer.AddSingleton<IApplicationService, WorkerService1Service>();
+        diContainer.AddSingleton<IViewLocator, SimpleViewLocator>(); 
+        diContainer.AddSingleton<IApplicationService, WpfReactiveUiDemoAppService>();
 
         // ...
     }

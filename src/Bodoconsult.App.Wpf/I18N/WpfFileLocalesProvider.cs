@@ -5,105 +5,103 @@ using System.Reflection;
 using Bodoconsult.App.Wpf.Models;
 using Bodoconsult.I18N.LocalesProviders;
 
-namespace Bodoconsult.App.Wpf.I18N
+namespace Bodoconsult.App.Wpf.I18N;
+
+/// <summary>
+/// I18NResourceProvider implementation for I18N resources loaded from WPF resource files. Locales file must be named Culture.XX.xaml with XX being the language identifier
+/// </summary>
+public class WpfFileLocalesProvider : BaseResourceProvider
 {
+    private readonly string _resourceFolder;
 
     /// <summary>
-    /// I18NResourceProvider implementation for I18N resources loaded from WPF resource files. Locales file must be named Culture.XX.xaml with XX being the language identifier
+    /// Default ctor
     /// </summary>
-    public class WpfFileLocalesProvider : BaseResourceProvider
+    /// <param name="assembly">Assembly to load the locales from</param>
+    /// <param name="resourceFolder">Folder relative to app path the locales are stored in. Locales file must be named Culture.XX.xaml with XX being the language identifier</param>
+    public WpfFileLocalesProvider(Assembly assembly, string resourceFolder)
     {
-        private readonly string _resourceFolder;
+        var dir = new FileInfo(assembly.Location).DirectoryName;
 
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="assembly">Assembly to load the locales from</param>
-        /// <param name="resourceFolder">Folder relative to app path the locales are stored in. Locales file must be named Culture.XX.xaml with XX being the language identifier</param>
-        public WpfFileLocalesProvider(Assembly assembly, string resourceFolder)
+        if (string.IsNullOrEmpty(dir))
         {
-            var dir = new FileInfo(assembly.Location).DirectoryName;
-
-            if (string.IsNullOrEmpty(dir))
-            {
-                return;
-            }
-
-            _resourceFolder = Path.Combine(dir, resourceFolder);
+            return;
         }
 
-        /// <summary>
-        /// Register all available resource items
-        /// </summary>
-        public override void RegisterLocaleItems()
+        _resourceFolder = Path.Combine(dir, resourceFolder);
+    }
+
+    /// <summary>
+    /// Register all available resource items
+    /// </summary>
+    public override void RegisterLocaleItems()
+    {
+        if (string.IsNullOrEmpty(_resourceFolder))
         {
-            if (string.IsNullOrEmpty(_resourceFolder))
-            {
-                return;
-            }
-
-            var dir = new DirectoryInfo(_resourceFolder);
-
-            foreach (var locale in dir.GetFiles()
-                         .Where(x => x.Name.EndsWith(".xaml", StringComparison.InvariantCultureIgnoreCase)))
-            {
-                var key = locale.Name.Replace(locale.Extension, string.Empty).Replace("Culture.", string.Empty);
-
-                var kvp = new KeyValuePair<string, string>(key, locale.FullName);
-
-                LocaleItems.Add(kvp);
-            }
+            return;
         }
 
+        var dir = new DirectoryInfo(_resourceFolder);
 
-        /// <summary>
-        /// Load key value pairs for string translations in a translation dictionary.
-        /// If a key is already contained in the translation dictionary it should not be added again.
-        /// </summary>
-        /// <param name="language">Requested language</param>
-        /// <returns>Translation dictionary with key value pairs in.
-        /// </returns>
-        public override IDictionary<string, string> LoadLocaleItem(string language)
+        foreach (var locale in dir.GetFiles()
+                     .Where(x => x.Name.EndsWith(".xaml", StringComparison.InvariantCultureIgnoreCase)))
         {
-            var translations = new Dictionary<string, string>();
+            var key = locale.Name.Replace(locale.Extension, string.Empty).Replace("Culture.", string.Empty);
 
-            // Check if language exists
-            var success = LocaleItems.TryGetValue(language, out var path);
+            var kvp = new KeyValuePair<string, string>(key, locale.FullName);
 
-            if (!success)
-            {
-                return translations;
-            }
+            LocaleItems.Add(kvp);
+        }
+    }
 
-            var rd = new SharedResourceDictionary
-            {
-                Source = new Uri(path, UriKind.RelativeOrAbsolute)
-            };
 
-            foreach (var key in rd.Keys)
-            {
-                if (key == null)
-                {
-                    continue;
-                }
+    /// <summary>
+    /// Load key value pairs for string translations in a translation dictionary.
+    /// If a key is already contained in the translation dictionary it should not be added again.
+    /// </summary>
+    /// <param name="language">Requested language</param>
+    /// <returns>Translation dictionary with key value pairs in.
+    /// </returns>
+    public override IDictionary<string, string> LoadLocaleItem(string language)
+    {
+        var translations = new Dictionary<string, string>();
 
-                var key1 = key.ToString();
-                if (string.IsNullOrEmpty(key1))
-                {
-                    continue;
-                }
+        // Check if language exists
+        var success = LocaleItems.TryGetValue(language, out var path);
 
-                var value = rd[key];
-
-                if (value == null)
-                {
-                    continue;
-                }
-
-                translations.Add(key1, value.ToString());
-            }
-
+        if (!success)
+        {
             return translations;
         }
+
+        var rd = new SharedResourceDictionary
+        {
+            Source = new Uri(path, UriKind.RelativeOrAbsolute)
+        };
+
+        foreach (var key in rd.Keys)
+        {
+            if (key == null)
+            {
+                continue;
+            }
+
+            var key1 = key.ToString();
+            if (string.IsNullOrEmpty(key1))
+            {
+                continue;
+            }
+
+            var value = rd[key];
+
+            if (value == null)
+            {
+                continue;
+            }
+
+            translations.Add(key1, value.ToString());
+        }
+
+        return translations;
     }
 }

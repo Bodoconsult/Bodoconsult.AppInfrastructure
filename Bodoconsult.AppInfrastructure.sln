@@ -120,6 +120,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.Wpf.Reactiv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.Wpf.ReactiveUI.Test", "tests\Bodoconsult.App.Wpf.ReactiveUI.Test\Bodoconsult.App.Wpf.ReactiveUI.Test.csproj", "{791227CD-9CD4-4322-9055-6586062FAF59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfReactiveUiDemoApp", "samples\WpfReactiveUiDemoApp\WpfReactiveUiDemoApp.csproj", "{1CB52E0D-255B-422B-83D9-299288553479}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -318,6 +320,10 @@ Global
 		{791227CD-9CD4-4322-9055-6586062FAF59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{791227CD-9CD4-4322-9055-6586062FAF59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{791227CD-9CD4-4322-9055-6586062FAF59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CB52E0D-255B-422B-83D9-299288553479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CB52E0D-255B-422B-83D9-299288553479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CB52E0D-255B-422B-83D9-299288553479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CB52E0D-255B-422B-83D9-299288553479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -374,6 +380,7 @@ Global
 		{43FFFBDD-D8F5-1DA0-1373-4EE1B640388F} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
 		{34770DB1-3A7E-4CF8-93ED-ECECB218E4D4} = {68310C5A-62F2-40F4-A5C6-0314FDAC28E1}
 		{791227CD-9CD4-4322-9055-6586062FAF59} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
+		{1CB52E0D-255B-422B-83D9-299288553479} = {6A52BEBE-4E44-41AC-8D1B-748DFA27D902}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEB92BC2-1DB4-4057-8D49-2E995AA1F80B}

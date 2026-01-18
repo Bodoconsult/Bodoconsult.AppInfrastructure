@@ -3,23 +3,22 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Microsoft.Toolkit.Uwp.Notifications;
 
-namespace Bodoconsult.App.Wpf.Toast
+namespace Bodoconsult.App.Wpf.Toast;
+
+/// <summary>
+/// WPF implementation for <see cref="IToastMessagingService"/>
+/// </summary>
+public class WpfToastMessagingService : IToastMessagingService
 {
     /// <summary>
-    /// WPF implementation for <see cref="IToastMessagingService"/>
+    /// Send a simple toast notification to the operating system
     /// </summary>
-    public class WpfToastMessagingService : IToastMessagingService
+    /// <param name="notificationRequest">Notification request</param>
+    public void SendSimpleToastMessage(NotifyRequestRecord notificationRequest)
     {
-        /// <summary>
-        /// Send a simple toast notification to the operating system
-        /// </summary>
-        /// <param name="notificationRequest">Notification request</param>
-        public void SendSimpleToastMessage(NotifyRequestRecord notificationRequest)
-        {
-            new ToastContentBuilder()
-                .AddText(notificationRequest.Title)
-                .AddText(notificationRequest.Text)
-                .Show();
-        }
+        new ToastContentBuilder()
+            .AddText(notificationRequest.Title)
+            .AddText(notificationRequest.Text)
+            .Show();
     }
 }

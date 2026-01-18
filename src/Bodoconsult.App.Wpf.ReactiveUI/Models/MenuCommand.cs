@@ -1,4 +1,6 @@
-﻿namespace Bodoconsult.App.Wpf.ReactiveUI.Models
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+namespace Bodoconsult.App.Wpf.ReactiveUI.Models
 {
     //public class MenuCommand : ICommand
     //{

@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Bodoconsult.App.Abstractions.DependencyInjection;
 
@@ -10,7 +11,6 @@ namespace Bodoconsult.App.Abstractions.DependencyInjection;
 /// </summary>
 public class DiContainer
 {
-
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -26,7 +26,6 @@ public class DiContainer
     {
         ServiceCollection = serviceCollection;
     }
-
 
     /// <summary>
     /// Current service collection
@@ -45,7 +44,6 @@ public class DiContainer
     {
         ServiceProvider = ServiceCollection.BuildServiceProvider();
     }
-
 
     /// <summary>
     /// Get an instance of a certain type
@@ -69,7 +67,6 @@ public class DiContainer
         }
     }
 
-
     /// <summary>
     /// Add a service scoped. Scoped lifetime services (AddScoped) are created once per client request (connection).
     ///           When using a scoped service in a middleware, inject the service into the Invoke or InvokeAsync method.
@@ -92,7 +89,6 @@ public class DiContainer
         ServiceCollection.AddTransient<TInterface, TInstanceType>();
     }
 
-
     /// <summary>
     /// Add a service as a singleton
     /// </summary>
@@ -102,8 +98,6 @@ public class DiContainer
     {
         ServiceCollection.AddSingleton<TInterface, TInstanceType>();
     }
-
-
 
     /// <summary>
     /// Add a instance as singleton
@@ -115,7 +109,6 @@ public class DiContainer
         ServiceCollection.AddSingleton(instance);
     }
 
-
     /// <summary>
     /// Clear all (intended for testing purposes)
     /// </summary>
@@ -124,7 +117,6 @@ public class DiContainer
         ServiceProvider = null;
         ServiceCollection.Clear();
     }
-
 
     /// <summary>
     /// Adds a singleton service of the type specified with an
@@ -136,7 +128,6 @@ public class DiContainer
     {
         ServiceCollection.AddSingleton(instance);
     }
-
 
     /// <summary>
     /// Adds a singleton service of the type specified with an
@@ -171,13 +162,17 @@ public class DiContainer
 
             var type = x.ServiceType;
 
-            if (type == null ||
-                !typeof(IServiceRequiresAppSettingsUpdate).IsAssignableFrom(type))
+            if (!typeof(IServiceRequiresAppSettingsUpdate).IsAssignableFrom(type))
             {
                 continue;
             }
 
             var instance = (IServiceRequiresAppSettingsUpdate)ServiceProvider.GetService(type);
+
+            if (instance == null)
+            {
+                continue;
+            }
 
             instance.UpdateService();
 
@@ -186,5 +181,14 @@ public class DiContainer
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Create a simple empty host application builder instance
+    /// </summary>
+    /// <returns>Host builder</returns>
+    public static IHostBuilder CreateHost()
+    {
+        return Host.CreateDefaultBuilder();
     }
 }

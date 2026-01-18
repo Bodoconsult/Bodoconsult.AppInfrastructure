@@ -1,18 +1,18 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.BackgroundService.App;
-using WorkerService1.DiContainerProvider;
+using Bodoconsult.App.Wpf.ReactiveUI.App;
+using WpfReactiveUiDemoApp.DiContainerProvider;
 
-namespace WorkerService1;
+namespace WpfReactiveUiDemoApp;
 
-public class WorkerService1AppBuilder : BaseBackgroundServiceAppBuilder
+public class WpfReactiveUiDemoAppAppBuilder : BaseWpfReactiveUiAppBuilder
 {
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="appGlobals">Global app settings</param>
-    public WorkerService1AppBuilder(IAppGlobals appGlobals) : base(appGlobals)
+    public WpfReactiveUiDemoAppAppBuilder(IAppGlobals appGlobals) : base(appGlobals)
     { }
 
     /// <summary>
@@ -20,7 +20,7 @@ public class WorkerService1AppBuilder : BaseBackgroundServiceAppBuilder
     /// </summary>
     public override void LoadDiContainerServiceProviderPackage()
     {
-        var factory = new WorkerService1ProductionDiContainerServiceProviderPackageFactory(AppGlobals);
+        var factory = new WpfReactiveUiDemoAppProductionDiContainerServiceProviderPackageFactory(AppGlobals);
         DiContainerServiceProviderPackage = factory.CreateInstance();
     }
 }
