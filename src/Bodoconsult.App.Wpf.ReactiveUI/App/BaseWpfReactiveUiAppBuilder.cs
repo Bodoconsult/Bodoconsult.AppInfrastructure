@@ -3,39 +3,32 @@
 
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Wpf.AppStarter;
+using Bodoconsult.App.Wpf.Interfaces;
 using Microsoft.Extensions.Hosting;
-using ReactiveUI;
-using Splat;
-using Splat.Microsoft.Extensions.DependencyInjection;
+using ReactiveUI.Builder;
+using System.Reflection;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.App;
 
 /// <summary>
 /// Base class for <see cref="IAppBuilder"/> implementations running a background service but not using GRPC
 /// </summary>
-public class BaseWpfReactiveUiAppBuilder: BaseAppBuilder
+public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
 {
 
-    private readonly IHostBuilder _builder;
     private IHost _host;
+    private readonly List<Assembly> _viewAssemblies;
 
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="appGlobals">Current app globals</param>
+    /// <param name="viewAssemblies">List of assemblies to load views</param>
     /// <param name="args">Current app args from command line</param>
-    public BaseWpfReactiveUiAppBuilder(IAppGlobals appGlobals, string[] args = null) : base(appGlobals)
+    public BaseWpfReactiveUiAppBuilder(IAppGlobals appGlobals, List<Assembly> viewAssemblies, string[] args = null) : base(appGlobals)
     {
-        // Prepare the service builder instance
-        _builder = DiContainer.CreateHost();
-
-        _builder.ConfigureServices(services =>
-        {
-            services.UseMicrosoftDependencyResolver();
-            var resolver = AppLocator.CurrentMutable;
-            resolver.InitializeSplat();
-            resolver.InitializeReactiveUI();
-        });
+        _viewAssemblies = viewAssemblies;
 
         AppGlobals.DiContainer = new DiContainer();
     }
@@ -57,23 +50,45 @@ public class BaseWpfReactiveUiAppBuilder: BaseAppBuilder
     {
         //_builder.Services.AddHostedService<BackgroundServiceAppStarter>();
 
-        _builder.ConfigureServices(services =>
-        {
-            foreach (var service in AppGlobals.DiContainer.ServiceCollection)
-            {
-                services.Add(service);
-            }
-        });
+        var dpr = new MicrosoftDependencyResolver(AppGlobals.DiContainer.ServiceCollection);
 
-        _host = _builder.Build();
-        AppGlobals.DiContainer.LoadServiceProvider(_host.Services);
+        var appB = dpr.CreateReactiveUIBuilder()
+            .WithWpf(); // Register WPF platform services
+
+        foreach (var ass in _viewAssemblies)
+        {
+            appB.WithViewsFromAssembly(ass);
+        }
+
+        var h = appB.BuildApp();
+
+        AppGlobals.DiContainer.BuildServiceProvider();
 
         DiContainerServiceProviderPackage.LateBindObjects(AppGlobals.DiContainer);
-            
+        
+        // Create the viewmodel now
+        var viewModel = CreateViewModel();
 
-        StartApplicationService();
+        // Inject it to UI
+        var appStarter = new WpfStarterUi(this, viewModel);
+        AppStarter = appStarter;
 
-        _host.Run();
+        // Run as singleton app
+        if (AppGlobals.AppStartParameter.IsSingletonApp && appStarter.IsAnotherInstance)
+        {
+            Console.WriteLine($"Another instance of {AppGlobals.AppStartParameter.AppName} is already running! Press any key to proceed!");
+            Console.ReadLine();
+            Environment.Exit(0);
+            return;
+        }
+
+        appStarter.Start();
+
+        appStarter.Wait();
+
+
+        //StartApplicationService();
+
     }
 
     /// <summary>
@@ -84,5 +99,13 @@ public class BaseWpfReactiveUiAppBuilder: BaseAppBuilder
         AppGlobals.EventWaitHandle?.Reset();
         ApplicationServer?.StopApplication();
         _host?.StopAsync();
+    }
+
+    /// <summary>
+    /// Create the view model for the main window
+    /// </summary>
+    public virtual IMainWindowViewModel CreateViewModel()
+    {
+        throw new NotSupportedException();
     }
 }

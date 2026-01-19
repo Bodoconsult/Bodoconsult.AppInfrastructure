@@ -107,6 +107,11 @@ public class WpfStarterUi : BaseAppStarterUi
 
         var window = _viewModel.CreateWindow();
 
+        if (window == null)
+        {
+            return;
+        }
+
         Application.Current.MainWindow = window ;
 
         window.Show();

@@ -2,6 +2,8 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DependencyInjection;
+using Bodoconsult.I18N.DependencyInjection;
+using WpfReactiveUiDemoApp.I18N;
 
 namespace WpfReactiveUiDemoApp.DiContainerProvider;
 
@@ -28,7 +30,12 @@ public class WpfReactiveUiDemoAppAllServicesDiContainerServiceProviderPackage : 
         provider = new DefaultAppLoggerDiContainerServiceProvider(appGlobals.LoggingConfig, appGlobals.Logger);
         ServiceProviders.Add(provider);
 
-        // SWorkerService1 specific services
+        // I18N
+        var factory = new WpfReactiveUiDemoAppI18NFactory();
+        provider = new I18NDiContainerServiceProvider(factory);
+        ServiceProviders.Add(provider);
+
+        // App specific services
         provider = new WpfReactiveUiDemoAppAllServicesContainerServiceProvider();
         ServiceProviders.Add(provider);
     }

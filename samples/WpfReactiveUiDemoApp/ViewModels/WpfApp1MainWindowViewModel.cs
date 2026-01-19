@@ -10,7 +10,7 @@ namespace WpfReactiveUiDemoApp.ViewModels;
 /// <summary>
 /// ViewModel for MainWindow window
 /// </summary>
-public class WpfApp1MainWindowViewModel : MainWindowViewModel
+public class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
 {
     private IRegionManager _regionManager;
 
@@ -20,7 +20,7 @@ public class WpfApp1MainWindowViewModel : MainWindowViewModel
     /// <param name="listener">Current app event listener</param>
     /// <param name="translationService">Translation service</param>
     /// <param name="regionManager">Region manager</param>
-    public WpfApp1MainWindowViewModel(IAppEventListener listener, II18N translationService,
+    public WpfReactiveUiDemoAppMainWindowViewModel(IAppEventListener listener, II18N translationService,
         IRegionManager regionManager) : base(listener, translationService)
     {
         _regionManager = regionManager;
@@ -35,9 +35,10 @@ public class WpfApp1MainWindowViewModel : MainWindowViewModel
         var w = new MainWindow
         {
             WindowState = WindowState.Normal,
-            Visibility = Visibility.Visible
+            Visibility = Visibility.Visible,
+            ViewModel = this
         };
-        w.InjectViewModel(this);
-        return w; 
+
+        return w;
     }
 }

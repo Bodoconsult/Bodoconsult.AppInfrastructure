@@ -1,12 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using ReactiveUI;
-using Splat;
 using System.Windows;
-using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Helpers;
+using ReactiveUI;
+using ReactiveUI.Builder;
+using Splat;
 using WpfReactiveUiDemoApp.AppData;
+using WpfReactiveUiDemoApp.ViewModels;
+using WpfReactiveUiDemoApp.Views;
 
 namespace WpfReactiveUiDemoApp;
 
@@ -20,15 +22,28 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
+        //var rxuiInstance = RxAppBuilder.CreateReactiveUIBuilder()
+        //    .WithWpf() // Register WPF platform services
+        //               //.WithViewsFromAssembly(typeof(App).Assembly) // Register views and view models
+        //    //.RegisterView<MainWindow, MainViewModel>()
+        //    //.RegisterView<FirstView, FirstViewModel>()
+        //    .BuildApp();
+
+        //var mainUIThreadScheduler = rxuiInstance.MainThreadScheduler;
+        //var taskpoolScheduler = rxuiInstance.TaskpoolScheduler;
+
+        var type = typeof(App);
+
         var globals = Globals.Instance;
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForBackgroundServiceApp();
 
         // Set additional app start parameters as required
         var param = globals.AppStartParameter;
-        param.AppName = "WorkerService1: Demo app";
+        param.AppName = "WpfReactiveUiDemoApp: Demo app";
         param.SoftwareTeam = "Robert Leisner";
-        param.LogoRessourcePath = "WorkerService1.Resources.logo.jpg";
-        param.AppFolderName = "WorkerService1";
+        param.LogoRessourcePath = "WpfReactiveUiDemoApp.Resources.logo.jpg";
+        param.LogoAssembly = type.Assembly;
+        param.AppFolderName = "WpfReactiveUiDemoApp";
 
         //const string performanceToken = "--PERF";
 
@@ -38,9 +53,9 @@ public partial class App : Application
         //}
 
         // Now start app buiding process
-        IAppBuilder builder = new WpfReactiveUiDemoAppAppBuilder(globals);
+        var builder = new WpfReactiveUiDemoAppAppBuilder(globals, [type.Assembly]);
 #if !DEBUG
-            AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
+                    AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
 #endif
 
         // Load basic app metadata
@@ -74,12 +89,14 @@ public partial class App : Application
         // Prepare the DI container package
         builder.LoadDiContainerServiceProviderPackage();
         builder.RegisterDiServices();
-        // builder.FinalizeDiContainerSetup(); Do call this method for a background service. It is too early for it
+        // builder.FinalizeDiContainerSetup(); Do not run here
 
         // Now finally start the app and wait
         builder.StartApplication();
 
+        //var service = AppLocator.Current.GetService<IAppLoggerProxy>();
+
         // Initialize ReactiveUI routing
-        AppLocator.CurrentMutable.RegisterViewsForViewModels(typeof(App).Assembly);
+        //AppLocator.CurrentMutable.RegisterViewsForViewModels(typeof(App).Assembly);
     }
 }

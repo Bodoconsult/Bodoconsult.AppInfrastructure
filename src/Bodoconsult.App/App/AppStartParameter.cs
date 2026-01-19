@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 // Licence MIT
 
+using System.Reflection;
 using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.App;
@@ -69,6 +70,11 @@ public class AppStartParameter: IAppStartParameter
     /// Ressource path for the app logo (NO file system path!!!)
     /// </summary>
     public string LogoRessourcePath { get; set; }
+
+    /// <summary>
+    /// Assembly to load the logo from
+    /// </summary>
+    public Assembly LogoAssembly { get; set; }
 
     /// <summary>
     /// The folder name of the app in C:\ProgramData\

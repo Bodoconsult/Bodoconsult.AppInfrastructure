@@ -2,7 +2,8 @@
 
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
+using Bodoconsult.App.Logging;
+using Bodoconsult.App.Wpf.Interfaces;
 using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using ReactiveUI;
 using WpfReactiveUiDemoApp.AppData;
@@ -22,13 +23,16 @@ public class WpfReactiveUiDemoAppAllServicesContainerServiceProvider : IDiContai
     /// <param name="diContainer">Current DI container</param>
     public void AddServices(DiContainer diContainer)
     {
+        // AppEventListener 
+        diContainer.AddSingleton<IAppEventListener, AppEventListener>();
+
         // Load all other services required for the app now
         diContainer.AddSingleton<IRegionManager>(new RegionManager());
-        diContainer.AddTransient<MainWindowViewModel, MainWindowViewModel>();
-        diContainer.AddTransient<ViewModel1, ViewModel1>();
-        diContainer.AddTransient<ViewModel2, ViewModel2>();
+        diContainer.AddTransient<IMainWindowViewModel, WpfReactiveUiDemoAppMainWindowViewModel>();
+        //diContainer.AddTransient<ViewModel1, ViewModel1>();
+        //diContainer.AddTransient<ViewModel2, ViewModel2>();
 
-        diContainer.AddSingleton<IViewLocator, SimpleViewLocator>(); 
+        //diContainer.AddSingleton<IViewLocator, SimpleViewLocator>(); 
         diContainer.AddSingleton<IApplicationService, WpfReactiveUiDemoAppService>();
 
         // ...

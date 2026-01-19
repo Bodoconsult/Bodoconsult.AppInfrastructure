@@ -9,7 +9,7 @@ public class Class1
 
     public void Test()
     {
-        var item = new BaseMenuItem();
+        //var item = new BaseMenuItem();
 
     }
 }

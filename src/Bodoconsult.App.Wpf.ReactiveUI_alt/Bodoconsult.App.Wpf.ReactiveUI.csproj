@@ -1,0 +1,171 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<Platforms>AnyCPU</Platforms>
+
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
+
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageOutputPath>..\..\packages\</PackageOutputPath>
+		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
+		<Authors>Robert Leisner</Authors>
+		<VersionPrefix>1.0.9</VersionPrefix>
+		<Version />
+		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
+		<PackageId>Bodoconsult.App.Wpf.Unity</PackageId>
+		<PackageTags>App;WPF;Unity</PackageTags>
+		<Description>New package</Description>
+		<PackageReleaseNotes>New package</PackageReleaseNotes>
+		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Views\ChangePasswordWindow.xaml.cs" />
+	  <Compile Remove="Views\CommandBarControl.xaml.cs" />
+	  <Compile Remove="Views\DummyControl.xaml.cs" />
+	  <Compile Remove="Views\FlowDocumentReaderControl.xaml.cs" />
+	  <Compile Remove="Views\FlowDocumentViewerControl.xaml.cs" />
+	  <Compile Remove="Views\FsRichTextBox.xaml.cs" />
+	  <Compile Remove="Views\InputBox.xaml.cs" />
+	  <Compile Remove="Views\LoginWindow.xaml.cs" />
+	  <Compile Remove="Views\MainWindowControl.xaml.cs" />
+	  <Compile Remove="Views\MainWindowRibbonControl.xaml.cs" />
+	  <Compile Remove="Views\MenuControl.xaml.cs" />
+	  <Compile Remove="Views\Shell.xaml.cs" />
+	  <Compile Remove="Views\ShellRibbon.xaml.cs" />
+	  <Compile Remove="Views\UiRegion.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="C:\Users\rleisner\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.28\buildTransitive\..\build\native\amd64\KernelTraceControl.dll" />
+	  <None Remove="C:\Users\rleisner\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.28\buildTransitive\..\build\native\amd64\msdia140.dll" />
+	  <None Remove="C:\Users\rleisner\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.28\buildTransitive\..\build\native\arm64\KernelTraceControl.dll" />
+	  <None Remove="C:\Users\rleisner\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.28\buildTransitive\..\build\native\arm64\msdia140.dll" />
+	  <None Remove="Resources\Localization\de.txt" />
+	  <None Remove="Resources\Localization\en.txt" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\aligncenter.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\alignjustify.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\alignleft.PNG" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\alignright.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\codeblock.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\codeinline.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editcopy.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editcut.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editpaste.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editredo.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editundo.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\filesave.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontbold.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontgrow.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontitalic.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontshrink.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontunderline.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\indentdecrease.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\indentincrease.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\listbullets.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\listnumbers.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\LogonImage.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\normaltext.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\PrintDocument.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\save.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\separator.png" />
+	  <None Remove="Resources\Styling\BitmapGraphics\Assets\test.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Remove="Views\ChangePasswordWindow.xaml" />
+	  <Page Remove="Views\CommandBarControl.xaml" />
+	  <Page Remove="Views\DummyControl.xaml" />
+	  <Page Remove="Views\FlowDocumentReaderControl.xaml" />
+	  <Page Remove="Views\FlowDocumentViewerControl.xaml" />
+	  <Page Remove="Views\FsRichTextBox.xaml" />
+	  <Page Remove="Views\InputBox.xaml" />
+	  <Page Remove="Views\LoginWindow.xaml" />
+	  <Page Remove="Views\MainWindowControl.xaml" />
+	  <Page Remove="Views\MainWindowRibbonControl.xaml" />
+	  <Page Remove="Views\MenuControl.xaml" />
+	  <Page Remove="Views\Shell.xaml" />
+	  <Page Remove="Views\ShellRibbon.xaml" />
+	  <Page Remove="Views\UiRegion.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Localization\en.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Localization\de.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\doc\Bodoconsult.App.Wpf.ReactiveUI\README.md" Link="README.md">
+	    <PackagePath>\</PackagePath>
+	    <Pack>true</Pack>
+	  </None>
+	  <None Include="..\..\LICENSE.md" Link="LICENSE.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bodoconsult.App.Wpf\Bodoconsult.App.Wpf.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Styling\BitmapGraphics\Icons\" />
+	  <Folder Include="Resources\Styling\VectorGraphics\Assets\" />
+	  <Folder Include="Resources\Styling\VectorGraphics\Icons\" />
+	  <Folder Include="Views\" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ReactiveUI.WPF" Version="*" />
+		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
+		<PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\aligncenter.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\alignjustify.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\alignleft.PNG" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\alignright.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\codeblock.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\codeinline.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editcopy.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editcut.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editpaste.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editredo.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editundo.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\filesave.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontbold.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontgrow.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontitalic.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontshrink.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontunderline.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\indentdecrease.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\indentincrease.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\listbullets.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\listnumbers.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\LogonImage.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\normaltext.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\PrintDocument.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\save.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\separator.png" />
+	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\test.jpg" />
+	</ItemGroup>
+
+</Project>

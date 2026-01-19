@@ -80,7 +80,7 @@ public static class Program
 
         // Proto services load in GrpcServerAppAppBuilder.RegisterProtoServices()
 
-        // builder.FinalizeDiContainerSetup(); Do call this method for a background service. It is too early for it
+        // builder.FinalizeDiContainerSetup(); Do not call this method for a background service. It is too early for it
 
         // Now finally start the app and wait
         _builder.StartApplication();

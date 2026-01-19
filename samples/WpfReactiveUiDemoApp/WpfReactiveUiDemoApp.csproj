@@ -9,6 +9,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="MainWindow1.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Remove="MainWindow1.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Content Include="appsettings.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
@@ -25,19 +33,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MahApps.Metro" Version="2.4.11" />
-		<PackageReference Include="MahApps.Metro.IconPacks" Version="6.2.1" />
 		<PackageReference Include="ReactiveUI.WPF" Version="*" />
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
 		<PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />
-		<PackageReference Include="Splat" Version="19.2.1" />
-		<PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="19.2.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Views\View2.xaml.cs">
-	    <SubType>Code</SubType>
-	  </Compile>
+		<PackageReference Include="MahApps.Metro" Version="2.4.11" />
+		<PackageReference Include="MahApps.Metro.IconPacks" Version="6.2.1" />
 	</ItemGroup>
 
 </Project>

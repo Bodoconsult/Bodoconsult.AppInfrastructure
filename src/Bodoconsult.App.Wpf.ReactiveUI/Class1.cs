@@ -1,13 +1,9 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+namespace Bodoconsult.App.Wpf.ReactiveUI
+{
+    public class Class1
+    {
+    }
 
-// https://github.com/reactiveui/splat/tree/main/src/Splat.Microsoft.Extensions.DependencyInjection
-
-
-//namespace Bodoconsult.App.Wpf.ReactiveUI
-//{
-//    public class Class1
-//    {
-
-//    }
-//}
+}

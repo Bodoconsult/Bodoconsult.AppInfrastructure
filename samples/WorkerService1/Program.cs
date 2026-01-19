@@ -73,7 +73,7 @@ internal static class Program
         // Prepare the DI container package
         builder.LoadDiContainerServiceProviderPackage();
         builder.RegisterDiServices();
-        // builder.FinalizeDiContainerSetup(); Do call this method for a background service. It is too early for it
+        // builder.FinalizeDiContainerSetup(); Do not call this method for a background service. It is too early for it
 
         // Now finally start the app and wait
         builder.StartApplication();

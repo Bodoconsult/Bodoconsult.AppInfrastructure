@@ -1,0 +1,22 @@
+﻿Wpf.Base.PrintDocumentButtonTooltip=Dokument drucken
+Wpf.Base.NextButtonText=Weiter
+Wpf.Base.CancelButtonText=Abbrechen
+Wpf.Base.LoginButtonText=Anmelden
+ 
+Wpf.Base.ChangePasswordButtonText=Paßwort ändern
+Wpf.Base.ChangePasswordDialogTitle=Bitte altes und neues Paßwort zum Ändern des Paßworts eingeben
+Wpf.Base.PasswordRepeatLabelText=Neues Paßwort wiederholen:
+Wpf.Base.PasswordLabelText=Altes Paßwort:
+Wpf.Base.PasswordRepeatTooltipText=Neues Paßwort wiederholen:
+Wpf.Base.PasswordTooltipText=Neues Paßwort wiederholen
+Wpf.Base.NewPasswordLabelText=Neues Paßwort:
+Wpf.Base.NewPasswordTooltipText=Neues Paßwort eingeben
+
+Wpf.Base.LoginDialogTitle=Bitte Benutzername und Paßwort für die Anmeldung eingeben
+Wpf.Base.UsernameLabelText=Benutzername:
+Wpf.Base.UsernameTooltipText=Hier Benutzernamen eingeben
+
+Wpf.Base.InputBoxOkButtonText=Weiter
+Wpf.Base.InputBoxEscButtonText=Abbrechen
+Wpf.Base.InputBoxWindowTitle=Dateneingabe
+Wpf.Base.InputBoxUserInstruction=Bitte etwas eingeben
