@@ -46,9 +46,13 @@ This repository contains the following Nuget packages:
 
 >   [**Bodoconsult.App**: basic features nearly every app needs like configuration, logging, APM, Toast messages, business transactions and client notifications to simplify client communication...](Bodoconsult.App/README.md)
 
+>   [**Bodoconsult.App.ReactiveUI**: basic features nearly every ReactiveUI based app needs](Bodoconsult.App.ReactiveUI/README.md)
+
 >   [**Bodoconsult.App.WinForms**: more basic features for WinForms based apps](Bodoconsult.App.WinForms/README.md)
 
 >   [**Bodoconsult.App.Wpf**: more basic features for WPF based apps](Bodoconsult.App.Wpf/README.md)
+
+>   [**Bodoconsult.App.Wpf.ReactiveUI**: basic features nearly every ReactiveUI based WPF app needs](Bodoconsult.App.Wpf.ReactiveUI/README.md)
 
 >   [**Bodoconsult.App.Wpf.Documents**: creating reports with WPF based apps](Bodoconsult.App.Wpf.Documents/README.md)
 

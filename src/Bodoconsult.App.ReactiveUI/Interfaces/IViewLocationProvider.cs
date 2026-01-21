@@ -2,7 +2,7 @@
 
 using ReactiveUI;
 
-namespace Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+namespace Bodoconsult.App.ReactiveUI.Interfaces;
 
 /// <summary>
 /// Provider delivering viewmodel-view-mappings for the given DefaultViewLocator 

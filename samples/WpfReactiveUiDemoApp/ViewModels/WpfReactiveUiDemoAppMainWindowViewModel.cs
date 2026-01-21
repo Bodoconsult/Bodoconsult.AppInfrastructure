@@ -2,9 +2,9 @@
 
 using System.Windows;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.ReactiveUI.Extensions;
+using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
-using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using ReactiveUI.SourceGenerators;
 
 namespace WpfReactiveUiDemoApp.ViewModels;

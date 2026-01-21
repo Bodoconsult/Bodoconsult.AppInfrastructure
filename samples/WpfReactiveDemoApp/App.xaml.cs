@@ -1,10 +1,5 @@
-﻿using ReactiveUI;
-using ReactiveUI.Builder;
-using Splat;
-using System.Configuration;
-using System.Data;
+﻿using ReactiveUI.Builder;
 using System.Windows;
-using WpfReactiveDemoApp.ViewModels;
 
 namespace WpfReactiveDemoApp;
 

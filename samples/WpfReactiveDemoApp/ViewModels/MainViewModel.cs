@@ -1,12 +1,7 @@
 ﻿using ReactiveUI;
 using Splat;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfReactiveDemoApp.Views;
 
 namespace WpfReactiveDemoApp.ViewModels;

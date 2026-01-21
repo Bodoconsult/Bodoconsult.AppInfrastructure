@@ -12,11 +12,20 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <rxui:RoutedViewHost 
-            Grid.Row="0" 
-            x:Name="DocumentRegion"
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Stretch" />
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <rxui:RoutedViewHost Grid.Column="0" x:Name="MenuRegion"
+                     HorizontalContentAlignment="Stretch"
+                     VerticalContentAlignment="Stretch" />
+            <rxui:RoutedViewHost Grid.Column="1" x:Name="DocumentRegion"
+                     HorizontalContentAlignment="Stretch"
+                     VerticalContentAlignment="Stretch" />
+        </Grid>
+
+
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15">
             <Button x:Name="GoNextButton" Content="Go to first" />
             <Button x:Name="GoBackButton" Content="Go back" Margin="5 0 0 0" />

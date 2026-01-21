@@ -1,16 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Windows;
-using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
-using ReactiveUI;
-using ReactiveUI.Builder;
-using Splat;
 using WpfReactiveUiDemoApp.AppData;
-using WpfReactiveUiDemoApp.ViewModels;
-using WpfReactiveUiDemoApp.Views;
 
 namespace WpfReactiveUiDemoApp;
 

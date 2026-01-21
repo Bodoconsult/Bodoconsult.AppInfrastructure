@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace Bodoconsult.App.Wpf.ReactiveUI.App;
+namespace Bodoconsult.App.ReactiveUI.DependecyResolvers;
 
 /// <summary>
 /// Represents a placeholder service type for null service registrations.

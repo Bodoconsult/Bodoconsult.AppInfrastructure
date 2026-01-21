@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.Interfaces;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Interfaces;

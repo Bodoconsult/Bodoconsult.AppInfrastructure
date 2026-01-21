@@ -3,8 +3,6 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Diagnostics;
 
 namespace Bodoconsult.App.Abstractions.DependencyInjection;
 

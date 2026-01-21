@@ -3,14 +3,9 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Wpf.Interfaces;
 using Bodoconsult.App.Wpf.ReactiveUI.App;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using ReactiveUI;
-using Splat;
-using System.Reflection;
 using System.Windows.Media;
-using ReactiveUI.Builder;
 using WpfReactiveUiDemoApp.DiContainerProvider;
-using WpfReactiveUiDemoApp.ViewLocation;
 using WpfReactiveUiDemoApp.ViewModels;
 using WpfReactiveUiDemoApp.Views;
 
@@ -41,6 +36,7 @@ public class WpfReactiveUiDemoAppAppBuilder : BaseWpfReactiveUiAppBuilder
     public override void LoadViewLocation(DefaultViewLocator locator)
     {
         locator.Map<FirstViewModel, FirstView>(() => new FirstView());
+        locator.Map<SecondViewModel, SecondView>(() => new SecondView());
     }
 
     /// <summary>

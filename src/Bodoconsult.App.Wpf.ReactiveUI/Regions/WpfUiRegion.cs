@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 
-namespace Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 
 /// <summary>
 /// <see cref="UiRegion"/> implementation for WPF

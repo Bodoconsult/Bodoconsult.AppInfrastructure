@@ -4,7 +4,7 @@ using System.Reactive.Concurrency;
 using Bodoconsult.App.Abstractions.Interfaces;
 using ReactiveUI.Builder;
 
-namespace Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+namespace Bodoconsult.App.ReactiveUI.Interfaces;
 
 /// <summary>
 /// <see cref="IAppGlobals"/> with enhancements for ReactiveUI usage

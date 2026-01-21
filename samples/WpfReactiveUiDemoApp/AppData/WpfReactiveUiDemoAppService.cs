@@ -6,7 +6,6 @@ using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.BusinessTransactions.RequestData;
-using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
 
 namespace WpfReactiveUiDemoApp.AppData;
@@ -151,7 +150,7 @@ public class WpfReactiveUiDemoAppService : IApplicationService
         }
 
         _isStopped = true;
-
+        _isStarting = true;
 
 
         // Do all needed to stop youe app correctly

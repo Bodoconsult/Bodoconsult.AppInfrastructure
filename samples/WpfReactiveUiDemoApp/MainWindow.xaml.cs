@@ -1,11 +1,10 @@
-﻿using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
-using ReactiveUI;
-using System.Drawing;
+﻿using ReactiveUI;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using System.Windows.Forms;
+using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
+using WpfReactiveUiDemoApp.AppData;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp;
@@ -56,10 +55,22 @@ public partial class MainWindow
 
         viewModel.Region1 = viewModel.RegionManager.CreateWpfUiRegion(this.DocumentRegion);
 
+        viewModel.Region2 = viewModel.RegionManager.CreateWpfUiRegion(this.MenuRegion);
+
         this.OneWayBind(viewModel, p => p.Region1.Router, xy => xy.DocumentRegion.Router)
+            .DisposeWith(disposables);
+
+        this.OneWayBind(viewModel, p => p.Region2.Router, xy => xy.MenuRegion.Router)
             .DisposeWith(disposables);
 
         this.BindCommand(viewModel, x => x.SaveCommand, x => x.GoNextButton)
             .DisposeWith(disposables);
+
+        this.BindCommand(viewModel, x => x.Region1.GoBack, x => x.GoBackButton)
+            .DisposeWith(disposables);
+
+        var vm2 = new SecondViewModel(viewModel.Region2);
+
+        viewModel.Region2.Navigate(vm2);
     }
 }

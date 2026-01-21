@@ -5,11 +5,11 @@ using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Wpf.AppStarter;
 using Bodoconsult.App.Wpf.Interfaces;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Builder;
 using Splat;
-using System.Reflection;
+using Bodoconsult.App.ReactiveUI.DependecyResolvers;
+using Bodoconsult.App.ReactiveUI.Interfaces;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.App;
 
@@ -50,9 +50,6 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
 
         // View location
         appB.ConfigureViewLocator(LoadViewLocation);
-
-        
-
         var h = appB.BuildApp();
 
         if (dpr.ServiceProvider == null)
@@ -85,8 +82,6 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
         //// For checking if DI container works
         //var service = AppLocator.Current.GetService<IAppLoggerProxy>();
         //var service2 = AppGlobals.DiContainer.Get<WpfReactiveUiDemoAppMainWindowViewModel>();
-
-
 
         // Logger
         AddLogger();

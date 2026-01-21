@@ -3,11 +3,10 @@
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Logging;
-using Bodoconsult.App.Wpf.Interfaces;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 using WpfReactiveUiDemoApp.AppData;
-using WpfReactiveUiDemoApp.ViewLocation;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp.DiContainerProvider;
@@ -30,8 +29,6 @@ public class WpfReactiveUiDemoAppAllServicesContainerServiceProvider : IDiContai
         diContainer.AddSingleton<IRegionManager>(new RegionManager());
         diContainer.AddTransient<WpfReactiveUiDemoAppMainWindowViewModel, WpfReactiveUiDemoAppMainWindowViewModel>();
         diContainer.AddTransient<FirstViewModel, FirstViewModel>();
-
-        diContainer.AddTransient<IViewLocator, WpfReactiveUiDemoAppViewLocator>();
 
         //diContainer.AddTransient<ViewModel1, ViewModel1>();
         //diContainer.AddTransient<ViewModel2, ViewModel2>();
