@@ -19,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using ReactiveUI.SourceGenerators;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
 
@@ -31,27 +32,27 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     private bool _showInTaskbar;
     private WindowState _windowState;
 
-    private DispatcherTimer _dispatcherTimer;
+    private DispatcherTimer? _dispatcherTimer;
 
     private const int MaxNumberOfLogEntries = 100;
 
-    private readonly IAppEventListener _listener;
+    private readonly IAppEventListener? _listener;
 
     private readonly List<string> _logData = new();
 
     private EventLevel _logEventLevel;
     private double _width = 100;
     private double _height = 100;
-    private ObservableAsPropertyHelper<double> _headerHeight;
-    private IAppBuilder _appBuilder;
-    private string _msgConsoleWait;
-    private string _msgHowToShutdownServer;
+    private ObservableAsPropertyHelper<double> _headerHeight = ObservableAsPropertyHelper<double>.Default(0);
+    private IAppBuilder? _appBuilder;
+    private string _msgConsoleWait = string.Empty;
+    private string _msgHowToShutdownServer = string.Empty;
     private string _msgExit = "Exit the app?";
-    private BitmapImage _logo;
+    private BitmapImage? _logo;
     private Color _headerBackColor = Colors.Coral;
-    private string _msgServerIsListeningOnPort;
-    private string _msgServerProcessId;
-    private string _appExe;
+    private string _msgServerIsListeningOnPort = string.Empty;
+    private string _msgServerProcessId = string.Empty;
+    private string? _appExe;
     private bool _minimizeToTray;
 
     private readonly SolidColorBrush _brush = new(Colors.LightSteelBlue);
@@ -65,14 +66,20 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// </summary>
     /// <param name="listener">Current EventSource listener: neede to bring logging entries to UI</param>
     /// <param name="translationService">Translation service</param>
-    public MainWindowViewModel(IAppEventListener listener, II18N translationService)
+    /// <param name="regionManager">Current region manager</param>
+    public MainWindowViewModel(IAppEventListener? listener, II18N? translationService, IRegionManager? regionManager)
     {
         TranslationService = translationService;
         _listener = listener;
+        RegionManager = regionManager;
         NotifyIconOpenCommand = new RelayCommand(() => { WindowState = WindowState.Normal; });
         NotifyIconExitCommand = new RelayCommand(ShutDown);
         WindowState = WindowState.Normal;
         ShowInTaskbar = true;
+
+        var doc = new FlowDocument();
+        _flowDoc = ObservableAsPropertyHelper<FlowDocument>.Default(doc);
+
 
         //this.WhenAnyValue(x => x._flowDoc)
         //    .Select(x=> x.Value)
@@ -87,7 +94,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// II18N instance to use with MVVM / WPF / Xamarin / Avalonia
     /// </summary>
     /// <returns>Translated string</returns>
-    public II18N TranslationService { get; }
+    public II18N? TranslationService { get; }
 
     /// <summary>
     /// Menu text for open menu in system tray bar
@@ -112,7 +119,25 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// <summary>
     /// Current region manager
     /// </summary>
-    public IRegionManager RegionManager { get; }
+    public IRegionManager? RegionManager { get; }
+
+    /// <summary>
+    /// Region 1
+    /// </summary>
+    [Reactive]
+    public partial UiRegion? Region1 { get; set; }
+
+    /// <summary>
+    /// Region 2
+    /// </summary>
+    [Reactive]
+    public partial UiRegion? Region2 { get; set; }
+
+    /// <summary>
+    /// Region 3
+    /// </summary>
+    [Reactive]
+    public partial UiRegion? Region3 { get; set; }
 
     /// <summary>
     /// Current window state
@@ -168,7 +193,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// <summary>
     /// Current app start process handler
     /// </summary>
-    public IAppBuilder AppBuilder
+    public IAppBuilder? AppBuilder
     {
         get => _appBuilder;
         private set => this.RaiseAndSetIfChanged(ref _appBuilder, value);
@@ -225,7 +250,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// </summary>
     public string AppName
     {
-        get => AppBuilder.AppGlobals.AppStartParameter.AppName;
+        get => AppBuilder?.AppGlobals.AppStartParameter.AppName ?? string.Empty;
         set
         {
             //if (value == AppBuilder.AppGlobals.AppStartParameter.AppName)
@@ -242,7 +267,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// </summary>
     public string AppExe
     {
-        get => _appExe;
+        get => _appExe ?? string.Empty;
         //set
         //{
         //    if (value == _appExe)
@@ -262,7 +287,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     public string FullAppName
     {
         get =>
-            $"{AppBuilder.AppGlobals.AppStartParameter.AppName} {AppBuilder.AppGlobals.AppStartParameter.AppVersion}";
+            $"{AppBuilder?.AppGlobals.AppStartParameter.AppName} {AppBuilder?.AppGlobals.AppStartParameter.AppVersion}";
         set
         {
             //if (value == AppBuilder.AppGlobals.AppStartParameter.AppName)
@@ -279,7 +304,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// </summary>
     public string AppVersion
     {
-        get => AppBuilder.AppGlobals.AppStartParameter.AppVersion;
+        get => AppBuilder?.AppGlobals.AppStartParameter.AppVersion ?? string.Empty;
         set
         {
             //if (value == AppBuilder.AppGlobals.AppStartParameter.AppVersion)
@@ -357,7 +382,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// </summary>
     public void ShutDown()
     {
-        AppBuilder.StopApplication();
+        AppBuilder?.StopApplication();
 
         _dispatcherTimer?.Stop();
 
@@ -490,7 +515,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// <summary>
     /// The logo to use for the user interface
     /// </summary>
-    public BitmapImage Logo
+    public BitmapImage? Logo
     {
         get => _logo;
         private set => this.RaiseAndSetIfChanged(ref _logo, value);
@@ -535,14 +560,14 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     public void StartEventListener()
     {
         _dispatcherTimer = new DispatcherTimer();
-        _dispatcherTimer.Tick += dispatcherTimer_Tick;
+        _dispatcherTimer.Tick += dispatcherTimer_Tick!;
         _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
         _dispatcherTimer.Start();
     }
 
     private void dispatcherTimer_Tick(object sender, EventArgs e)
     {
-        _dispatcherTimer.Stop();
+        _dispatcherTimer?.Stop();
 
         try
         {
@@ -557,10 +582,10 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
         //LogWindow.SelectionStart = LogWindow.Text.Length;
         //LogWindow.SelectionLength = 0;
 
-        _dispatcherTimer.Start();
+        _dispatcherTimer?.Start();
     }
 
 
     /// <summary>Gets the Router associated with this Screen.</summary>
-    public RoutingState Router { get; set; } = new RoutingState();
+    public RoutingState Router { get; set; } = new();
 }

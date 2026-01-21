@@ -16,27 +16,26 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ReactiveUI;
 
-namespace WpfReactiveDemoApp.Views
+namespace WpfReactiveDemoApp.Views;
+
+/// <summary>
+/// Interaktionslogik für FirstView.xaml
+/// </summary>
+public partial class FirstView
 {
-    /// <summary>
-    /// Interaktionslogik für FirstView.xaml
-    /// </summary>
-    public partial class FirstView
+    public FirstView()
     {
-        public FirstView()
-        {
-            InitializeComponent();
+        InitializeComponent();
             
-            //this.WhenAnyValue(x => x.ViewModel).BindTo(this, x => x.DataContext);
+        //this.WhenAnyValue(x => x.ViewModel).BindTo(this, x => x.DataContext);
 
 
-            this.WhenActivated(
-                d =>
-                {
-                    d(
-                        this.Bind(ViewModel, vm => vm.Test, view => view.PathTextBlock.Text)
-                        );
-                });
-        }
+        this.WhenActivated(
+            d =>
+            {
+                d(
+                    this.Bind(ViewModel, vm => vm.Test, view => view.PathTextBlock.Text)
+                );
+            });
     }
 }

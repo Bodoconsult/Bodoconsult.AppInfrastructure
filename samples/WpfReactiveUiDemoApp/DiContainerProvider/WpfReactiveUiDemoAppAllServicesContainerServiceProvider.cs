@@ -28,7 +28,11 @@ public class WpfReactiveUiDemoAppAllServicesContainerServiceProvider : IDiContai
 
         // Load all other services required for the app now
         diContainer.AddSingleton<IRegionManager>(new RegionManager());
-        diContainer.AddTransient<IMainWindowViewModel, WpfReactiveUiDemoAppMainWindowViewModel>();
+        diContainer.AddTransient<WpfReactiveUiDemoAppMainWindowViewModel, WpfReactiveUiDemoAppMainWindowViewModel>();
+        diContainer.AddTransient<FirstViewModel, FirstViewModel>();
+
+        diContainer.AddTransient<IViewLocator, WpfReactiveUiDemoAppViewLocator>();
+
         //diContainer.AddTransient<ViewModel1, ViewModel1>();
         //diContainer.AddTransient<ViewModel2, ViewModel2>();
 

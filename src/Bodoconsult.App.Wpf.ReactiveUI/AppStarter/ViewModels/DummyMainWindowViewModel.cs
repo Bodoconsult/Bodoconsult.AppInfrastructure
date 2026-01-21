@@ -10,7 +10,7 @@ public class DummyMainWindowViewModel: MainWindowViewModel
     /// <summary>
     /// Default ctor
     /// </summary>
-    public DummyMainWindowViewModel() : base(null, null)
+    public DummyMainWindowViewModel() : base(null, null, null)
     {
     }
 }

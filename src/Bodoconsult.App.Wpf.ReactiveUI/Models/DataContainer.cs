@@ -10,10 +10,10 @@ public class DataContainer<T>
     /// <summary>
     /// Title
     /// </summary>
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     /// <summary>
     /// The data object to transport
     /// </summary>
-    public T Data { get; set; }
+    public T? Data { get; set; }
 }

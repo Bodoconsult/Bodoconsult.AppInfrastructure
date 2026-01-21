@@ -5,8 +5,10 @@ using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Wpf.AppStarter;
 using Bodoconsult.App.Wpf.Interfaces;
-using Microsoft.Extensions.Hosting;
+using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+using ReactiveUI;
 using ReactiveUI.Builder;
+using Splat;
 using System.Reflection;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.App;
@@ -16,20 +18,13 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.App;
 /// </summary>
 public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
 {
-
-    private IHost _host;
-    private readonly List<Assembly> _viewAssemblies;
-
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="appGlobals">Current app globals</param>
-    /// <param name="viewAssemblies">List of assemblies to load views</param>
     /// <param name="args">Current app args from command line</param>
-    public BaseWpfReactiveUiAppBuilder(IAppGlobals appGlobals, List<Assembly> viewAssemblies, string[] args = null) : base(appGlobals)
+    public BaseWpfReactiveUiAppBuilder(IAppGlobals appGlobals, string[]? args = null) : base(appGlobals)
     {
-        _viewAssemblies = viewAssemblies;
-
         AppGlobals.DiContainer = new DiContainer();
     }
 
@@ -48,24 +43,54 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
     /// </summary>
     public override void StartApplication()
     {
-        //_builder.Services.AddHostedService<BackgroundServiceAppStarter>();
-
         var dpr = new MicrosoftDependencyResolver(AppGlobals.DiContainer.ServiceCollection);
 
         var appB = dpr.CreateReactiveUIBuilder()
             .WithWpf(); // Register WPF platform services
 
-        foreach (var ass in _viewAssemblies)
-        {
-            appB.WithViewsFromAssembly(ass);
-        }
+        // View location
+        appB.ConfigureViewLocator(LoadViewLocation);
+
+        
 
         var h = appB.BuildApp();
 
-        AppGlobals.DiContainer.BuildServiceProvider();
+        if (dpr.ServiceProvider == null)
+        {
+            throw new ArgumentNullException(nameof(dpr.ServiceProvider));
+        }
+
+        if (AppLocator.Current is MicrosoftDependencyResolver resolver)
+        {
+            resolver.UpdateContainer(dpr.ServiceProvider);
+        }
+        else
+        {
+            // Will be disposed with the InternalLocator
+            AppLocator.SetLocator(dpr);
+        }
+
+        if (AppGlobals is IReactiveUiAppGlobals uiAppGlobals)
+        {
+            uiAppGlobals.ReactiveUiInstance = h;
+
+            uiAppGlobals.MainUiThreadScheduler = h.MainThreadScheduler;
+            uiAppGlobals.TaskpoolScheduler = h.TaskpoolScheduler;
+        }
+
+        AppGlobals.DiContainer.LoadServiceProvider(dpr.ServiceProvider);
 
         DiContainerServiceProviderPackage.LateBindObjects(AppGlobals.DiContainer);
-        
+
+        //// For checking if DI container works
+        //var service = AppLocator.Current.GetService<IAppLoggerProxy>();
+        //var service2 = AppGlobals.DiContainer.Get<WpfReactiveUiDemoAppMainWindowViewModel>();
+
+
+
+        // Logger
+        AddLogger();
+
         // Create the viewmodel now
         var viewModel = CreateViewModel();
 
@@ -86,11 +111,27 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
 
         appStarter.Wait();
 
-
-        //StartApplicationService();
-
+        StartApplicationService();
     }
 
+    /// <summary>
+    /// Add logging
+    /// </summary>
+    public virtual void AddLogger()
+    {
+        //var logger = AppGlobals.DiContainer.Get<IAppLoggerProxy>();
+        //var loggerFactory = logger.LoggerFactory;
+    }
+
+    /// <summary>
+    /// Load view location
+    /// </summary>
+    /// <param name="locator">The locator to use for the app instance</param>
+    public virtual void LoadViewLocation(DefaultViewLocator locator)
+    {
+        // Do nothing
+    }
+    
     /// <summary>
     /// Stops the application
     /// </summary>
@@ -98,7 +139,6 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
     {
         AppGlobals.EventWaitHandle?.Reset();
         ApplicationServer?.StopApplication();
-        _host?.StopAsync();
     }
 
     /// <summary>

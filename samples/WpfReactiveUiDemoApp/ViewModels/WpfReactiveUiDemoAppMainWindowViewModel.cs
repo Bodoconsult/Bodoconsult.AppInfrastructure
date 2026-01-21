@@ -3,17 +3,17 @@
 using System.Windows;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
+using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
 using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
+using ReactiveUI.SourceGenerators;
 
 namespace WpfReactiveUiDemoApp.ViewModels;
 
 /// <summary>
 /// ViewModel for MainWindow window
 /// </summary>
-public class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
+public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
 {
-    private IRegionManager _regionManager;
-
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -21,10 +21,8 @@ public class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
     /// <param name="translationService">Translation service</param>
     /// <param name="regionManager">Region manager</param>
     public WpfReactiveUiDemoAppMainWindowViewModel(IAppEventListener listener, II18N translationService,
-        IRegionManager regionManager) : base(listener, translationService)
-    {
-        _regionManager = regionManager;
-    }
+        IRegionManager regionManager) : base(listener, translationService, regionManager)
+    { }
 
     /// <summary>
     /// Create the main form of the application
@@ -34,11 +32,25 @@ public class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
     {
         var w = new MainWindow
         {
+            ViewModel = this,
             WindowState = WindowState.Normal,
             Visibility = Visibility.Visible,
-            ViewModel = this
         };
 
         return w;
+    }
+
+    [ReactiveCommand]
+    public void Save()
+    {
+        try
+        {
+            Region1?.Navigate(new FirstViewModel(Region1));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

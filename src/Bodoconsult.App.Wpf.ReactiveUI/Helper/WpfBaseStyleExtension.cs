@@ -14,7 +14,7 @@ public class WpfBaseResourceExtension : MarkupExtension
     /// <summary>
     /// Resource key which we want to extract
     /// </summary>
-    public string ResourceKey { get; set; }
+    public string ResourceKey { get; set; } = string.Empty;
     /// <summary>
     /// Overriding base function which will return key from RD
     /// </summary>

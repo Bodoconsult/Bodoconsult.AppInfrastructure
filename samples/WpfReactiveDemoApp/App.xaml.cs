@@ -6,29 +6,28 @@ using System.Data;
 using System.Windows;
 using WpfReactiveDemoApp.ViewModels;
 
-namespace WpfReactiveDemoApp
+namespace WpfReactiveDemoApp;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+
+    protected override void OnStartup(StartupEventArgs e)
     {
+        base.OnStartup(e);
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
+        var rxuiInstance = RxAppBuilder.CreateReactiveUIBuilder()
+            .WithWpf() // Register WPF platform services
+            .WithViewsFromAssembly(typeof(App).Assembly) // Register views and view models
+            .BuildApp();
 
-            var rxuiInstance = RxAppBuilder.CreateReactiveUIBuilder()
-                .WithWpf() // Register WPF platform services
-                .WithViewsFromAssembly(typeof(App).Assembly) // Register views and view models
-                .BuildApp();
+        var mainUIThreadScheduler = rxuiInstance.MainThreadScheduler;
+        var taskpoolScheduler = rxuiInstance.TaskpoolScheduler;
 
-            var mainUIThreadScheduler = rxuiInstance.MainThreadScheduler;
-            var taskpoolScheduler = rxuiInstance.TaskpoolScheduler;
-
-            var test = rxuiInstance.Current.GetService<MainViewModel>();
-        }
+        //var test = rxuiInstance.Current.GetService<MainViewModel>();
+    }
 
         
-    }
 }

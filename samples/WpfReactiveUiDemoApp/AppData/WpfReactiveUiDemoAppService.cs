@@ -60,32 +60,32 @@ public class WpfReactiveUiDemoAppService : IApplicationService
     /// </summary>
     public void StartApplication()
     {
-        _isStarting = true;
+        //_isStarting = true;
 
-        if (_isStopped)
-        {
-            return;
-        }
+        //if (_isStopped)
+        //{
+        //    return;
+        //}
 
-        _isStarting = false;
+        //_isStarting = false;
 
-        // Do start your workload here
-        var i = 0;
+        //// Do start your workload here
+        //var i = 0;
 
-        while (i < 15)
-        {
-            _appLogger.LogWarning( "Processing workload...");
-            AsyncHelper.Delay(1000);
-            i++;
-        }
+        //while (i < 15)
+        //{
+        //    _appLogger.LogWarning( "Processing workload...");
+        //    AsyncHelper.Delay(1000);
+        //    i++;
+        //}
 
-        if (RequestApplicationStopDelegate == null)
-        {
-            return;
-        }
+        //if (RequestApplicationStopDelegate == null)
+        //{
+        //    return;
+        //}
 
-        // Fire app stop now if workload is done
-        AsyncHelper.FireAndForget(RequestApplicationStopDelegate.Invoke);
+        //// Fire app stop now if workload is done
+        //AsyncHelper.FireAndForget(RequestApplicationStopDelegate.Invoke);
     }
 
     /// <summary>

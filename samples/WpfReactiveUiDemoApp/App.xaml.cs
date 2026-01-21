@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Windows;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Helpers;
+using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Builder;
 using Splat;
@@ -53,7 +55,7 @@ public partial class App : Application
         //}
 
         // Now start app buiding process
-        var builder = new WpfReactiveUiDemoAppAppBuilder(globals, [type.Assembly]);
+        var builder = new WpfReactiveUiDemoAppAppBuilder(globals);
 #if !DEBUG
                     AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
 #endif
@@ -93,10 +95,5 @@ public partial class App : Application
 
         // Now finally start the app and wait
         builder.StartApplication();
-
-        //var service = AppLocator.Current.GetService<IAppLoggerProxy>();
-
-        // Initialize ReactiveUI routing
-        //AppLocator.CurrentMutable.RegisterViewsForViewModels(typeof(App).Assembly);
     }
 }
