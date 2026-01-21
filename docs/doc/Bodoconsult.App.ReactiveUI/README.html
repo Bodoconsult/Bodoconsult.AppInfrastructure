@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Bodoconsult.App.Avalonia | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Bodoconsult.App.Avalonia | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/doc/Bodoconsult.App.ReactiveUI/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="bodoconsultappavalonia">Bodoconsult.App.Avalonia</h1>
+
+<h1 id="overview">Overview</h1>
+<h2 id="what-does-the-library">What does the library</h2>
+<p>Bodoconsult.App.Avalonia is a library with basic functionality for multilayered monolithic Avalonia based applications.</p>
+<h2 id="how-to-use-the-library">How to use the library</h2>
+<p>The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<h1 id="app-start-infrastructure-basics">App start infrastructure basics</h1>
+<p>See page <a href="../Bodoconsult.App/AppStartInfrastructure.html">app start infrastructure</a> for details.</p>
+<h2 id="using-app-start-infrastructure-for-a-classical-avalonia-based-apps">Using app start infrastructure for a classical Avalonia based apps</h2>
+<p>Here a sample from app.axaml.cs OnFrameworkInitializationCompleted() how to setup the Avalonia app with a main window MainWindow in project AvaloniaApp1 contained in this repo:</p>
+<pre><code class="lang-csharp">base.OnFrameworkInitializationCompleted();
+
+var type = typeof(App);
+
+var globals = Globals.Instance;
+globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
+
+// Set additional app start parameters as required
+var param = globals.AppStartParameter;
+param.AppName = &quot;AvaloniaApp1: Demo app&quot;;
+param.SoftwareTeam = &quot;Robert Leisner&quot;;
+param.LogoRessourcePath = &quot;AvaloniaApp1.Resources.logo.jpg&quot;;
+param.AppFolderName = &quot;AvaloniaApp1&quot;;
+
+const string performanceToken = &quot;--PERF&quot;;
+
+if (args!=null &amp;&amp; args.Contains(performanceToken))
+{
+    param.IsPerformanceLoggingActivated = true;
+}
+
+// Now start app buiding process
+var builder = new AvaloniaApp1AppBuilder(globals);
+#if !DEBUG
+AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
+#endif
+
+// Load basic app metadata
+builder.LoadBasicSettings(type);
+
+// Process the config file
+builder.ProcessConfiguration();
+
+// Now load the globally needed settings
+builder.LoadGlobalSettings();
+
+// Write first log entry with default logger
+Globals.Instance.Logger.LogInformation($&quot;{param.AppName} {param.AppVersion} starts...&quot;);
+Console.WriteLine(&quot;Logging started...&quot;);
+
+// App is ready now for doing something
+Console.WriteLine($&quot;Connection string loaded: {param.DefaultConnectionString}&quot;);
+
+Console.WriteLine(string.Empty);
+Console.WriteLine(string.Empty);
+
+Console.WriteLine($&quot;App name loaded: {param.AppName}&quot;);
+Console.WriteLine($&quot;App version loaded: {param.AppVersion}&quot;);
+Console.WriteLine($&quot;App path loaded: {param.AppPath}&quot;);
+
+Console.WriteLine(string.Empty);
+Console.WriteLine(string.Empty);
+
+Console.WriteLine($&quot;Logging config: {ObjectHelper.GetObjectPropertiesAsString(Globals.Instance.LoggingConfig)}&quot;);
+
+// Prepare the DI container package
+builder.LoadDiContainerServiceProviderPackage();
+builder.RegisterDiServices();
+builder.FinalizeDiContainerSetup();
+
+// Create the viewmodel now
+MainWindowViewModel = Globals.Instance.DiContainer.Get&lt;IMainWindowViewModel&gt;();
+MainWindowViewModel.HeaderBackColor = Colors.DarkBlue;
+MainWindowViewModel.BodyBackColor = Colors.Beige;
+MainWindowViewModel.AppExe = param.AppExe;
+
+//var eventLevel = EventLevel.Warning;
+//var listener = new AppEventListener(eventLevel);
+
+//MainWindowViewModel = new AvaloniaApp1MainWindowViewModel(listener)
+//{
+//    HeaderBackColor = Colors.DarkBlue,
+//    BodyBackColor = Colors.Beige,
+//    AppExe = param.AppExe
+//};
+
+DataContext = MainWindowViewModel;
+
+// Load the logo now
+MainWindowViewModel.LoadLogo(type.Assembly, param.LogoRessourcePath);
+
+// Set the view model 
+builder.MainWindowViewModel = MainWindowViewModel;
+
+// Now finally start the app and wait
+builder.StartApplication();
+</code></pre>
+<p>Start by creating your own viewmodel class AvaloniaApp1MainWindowViewModel derived from MainWindowViewModel and override CreateWindow() method to load your custom start window.</p>
+<h2 id="using-app-start-infrastructure-for-a-console-app-employing-a-avalonia-dispatcher">Using app start infrastructure for a console app employing a Avalonia dispatcher</h2>
+<p>If you want to use Avalonia features in a console app you need to employ a Avalonia dispatcher.
+In a classical Avalonia app starting the Avalonia dispatcher is done by the App.xaml start process internally.
+In a console app you do not have a App.xaml so the disptacher has to be started separately.
+Using Bodoconsult.App.Avalonia you can handles this easily.</p>
+<p>Here a sample from app.axaml.cs OnFrameworkInitializationCompleted() how to setup the console app employing a Avalonia dispatcher in project ConsoleAvaloniaApp1 contained in this repo:</p>
+<pre><code class="lang-csharp">
+</code></pre>
+<p>Start by creating your own app builder class similar to ConsoleWpfApp1AppBuilder class based on BaseConsoleWpfAppBuilderl.</p>
+<h2 id="using-app-start-infrastructure-for-a-os-service-like-avalonia-based-apps">Using app start infrastructure for a OS service like Avalonia based apps</h2>
+<p>If you want to implement a OS service like application without implementing a real OS service you can use AvaloniaStarterUi class.</p>
+<p>By default AvaloniaStarterUi class loads the app as a simple window not shown on Windows task bar but task tray. The app can be closed only with keys STRC + C / CTRL + C or from task tray.</p>
+<p>Here a sample from App.Xaml.cs OnStartup() how to setup the Avalonia console app in project AvaloniaConsoleApp1 contained in this repo:</p>
+<pre><code class="lang-csharp">base.OnFrameworkInitializationCompleted();
+
+var type = typeof(App);
+
+Console.WriteLine(&quot;AvaloniaConsoleApp1 initiation starts...&quot;);
+
+var globals = Globals.Instance;
+globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
+
+// Set additional app start parameters as required
+var param = globals.AppStartParameter;
+param.AppName = &quot;AvaloniaConsoleApp1: Demo app&quot;;
+param.SoftwareTeam = &quot;Robert Leisner&quot;;
+param.LogoRessourcePath = &quot;AvaloniaConsoleApp1.Resources.logo.jpg&quot;;
+param.AppFolderName = &quot;AvaloniaConsoleApp1&quot;;
+
+const string performanceToken = &quot;--PERF&quot;;
+
+if (args!=null &amp;&amp; args.Contains(performanceToken))
+{
+    param.IsPerformanceLoggingActivated = true;
+}
+
+// Now start app buiding process
+var builder = new AvaloniaConsoleApp1AppBuilder(globals);
+#if !DEBUG
+AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
+#endif
+
+// Load basic app metadata
+builder.LoadBasicSettings(type);
+
+// Process the config file
+builder.ProcessConfiguration();
+
+// Now load the globally needed settings
+builder.LoadGlobalSettings();
+
+// Write first log entry with default logger
+Globals.Instance.Logger.LogInformation($&quot;{param.AppName} {param.AppVersion} starts...&quot;);
+Console.WriteLine(&quot;Logging started...&quot;);
+
+// App is ready now for doing something
+Console.WriteLine($&quot;Connection string loaded: {param.DefaultConnectionString}&quot;);
+
+Console.WriteLine(string.Empty);
+Console.WriteLine(string.Empty);
+
+Console.WriteLine($&quot;App name loaded: {param.AppName}&quot;);
+Console.WriteLine($&quot;App version loaded: {param.AppVersion}&quot;);
+Console.WriteLine($&quot;App path loaded: {param.AppPath}&quot;);
+
+Console.WriteLine(string.Empty);
+Console.WriteLine(string.Empty);
+
+Console.WriteLine($&quot;Logging config: {ObjectHelper.GetObjectPropertiesAsString(Globals.Instance.LoggingConfig)}&quot;);
+
+// Prepare the DI container package
+builder.LoadDiContainerServiceProviderPackage();
+builder.RegisterDiServices();
+builder.FinalizeDiContainerSetup();
+
+// Create the viewmodel now
+var eventLevel = EventLevel.Warning;
+var listener = new AppEventListener(eventLevel);
+MainWindowViewModel = new MainWindowViewModel(listener, null)
+{
+    HeaderBackColor = Colors.DarkBlue,
+    BodyBackColor = Colors.Beige,
+    AppExe = param.AppExe
+};
+DataContext = MainWindowViewModel;
+
+// Load the logo now
+MainWindowViewModel.LoadLogo(type.Assembly, param.LogoRessourcePath);
+
+// Set the view model 
+builder.MainWindowViewModel = MainWindowViewModel;
+
+// Now finally start the app and wait
+builder.StartApplication();
+</code></pre>
+<h1 id="about-us">About us</h1>
+<p>Bodoconsult <a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a> is a Munich based software company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/doc/Bodoconsult.App.ReactiveUI/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

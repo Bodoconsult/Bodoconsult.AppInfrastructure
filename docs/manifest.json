@@ -25374,6 +25374,39 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.Avalonia/README.md",
       "output": {
         ".html": {
@@ -25473,6 +25506,39 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.ReactiveUI/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.ReactiveUI/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.ReactiveUI/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.ReactiveUI/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.App.ReactiveUI/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.ReactiveUI/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.App.ReactiveUI/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.WinForms/README.md",
       "output": {
         ".html": {
@@ -25566,6 +25632,39 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.App.Wpf.Documents/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/toc.json"
         }
       },
       "version": ""
@@ -26262,6 +26361,16 @@
       "output": {
         ".html": {
           "relative_path": "licences/lic_Bodoconsult.App.Windows.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licences/lic_Bodoconsult.App.Wpf.ReactiveUI.md",
+      "output": {
+        ".html": {
+          "relative_path": "licences/lic_Bodoconsult.App.Wpf.ReactiveUI.html"
         }
       },
       "version": ""

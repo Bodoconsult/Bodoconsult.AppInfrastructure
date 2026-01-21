@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.App.Wpf/README.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/doc/Bodoconsult.App.Wpf/README.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -325,7 +325,7 @@ base.OnStartup(e);
 <pre><code class="lang-csharp">    private const string Path = &quot;Locales&quot;;
 
     [Test]
-    public void RegisterResourceItems_ExistingResources_ResourceItemsLoaded()
+    public void RegisterLocaleItems_ExistingResources_ResourceItemsLoaded()
     {
         // Arrange 
         var ass = TestHelper.CurrentAssembly;
@@ -333,11 +333,11 @@ base.OnStartup(e);
         var provider = new WpfEmbeddedResourceProvider(ass, Path);
 
         // Act  
-        provider.RegisterResourceItems();
+        provider.RegisterLocaleItems();
 
         // Assert
         Assert.That(provider.ResourceItems, Is.Not.Null);
-        Assert.That(provider.ResourceItems.Count, Is.Not.EqualTo(0));
+        Assert.That(provider.LocaleItems.Count, Is.Not.EqualTo(0));
     }
 </code></pre>
 <h2 id="converters">Converters</h2>
@@ -372,7 +372,7 @@ base.OnStartup(e);
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.App.Wpf/README.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/doc/Bodoconsult.App.Wpf/README.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
