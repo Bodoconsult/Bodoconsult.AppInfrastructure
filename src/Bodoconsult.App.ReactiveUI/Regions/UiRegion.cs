@@ -15,13 +15,13 @@ public class UiRegion : ReactiveObject, IScreen
     /// <summary>
     /// Default ctor
     /// </summary>
+    /// <param name="uiWindow">Current UI window</param>
     /// <param name="regionName">Name of the region to register</param>
-    /// <param name="regionManager">Current region manager</param>
-    public UiRegion(string regionName, IRegionManager? regionManager)
+    public UiRegion(UiWindow uiWindow, string regionName)
     {
+        UiWindow = uiWindow;
         RegionName = regionName;
         Router = new RoutingState();
-        RegionManager = regionManager;
 
         // You can also ask the router to go back. One option is to 
         // execute the default Router.NavigateBack command. Another
@@ -40,13 +40,13 @@ public class UiRegion : ReactiveObject, IScreen
     /// </summary>
     public string RegionName { get; }
 
+    /// <summary>
+    /// Current UI window
+    /// </summary>
+    public UiWindow UiWindow { get; }
+
     /// <summary>Gets the Router associated with this Screen.</summary>
     public RoutingState Router { get; }
-
-    /// <summary>
-    /// Current region manager
-    /// </summary>
-    public IRegionManager? RegionManager { get; }
 
     /// <summary>
     /// The command that navigates a user back

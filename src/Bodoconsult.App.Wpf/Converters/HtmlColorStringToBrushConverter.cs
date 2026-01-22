@@ -3,13 +3,14 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using Bodoconsult.App.Wpf.Extensions;
 
 namespace Bodoconsult.App.Wpf.Converters;
 
 /// <summary>
-///  Convert a color to a solid brush
+///  Convert an HTML color string like #FFFFFF to a solid brush with this color
 /// </summary>
-public class ColorToBrushConverter : IValueConverter
+public class HtmlColorStringToBrushConverter : IValueConverter
 {
     /// <summary>Converts a value.</summary>
     /// <param name="value">The value produced by the binding source.</param>
@@ -19,11 +20,19 @@ public class ColorToBrushConverter : IValueConverter
     /// <returns>A converted value. If the method returns <see langword="null" />, the valid null value is used.</returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is not Color color)
+        if (value is not string colorString)
         {
-            // ReSharper disable once NotResolvedInText
-            throw new ArgumentException("Value is NOT a System.Window.Media.Color as expected!");
+            throw new ArgumentNullException($"Value is NOT a string as expected!");
         }
+
+        var o = ColorConverter.ConvertFromString(colorString);
+
+        if (o == null)
+        {
+            throw new ArgumentNullException(nameof(o));
+        }
+        
+        var color = (Color)o;
 
         var brush = new SolidColorBrush(color);
         return brush;
@@ -43,6 +52,6 @@ public class ColorToBrushConverter : IValueConverter
             throw new ArgumentException("Value is NOT a System.Window.Media.SolidColorBrush as expected!");
         }
 
-        return brush.Color;
+        return brush.Color.ToHtml();
     }
 }

@@ -11,9 +11,14 @@ namespace Bodoconsult.App.ReactiveUI.Interfaces;
 public interface IRegionManager
 {
     /// <summary>
-    /// Current regions loaded
+    /// Current UI regions loaded
     /// </summary>
     Dictionary<string, UiRegion> Regions { get; }
+
+    /// <summary>
+    ///  Current UI window loaded
+    /// </summary>
+    Dictionary<string, UiWindow> Windows { get; }
 
     /// <summary>
     /// Register a region
@@ -36,4 +41,12 @@ public interface IRegionManager
     /// <param name="region">Region instance to navigate in</param>
     /// <param name="viewModel">Viewmodel</param>
     void Navigate<T>(UiRegion region, T viewModel) where T : class, IRoutableViewModel;
+
+    UiWindow RegisterWindow(UiWindow window);
+
+    /// <summary>
+    /// Dispose the UI window and its regions
+    /// </summary>
+    /// <param name="uiWindow"></param>
+    void Dispose(UiWindow uiWindow);
 }

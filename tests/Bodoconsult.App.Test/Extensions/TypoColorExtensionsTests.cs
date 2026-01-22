@@ -20,7 +20,6 @@ public class TypoColorExtensionsTests
 
         // Assert
         Assert.That(result, Is.EqualTo(-2894893));
-
     }
 
     [Test]
@@ -34,7 +33,6 @@ public class TypoColorExtensionsTests
 
         // Assert
         Assert.That(result, Is.EqualTo(19737901));
-
     }
 
     [Test]
@@ -48,7 +46,20 @@ public class TypoColorExtensionsTests
 
         // Assert
         Assert.That(result, Is.EqualTo("#D3D3D3"));
+    }
 
+    [Test]
+    public void ToHtml_LightGrayAlpha_ValidInt()
+    {
+        // Arrange 
+        var color = TypoColors.LightGray;
+        color.A = 55;
+
+        // Act  
+        var result = color.ToHtml();
+
+        // Assert
+        Assert.That(result, Is.EqualTo("#37D3D3D3"));
     }
 
     [Test]
@@ -62,8 +73,19 @@ public class TypoColorExtensionsTests
 
         // Assert
         Assert.That(result, Is.EqualTo("D3D3D3"));
-
     }
 
+    [Test]
+    public void ToHtml2_LightGrayAlpha_ValidInt()
+    {
+        // Arrange 
+        var color = TypoColors.LightGray;
+        color.A = 55;
 
+        // Act  
+        var result = color.ToHtml2();
+
+        // Assert
+        Assert.That(result, Is.EqualTo("37D3D3D3"));
+    }
 }

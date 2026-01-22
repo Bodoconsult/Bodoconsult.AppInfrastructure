@@ -53,9 +53,10 @@ public partial class MainWindow
             return;
         }
 
-        viewModel.Region1 = viewModel.RegionManager.CreateWpfUiRegion(this.DocumentRegion);
+        var window = viewModel.RegionManager.CreateUiWindow(this);
 
-        viewModel.Region2 = viewModel.RegionManager.CreateWpfUiRegion(this.MenuRegion);
+        viewModel.Region1=window.CreateWpfUiRegion(DocumentRegion);
+        viewModel.Region2=window.CreateWpfUiRegion(MenuRegion);
 
         this.OneWayBind(viewModel, p => p.Region1.Router, xy => xy.DocumentRegion.Router)
             .DisposeWith(disposables);

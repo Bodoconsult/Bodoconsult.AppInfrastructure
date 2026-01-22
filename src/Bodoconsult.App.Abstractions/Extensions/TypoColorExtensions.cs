@@ -16,7 +16,9 @@ public static class TypoColorExtensions
     /// <returns>HTML color string like #000000</returns>
     public static string ToHtml(this TypoColor color)
     {
-        return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+        return color.A == 255 ? 
+            $"#{color.R:X2}{color.G:X2}{color.B:X2}" : 
+            $"#{color.A:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
     }
 
     /// <summary>
@@ -26,7 +28,9 @@ public static class TypoColorExtensions
     /// <returns>HTML color string like #000000</returns>
     public static string ToHtml2(this TypoColor color)
     {
-        return $"{color.R:X2}{color.G:X2}{color.B:X2}";
+        return color.A == 255 ?
+            $"{color.R:X2}{color.G:X2}{color.B:X2}" :
+            $"{color.A:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
     }
 
     /// <summary>
@@ -60,7 +64,6 @@ public static class TypoColorExtensions
     /// <returns>The int representation of the color</returns>
     public static int ToRgbInt(this TypoColor color)
     {
-        ToRgba(color, out var r, out var g, out var b, out var a);
         var rgb = (color.R << 16) | (color.G << 8) | color.B;
         return rgb;
     }

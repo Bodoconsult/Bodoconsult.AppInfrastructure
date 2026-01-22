@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Windows.Forms;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
@@ -14,8 +15,8 @@ public class WpfUiRegion : UiRegion
     /// <summary>
     /// Default ctor
     /// </summary>
+    /// <param name="uiWindow">Current UI window</param>
     /// <param name="routedViewHost">Routed view host instance to register by its name as region name</param>
-    /// <param name="regionManager">Current region manager</param>
-    public WpfUiRegion(RoutedViewHost routedViewHost, IRegionManager? regionManager) : base(routedViewHost.Name, regionManager)
+    public WpfUiRegion(UiWindow uiWindow, RoutedViewHost routedViewHost) : base(uiWindow, routedViewHost.Name)
     { }
 }
