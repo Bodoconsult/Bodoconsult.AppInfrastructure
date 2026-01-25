@@ -20,7 +20,7 @@ public class UiRegion : ReactiveObject, IScreen
     public UiRegion(UiWindow uiWindow, string regionName)
     {
         UiWindow = uiWindow;
-        RegionName = regionName;
+        RegionName = $"{uiWindow.WindowName}.{regionName}";
         Router = new RoutingState();
 
         // You can also ask the router to go back. One option is to 

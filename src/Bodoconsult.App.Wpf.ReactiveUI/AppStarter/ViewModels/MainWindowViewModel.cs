@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
+using Bodoconsult.App.Wpf.Interfaces;
 using ReactiveUI.SourceGenerators;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
@@ -25,7 +26,7 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
 /// <summary>
 /// ViewModel for MainWindow window
 /// </summary>
-public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindowViewModel
+public partial class MainWindowViewModel : ReactiveObject, IMainWindowViewModel, IReactiveUiWindowViewModel
 {
 
     private bool _showInTaskbar;
@@ -66,7 +67,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// <param name="listener">Current EventSource listener: neede to bring logging entries to UI</param>
     /// <param name="translationService">Translation service</param>
     /// <param name="regionManager">Current region manager</param>
-    public MainWindowViewModel(IAppEventListener? listener, II18N? translationService, IRegionManager? regionManager)
+    public MainWindowViewModel(IAppEventListener? listener, II18N? translationService, IRegionManager regionManager)
     {
         TranslationService = translationService;
         _listener = listener;
@@ -118,7 +119,7 @@ public partial class MainWindowViewModel : ReactiveObject, IReactiveUiMainWindow
     /// <summary>
     /// Current region manager
     /// </summary>
-    public IRegionManager? RegionManager { get; }
+    public IRegionManager RegionManager { get; }
 
     /// <summary>
     /// Region 1

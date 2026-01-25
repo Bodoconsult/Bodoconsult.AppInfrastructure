@@ -34,4 +34,15 @@ public class UiWindow
     /// Region in the current window
     /// </summary>
     public List<UiRegion> UiRegions { get; } = new();
+
+    /// <summary>
+    /// Find a region by name
+    /// </summary>
+    /// <param name="regionName">Region name to search for</param>
+    /// <returns>Region or null if no region with the requested name was found</returns>
+    public UiRegion? FindRegion(string regionName)
+    {
+        return UiRegions.FirstOrDefault(x => x.RegionName == regionName);
+    }
+
 }

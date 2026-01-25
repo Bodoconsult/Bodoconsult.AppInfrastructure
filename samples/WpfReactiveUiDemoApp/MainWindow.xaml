@@ -29,6 +29,7 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15">
             <Button x:Name="GoNextButton" Content="Go to first" />
             <Button x:Name="GoBackButton" Content="Go back" Margin="5 0 0 0" />
+            <Button x:Name="GoNewWindowButton" Content="Go to new window" Margin="5 0 0 0" />
         </StackPanel>
     </Grid>
 </rxui:ReactiveWindow>

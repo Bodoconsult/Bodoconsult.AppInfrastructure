@@ -1,0 +1,35 @@
+﻿<reactiveUi:ReactiveWindow x:TypeArguments="viewModels:Window1ViewModel" x:Class="WpfReactiveUiDemoApp.Views.Window1"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:reactiveUi="http://reactiveui.net"
+                           xmlns:viewModels="clr-namespace:WpfReactiveUiDemoApp.ViewModels"
+                           mc:Ignorable="d"
+                           Title="Window1" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <reactiveUi:RoutedViewHost Grid.Column="0" x:Name="MenuRegion"
+                                 HorizontalContentAlignment="Stretch"
+                                 VerticalContentAlignment="Stretch" />
+            <reactiveUi:RoutedViewHost Grid.Column="1" x:Name="DocumentRegion"
+                                 HorizontalContentAlignment="Stretch"
+                                 VerticalContentAlignment="Stretch" />
+        </Grid>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15">
+            <Button x:Name="GoNextButton" Content="Go to first" />
+            <Button x:Name="GoBackButton" Content="Go back" Margin="5 0 0 0" />
+        </StackPanel>
+
+</Grid>
+</reactiveUi:ReactiveWindow>

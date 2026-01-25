@@ -1,13 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System.Windows.Navigation;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Logging;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
+using Bodoconsult.App.Wpf.ReactiveUI.Regions;
 using ReactiveUI;
 using WpfReactiveUiDemoApp.AppData;
 using WpfReactiveUiDemoApp.ViewModels;
+using WpfReactiveUiDemoApp.Views;
 
 namespace WpfReactiveUiDemoApp.DiContainerProvider;
 
@@ -26,7 +29,15 @@ public class WpfReactiveUiDemoAppAllServicesContainerServiceProvider : IDiContai
         diContainer.AddSingleton<IAppEventListener, AppEventListener>();
 
         // Load all other services required for the app now
-        diContainer.AddSingleton<IRegionManager>(new RegionManager());
+        
+        // Regions manager with all window types loaded with regions
+        var rm = new WpfRegionManager();
+        rm.RegisterWindow<MainWindow, WpfReactiveUiDemoAppMainWindowViewModel>(["DocumentRegion", "MenuRegion"], null);
+        rm.RegisterWindow<Window1, Window1ViewModel>(["DocumentRegion", "MenuRegion"], () => new Window1());
+
+        diContainer.AddSingleton<IRegionManager>(rm);
+
+        // View models
         diContainer.AddTransient<WpfReactiveUiDemoAppMainWindowViewModel, WpfReactiveUiDemoAppMainWindowViewModel>();
         diContainer.AddTransient<FirstViewModel, FirstViewModel>();
 

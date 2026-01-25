@@ -17,7 +17,6 @@ public static class WpfUiWindowExtensions
     /// </summary>
     /// <param name="uiWindow">Current UI window</param>
     /// <param name="routedViewHost">Current <see cref="RoutedViewHost"/> instance to build the region. The name of the control is used as app-wide unique region name!</param>
-    /// <param name="viewModelRegion">Current viewmodel regopn object to store the new region as reference in</param>
     /// <returns><see cref="WpfUiRegion"/> created and registered to region manager</returns>
     public static WpfUiRegion CreateWpfUiRegion(this UiWindow uiWindow, RoutedViewHost routedViewHost)
     {

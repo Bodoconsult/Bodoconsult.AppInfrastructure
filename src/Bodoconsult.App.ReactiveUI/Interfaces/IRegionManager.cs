@@ -26,13 +26,13 @@ public interface IRegionManager
     /// <param name="region">Region to register</param>
     void RegisterRegion(UiRegion region);
 
-    /// <summary>
-    /// Navigate in a region by its name
-    /// </summary>
-    /// <typeparam name="T">Viewmodel type</typeparam>
-    /// <param name="regionName">Region name</param>
-    /// <param name="viewModel">Viewmodel</param>
-    void Navigate<T>(string regionName, T viewModel) where T : class, IRoutableViewModel;
+    ///// <summary>
+    ///// Navigate in a region by its name
+    ///// </summary>
+    ///// <typeparam name="T">Viewmodel type</typeparam>
+    ///// <param name="regionName">Region name</param>
+    ///// <param name="viewModel">Viewmodel</param>
+    //void Navigate<T>(string regionName, T viewModel) where T : class, IRoutableViewModel;
 
     /// <summary>
     /// Navigate in a region by its name
@@ -42,6 +42,11 @@ public interface IRegionManager
     /// <param name="viewModel">Viewmodel</param>
     void Navigate<T>(UiRegion region, T viewModel) where T : class, IRoutableViewModel;
 
+    /// <summary>
+    /// Register a window
+    /// </summary>
+    /// <param name="window">Window to register</param>
+    /// <returns>The registered window</returns>
     UiWindow RegisterWindow(UiWindow window);
 
     /// <summary>
@@ -49,4 +54,13 @@ public interface IRegionManager
     /// </summary>
     /// <param name="uiWindow"></param>
     void Dispose(UiWindow uiWindow);
+
+    /// <summary>
+    /// Get a UI window by name
+    /// </summary>
+    /// <param name="windowName">Window name</param>
+    /// <returns><see cref="UiWindow"/> instance or null if no window with the request name was found</returns>
+    UiWindow? GetUiWindow(string windowName);
+
+    void Navigate<T>(T viewModel, string regionName) where T : class;
 }

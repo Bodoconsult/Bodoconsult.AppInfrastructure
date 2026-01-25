@@ -45,7 +45,13 @@ public static class RegionManagerExtensions
             throw new ArgumentNullException(nameof(regionManager));
         }
 
+        if (string.IsNullOrEmpty(window.Name))
+        {
+            window.Name = window.GetType().Name;
+        }
+
         var uiWindow =  new WpfUiWindow(window, regionManager);
+
         regionManager.RegisterWindow(uiWindow);
         window.Closed += uiWindow.Dispose; 
         return uiWindow;

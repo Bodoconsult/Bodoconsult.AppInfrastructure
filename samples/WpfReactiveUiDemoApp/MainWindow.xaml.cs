@@ -3,7 +3,9 @@ using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 using Bodoconsult.App.ReactiveUI.Extensions;
+using Bodoconsult.App.Wpf.Helpers;
 using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
+using Bodoconsult.App.Wpf.ReactiveUI.Regions;
 using WpfReactiveUiDemoApp.AppData;
 using WpfReactiveUiDemoApp.ViewModels;
 
@@ -27,36 +29,23 @@ public partial class MainWindow
                     return;
                 }
 
-                RegisterRouterBinding(x, disposables);
+                RegisterAllRouterBindings(x, disposables);
             });
         });
-
-
-        //this.WhenActivated(disposables =>
-        //{
-
-
-        //    //// Bind the view model router to RoutedViewHost.Router property.
-        //    //this.OneWayBind(ViewModel, x => region1.Router, x => x.DocumentRegion.Router)
-        //    //    .DisposeWith(disposables);
-        //    //this.BindCommand(ViewModel, x => x.GoNext, x => x.GoNextButton)
-        //    //    .DisposeWith(disposables);
-        //    //this.BindCommand(ViewModel, x => x.GoBack, x => x.GoBackButton)
-        //    //    .DisposeWith(disposables);
-        //});
     }
 
-    public void RegisterRouterBinding(WpfReactiveUiDemoAppMainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void RegisterAllRouterBindings(WpfReactiveUiDemoAppMainWindowViewModel viewModel, CompositeDisposable disposables)
     {
         if (viewModel == null)
         {
             return;
         }
 
-        var window = viewModel.RegionManager.CreateUiWindow(this);
+        var rm = (WpfRegionManager)viewModel.RegionManager;
+        var window = rm.RegisterInstances<MainWindow, WpfReactiveUiDemoAppMainWindowViewModel>(this, disposables);
 
-        viewModel.Region1=window.CreateWpfUiRegion(DocumentRegion);
-        viewModel.Region2=window.CreateWpfUiRegion(MenuRegion);
+        viewModel.Region1=window.FindRegion(DocumentRegion);
+        viewModel.Region2=window.FindRegion(MenuRegion);
 
         this.OneWayBind(viewModel, p => p.Region1.Router, xy => xy.DocumentRegion.Router)
             .DisposeWith(disposables);
@@ -64,7 +53,10 @@ public partial class MainWindow
         this.OneWayBind(viewModel, p => p.Region2.Router, xy => xy.MenuRegion.Router)
             .DisposeWith(disposables);
 
-        this.BindCommand(viewModel, x => x.SaveCommand, x => x.GoNextButton)
+        this.BindCommand(viewModel, x => x.GoToFirstViewCommand, x => x.GoNextButton)
+            .DisposeWith(disposables);
+
+        this.BindCommand(viewModel, x => x.GoToWindow1Command, x => x.GoNewWindowButton)
             .DisposeWith(disposables);
 
         this.BindCommand(viewModel, x => x.Region1.GoBack, x => x.GoBackButton)

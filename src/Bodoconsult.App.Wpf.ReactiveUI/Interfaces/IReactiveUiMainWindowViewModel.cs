@@ -7,14 +7,14 @@ using Bodoconsult.App.Wpf.Interfaces;
 namespace Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 
 /// <summary>
-/// <see cref="IMainWindowViewModel"/> with enhancements for ReactiveUI usage
+/// Basic features for navigatable windows with regions
 /// </summary>
-public interface IReactiveUiMainWindowViewModel : IMainWindowViewModel
+public interface IReactiveUiWindowViewModel
 {
     /// <summary>
     /// Current region manager
     /// </summary>
-    IRegionManager? RegionManager { get; }
+    IRegionManager RegionManager { get; }
 
     /// <summary>
     /// Region 1

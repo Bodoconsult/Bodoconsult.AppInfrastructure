@@ -565,7 +565,7 @@ public static class WpfHelper
         where T : DependencyObject
     {
         //get parent item
-        DependencyObject parentObject = GetParentObject(child);
+        var parentObject = GetParentObject(child);
 
         //we've reached the end of the tree
         if (parentObject == null)
@@ -574,7 +574,7 @@ public static class WpfHelper
         }
 
         //check if the parent matches the type we're looking for
-        T parent = parentObject as T;
+        var parent = parentObject as T;
         if (parent != null)
         {
             return parent;
@@ -598,25 +598,53 @@ public static class WpfHelper
         if (child == null) return null;
 
         //handle content elements separately
-        ContentElement contentElement = child as ContentElement;
+        var contentElement = child as ContentElement;
         if (contentElement != null)
         {
-            DependencyObject parent = ContentOperations.GetParent(contentElement);
+            var parent = ContentOperations.GetParent(contentElement);
             if (parent != null) return parent;
 
-            FrameworkContentElement fce = contentElement as FrameworkContentElement;
+            var fce = contentElement as FrameworkContentElement;
             return fce != null ? fce.Parent : null;
         }
 
         //also try searching for parent in framework elements (such as DockPanel, etc)
-        FrameworkElement frameworkElement = child as FrameworkElement;
+        var frameworkElement = child as FrameworkElement;
         if (frameworkElement != null)
         {
-            DependencyObject parent = frameworkElement.Parent;
+            var parent = frameworkElement.Parent;
             if (parent != null) return parent;
         }
 
         //if it's not a ContentElement/FrameworkElement, rely on VisualTreeHelper
         return VisualTreeHelper.GetParent(child);
+    }
+
+    /// <summary>
+    /// Form: http://stackoverflow.com/questions/974598/find-all-controls-in-wpf-window-by-type
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="depObj"></param>
+    /// <returns></returns>
+    public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+    {
+        if (depObj == null)
+        {
+            yield break;
+        }
+
+        for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+        {
+            var child = VisualTreeHelper.GetChild(depObj, i);
+            if (child is T dependencyObject)
+            {
+                yield return dependencyObject;
+            }
+
+            foreach (var childOfChild in FindVisualChildren<T>(child))
+            {
+                yield return childOfChild;
+            }
+        }
     }
 }

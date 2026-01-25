@@ -6,6 +6,7 @@ using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
 using ReactiveUI.SourceGenerators;
+using WpfReactiveUiDemoApp.Views;
 
 namespace WpfReactiveUiDemoApp.ViewModels;
 
@@ -41,11 +42,29 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
     }
 
     [ReactiveCommand]
-    public void Save()
+    public void GoToFirstView()
     {
         try
         {
             Region1?.Navigate(new FirstViewModel(Region1));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    [ReactiveCommand]
+    public void GoToWindow1()
+    {
+        try
+        {
+            Region1?.Navigate(new FirstViewModel(Region1));
+
+            var vm = new Window1ViewModel(RegionManager);
+
+            RegionManager.Navigate(vm, "DocumentRegion");
         }
         catch (Exception e)
         {

@@ -3,6 +3,7 @@
 using System.Windows;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
+using ReactiveUI;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 
@@ -55,5 +56,15 @@ public class WpfUiWindow : UiWindow
         {
             // Do nothing
         }
+    }
+
+    /// <summary>
+    /// Find a region by name
+    /// </summary>
+    /// <param name="regionHost">Region name to search for</param>
+    /// <returns>Region or null if no region with the requested name was found</returns>
+    public UiRegion? FindRegion(RoutedViewHost regionHost)
+    {
+        return FindRegion($"{WindowName}.{regionHost.Name}");
     }
 }
