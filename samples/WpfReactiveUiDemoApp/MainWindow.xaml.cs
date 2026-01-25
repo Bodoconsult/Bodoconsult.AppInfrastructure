@@ -36,21 +36,26 @@ public partial class MainWindow
 
     public void RegisterAllRouterBindings(WpfReactiveUiDemoAppMainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        if (viewModel == null)
-        {
-            return;
-        }
-
         var rm = (WpfRegionManager)viewModel.RegionManager;
         var window = rm.RegisterInstances<MainWindow, WpfReactiveUiDemoAppMainWindowViewModel>(this, disposables);
 
         viewModel.Region1=window.FindRegion(DocumentRegion);
         viewModel.Region2=window.FindRegion(MenuRegion);
 
-        this.OneWayBind(viewModel, p => p.Region1.Router, xy => xy.DocumentRegion.Router)
+        if (viewModel.Region1 == null)
+        {
+            throw new ArgumentNullException(nameof(viewModel.Region1));
+        }
+
+        if (viewModel.Region2 == null)
+        {
+            throw new ArgumentNullException(nameof(viewModel.Region2));
+        }
+
+        this.OneWayBind(viewModel, p => p.Region1!.Router, xy => xy.DocumentRegion.Router)
             .DisposeWith(disposables);
 
-        this.OneWayBind(viewModel, p => p.Region2.Router, xy => xy.MenuRegion.Router)
+        this.OneWayBind(viewModel, p => p.Region2!.Router, xy => xy.MenuRegion.Router)
             .DisposeWith(disposables);
 
         this.BindCommand(viewModel, x => x.GoToFirstViewCommand, x => x.GoNextButton)
@@ -59,7 +64,7 @@ public partial class MainWindow
         this.BindCommand(viewModel, x => x.GoToWindow1Command, x => x.GoNewWindowButton)
             .DisposeWith(disposables);
 
-        this.BindCommand(viewModel, x => x.Region1.GoBack, x => x.GoBackButton)
+        this.BindCommand(viewModel, x => x.Region1!.GoBack, x => x.GoBackButton)
             .DisposeWith(disposables);
 
         var vm2 = new SecondViewModel(viewModel.Region2);

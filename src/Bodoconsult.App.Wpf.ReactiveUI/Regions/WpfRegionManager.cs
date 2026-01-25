@@ -10,6 +10,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 using System.Windows;
+using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 
@@ -130,10 +131,12 @@ public class WpfRegionManager : RegionManagerBase
 
         if (view is not ReactiveWindow<T> reactiveWindow)
         {
-            throw new ArgumentException($"View {view.GetType().Name} is not a ReactiveWindow instance as requested");
+            throw new ArgumentException($"View {view.GetType().Name} is not a ReactiveWindow instance as expected");
         }
 
         reactiveWindow.ViewModel = viewModel;
+
+
 
         reactiveWindow.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
         {
@@ -142,7 +145,14 @@ public class WpfRegionManager : RegionManagerBase
                 return;
             }
 
-            
+            if (x is not IReactiveUiWindowViewModel uvm)
+
+            {
+                throw new ArgumentException($"Viewmodel {x.GetType().Name} does not implement IReactiveUiWindowViewModel as expected");
+            }
+
+
+
         });
 
         reactiveWindow.Show();

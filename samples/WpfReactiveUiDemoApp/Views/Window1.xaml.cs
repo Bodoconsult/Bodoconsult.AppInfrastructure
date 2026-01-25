@@ -59,10 +59,20 @@ namespace WpfReactiveUiDemoApp.Views
             viewModel.Region1 = window.FindRegion(DocumentRegion);
             viewModel.Region2 = window.FindRegion(MenuRegion);
 
-            this.OneWayBind(viewModel, p => p.Region1.Router, xy => xy.DocumentRegion.Router)
+            if (viewModel.Region1 == null)
+            {
+                throw new ArgumentNullException(nameof(viewModel.Region1));
+            }
+
+            if (viewModel.Region2 == null)
+            {
+                throw new ArgumentNullException(nameof(viewModel.Region2));
+            }
+
+            this.OneWayBind(viewModel, p => p.Region1!.Router, xy => xy.DocumentRegion.Router)
                 .DisposeWith(disposables);
 
-            this.OneWayBind(viewModel, p => p.Region2.Router, xy => xy.MenuRegion.Router)
+            this.OneWayBind(viewModel, p => p.Region2!.Router, xy => xy.MenuRegion.Router)
                 .DisposeWith(disposables);
 
             //this.BindCommand(viewModel, x => x.GoToFirstViewCommand, x => x.GoNextButton)

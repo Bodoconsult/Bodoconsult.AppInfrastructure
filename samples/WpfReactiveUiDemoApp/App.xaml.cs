@@ -62,6 +62,11 @@ public partial class App : Application
         // Now load the globally needed settings
         builder.LoadGlobalSettings();
 
+        if (Globals.Instance.Logger == null)
+        {
+            throw new ArgumentNullException(nameof(Globals.Instance.Logger));
+        }
+
         // Write first log entry with default logger
         Globals.Instance.Logger.LogInformation($"{param.AppName} {param.AppVersion} starts...");
         Console.WriteLine("Logging started...");

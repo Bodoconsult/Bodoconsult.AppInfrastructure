@@ -92,7 +92,6 @@ public abstract class RegionManagerBase : IRegionManager
     /// <param name="uiWindow"></param>
     public void Dispose(UiWindow uiWindow)
     {
-
         var regionsToDelete = Regions.Where(x => x.Value.UiWindow == uiWindow).ToList();
 
         foreach (var region in regionsToDelete)
@@ -121,8 +120,6 @@ public abstract class RegionManagerBase : IRegionManager
 
     public virtual void Navigate<T>(T viewModel, string regionName) where T : class
     {
-        var vmType = typeof(T);
-
-        
+        throw new NotSupportedException("Please override this method");
     }
 }
