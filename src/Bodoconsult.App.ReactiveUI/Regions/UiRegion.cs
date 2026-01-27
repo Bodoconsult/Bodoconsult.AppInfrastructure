@@ -17,10 +17,10 @@ public class UiRegion : ReactiveObject, IScreen
     /// </summary>
     /// <param name="uiWindow">Current UI window</param>
     /// <param name="regionName">Name of the region to register</param>
-    public UiRegion(UiWindow uiWindow, string regionName)
+    public UiRegion(IUiWindow uiWindow, string regionName)
     {
         UiWindow = uiWindow;
-        RegionName = $"{uiWindow.WindowName}.{regionName}";
+        RegionName = $"{uiWindow.Name}.{regionName}";
         Router = new RoutingState();
 
         // You can also ask the router to go back. One option is to 
@@ -43,7 +43,7 @@ public class UiRegion : ReactiveObject, IScreen
     /// <summary>
     /// Current UI window
     /// </summary>
-    public UiWindow UiWindow { get; }
+    public IUiWindow UiWindow { get; }
 
     /// <summary>Gets the Router associated with this Screen.</summary>
     public RoutingState Router { get; }

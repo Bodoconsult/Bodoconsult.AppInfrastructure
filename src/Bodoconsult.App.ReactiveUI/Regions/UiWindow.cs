@@ -1,48 +1,48 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+﻿//// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.ReactiveUI.Interfaces;
+//using Bodoconsult.App.ReactiveUI.Interfaces;
 
-namespace Bodoconsult.App.ReactiveUI.Regions;
+//namespace Bodoconsult.App.ReactiveUI.Regions;
 
-/// <summary>
-/// Represents a UI window
-/// </summary>
-public class UiWindow
-{
-    /// <summary>
-    /// Default ctor
-    /// </summary>
-    /// <param name="windowName">Name of the window to register</param>
-    /// <param name="regionManager">Current region manager</param>
-    public UiWindow(string windowName, IRegionManager regionManager)
-    {
-        WindowName = windowName;
-        RegionManager = regionManager;
-    }
+///// <summary>
+///// Represents a UI window
+///// </summary>
+//public class UiWindow : IUiWindow
+//{
+//    /// <summary>
+//    /// Default ctor
+//    /// </summary>
+//    /// <param name="windowName">Name of the window to register</param>
+//    /// <param name="regionManager">Current region manager</param>
+//    public UiWindow(string windowName, IRegionManager regionManager)
+//    {
+//        Name = windowName;
+//        RegionManager = regionManager;
+//    }
 
-    /// <summary>
-    /// Window name
-    /// </summary>
-    public string WindowName { get; }
+//    /// <summary>
+//    /// Window name
+//    /// </summary>
+//    public string Name { get; set; }
 
-    /// <summary>
-    /// Current region manager
-    /// </summary>
-    public IRegionManager RegionManager { get; }
+//    /// <summary>
+//    /// Current region manager
+//    /// </summary>
+//    public IRegionManager RegionManager { get; }
 
-    /// <summary>
-    /// Region in the current window
-    /// </summary>
-    public List<UiRegion> UiRegions { get; } = new();
+//    /// <summary>
+//    /// Region in the current window
+//    /// </summary>
+//    public List<UiRegion> UiRegions { get; } = new();
 
-    /// <summary>
-    /// Find a region by name
-    /// </summary>
-    /// <param name="regionName">Region name to search for</param>
-    /// <returns>Region or null if no region with the requested name was found</returns>
-    public UiRegion? FindRegion(string regionName)
-    {
-        return UiRegions.FirstOrDefault(x => x.RegionName == regionName);
-    }
+//    /// <summary>
+//    /// Find a region by name
+//    /// </summary>
+//    /// <param name="regionName">Region name to search for</param>
+//    /// <returns>Region or null if no region with the requested name was found</returns>
+//    public UiRegion? FindRegion(string regionName)
+//    {
+//        return UiRegions.FirstOrDefault(x => x.RegionName == regionName);
+//    }
 
-}
+//}

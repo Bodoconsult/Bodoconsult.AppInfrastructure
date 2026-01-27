@@ -11,6 +11,16 @@ namespace Bodoconsult.App.ReactiveUI.Interfaces;
 public interface IRegionManager
 {
     /// <summary>
+    /// Readonly list of all viewmodel-view-bindings
+    /// </summary>
+    List<KeyValuePair<Type, Type>> ViewModelBindings { get; }
+
+    /// <summary>
+    /// Readonly list of all registered window type definitions
+    /// </summary>
+    List<UiWindowDefinition> WindowDefinitions { get; }
+
+    /// <summary>
     /// Current UI regions loaded
     /// </summary>
     Dictionary<string, UiRegion> Regions { get; }
@@ -18,7 +28,18 @@ public interface IRegionManager
     /// <summary>
     ///  Current UI window loaded
     /// </summary>
-    Dictionary<string, UiWindow> Windows { get; }
+    Dictionary<string, IUiWindow> Windows { get; }
+
+    /// <summary>
+    /// Register a window type
+    /// </summary>
+    /// <typeparam name="T">Window type implementing <see cref="IUiWindow"/></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="regions"></param>
+    /// <param name="factory"></param>
+    void RegisterWindow<T, TViewModel>(List<string> regions, Func<IUiWindow>? factory)
+        where T : class, IUiWindow
+        where TViewModel : IUiWindowViewModel;
 
     /// <summary>
     /// Register a region
@@ -43,24 +64,34 @@ public interface IRegionManager
     void Navigate<T>(UiRegion region, T viewModel) where T : class, IRoutableViewModel;
 
     /// <summary>
-    /// Register a window
+    /// Register a window instance
     /// </summary>
     /// <param name="window">Window to register</param>
     /// <returns>The registered window</returns>
-    UiWindow RegisterWindow(UiWindow window);
+    IUiWindow RegisterWindowInstances(IUiWindow window);
 
     /// <summary>
     /// Dispose the UI window and its regions
     /// </summary>
     /// <param name="uiWindow"></param>
-    void Dispose(UiWindow uiWindow);
+    void Dispose(IUiWindow uiWindow);
 
     /// <summary>
     /// Get a UI window by name
     /// </summary>
     /// <param name="windowName">Window name</param>
-    /// <returns><see cref="UiWindow"/> instance or null if no window with the request name was found</returns>
-    UiWindow? GetUiWindow(string windowName);
+    /// <returns><see cref="IUiWindow"/> instance or null if no window with the request name was found</returns>
+    IUiWindow? GetUiWindow(string windowName);
 
-    void Navigate<T>(T viewModel, string regionName) where T : class;
+    /// <summary>
+    /// Navigate to a new or already opened window
+    /// </summary>
+    /// <typeparam name="TWindowViewModel">Type of the window view model</typeparam>
+    /// <typeparam name="TViewModel">View model of the view to load</typeparam>
+    /// <param name="windowViewModel">Current window viewmodel instance</param>
+    /// <param name="viewModel">Current view viewmodel instance</param>
+    /// <param name="regionName">Region name to load the view in</param>
+    /// <returns><see cref="IUiWindow"/> instance the view is loaded in</returns>
+    IUiWindow Navigate<TWindowViewModel, TViewModel>(TWindowViewModel windowViewModel, TViewModel viewModel, string regionName) where TWindowViewModel : class, IUiWindowViewModel where TViewModel: IUiRegionViewModel;
+
 }

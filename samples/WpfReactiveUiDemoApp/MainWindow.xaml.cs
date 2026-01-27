@@ -3,18 +3,14 @@ using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 using Bodoconsult.App.ReactiveUI.Extensions;
-using Bodoconsult.App.Wpf.Helpers;
-using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.ReactiveUI.Regions;
-using WpfReactiveUiDemoApp.AppData;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp;
 
-// We use ReactiveWindow here for WPF, but could actually use
-// ReactiveUserControl or a custom IViewFor implementation. For
-// Xamarin.Forms, use ReactiveMasterDetailPage.
-public partial class MainWindow
+public partial class MainWindow : IUiWindow
 {
     public MainWindow()
     {
@@ -36,11 +32,13 @@ public partial class MainWindow
 
     public void RegisterAllRouterBindings(WpfReactiveUiDemoAppMainWindowViewModel viewModel, CompositeDisposable disposables)
     {
+        RegionManager = viewModel.RegionManager;
+
         var rm = (WpfRegionManager)viewModel.RegionManager;
         var window = rm.RegisterInstances<MainWindow, WpfReactiveUiDemoAppMainWindowViewModel>(this, disposables);
 
-        viewModel.Region1=window.FindRegion(DocumentRegion);
-        viewModel.Region2=window.FindRegion(MenuRegion);
+        viewModel.Region1=window.FindRegion(DocumentRegion.Name);
+        viewModel.Region2=window.FindRegion(MenuRegion.Name);
 
         if (viewModel.Region1 == null)
         {
@@ -64,11 +62,44 @@ public partial class MainWindow
         this.BindCommand(viewModel, x => x.GoToWindow1Command, x => x.GoNewWindowButton)
             .DisposeWith(disposables);
 
+        this.BindCommand(viewModel, x => x.GoToWindow1Instance2Command, x => x.GoNewWindowInstance2Button)
+            .DisposeWith(disposables);
+
         this.BindCommand(viewModel, x => x.Region1!.GoBack, x => x.GoBackButton)
             .DisposeWith(disposables);
 
         var vm2 = new SecondViewModel(viewModel.Region2);
 
         viewModel.Region2.Navigate(vm2);
+    }
+
+    /// <summary>
+    /// Current region manager
+    /// </summary>
+    public IRegionManager? RegionManager { get; private set; }
+
+    /// <summary>
+    /// Region in the current window
+    /// </summary>
+    public List<UiRegion> UiRegions { get; } = new();
+
+    /// <summary>
+    /// Dispose this window from region manager
+    /// </summary>
+    /// <param name="sender">Do not use</param>
+    /// <param name="e">Do not use</param>
+    public void Dispose(object? sender, EventArgs e)
+    {
+        RegionManager?.Dispose(this);
+
+        // Clean the event to avoid memory leaking
+        try
+        {
+            Closed -= Dispose;
+        }
+        catch
+        {
+            // Do nothing
+        }
     }
 }

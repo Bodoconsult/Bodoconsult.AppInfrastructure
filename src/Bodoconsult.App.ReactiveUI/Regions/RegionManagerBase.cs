@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
+using System.Collections.Concurrent;
 
 namespace Bodoconsult.App.ReactiveUI.Regions;
 
@@ -11,6 +12,26 @@ namespace Bodoconsult.App.ReactiveUI.Regions;
 public abstract class RegionManagerBase : IRegionManager
 {
     /// <summary>
+    /// ViewModel-View-Binding
+    /// </summary>
+    protected readonly ConcurrentDictionary<Type, Type> InternalViewModelBindings = new();
+
+    /// <summary>
+    /// Registered window definitions
+    /// </summary>
+    protected readonly List<UiWindowDefinition> InternalWindows = new();
+
+    /// <summary>
+    /// Readonly list of all registered viewmodel-view-bindings
+    /// </summary>
+    public List<KeyValuePair<Type, Type>> ViewModelBindings => InternalViewModelBindings.ToList();
+
+    /// <summary>
+    /// Readonly list of all registered window type definitions
+    /// </summary>
+    public List<UiWindowDefinition> WindowDefinitions => InternalWindows.ToList();
+
+    /// <summary>
     /// Current UI regions loaded
     /// </summary>
     public Dictionary<string, UiRegion> Regions { get; } = new();
@@ -18,7 +39,31 @@ public abstract class RegionManagerBase : IRegionManager
     /// <summary>
     /// Current UI windows loaded
     /// </summary>
-    public Dictionary<string, UiWindow> Windows { get; } = new();
+    public Dictionary<string, IUiWindow> Windows { get; } = new();
+
+    /// <summary>
+    /// Register a window type
+    /// </summary>
+    /// <typeparam name="T">Window type implementing <see cref="IUiWindow"/></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="regions"></param>
+    /// <param name="factory"></param>
+    public void RegisterWindow<T, TViewModel>(List<string> regions, Func<IUiWindow>? factory)
+        where T : class, IUiWindow
+        where TViewModel : IUiWindowViewModel
+    {
+        var windowType = typeof(T);
+
+        if (WindowDefinitions.Any(x => x.WindowType == windowType))
+        {
+            throw new ArgumentException($"Window type {windowType.Name} is already registered");
+        }
+
+        var wwd = new UiWindowDefinition(windowType, regions, factory);
+        InternalWindows.Add(wwd);
+
+        InternalViewModelBindings[typeof(TViewModel)] = typeof(T);
+    }
 
     /// <summary>
     /// Register a region
@@ -72,15 +117,20 @@ public abstract class RegionManagerBase : IRegionManager
     }
 
     /// <summary>
-    /// Register a window
+    /// Register a window instance
     /// </summary>
     /// <param name="window">Window to register</param>
     /// <returns>The registered window</returns>
-    public UiWindow RegisterWindow(UiWindow window)
+    public IUiWindow RegisterWindowInstances(IUiWindow window)
     {
-        if (!Windows.TryAdd(window.WindowName, window))
+        if (Windows.ContainsKey(window.Name))
         {
-            throw new ArgumentException($"Window name {window.WindowName} already exists!");
+            return window;
+        }
+
+        if (!Windows.TryAdd(window.Name, window))
+        {
+            throw new ArgumentException($"Window name {window.Name} already exists!");
         }
 
         return window;
@@ -90,7 +140,7 @@ public abstract class RegionManagerBase : IRegionManager
     /// Dispose the UI window and its regions
     /// </summary>
     /// <param name="uiWindow"></param>
-    public void Dispose(UiWindow uiWindow)
+    public void Dispose(IUiWindow uiWindow)
     {
         var regionsToDelete = Regions.Where(x => x.Value.UiWindow == uiWindow).ToList();
 
@@ -102,9 +152,9 @@ public abstract class RegionManagerBase : IRegionManager
             }
         }
 
-        if (Windows.ContainsKey(uiWindow.WindowName) && !Windows.Remove(uiWindow.WindowName))
+        if (Windows.ContainsKey(uiWindow.Name) && !Windows.Remove(uiWindow.Name))
         {
-            throw new ArgumentException($"Window {uiWindow.WindowName} could NOT be deleted!");
+            throw new ArgumentException($"Window {uiWindow.Name} could NOT be deleted!");
         }
     }
 
@@ -112,14 +162,64 @@ public abstract class RegionManagerBase : IRegionManager
     /// Get a UI window by name
     /// </summary>
     /// <param name="windowName">Window name</param>
-    /// <returns><see cref="UiWindow"/> instance or null if no window with the request name was found</returns>
-    public UiWindow? GetUiWindow(string windowName)
+    /// <returns><see cref="IUiWindow"/> instance or null if no window with the request name was found</returns>
+    public IUiWindow? GetUiWindow(string windowName)
     {
         return Windows.GetValueOrDefault(windowName);
     }
 
-    public virtual void Navigate<T>(T viewModel, string regionName) where T : class
+    /// <summary>
+    /// Navigate to a new or already opened window
+    /// </summary>
+    /// <typeparam name="TWindowViewModel">Type of the window view model</typeparam>
+    /// <typeparam name="TViewModel">View model of the view to load</typeparam>
+    /// <param name="windowViewModel">Current window viewmodel instance</param>
+    /// <param name="viewModel">Current view viewmodel instance</param>
+    /// <param name="regionName">Region name to load the view in</param>
+    /// <returns><see cref="IUiWindow"/> instance the view is loaded in</returns>
+    public virtual IUiWindow Navigate<TWindowViewModel, TViewModel>(TWindowViewModel windowViewModel, TViewModel viewModel, string regionName) where TWindowViewModel : class, IUiWindowViewModel where TViewModel : IUiRegionViewModel
     {
-        throw new NotSupportedException("Please override this method");
+        var vmType = typeof(TWindowViewModel);
+
+        // Find the window type for the view
+        if (!InternalViewModelBindings.TryGetValue(vmType, out var windowType))
+        {
+            throw new ArgumentException($"Viewmodel {vmType.Name} not registered with view");
+        }
+
+        // Find the factory for the window type
+        var wwd = InternalWindows.FirstOrDefault(x => x.WindowType == windowType);
+        if (wwd.WindowType == null)
+        {
+            throw new ArgumentException($"Window {windowType.Name} has no window definition registered");
+        }
+
+        IUiWindow? uiWindow;
+
+        if (wwd.Factory == null)
+        {
+            // Try to use existing instance
+            if (!Windows.TryGetValue(windowType.Name, out uiWindow))
+            {
+                throw new ArgumentNullException(nameof(wwd.Factory));
+            }
+        }
+        else
+        {
+            var instanceName = string.IsNullOrEmpty(windowViewModel.InstanceName) ? windowType.Name : windowViewModel.InstanceName;
+
+            if (!Windows.TryGetValue(instanceName, out uiWindow))
+            {
+                // Create the window now
+                uiWindow = wwd.Factory.Invoke();
+            }
+        }
+
+        if (uiWindow == null)
+        {
+            throw new ArgumentNullException(nameof(uiWindow));
+        }
+
+        return uiWindow;
     }
 }

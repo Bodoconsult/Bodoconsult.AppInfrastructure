@@ -1,13 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Windows.Navigation;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Logging;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.ReactiveUI.Regions;
-using ReactiveUI;
 using WpfReactiveUiDemoApp.AppData;
 using WpfReactiveUiDemoApp.ViewModels;
 using WpfReactiveUiDemoApp.Views;

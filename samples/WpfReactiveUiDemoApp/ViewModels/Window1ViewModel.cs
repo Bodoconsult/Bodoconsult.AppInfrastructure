@@ -1,19 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ReactiveUI.SourceGenerators;
 
 namespace WpfReactiveUiDemoApp.ViewModels
 {
-    public partial class Window1ViewModel: ReactiveObject, IReactiveUiWindowViewModel
+    public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
     {
         /// <summary>
         /// Default ctor
@@ -23,6 +18,11 @@ namespace WpfReactiveUiDemoApp.ViewModels
         {
             RegionManager = regionManager;
         }
+
+        /// <summary>
+        /// Instance name of the window. If null or string.Empty the window instance name is derived from the window type name (loading the window as a singleton instance)
+        /// </summary>
+        public string? InstanceName { get; set; } = null;
 
         /// <summary>
         /// Current region manager
@@ -46,6 +46,36 @@ namespace WpfReactiveUiDemoApp.ViewModels
         /// </summary>
         [Reactive]
         public partial UiRegion? Region3 { get; set; }
+
+        [ReactiveCommand]
+        public void GoToSecondView()
+        {
+            try
+            {
+                Region1?.Navigate(new SecondViewModel(Region1));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        //[ReactiveCommand]
+        //public void GoToMainWindow()
+        //{
+        //    try
+        //    {
+        //        var vm = new SecondViewModel();
+
+        //        RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        throw;
+        //    }
+        //}
 
     }
 }

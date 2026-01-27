@@ -3,6 +3,7 @@
 using System.Windows;
 using System.Windows.Forms;
 using Windows.Foundation;
+using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 
@@ -18,6 +19,17 @@ public class WpfUiRegion : UiRegion
     /// </summary>
     /// <param name="uiWindow">Current UI window</param>
     /// <param name="routedViewHost">Routed view host instance to register by its name as region name</param>
-    public WpfUiRegion(UiWindow uiWindow, RoutedViewHost routedViewHost) : base(uiWindow, routedViewHost.Name)
+    public WpfUiRegion(IUiWindow uiWindow, RoutedViewHost routedViewHost) : base(uiWindow, routedViewHost.Name)
     { }
 }
+
+///// <summary>
+///// Current interface impl for <see cref=""/>
+///// </summary>
+//public interface IWpfUiWindow: IUiWindow
+//{
+//    /// <summary>
+//    /// Current window instance
+//    /// </summary>
+//    public Window Window { get; }
+//}

@@ -4,7 +4,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Logging;
 using Bodoconsult.App.Wpf.AppStarter.Views;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 using CommunityToolkit.Mvvm.Input;
 using ReactiveUI;
 using System.Diagnostics;
@@ -26,7 +25,7 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
 /// <summary>
 /// ViewModel for MainWindow window
 /// </summary>
-public partial class MainWindowViewModel : ReactiveObject, IMainWindowViewModel, IReactiveUiWindowViewModel
+public partial class MainWindowViewModel : ReactiveObject, IMainWindowViewModel, IUiWindowViewModel
 {
 
     private bool _showInTaskbar;
@@ -115,6 +114,11 @@ public partial class MainWindowViewModel : ReactiveObject, IMainWindowViewModel,
     /// Exit command for binding in XAML to taskbar
     /// </summary>
     public ICommand NotifyIconExitCommand { get; }
+
+    /// <summary>
+    /// Instance name of the window. If null or string.Empty the window instance name is derived from the window type name (loading the window as a singleton instance)
+    /// </summary>
+    public string? InstanceName { get; set; } = null;
 
     /// <summary>
     /// Current region manager

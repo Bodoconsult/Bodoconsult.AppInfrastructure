@@ -1,10 +1,14 @@
-﻿using ReactiveUI;
+﻿using Bodoconsult.App.ReactiveUI.Interfaces;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 
 namespace WpfReactiveUiDemoApp.ViewModels;
 
-public partial class FirstViewModel : ReactiveObject, IRoutableViewModel
+public partial class FirstViewModel : ReactiveObject, IUiRegionViewModel
 {
+    /// <summary>
+    /// Gets a string token representing the current ViewModel, such as 'login' or 'user'.
+    /// </summary>
     public string UrlPathSegment => "first";
 
     //private string _name;
@@ -19,11 +23,25 @@ public partial class FirstViewModel : ReactiveObject, IRoutableViewModel
     /// </summary>
     [Reactive] public partial string Test { get; set; }
 
-    public IScreen HostScreen { get; }
+    public IScreen HostScreen { get; private set; }
+
+    public FirstViewModel()
+    {
+        _test = "Blubb";
+    }
 
     public FirstViewModel(IScreen screen)
     {
         HostScreen = screen;
         _test = "Blubb";
+    }
+
+    /// <summary>
+    /// Method based late injection of <see cref="ReactiveUI.IScreen"/> instance for navigation
+    /// </summary>
+    /// <param name="screen"></param>
+    public void InjectScreen(IScreen screen)
+    {
+        HostScreen = screen;
     }
 }

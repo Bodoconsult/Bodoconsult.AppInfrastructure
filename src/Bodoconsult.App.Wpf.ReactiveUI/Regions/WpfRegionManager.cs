@@ -1,16 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.Helpers;
-using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
 using ReactiveUI;
+using System;
 using System.Collections.Concurrent;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 using System.Windows;
-using Bodoconsult.App.Wpf.ReactiveUI.Interfaces;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 
@@ -19,57 +19,40 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 /// </summary>
 public class WpfRegionManager : RegionManagerBase
 {
-    private readonly List<WpfWindowDefinition> _windows = new();
-
-    private readonly ConcurrentDictionary<Type, Func<Window>> _windowsDictionary = new();
-
-
-    private readonly ConcurrentDictionary<Type, Type> _viewModelBinding = new();
-
-    public void RegisterWindow<T, TViewModel>(List<string> regions, Func<Window>? factory)
+    /// <summary>
+    /// Register a WPF window inheriting IUiWindow to the region manager
+    /// </summary>
+    /// <typeparam name="T">Window type</typeparam>
+    /// <typeparam name="TViewModel">Viewmodel type for the window implementing <see cref="IUiWindowViewModel"/></typeparam>
+    /// <param name="window">Current window instance</param>
+    /// <param name="disposables">Disposables</param>
+    /// <returns><see cref="IUiWindow"/> instance</returns>
+    /// <exception cref="ArgumentNullException">Thrown if there are no RoutedViewHost controls in the window or a region name is not defined in the window</exception>
+    public IUiWindow RegisterInstances<T, TViewModel>(T window, CompositeDisposable disposables) where T : ReactiveWindow<TViewModel>, IUiWindow where TViewModel : class, IUiWindowViewModel
     {
-        var windowType = typeof(T);
-
-        var wwd = new WpfWindowDefinition(windowType, regions);
-        _windows.Add(wwd);
-
-        _viewModelBinding[typeof(TViewModel)] = typeof(T);
-
-        if (factory == null)
-        {
-            return;
-        }
-
-        _windowsDictionary[windowType] = factory;
-
-    }
-
-
-    //public void RegisterWindow<T, TViewModel>(Func<T, TViewModel>? factory) where T : ReactiveWindow<TViewModel> where TViewModel : class
-    //{
-    //    var windowType = typeof(T);
-
-    //    var wwd = new WpfWindowDefinition(windowType, regions);
-    //    _windows.Add(wwd);
-
-    //    if (factory == null)
-    //    {
-    //        return;
-    //    }
-
-    //    _windowsDictionary[windowType] = () => factory;
-    //}
-
-    public WpfUiWindow RegisterInstances<T, TViewModel>(T window, CompositeDisposable disposables) where T : ReactiveWindow<TViewModel> where TViewModel : class
-    {
-
         var type = typeof(T);
 
-        var wwd = _windows.FirstOrDefault(x => x.WindowType == type);
+        var wwd = InternalWindows.FirstOrDefault(x => x.WindowType == type);
 
-        //if (wwd == default)
-        //{
+        if (wwd.WindowType == null)
+        {
+            throw new ArgumentNullException(nameof(wwd), $"No window definition found for {type.Name}");
+        }
 
+        // Set the instance name for the window now. Must be unique in the RegionManagerBase.Windows dictionary
+        if (string.IsNullOrEmpty(window.ViewModel?.InstanceName))
+        {
+            if (string.IsNullOrEmpty(window.Name))
+            {
+                window.Name = window.GetType().Name;
+            }
+        }
+        else
+        {
+            window.Name = window.ViewModel?.InstanceName;
+        }
+
+        // Find regions in the window
         var childs = WpfHelper.FindVisualChildren<RoutedViewHost>(window).ToList();
 
         if (childs == null || childs.Count == 0)
@@ -78,8 +61,17 @@ public class WpfRegionManager : RegionManagerBase
             throw new ArgumentNullException(nameof(childs), $"No region childs defined for {type.Name}");
         }
 
-        var uiWindow = this.CreateUiWindow(window);
+        // Now register the window
+        var uiWindow = RegisterWindowInstances(window);
+        window.Closed += uiWindow.Dispose;
 
+        if (window.UiRegions.Count != 0)
+        {
+            return uiWindow;
+        }
+
+
+        // Now register the regions for the window
         foreach (var regionName in wwd.Regions)
         {
             var regionContainer = childs.FirstOrDefault(x => x.Name == regionName);
@@ -89,75 +81,57 @@ public class WpfRegionManager : RegionManagerBase
                 throw new ArgumentNullException(nameof(regionName), regionName);
             }
 
-            var region = uiWindow.CreateWpfUiRegion(regionContainer);
-            uiWindow.UiRegions.Add(region);
-
-            //window.OneWayBind(region, p => p.Router, xy => regionContainer.Router)
-            //    .DisposeWith(disposables);
+            // Register region if not registered already
+            uiWindow.CreateUiRegion(regionContainer.Name);
+            
         }
 
         return uiWindow;
-
-        //}
     }
 
-    //private WpfUiRegion GetUiWindow(Window window)
-    //{
-
-
-    //    return Regions.FirstOrDefault(x=> x.Key)
-    //}
-
-    public override void Navigate<T>(T viewModel, string regionName) where T: class
+    /// <summary>
+    /// Navigate to a new or already opened window
+    /// </summary>
+    /// <typeparam name="TWindowViewModel">Type of the window view model</typeparam>
+    /// <typeparam name="TViewModel">View model of the view to load</typeparam>
+    /// <param name="windowViewModel">Current window viewmodel instance</param>
+    /// <param name="viewModel">Current view viewmodel instance</param>
+    /// <param name="regionName">Region name to load the view in</param>
+    /// <returns><see cref="IUiWindow"/> instance the view is loaded in</returns>
+    public override IUiWindow Navigate<TWindowViewModel, TViewModel>(TWindowViewModel windowViewModel, TViewModel viewModel, string regionName)
     {
-        var vmType = typeof(T);
 
-        if (!_viewModelBinding.TryGetValue(vmType, out var windowType))
+        var uiWindow = base.Navigate(windowViewModel, viewModel, regionName);
+
+        if (uiWindow is not ReactiveWindow<TWindowViewModel> reactiveWindow)
         {
-            throw new ArgumentException($"Viewmodel {vmType.Name} not registered with view");
+            throw new ArgumentException($"View {uiWindow.GetType().Name} is not a ReactiveWindow instance as expected");
         }
 
-        if (!_windowsDictionary.TryGetValue(windowType, out var func))
-        {
-            throw new ArgumentException($"Window {windowType.Name} has no factory method registered");
-        }
-
-        var view = func.Invoke();
-
-        if (view == null)
-        {
-            throw new ArgumentNullException(nameof(view));
-        }
-
-        if (view is not ReactiveWindow<T> reactiveWindow)
-        {
-            throw new ArgumentException($"View {view.GetType().Name} is not a ReactiveWindow instance as expected");
-        }
-
-        reactiveWindow.ViewModel = viewModel;
-
-
-
-        reactiveWindow.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
-        {
-            if (x == null)
-            {
-                return;
-            }
-
-            if (x is not IReactiveUiWindowViewModel uvm)
-
-            {
-                throw new ArgumentException($"Viewmodel {x.GetType().Name} does not implement IReactiveUiWindowViewModel as expected");
-            }
-
-
-
-        });
-
+        reactiveWindow.ViewModel = windowViewModel;
+        reactiveWindow.Focus();
         reactiveWindow.Show();
 
-        //// Now search the region and navigate to
-        //window.FindRegion(regionName);
+        // Activate navigation to target region now
+        reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
+        {
+            var region = uiWindow.FindRegion(regionName);
+
+            if (region == null)
+            {
+                throw new ArgumentNullException(nameof(region), $"Region {regionName} not found");
+            }
+
+            if (viewModel is not IUiRegionViewModel uvm)
+            {
+                throw new ArgumentException($"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
+            }
+
+            uvm.InjectScreen(region);
+
+            region.Router.Navigate.Execute(viewModel);
+        });
+
+        return uiWindow;
     }
 }
