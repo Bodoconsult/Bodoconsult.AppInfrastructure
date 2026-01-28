@@ -1,17 +1,19 @@
-﻿using Bodoconsult.App.ReactiveUI.Interfaces;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.ReactiveUI.Interfaces;
 
 namespace Bodoconsult.App.ReactiveUI.Menus;
 
 /// <summary>
 /// A menu item executing a command. Will be transformed to a command button etc. later
 /// </summary>
-public class CommandUiMenuItemBase : UiMenuItemBase
+public class CommandUiMenuItem : UiMenuItemBase
 {
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="name">Name of the menu item or an I18N identifier</param>
-    public CommandUiMenuItemBase(string name) : base(name)
+    public CommandUiMenuItem(string name) : base(name)
     { }
 
     /// <summary>

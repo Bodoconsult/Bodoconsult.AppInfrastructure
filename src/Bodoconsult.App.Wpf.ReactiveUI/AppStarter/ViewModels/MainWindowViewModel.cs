@@ -66,7 +66,7 @@ public partial class MainWindowViewModel : ReactiveObject, IMainWindowViewModel,
     /// <param name="listener">Current EventSource listener: neede to bring logging entries to UI</param>
     /// <param name="translationService">Translation service</param>
     /// <param name="regionManager">Current region manager</param>
-    public MainWindowViewModel(IAppEventListener? listener, II18N? translationService, IRegionManager regionManager)
+    public MainWindowViewModel(IAppEventListener listener, II18N translationService, IRegionManager regionManager)
     {
         TranslationService = translationService;
         _listener = listener;

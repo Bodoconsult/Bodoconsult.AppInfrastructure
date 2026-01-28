@@ -1,11 +1,13 @@
-﻿using Bodoconsult.App.ReactiveUI.Interfaces;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.ReactiveUI.Interfaces;
 
 namespace Bodoconsult.App.ReactiveUI.Menus;
 
 /// <summary>
 /// A menu group item. Will be transformed to a submenu or a ribbon tab etc. later
 /// </summary>
-public class GroupUiMenuItemBase : UiMenuItemBase
+public class GroupUiMenuItem : UiMenuItemBase
 {
     /// <summary>
     /// Child menu items
@@ -16,7 +18,7 @@ public class GroupUiMenuItemBase : UiMenuItemBase
     /// Default ctor
     /// </summary>
     /// <param name="name">Name of the menu item or an I18N identifier</param>
-    public GroupUiMenuItemBase(string name) : base(name)
+    public GroupUiMenuItem(string name) : base(name)
     { }
 
     /// <summary>

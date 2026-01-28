@@ -2,7 +2,7 @@
 
 using Bodoconsult.App.ReactiveUI.Regions;
 
-namespace Bodoconsult.App.ReactiveUI.Tests;
+namespace Bodoconsult.App.ReactiveUI.Interfaces;
 
 /// <summary>
 /// Dummy implementation of <see cref="RegionManagerBase"/> for testing

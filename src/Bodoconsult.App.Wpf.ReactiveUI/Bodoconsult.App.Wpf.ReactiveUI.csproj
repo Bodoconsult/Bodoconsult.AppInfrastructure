@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<Platforms>AnyCPU</Platforms>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>

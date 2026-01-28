@@ -102,4 +102,11 @@ public partial class MainWindow : IUiWindow
             // Do nothing
         }
     }
+
+    ///// <summary>
+    ///// Allows the ViewModel to be used on the XAML via a dependency property
+    ///// </summary>
+    //public static readonly DependencyProperty ViewModelProperty =
+    //        DependencyProperty.Register("ViewModel", typeof(MainViewModel), typeof(MainWindow),
+    //                                    new PropertyMetadata(default(MainViewModel)));
 }

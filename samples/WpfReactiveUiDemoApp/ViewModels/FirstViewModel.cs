@@ -23,7 +23,12 @@ public partial class FirstViewModel : ReactiveObject, IUiRegionViewModel
     /// </summary>
     [Reactive] public partial string Test { get; set; }
 
-    public IScreen HostScreen { get; private set; }
+    /// <summary>
+    /// Gets the IScreen that this ViewModel is currently being shown in. This
+    /// is usually passed into the ViewModel in the Constructor and saved
+    /// as a ReadOnly Property.
+    /// </summary>
+    public IScreen HostScreen { get; private set; } = new DummyScreen();
 
     public FirstViewModel()
     {

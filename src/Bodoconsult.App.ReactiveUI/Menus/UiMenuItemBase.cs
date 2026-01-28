@@ -1,4 +1,6 @@
-﻿using Bodoconsult.App.ReactiveUI.Interfaces;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.ReactiveUI.Interfaces;
 
 namespace Bodoconsult.App.ReactiveUI.Menus;
 
@@ -25,6 +27,11 @@ public abstract class UiMenuItemBase : IUiMenuItem
     /// Parent menu item or null
     /// </summary>
     public IUiMenuItem? Parent { get; set; }
+
+    /// <summary>
+    /// Stores the final parent object during menu building process
+    /// </summary>
+    public object? ParentObject { get; set; }
 
     /// <summary>
     /// Is the menu item visible

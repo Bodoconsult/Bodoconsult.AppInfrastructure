@@ -1,7 +1,7 @@
-// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+//// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace Bodoconsult.App.Wpf.ReactiveUI;
+//namespace Bodoconsult.App.Wpf.ReactiveUI;
 
-public class Class1
-{
-}
+//public class Class1
+//{
+//}

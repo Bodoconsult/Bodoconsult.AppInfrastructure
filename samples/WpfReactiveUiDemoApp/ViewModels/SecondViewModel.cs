@@ -23,7 +23,7 @@ public partial class SecondViewModel : ReactiveObject, IUiRegionViewModel
     /// is usually passed into the ViewModel in the Constructor and saved
     /// as a ReadOnly Property.
     /// </summary>
-    public IScreen HostScreen { get; private set; }
+    public IScreen HostScreen { get; private set; } = new DummyScreen();
 
     public SecondViewModel()
     {
