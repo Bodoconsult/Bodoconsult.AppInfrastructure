@@ -5,12 +5,8 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.Helpers;
 using ReactiveUI;
-using System;
-using System.Collections.Concurrent;
 using System.Reactive.Disposables;
-using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using System.Windows;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 

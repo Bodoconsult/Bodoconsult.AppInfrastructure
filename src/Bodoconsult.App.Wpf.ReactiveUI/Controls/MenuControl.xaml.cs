@@ -1,11 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,7 +9,7 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Controls;
 /// <summary>
 /// WPF default menu user control
 /// </summary>
-public partial class MenuControl
+public class MenuControl
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="Menu"/> class.

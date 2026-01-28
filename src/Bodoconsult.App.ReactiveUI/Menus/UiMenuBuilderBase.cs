@@ -96,4 +96,34 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     {
         throw new NotSupportedException("Override this method in your derived class");
     }
+
+    /// <summary>
+    /// Build the final object for a <see cref="CommandUiMenuItem"/>
+    /// </summary>
+    /// <param name="item">Command menu item</param>
+    /// <param name="parentItem">Parent item or null</param>
+    public virtual void BuildCommandUiMenuItem(CommandUiMenuItem item, GroupUiMenuItem? parentItem)
+    {
+        throw new NotSupportedException();
+    }
+
+    /// <summary>
+    /// Build the final object for a <see cref="GroupUiMenuItem"/>
+    /// </summary>
+    /// <param name="item">Command menu item</param>
+    /// <param name="parentItem">Parent item or null</param>
+    public virtual void BuildGroupUiMenuItem(GroupUiMenuItem item, GroupUiMenuItem? parentItem)
+    {
+        throw new NotSupportedException("Override this method in your derived class");
+    }
+
+    /// <summary>
+    /// Build the final object for a <see cref="SeparatorUiMenuItem"/>
+    /// </summary>
+    /// <param name="item">Command menu item</param>
+    /// <param name="parentItem">Parent item or null</param>
+    public virtual void BuildSeparatorUiMenuItem(SeparatorUiMenuItem item, GroupUiMenuItem? parentItem)
+    {
+        throw new NotSupportedException("Override this method in your derived class");
+    }
 }

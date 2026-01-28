@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.ReactiveUI.Menus;
 
 namespace Bodoconsult.App.ReactiveUI.Interfaces;
 
@@ -51,4 +52,26 @@ public interface IUiMenuBuilder
     /// </summary>
     /// <param name="item">Current menu item</param>
     void BuildMenuItem(IUiMenuItem item);
+
+    /// <summary>
+    /// Build the final object for a <see cref="CommandUiMenuItem"/>
+    /// </summary>
+    /// <param name="item">Command menu item</param>
+    /// <param name="parentItem">Parent item or null</param>
+    void BuildCommandUiMenuItem(CommandUiMenuItem item, GroupUiMenuItem? parentItem);
+
+    /// <summary>
+    /// Build the final object for a <see cref="GroupUiMenuItem"/>
+    /// </summary>
+    /// <param name="item">Command menu item</param>
+    /// <param name="parentItem">Parent item or null</param>
+    void BuildGroupUiMenuItem(GroupUiMenuItem item, GroupUiMenuItem? parentItem);
+
+    /// <summary>
+    /// Build the final object for a <see cref="SeparatorUiMenuItem"/>
+    /// </summary>
+    /// <param name="item">Command menu item</param>
+    /// <param name="parentItem">Parent item or null</param>
+    void BuildSeparatorUiMenuItem(SeparatorUiMenuItem item, GroupUiMenuItem? parentItem);
+
 }
