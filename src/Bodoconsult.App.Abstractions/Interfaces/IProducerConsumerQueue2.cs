@@ -1,5 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
-
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
@@ -8,18 +7,18 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// </summary>
 /// <typeparam name="T">A class type</typeparam>
 /// <param name="data">Current instance of TType</param>
-public delegate void ConsumerTaskDelegate<in T>(T data) where T : class;
+public delegate void ConsumerTaskDelegate2<in T>(T data) where T : struct;
 
 /// <summary>
-/// Implements a thread-safe generic producer consumer based pattern using threads: Use it for classes
+/// Implements a thread-safe generic producer consumer based pattern using threads. Use it for structs
 /// </summary>
-public interface IProducerConsumerQueue<T>: IDisposable where T: class
+public interface IProducerConsumerQueue2<T> : IDisposable where T : struct
 {
 
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }
+    ConsumerTaskDelegate2<T> ConsumerTaskDelegate { get; set; }
 
     /// <summary>
     /// Is the queue started?

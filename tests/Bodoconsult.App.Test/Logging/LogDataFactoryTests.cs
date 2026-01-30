@@ -6,7 +6,7 @@ using Bodoconsult.App.Logging;
 namespace Bodoconsult.App.Test.Logging;
 
 [TestFixture]
-internal class UnitTestsLogDataFactory 
+internal class LogDataFactoryTests 
 {
 
 
@@ -20,7 +20,6 @@ internal class UnitTestsLogDataFactory
 
         // Assert
         Assert.That(factory.CurrentNumberOfInstancesInPool, Is.EqualTo(0));
-
     }
 
     [Test]
@@ -35,7 +34,6 @@ internal class UnitTestsLogDataFactory
 
         // Assert
         Assert.That(factory.CurrentNumberOfInstancesInPool, Is.EqualTo(numberOfInstances));
-
     }
 
     [Test]
@@ -53,7 +51,6 @@ internal class UnitTestsLogDataFactory
         // Assert
         Assert.That(logData, Is.Not.Null);
         Assert.That(factory.CurrentNumberOfInstancesInPool, Is.EqualTo(numberOfInstances - 1));
-
     }
 
     [Test]
@@ -72,7 +69,5 @@ internal class UnitTestsLogDataFactory
 
         // Assert
         Assert.That(factory.CurrentNumberOfInstancesInPool, Is.EqualTo(numberOfInstances));
-
     }
-
 }

@@ -38,6 +38,10 @@ Release notes for Bodoconsult.App
 
 -	New FileTimeExtenions and GuidExtensions classes
 
+# 1.0.9
 
+-   Uses Bodoconsult.App.Abstractions 1.0.9
+
+-   MonitorLoggerFactory added for creating special purpose loggers (in addition to the default app logging). Intended to write logs for a device, a database connection or other topics requiring separate logging
 
 

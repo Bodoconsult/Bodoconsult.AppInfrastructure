@@ -9,7 +9,7 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Controls;
 /// <summary>
 /// WPF default menu user control
 /// </summary>
-public class MenuControl
+public partial class MenuControl
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="Menu"/> class.

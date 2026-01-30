@@ -1,4 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Collections.Concurrent;
 using Bodoconsult.App.Abstractions.Interfaces;
@@ -8,7 +8,7 @@ namespace Bodoconsult.App.Helpers;
 /// <summary>
 /// Thread-safe implementation for a <see cref="IProducerConsumerQueue{TType}"/>. Supports one or many producers but only one consumer.
 /// </summary>
-public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : class
+public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : struct
 {
 
     private Thread _consumerThread;
@@ -22,7 +22,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    public ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }
+    public ConsumerTaskDelegate2<T> ConsumerTaskDelegate { get; set; }
 
     /// <summary>
     /// Is the queue started?
@@ -41,7 +41,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
         //}
         try
         {
-            if (InternalQueue==null || InternalQueue.IsCompleted)
+            if (InternalQueue == null || InternalQueue.IsCompleted)
             {
                 return;
             }
@@ -99,8 +99,6 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     {
         InternalQueue?.CompleteAdding();
 
-        
-
         //Thread.Sleep(50);
         if (_consumerThread is { IsAlive: true })
         {
@@ -116,7 +114,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     public void Dispose()
     {
         StopConsumer();
-            
+
         IsActivated = false;
         _consumerThread = null;
     }

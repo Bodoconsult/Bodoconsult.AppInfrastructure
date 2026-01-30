@@ -1,6 +1,5 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
 using System.Globalization;
 using System.Windows.Media;
 using Bodoconsult.App.Wpf.Converters;

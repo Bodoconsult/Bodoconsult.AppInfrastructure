@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace Bodoconsult.App.Test.Logging;
 
 [TestFixture]
-internal class UnitTestsFakeLogger: BaseFakeLoggerTests
+internal class FakeLoggerTests: BaseFakeLoggerTests
 {
 
     [SetUp]
