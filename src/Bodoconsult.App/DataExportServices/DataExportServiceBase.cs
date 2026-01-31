@@ -2,6 +2,7 @@
 
 using System.Text;
 using Bodoconsult.App.Helpers;
+using Bodoconsult.App.Interfaces;
 // ReSharper disable InconsistentlySynchronizedField
 
 namespace Bodoconsult.App.DataExportServices;
@@ -10,17 +11,19 @@ namespace Bodoconsult.App.DataExportServices;
 /// Base class for data export services
 /// </summary>
 /// <typeparam name="T">Type of the class to export</typeparam>
-public abstract class DataExportServiceBase<T> where T : class
+public abstract class DataExportServiceBase<T> : IDataExportService<T> where T : class
 {
     private bool _isStarted;
     private readonly Lock _isStatedLock = new();
     private readonly Lock _cacheLock = new();
 
+    private long _currentFileSize;
+
     private readonly List<ReadOnlyMemory<byte>> _cache = new();
 
     private readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> _cachingQueue = new();
 
-    private readonly ProducerConsumerQueue<List<ReadOnlyMemory<byte>>> _storingQueue = new();
+    private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
 
     /// <summary>
     /// Default ctor
@@ -37,7 +40,12 @@ public abstract class DataExportServiceBase<T> where T : class
     public int RowCounter { get; private set; }
 
     /// <summary>
-    /// Cache size
+    /// Maximum file size before rolling to next file. Default: 10 MB
+    /// </summary>
+    public long MaxFileSize { get; set; } = 10000000;
+
+    /// <summary>
+    /// Cache size as number of T instances to cache before saving to file
     /// </summary>
     public int CacheSize { get; set; } = 1000;
 
@@ -102,22 +110,39 @@ public abstract class DataExportServiceBase<T> where T : class
             _isStarted = false;
         }
 
-        Thread.Sleep(1000);
+        Thread.Sleep(500);
 
         lock (_cacheLock)
         {
             if (_cache.Count > 0)
             {
-                _storingQueue.Enqueue(_cache.ToList());
-                lock (_cacheLock)
-                {
-                    _cache.Clear();
-                }
+                StoreStreamToStoringQueue();
             }
         }
 
         _cachingQueue.StopConsumer();
         _storingQueue.StopConsumer();
+    }
+
+    private void StoreStreamToStoringQueue()
+    {
+        List<ReadOnlyMemory<byte>> data;
+
+        // Keep the lock as short as possible
+        lock (_cacheLock)
+        {
+            data = _cache.ToList();
+            _cache.Clear();
+        }
+
+        var ms = new MemoryStream();
+        foreach (var memory in data)
+        {
+            ms.Write(memory.Span);
+            RowCounter++;
+        }
+
+        _storingQueue.Enqueue(ms);
     }
 
     /// <summary>
@@ -165,20 +190,30 @@ public abstract class DataExportServiceBase<T> where T : class
         throw new NotSupportedException("Implemented your own conversion by overriding this method");
     }
 
-    private void AddCacheToStoring(List<ReadOnlyMemory<byte>> data)
+    /// <summary>
+    /// Add data to the storing queue
+    /// </summary>
+    /// <param name="data">Current data to be stored</param>
+    private void AddCacheToStoring(MemoryStream data)
     {
+        if (_currentFileSize > MaxFileSize)
+        {
+            CurrentFilePath = CreateCurrentFilePath();
+            _currentFileSize = 0;
+        }
+
         // Debug.Print($"Count: {data.Count}");
         using var stream = new FileStream(CurrentFilePath, FileMode.Append, FileAccess.Write, FileShare.Read);
+        data.Position = 0;
+        data.CopyTo(stream);
 
-        foreach (var item in data)
-        {
-            var rs = item.Span;
-            stream.Write(rs);
-
-            RowCounter++;
-        }
+        _currentFileSize += data.Length;
     }
 
+    /// <summary>
+    /// Add data to the internal cache waiting for storing
+    /// </summary>
+    /// <param name="data">Current data to be stored</param>
     private void AddDataToCache(ReadOnlyMemory<byte> data)
     {
         lock (_cacheLock)
@@ -190,9 +225,7 @@ public abstract class DataExportServiceBase<T> where T : class
                 return;
             }
 
-            var x = _cache.ToList();
-            _storingQueue.Enqueue(x);
-            _cache.Clear();
+            StoreStreamToStoringQueue();
         }
     }
 }

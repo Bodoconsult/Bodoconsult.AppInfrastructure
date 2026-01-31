@@ -70,6 +70,10 @@ public class MonitorLoggerFactory : IMonitorLoggerFactory
         return _logger;
     }
 
+    /// <summary>
+    /// Adds an <see cref="T:Microsoft.Extensions.Logging.ILoggerProvider" /> to the logging system.
+    /// </summary>
+    /// <param name="provider">The <see cref="T:Microsoft.Extensions.Logging.ILoggerProvider" />.</param>
     public void AddProvider(ILoggerProvider provider)
     {
         // Do nothing

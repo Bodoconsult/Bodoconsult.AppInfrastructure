@@ -18,6 +18,8 @@ It delivers the following main functionality:
 
 > [Business transactions to simplify transportation layer implementations for technologies like GRPC, WebAPI, etc...](#business-transactions)
 
+> [IDataExportService<T>/DataExportServiceBase<T> for long running data exports to string or binary files](#data-export-services)
+
 > [# Client notifications for technologies like GRPC, WebAPI, etc...](#client-notifications)
 
 > [More tools for developers](#more-tools-for-developers)
@@ -89,6 +91,14 @@ See page [Business transactions](BusinessTransactions.md) for details.
 # Client notifications
 
 See page [Client notifications](ClientNotification.md) for details.
+
+# Data export services
+
+Data export services based on IDataExportService<T>/DataExportServiceBase<T> are intended to store a datastream of messages like raw byte arrays, strings, custom data classes etc. to file.
+
+Typical scenario is a network device sending communication data to a client. Client is intended to save the received data into files for later usage.
+
+See page [](DataExportService.md) for details.
 
 # More tools for developers
 

@@ -9,6 +9,27 @@ namespace Bodoconsult.App.Test.DataExportServices;
 [TestFixture]
 internal class ByteArrayDataExportServiceTests
 {
+    [SetUp]
+    public void SetUp()
+    {
+        var path = Path.GetTempPath();
+
+        var dir = new DirectoryInfo(path);
+
+        foreach (var file in dir.GetFiles("DataExport*.txt"))
+        {
+            try
+            {
+                file.Delete();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+    }
 
     [Test]
     public void Ctor_ValidDefaultSetup_PropsSetCorretctly()
@@ -66,7 +87,7 @@ internal class ByteArrayDataExportServiceTests
     }
 
     [Test]
-    public void Add_ValidDefaultSetup_CurrentFilePathSet()
+    public void Add_ValidDefaultSetup_FileWritten()
     {
         // Arrange 
         const string text = "Blubb";
@@ -83,9 +104,7 @@ internal class ByteArrayDataExportServiceTests
 
         // Assert
         Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-
         Assert.That(File.Exists(service.CurrentFilePath));
-
         Assert.That(service.RowCounter, Is.EqualTo(1));
 
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
@@ -93,7 +112,7 @@ internal class ByteArrayDataExportServiceTests
 
 
     [Test]
-    public void Add_ValidDefaultSetup1000_CurrentFilePathSet()
+    public void Add_ValidDefaultSetup1000_FileWritten()
     {
         // Arrange 
         const string text = "Blubb\r\n";
@@ -113,10 +132,36 @@ internal class ByteArrayDataExportServiceTests
 
         // Assert
         Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-
         Assert.That(File.Exists(service.CurrentFilePath));
-
         Assert.That(service.RowCounter, Is.EqualTo(1000));
+
+        FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
+    }
+
+
+    [Test]
+    public void Add_ValidDefaultSetup1000000_FileWritten()
+    {
+        // Arrange 
+        const string text = "Blubb\r\n";
+
+        var data = Encoding.UTF8.GetBytes(text);
+
+        var service = new ByteArrayDataExportService();
+        service.Start();
+
+        // Act
+        for (var i = 0; i < 1000000; i++)
+        {
+            service.Add(data);
+        }
+
+        service.Stop();
+
+        // Assert
+        Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
+        Assert.That(File.Exists(service.CurrentFilePath));
+        Assert.That(service.RowCounter, Is.EqualTo(1000000));
 
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }

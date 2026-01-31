@@ -44,4 +44,6 @@ Release notes for Bodoconsult.App
 
 -   MonitorLoggerFactory added for creating special purpose loggers (in addition to the default app logging). Intended to write logs for a device, a database connection or other topics requiring separate logging
 
+-   Added IDataExportService<T>/DataExportServiceBase<T> for long running data exports to string or binary files
+
 
