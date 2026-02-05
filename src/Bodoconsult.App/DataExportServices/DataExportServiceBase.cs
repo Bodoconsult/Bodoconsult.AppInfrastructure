@@ -14,15 +14,11 @@ namespace Bodoconsult.App.DataExportServices;
 public abstract class DataExportServiceBase<T> : IDataExportService<T> where T : class
 {
     private bool _isStarted;
-    private readonly Lock _isStatedLock = new();
+    private readonly Lock _isStartedLock = new();
     private readonly Lock _cacheLock = new();
-
     private long _currentFileSize;
-
     private readonly List<ReadOnlyMemory<byte>> _cache = new();
-
     private readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> _cachingQueue = new();
-
     private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
 
     /// <summary>
@@ -60,7 +56,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     public string FileName { get; set; } = "DataExport";
 
     /// <summary>
-    /// Pattern for the full filename including timestamp etc.
+    /// Pattern for the full filename including timestamp etc.. Default: "{0}_{1}.{2}";
     /// {0} FileName
     /// {1} Timestamp
     /// {2} FileExtension
@@ -94,7 +90,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
         _cachingQueue.StartConsumer();
         _storingQueue.StartConsumer();
         CurrentFilePath = CreateCurrentFilePath();
-        lock (_isStatedLock)
+        lock (_isStartedLock)
         {
             _isStarted = true;
         }
@@ -105,7 +101,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// </summary>
     public void Stop()
     {
-        lock (_isStatedLock)
+        lock (_isStartedLock)
         {
             _isStarted = false;
         }
@@ -151,7 +147,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// <param name="data"></param>
     public void Add(T data)
     {
-        lock (_isStatedLock)
+        lock (_isStartedLock)
         {
             if (!_isStarted)
             {

@@ -26,3 +26,5 @@ Release notes for Bodoconsult.App.Abstractions
 -   New interface II18NBase as common base interface for I18N and I18NServer class to make ILocalesProviderPackage more flexible
 
 -   Added properties BackgroundImagePath and WatermarkText to ITypoMetaData
+
+-   Added extension methods for Memory<byte> and ReadOnlySequence<Byte> in classes MemoryExtensions and ReadOnlySequenceExtensions
