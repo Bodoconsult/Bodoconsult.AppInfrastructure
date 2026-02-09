@@ -9,14 +9,15 @@ namespace Bodoconsult.App.DataExportServices;
 /// </summary>
 public class JsonDataExportService<T> : DataExportServiceBase<T> where T : class
 {
+
     /// <summary>
     /// Default ctor
     /// </summary>
     public JsonDataExportService()
     {
-        HeaderData = Encoding.UTF8.GetBytes("[");
-        FooterData = Encoding.UTF8.GetBytes("]");
-        TokenSeparatorData = Encoding.UTF8.GetBytes(",");
+        HeaderData = Encoding.GetBytes("[");
+        FooterData = Encoding.GetBytes("]");
+        TokenSeparatorData = Encoding.GetBytes(",");
     }
 
     /// <summary>
@@ -27,7 +28,7 @@ public class JsonDataExportService<T> : DataExportServiceBase<T> where T : class
     public override ReadOnlyMemory<byte> ToMemory(T data)
     {
         var s = System.Text.Json.JsonSerializer.Serialize(data);
-        var b = Encoding.UTF8.GetBytes(s);
+        var b = Encoding.GetBytes(s);
         return b;
     }
 }

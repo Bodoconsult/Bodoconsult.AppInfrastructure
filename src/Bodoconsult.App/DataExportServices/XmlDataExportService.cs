@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Numerics;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Bodoconsult.App.DataExportServices;
@@ -11,6 +13,9 @@ namespace Bodoconsult.App.DataExportServices;
 public class XmlDataExportService<T> : DataExportServiceBase<T> where T : class
 {
     private readonly XmlSerializer _xmlSerializer = new(typeof(T));
+    private readonly XmlSerializerNamespaces _namespaces = new([XmlQualifiedName.Empty]);
+    private readonly XmlWriterSettings _settings = new() { OmitXmlDeclaration = true, Indent = true, Encoding = Encoding.UTF8 };
+    private readonly StringBuilder _output = new();
 
     /// <summary>
     /// Default ctor
@@ -18,8 +23,8 @@ public class XmlDataExportService<T> : DataExportServiceBase<T> where T : class
     public XmlDataExportService()
     {
         var name = typeof(T).Name;
-        HeaderData = Encoding.UTF8.GetBytes($"<?xml version=\"1.0\" encoding=\"utf-16\"?>{Environment.NewLine}<ArrayOf{name} xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">{Environment.NewLine}");
-        FooterData = Encoding.UTF8.GetBytes($"{Environment.NewLine}</ArrayOf{name}>");
+        HeaderData = Encoding.GetBytes($"<?xml version=\"1.0\" encoding=\"utf-16\"?>{Environment.NewLine}<ArrayOf{name} xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">{Environment.NewLine}");
+        FooterData = Encoding.GetBytes($"{Environment.NewLine}</ArrayOf{name}>");
     }
 
     /// <summary>
@@ -30,7 +35,7 @@ public class XmlDataExportService<T> : DataExportServiceBase<T> where T : class
     public override ReadOnlyMemory<byte> ToMemory(T data)
     {
         var s = Serialize(data);
-        var b = Encoding.UTF8.GetBytes(s);
+        var b = Encoding.GetBytes(s);
         return b;
     }
 
@@ -41,8 +46,15 @@ public class XmlDataExportService<T> : DataExportServiceBase<T> where T : class
     /// <returns>String with serialized object</returns>
     public string Serialize(object obj)
     {
-        using var textWriter = new StringWriter();
-        _xmlSerializer.Serialize(textWriter, obj);
-        return textWriter.ToString().Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "", StringComparison.InvariantCultureIgnoreCase);
+        _output.Clear();
+
+        var writer = XmlWriter.Create(_output, _settings);
+        _xmlSerializer.Serialize(writer, obj, _namespaces);
+
+        return _output.ToString();
+
+        //using var textWriter = new StringWriter();
+        //_xmlSerializer.Serialize(textWriter, obj, _namespaces);
+        //return textWriter.ToString().Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "", StringComparison.InvariantCultureIgnoreCase);
     }
 }

@@ -14,6 +14,7 @@ namespace Bodoconsult.App.DataExportServices;
 /// <typeparam name="T">Type of the class to export</typeparam>
 public abstract class DataExportServiceBase<T> : IDataExportService<T> where T : class
 {
+    
     private bool _isStarted;
     private readonly Lock _isStartedLock = new();
     private readonly Lock _cacheLock = new();
@@ -22,6 +23,11 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     private readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> _cachingQueue = new();
     private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
     private readonly MemoryStreamBufferPool _memoryStreamBufferPool = new();
+
+    /// <summary>
+    /// Encoding to use for string exports
+    /// </summary>
+    protected readonly Encoding Encoding = Encoding.UTF8;
 
     /// <summary>
     /// Default ctor
@@ -224,7 +230,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
 
         if (data is string s)
         {
-            var arr = Encoding.UTF8.GetBytes(s);
+            var arr = Encoding.GetBytes(s);
             return arr;
         }
 
