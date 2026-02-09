@@ -52,6 +52,21 @@ public interface IDataExportService<in T> where T : class
     string CurrentFilePath { get; set; }
 
     /// <summary>
+    /// Header data to add at the start of the file. Mainly intended for XML or JSON
+    /// </summary>
+    ReadOnlyMemory<byte>? HeaderData { get; set; }
+
+    /// <summary>
+    /// Footer data to add at the end of the file. Mainly intended for XML or JSON
+    /// </summary>
+    ReadOnlyMemory<byte>? FooterData { get; set; }
+
+    /// <summary>
+    /// Byte data separating tokens in the file. Default: null
+    /// </summary>
+    ReadOnlyMemory<byte>? TokenSeparatorData { get; set; }
+
+    /// <summary>
     /// Create the current file path
     /// </summary>
     /// <returns>Current file path</returns>

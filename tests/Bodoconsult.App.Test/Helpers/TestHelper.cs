@@ -111,4 +111,40 @@ public static class TestHelper
     }
 
     private static AppBenchProxy _bench;
+
+    /// <summary>
+    /// Clean the TEMP path from txt and bin files
+    /// </summary>
+    public static void CleanTempPath()
+    {
+        var path = Path.GetTempPath();
+
+        var dir = new DirectoryInfo(path);
+
+        foreach (var file in dir.GetFiles("DataExport*.txt"))
+        {
+            try
+            {
+                file.Delete();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        foreach (var file in dir.GetFiles("DataExport*.bin"))
+        {
+            try
+            {
+                file.Delete();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+    }
 }

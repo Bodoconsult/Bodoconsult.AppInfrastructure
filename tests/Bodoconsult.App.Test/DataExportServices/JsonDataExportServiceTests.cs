@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Diagnostics;
 using Bodoconsult.App.DataExportServices;
-using System.Text;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Test.Helpers;
 
 namespace Bodoconsult.App.Test.DataExportServices;
 
 [TestFixture]
-internal class ByteArrayDataExportServiceTests
+internal class JsonDataExportServiceTests
 {
     [SetUp]
     public void SetUp()
     {
         TestHelper.CleanTempPath();
-
     }
 
     [Test]
@@ -23,10 +22,7 @@ internal class ByteArrayDataExportServiceTests
         // Arrange 
 
         // Act  
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
+        var service = new JsonDataExportService<TestData>();
 
         // Assert
         Assert.That(service.CurrentFilePath, Is.Null);
@@ -38,10 +34,9 @@ internal class ByteArrayDataExportServiceTests
         // Arrange 
 
         // Act  
-        var service = new ByteArrayDataExportService()
+        var service = new JsonDataExportService<TestData>()
         {
-            FileName = "Export",
-            FileExtension = "bin"
+            FileName = "Export"
         };
 
         // Assert
@@ -52,10 +47,7 @@ internal class ByteArrayDataExportServiceTests
     public void CreateCurrentFilePath_ValidDefaultSetup_ValidPathReturned()
     {
         // Arrange 
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
+        var service = new JsonDataExportService<TestData>();
 
         // Act  
         var result = service.CreateCurrentFilePath();
@@ -68,10 +60,7 @@ internal class ByteArrayDataExportServiceTests
     public void Start_ValidDefaultSetup_CurrentFilePathSet()
     {
         // Arrange 
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
+        var service = new JsonDataExportService<TestData>();
 
         // Act  
         service.Start();
@@ -86,14 +75,9 @@ internal class ByteArrayDataExportServiceTests
     public void Add_ValidDefaultSetup_FileWritten()
     {
         // Arrange 
-        const string text = "Blubb";
+        var data = new TestData();
 
-        var data = Encoding.UTF8.GetBytes(text);
-
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
+        var service = new JsonDataExportService<TestData>();
         service.Start();
 
         // Act  
@@ -114,14 +98,9 @@ internal class ByteArrayDataExportServiceTests
     public void Add_ValidDefaultSetup1000_FileWritten()
     {
         // Arrange 
-        const string text = "Blubb\r\n";
+        var data = new TestData();
 
-        var data = Encoding.UTF8.GetBytes(text);
-
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
+        var service = new JsonDataExportService<TestData>();
         service.Start();
 
         // Act
@@ -140,18 +119,15 @@ internal class ByteArrayDataExportServiceTests
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }
 
-
     [Test]
     public void Add_ValidDefaultSetup1000000_FileWritten()
     {
         // Arrange 
-        const string text = "Blubb\r\n";
+        var data = new TestData();
 
-        var data = Encoding.UTF8.GetBytes(text);
-
-        var service = new ByteArrayDataExportService
+        var service = new JsonDataExportService<TestData>
         {
-            FileExtension = "bin"
+            MaxFileSize = 3000
         };
         service.Start();
 
@@ -171,4 +147,38 @@ internal class ByteArrayDataExportServiceTests
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }
 
+
+    [Test]
+    public void TestExport_ListOfTestData_JsonExported()
+    {
+        // Arrange
+        var list = new List<TestData>();
+        var data = new TestData();
+
+        for (var i = 0; i < 2; i++)
+        {
+            list.Add(data);
+        }
+
+        // Act
+        var s = System.Text.Json.JsonSerializer.Serialize(list);
+
+        // Assert
+        Assert.That(string.IsNullOrEmpty(s), Is.False);
+
+        Debug.Print(s);
+    }
+
+    [Test]
+    public void Deserialize_ListOfTestData_JsonExportedDeserialized()
+    {
+        // Arrange
+        var json = "[{\"Text\":\"Some text\",\"Date\":\"2026-02-09T17:27:20.1753682+01:00\",\"IsValid\":false,\"Number\":12345.67},{\"Text\":\"Some text\",\"Date\":\"2026-02-09T17:27:20.1753682+01:00\",\"IsValid\":false,\"Number\":12345.67}]";
+
+        // Act
+        var s = System.Text.Json.JsonSerializer.Deserialize<List<TestData>>(json);
+
+        // Assert
+        Assert.That(s, Is.Not.Null);
+    }
 }

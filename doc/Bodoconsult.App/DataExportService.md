@@ -6,7 +6,26 @@ Typical scenario is a network device sending communication data to a client. Cli
 
 Use properties like TargetPath, Extenion, FileName, MaxFileSize to configure the service and its rolling mechanism. The implemented rolling mechanism adds a time stamp to the filename. If the maximum file size is reached, a new filename is created and the data are written in the new file.
 
-## ByteArrayDataExportService
+## Requirements
+
+The following requirements where intended to be flfilled with the implementation:
+
+-   Flexible data input with base class DataExDataExportServiceBase<T>
+
+-   Flexible output as binary, CSV, JSON, XML file (override method DataExDataExportServiceBase<T>.ToMemory(T data) as required in your superclass based on DataExDataExportServiceBase<T>)
+
+-   Keep the order of the incoming data
+
+-   Simple rolling mechanism dependent on export file maximum size (configurable)
+
+-   Single threaded access to file resource
+
+-   High performance
+
+-   Low GC pressure
+
+
+## ByteArrayDataExportServiceile size
 
 ``` csharp
 [Test]
@@ -17,7 +36,10 @@ public void Add_ValidDefaultSetup1000000_FileWritten()
 
     var data = Encoding.UTF8.GetBytes(text);
 
-    var service = new ByteArrayDataExportService();
+    var service = new ByteArrayDataExportService
+        {
+            FileExtension = "bin"
+        };
     service.Start();
 
     // Act

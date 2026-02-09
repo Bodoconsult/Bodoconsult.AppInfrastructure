@@ -1,11 +1,11 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.BufferPool;
 
 namespace Bodoconsult.App.Test.BufferPool;
 
 [TestFixture]
-internal class BufferPoolTests
+internal class MemoryStreamBufferPoolTests
 {
     private const int NumberOfItems = 1000;
 
@@ -13,7 +13,7 @@ internal class BufferPoolTests
     public void Allocate_ValidSetup_QueueFilled()
     {
         // Arrange 
-        var myPool = new BufferPool<byte[]>(() => new byte[65535]);
+        var myPool = new MemoryStreamBufferPool();
 
         // Act  
         myPool.Allocate(NumberOfItems);
@@ -26,7 +26,7 @@ internal class BufferPoolTests
     public void Dequeue_ValidSetup_InstanceDequeued()
     {
         // Arrange 
-        var myPool = new BufferPool<byte[]>(() => new byte[65535]);
+        var myPool = new MemoryStreamBufferPool();
         myPool.Allocate(NumberOfItems);
 
         // Act  
@@ -37,12 +37,11 @@ internal class BufferPoolTests
         Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems - 1));
     }
 
-
     [Test]
     public void Enqueue_ValidSetup_InstanceEnqueued()
     {
         // Arrange 
-        var myPool = new BufferPool<byte[]>(() => new byte[65535]);
+        var myPool = new MemoryStreamBufferPool();
         myPool.Allocate(1000);
 
         var buffer = myPool.Dequeue();
