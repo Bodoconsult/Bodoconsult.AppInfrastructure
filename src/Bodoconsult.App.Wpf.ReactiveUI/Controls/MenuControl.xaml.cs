@@ -31,5 +31,7 @@ public partial class MenuControl
             "_menuDropAlignment",
             BindingFlags.NonPublic | BindingFlags.Static);
         fieldInfo?.SetValue(null, false);
+
+        
     }
 }

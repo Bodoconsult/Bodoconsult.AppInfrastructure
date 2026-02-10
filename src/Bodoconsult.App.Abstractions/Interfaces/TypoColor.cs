@@ -37,6 +37,7 @@
  */
 
 using System.Diagnostics;
+using System.Drawing;
 
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
@@ -44,7 +45,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// Color defined in ARGB mode
 /// </summary>
 [DebuggerDisplay("R = {R} G = {G} B = {B} A = {A} ({Html, nq})")]
-public class TypoColor
+public class TypoColor: IEquatable<TypoColor>
 {
     /// <summary>
     /// Default ctor
@@ -175,4 +176,48 @@ public class TypoColor
     /// <param name="blue">Blue</param>
     /// <returns>ARGB color</returns>
     public static TypoColor FromArgb(byte red, byte green, byte blue) => FromArgb(byte.MaxValue, red, green, blue);
+
+    /// <summary>
+    /// Color equals other color?
+    /// </summary>
+    /// <param name="other">Other color</param>
+    /// <returns></returns>
+    public bool Equals(TypoColor other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return A == other.A && R == other.R && G == other.G && B == other.B;
+    }
+
+    /// <summary>Determines whether the specified object is equal to the current object.</summary>
+    /// <param name="obj">The object to compare with the current object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the specified object  is equal to the current object; otherwise, <see langword="false" />.</returns>
+    public override bool Equals(object obj)
+    {
+        if (obj is null)
+        {
+            return false;
+        }
+
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+
+        if (obj.GetType() != GetType())
+        {
+            return false;
+        }
+        return Equals((TypoColor)obj);
+    }
+
+    /// <summary>Serves as the default hash function.</summary>
+    /// <returns>A hash code for the current object.</returns>
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(A, R, G, B);
+    }
 }

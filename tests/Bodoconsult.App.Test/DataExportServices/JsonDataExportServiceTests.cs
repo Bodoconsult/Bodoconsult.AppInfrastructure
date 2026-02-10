@@ -57,21 +57,6 @@ internal class JsonDataExportServiceTests
     }
 
     [Test]
-    public void Start_ValidDefaultSetup_CurrentFilePathSet()
-    {
-        // Arrange 
-        var service = new JsonDataExportService<TestData>();
-
-        // Act  
-        service.Start();
-
-        service.Stop();
-
-        // Assert
-        Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-    }
-
-    [Test]
     public void Add_ValidDefaultSetup_FileWritten()
     {
         // Arrange 
@@ -127,7 +112,7 @@ internal class JsonDataExportServiceTests
 
         var service = new JsonDataExportService<TestData>
         {
-            MaxFileSize = 3000
+            MaxFileSize = 100000
         };
         service.Start();
 

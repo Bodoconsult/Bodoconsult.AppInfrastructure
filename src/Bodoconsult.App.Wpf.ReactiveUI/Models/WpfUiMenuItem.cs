@@ -16,7 +16,7 @@ public partial class WpfUiMenuItem : ReactiveObject
     /// </summary>
     /// <param name="header">Header text</param>
     /// <param name="command"></param>
-    public WpfUiMenuItem(string header, ReactiveCommand<Unit, Unit> command)
+    public WpfUiMenuItem(string header, ReactiveCommand<Unit, Unit>? command)
     {
         Header = header;
         Command = command;

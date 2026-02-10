@@ -46,4 +46,8 @@ Release notes for Bodoconsult.App
 
 -   Added IDataExportService<T>/DataExportServiceBase<T> for long running data exports to string or binary files
 
+-   Added BufferPoolResetable<T> for reusing instances of classes implementing IResetable
+
+-   Added MemoryStreamBufferPool for reusing instances of MemoryStream class
+
 

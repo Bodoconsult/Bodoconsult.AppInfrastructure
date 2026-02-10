@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace Bodoconsult.App.Interfaces;
+using System.Text;
+
+namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
 /// Interface for generic data export services
@@ -8,6 +10,11 @@ namespace Bodoconsult.App.Interfaces;
 /// <typeparam name="T">Type of class to store in a file</typeparam>
 public interface IDataExportService<in T> where T : class
 {
+    /// <summary>
+    /// Encoding to use for string based exports like XML, JSON etc.
+    /// </summary>
+    Encoding Encoding { get; }
+
     /// <summary>
     /// Counts the rows since the service was started
     /// </summary>

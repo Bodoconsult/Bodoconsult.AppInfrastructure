@@ -7,6 +7,10 @@ More tools for developers
 
 > [BufferPool\<T\> for reusing frequently used tiny to medium size classes](#bufferpoolt) to reduce garbage collection pressure
 
+> [BufferPoolResetable\<T\> for reusing frequently used tiny to medium size classes implementing IResetable](#bufferpoolresetablet) to reduce garbage collection pressure
+
+> [MemoryStreamBufferPool\<T\> for reusing MemoryStream instances](#memorystreambufferpool) to reduce garbage collection pressure
+
 > [ProducerConsumerQueue<T/> implementing the producer-consumer-pattern for one or many producers but only one consumer](#producerconsumerqueue) with running the consumer always on the same thread
 
 > [DataProtectionManager for protecting secrets like credentials](#dataprotectionmanager-for-protecting-secrets-like-credentials)
@@ -72,6 +76,54 @@ myPool.Enqueue(buffer);
 
 // Assert
 Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems));
+```
+
+# BufferPoolResetable\<T\>
+
+BufferPoolResetable\<T\> is intended as buffer pool for reusable classes implementing IResetable interface.
+
+Heavily used small objects of a type lead to a relatively high demand for object creation and disposing. In such cases it might be a good idea to reuse the already created instances.
+
+Classes used with BufferPoolResetable\<T\> have to implement IResetable interface.
+
+``` csharp
+[Test]
+public void Enqueue_ValidSetup_InstanceEnqueued()
+{
+    // Arrange 
+    var myPool = new BufferPoolResetable<TestDataResetable>(() => new TestDataResetable());
+    myPool.Allocate(1000);
+
+    var buffer = myPool.Dequeue();
+
+    // Act  
+    myPool.Enqueue(buffer);
+
+    // Assert
+    Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems));
+}
+```
+
+# MemoryStreamBufferPool
+
+A special buffer pool to reuse MemoryStream instances.
+
+``` csharp
+[Test]
+public void Enqueue_ValidSetup_InstanceEnqueued()
+{
+    // Arrange 
+    var myPool = new MemoryStreamBufferPool();
+    myPool.Allocate(1000);
+
+    var buffer = myPool.Dequeue();
+
+    // Act  
+    myPool.Enqueue(buffer);
+
+    // Assert
+    Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems));
+}
 ```
 
 # ProducerConsumerQueue<T/>

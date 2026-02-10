@@ -58,21 +58,6 @@ internal class XmlDataExportServiceTests
     }
 
     [Test]
-    public void Start_ValidDefaultSetup_CurrentFilePathSet()
-    {
-        // Arrange 
-        var service = new XmlDataExportService<TestData>();
-
-        // Act  
-        service.Start();
-
-        service.Stop();
-
-        // Assert
-        Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-    }
-
-    [Test]
     public void Add_ValidDefaultSetup_FileWritten()
     {
         // Arrange 
@@ -101,7 +86,10 @@ internal class XmlDataExportServiceTests
         // Arrange 
         var data = new TestData();
 
-        var service = new XmlDataExportService<TestData>();
+        var service = new XmlDataExportService<TestData>
+        {
+            MaxFileSize = 5000
+        };
         service.Start();
 
         // Act

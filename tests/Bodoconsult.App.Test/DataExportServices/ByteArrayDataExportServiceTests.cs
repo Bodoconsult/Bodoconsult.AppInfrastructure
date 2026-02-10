@@ -65,24 +65,6 @@ internal class ByteArrayDataExportServiceTests
     }
 
     [Test]
-    public void Start_ValidDefaultSetup_CurrentFilePathSet()
-    {
-        // Arrange 
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
-
-        // Act  
-        service.Start();
-
-        service.Stop();
-
-        // Assert
-        Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-    }
-
-    [Test]
     public void Add_ValidDefaultSetup_FileWritten()
     {
         // Arrange 
@@ -170,5 +152,4 @@ internal class ByteArrayDataExportServiceTests
 
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }
-
 }

@@ -1,9 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Text;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BufferPool;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
 // ReSharper disable InconsistentlySynchronizedField
 
 namespace Bodoconsult.App.DataExportServices;
@@ -14,20 +17,17 @@ namespace Bodoconsult.App.DataExportServices;
 /// <typeparam name="T">Type of the class to export</typeparam>
 public abstract class DataExportServiceBase<T> : IDataExportService<T> where T : class
 {
-    
     private bool _isStarted;
     private readonly Lock _isStartedLock = new();
     private readonly Lock _cacheLock = new();
     private long _currentFileSize;
+    private readonly Lock _currentFileSizeLock = new();
     private readonly List<ReadOnlyMemory<byte>> _cache = new();
     private readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> _cachingQueue = new();
     private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
-    private readonly MemoryStreamBufferPool _memoryStreamBufferPool = new();
+    private readonly MemoryStreamBufferPool _storeDataBufferPool = new();
 
-    /// <summary>
-    /// Encoding to use for string exports
-    /// </summary>
-    protected readonly Encoding Encoding = Encoding.UTF8;
+    private FileStream _currentFileStream;
 
     /// <summary>
     /// Default ctor
@@ -37,8 +37,26 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
         _cachingQueue.ConsumerTaskDelegate = AddDataToCache;
         _storingQueue.ConsumerTaskDelegate = AddCacheToStoring;
 
-        _memoryStreamBufferPool.Allocate(10);
+        _storeDataBufferPool.Allocate(100);
     }
+
+    /// <summary>
+    /// Ctor supplying an encoding
+    /// </summary>
+    protected DataExportServiceBase(Encoding encoding)
+    {
+        Encoding = encoding;
+
+        _cachingQueue.ConsumerTaskDelegate = AddDataToCache;
+        _storingQueue.ConsumerTaskDelegate = AddCacheToStoring;
+
+        _storeDataBufferPool.Allocate(100);
+    }
+
+    /// <summary>
+    /// Encoding to use for string based exports like XML, JSON etc.
+    /// </summary>
+    public Encoding Encoding { get; set; } = Encoding.Unicode;
 
     /// <summary>
     /// Counts the rows since the service was started
@@ -114,8 +132,9 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     {
         _cachingQueue.StartConsumer();
         _storingQueue.StartConsumer();
-        CurrentFilePath = CreateCurrentFilePath();
-        StoreStreamToStoringQueue(FileState.Start);
+
+        //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
+        StoreCacheToStoringQueue(FileState.Start);
 
         lock (_isStartedLock)
         {
@@ -133,16 +152,31 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
             _isStarted = false;
         }
 
-        Thread.Sleep(500);
-        
-        StoreStreamToStoringQueue(FileState.Finalize);
-       
+        Thread.Sleep(250);
+
+        //Debug.Print($"Stop: {CurrentFilePath}: {_currentFileSize} byte");
+        StoreCacheToStoringQueue(FileState.Finalize);
+
+        Thread.Sleep(200);
 
         _cachingQueue.StopConsumer();
         _storingQueue.StopConsumer();
+
+        // Now finalize the last filestream
+        if (_currentFileStream != null)
+        {
+            // Add a footer now if required
+            if (FooterData != null)
+            {
+                _currentFileStream.Write(FooterData.Value.Span);
+            }
+
+            _currentFileStream.Close();
+            _currentFileStream.Dispose();
+        }
     }
 
-    private void StoreStreamToStoringQueue(FileState fileState)
+    private void StoreCacheToStoringQueue(FileState fileState)
     {
         List<ReadOnlyMemory<byte>> data;
 
@@ -153,17 +187,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
             _cache.Clear();
         }
 
-        var ms = _memoryStreamBufferPool.Dequeue();
-
-        // Add a header now if required
-        if (fileState == FileState.Start)
-        {
-            // Add a footer if required
-            if (HeaderData != null)
-            {
-                ms.Write(HeaderData.Value.Span);
-            }
-        }
+        var ms = _storeDataBufferPool.Dequeue();
 
         // Now write the data tokens
         var separator = TokenSeparatorData != null ? TokenSeparatorData.Value.Span : default;
@@ -173,10 +197,18 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
         {
             // Write data token
             var memory = data[index];
+
+            lock (_currentFileSizeLock)
+            {
+                _currentFileSize +=memory.Length;
+            }
+
+            //Debug.Print(ArrayHelper.GetStringFromArray(memory));
+
             ms.Write(memory.Span);
 
             // Add separator if required
-            if (index < last && separator.Length > 0)
+            if (fileState == FileState.Finalize && index < last && separator.Length > 0)
             {
                 ms.Write(separator);
             }
@@ -184,15 +216,20 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
             RowCounter++;
         }
 
-        // Add a footer now if required
-        if (fileState == FileState.Finalize)
+        if (ms.Length <= 0)
         {
-            // Add a footer if required
-            if (FooterData != null)
-            {
-                ms.Write(FooterData.Value.Span);
-            }
+            return;
         }
+
+        //// Add a footer now if required
+        //if (fileState == FileState.Finalize)
+        //{
+        //    // Add a footer if required
+        //    if (FooterData != null)
+        //    {
+        //        ms.Write(FooterData.Value.Span);
+        //    }
+        //}
 
         _storingQueue.Enqueue(ms);
     }
@@ -248,13 +285,47 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// <param name="data">Current data to be stored</param>
     private void AddCacheToStoring(MemoryStream data)
     {
-        // Debug.Print($"Count: {data.Count}");
-        using var stream = new FileStream(CurrentFilePath, FileMode.Append, FileAccess.Write, FileShare.Read);
-        data.Position = 0;
-        data.CopyTo(stream);
-        stream.Close();
+        var fileName = CreateCurrentFilePath();
 
-        _memoryStreamBufferPool.Enqueue(data);
+        if (data.Length == 0)
+        {
+            return;
+        }
+
+        if (_currentFileStream == null || _currentFileSize >= MaxFileSize)
+        {
+            if (_currentFileStream != null)
+            {
+                // Add a footer now if required
+                if (FooterData != null)
+                {
+                    _currentFileStream.Write(FooterData.Value.Span);
+                }
+
+                _currentFileStream.Close();
+                _currentFileStream.Dispose();
+            }
+
+            CurrentFilePath = CreateCurrentFilePath();
+
+            _currentFileStream = new FileStream(fileName, FileMode.Append, FileAccess.Write, FileShare.Read);
+            lock (_currentFileSizeLock)
+            {
+                _currentFileSize = 0;
+            }
+
+            // Add a header now if required
+            if (HeaderData != null)
+            {
+                _currentFileStream.Write(HeaderData.Value.Span);
+            }
+        }
+
+        // Debug.Print($"Count: {data.Count}");
+        data.Position = 0;
+        data.CopyTo(_currentFileStream);
+
+        _storeDataBufferPool.Enqueue(data);
     }
 
     /// <summary>
@@ -263,29 +334,35 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// <param name="data">Current data to be stored</param>
     private void AddDataToCache(ReadOnlyMemory<byte> data)
     {
+        bool isNewFile;
+        lock (_currentFileSizeLock)
+        {
+            isNewFile = _currentFileSize > MaxFileSize;
+        }
+
         lock (_cacheLock)
         {
-            if (_currentFileSize > MaxFileSize)
+            _cache.Add(data);
+
+            if (isNewFile)
             {
                 // Last writing to current file
-                StoreStreamToStoringQueue(FileState.Finalize);
+                //Debug.Print($"Finalize: {CurrentFilePath}: {_currentFileSize} byte");
+                StoreCacheToStoringQueue(FileState.Finalize);
 
                 // Rolling to new current file
-                CurrentFilePath = CreateCurrentFilePath();
-                _currentFileSize = 0;
+                //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
+                StoreCacheToStoringQueue(FileState.Start);
 
-                StoreStreamToStoringQueue(FileState.Start);
+                return;
             }
-
-            _cache.Add(data);
-            _currentFileSize += data.Length;
 
             if (_cache.Count < CacheSize)
             {
                 return;
             }
 
-            StoreStreamToStoringQueue(FileState.AddData);
+            StoreCacheToStoringQueue(FileState.AddData);
         }
     }
 

@@ -1,11 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Collections.ObjectModel;
-using System.Windows.Media;
+using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using Bodoconsult.App.Wpf.ReactiveUI.Models;
 using DynamicData;
+using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 
@@ -14,27 +16,43 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 /// </summary>
 public partial class MenuControlViewModel :  ReactiveObject
 {
+    private readonly WpfUiMenuBuilder _wpfUiMenuBuilder;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="wpfUiMenuBuilder"></param>
+    public MenuControlViewModel(WpfUiMenuBuilder wpfUiMenuBuilder)
+    {
+        BackgroundBrush = new SolidColorBrush(Colors.LightGray);
+
+        _wpfUiMenuBuilder = wpfUiMenuBuilder;
+
+        // Use the ToObservableChangeSet operator to convert
+        // the observable collection to IObservable<IChangeSet<T>>
+        // which describes the changes. Then, use any DD operators
+        // to transform the collection. 
+        _wpfUiMenuBuilder.MenuItemsSource.ToObservableChangeSet()
+            .Transform(value => value)
+            // No need to use the .ObserveOn() operator here, as
+            // ObservableCollectionExtended is single-threaded.
+            .Bind(out _menuItems)
+            .Subscribe();
+    }
+
     /// <summary>
     ///  Menu items
     /// </summary>
-    public ObservableCollection<WpfUiMenuItem> MenuItems { get; } = new();
-
-    [Reactive] public partial Brush BackgroundBrush { get; set; }
+    private readonly ReadOnlyObservableCollection<WpfUiMenuItem> _menuItems;
+    
+    /// <summary>
+    /// Current menu items
+    /// </summary>
+    public ReadOnlyObservableCollection<WpfUiMenuItem> MenuItems => _menuItems;
 
     /// <summary>
-    /// Add menu items
+    /// Background brush
     /// </summary>
-    /// <param name="menuItems">Menu items to add</param>
-    public void AddMenuItems(IList<WpfUiMenuItem> menuItems)
-    {
-        MenuItems.AddRange(menuItems);
-    }
-
-    /// <summary>
-    /// Clear the menu
-    /// </summary>
-    public void ClearMenu()
-    {
-        MenuItems.Clear();
-    }
+    [Reactive]
+    public partial Brush BackgroundBrush { get; set; } 
 }

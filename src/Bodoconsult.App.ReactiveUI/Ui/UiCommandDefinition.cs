@@ -2,7 +2,7 @@
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
 
-namespace Bodoconsult.App.ReactiveUI.Menus;
+namespace Bodoconsult.App.ReactiveUI.Ui;
 
 /// <summary>
 /// Basic implementation of <see cref="IUiCommandDefinition"/>

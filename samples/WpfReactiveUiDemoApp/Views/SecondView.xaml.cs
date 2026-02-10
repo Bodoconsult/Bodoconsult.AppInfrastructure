@@ -1,15 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace WpfReactiveUiDemoApp.Views
+namespace WpfReactiveUiDemoApp.Views;
+
+/// <summary>
+/// Interaktionslogik für SecondView.xaml
+/// </summary>
+public partial class SecondView
 {
-    /// <summary>
-    /// Interaktionslogik für SecondView.xaml
-    /// </summary>
-    public partial class SecondView
+    public SecondView()
     {
-        public SecondView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
