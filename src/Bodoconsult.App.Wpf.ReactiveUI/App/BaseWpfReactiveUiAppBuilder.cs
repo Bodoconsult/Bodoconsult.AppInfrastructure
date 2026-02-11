@@ -3,12 +3,12 @@
 
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Wpf.AppStarter;
 using ReactiveUI;
 using ReactiveUI.Builder;
 using Splat;
 using Bodoconsult.App.ReactiveUI.DependecyResolvers;
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using WpfStarterUi = Bodoconsult.App.Wpf.ReactiveUI.AppStarter.WpfStarterUi;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.App;
 
@@ -138,7 +138,7 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
     /// <summary>
     /// Create the view model for the main window
     /// </summary>
-    public virtual Bodoconsult.App.Wpf.Interfaces.IMainWindowViewModel CreateViewModel()
+    public virtual IRxMainWindowViewModel CreateViewModel()
     {
         throw new NotSupportedException();
     }

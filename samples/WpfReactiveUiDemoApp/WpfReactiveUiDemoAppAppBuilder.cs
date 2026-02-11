@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Wpf.Interfaces;
+
 using Bodoconsult.App.Wpf.ReactiveUI.App;
 using ReactiveUI;
-using System.Windows.Media;
+using Bodoconsult.App.ReactiveUI.Interfaces;
 using WpfReactiveUiDemoApp.DiContainerProvider;
 using WpfReactiveUiDemoApp.ViewModels;
 using WpfReactiveUiDemoApp.Views;
@@ -42,11 +42,11 @@ public class WpfReactiveUiDemoAppAppBuilder : BaseWpfReactiveUiAppBuilder
     /// <summary>
     /// Create the view model for the main window
     /// </summary>
-    public override IMainWindowViewModel CreateViewModel()
+    public override IRxMainWindowViewModel CreateViewModel()
     {
         var viewModel = AppGlobals.DiContainer.Get<WpfReactiveUiDemoAppMainWindowViewModel>();
-        viewModel.HeaderBackColor = Colors.DarkBlue;
-        viewModel.BodyBackColor = Colors.Beige;
+        viewModel.HeaderBackColor = TypoColors.DarkBlue;
+        viewModel.BodyBackColor = TypoColors.Beige;
         viewModel.AppExe = AppGlobals.AppStartParameter.AppExe;
 
         // Load the logo now

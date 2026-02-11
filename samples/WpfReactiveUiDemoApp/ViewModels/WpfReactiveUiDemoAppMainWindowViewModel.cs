@@ -4,7 +4,8 @@ using System.Windows;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
+using Bodoconsult.App.ReactiveUI.ViewModels;
+using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
 using ReactiveUI.SourceGenerators;
 
 namespace WpfReactiveUiDemoApp.ViewModels;
@@ -33,7 +34,7 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
         var w = new MainWindow
         {
             ViewModel = this,
-            WindowState = WindowState.Normal,
+            WindowState = WindowState.ToWindowState(),
             Visibility = Visibility.Visible,
         };
 

@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Wpf.Models;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -10,8 +12,6 @@ using System.Windows.Interop;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Wpf.Models;
 
 namespace Bodoconsult.App.Wpf.Helpers;
 
@@ -646,5 +646,59 @@ public static class WpfHelper
                 yield return childOfChild;
             }
         }
+    }
+
+    /// <summary>
+    /// Get a <see cref="BitmapImage"/> from a byte array
+    /// </summary>
+    /// <param name="bytes">Byte array with the image data</param>
+    /// <returns><see cref="BitmapImage"/></returns>
+    public static BitmapImage GetBitmapImageFromBytes(ReadOnlySpan<byte> bytes)
+    {
+        using var ms = new MemoryStream(bytes.ToArray());
+        var bitmap = new BitmapImage();
+        bitmap.BeginInit();
+        bitmap.StreamSource = ms;
+
+        // To save significant application memory, set the DecodePixelWidth or
+        // DecodePixelHeight of the BitmapImage value of the image source to the desired
+        // height or width of the rendered image. If you don't do this, the application will
+        // cache the image as though it were rendered as its normal size rather than just
+        // the size that is displayed.
+        // Note: In order to preserve aspect ratio, set DecodePixelWidth
+        // or DecodePixelHeight but not both.
+        bitmap.DecodePixelHeight = 300;
+        // Below code for caching is crucial.
+        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+        bitmap.EndInit();
+        bitmap.Freeze();
+        return bitmap;
+    }
+
+    /// <summary>
+    /// Get a <see cref="BitmapImage"/> from a byte array
+    /// </summary>
+    /// <param name="bytes">Byte array with the image data</param>
+    /// <returns><see cref="BitmapImage"/></returns>
+    public static BitmapImage GetBitmapImageFromBytes(byte[] bytes)
+    {
+        using var ms = new MemoryStream(bytes.ToArray());
+        var bitmap = new BitmapImage();
+        bitmap.BeginInit();
+        bitmap.StreamSource = ms;
+
+        // To save significant application memory, set the DecodePixelWidth or
+        // DecodePixelHeight of the BitmapImage value of the image source to the desired
+        // height or width of the rendered image. If you don't do this, the application will
+        // cache the image as though it were rendered as its normal size rather than just
+        // the size that is displayed.
+        // Note: In order to preserve aspect ratio, set DecodePixelWidth
+        // or DecodePixelHeight but not both.
+        bitmap.DecodePixelHeight = 300;
+        // Below code for caching is crucial.
+        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+        bitmap.EndInit();
+        bitmap.Freeze();
+        return bitmap;
     }
 }

@@ -11,7 +11,7 @@ namespace Bodoconsult.App.ReactiveUI.Interfaces;
 /// <summary>
 /// Interface for view models for the main app window using ReactiveUi
 /// </summary>
-public interface IMainWindowViewModel
+public interface IRxMainWindowViewModel: IUiWindowViewModel
 {
     /// <summary>
     /// II18N instance to use with MVVM / WPF / Xamarin / Avalonia

@@ -20,7 +20,7 @@ namespace Bodoconsult.App.ReactiveUI.ViewModels;
 /// <summary>
 /// ViewModel for MainWindow window
 /// </summary>
-public abstract partial class MainWindowViewModel : ReactiveObject, IMainWindowViewModel, IUiWindowViewModel
+public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewModel
 {
 
     private bool _showInTaskbar;
@@ -37,7 +37,7 @@ public abstract partial class MainWindowViewModel : ReactiveObject, IMainWindowV
     private EventLevel _logEventLevel;
     private double _width = 100;
     private double _height = 100;
-    private ObservableAsPropertyHelper<double> _headerHeight = ObservableAsPropertyHelper<double>.Default(0);
+    private ObservableAsPropertyHelper<double> _headerHeight = ObservableAsPropertyHelper<double>.Default();
     private IAppBuilder? _appBuilder;
 
     private string _msgConsoleWait = string.Empty;
@@ -60,13 +60,15 @@ public abstract partial class MainWindowViewModel : ReactiveObject, IMainWindowV
     /// <param name="listener">Current EventSource listener: neede to bring logging entries to UI</param>
     /// <param name="translationService">Translation service. Use DummyI18N in case of no translations needed</param>
     /// <param name="regionManager">Current region manager</param>
-    protected MainWindowViewModel(IAppEventListener listener, II18N translationService, IRegionManager regionManager)
+    public MainWindowViewModel(IAppEventListener listener, II18N translationService, IRegionManager regionManager)
     {
         TranslationService = translationService;
         _listener = listener;
         RegionManager = regionManager;
         WindowState = UiWindowState.Normal;
         ShowInTaskbar = true;
+        OpenMenuText = "Open";
+        ExitMenuText = "Exit";
 
         TranslationService = translationService;
 
@@ -99,17 +101,17 @@ public abstract partial class MainWindowViewModel : ReactiveObject, IMainWindowV
     /// <summary>
     /// Menu text for open menu in system tray bar
     /// </summary>
-    public string OpenMenuText { get; set; } = "Open";
+    [Reactive] public partial string OpenMenuText { get; set; }
 
     /// <summary>
     /// Menu text for exit menu in system tray bar
     /// </summary>
-    public string ExitMenuText { get; set; } = "Exit";
+    [Reactive] public partial string ExitMenuText { get; set; }
 
     /// <summary>
     /// Instance name of the window. If null or string.Empty the window instance name is derived from the window type name (loading the window as a singleton instance)
     /// </summary>
-    public string? InstanceName { get; set; } = null;
+    [Reactive] public partial string? InstanceName { get; set; }
 
     /// <summary>
     /// Current region manager

@@ -1,18 +1,18 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 // Licence MIT
 
-using System.Diagnostics.Tracing;
-using System.Windows;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.AppStarter;
 using Bodoconsult.App.Logging;
+using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.Wpf.AppStarter.ViewModels;
-using Bodoconsult.App.Wpf.Interfaces;
+using System.Diagnostics.Tracing;
+using System.Windows;
 
 
 // ReSharper disable LocalizableElement
 
-namespace Bodoconsult.App.Wpf.AppStarter;
+namespace Bodoconsult.App.Wpf.ReactiveUI.AppStarter;
 
 /// <summary>
 /// Implementation of <see cref="IAppStarterUi"/> for WinForms app
@@ -20,33 +20,34 @@ namespace Bodoconsult.App.Wpf.AppStarter;
 public class WpfStarterUi : BaseAppStarterUi
 {
     private readonly AppEventListener _listener;
+    private IRegionManager _regionManager;
 
-    private IMainWindowViewModel _viewModel;
+    private readonly IRxMainWindowViewModel _viewModel;
+
+    ///// <summary>
+    ///// Default ctor
+    ///// </summary>
+    ///// <param name="appBuilder">Current IAppBuilder instance</param>
+    //public WpfStarterUi(IAppBuilder appBuilder) : base(appBuilder)
+    //{
+    //    ConsoleService = new WinConsoleService();
+
+    //    //var minimumLogLevel = Globals.GetLoggingConfiguration().MinimumLogLevel;
+
+    //    //MinimumLogLevel = LogLevel.Debug;
+
+    //    //var eventLevel = MapLogLevelToEventLevel(minimumLogLevel);
+
+    //    var eventLevel = EventLevel.Warning;
+
+    //    _listener = new AppEventListener(eventLevel);
+
+    //}
 
     /// <summary>
-    /// Default ctor
+    /// Ctor for using a customized form as main form of the application. The <see cref="IRxMainWindowViewModel"/> implementation based on <see cref="MainWindowViewModel"/> has to override CreateForm() method
     /// </summary>
-    /// <param name="appBuilder">Current IAppBuilder instance</param>
-    public WpfStarterUi(IAppBuilder appBuilder) : base(appBuilder)
-    {
-        ConsoleService = new WinConsoleService();
-
-        //var minimumLogLevel = Globals.GetLoggingConfiguration().MinimumLogLevel;
-
-        //MinimumLogLevel = LogLevel.Debug;
-
-        //var eventLevel = MapLogLevelToEventLevel(minimumLogLevel);
-
-        var eventLevel = EventLevel.Warning;
-
-        _listener = new AppEventListener(eventLevel);
-
-    }
-
-    /// <summary>
-    /// Ctor for using a customized form as main form of the application. The <see cref="IMainWindowViewModel"/> implementation based on <see cref="MainWindowViewModel"/> has to override CreateForm() method
-    /// </summary>
-    public WpfStarterUi(IAppBuilder appBuilder, IMainWindowViewModel viewModel) : base(appBuilder)
+    public WpfStarterUi(IAppBuilder appBuilder, IRxMainWindowViewModel viewModel) : base(appBuilder)
     {
         ConsoleService = new WinConsoleService();
 
@@ -61,6 +62,7 @@ public class WpfStarterUi : BaseAppStarterUi
         _listener = new AppEventListener(eventLevel);
 
         _viewModel = viewModel;
+        _regionManager = viewModel.RegionManager;
 
     }
 
@@ -102,16 +104,12 @@ public class WpfStarterUi : BaseAppStarterUi
         ConsoleService.ConsoleHandle = ConsoleService.CsGetConsoleWindow();
         ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowShow);
 
-        _viewModel ??= new MainWindowViewModel(_listener, null);
-        _viewModel.LoadAppBuilder( AppBuilder);
-        _viewModel.AppVersion = AppBuilder.AppGlobals.AppStartParameter.AppVersion;
+        var window = (Window)_viewModel.CreateWindow();
 
-        var window = _viewModel.CreateWindow();
-
-        if (window == null)
-        {
-            return;
-        }
+        //if (window == null)
+        //{
+        //    return;
+        //}
 
         Application.Current.MainWindow = window ;
 
@@ -127,7 +125,7 @@ public class WpfStarterUi : BaseAppStarterUi
     {
         MessageBox.Show(message, appTitle);
 
-        _viewModel.ShutDown();
+        _viewModel?.ShutDown();
 
         Environment.Exit(0);
     }
@@ -139,10 +137,10 @@ public class WpfStarterUi : BaseAppStarterUi
     /// <param name="e"></param>
     public override void HandleException(Exception e)
     {
-        if (e == null)
-        {
-            return;
-        }
+        //if (e == null)
+        //{
+        //    return;
+        //}
 
         try
         {
@@ -154,7 +152,7 @@ public class WpfStarterUi : BaseAppStarterUi
             MessageBox.Show($"{exception.Message} {exception.StackTrace}", AppBuilder.AppGlobals.AppStartParameter.AppName);
         }
 
-        _viewModel?.ShutDown();
+        _viewModel.ShutDown();
         Environment.Exit(0);
     }
 
