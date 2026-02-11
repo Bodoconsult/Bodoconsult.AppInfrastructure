@@ -1,8 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reactive;
+using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using System.Collections.ObjectModel;
+using System.Reactive;
+using DynamicData;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Models;
 
@@ -11,6 +14,10 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Models;
 /// </summary>
 public partial class WpfUiMenuItem : ReactiveObject
 {
+    private readonly ReadOnlyObservableCollection<WpfUiMenuItem> _items;
+
+    private ObservableCollectionExtended<WpfUiMenuItem> ItemsInternal { get; } = new();
+
     /// <summary>
     /// Ctor providing data
     /// </summary>
@@ -20,7 +27,17 @@ public partial class WpfUiMenuItem : ReactiveObject
     {
         Header = header;
         Command = command;
-        Items = new();
+
+        // Use the ToObservableChangeSet operator to convert
+        // the observable collection to IObservable<IChangeSet<T>>
+        // which describes the changes. Then, use any DD operators
+        // to transform the collection. 
+        ItemsInternal.ToObservableChangeSet()
+            .Transform(value => value)
+            // No need to use the .ObserveOn() operator here, as
+            // ObservableCollectionExtended is single-threaded.
+            .Bind(out _items)
+            .Subscribe();
     }
 
     /// <summary>
@@ -28,7 +45,25 @@ public partial class WpfUiMenuItem : ReactiveObject
     /// </summary>
     public WpfUiMenuItem()
     {
-        Items = new();
+        // Use the ToObservableChangeSet operator to convert
+        // the observable collection to IObservable<IChangeSet<T>>
+        // which describes the changes. Then, use any DD operators
+        // to transform the collection. 
+        ItemsInternal.ToObservableChangeSet()
+            .Transform(value => value)
+            // No need to use the .ObserveOn() operator here, as
+            // ObservableCollectionExtended is single-threaded.
+            .Bind(out _items)
+            .Subscribe();
+    }
+
+    /// <summary>
+    /// Add a child item fur this menu item
+    /// </summary>
+    /// <param name="item">Child menu item</param>
+    public void AddItem(WpfUiMenuItem item)
+    {
+        ItemsInternal.Add(item);
     }
 
     /// <summary>
@@ -39,8 +74,7 @@ public partial class WpfUiMenuItem : ReactiveObject
     /// <summary>
     /// Contains submenu items of the current menu item
     /// </summary>
-    [Reactive]
-    public partial List<WpfUiMenuItem> Items { get; set; } 
+    public ReadOnlyObservableCollection<WpfUiMenuItem> Items => _items;
 
     /// <summary>
     /// Command to be executed by the menu item

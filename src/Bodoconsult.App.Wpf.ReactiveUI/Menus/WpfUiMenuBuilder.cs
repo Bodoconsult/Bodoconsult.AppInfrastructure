@@ -8,13 +8,14 @@ using DynamicData;
 using DynamicData.Binding;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using ReactiveUI;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Menus;
 
 /// <summary>
 /// <see cref="IUiMenuBuilder"/> implementation for WPF menus using default <see cref="Menu"/> as base control
 /// </summary>
-public class WpfUiMenuBuilder: UiMenuBuilderBase
+public class WpfUiMenuBuilder : UiMenuBuilderBase
 {
     private readonly ReadOnlyObservableCollection<WpfUiMenuItem> _menuItems;
 
@@ -42,7 +43,7 @@ public class WpfUiMenuBuilder: UiMenuBuilderBase
     /// Source of <see cref="WpfUiMenuItem"/> elements for binding to menu controls etc.
     /// </summary>
     public ReadOnlyObservableCollection<WpfUiMenuItem> MenuItemsSource => _menuItems;
-    
+
     /// <summary>
     /// Build the final object for a <see cref="CommandUiMenuItem"/>
     /// </summary>
@@ -50,7 +51,24 @@ public class WpfUiMenuBuilder: UiMenuBuilderBase
     /// <param name="parentItem">Parent item or null</param>
     public override void BuildCommandUiMenuItem(CommandUiMenuItem item, GroupUiMenuItem? parentItem)
     {
-        throw new NotSupportedException();
+        var header = TranslationService.Translate(item.Name);
+
+        var menuItem = new WpfUiMenuItem(header, null);
+        if (item.CommandDefinition != null)
+        {
+            menuItem.Command = ReactiveCommand.CreateFromTask(() => item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
+        }
+
+        MenuItemsInternal.Add(menuItem);
+
+        if (parentItem is not { ParentObject: not null })
+        {
+            return;
+        }
+        var parent = (WpfUiMenuItem)parentItem.ParentObject;
+        parent.AddItem(menuItem);
+        
+        
     }
 
     /// <summary>
@@ -63,11 +81,16 @@ public class WpfUiMenuBuilder: UiMenuBuilderBase
         var header = TranslationService.Translate(item.Name);
 
         var menuItem = new WpfUiMenuItem(header, null);
-        
-
-
+        item.ParentObject =  menuItem;
 
         MenuItemsInternal.Add(menuItem);
+
+        if (parentItem is not { ParentObject: not null })
+        {
+            return;
+        }
+        var parent = (WpfUiMenuItem)parentItem.ParentObject;
+        parent.AddItem(menuItem);
     }
 
     /// <summary>
@@ -77,6 +100,21 @@ public class WpfUiMenuBuilder: UiMenuBuilderBase
     /// <param name="parentItem">Parent item or null</param>
     public override void BuildSeparatorUiMenuItem(SeparatorUiMenuItem item, GroupUiMenuItem? parentItem)
     {
-        throw new NotSupportedException("Override this method in your derived class");
+        var header = TranslationService.Translate(item.Name);
+
+        var menuItem = new WpfUiMenuItem(header, null)
+        {
+            IsSeparator = true
+        };
+
+
+        MenuItemsInternal.Add(menuItem);
+
+        if (parentItem is not { ParentObject: not null })
+        {
+            return;
+        }
+        var parent = (WpfUiMenuItem)parentItem.ParentObject;
+        parent.AddItem(menuItem);
     }
 }

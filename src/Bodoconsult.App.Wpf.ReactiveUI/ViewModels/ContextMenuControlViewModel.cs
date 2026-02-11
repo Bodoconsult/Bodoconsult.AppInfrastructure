@@ -1,29 +1,27 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Collections.ObjectModel;
+using System.Windows.Media;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using Bodoconsult.App.Wpf.ReactiveUI.Models;
 using DynamicData;
 using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 
 /// <summary>
-/// Viewmodel for MenuControl
+/// Viewmodel for ContextMenuControl
 /// </summary>
-public partial class MenuControlViewModel : ReactiveObject
+public partial class ContextMenuControlViewModel : ReactiveObject
 {
     /// <summary>
     /// Default ctor
     /// </summary>
-    public MenuControlViewModel()
+    public ContextMenuControlViewModel()
     {
         BackgroundBrush = new SolidColorBrush(Colors.LightGray);
-        var x = new MenuItem();
     }
 
     /// <summary>
@@ -45,7 +43,8 @@ public partial class MenuControlViewModel : ReactiveObject
             .Bind(out _menuItems)
             .Subscribe();
     }
-    
+
+
     /// <summary>
     ///  Menu items
     /// </summary>

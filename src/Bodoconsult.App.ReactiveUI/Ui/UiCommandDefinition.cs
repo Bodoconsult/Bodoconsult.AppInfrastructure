@@ -13,20 +13,20 @@ public class UiCommandDefinition : IUiCommandDefinition
     /// Default ctor
     /// </summary>
     /// <param name="executeMethod">Action to execute with the command</param>
-    /// <param name="canExecuteMethod">Condition func to return true if the ExcuteMethod may run or false if not</param>
-    public UiCommandDefinition(Action executeMethod, Func<bool> canExecuteMethod)
+    /// <param name="canExecuteMethod">Observable to return true if the ExcuteMethod may run or false if not</param>
+    public UiCommandDefinition(Task executeMethod, IObservable<bool>? canExecuteMethod)
     {
         ExecuteMethod = executeMethod;
         CanExecuteMethod = canExecuteMethod;
     }
 
     /// <summary>
-    /// Action to execute with the command
+    /// Async task to execute with the command
     /// </summary>
-    public Action ExecuteMethod { get;  }
+    public Task ExecuteMethod { get;  }
 
     /// <summary>
     /// Condition func to return true if the ExcuteMethod may run or false if not
     /// </summary>
-    public Func<bool> CanExecuteMethod { get;  }
+    public IObservable<bool>? CanExecuteMethod { get;  }
 }

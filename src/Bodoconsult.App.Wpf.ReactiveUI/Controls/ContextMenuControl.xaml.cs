@@ -9,13 +9,13 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Controls;
 /// <summary>
 /// WPF default menu user control
 /// </summary>
-public partial class MenuControl: UserControl
+public partial class ContextMenuControl: UserControl
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="Menu"/> class.
     /// Sets menu alignment on initialization.
     /// </summary>
-    public MenuControl()
+    public ContextMenuControl()
     {
         Initialize();
     }

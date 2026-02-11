@@ -37,7 +37,6 @@
  */
 
 using System.Diagnostics;
-using System.Drawing;
 
 namespace Bodoconsult.App.Abstractions.Interfaces;
 

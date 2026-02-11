@@ -39,7 +39,7 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     /// <summary>
     /// List of all menu items. Must contain at least one element without parent menu item
     /// </summary>
-    public List<IUiMenuItem> TopLevelMenuItems => MenuItems.Where(x=> x.Parent==null).ToList();
+    public List<IUiMenuItem> TopLevelMenuItems => MenuItems.Where(x => x.Parent == null).ToList();
 
     /// <summary>
     /// Add a menu item to the menu items if the name is not null or string.Empty. For top-level menu items it is checked if the name is unique for the top-level menu items
@@ -84,7 +84,7 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     {
         foreach (var item in TopLevelMenuItems)
         {
-            BuildMenuItem(item);
+            BuildMenuItem(item, null);
         }
     }
 
@@ -92,9 +92,49 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     /// Build a single menu item
     /// </summary>
     /// <param name="item">Current menu item</param>
-    public virtual void BuildMenuItem(IUiMenuItem item)
+    /// <param name="parentItem">Parent menu item or null if item is part of the top level</param>
+    public void BuildMenuItem(IUiMenuItem item, IUiMenuItem? parentItem)
     {
-        throw new NotSupportedException("Override this method in your derived class");
+        switch (item)
+        {
+            // Group item
+            case GroupUiMenuItem group:
+            {
+                // Build the group
+                if (parentItem is GroupUiMenuItem parentGroup)
+                {
+                    BuildGroupUiMenuItem(group, parentGroup);
+                }
+                else
+                {
+                    BuildGroupUiMenuItem(group, null);
+                }
+
+                // Build group childs
+                foreach (var child in group.Childs)
+                {
+                    BuildMenuItem(child, group);
+                }
+
+                break;
+            }
+            // Command item in a group
+            case CommandUiMenuItem command when parentItem is GroupUiMenuItem parentGroup:
+                BuildCommandUiMenuItem(command, parentGroup);
+                break;
+            // Command item top level
+            case CommandUiMenuItem command:
+                BuildCommandUiMenuItem(command, null);
+                break;
+            // Separator item in a group
+            case SeparatorUiMenuItem separator when parentItem is GroupUiMenuItem parentGroup:
+                BuildSeparatorUiMenuItem(separator, parentGroup);
+                break;
+            // Separator item top level
+            case SeparatorUiMenuItem separator:
+                BuildSeparatorUiMenuItem(separator, null);
+                break;
+        }
     }
 
     /// <summary>
@@ -104,7 +144,7 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     /// <param name="parentItem">Parent item or null</param>
     public virtual void BuildCommandUiMenuItem(CommandUiMenuItem item, GroupUiMenuItem? parentItem)
     {
-        throw new NotSupportedException();
+        throw new NotSupportedException("Override this method in your derived class");
     }
 
     /// <summary>

@@ -10,10 +10,10 @@ public interface IUiCommandDefinition
     /// <summary>
     /// Action to execute with the command
     /// </summary>
-    Action ExecuteMethod { get;  }
+    Task ExecuteMethod { get;  }
 
     /// <summary>
     /// Condition func to return true if the ExcuteMethod may run or false if not
     /// </summary>
-    Func<bool> CanExecuteMethod { get;  }
+    IObservable<bool>? CanExecuteMethod { get;  }
 }

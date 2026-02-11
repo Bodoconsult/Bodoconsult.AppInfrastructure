@@ -3,81 +3,83 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Logging;
-using Bodoconsult.App.Wpf.AppStarter.Views;
-using CommunityToolkit.Mvvm.Input;
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
+using Bodoconsult.App.ReactiveUI.Ui;
+using DynamicData.Binding;
 using ReactiveUI;
+using ReactiveUI.SourceGenerators;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.Reflection;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
-using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.ReactiveUI.Regions;
-using ReactiveUI.SourceGenerators;
+using DynamicData;
 
-namespace Bodoconsult.App.Wpf.ReactiveUI.AppStarter.ViewModels;
+namespace Bodoconsult.App.ReactiveUI.ViewModels;
 
 /// <summary>
 /// ViewModel for MainWindow window
 /// </summary>
-public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindowViewModel, IUiWindowViewModel
+public abstract partial class MainWindowViewModel : ReactiveObject, IMainWindowViewModel, IUiWindowViewModel
 {
 
     private bool _showInTaskbar;
-    private WindowState _windowState;
+    private UiWindowState _windowState;
 
-    private DispatcherTimer? _dispatcherTimer;
+    private Timer? _dispatcherTimer;
 
     private const int MaxNumberOfLogEntries = 100;
 
     private readonly IAppEventListener? _listener;
 
-    private readonly List<string> _logData = new();
+    private ObservableCollectionExtended<string> LogDataSource { get; } = new();
 
     private EventLevel _logEventLevel;
     private double _width = 100;
     private double _height = 100;
     private ObservableAsPropertyHelper<double> _headerHeight = ObservableAsPropertyHelper<double>.Default(0);
     private IAppBuilder? _appBuilder;
+
     private string _msgConsoleWait = string.Empty;
     private string _msgHowToShutdownServer = string.Empty;
     private string _msgExit = "Exit the app?";
-    private BitmapImage? _logo;
-    private Color _headerBackColor = Colors.Coral;
     private string _msgServerIsListeningOnPort = string.Empty;
     private string _msgServerProcessId = string.Empty;
     private string? _appExe;
-    private bool _minimizeToTray;
 
-    private readonly SolidColorBrush _brush = new(Colors.LightSteelBlue);
-    private readonly SolidColorBrush _brush1 = new(Colors.White);
-    private readonly Thickness _margin = new(0, 0, 0, 0);
-    private readonly Thickness _padding = new(0, 10, 0, 10);
-    private Color _bodyBackColor = Colors.LightGray;
+    private ReadOnlyMemory<byte>? _logo;
+    private TypoColor _headerBackColor = TypoColors.Coral;
+    private TypoColor _bodyBackColor = TypoColors.LightGray;
+
+
+    private bool _minimizeToTray;
 
     /// <summary>
     /// Ctor providing an <see cref="AppEventListener"/> instance
     /// </summary>
     /// <param name="listener">Current EventSource listener: neede to bring logging entries to UI</param>
-    /// <param name="translationService">Translation service</param>
+    /// <param name="translationService">Translation service. Use DummyI18N in case of no translations needed</param>
     /// <param name="regionManager">Current region manager</param>
-    public MainWindowViewModel(IAppEventListener listener, II18N translationService, IRegionManager regionManager)
+    protected MainWindowViewModel(IAppEventListener listener, II18N translationService, IRegionManager regionManager)
     {
         TranslationService = translationService;
         _listener = listener;
         RegionManager = regionManager;
-        NotifyIconOpenCommand = new RelayCommand(() => { WindowState = WindowState.Normal; });
-        NotifyIconExitCommand = new RelayCommand(ShutDown);
-        WindowState = WindowState.Normal;
+        WindowState = UiWindowState.Normal;
         ShowInTaskbar = true;
 
-        var doc = new FlowDocument();
-        _flowDoc = ObservableAsPropertyHelper<FlowDocument>.Default(doc);
+        TranslationService = translationService;
 
+        // Use the ToObservableChangeSet operator to convert
+        // the observable collection to IObservable<IChangeSet<T>>
+        // which describes the changes. Then, use any DD operators
+        // to transform the collection. 
+        LogDataSource.ToObservableChangeSet()
+            .Transform(value => value)
+            // No need to use the .ObserveOn() operator here, as
+            // ObservableCollectionExtended is single-threaded.
+            .Bind(out _logDataInternal)
+            .Subscribe();
 
         //this.WhenAnyValue(x => x._flowDoc)
         //    .Select(x=> x.Value)
@@ -92,7 +94,7 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     /// II18N instance to use with MVVM / WPF / Xamarin / Avalonia
     /// </summary>
     /// <returns>Translated string</returns>
-    public II18N? TranslationService { get; }
+    public II18N TranslationService { get; }
 
     /// <summary>
     /// Menu text for open menu in system tray bar
@@ -103,16 +105,6 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     /// Menu text for exit menu in system tray bar
     /// </summary>
     public string ExitMenuText { get; set; } = "Exit";
-
-    /// <summary>
-    /// Open command for binding in XAML to taskbar
-    /// </summary>
-    public ICommand NotifyIconOpenCommand { get; }
-
-    /// <summary>
-    /// Exit command for binding in XAML to taskbar
-    /// </summary>
-    public ICommand NotifyIconExitCommand { get; }
 
     /// <summary>
     /// Instance name of the window. If null or string.Empty the window instance name is derived from the window type name (loading the window as a singleton instance)
@@ -143,16 +135,33 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     public partial UiRegion? Region3 { get; set; }
 
     /// <summary>
+    /// Open app from taskbar icon
+    /// </summary>
+    public Task NotifyIconOpen()
+    {
+        WindowState = UiWindowState.Normal;
+        return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// Exit app from taskbar icon
+    /// </summary>
+    public async Task NotifyIconExit()
+    {
+        await Task.Run(ShutDown);
+    }
+
+    /// <summary>
     /// Current window state
     /// </summary>
-    public WindowState WindowState
+    public UiWindowState WindowState
     {
         get => _windowState;
         set
         {
             ShowInTaskbar = true;
             this.RaiseAndSetIfChanged(ref _windowState, value);
-            ShowInTaskbar = value != WindowState.Minimized;
+            ShowInTaskbar = value != UiWindowState.Minimized;
         }
     }
 
@@ -356,22 +365,17 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
 
         logoStream.Position = 0;
 
-        Logo = new BitmapImage();
+        using (var memoryStream = new MemoryStream())
+        {
+            logoStream.CopyTo(memoryStream);
+            Logo = memoryStream.ToArray();
+        }
 
-        // BitmapImage.UriSource must be in a BeginInit/EndInit block
-        Logo.BeginInit();
-        Logo.CacheOption = BitmapCacheOption.OnLoad;
-        Logo.StreamSource = logoStream;
+        var rm = ReadOnlyMemory<byte>.Empty;
 
-        // To save significant application memory, set the DecodePixelWidth or
-        // DecodePixelHeight of the BitmapImage value of the image source to the desired
-        // height or width of the rendered image. If you don't do this, the application will
-        // cache the image as though it were rendered as its normal size rather than just
-        // the size that is displayed.
-        // Note: In order to preserve aspect ratio, set DecodePixelWidth
-        // or DecodePixelHeight but not both.
-        Logo.DecodePixelHeight = 300;
-        Logo.EndInit();
+        Logo = rm;
+        logoStream.Close();
+        logoStream.Dispose();
 
         //}
         //catch
@@ -387,7 +391,13 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     {
         AppBuilder?.StopApplication();
 
-        _dispatcherTimer?.Stop();
+        if (_dispatcherTimer != null)
+        {
+            _dispatcherTimer.Change(
+                Timeout.Infinite,
+                Timeout.Infinite);
+            _dispatcherTimer.Dispose();
+        }
 
         Environment.Exit(0);
     }
@@ -429,11 +439,11 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
         }
 
         // Keep maximum log data length equal to MaxNumberOfLogEntries
-        if (_logData.Count > 0 && _logData.Count + count > MaxNumberOfLogEntries)
+        if (LogDataSource.Count > 0 && LogDataSource.Count + count > MaxNumberOfLogEntries)
         {
-            for (var i = _logData.Count - MaxNumberOfLogEntries - 2; i >= 0; i--)
+            for (var i = LogDataSource.Count - MaxNumberOfLogEntries - 2; i >= 0; i--)
             {
-                _logData.Remove(_logData[i]);
+                LogDataSource.Remove(LogDataSource[i]);
             }
         }
 
@@ -442,60 +452,27 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
         {
             var logMsg = GeneralHelper.DequeueFromQueue(_listener.Messages);
 
-            if (_logData.Count > MaxNumberOfLogEntries)
+            if (LogDataSource.Count > MaxNumberOfLogEntries)
             {
                 continue;
             }
 
-            _logData.Add(logMsg);
+            LogDataSource.Add(logMsg);
         }
 
         // If there are to many entries
-        for (var i = _logData.Count - MaxNumberOfLogEntries - 2; i >= 0; i--)
+        for (var i = LogDataSource.Count - MaxNumberOfLogEntries - 2; i >= 0; i--)
         {
-            _logData.Remove(_logData[i]);
+            LogDataSource.Remove(LogDataSource[i]);
         }
-
-        var doc = new FlowDocument
-        {
-            FontFamily = SystemFonts.StatusFontFamily,
-            FontSize = 14,
-            PageWidth = 1000,
-            ColumnWidth = 1000,
-            IsOptimalParagraphEnabled = true,
-            IsHyphenationEnabled = true
-        };
-
-        var data = _logData.ToList();
-
-        var isActive = false;
-
-        for (var index = data.Count - 1; index >= 0; index--)
-        {
-            var message = data[index];
-            var myParagraph = new Paragraph
-            {
-                Margin = _margin,
-                Padding = _padding,
-                Background = isActive ? _brush : _brush1
-            };
-
-            isActive = !isActive;
-
-            myParagraph.Inlines.Add(message);
-            doc.Blocks.Add(myParagraph);
-        }
-
-        _flowDoc = ObservableAsPropertyHelper<FlowDocument>.Default(doc);
     }
 
-    private ObservableAsPropertyHelper<FlowDocument> _flowDoc;
-
+    private readonly ReadOnlyObservableCollection<string> _logDataInternal;
 
     /// <summary>
-    /// Log data as FlowDocument to show on UI
+    /// Log data as string to show on UI
     /// </summary>
-    public FlowDocument LogData => _flowDoc.Value;
+    public ReadOnlyObservableCollection<string> LogData => _logDataInternal;
 
     /// <summary>
     /// Event level
@@ -518,7 +495,7 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     /// <summary>
     /// The logo to use for the user interface
     /// </summary>
-    public BitmapImage? Logo
+    public ReadOnlyMemory<byte>? Logo
     {
         get => _logo;
         private set => this.RaiseAndSetIfChanged(ref _logo, value);
@@ -527,7 +504,7 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     /// <summary>
     /// Background color of the header line
     /// </summary>
-    public Color HeaderBackColor
+    public TypoColor HeaderBackColor
     {
         get => _headerBackColor;
         set => this.RaiseAndSetIfChanged(ref _headerBackColor, value);
@@ -536,7 +513,7 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     /// <summary>
     /// Background color of the form body
     /// </summary>
-    public Color BodyBackColor
+    public TypoColor BodyBackColor
     {
         get => _bodyBackColor;
         set => this.RaiseAndSetIfChanged(ref _bodyBackColor, value);
@@ -546,15 +523,9 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     /// Create the main form of the application
     /// </summary>
     /// <returns></returns>
-    public virtual Window CreateWindow()
+    public virtual object CreateWindow()
     {
-        var w = new MainWindow
-        {
-            WindowState = WindowState.Normal,
-            Visibility = Visibility.Visible
-        };
-        w.InjectViewModel(this);
-        return w;
+        throw new NotSupportedException("Override in superclass");
     }
 
     /// <summary>
@@ -562,15 +533,14 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
     /// </summary>
     public void StartEventListener()
     {
-        _dispatcherTimer = new DispatcherTimer();
-        _dispatcherTimer.Tick += dispatcherTimer_Tick!;
-        _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-        _dispatcherTimer.Start();
+        _dispatcherTimer = new Timer(dispatcherTimer_Tick, null, 1000, 1000);
     }
 
-    private void dispatcherTimer_Tick(object sender, EventArgs e)
+    private void dispatcherTimer_Tick(object? state)
     {
-        _dispatcherTimer?.Stop();
+        _dispatcherTimer?.Change(
+            Timeout.Infinite,
+            Timeout.Infinite);
 
         try
         {
@@ -581,11 +551,9 @@ public partial class MainWindowViewModel : ReactiveObject, Interfaces.IMainWindo
             // Do nothing
         }
 
-
-        //LogWindow.SelectionStart = LogWindow.Text.Length;
-        //LogWindow.SelectionLength = 0;
-
-        _dispatcherTimer?.Start();
+        _dispatcherTimer?.Change(
+            1000,
+            1000);
     }
 
 

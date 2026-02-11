@@ -51,7 +51,8 @@ public interface IUiMenuBuilder
     /// Build a single menu item
     /// </summary>
     /// <param name="item">Current menu item</param>
-    void BuildMenuItem(IUiMenuItem item);
+    /// <param name="parentItem">Parent menu item or null if item is part of the top level</param>
+    void BuildMenuItem(IUiMenuItem item, IUiMenuItem? parentItem);
 
     /// <summary>
     /// Build the final object for a <see cref="CommandUiMenuItem"/>

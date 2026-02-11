@@ -18,5 +18,6 @@
 		<ProjectReference Include="..\..\src\Bodoconsult.App.Wpf\Bodoconsult.App.Wpf.csproj" />
 		<ProjectReference Include="..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
 		<ProjectReference Include="..\..\src\Bodoconsult.I18N\Bodoconsult.I18N.csproj" />
+		<ProjectReference Include="..\Bodoconsult.App.Avalonia.ReactiveUI.Tests\Bodoconsult.App.ReactiveUI.Tests.csproj" />
 	</ItemGroup>
 </Project>

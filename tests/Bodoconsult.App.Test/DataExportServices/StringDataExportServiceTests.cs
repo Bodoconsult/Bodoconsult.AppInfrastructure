@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Text;
-using Windows.Foundation.Metadata;
 using Bodoconsult.App.DataExportServices;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Test.Helpers;
