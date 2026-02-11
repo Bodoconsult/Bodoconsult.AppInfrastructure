@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Windows;
 using Bodoconsult.App.ReactiveUI.Ui;
 using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
 using NUnit.Framework;
+using System.Windows;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Test.Extensions;
 
