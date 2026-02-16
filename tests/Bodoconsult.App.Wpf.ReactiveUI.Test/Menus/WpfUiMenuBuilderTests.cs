@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Linq;
-using System.Windows.Controls;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using NUnit.Framework;

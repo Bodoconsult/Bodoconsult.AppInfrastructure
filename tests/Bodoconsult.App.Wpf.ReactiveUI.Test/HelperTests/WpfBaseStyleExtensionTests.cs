@@ -2,8 +2,6 @@
 
 using Bodoconsult.App.Wpf.ReactiveUI.Helper;
 using NUnit.Framework;
-using System;
-using System.IO.Packaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;

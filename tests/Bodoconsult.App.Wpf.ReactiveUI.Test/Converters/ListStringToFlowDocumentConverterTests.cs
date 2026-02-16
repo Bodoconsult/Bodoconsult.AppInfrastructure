@@ -1,12 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
-using ABI.Windows.UI;
 using Bodoconsult.App.Abstractions.Extensions;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Ui;

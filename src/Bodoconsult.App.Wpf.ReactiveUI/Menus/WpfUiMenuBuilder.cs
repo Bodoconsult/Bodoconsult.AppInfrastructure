@@ -6,6 +6,7 @@ using Bodoconsult.App.ReactiveUI.Menus;
 using DynamicData;
 using DynamicData.Binding;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using ReactiveUI;
 
@@ -54,7 +55,9 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
 
         var menuItem = new MenuItem
         {
-            Header = header
+            Header = header,
+            VerticalContentAlignment = VerticalAlignment.Center,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
         };
 
         if (item.CommandDefinition != null)
@@ -83,7 +86,9 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
 
         var menuItem = new MenuItem
         {
-            Header = header
+            Header = header,
+            VerticalContentAlignment = VerticalAlignment.Center,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
         };
         item.ParentObject =  menuItem;
 
@@ -104,10 +109,11 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
     /// <param name="parentItem">Parent item or null</param>
     public override void BuildSeparatorUiMenuItem(SeparatorUiMenuItem item, GroupUiMenuItem? parentItem)
     {
-        var header = TranslationService.Translate(item.Name);
-
-        var menuItem = new Separator();
-
+        var menuItem = new Separator()
+        {
+            VerticalContentAlignment = VerticalAlignment.Center,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
+        };
 
         MenuItemsInternal.Add(menuItem);
 

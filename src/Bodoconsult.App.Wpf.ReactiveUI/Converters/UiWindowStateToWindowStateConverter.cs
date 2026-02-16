@@ -3,7 +3,6 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Documents;
 using Bodoconsult.App.ReactiveUI.Ui;
 using Bodoconsult.App.Wpf.Converters;
 using Bodoconsult.App.Wpf.ReactiveUI.Extensions;

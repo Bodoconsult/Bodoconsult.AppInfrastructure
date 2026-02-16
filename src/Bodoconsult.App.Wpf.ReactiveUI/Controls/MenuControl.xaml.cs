@@ -1,10 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using Bodoconsult.App.Wpf.Helpers;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Controls;
 
@@ -34,31 +32,22 @@ public partial class MenuControl : UserControl
 
     private void MenuBuiltDelegate()
     {
-        //Menu1.Items.Clear()
-
         Dispatcher.Invoke(() =>
         {
             LocalMenu.Items.Clear();
 
-            if (_viewModel.MenuItems != null)
+            if (_viewModel.MenuItems == null)
             {
-                foreach (var item in _viewModel.MenuItems)
-                {
-                    LocalMenu.Items.Add(item);
-                }
-
-                LocalMenu.Visibility = Visibility.Visible;
+                return;
             }
+
+            foreach (var item in _viewModel.MenuItems)
+            {
+                LocalMenu.Items.Add(item);
+            }
+
+            LocalMenu.Visibility = Visibility.Visible;
         });
-
-
-
-        //var x = this.FindName("LocalMenu");
-
-        //if (x is Menu menu)
-        //{
-
-        //}
     }
 
     //private void Initialize()

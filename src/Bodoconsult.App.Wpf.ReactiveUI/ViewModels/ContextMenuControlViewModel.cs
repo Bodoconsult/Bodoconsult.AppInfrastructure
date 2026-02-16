@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Collections.ObjectModel;
-using System.Windows.Media;
+using Bodoconsult.App.ReactiveUI.Delegates;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
-using Bodoconsult.App.Wpf.ReactiveUI.Models;
 using DynamicData;
 using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 
@@ -23,6 +23,11 @@ public partial class ContextMenuControlViewModel : ReactiveObject
     {
         BackgroundBrush = new SolidColorBrush(Colors.LightGray);
     }
+
+    /// <summary>
+    /// Menu is ready built delegate
+    /// </summary>
+    public MenuBuiltDelegate? MenuBuiltDelegate { get; set; }
 
     /// <summary>
     /// Load the menu builder to use for this control
@@ -53,7 +58,7 @@ public partial class ContextMenuControlViewModel : ReactiveObject
     /// <summary>
     /// Current menu items
     /// </summary>
-    public ReadOnlyObservableCollection<object> MenuItems => _menuItems ?? new ReadOnlyObservableCollection<object>(new ObservableCollectionExtended<object>());
+    public ReadOnlyObservableCollection<object>? MenuItems => _menuItems;
 
     /// <summary>
     /// Background brush

@@ -1,42 +1,17 @@
-﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="Bodoconsult.App.Wpf.ReactiveUI.Controls.ContextMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewModels="clr-namespace:Bodoconsult.App.Wpf.ReactiveUI.ViewModels">
-    <UserControl.DataContext>
+             xmlns:viewModels="clr-namespace:Bodoconsult.App.Wpf.ReactiveUI.ViewModels"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                mc:Ignorable="d"
+                d:DesignHeight="100" d:DesignWidth="300"
+                d:DataContext="{d:DesignInstance Type=viewModels:ContextMenuControlViewModel, IsDesignTimeCreatable=True}">
+    <!--<UserControl.DataContext>
         <viewModels:ContextMenuControlViewModel/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
 
-    <UserControl.Resources>
-        <Style x:Key="MenuItemStyle" TargetType="{x:Type MenuItem}">
-            <Setter Property="Header" Value="{Binding Path=Header, RelativeSource={RelativeSource AncestorType=MenuItem}}" />
-            <Setter Property="ItemsSource" Value="{Binding Path=Items, RelativeSource={RelativeSource AncestorType=MenuItem}}" />
-            <!--<Setter Property="MenuItem.Icon" Value="{Binding Path=Icon, RelativeSource={RelativeSource AncestorType=MenuItem}}" />-->
-            <Setter Property="IsCheckable" Value="{Binding Path=IsCheckable, RelativeSource={RelativeSource AncestorType=MenuItem}}" />
-            <Setter Property="IsChecked" Value="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=MenuItem}}" />
-            <Setter Property="Command" Value="{Binding Path=Command, RelativeSource={RelativeSource AncestorType=MenuItem}}" />
-            <!--<Setter Property="MenuItem.CommandParameter" Value="{Binding Path=IsChecked, RelativeSource={RelativeSource AncestorType=MenuItem}}"/>-->
-            <Setter Property="CommandParameter" Value="{Binding Path=.}"/>
-            <Setter Property="InputGestureText" Value="{Binding Path=InputGestureText, RelativeSource={RelativeSource AncestorType=MenuItem}}"/>
-            <Setter Property="ToolTip" Value="{Binding Path=ToolTip, RelativeSource={RelativeSource AncestorType=MenuItem}}" />
-            <!--<Style.Triggers>
-                <DataTrigger Binding="{Binding Path=IsSeparator}" Value="true">
-                    <Setter Property="MenuItem.Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type MenuItem}">
-                                <Separator Style="{DynamicResource {x:Static MenuItem.SeparatorStyleKey}}" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-                --><!--<DataTrigger Binding="{Binding Path=Icon}"
-                                       Value="{x:Null}">
-                        <Setter Property="MenuItem.Icon" Value="{x:Null}"/>
-                    </DataTrigger>--><!--
-
-            </Style.Triggers>-->
-        </Style>
-    </UserControl.Resources>
     <Grid>
-        <ContextMenu ItemContainerStyle="{StaticResource MenuItemStyle}" DockPanel.Dock="Top" ItemsSource="{Binding Path=MenuItems}" Background="{Binding Path=BackgroundBrush}">
-            </ContextMenu>
+        <ContextMenu x:Name="ContextMenu" DockPanel.Dock="Top" ItemsSource="{Binding Path=MenuItems}" Background="{Binding Path=BackgroundBrush}">
+        </ContextMenu>
     </Grid>
 </UserControl>

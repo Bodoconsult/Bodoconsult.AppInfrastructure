@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reflection;
+using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Controls;
 
@@ -12,26 +11,53 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Controls;
 /// </summary>
 public partial class ContextMenuControl: UserControl
 {
+    private readonly ContextMenuControlViewModel _viewModel;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Menu"/> class.
     /// Sets menu alignment on initialization.
     /// </summary>
     public ContextMenuControl()
     {
-        Initialize();
-        DataContext = new ContextMenuControlViewModel();
-    }
+        InitializeComponent();
 
-    private static void Initialize()
-    {
-        if (!SystemParameters.MenuDropAlignment)
+        _viewModel = new ContextMenuControlViewModel
         {
-            return;
-        }
-
-        var fieldInfo = typeof(SystemParameters).GetField(
-            "_menuDropAlignment",
-            BindingFlags.NonPublic | BindingFlags.Static);
-        fieldInfo?.SetValue(null, false);
+            MenuBuiltDelegate = MenuBuiltDelegate
+        };
+        DataContext = _viewModel;
     }
+
+    private void MenuBuiltDelegate()
+    {
+        Dispatcher.Invoke(() =>
+        {
+            ContextMenu.Items.Clear();
+
+            if (_viewModel.MenuItems == null)
+            {
+                return;
+            }
+
+            foreach (var item in _viewModel.MenuItems)
+            {
+                ContextMenu.Items.Add(item);
+            }
+
+            ContextMenu.Visibility = Visibility.Visible;
+        });
+    }
+
+    //private static void Initialize()
+    //{
+    //    if (!SystemParameters.MenuDropAlignment)
+    //    {
+    //        return;
+    //    }
+
+    //    var fieldInfo = typeof(SystemParameters).GetField(
+    //        "_menuDropAlignment",
+    //        BindingFlags.NonPublic | BindingFlags.Static);
+    //    fieldInfo?.SetValue(null, false);
+    //}
 }
