@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows10.0.17763.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Locales\de.txt" />
+    <EmbeddedResource Include="Locales\en.txt" />
+    <EmbeddedResource Include="Locales\fr-FR.txt" />
+    <EmbeddedResource Include="Locales\pt.txt" />
+    <EmbeddedResource Include="Resources\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Bodoconsult.App.Wpf\Bodoconsult.App.Wpf.csproj" />
+    <ProjectReference Include="..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

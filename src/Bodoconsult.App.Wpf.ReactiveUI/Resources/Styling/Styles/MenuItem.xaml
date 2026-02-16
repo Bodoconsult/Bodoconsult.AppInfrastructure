@@ -3,6 +3,7 @@
                                                  >
 
     <models:SharedResourceDictionary.MergedDictionaries>
+        <models:SharedResourceDictionary Source="/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/BrushesColors/Colors.xaml" />
         <models:SharedResourceDictionary Source="/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Typography/Typography.xaml" />
         <models:SharedResourceDictionary Source="/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/BrushesColors/Brushes.xaml" />
         <models:SharedResourceDictionary Source="/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Styles/FrameworkElement.xaml" />

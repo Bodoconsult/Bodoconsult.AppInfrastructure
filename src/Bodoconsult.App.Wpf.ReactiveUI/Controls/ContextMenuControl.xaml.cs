@@ -3,6 +3,7 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Controls;
 
@@ -18,6 +19,7 @@ public partial class ContextMenuControl: UserControl
     public ContextMenuControl()
     {
         Initialize();
+        DataContext = new ContextMenuControlViewModel();
     }
 
     private static void Initialize()
@@ -31,7 +33,5 @@ public partial class ContextMenuControl: UserControl
             "_menuDropAlignment",
             BindingFlags.NonPublic | BindingFlags.Static);
         fieldInfo?.SetValue(null, false);
-
-        
     }
 }

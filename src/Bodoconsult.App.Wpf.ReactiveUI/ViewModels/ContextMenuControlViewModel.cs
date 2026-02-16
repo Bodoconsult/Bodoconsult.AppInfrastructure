@@ -48,12 +48,12 @@ public partial class ContextMenuControlViewModel : ReactiveObject
     /// <summary>
     ///  Menu items
     /// </summary>
-    private ReadOnlyObservableCollection<WpfUiMenuItem>? _menuItems;
+    private ReadOnlyObservableCollection<object>? _menuItems;
 
     /// <summary>
     /// Current menu items
     /// </summary>
-    public ReadOnlyObservableCollection<WpfUiMenuItem> MenuItems => _menuItems ?? new ReadOnlyObservableCollection<WpfUiMenuItem>(new ObservableCollectionExtended<WpfUiMenuItem>());
+    public ReadOnlyObservableCollection<object> MenuItems => _menuItems ?? new ReadOnlyObservableCollection<object>(new ObservableCollectionExtended<object>());
 
     /// <summary>
     /// Background brush

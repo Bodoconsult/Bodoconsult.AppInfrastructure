@@ -96,4 +96,24 @@ public class UiMenuBuilderBaseTests
         Assert.That(builder.MenuItems.Count, Is.Not.EqualTo(0));
         Assert.That(builder.TopLevelMenuItems.Count, Is.Not.EqualTo(0));
     }
+
+    [Test]
+    public void Clear_OneGroup_MenuItemsRemoved()
+    {
+        // Arrange 
+        II18N i18N = new DummyI18N();
+
+        var builder = new DummyUiMenuBuilder(i18N);
+
+        var item = new GroupUiMenuItem("Test");
+        builder.Add(item);
+
+        Assert.That(builder.MenuItems.Count, Is.EqualTo(1));
+
+        // Act  
+        builder.Clear();
+
+        // Assert
+        Assert.That(builder.MenuItems.Count, Is.EqualTo(0));
+    }
 }

@@ -6,15 +6,16 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:viewModels="clr-namespace:WpfReactiveUiDemoApp.ViewModels"
                       xmlns:controls="clr-namespace:Bodoconsult.App.Wpf.ReactiveUI.Controls;assembly=Bodoconsult.App.Wpf.ReactiveUI"
+                      xmlns:converters="clr-namespace:Bodoconsult.App.Wpf.ReactiveUI.Converters;assembly=Bodoconsult.App.Wpf.ReactiveUI"
                       Title="ReactiveUI.Routing" Height="360" Width="620">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <controls:MenuControl />
+            <controls:MenuControl x:Name="MainMenu"/>
         </StackPanel>
 
         <Grid Grid.Row="1" >

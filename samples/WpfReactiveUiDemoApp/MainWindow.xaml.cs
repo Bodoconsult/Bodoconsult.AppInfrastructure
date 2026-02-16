@@ -1,17 +1,24 @@
-﻿using ReactiveUI;
+﻿using Bodoconsult.App.ReactiveUI.Extensions;
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
+using Bodoconsult.App.Wpf.ReactiveUI.Menus;
+using Bodoconsult.App.Wpf.ReactiveUI.Regions;
+using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
+using ReactiveUI;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using Bodoconsult.App.ReactiveUI.Extensions;
-using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.ReactiveUI.Regions;
-using Bodoconsult.App.Wpf.ReactiveUI.Regions;
+using Bodoconsult.App.Wpf.ReactiveUI.Converters;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp;
 
 public partial class MainWindow : IUiWindow
 {
+
+    private WpfUiMenuBuilder? _menuBuilder;
+    private MenuControlViewModel? _menuControlViewModel;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -32,6 +39,26 @@ public partial class MainWindow : IUiWindow
 
     public void RegisterAllRouterBindings(WpfReactiveUiDemoAppMainWindowViewModel viewModel, CompositeDisposable disposables)
     {
+        // Bind WindowState
+        this.Bind(viewModel, vm => vm.WindowState,
+                view => view.WindowState,
+                InlineConverterMethods.FromUiWindowStateToWindowState,
+                InlineConverterMethods.FromWindowStateToUiWindowState)
+            .DisposeWith(disposables);
+
+        // Now build the menu
+        viewModel.DefineMenuItems();
+        _menuControlViewModel = (MenuControlViewModel)MainMenu.DataContext;
+
+        _menuBuilder =  new WpfUiMenuBuilder(viewModel.TranslationService);
+        _menuBuilder.AddRange(viewModel.MenuItems);
+        viewModel.MenuBuilder = _menuBuilder;
+        
+
+        _menuControlViewModel.LoadMenuBuilder(_menuBuilder);
+        viewModel.BuildIt();
+
+        // Now set the regions for routing
         RegionManager = viewModel.RegionManager;
 
         var rm = (WpfRegionManager)viewModel.RegionManager;
@@ -50,12 +77,14 @@ public partial class MainWindow : IUiWindow
             throw new ArgumentNullException(nameof(viewModel.Region2));
         }
 
+        // Bind regions
         this.OneWayBind(viewModel, p => p.Region1!.Router, xy => xy.DocumentRegion.Router)
             .DisposeWith(disposables);
 
         this.OneWayBind(viewModel, p => p.Region2!.Router, xy => xy.MenuRegion.Router)
             .DisposeWith(disposables);
 
+        // Bind commands to buttons
         this.BindCommand(viewModel, x => x.GoToFirstViewCommand, x => x.GoNextButton)
             .DisposeWith(disposables);
 

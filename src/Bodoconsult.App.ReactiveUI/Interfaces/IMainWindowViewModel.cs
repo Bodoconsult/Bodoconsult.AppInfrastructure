@@ -11,7 +11,7 @@ namespace Bodoconsult.App.ReactiveUI.Interfaces;
 /// <summary>
 /// Interface for view models for the main app window using ReactiveUi
 /// </summary>
-public interface IRxMainWindowViewModel: IUiWindowViewModel
+public interface IRxMainWindowViewModel : IUiWindowViewModel, IUiMenuWindow
 {
     /// <summary>
     /// II18N instance to use with MVVM / WPF / Xamarin / Avalonia
@@ -160,7 +160,7 @@ public interface IRxMainWindowViewModel: IUiWindowViewModel
     /// <summary>
     /// Background color of the header line
     /// </summary>
-    TypoColor HeaderBackColor { get; set; } 
+    TypoColor HeaderBackColor { get; set; }
 
     /// <summary>
     /// Background color of the form body

@@ -38,9 +38,8 @@
     <models:SharedResourceDictionary.MergedDictionaries>
         <models:SharedResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
         <models:SharedResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-        <models:SharedResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-        <models:SharedResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-        <models:SharedResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+        <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/BrushesColors/Colors.xaml" />
+        <models:SharedResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Icons.xaml"/>
     </models:SharedResourceDictionary.MergedDictionaries>
 </models:SharedResourceDictionary>

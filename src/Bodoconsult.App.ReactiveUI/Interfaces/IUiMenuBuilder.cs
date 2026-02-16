@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.ReactiveUI.Delegates;
 using Bodoconsult.App.ReactiveUI.Menus;
 
 namespace Bodoconsult.App.ReactiveUI.Interfaces;
@@ -10,6 +11,11 @@ namespace Bodoconsult.App.ReactiveUI.Interfaces;
 /// </summary>
 public interface IUiMenuBuilder
 {
+    /// <summary>
+    /// Menu is ready built delegate
+    /// </summary>
+    MenuBuiltDelegate? MenuBuiltDelegate { get; set; }
+
     /// <summary>
     /// Current translation service
     /// </summary>
@@ -75,4 +81,8 @@ public interface IUiMenuBuilder
     /// <param name="parentItem">Parent item or null</param>
     void BuildSeparatorUiMenuItem(SeparatorUiMenuItem item, GroupUiMenuItem? parentItem);
 
+    /// <summary>
+    /// Clear existing menu items
+    /// </summary>
+    void Clear();
 }

@@ -1,0 +1,29 @@
+﻿Contains = Contains
+
+EndsWith  = Ends with
+
+EqualTo =Equal to
+
+GreaterThan = Greater than
+
+GreaterThanOrEqualTo = Greater than or equals
+
+IsEmpty = Is empty
+
+IsNotEmpty = Is not empty
+
+IsNotNull = Is not null
+
+IsNotNullNorWhiteSpace = Is not null nor whitespace
+
+IsNull = Is null
+
+IsNullOrWhiteSpace = Is null or whitespace
+
+LessThan = Less than
+
+LessThanOrEqualTo = Less than or equals
+
+NotEqualTo = Not equal to
+
+StartsWith=Starts with

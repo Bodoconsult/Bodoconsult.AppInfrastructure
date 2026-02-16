@@ -1,10 +1,12 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Wpf.ReactiveUI.Helper;
+using NUnit.Framework;
+using System;
+using System.IO.Packaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Bodoconsult.App.Wpf.ReactiveUI.Helper;
-using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
 
@@ -13,6 +15,22 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Test.HelperTests;
 [TestFixture]
 public class WpfBaseStyleExtensionTests
 {
+    public WpfBaseStyleExtensionTests()
+    {
+        var s = System.IO.Packaging.PackUriHelper.UriSchemePack;
+
+        //const string scheme = "pack";
+        //if (!UriParser.IsKnownScheme(scheme))
+        //{
+        //    Assert.That(PackUriHelper.UriSchemePack, Is.EqualTo(scheme));
+        //}
+        //else
+        //{
+        //    Assert.Fail("Pack scheme not found");
+        //}
+    }
+
+
     [Test]
     public void ProvideValue_ExistingStyleRowDefinition_StyleLoaded()
     {

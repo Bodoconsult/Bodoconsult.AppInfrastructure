@@ -5,9 +5,11 @@ using Bodoconsult.App.ReactiveUI.Tests.Helpers;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 using NUnit.Framework;
+using System.Threading;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Test.ViewModels;
 
+[Apartment(ApartmentState.STA)]
 [TestFixture]
 public class MenuControlViewModelTests
 {

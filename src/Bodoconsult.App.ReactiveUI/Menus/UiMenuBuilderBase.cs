@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Helpers;
+using Bodoconsult.App.ReactiveUI.Delegates;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 
 namespace Bodoconsult.App.ReactiveUI.Menus;
@@ -11,6 +13,11 @@ namespace Bodoconsult.App.ReactiveUI.Menus;
 public abstract class UiMenuBuilderBase : IUiMenuBuilder
 {
     private readonly List<IUiMenuItem> _menuItems = new();
+
+    /// <summary>
+    /// Menu is ready built delegate
+    /// </summary>
+    public MenuBuiltDelegate? MenuBuiltDelegate { get; set; }
 
     /// <summary>
     /// Default ctor
@@ -86,6 +93,17 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
         {
             BuildMenuItem(item, null);
         }
+
+        if (MenuBuiltDelegate == null)
+        {
+            return;
+        }
+
+        AsyncHelper.FireAndForget(() =>
+        {
+            Task.Delay(100);
+            MenuBuiltDelegate.Invoke();
+        });
     }
 
     /// <summary>
@@ -165,5 +183,13 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     public virtual void BuildSeparatorUiMenuItem(SeparatorUiMenuItem item, GroupUiMenuItem? parentItem)
     {
         throw new NotSupportedException("Override this method in your derived class");
+    }
+
+    /// <summary>
+    /// Clear existing menu items
+    /// </summary>
+    public void Clear()
+    {
+       _menuItems.Clear();
     }
 }

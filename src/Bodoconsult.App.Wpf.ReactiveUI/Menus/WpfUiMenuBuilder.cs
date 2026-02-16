@@ -3,7 +3,6 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
-using Bodoconsult.App.Wpf.ReactiveUI.Models;
 using DynamicData;
 using DynamicData.Binding;
 using System.Collections.ObjectModel;
@@ -17,9 +16,9 @@ namespace Bodoconsult.App.Wpf.ReactiveUI.Menus;
 /// </summary>
 public class WpfUiMenuBuilder : UiMenuBuilderBase
 {
-    private readonly ReadOnlyObservableCollection<WpfUiMenuItem> _menuItems;
+    private readonly ReadOnlyObservableCollection<object> _menuItems;
 
-    private ObservableCollectionExtended<WpfUiMenuItem> MenuItemsInternal { get; } = new();
+    private ObservableCollectionExtended<object> MenuItemsInternal { get; } = new();
 
     /// <summary>
     /// Default ctor
@@ -40,9 +39,9 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
     }
 
     /// <summary>
-    /// Source of <see cref="WpfUiMenuItem"/> elements for binding to menu controls etc.
+    /// Source of <see cref="object"/> elements for binding to menu controls etc.
     /// </summary>
-    public ReadOnlyObservableCollection<WpfUiMenuItem> MenuItemsSource => _menuItems;
+    public ReadOnlyObservableCollection<object> MenuItemsSource => _menuItems;
 
     /// <summary>
     /// Build the final object for a <see cref="CommandUiMenuItem"/>
@@ -53,10 +52,14 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
     {
         var header = TranslationService.Translate(item.Name);
 
-        var menuItem = new WpfUiMenuItem(header, null);
+        var menuItem = new MenuItem
+        {
+            Header = header
+        };
+
         if (item.CommandDefinition != null)
         {
-            menuItem.Command = ReactiveCommand.CreateFromTask(() => item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
+            menuItem.Command = ReactiveCommand.CreateFromObservable(() => item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
         }
 
         MenuItemsInternal.Add(menuItem);
@@ -65,10 +68,8 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
         {
             return;
         }
-        var parent = (WpfUiMenuItem)parentItem.ParentObject;
-        parent.AddItem(menuItem);
-        
-        
+        var parent = (MenuItem)parentItem.ParentObject;
+        parent.Items.Add(menuItem);
     }
 
     /// <summary>
@@ -80,7 +81,10 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
     {
         var header = TranslationService.Translate(item.Name);
 
-        var menuItem = new WpfUiMenuItem(header, null);
+        var menuItem = new MenuItem
+        {
+            Header = header
+        };
         item.ParentObject =  menuItem;
 
         MenuItemsInternal.Add(menuItem);
@@ -89,8 +93,8 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
         {
             return;
         }
-        var parent = (WpfUiMenuItem)parentItem.ParentObject;
-        parent.AddItem(menuItem);
+        var parent = (MenuItem)parentItem.ParentObject;
+        parent.Items.Add(menuItem);
     }
 
     /// <summary>
@@ -102,10 +106,7 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
     {
         var header = TranslationService.Translate(item.Name);
 
-        var menuItem = new WpfUiMenuItem(header, null)
-        {
-            IsSeparator = true
-        };
+        var menuItem = new Separator();
 
 
         MenuItemsInternal.Add(menuItem);
@@ -114,7 +115,7 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
         {
             return;
         }
-        var parent = (WpfUiMenuItem)parentItem.ParentObject;
-        parent.AddItem(menuItem);
+        var parent = (MenuItem)parentItem.ParentObject;
+        parent.Items.Add(menuItem);
     }
 }

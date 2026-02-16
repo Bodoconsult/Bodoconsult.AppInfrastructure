@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Diagnostics;
 using Bodoconsult.App.Wpf.Models;
 
 namespace Bodoconsult.App.Wpf.Services;
@@ -9,6 +10,15 @@ namespace Bodoconsult.App.Wpf.Services;
 /// </summary>
 public static class ResourceFinderService
 {
+
+    /// <summary>
+    ///  Default ctor loading pack scheme
+    /// </summary>
+    static ResourceFinderService()
+    {
+        var s = System.IO.Packaging.PackUriHelper.UriSchemePack;
+        Debug.Print(s);
+    }
 
     private class CacheObject
     {
@@ -64,8 +74,8 @@ public static class ResourceFinderService
             return rd[resourceKey];
         }
         catch (Exception ex)
-        {       
-            throw new Exception($"ResourcePath: {path}", ex);
+        {
+            throw new Exception($"ResourcePath: {path}: {resourceKey}", ex);
         }
     }
 
@@ -82,7 +92,7 @@ public static class ResourceFinderService
         try
         {
             var cache = CachedResources.FirstOrDefault(x => x.Key == path.ToLower());
-                
+
 
             SharedResourceDictionary rd;
 

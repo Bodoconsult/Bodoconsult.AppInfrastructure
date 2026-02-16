@@ -1,9 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
 using Bodoconsult.App.ReactiveUI.Ui;
 using System.Diagnostics;
-using Bodoconsult.App.ReactiveUI.Interfaces;
+using System.Reactive;
+using System.Reactive.Linq;
 
 namespace Bodoconsult.App.ReactiveUI.Tests.Helpers
 {
@@ -43,16 +45,18 @@ namespace Bodoconsult.App.ReactiveUI.Tests.Helpers
             builder.Add(groupItem);
         }
 
-        private static async Task DoSomethingAsync()
+        private static IObservable<Unit> DoSomethingAsync()
         {
             Debug.Print("Hello World 1!");
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            Task.Delay(TimeSpan.FromSeconds(3));
+            return Observable.Return(Unit.Default);
         }
 
-        private static async Task DoSomethingAsync2()
+        private static IObservable<Unit> DoSomethingAsync2()
         {
             Debug.Print("Hello World 1!");
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            Task.Delay(TimeSpan.FromSeconds(3));
+            return Observable.Return(Unit.Default);
         }
     }
 }

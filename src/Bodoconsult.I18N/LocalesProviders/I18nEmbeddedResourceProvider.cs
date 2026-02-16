@@ -48,15 +48,18 @@ public class I18NEmbeddedResourceLocalesProvider : BaseResourceProvider
         var len = _resourceFolder.Length;
 
         var localeResources = _assembly.GetManifestResourceNames().Where(x => x.StartsWith(_resourceFolder, StringComparison.InvariantCultureIgnoreCase) &&
-                                                                              x.EndsWith(".txt", StringComparison.InvariantCultureIgnoreCase)).OrderBy(x=> x);
+                                                                              x.EndsWith(".txt", StringComparison.InvariantCultureIgnoreCase)).OrderBy(x=> x).ToList();
 
         foreach (var locales in localeResources)
         {
             var key = locales.Substring(len, locales.Length - len - 4);
 
             var kvp = new KeyValuePair<string, string>(key, locales);
-                
-            if (LocaleItems.Keys.Any(x => x == kvp.Key)) continue;
+
+            if (LocaleItems.Keys.Any(x => x == kvp.Key))
+            {
+                continue;
+            }
                 
             LocaleItems.Add(kvp);
         }

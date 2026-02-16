@@ -1,12 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Windows;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Ui;
 using Bodoconsult.App.ReactiveUI.ViewModels;
-using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
 using ReactiveUI.SourceGenerators;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Windows;
+using Bodoconsult.App.ReactiveUI.Menus;
 
 namespace WpfReactiveUiDemoApp.ViewModels;
 
@@ -34,19 +37,56 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
         var w = new MainWindow
         {
             ViewModel = this,
-            WindowState = WindowState.ToWindowState(),
             Visibility = Visibility.Visible,
         };
 
+        WindowState = UiWindowState.Maximized;
         return w;
     }
 
+    /// <summary>
+    /// Define the menu items to be stored in <see cref="IUiMenuWindow.MenuItems"/>
+    /// </summary>
+    public override void DefineMenuItems()
+    {
+        var groupItem = new GroupUiMenuItem("File");
+        MenuItems.Add(groupItem);
+
+        var command1 = new CommandUiMenuItem("Go to first view")
+        {
+            CommandDefinition = new UiCommandDefinition(GoToFirstView(), null)
+        };
+
+        groupItem.AddChild(command1);
+    }
+
+    // Sync command 
+
+    //[ReactiveCommand]
+    //public void GoToFirstView()
+    //{
+    //    try
+    //    {
+    //        Region1?.Navigate(new FirstViewModel(Region1));
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Console.WriteLine(e);
+    //        throw;
+    //    }
+    //}
+
+    /// <summary>
+    /// Async version of the command
+    /// </summary>
+    /// <returns></returns>
     [ReactiveCommand]
-    public void GoToFirstView()
+    public IObservable<Unit> GoToFirstView()
     {
         try
         {
             Region1?.Navigate(new FirstViewModel(Region1));
+            return Observable.Return(Unit.Default);
         }
         catch (Exception e)
         {
@@ -56,7 +96,7 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
     }
 
     [ReactiveCommand]
-    public void GoToWindow1()
+    public IObservable<Unit> GoToWindow1()
     {
         try
         {
@@ -67,6 +107,7 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
             var vm = new FirstViewModel();
 
             RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+            return Observable.Return(Unit.Default);
         }
         catch (Exception e)
         {
@@ -76,7 +117,7 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
     }
 
     [ReactiveCommand]
-    public void GoToWindow1Instance2()
+    public IObservable<Unit> GoToWindow1Instance2()
     {
         try
         {
@@ -90,6 +131,7 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
             var vm = new FirstViewModel();
 
             RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+            return Observable.Return(Unit.Default);
         }
         catch (Exception e)
         {

@@ -22,11 +22,10 @@ namespace Bodoconsult.App.ReactiveUI.ViewModels;
 /// </summary>
 public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewModel
 {
-
     private bool _showInTaskbar;
     private UiWindowState _windowState;
 
-    private Timer? _dispatcherTimer;
+    private Timer? _logDataTimer;
 
     private const int MaxNumberOfLogEntries = 100;
 
@@ -65,7 +64,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
         TranslationService = translationService;
         _listener = listener;
         RegionManager = regionManager;
-        WindowState = UiWindowState.Normal;
+        WindowState = UiWindowState.Maximized;
         ShowInTaskbar = true;
         OpenMenuText = "Open";
         ExitMenuText = "Exit";
@@ -393,12 +392,12 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
     {
         AppBuilder?.StopApplication();
 
-        if (_dispatcherTimer != null)
+        if (_logDataTimer != null)
         {
-            _dispatcherTimer.Change(
+            _logDataTimer.Change(
                 Timeout.Infinite,
                 Timeout.Infinite);
-            _dispatcherTimer.Dispose();
+            _logDataTimer.Dispose();
         }
 
         Environment.Exit(0);
@@ -535,12 +534,12 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
     /// </summary>
     public void StartEventListener()
     {
-        _dispatcherTimer = new Timer(dispatcherTimer_Tick, null, 1000, 1000);
+        _logDataTimer = new Timer(dispatcherTimer_Tick, null, 1000, 1000);
     }
 
     private void dispatcherTimer_Tick(object? state)
     {
-        _dispatcherTimer?.Change(
+        _logDataTimer?.Change(
             Timeout.Infinite,
             Timeout.Infinite);
 
@@ -553,7 +552,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
             // Do nothing
         }
 
-        _dispatcherTimer?.Change(
+        _logDataTimer?.Change(
             1000,
             1000);
     }
@@ -561,4 +560,37 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
 
     /// <summary>Gets the Router associated with this Screen.</summary>
     public RoutingState Router { get; set; } = new();
+
+    /// <summary>
+    /// Menu items for a menu in the window
+    /// </summary>
+    public List<IUiMenuItem> MenuItems { get;} = new();
+
+    /// <summary>
+    /// <see cref="IUiMenuBuilder"/> instance used for the current window
+    /// </summary>
+    public IUiMenuBuilder? MenuBuilder { get; set; }
+
+    /// <summary>
+    /// Define the menu items to be stored in <see cref="IUiMenuWindow.MenuItems"/>
+    /// </summary>
+    public virtual void DefineMenuItems()
+    {
+        // Do nothing
+    }
+
+    /// <summary>
+    /// Build the menu with the menu builder <see cref="IUiMenuWindow.MenuBuilder"/> from the menu items <see cref="IUiMenuWindow.MenuItems"/>
+    /// </summary>
+    public void BuildIt()
+    {
+        if (MenuBuilder == null)
+        {
+            return;
+        }
+
+        MenuBuilder.Clear();
+        MenuBuilder.AddRange(MenuItems);
+        MenuBuilder?.BuildIt();
+    }
 }

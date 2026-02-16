@@ -20,8 +20,6 @@
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/VectorGraphics/Shapes.xaml" />
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/VectorGraphics/Assets.xaml" />
 
-
-
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Converters/Converters.xaml" />
 
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/DataTemplates/DataTemplates.xaml" />

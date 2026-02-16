@@ -1,0 +1,15 @@
+﻿Contains = contem
+EndsWith  = termina com
+EqualTo =igual
+GreaterThan = maior que
+GreaterThanOrEqualTo = maior que ou igual
+IsEmpty = é vazio
+IsNotEmpty = não é vazio
+IsNotNull = não é nulo
+IsNotNullNorWhiteSpace = não é nulo nem vazio
+IsNull = é nulo
+IsNullOrWhiteSpace = é nulo ou vazio
+LessThan = menor que
+LessThanOrEqualTo = menor que ou igual
+NotEqualTo = diferente
+StartsWith=começa com

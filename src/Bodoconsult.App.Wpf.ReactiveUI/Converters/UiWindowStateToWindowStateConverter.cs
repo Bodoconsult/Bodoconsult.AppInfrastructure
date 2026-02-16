@@ -11,7 +11,7 @@ using Bodoconsult.App.Wpf.ReactiveUI.Extensions;
 namespace Bodoconsult.App.Wpf.ReactiveUI.Converters;
 
 /// <summary>
-/// Converts an IList&lt;string&gt; to a <see cref="FlowDocument"/>. One-way-converter!
+/// Converts an UIWindowState to a WindowState and back
 /// </summary>
 [ValueConversion(typeof(UiWindowState), typeof(WindowState))]
 public class UiWindowStateToWindowStateConverter : BaseConverter, IValueConverter
