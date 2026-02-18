@@ -32,7 +32,7 @@ public partial class ContextMenuControl: UserControl
     {
         Dispatcher.Invoke(() =>
         {
-            ContextMenu.Items.Clear();
+            LocalMenu.Items.Clear();
 
             if (_viewModel.MenuItems == null)
             {
@@ -41,10 +41,10 @@ public partial class ContextMenuControl: UserControl
 
             foreach (var item in _viewModel.MenuItems)
             {
-                ContextMenu.Items.Add(item);
+                LocalMenu.Items.Add(item);
             }
 
-            ContextMenu.Visibility = Visibility.Visible;
+            LocalMenu.Visibility = Visibility.Visible;
         });
     }
 

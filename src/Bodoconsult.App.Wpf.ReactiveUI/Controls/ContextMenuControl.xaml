@@ -4,6 +4,7 @@
              xmlns:viewModels="clr-namespace:Bodoconsult.App.Wpf.ReactiveUI.ViewModels"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 mc:Ignorable="d"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 d:DesignHeight="100" d:DesignWidth="300"
                 d:DataContext="{d:DesignInstance Type=viewModels:ContextMenuControlViewModel, IsDesignTimeCreatable=True}">
     <!--<UserControl.DataContext>
@@ -11,7 +12,7 @@
     </UserControl.DataContext>-->
 
     <Grid>
-        <ContextMenu x:Name="ContextMenu" DockPanel.Dock="Top" ItemsSource="{Binding Path=MenuItems}" Background="{Binding Path=BackgroundBrush}">
+        <ContextMenu x:Name="LocalMenu" DockPanel.Dock="Top" ItemsSource="{Binding Path=MenuItems}" Background="{Binding Path=BackgroundBrush}">
         </ContextMenu>
     </Grid>
 </UserControl>

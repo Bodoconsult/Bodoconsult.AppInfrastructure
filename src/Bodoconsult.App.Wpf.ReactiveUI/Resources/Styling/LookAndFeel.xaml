@@ -4,7 +4,7 @@
 
     <models:SharedResourceDictionary.MergedDictionaries>
 
-
+        <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Skins/DefaultSkin.xaml"/>
 
         <!--General settings-->
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/General/Settings.xaml" />
@@ -42,7 +42,7 @@
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Styles/Grid.xaml" />
         <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Styles/StackPanel.xaml" />
 
-        <models:SharedResourceDictionary Source="pack://application:,,,/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Skins/DefaultSkin.xaml"/>
+ 
 
 
         <!--  CCs  --><!--

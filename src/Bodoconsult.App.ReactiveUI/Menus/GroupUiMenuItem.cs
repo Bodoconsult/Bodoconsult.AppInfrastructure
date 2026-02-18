@@ -19,7 +19,10 @@ public class GroupUiMenuItem : UiMenuItemBase
     /// </summary>
     /// <param name="name">Name of the menu item or an I18N identifier</param>
     public GroupUiMenuItem(string name) : base(name)
-    { }
+    {
+        StyleName = "GroupUiMenuItemStyle";
+
+    }
 
     /// <summary>
     /// Child menu items (readonly access only)

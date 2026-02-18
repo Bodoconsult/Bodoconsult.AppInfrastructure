@@ -12,5 +12,7 @@ public class SeparatorUiMenuItem: UiMenuItemBase
     /// </summary>
     /// <param name="name">Name of the menu item or an I18N identifier</param>
     public SeparatorUiMenuItem(string name) : base(name)
-    { }
+    {
+        StyleName = "SeparatorUiMenuItemStyle";
+    }
 }

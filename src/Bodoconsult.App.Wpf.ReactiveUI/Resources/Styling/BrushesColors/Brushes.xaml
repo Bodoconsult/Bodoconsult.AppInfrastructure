@@ -3,6 +3,7 @@
                           xmlns:models="clr-namespace:Bodoconsult.App.Wpf.Models;assembly=Bodoconsult.App.Wpf">
 
     <models:SharedResourceDictionary.MergedDictionaries>
+        <models:SharedResourceDictionary Source="/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/Skins/DefaultSkin.xaml" />
         <models:SharedResourceDictionary Source="/Bodoconsult.App.Wpf.ReactiveUI;component/Resources/Styling/BrushesColors/Colors.xaml" />
     </models:SharedResourceDictionary.MergedDictionaries>
 

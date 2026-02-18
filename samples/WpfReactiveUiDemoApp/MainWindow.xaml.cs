@@ -46,15 +46,14 @@ public partial class MainWindow : IUiWindow
                 InlineConverterMethods.FromWindowStateToUiWindowState)
             .DisposeWith(disposables);
 
-        // Now build the menu
-        viewModel.DefineMenuItems();
+        // Get the viemodel of the menu control
         _menuControlViewModel = (MenuControlViewModel)MainMenu.DataContext;
 
-        _menuBuilder =  new WpfUiMenuBuilder(viewModel.TranslationService);
-        _menuBuilder.AddRange(viewModel.MenuItems);
-        viewModel.MenuBuilder = _menuBuilder;
+        // Now build the menu
+        viewModel.DefineMenuItems();
         
-
+        _menuBuilder =  new WpfUiMenuBuilder(viewModel.TranslationService);
+        viewModel.MenuBuilder = _menuBuilder;
         _menuControlViewModel.LoadMenuBuilder(_menuBuilder);
         viewModel.BuildIt();
 

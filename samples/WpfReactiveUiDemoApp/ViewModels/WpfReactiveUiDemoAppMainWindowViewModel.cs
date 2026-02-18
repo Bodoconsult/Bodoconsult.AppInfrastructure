@@ -54,10 +54,24 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
 
         var command1 = new CommandUiMenuItem("Go to first view")
         {
-            CommandDefinition = new UiCommandDefinition(GoToFirstView(), null)
+            CommandDefinition = new UiCommandDefinition(GoToFirstView, null)
         };
 
         groupItem.AddChild(command1);
+
+        var command2 = new CommandUiMenuItem("Go to new window")
+        {
+            CommandDefinition = new UiCommandDefinition(GoToWindow1, null)
+        };
+
+        groupItem.AddChild(command2);
+
+        var command3 = new CommandUiMenuItem("Go to new window instance 2")
+        {
+            CommandDefinition = new UiCommandDefinition(GoToWindow1Instance2, null)
+        };
+
+        groupItem.AddChild(command3);
     }
 
     // Sync command 

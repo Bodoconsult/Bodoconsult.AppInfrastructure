@@ -17,7 +17,7 @@ namespace Bodoconsult.App.ReactiveUI.Tests.Helpers
 
             var commandItem = new CommandUiMenuItem("Exit")
             {
-                CommandDefinition = new UiCommandDefinition(DoSomethingAsync(), null)
+                CommandDefinition = new UiCommandDefinition(DoSomethingAsync, null)
             };
 
             groupItem.AddChild(commandItem);
@@ -27,7 +27,7 @@ namespace Bodoconsult.App.ReactiveUI.Tests.Helpers
 
             var commandItem2 = new CommandUiMenuItem("Test")
             {
-                CommandDefinition = new UiCommandDefinition(DoSomethingAsync2(), null)
+                CommandDefinition = new UiCommandDefinition(DoSomethingAsync2, null)
             };
 
             groupItem2.AddChild(commandItem2);
@@ -38,7 +38,7 @@ namespace Bodoconsult.App.ReactiveUI.Tests.Helpers
 
             var commandItem3 = new CommandUiMenuItem("Test")
             {
-                CommandDefinition = new UiCommandDefinition(DoSomethingAsync2(), null)
+                CommandDefinition = new UiCommandDefinition(DoSomethingAsync2, null)
             };
             groupItem2.AddChild(commandItem3);
 

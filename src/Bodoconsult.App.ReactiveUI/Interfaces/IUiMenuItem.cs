@@ -38,6 +38,16 @@ public interface IUiMenuItem
     string? ToolTip { get; set; }
 
     /// <summary>
+    /// Style name to use for formatting the current menuitem
+    /// </summary>
+    string? StyleName { get; set; }
+
+    /// <summary>
+    /// Style resource path to use for formatting the current menuitem. Default: null
+    /// </summary>
+    string? StyleResourcePath { get; set; }
+
+    /// <summary>
     /// Build the menu item
     /// </summary>
     void BuildIt();

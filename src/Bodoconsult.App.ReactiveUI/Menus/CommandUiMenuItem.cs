@@ -14,7 +14,9 @@ public class CommandUiMenuItem : UiMenuItemBase
     /// </summary>
     /// <param name="name">Name of the menu item or an I18N identifier</param>
     public CommandUiMenuItem(string name) : base(name)
-    { }
+    {
+        StyleName = "CommandUiMenuItemStyle";
+    }
 
     /// <summary>
     /// Command definition

@@ -11,6 +11,8 @@ More tools for developers
 
 > [MemoryStreamBufferPool\<T\> for reusing MemoryStream instances](#memorystreambufferpool) to reduce garbage collection pressure
 
+> []()
+
 > [ProducerConsumerQueue<T/> implementing the producer-consumer-pattern for one or many producers but only one consumer](#producerconsumerqueue) with running the consumer always on the same thread
 
 > [DataProtectionManager for protecting secrets like credentials](#dataprotectionmanager-for-protecting-secrets-like-credentials)
@@ -123,6 +125,38 @@ public void Enqueue_ValidSetup_InstanceEnqueued()
 
     // Assert
     Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems));
+}
+```
+
+# IStringToFileService / StringToFileService
+
+This service is intended to store in-memory configuration data as JSON or XML into a config file after configuration changes.
+
+Writing to config file happens in a queued, single-threaded manner to avoid exceptions due to already blocked files.
+
+``` csharp
+[Test]
+public void WriteToFile_ValidSetup_FileWritten()
+{
+    // Arrange 
+    const string item = "Blubb";
+
+    var service = new StringToFileService
+    {
+        FilePath = _filePath
+    };
+
+    service.Start();
+
+    // Act  
+    service.WriteToFile(item);
+
+    Wait.Until(() => File.Exists(_filePath));
+
+    // Assert
+    service.Stop();
+
+    Assert.That(File.Exists(_filePath));
 }
 ```
 

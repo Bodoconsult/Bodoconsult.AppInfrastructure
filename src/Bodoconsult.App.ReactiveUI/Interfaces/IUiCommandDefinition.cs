@@ -12,7 +12,7 @@ public interface IUiCommandDefinition
     /// <summary>
     /// Action to execute with the command
     /// </summary>
-    IObservable<Unit> ExecuteMethod { get;  }
+    Func<IObservable<Unit>> ExecuteMethod { get;  }
 
     /// <summary>
     /// Condition func to return true if the ExcuteMethod may run or false if not

@@ -12,7 +12,7 @@
     <Color x:Key="SkinMainMenuCommandBarColor01">#FF6D6D6D</Color>
     <Color x:Key="SkinMainMenuMenuBarColor01">#FF434E54</Color>
     <Color x:Key="SkinMainMenuDocumentAreaColor01">#FFF5F5DC</Color>
-    <Color x:Key="SkinListBoxDividerBorderColor01">#FFFFFF</Color>
+    <Color x:Key="SkinListBoxDividerBorderColor01">#FFFFFFFF</Color>
 
     <Color x:Key="SkinMainMenuControlBackgroundColor01">#FF434E54</Color>
     <Color x:Key="SkinMainMenuControlBackgroundColor02">#FFFFFFFF</Color>
