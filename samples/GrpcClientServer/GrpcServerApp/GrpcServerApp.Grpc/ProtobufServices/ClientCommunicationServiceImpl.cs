@@ -139,7 +139,7 @@ public class ClientCommunicationServiceImpl: ClientCommunicationService.ClientCo
 
         AsyncHelper.FireAndForget(() =>
         {
-            ReceiveMessages(requestStream, client, context, responseStream);
+            ReceiveMessages(requestStream, client, context, responseStream).GetAwaiter().GetResult();
         });
 
         // Inform client that server is ready
