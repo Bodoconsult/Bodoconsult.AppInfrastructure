@@ -64,7 +64,6 @@ internal class FakeAppDateTimeServiceTests
 
         // Assert
         Assert.That(result, Is.GreaterThan(DateTime.Now.AddSeconds(-10)));
-
     }
 
     [Test]
@@ -78,6 +77,5 @@ internal class FakeAppDateTimeServiceTests
 
         // Assert
         Assert.That(result, Is.EqualTo(new DateTime(1900, 1, 1)));
-
     }
 }

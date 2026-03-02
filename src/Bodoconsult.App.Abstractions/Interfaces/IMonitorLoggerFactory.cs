@@ -13,6 +13,4 @@ public interface IMonitorLoggerFactory : ILoggerFactory
     /// Current full file path to log int
     /// </summary>
     string FileName { get;  }
-
-
 }

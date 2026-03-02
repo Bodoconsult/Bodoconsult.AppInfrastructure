@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using Bodoconsult.App.Logging;
 
 namespace Bodoconsult.App.Test.Logging;
@@ -8,8 +7,6 @@ namespace Bodoconsult.App.Test.Logging;
 [TestFixture]
 internal class LogDataFactoryTests 
 {
-
-
     [Test]
     public void TestCtor()
     {
