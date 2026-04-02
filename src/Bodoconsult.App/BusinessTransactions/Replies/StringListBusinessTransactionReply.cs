@@ -10,6 +10,6 @@ public class StringListBusinessTransactionReply : DefaultBusinessTransactionList
     /// <summary>
     /// String to transport with the reply
     /// </summary>
-    public List<string> Content { get; set; } = new();
+    public List<string> Content { get; set; } = [];
 
 }

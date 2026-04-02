@@ -52,7 +52,7 @@ public class DefinitionListDocxTextRendererElement : DocxTextRendererElementBase
 
             foreach (var listItems in term.ChildBlocks)
             {
-                sb = new List<OpenXmlElement>();
+                sb = [];
                 DocxDocumentRendererHelper.RenderBlockInlinesToRunsForDocx(renderer, listItems.ChildInlines, sb);
                 row.Items.Add(sb);
             }

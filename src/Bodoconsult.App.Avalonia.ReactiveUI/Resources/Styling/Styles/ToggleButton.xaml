@@ -1,0 +1,56 @@
+﻿<models:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:models="clr-namespace:Bodoconsult.App.Avalonia.Models;assembly=Bodoconsult.App.Avalonia">
+
+    <models:SharedResourceDictionary.MergedDictionaries>
+        <models:SharedResourceDictionary Source="/Bodoconsult.App.Avalonia.ReactiveUI;component/Resources/Styling/BrushesColors/Colors.xaml" />
+        <models:SharedResourceDictionary Source="/Bodoconsult.App.Avalonia.ReactiveUI;component/Resources/Styling/BrushesColors/Brushes.xaml" />
+        <models:SharedResourceDictionary Source="/Bodoconsult.App.Avalonia.ReactiveUI;component/Resources/Styling/Typography/Typography.xaml" />
+        <models:SharedResourceDictionary Source="/Bodoconsult.App.Avalonia.ReactiveUI;component/Resources/Styling/Styles/FrameworkElement.xaml" />
+    </models:SharedResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton" BasedOn="{StaticResource FrameworkElementStyle}">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush01}" />
+        <Setter Property="Foreground" Value="{StaticResource BaseWhiteBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush01}" />
+        <Setter Property="BorderThickness" Value="0 0 0 5" />
+        <Setter Property="Padding" Value="10 0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <!--<Setter Property="Foreground" Value="{StaticResource BaseWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Level3FontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontFamily}" />
+        <Setter Property="FontWeight" Value="{StaticResource NormalFontWeight}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" />
+                        <ContentPresenter x:Name="Content"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Opacity=".8"
+                                          RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Content" Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Padding" Value="10 2 10 0" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource Red01Brush}" />
+            </Trigger>
+        </Style.Triggers>-->
+    </Style>
+
+</models:SharedResourceDictionary>

@@ -239,7 +239,7 @@ public class PlainTextFormatter : ITextFormatter
     {
         var erg = new StringBuilder();
 
-        var data = content.Split(new[] { "\r\n" }, StringSplitOptions.None);
+        var data = content.Split(["\r\n"], StringSplitOptions.None);
         foreach (var row in data)
         {
             erg.AppendFormat("\r\n    {0}", row);

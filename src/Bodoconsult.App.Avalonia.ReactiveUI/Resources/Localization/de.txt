@@ -1,0 +1,22 @@
+﻿Avalonia.Base.PrintDocumentButtonTooltip=Dokument drucken
+Avalonia.Base.NextButtonText=Weiter
+Avalonia.Base.CancelButtonText=Abbrechen
+Avalonia.Base.LoginButtonText=Anmelden
+ 
+Avalonia.Base.ChangePasswordButtonText=Paßwort ändern
+Avalonia.Base.ChangePasswordDialogTitle=Bitte altes und neues Paßwort zum Ändern des Paßworts eingeben
+Avalonia.Base.PasswordRepeatLabelText=Neues Paßwort wiederholen:
+Avalonia.Base.PasswordLabelText=Altes Paßwort:
+Avalonia.Base.PasswordRepeatTooltipText=Neues Paßwort wiederholen:
+Avalonia.Base.PasswordTooltipText=Neues Paßwort wiederholen
+Avalonia.Base.NewPasswordLabelText=Neues Paßwort:
+Avalonia.Base.NewPasswordTooltipText=Neues Paßwort eingeben
+
+Avalonia.Base.LoginDialogTitle=Bitte Benutzername und Paßwort für die Anmeldung eingeben
+Avalonia.Base.UsernameLabelText=Benutzername:
+Avalonia.Base.UsernameTooltipText=Hier Benutzernamen eingeben
+
+Avalonia.Base.InputBoxOkButtonText=Weiter
+Avalonia.Base.InputBoxEscButtonText=Abbrechen
+Avalonia.Base.InputBoxWindowTitle=Dateneingabe
+Avalonia.Base.InputBoxUserInstruction=Bitte etwas eingeben

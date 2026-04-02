@@ -107,6 +107,9 @@ It delivers the following main functionality:</p>
 <p><a href="#business-transactions">Business transactions to simplify transportation layer implementations for technologies like GRPC, WebAPI, etc...</a></p>
 </blockquote>
 <blockquote>
+<p><a href="#data-export-services">IDataExportService<t>/DataExportServiceBase<t> for long running data exports to string or binary files</t></t></a></p>
+</blockquote>
+<blockquote>
 <p><a href="#client-notifications"># Client notifications for technologies like GRPC, WebAPI, etc...</a></p>
 </blockquote>
 <blockquote>
@@ -157,6 +160,10 @@ So it can be used with professionell APM tools like Application Insights, dotnet
 <p>See page <a href="BusinessTransactions.html">Business transactions</a> for details.</p>
 <h1 id="client-notifications">Client notifications</h1>
 <p>See page <a href="ClientNotification.html">Client notifications</a> for details.</p>
+<h1 id="data-export-services">Data export services</h1>
+<p>Data export services based on IDataExportService<t>/DataExportServiceBase<t> are intended to store a datastream of messages like raw byte arrays, strings, custom data classes etc. to file.</t></t></p>
+<p>Typical scenario is a network device sending communication data to a client. Client is intended to save the received data into files for later usage.</p>
+<p>See page <a href="DataExportService.html"></a> for details.</p>
 <h1 id="more-tools-for-developers">More tools for developers</h1>
 <p>Bodoconsult.App provides more tools like WatchDog, ProducerConsumerQueue, BufferPool etc.</p>
 <p>See page <a href="Others.html">More tools for developers</a> for details.</p>

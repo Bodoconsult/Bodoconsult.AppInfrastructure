@@ -20,37 +20,37 @@ public class Styleset : Block
     /// <summary>
     ///  Default font name
     /// </summary>
-    public static string DefaultFontName = "Calibri";
+    public static string DefaultFontName { get; set; } = "Calibri";
 
     /// <summary>
     ///  Default font name
     /// </summary>
-    public static string DefaultFontNameMonoSpaced = "Courier New";
+    public static string DefaultFontNameMonoSpaced { get; set; } = "Courier New";
 
     /// <summary>
     /// Default color for borders and fonts
     /// </summary>
-    public static Color DefaultColor = TypoColors.Black.ToLdmlColor();
+    public static Color DefaultColor { get; set; } = TypoColors.Black.ToLdmlColor();
 
     /// <summary>
     /// Default border width in cm. Default 1pt
     /// </summary>
-    public static double DefaultBorderWidth = TypoThickness.LineWidth1Pt;
+    public static double DefaultBorderWidth { get; set; } = TypoThickness.LineWidth1Pt;
 
     /// <summary>
     /// Default padding width in cm. Default 2pt
     /// </summary>
-    public static double DefaultPaddingWidth = 2 * TypoThickness.LineWidth1Pt;
+    public static double DefaultPaddingWidth { get; set; } = 2 * TypoThickness.LineWidth1Pt;
 
     /// <summary>
     /// Default padding width in cm. Default 3pt
     /// </summary>
-    public static double DefaultTablePaddingWidth = 2 * TypoThickness.LineWidth1Pt;
+    public static double DefaultTablePaddingWidth { get; set; } = 2 * TypoThickness.LineWidth1Pt;
 
     /// <summary>
     /// Default font size in pt
     /// </summary>
-    public static int DefaultFontSize = 12;
+    public static int DefaultFontSize { get; set; } = 12;
 
     /// <summary>
     /// Default margin left. Default 2cm 
@@ -83,14 +83,14 @@ public class Styleset : Block
     /// Fonts list used i.e. for RTF rendering. Filled by the renderer instance
     /// </summary>
     [DoNotSerialize]
-    public List<string> Fonts { get; } = new();
+    public List<string> Fonts { get; } = [];
 
 
     /// <summary>
     /// List of all colors i.e. for RTF rendering. Filled by the renderer instance
     /// </summary>
     [DoNotSerialize]
-    public List<TypoColor> Colors { get; } = new();
+    public List<TypoColor> Colors { get; } = [];
 
     /// <summary>
     /// Get the index of the stylename

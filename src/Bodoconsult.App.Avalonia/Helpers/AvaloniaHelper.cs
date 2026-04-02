@@ -2,6 +2,7 @@
 
 using System.Runtime.InteropServices;
 using Avalonia.Controls;
+using Avalonia.Styling;
 
 namespace Bodoconsult.App.Avalonia.Helpers;
 
@@ -611,4 +612,16 @@ public static class AvaloniaHelper
     //        //if it's not a ContentElement/FrameworkElement, rely on VisualTreeHelper
     //        return VisualTreeHelper.GetParent(child);
     //    }
+    
+    /// <summary>
+    /// Find a style by its name
+    /// </summary>
+    /// <param name="styleName">Style name</param>
+    /// <param name="path">Ressource path</param>
+    /// <returns>Style instance</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public static Style FindResource(string styleName, string path)
+    {
+        throw new NotImplementedException();
+    }
 }

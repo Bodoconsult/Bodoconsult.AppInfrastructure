@@ -12,7 +12,7 @@ public class GroupUiMenuItem : UiMenuItemBase
     /// <summary>
     /// Child menu items
     /// </summary>
-    private readonly List<IUiMenuItem> _childs = new();
+    private readonly List<IUiMenuItem> _childs = [];
 
     /// <summary>
     /// Default ctor

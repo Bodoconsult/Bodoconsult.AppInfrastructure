@@ -33,8 +33,8 @@ public class RibbonBaseService : IRibbonService
     }
 
     private readonly Dictionary<int, RibbonItem> _items =new();
-    private readonly List<string> _tabs = new();
-    private readonly List<GroupItem> _tabGroups = new();
+    private readonly List<string> _tabs = [];
+    private readonly List<GroupItem> _tabGroups = [];
 
     ///// <summary>
     ///// Default ctor

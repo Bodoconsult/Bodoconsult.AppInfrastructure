@@ -22,7 +22,7 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
 {
     private readonly ReadOnlyObservableCollection<object> _menuItems;
 
-    private ObservableCollectionExtended<object> MenuItemsInternal { get; } = new();
+    private ObservableCollectionExtended<object> MenuItemsInternal { get; } = [];
 
     /// <summary>
     /// Default ctor

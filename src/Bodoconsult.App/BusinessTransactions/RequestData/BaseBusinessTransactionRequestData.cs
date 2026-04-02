@@ -50,4 +50,14 @@ public abstract class BaseBusinessTransactionRequestData: IBusinessTransactionRe
     /// Request metadata: User ID
     /// </summary>
     public int MetaDataUserId { get; set; }
+
+    /// <summary>
+    /// Timeout to wait for sending the request
+    /// </summary>
+    public int SendTimeout { get; set; } = 5000;
+
+    /// <summary>
+    /// Timeout to wait for sending the request
+    /// </summary>
+    public int ExecutionTimeout { get; set; } = 5000;
 }

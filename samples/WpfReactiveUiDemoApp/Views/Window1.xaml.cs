@@ -48,16 +48,9 @@ public partial class Window1 : IUiWindow
         viewModel.Region1 = window.FindRegion(DocumentRegion.Name);
         viewModel.Region2 = window.FindRegion(MenuRegion.Name);
 
-        if (viewModel.Region1 == null)
-        {
-            throw new ArgumentNullException(nameof(viewModel.Region1));
-        }
-
-        if (viewModel.Region2 == null)
-        {
-            throw new ArgumentNullException(nameof(viewModel.Region2));
-        }
-
+        ArgumentNullException.ThrowIfNull(viewModel.Region1);
+        ArgumentNullException.ThrowIfNull(viewModel.Region2);
+        
         this.OneWayBind(viewModel, p => p.Region1!.Router, xy => xy.DocumentRegion.Router)
             .DisposeWith(disposables);
 
@@ -86,7 +79,7 @@ public partial class Window1 : IUiWindow
     /// <summary>
     /// Region in the current window
     /// </summary>
-    public List<UiRegion> UiRegions { get; } = new();
+    public List<UiRegion> UiRegions { get; } = [];
 
     /// <summary>
     /// Dispose this window from region manager

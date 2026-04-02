@@ -13,7 +13,7 @@ public class DummyUiWindow : IUiWindow
     /// <summary>
     /// Window name
     /// </summary>
-    public string Name { get; set; } = "Test";
+    public string? Name { get; set; } = "Test";
 
     /// <summary>
     /// Current region manager
@@ -23,7 +23,7 @@ public class DummyUiWindow : IUiWindow
     /// <summary>
     /// Region in the current window
     /// </summary>
-    public List<UiRegion> UiRegions { get; set; } = new List<UiRegion>();
+    public List<UiRegion> UiRegions { get; set; } = [];
 
     /// <summary>
     /// Dispose this window from region manager

@@ -23,7 +23,7 @@ public class BidirectionalStreamingServerChannel
 
     private readonly ProducerConsumerQueue<ClientNotificationMessage> _consumerQueue = new();
 
-    private readonly List<BusinessTransactionRunner> _runningBusinessTransactions = new();
+    private readonly List<BusinessTransactionRunner> _runningBusinessTransactions = [];
 
     public BidirectionalStreamingServerChannel(GrpcChannel channel)
     {
@@ -243,8 +243,10 @@ public class BidirectionalStreamingServerChannel
 
         while (true)
         {
-            var request = new EmptyBusinessTransactionRequestData();
-            request.TransactionId = 1;
+            var request = new EmptyBusinessTransactionRequestData
+            {
+                TransactionId = 1
+            };
 
             var reply = RunBusinessTransaction(request);
 

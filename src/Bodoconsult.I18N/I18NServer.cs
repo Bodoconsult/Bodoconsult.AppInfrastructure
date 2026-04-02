@@ -25,7 +25,7 @@ public class I18NServer : II18NServer
     /// <summary>
     /// All loaded providers
     /// </summary>
-    public List<ILocalesProvider> Providers { get; } = new();
+    public List<ILocalesProvider> Providers { get; } = [];
 
     /// <summary>
     /// Current loaded locales

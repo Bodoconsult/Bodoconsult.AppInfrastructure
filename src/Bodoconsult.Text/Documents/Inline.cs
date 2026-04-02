@@ -14,12 +14,12 @@ public abstract class Inline : TextElement
     /// <summary>
     /// All allowed inlines to be loaded as child inlines
     /// </summary>
-    protected List<Type> AllowedInlines = new();
+    protected List<Type> AllowedInlines = [];
 
     /// <summary>
     /// All child inlines
     /// </summary>
-    protected readonly List<Inline> Inlines = new();
+    protected readonly List<Inline> Inlines = [];
 
     /// <summary>
     /// All child inlines bound to the element

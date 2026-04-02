@@ -36,12 +36,12 @@ public class LdmlCalculator
     /// <summary>
     /// All headings in the document to count
     /// </summary>
-    public List<HeadingBase> Headings { get; } = new();
+    public List<HeadingBase> Headings { get; } = [];
 
     /// <summary>
     /// All TocItems in the document to count
     /// </summary>
-    public List<TocBase> TocItems { get; } = new();
+    public List<TocBase> TocItems { get; } = [];
 
     /// <summary>
     /// Heading counters
@@ -52,17 +52,17 @@ public class LdmlCalculator
     /// <summary>
     /// All figures in the document to count
     /// </summary>
-    public List<Figure> Figures { get; } = new();
+    public List<Figure> Figures { get; } = [];
 
     /// <summary>
     /// All items of the TOF
     /// </summary>
-    public List<Tof> TofItems { get; } = new();
+    public List<Tof> TofItems { get; } = [];
 
     /// <summary>
     /// All items of the TOT
     /// </summary>
-    public List<Tot> TotItems { get; } = new();
+    public List<Tot> TotItems { get; } = [];
 
     /// <summary>
     /// Current figure counter
@@ -78,17 +78,17 @@ public class LdmlCalculator
     /// <summary>
     /// All tables in the document to count
     /// </summary>
-    public List<Table> Tables { get; } = new();
+    public List<Table> Tables { get; } = [];
 
     /// <summary>
     /// All equations in the document to count
     /// </summary>
-    public List<Equation> Equations { get; } = new();
+    public List<Equation> Equations { get; } = [];
 
     /// <summary>
     /// All items of the TOE
     /// </summary>
-    public List<Toe> ToeItems { get; } = new();
+    public List<Toe> ToeItems { get; } = [];
 
     /// <summary>
     /// Current equation counter

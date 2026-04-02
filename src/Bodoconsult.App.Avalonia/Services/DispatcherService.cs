@@ -13,7 +13,7 @@ namespace Bodoconsult.App.Avalonia.Services;
 public static class DispatcherService
 {
 
-    private static CancellationTokenSource cancellationTokenSource = new();
+    private static CancellationTokenSource _cancellationTokenSource = new();
 
     /// <summary>
     /// Contains the current WPF application
@@ -28,7 +28,7 @@ public static class DispatcherService
         try
         {
 
-            cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Cancel();
 
             //var lf = CurrentApplication.ApplicationLifetime;
 
@@ -78,7 +78,7 @@ public static class DispatcherService
         }
 
         CurrentApplication = new Application();
-        CurrentApplication.Run(cancellationTokenSource.Token);
+        CurrentApplication.Run(_cancellationTokenSource.Token);
 
     }
 

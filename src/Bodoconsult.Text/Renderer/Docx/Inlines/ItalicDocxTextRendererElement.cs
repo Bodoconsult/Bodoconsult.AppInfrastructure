@@ -40,7 +40,7 @@ public class ItalicDocxTextRendererElement : InlineDocxTextRendererElementBase
         }
         else // Childs
         {
-            List<OpenXmlElement> runs2 = new();
+            List<OpenXmlElement> runs2 = [];
 
             foreach (var inline in _span.ChildInlines)
             {

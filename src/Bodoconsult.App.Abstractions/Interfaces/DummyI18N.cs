@@ -31,7 +31,7 @@ public class DummyI18N : II18N
     /// <summary>
     /// All loaded providers
     /// </summary>
-    public List<ILocalesProvider> Providers { get; } = new();
+    public List<ILocalesProvider> Providers { get; } = [];
 
     /// <summary>Occurs when a property value changes.</summary>
     public event PropertyChangedEventHandler PropertyChanged;
@@ -62,7 +62,7 @@ public class DummyI18N : II18N
     /// <summary>
     /// Available languages found by the providers. 
     /// </summary>
-    public List<PortableLanguage> Languages { get; } = new();
+    public List<PortableLanguage> Languages { get; } = [];
 
     /// <summary>
     /// Set the not-found-symbol

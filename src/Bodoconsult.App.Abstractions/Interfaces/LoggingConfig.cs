@@ -35,7 +35,7 @@ public class LoggingConfig
     /// <summary>
     /// Logging configurators to use
     /// </summary>
-    public List<ILoggerProviderConfigurator> LoggerProviderConfigurators { get; } = new();
+    public List<ILoggerProviderConfigurator> LoggerProviderConfigurators { get; } = [];
 
 
     /// <summary>

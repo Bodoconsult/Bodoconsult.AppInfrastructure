@@ -9,7 +9,7 @@ public class ProducerConsumerQueueTests
 {
 
     private int _counter;
-    private readonly List<string> _received = new();
+    private readonly List<string> _received = [];
     private bool _wasFired;
 
     private void Reset()
@@ -33,8 +33,10 @@ public class ProducerConsumerQueueTests
         Reset();
 
         // Act  
-        var pc = new ProducerConsumerQueue<string>();
-        pc.ConsumerTaskDelegate = ConsumerTaskDelegate;
+        var pc = new ProducerConsumerQueue<string>
+        {
+            ConsumerTaskDelegate = ConsumerTaskDelegate
+        };
 
         // Assert
         Assert.That(pc, Is.Not.Null);
@@ -48,8 +50,10 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var pc = new ProducerConsumerQueue<string>();
-        pc.ConsumerTaskDelegate = ConsumerTaskDelegate;
+        var pc = new ProducerConsumerQueue<string>
+        {
+            ConsumerTaskDelegate = ConsumerTaskDelegate
+        };
 
         // Act  
         pc.StartConsumer();
@@ -68,8 +72,10 @@ public class ProducerConsumerQueueTests
 
         const string s1 = "Blubb";
 
-        var pc = new ProducerConsumerQueue<string>();
-        pc.ConsumerTaskDelegate = ConsumerTaskDelegate;
+        var pc = new ProducerConsumerQueue<string>
+        {
+            ConsumerTaskDelegate = ConsumerTaskDelegate
+        };
         pc.StartConsumer();
 
         // Act  
@@ -96,8 +102,10 @@ public class ProducerConsumerQueueTests
         const string s2 = "Blabb";
         const string s3 = "Blobb";
 
-        var pc = new ProducerConsumerQueue<string>();
-        pc.ConsumerTaskDelegate = ConsumerTaskDelegate;
+        var pc = new ProducerConsumerQueue<string>
+        {
+            ConsumerTaskDelegate = ConsumerTaskDelegate
+        };
         pc.StartConsumer();
 
         // Act  
@@ -158,8 +166,10 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>();
-        queue.ConsumerTaskDelegate = ConsumerTaskDelegate;
+        var queue = new ProducerConsumerQueue<string>
+        {
+            ConsumerTaskDelegate = ConsumerTaskDelegate
+        };
         queue.StartConsumer();
 
         // Act and assert
@@ -180,8 +190,10 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>();
-        queue.ConsumerTaskDelegate = ConsumerTaskDelegate;
+        var queue = new ProducerConsumerQueue<string>
+        {
+            ConsumerTaskDelegate = ConsumerTaskDelegate
+        };
         queue.StartConsumer();
 
         Assert.DoesNotThrow(() =>
@@ -198,6 +210,4 @@ public class ProducerConsumerQueueTests
         Assert.That(queue.InternalQueue, Is.Null);
         queue.Dispose();
     }
-
-
 }

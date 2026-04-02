@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.ClientNotifications;
 using Bodoconsult.App.GrpcBackgroundService;
 using Google.Protobuf.WellKnownTypes;
 using GrpcServerApp.BusinessLogic.Notifications;
@@ -9,33 +9,16 @@ using GrpcServerApp.BusinessLogic.Notifications;
 namespace GrpcServerApp.Grpc.MappingServices;
 
 /// <summary>
-/// Converts internal notificatiosn to GRPC messages
+/// Converts internal notifications to GRPC messages
 /// </summary>
-public class GrpcClientMessagingService: IClientMessagingService
+public class GrpcClientMessagingService : BaseClientMessagingService
 {
     /// <summary>
-    /// All conversion rules for notifications event args to client transport level target object
+    /// Default ctor
     /// </summary>
-    public Dictionary<string, NotificationToTargetTransferObjectDelegate> ConversionRules { get; } = new();
-
-
     public GrpcClientMessagingService()
     {
         ConversionRules.Add(nameof(SimpleClientNotification), GetSimpleClientNotificationMessageDtoMessage);
-    }
-
-    /// <summary>
-    /// Convert a notification into a client transport level target object
-    /// </summary>
-    /// <param name="notification">Current notification to send</param>
-    /// <returns>Object to transfer to the client on transport level</returns>
-    public object Convert(IClientNotification notification)
-    {
-        var notiType = notification.GetType().Name;
-
-        var success = ConversionRules.TryGetValue(notiType, out var del);
-
-        return !success ? null : del(notification);
     }
 
     /// <summary>
@@ -51,7 +34,7 @@ public class GrpcClientMessagingService: IClientMessagingService
             throw new ArgumentException($"{nameof(notification)} does NOT have the expected type of {nameof(SimpleClientNotification)}");
         }
 
-        var data= new SimpleClientNotificationMessage
+        var data = new SimpleClientNotificationMessage
         {
             Message = noti.Message
         };

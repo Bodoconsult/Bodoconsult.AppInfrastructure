@@ -31,7 +31,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
 
     private readonly IAppEventListener? _listener;
 
-    private ObservableCollectionExtended<string> LogDataSource { get; } = new();
+    private ObservableCollectionExtended<string> LogDataSource { get; } = [];
 
     private EventLevel _logEventLevel;
     private double _width = 100;
@@ -564,7 +564,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
     /// <summary>
     /// Menu items for a menu in the window
     /// </summary>
-    public List<IUiMenuItem> MenuItems { get;} = new();
+    public List<IUiMenuItem> MenuItems { get;} = [];
 
     /// <summary>
     /// <see cref="IUiMenuBuilder"/> instance used for the current window

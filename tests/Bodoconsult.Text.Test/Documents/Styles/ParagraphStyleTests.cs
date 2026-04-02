@@ -52,8 +52,10 @@ internal class ParagraphStyleTests
         // Arrange 
         var brush = new SolidColorBrush(TypoColors.AliceBlue.ToLdmlColor());
         
-        var style = new ParagraphStyle();
-        style.BorderBrush = brush;
+        var style = new ParagraphStyle
+        {
+            BorderBrush = brush
+        };
 
 
         var sb = new StringBuilder();

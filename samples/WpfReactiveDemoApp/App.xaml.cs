@@ -18,7 +18,7 @@ public partial class App : Application
             .WithViewsFromAssembly(typeof(App).Assembly) // Register views and view models
             .BuildApp();
 
-        var mainUIThreadScheduler = rxuiInstance.MainThreadScheduler;
+        var mainUiThreadScheduler = rxuiInstance.MainThreadScheduler;
         var taskpoolScheduler = rxuiInstance.TaskpoolScheduler;
 
         //var test = rxuiInstance.Current.GetService<MainViewModel>();

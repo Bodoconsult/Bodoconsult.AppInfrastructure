@@ -12,7 +12,7 @@ namespace Bodoconsult.App.ReactiveUI.Menus;
 /// </summary>
 public abstract class UiMenuBuilderBase : IUiMenuBuilder
 {
-    private readonly List<IUiMenuItem> _menuItems = new();
+    private readonly List<IUiMenuItem> _menuItems = [];
 
     /// <summary>
     /// Menu is ready built delegate
@@ -58,7 +58,7 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     {
         if (string.IsNullOrEmpty(item.Name))
         {
-            throw new ArgumentNullException(nameof(item.Name), "item.Name must not be null or string.Empty");
+            ArgumentNullException.ThrowIfNull(item.Name, "item.Name must not be null or string.Empty");
         }
 
         if (item.Parent == null)

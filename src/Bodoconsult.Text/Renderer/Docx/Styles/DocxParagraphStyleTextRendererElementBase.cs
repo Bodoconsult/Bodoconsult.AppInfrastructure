@@ -27,7 +27,7 @@ public class DocxParagraphStyleTextRendererElementBase : IDocxTextRendererElemen
     /// <summary>
     /// Additonal CSS styling tags
     /// </summary>
-    public List<string> AdditionalCss { get; } = new();
+    public List<string> AdditionalCss { get; } = [];
 
     /// <summary>
     /// Default ctor

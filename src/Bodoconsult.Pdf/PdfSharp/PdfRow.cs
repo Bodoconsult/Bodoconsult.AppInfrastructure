@@ -13,7 +13,7 @@ public class PdfRow
     /// <summary>
     /// Cells in the row
     /// </summary>
-    public List<PdfCell> Cells { get;  } = new();
+    public List<PdfCell> Cells { get;  } = [];
 
     /// <summary>
     /// Current shading color. Use only for non-default values. If not set, the default values for the table are choosen

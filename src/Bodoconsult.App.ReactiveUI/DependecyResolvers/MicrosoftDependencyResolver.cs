@@ -17,7 +17,7 @@ namespace Bodoconsult.App.ReactiveUI.DependecyResolvers;
 public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
 {
     private const string ImmutableExceptionMessage = "This container has already been built and cannot be modified.";
-    private readonly object _syncLock = new();
+    private readonly Lock _syncLock = new();
     private IServiceCollection? _serviceCollection;
     private bool _isImmutable;
     private IServiceProvider? _serviceProvider;
@@ -441,6 +441,36 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     public virtual IDisposable ServiceRegistrationCallback(Type serviceType, string? contract, Action<IDisposable> callback) =>
         throw new NotImplementedException("ServiceRegistrationCallback is not implemented in the Microsoft dependency resolver.");
 
+
+    /// <summary>
+    /// Registers a callback to be invoked when a service of type T is registered, and returns a disposable object that
+    /// can be used to unregister the callback.
+    /// </summary>
+    /// <typeparam name="T">The type of the service to monitor for registration events.</typeparam>
+    /// <param name="callback">The action to invoke when a service of type T is registered. The callback receives an IDisposable that can be
+    /// used to unregister the callback.</param>
+    /// <returns>An IDisposable that, when disposed, unregisters the callback.</returns>
+    public IDisposable ServiceRegistrationCallback<T>(Action<IDisposable> callback)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Registers a callback to be invoked when a service of type T is registered under the specified contract.
+    /// </summary>
+    /// <remarks>Use this method to observe dynamic service registrations and perform actions when services
+    /// become available. The callback is invoked each time a matching service is registered. Disposing the returned
+    /// IDisposable will stop further notifications.</remarks>
+    /// <typeparam name="T">The type of the service to monitor for registration.</typeparam>
+    /// <param name="contract">The contract name to filter service registrations. If null, the callback is invoked for all contracts.</param>
+    /// <param name="callback">The action to invoke when a matching service is registered. Receives an IDisposable that can be used to
+    /// unregister the callback.</param>
+    /// <returns>An IDisposable that, when disposed, unregisters the callback.</returns>
+    public IDisposable ServiceRegistrationCallback<T>(string? contract, Action<IDisposable> callback)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Check to see if a resolver has a registration for a type.
     /// </summary>
@@ -503,7 +533,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// <typeparam name="T">The object type.</typeparam>
     /// <param name="contract">An optional contract value which will indicates to only generate the value if this contract is specified.</param>
     /// <returns>An instance of the requested <typeparamref name="T" /> or null</returns>
-    public T? GetService<T>(string contract) =>
+    public T? GetService<T>(string? contract) =>
         (T?)GetService(typeof(T), contract);
 
     /// <summary>
@@ -523,7 +553,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// <param name="contract">An optional value which will retrieve only objects registered with the same contract.</param>
     /// <returns>A sequence of instances of the requested <typeparamref name="T" />. The sequence
     /// should be empty (not <c>null</c>) if no objects of the given type are available.</returns>
-    public IEnumerable<T> GetServices<T>(string contract) =>
+    public IEnumerable<T> GetServices<T>(string? contract) =>
         GetServices(typeof(T), contract).Cast<T>();
 
     /// <summary>
@@ -539,7 +569,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// <typeparam name="T">The type to check for registration.</typeparam>
     /// <returns>Whether there is a registration for the type.</returns>
     /// <param name="contract">An optional contract value which will indicates to only generate the value if this contract is specified.</param>
-    public bool HasRegistration<T>(string contract) =>
+    public bool HasRegistration<T>(string? contract) =>
         HasRegistration(typeof(T), contract);
 
     /// <summary>
@@ -564,7 +594,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// <param name="factory">The factory function which generates our object.</param>
     /// <typeparam name="T">The type which is used for the registration.</typeparam>
     /// <param name="contract">An optional contract value which will indicates to only generate the value if this contract is specified.</param>
-    public void Register<T>(Func<T?> factory, string contract) =>
+    public void Register<T>(Func<T?> factory, string? contract) =>
         Register(() => factory(), typeof(T), contract);
 
     /// <summary>
@@ -578,7 +608,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// </summary>
     /// <typeparam name="T">The service type to unregister.</typeparam>
     /// <param name="contract">The optional contract value, which will only remove the value associated with the contract.</param>
-    public void UnregisterCurrent<T>(string contract) =>
+    public void UnregisterCurrent<T>(string? contract) =>
         UnregisterCurrent(typeof(T), contract);
 
     /// <summary>
@@ -592,7 +622,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// </summary>
     /// <typeparam name="T">The service type to unregister.</typeparam>
     /// <param name="contract">The optional contract value, which will only remove the value associated with the contract.</param>
-    public void UnregisterAll<T>(string contract) =>
+    public void UnregisterAll<T>(string? contract) =>
         UnregisterAll(typeof(T), contract);
 
 
@@ -669,7 +699,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// that registration will only work with that contract.
     /// Most implementations will use a stack based approach to allow for multiple items to be registered.
     /// </summary>
-    public void RegisterConstant<T>(T value)
+    public void RegisterConstant<T>(T? value)
         where T : class
     {
         if (_isImmutable)
@@ -679,7 +709,10 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
 
         lock (_syncLock)
         {
-            _serviceCollection?.AddSingleton(value);
+            if (value != null)
+            {
+                _serviceCollection?.AddSingleton(value);
+            }
 
             // required so that it gets rebuilt if not injected externally.
             DisposeServiceProvider(_serviceProvider);
@@ -696,7 +729,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// </summary>
     /// <param name="value">Constant value</param>
     /// <param name="contract">The optional contract value, which will only remove the value associated with the contract.</param>
-    public void RegisterConstant<T>(T value, string? contract)
+    public void RegisterConstant<T>(T? value, string? contract)
         where T : class
     {
         if (contract is null)
@@ -712,7 +745,10 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
 
         lock (_syncLock)
         {
-            _serviceCollection?.AddKeyedSingleton(contract, value);
+            if (value != null)
+            {
+                _serviceCollection?.AddKeyedSingleton(contract, value);
+            }
 
             // required so that it gets rebuilt if not injected externally.
             DisposeServiceProvider(_serviceProvider);
@@ -726,7 +762,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// <typeparam name="T">Type of service</typeparam>
     /// <param name="valueFactory">Value factory</param>
     /// <exception cref="InvalidOperationException">If service collection is immutable</exception>
-    public void RegisterLazySingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T> valueFactory)
+    public void RegisterLazySingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?> valueFactory)
         where T : class
     {
         if (_isImmutable)
@@ -734,11 +770,16 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
             throw new InvalidOperationException(ImmutableExceptionMessage);
         }
 
-        var lazy = new Lazy<T>(valueFactory, LazyThreadSafetyMode.ExecutionAndPublication);
+        ArgumentNullException.ThrowIfNull(valueFactory);
+
+        var lazy = new Lazy<T?>(valueFactory, LazyThreadSafetyMode.ExecutionAndPublication);
 
         lock (_syncLock)
         {
-            _serviceCollection?.AddSingleton<T>(_ => lazy.Value);
+            if (lazy.Value != null)
+            {
+                _serviceCollection?.AddSingleton<T>(_ => lazy.Value);
+            }
 
             // required so that it gets rebuilt if not injected externally.
             DisposeServiceProvider(_serviceProvider);
@@ -753,9 +794,11 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
     /// <param name="valueFactory">Value factory</param>
     /// <param name="contract">The optional contract value, which will only remove the value associated with the contract.</param>
     /// <exception cref="InvalidOperationException">If service collection is immutable</exception>
-    public void RegisterLazySingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T> valueFactory, string? contract)
+    public void RegisterLazySingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?> valueFactory, string? contract)
         where T : class
     {
+        ArgumentNullException.ThrowIfNull(valueFactory);
+
         if (contract is null)
         {
             RegisterLazySingleton(valueFactory);
@@ -767,7 +810,9 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
             throw new InvalidOperationException(ImmutableExceptionMessage);
         }
 
-        var lazy = new Lazy<T>(valueFactory, LazyThreadSafetyMode.ExecutionAndPublication);
+        ArgumentNullException.ThrowIfNull(valueFactory);
+
+        var lazy = new Lazy<T>(valueFactory!, LazyThreadSafetyMode.ExecutionAndPublication);
 
         lock (_syncLock)
         {

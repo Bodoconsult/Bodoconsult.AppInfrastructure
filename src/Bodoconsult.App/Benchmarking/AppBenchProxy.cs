@@ -67,7 +67,7 @@ public class AppBenchProxy : IAppBenchProxy
             _logger.Log(logData.LogLevel,
                 logData.EventId,
                 null,
-                $"\"{logData.LogDate:yyyy-MM-dd HH:mm:ss.fff}\",\"{logData.SourceFile}\",\"{logData.SourceMethod}\",\"\",\"{logData.Message}\",\"\"");
+                "\"{logDate:yyyy-MM-dd HH:mm:ss.fff}\",\"{sourceFile}\",\"{sourceMethod}\",\"\",\"{message}\",\"\"", logData.LogDate, logData.SourceFile, logData.SourceMethod, logData.Message);
         }
         catch
         {
@@ -91,7 +91,7 @@ public class AppBenchProxy : IAppBenchProxy
         log.SourceFile = key;
         log.SourceMethod = "START";
         log.SourceRowNumber = 0;
-        log.Args = new object[] { };
+        log.Args = [];
 
         _logMessages?.Enqueue(log);
     }
@@ -110,7 +110,7 @@ public class AppBenchProxy : IAppBenchProxy
         log.SourceFile = key;
         log.SourceMethod = "STEP";
         log.SourceRowNumber = 0;
-        log.Args = new object[] { };
+        log.Args = [];
 
         _logMessages?.Enqueue(log);
     }
@@ -129,7 +129,7 @@ public class AppBenchProxy : IAppBenchProxy
         log.SourceFile = key;
         log.SourceMethod = "STOP";
         log.SourceRowNumber = 0;
-        log.Args = new object[] { };
+        log.Args = [];
 
         _logMessages?.Enqueue(log);
     }

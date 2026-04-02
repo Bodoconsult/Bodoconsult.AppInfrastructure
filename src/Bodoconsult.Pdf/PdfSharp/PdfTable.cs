@@ -23,12 +23,12 @@ public class PdfTable
     /// <summary>
     /// Columns of the table
     /// </summary>
-    public List<PdfColumn> Columns { get;  } = new();
+    public List<PdfColumn> Columns { get;  } = [];
 
     /// <summary>
     /// Data rows of the table
     /// </summary>
-    public List<PdfRow> Rows { get;  } = new();
+    public List<PdfRow> Rows { get;  } = [];
 
     /// <summary>
     /// The name of the table style

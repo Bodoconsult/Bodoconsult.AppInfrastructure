@@ -64,7 +64,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <summary>
     /// Current section infos
     /// </summary>
-    protected List<SectionInfo> SectionInfos = new();
+    protected List<SectionInfo> SectionInfos = [];
 
     /// <summary>
     /// Width of a <see cref="DateTime"/> value
@@ -1297,16 +1297,13 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
     private Table AddTableInternal(DocumentObject documentObject, PdfTable dt)
     {
-        const int ColumnMaxLength = 25;
+        const int columnMaxLength = 25;
 
         // Load the table style
         var style = Document.Styles[dt.TableStyleName];
 
-        if (style == null)
-        {
-            throw new ArgumentNullException(nameof(style));
-        }
-
+        ArgumentNullException.ThrowIfNull(style);
+        
         // Add a heading
         if (!string.IsNullOrEmpty(dt.Heading))
         {
@@ -1382,7 +1379,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         foreach (var column in dt.Columns)
         {
-            if (column.MaxLength > ColumnMaxLength)
+            if (column.MaxLength > columnMaxLength)
             {
                 //column.
             }
@@ -2619,10 +2616,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         var style = Document.Styles["Normal"];
 
-        if (style == null)
-        {
-            throw new ArgumentException("No style Normal found in styleset");
-        }
+        ArgumentNullException.ThrowIfNull(style);
 
         // ToDo complete clone of NORMAL style
         style.Font.Name = styleSet.Normal.Font.Name;

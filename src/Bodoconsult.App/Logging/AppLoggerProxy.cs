@@ -1,12 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 // Licence MIT
 
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Bodoconsult.App.Logging;
 
@@ -88,12 +89,24 @@ public class AppLoggerProxy : IAppLoggerProxy
             sb.Append(string.Empty);
             FormatArgs(logData.Args, sb);
 
-            _logger.Log(logData.LogLevel,
-                logData.EventId,
-                null,
-                logData.Exception == null
-                    ? $"{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - Thread {logData.ThreadId} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}{sb}".TrimEnd()
-                    : $"{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - Thread {logData.ThreadId} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}: {logData.Exception}{sb}".TrimEnd());
+            if (logData.Exception == null)
+            {
+                _logger.Log(logData.LogLevel,
+                    logData.EventId,
+                    null,
+                    "{LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - Thread {ThreadId} - {LogLevel} - {fileName}.{SourceMethod}.R{logData.SourceRowNumber} - {Message}{sb}",
+                    logData.LogDate, logData.ThreadId, logData.LogLevel, fileName, logData.SourceMethod, logData.SourceRowNumber, logData.Message, sb.ToString().TrimEnd());
+            }
+            else
+            {
+                _logger.Log(logData.LogLevel,
+                    logData.EventId,
+                    null,
+                    "{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - Thread {logData.ThreadId} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}: {logData.Exception}{sb}",
+                    logData.LogDate, logData.ThreadId, logData.LogLevel, fileName, logData.SourceMethod, logData.SourceRowNumber, logData.Message, logData.Exception, sb.ToString().TrimEnd());
+            }
+
+                
             //: $"{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}: {logData.Exception.Message}{(string.IsNullOrEmpty(logData.Exception.StackTrace) ? "" : $"\r\n{logData.Exception.StackTrace}")}\r\n{FormatArgs(logData.Args)}");
         }
         catch
@@ -1697,7 +1710,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         lMethodCallLog.Append(" in ");
         lMethodCallLog.Append(lSourceFileName);
         lMethodCallLog.Append(": line ");
-        lMethodCallLog.Append(pMethodCall.GetFileLineNumber().ToString());
+        lMethodCallLog.Append(pMethodCall.GetFileLineNumber());
 
         return lMethodCallLog.ToString();
     }
@@ -1735,7 +1748,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceFile = filepath;
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
-        log.Args = new object[] { };
+        log.Args = [];
 
         _logMessages?.Enqueue(log);
     }

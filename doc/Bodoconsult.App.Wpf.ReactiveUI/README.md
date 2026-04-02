@@ -1,4 +1,4 @@
-Bodoconsult.App.Wpf.ReactiveUI
+Bodoconsult.App.Avalonia.ReactiveUI
 ===========================
 
 # Overview
@@ -7,7 +7,7 @@ Bodoconsult.App.Wpf.ReactiveUI
 
 ## What does the library
 
-Bodoconsult.App.Wpf.ReactiveUI is a library with basic functionality for multilayered monolithic WPF based applications. 
+Bodoconsult.App.Avalonia.ReactiveUI is a library with basic functionality for multilayered monolithic Avalonia based applications. 
 
 ## App start infrastructure basics
 

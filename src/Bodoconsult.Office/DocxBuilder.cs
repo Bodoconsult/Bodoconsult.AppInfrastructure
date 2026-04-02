@@ -105,7 +105,7 @@ public class DocxBuilder : IDisposable
     /// <summary>
     /// All sections in the document
     /// </summary>
-    public List<SectionProperties> Sections { get; } = new();
+    public List<SectionProperties> Sections { get; } = [];
 
     /// <summary>
     /// Current section in the document

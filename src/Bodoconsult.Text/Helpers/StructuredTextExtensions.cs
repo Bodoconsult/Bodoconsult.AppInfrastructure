@@ -45,7 +45,7 @@ public static class StructuredTextExtensions
 
         var option = keepEmptyItems ? StringSplitOptions.None : StringSplitOptions.RemoveEmptyEntries;
 
-        var data = s.Split(new[] { "\r\n" }, option);
+        var data = s.Split(["\r\n"], option);
 
         foreach (var row in data)
         {
@@ -63,44 +63,44 @@ public static class StructuredTextExtensions
                 continue;
             }
 
-            if (row.ToLower().StartsWith("h1 "))
+            if (row.ToLowerInvariant().StartsWith("h1 ", StringComparison.InvariantCultureIgnoreCase))
             {
                 master.AddHeader1(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLower().StartsWith("h2 "))
+            if (row.ToLowerInvariant().StartsWith("h2 ", StringComparison.InvariantCultureIgnoreCase))
             {
                 master.AddHeader2(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLower().StartsWith("h3 "))
+            if (row.ToLowerInvariant().StartsWith("h3 ", StringComparison.InvariantCultureIgnoreCase))
             {
                 master.AddHeader3(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLower().StartsWith("h4 "))
+            if (row.ToLowerInvariant().StartsWith("h4 ", StringComparison.InvariantCultureIgnoreCase))
             {
                 master.AddHeader4(row[3..].Trim());
                 continue;
             }
 
 
-            if (row.ToLower().StartsWith("code "))
+            if (row.ToLowerInvariant().StartsWith("code ", StringComparison.InvariantCultureIgnoreCase))
             {
                 master.AddCode(GetText(row[5..], dir));
                 continue;
             }
 
-            if (row.ToLower().StartsWith("li "))
+            if (row.ToLowerInvariant().StartsWith("li ", StringComparison.InvariantCultureIgnoreCase))
             {
                 master.AddListItem(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLower().StartsWith("dl "))
+            if (row.ToLowerInvariant().StartsWith("dl ", StringComparison.InvariantCultureIgnoreCase))
             {
                 string c1;
                 string c2;

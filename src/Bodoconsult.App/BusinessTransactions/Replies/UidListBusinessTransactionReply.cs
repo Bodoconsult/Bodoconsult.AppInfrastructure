@@ -10,6 +10,6 @@ public class UidListBusinessTransactionReply : DefaultBusinessTransactionReply
     /// <summary>
     /// UID to transport with the reply
     /// </summary>
-    public List<Guid> Uids { get; set; } = new();
+    public List<Guid> Uids { get; set; } = [];
 
 }

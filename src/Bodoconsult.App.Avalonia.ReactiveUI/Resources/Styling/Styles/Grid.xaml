@@ -1,0 +1,30 @@
+﻿<models:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:models="clr-namespace:Bodoconsult.App.Avalonia.Models;assembly=Bodoconsult.App.Avalonia">
+
+    <models:SharedResourceDictionary.MergedDictionaries>
+        <models:SharedResourceDictionary Source="/Bodoconsult.App.Avalonia.ReactiveUI;component/Resources/Styling/Styles/FrameworkElement.xaml" />
+    </models:SharedResourceDictionary.MergedDictionaries>
+    <Style x:Key="GridRowExtraSmallStyle" TargetType="RowDefinition">
+        <Setter Property="Height" Value="20"></Setter>
+    </Style>
+    <Style x:Key="GridRowSmallStyle" TargetType="RowDefinition">
+        <Setter Property="Height" Value="30"></Setter>
+    </Style>
+    <Style x:Key="GridRowNormalStyle" TargetType="RowDefinition">
+        <Setter Property="Height" Value="35"></Setter>
+    </Style>
+
+    <Style x:Key="GridRowNormalMediumStyle" TargetType="RowDefinition">
+        <Setter Property="Height" Value="45"></Setter>
+    </Style>
+
+    <Style x:Key="GridRowMediumStyle" TargetType="RowDefinition">
+        <Setter Property="Height" Value="55"></Setter>
+    </Style>
+
+    <Style x:Key="GridRowBigStyle" TargetType="RowDefinition">
+        <Setter Property="Height" Value="200"></Setter>
+    </Style>
+
+
+</models:SharedResourceDictionary>

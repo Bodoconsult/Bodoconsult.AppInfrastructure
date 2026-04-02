@@ -52,8 +52,10 @@ internal class Heading1StyleTests
         // Arrange 
         var brush = new SolidColorBrush(TypoColors.AliceBlue.ToLdmlColor());
 
-        var style = new Heading1Style();
-        style.BorderBrush = brush;
+        var style = new Heading1Style
+        {
+            BorderBrush = brush
+        };
 
 
         var sb = new StringBuilder();

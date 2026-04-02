@@ -19,7 +19,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     private readonly Lock _cacheLock = new();
     private long _currentFileSize;
     private readonly Lock _currentFileSizeLock = new();
-    private readonly List<ReadOnlyMemory<byte>> _cache = new();
+    private readonly List<ReadOnlyMemory<byte>> _cache = [];
     private readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> _cachingQueue = new();
     private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
     private readonly MemoryStreamBufferPool _storeDataBufferPool = new();

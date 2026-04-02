@@ -43,5 +43,5 @@ public class BusinessTransaction
     /// <summary>
     /// Allowed type names of <see cref="IBusinessTransactionRequestData"/>
     /// </summary>
-    public List<string> AllowedRequestDataTypes { get; } = new();
+    public List<string> AllowedRequestDataTypes { get; } = [];
 }

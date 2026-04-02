@@ -13,5 +13,5 @@ public class IdListBusinessTransactionReply : DefaultBusinessTransactionReply
     /// <summary>
     /// Client type assigend to the client logged int
     /// </summary>
-    public List<int> IdList { get; set; } = new();
+    public List<int> IdList { get; set; } = [];
 }

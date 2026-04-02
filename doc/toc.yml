@@ -23,9 +23,15 @@
 - name: Bodoconsult.App.Avalonia
   href: Bodoconsult.App.Avalonia/toc.yml
   topicHref: Bodoconsult.App.Avalonia/README.md
+- name: Bodoconsult.App.Avalonia.ReactiveUi
+  href: Bodoconsult.App.Avalonia.ReactiveUi/toc.yml
+  topicHref: Bodoconsult.App.Avalonia.ReactiveUi/README.md
 - name: Bodoconsult.App.Wpf
   href: Bodoconsult.App.Wpf/toc.yml
   topicHref: Bodoconsult.App.Wpf/README.md
+- name: Bodoconsult.App.Wpf.ReactiveUi
+  href: Bodoconsult.App.Wpf.ReactiveUi/toc.yml
+  topicHref: Bodoconsult.App.Wpf.ReactiveUi/README.md
 - name: Bodoconsult.App.Wpf.Documents
   href: Bodoconsult.App.Wpf.Documents/toc.yml
   topicHref: Bodoconsult.App.Wpf.Documents/README.md

@@ -7,7 +7,6 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// </summary>
 public interface IClient
 {
-
     /// <summary>
     /// Current client manager instance
     /// </summary>
@@ -40,13 +39,12 @@ public interface IClient
     void StartConnection();
 
     /// <summary>
-    /// Check if the notification is allowed to be send to the client
+    /// Check if the notification is allowed to be sent to the client
     /// </summary>
     /// <param name="notification">Notification to check</param>
     /// <returns>True if the notification should be sent to the client else false</returns>
     bool CheckNotification(IClientNotification notification);
-
-
+    
     /// <summary>
     /// Do notify the client
     /// </summary>

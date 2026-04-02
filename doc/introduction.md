@@ -58,6 +58,8 @@ This repository contains the following Nuget packages:
 
 >   [&#8618; **Bodoconsult.App.Avalonia**: more basic features for Avalonia based apps](Bodoconsult.App.Avalonia/README.md)
 
+>   [&#8618; **Bodoconsult.App.Avalonia.ReactiveUI**: more basic features for Avalonia based apps](Bodoconsult.App.Avalonia.ReactiveUI/README.md)
+
 >   [&#8618; **Bodoconsult.Pdf**: simplified generation of PDF files](Bodoconsult.Pdf/README.md)
 
 >   [&#8618; **Bodoconsult.Text**: generating structured text documents like reports with IDocumentBuilder and export them to HTML, RTF, DOCX, XPS and PDF](Bodoconsult.Text/README.md)

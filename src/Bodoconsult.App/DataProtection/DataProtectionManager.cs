@@ -21,7 +21,7 @@ public class DataProtectionManager : IDataProtectionManager
 
     private readonly ProducerConsumerQueue<object> _saveValuesRequestQueue = new();
 
-    private readonly List<KeyValuePair<string, string>> _values = new();
+    private readonly List<KeyValuePair<string, string>> _values = [];
 
     /// <summary>
     /// Default ctor

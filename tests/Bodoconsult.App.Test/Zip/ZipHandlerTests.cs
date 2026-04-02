@@ -21,7 +21,7 @@ public class ZipHandlerTests
             File.Delete(zipFileName);
         }
 
-        var zh = new ZipHandler(new[] { toZip });
+        var zh = new ZipHandler([toZip]);
 
         zh.GenerateZip(zipFileName);
 
@@ -37,7 +37,7 @@ public class ZipHandlerTests
 
         if (File.Exists(zipFileName)) File.Delete(zipFileName);
 
-        var zh = new ZipHandler(new[] { toZip1, toZip2 });
+        var zh = new ZipHandler([toZip1, toZip2]);
 
         zh.GenerateZip(zipFileName);
 
@@ -52,7 +52,7 @@ public class ZipHandlerTests
 
         var stream = new MemoryStream();
 
-        var zh = new ZipHandler(new[] { toZip });
+        var zh = new ZipHandler([toZip]);
 
         zh.GenerateZip(stream);
 

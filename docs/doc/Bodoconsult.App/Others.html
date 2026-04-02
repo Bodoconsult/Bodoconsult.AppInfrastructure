@@ -95,6 +95,15 @@
 <p><a href="#bufferpoolt">BufferPool&lt;T&gt; for reusing frequently used tiny to medium size classes</a> to reduce garbage collection pressure</p>
 </blockquote>
 <blockquote>
+<p><a href="#bufferpoolresetablet">BufferPoolResetable&lt;T&gt; for reusing frequently used tiny to medium size classes implementing IResetable</a> to reduce garbage collection pressure</p>
+</blockquote>
+<blockquote>
+<p><a href="#memorystreambufferpool">MemoryStreamBufferPool&lt;T&gt; for reusing MemoryStream instances</a> to reduce garbage collection pressure</p>
+</blockquote>
+<blockquote>
+<p><a href=""></a></p>
+</blockquote>
+<blockquote>
 <p><a href="#producerconsumerqueue">ProducerConsumerQueue<t></t> implementing the producer-consumer-pattern for one or many producers but only one consumer</a> with running the consumer always on the same thread</p>
 </blockquote>
 <blockquote>
@@ -147,6 +156,71 @@ myPool.Enqueue(buffer);
 
 // Assert
 Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems));
+</code></pre>
+<h1 id="bufferpoolresetablet">BufferPoolResetable&lt;T&gt;</h1>
+<p>BufferPoolResetable&lt;T&gt; is intended as buffer pool for reusable classes implementing IResetable interface.</p>
+<p>Heavily used small objects of a type lead to a relatively high demand for object creation and disposing. In such cases it might be a good idea to reuse the already created instances.</p>
+<p>Classes used with BufferPoolResetable&lt;T&gt; have to implement IResetable interface.</p>
+<pre><code class="lang-csharp">[Test]
+public void Enqueue_ValidSetup_InstanceEnqueued()
+{
+    // Arrange 
+    var myPool = new BufferPoolResetable&lt;TestDataResetable&gt;(() =&gt; new TestDataResetable());
+    myPool.Allocate(1000);
+
+    var buffer = myPool.Dequeue();
+
+    // Act  
+    myPool.Enqueue(buffer);
+
+    // Assert
+    Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems));
+}
+</code></pre>
+<h1 id="memorystreambufferpool">MemoryStreamBufferPool</h1>
+<p>A special buffer pool to reuse MemoryStream instances.</p>
+<pre><code class="lang-csharp">[Test]
+public void Enqueue_ValidSetup_InstanceEnqueued()
+{
+    // Arrange 
+    var myPool = new MemoryStreamBufferPool();
+    myPool.Allocate(1000);
+
+    var buffer = myPool.Dequeue();
+
+    // Act  
+    myPool.Enqueue(buffer);
+
+    // Assert
+    Assert.That(myPool.LengthOfQueue, Is.EqualTo(NumberOfItems));
+}
+</code></pre>
+<h1 id="istringtofileservice--stringtofileservice">IStringToFileService / StringToFileService</h1>
+<p>This service is intended to store in-memory configuration data as JSON or XML into a config file after configuration changes.</p>
+<p>Writing to config file happens in a queued, single-threaded manner to avoid exceptions due to already blocked files.</p>
+<pre><code class="lang-csharp">[Test]
+public void WriteToFile_ValidSetup_FileWritten()
+{
+    // Arrange 
+    const string item = &quot;Blubb&quot;;
+
+    var service = new StringToFileService
+    {
+        FilePath = _filePath
+    };
+
+    service.Start();
+
+    // Act  
+    service.WriteToFile(item);
+
+    Wait.Until(() =&gt; File.Exists(_filePath));
+
+    // Assert
+    service.Stop();
+
+    Assert.That(File.Exists(_filePath));
+}
 </code></pre>
 <h1 id="producerconsumerqueue">ProducerConsumerQueue<t></t></h1>
 <p>ProducerConsumerQueue<t></t> implements the producer-consumer-pattern for one or many producers but only one consumer with running the consumer always on the same thread. This may be helpful if the consumer is maybe a database or a file which should not be accessed by multiple threads at the same time.</p>

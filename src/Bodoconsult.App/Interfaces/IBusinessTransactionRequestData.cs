@@ -19,13 +19,11 @@ public interface IBusinessTransactionRequestData
     /// </summary>
     Guid TransactionGuid { get; set; }
 
-
     /// <summary>
     /// Benchmark object (see output in XXX_Benchmark.csv)
     /// Make sure to create it, addStep, and dispose it 
     /// </summary>
     Bench Benchmark { get; set; }
-
 
     /// <summary>
     /// Request metadata: client GUID
@@ -52,4 +50,13 @@ public interface IBusinessTransactionRequestData
     /// </summary>
     public int MetaDataUserId { get; set; }
 
+    /// <summary>
+    /// Timeout to wait for sending the request
+    /// </summary>
+    int SendTimeout { get; set; }
+
+    /// <summary>
+    /// Timeout to wait for sending the request
+    /// </summary>
+    int ExecutionTimeout { get; set; }
 }

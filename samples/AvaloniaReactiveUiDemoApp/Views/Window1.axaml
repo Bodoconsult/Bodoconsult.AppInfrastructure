@@ -1,0 +1,36 @@
+﻿<reactiveUi:ReactiveWindow x:TypeArguments="viewModels:Window1ViewModel" x:Class="AvaloniaReactiveUiDemoApp.Views.Window1"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:reactiveUi="http://reactiveui.net"
+                           xmlns:viewModels="clr-namespace:AvaloniaReactiveUiDemoApp.ViewModels"
+                           xmlns:controls="https://github.com/avaloniaui"
+                           mc:Ignorable="d"
+                           Title="Window1" Height="450" Width="800">
+    <controls:Grid>
+        <controls:Grid.RowDefinitions>
+            <controls:RowDefinition Height="*" />
+            <controls:RowDefinition Height="Auto" />
+        </controls:Grid.RowDefinitions>
+        <controls:Grid controls:Grid.Row="0" >
+            <controls:Grid.ColumnDefinitions>
+                <controls:ColumnDefinition Width="50*"></controls:ColumnDefinition>
+                <controls:ColumnDefinition Width="50*"></controls:ColumnDefinition>
+            </controls:Grid.ColumnDefinitions>
+            <reactiveUi:RoutedViewHost controls:Grid.Column="0" x:Name="MenuRegion"
+                                 HorizontalContentAlignment="Stretch"
+                                 VerticalContentAlignment="Stretch" />
+            <reactiveUi:RoutedViewHost controls:Grid.Column="1" x:Name="DocumentRegion"
+                                 HorizontalContentAlignment="Stretch"
+                                 VerticalContentAlignment="Stretch" />
+        </controls:Grid>
+
+
+        <controls:StackPanel controls:Grid.Row="1" Orientation="Horizontal" Margin="15">
+            <controls:Button x:Name="GoNextButton" Content="Go to first" />
+            <controls:Button x:Name="GoBackButton" Content="Go back" Margin="5 0 0 0" />
+        </controls:StackPanel>
+
+</controls:Grid>
+</reactiveUi:ReactiveWindow>

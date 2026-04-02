@@ -57,7 +57,7 @@ internal class AppLoggerProxyWithFakeLoggerTests : BaseFakeLoggerTests
         var ex = new Exception("Blubb message");
 
         // Act
-        _log.LogError(ex, "Hallo", new object[] { ex });
+        _log.LogError(ex, "Hallo", [ex]);
         Wait.Until(() => LoggedMessages.Count > 0, 2000);
 
         // Assert
@@ -80,7 +80,7 @@ internal class AppLoggerProxyWithFakeLoggerTests : BaseFakeLoggerTests
         var ex = new Exception("Blubb message");
 
         // Act
-        _log.LogCritical(ex, "Hallo", new object[] { ex });
+        _log.LogCritical(ex, "Hallo", [ex]);
         Wait.Until(() => LoggedMessages.Count > 0, 2000);
 
         // Assert
@@ -180,7 +180,7 @@ internal class AppLoggerProxyWithFakeLoggerTests : BaseFakeLoggerTests
         var result = new StringBuilder();
 
         // Act  
-        AppLoggerProxy.FormatArgs(new object[] { input }, result);
+        AppLoggerProxy.FormatArgs([input], result);
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -196,7 +196,7 @@ internal class AppLoggerProxyWithFakeLoggerTests : BaseFakeLoggerTests
         var result = new StringBuilder();
 
         // Act  
-        AppLoggerProxy.FormatArgs(new object[] { input }, result);
+        AppLoggerProxy.FormatArgs([input], result);
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -213,7 +213,7 @@ internal class AppLoggerProxyWithFakeLoggerTests : BaseFakeLoggerTests
         var result = new StringBuilder();
 
         // Act  
-        AppLoggerProxy.FormatArgs(new object[] { input }, result);
+        AppLoggerProxy.FormatArgs([input], result);
 
         // Assert
         Assert.That(result, Is.Not.Null);

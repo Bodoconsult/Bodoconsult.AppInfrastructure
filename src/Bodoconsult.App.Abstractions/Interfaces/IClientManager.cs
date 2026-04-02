@@ -33,13 +33,13 @@ public interface IClientManager: IDisposable
     ConcurrentDictionary<Guid, IClient> AllConnectedClients { get; }
 
     /// <summary>
-    /// Add a connected client to the conencted clients
+    /// Add a connected client to the connected clients
     /// </summary>
-    /// <param name="client">Current client to add to the conencted clients</param>
+    /// <param name="client">Current client to add to the connected clients</param>
     void AddClient(IClient client);
 
     /// <summary>
-    /// Remove a client from the conencted clients list
+    /// Remove a client from the connected clients list
     /// </summary>
     /// <param name="client">Current client to remove</param>
     void RemoveClient(IClient client);

@@ -10,9 +10,9 @@ The MIT License (https://licenses.nuget.org/MIT) applies for
 
 >   Bodoconsult.App.WinForms, 
 
->   Bodoconsult.App.Wpf,
+>   Bodoconsult.App.Avalonia,
 
->   Bodoconsult.App.Wpf.Documents,
+>   Bodoconsult.App.Avalonia.Documents,
 
 >   Bodoconsult.App.BackgroundService, 
 
@@ -70,7 +70,7 @@ SOFTWARE.
 
 >	[ConsoleApp1](#referenced-libraries-for-consoleapp1)
 
->	[ConsoleWpfApp1](#referenced-libraries-for-consolewpfapp1)
+>	[ConsoleAvaloniaApp1](#referenced-libraries-for-consoleAvaloniaapp1)
 
 >	[GrpcServerApp.Grpc.Common](#referenced-libraries-for-grpcserverappgrpccommon)
 
@@ -94,9 +94,9 @@ SOFTWARE.
 
 >	[Bodoconsult.App.WinForms](#referenced-libraries-for-bodoconsultappwinforms)
 
->	[Bodoconsult.App.Wpf.Documents](#referenced-libraries-for-bodoconsultappwpfdocuments)
+>	[Bodoconsult.App.Avalonia.Documents](#referenced-libraries-for-bodoconsultappAvaloniadocuments)
 
->	[Bodoconsult.App.Wpf](#referenced-libraries-for-bodoconsultappwpf)
+>	[Bodoconsult.App.Avalonia](#referenced-libraries-for-bodoconsultappAvalonia)
 
 >	[Bodoconsult.App](#referenced-libraries-for-bodoconsultapp)
 
@@ -122,9 +122,9 @@ SOFTWARE.
 
 >	[Bodoconsult.App.Windows.Test](#referenced-libraries-for-bodoconsultappwindowstest)
 
->	[Bodoconsult.App.Wpf.Documents.Test](#referenced-libraries-for-bodoconsultappwpfdocumentstest)
+>	[Bodoconsult.App.Avalonia.Documents.Test](#referenced-libraries-for-bodoconsultappAvaloniadocumentstest)
 
->	[Bodoconsult.App.Wpf.Test](#referenced-libraries-for-bodoconsultappwpftest)
+>	[Bodoconsult.App.Avalonia.Test](#referenced-libraries-for-bodoconsultappAvaloniatest)
 
 >	[Bodoconsult.App.GrpcBackgroundService.Test](#referenced-libraries-for-bodoconsultappgrpcbackgroundservicetest)
 
@@ -300,7 +300,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/runtime
 
-# Referenced libraries for ConsoleWpfApp1
+# Referenced libraries for ConsoleAvaloniaApp1
 
 ## Nuget package library System.Text.Json by Microsoft
 
@@ -475,13 +475,13 @@ Project-Url: https://github.com/dotnet/runtime
 
 ## System.Windows.Media by Microsoft
 
-System.Windows.Media is part of the WPF environment by Microsoft and is released as open source under the MIT license
+System.Windows.Media is part of the Avalonia environment by Microsoft and is released as open source under the MIT license
 
 License: MIT
 
-License-Url: https://github.com/dotnet/wpf/blob/main/LICENSE.TXT
+License-Url: https://github.com/dotnet/Avalonia/blob/main/LICENSE.TXT
 
-Project-Url: https://github.com/dotnet/wpf
+Project-Url: https://github.com/dotnet/Avalonia
 
 
 
@@ -722,7 +722,7 @@ Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
 
-The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
+The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including Avalonia, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
 
       Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
 
@@ -827,7 +827,7 @@ Project-Url: https://github.com/dotnet/aspnetcore
 
 ## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
 
-The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
+The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including Avalonia, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
 
       Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
 
@@ -871,7 +871,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/runtime
 
-# Referenced libraries for Bodoconsult.App.Wpf.Documents
+# Referenced libraries for Bodoconsult.App.Avalonia.Documents
 
 ## Nuget package library Fody by The Fody Team
 
@@ -931,7 +931,7 @@ Project-Url:
 ## Nuget package library XpsToPdf by Thomas Hoevel,  Nathan Jones,  XpsToPdf
 
 A single package to convert XPS to PDF.
-Since you can convert WPF object to XPS easily, here the last piece to free easy reporting.
+Since you can convert Avalonia object to XPS easily, here the last piece to free easy reporting.
 
 License: LICENSE.md
 
@@ -939,13 +939,13 @@ License-Url: https://www.nuget.org/packages/XpsToPdf/1.0.6/License
 
 Project-Url: https://github.com/XpsToPdf/XpsToPdf
 
-# Referenced libraries for Bodoconsult.App.Wpf
+# Referenced libraries for Bodoconsult.App.Avalonia
 
-## SystemTrayApp.WPF sample by Kazuhiro Fujieda 
+## SystemTrayApp.Avalonia sample by Kazuhiro Fujieda 
 
-License-Url: https://github.com/fujieda/SystemTrayApp.WPF/
+License-Url: https://github.com/fujieda/SystemTrayApp.Avalonia/
 
-Project-Url: https://github.com/fujieda/SystemTrayApp.WPF/
+Project-Url: https://github.com/fujieda/SystemTrayApp.Avalonia/
 
 Copyright 2021 Kazuhiro Fujieda <fujieda@roundwide.com>
    
@@ -1000,7 +1000,7 @@ Project-Url: https://github.com/contre/Windows-API-Code-Pack-1.1
 
 ## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
 
-The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
+The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including Avalonia, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
 
       Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
 
@@ -1012,15 +1012,15 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/CommunityToolkit/WindowsCommunityToolkit.git
 
-## Nuget package library Microsoft.Xaml.Behaviors.Wpf by Microsoft
+## Nuget package library Microsoft.Xaml.Behaviors.Avalonia by Microsoft
 
-Easily add interactivity to your apps using XAML Behaviors for WPF. Behaviors encapsulate reusable functionalities for elements that can be easily added to your XAML without the need for more imperative code.
+Easily add interactivity to your apps using XAML Behaviors for Avalonia. Behaviors encapsulate reusable functionalities for elements that can be easily added to your XAML without the need for more imperative code.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/microsoft/XamlBehaviorsWpf
+Project-Url: https://github.com/microsoft/XamlBehaviorsAvalonia
 
 ## Nuget package library System.Data.DataSetExtensions by Microsoft
 
@@ -1784,7 +1784,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
-# Referenced libraries for Bodoconsult.App.Wpf.Documents.Test
+# Referenced libraries for Bodoconsult.App.Avalonia.Documents.Test
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
@@ -1831,7 +1831,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
-# Referenced libraries for Bodoconsult.App.Wpf.Test
+# Referenced libraries for Bodoconsult.App.Avalonia.Test
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 

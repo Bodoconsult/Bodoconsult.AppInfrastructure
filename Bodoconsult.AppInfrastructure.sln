@@ -128,6 +128,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.ReactiveUI"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.ReactiveUI.Tests", "tests\Bodoconsult.App.Avalonia.ReactiveUI.Tests\Bodoconsult.App.ReactiveUI.Tests.csproj", "{3CD798CA-020F-4AE7-A718-CCF366D88FE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.Avalonia.ReactiveUI", "src\Bodoconsult.App.Avalonia.ReactiveUI\Bodoconsult.App.Avalonia.ReactiveUI.csproj", "{3715B64C-9514-716F-CDAC-02F748484E0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.Avalonia.ReactiveUI.Test", "tests\Bodoconsult.App.Avalonia.ReactiveUI.Test\Bodoconsult.App.Avalonia.ReactiveUI.Test.csproj", "{C4D5066F-5172-19F7-191A-12676BCA94CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaReactiveUiDemoApp", "samples\AvaloniaReactiveUiDemoApp\AvaloniaReactiveUiDemoApp.csproj", "{0EA68567-5219-0D9D-2D48-1F1BB23F1BB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -342,6 +348,18 @@ Global
 		{3CD798CA-020F-4AE7-A718-CCF366D88FE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD798CA-020F-4AE7-A718-CCF366D88FE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CD798CA-020F-4AE7-A718-CCF366D88FE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3715B64C-9514-716F-CDAC-02F748484E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3715B64C-9514-716F-CDAC-02F748484E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3715B64C-9514-716F-CDAC-02F748484E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3715B64C-9514-716F-CDAC-02F748484E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D5066F-5172-19F7-191A-12676BCA94CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D5066F-5172-19F7-191A-12676BCA94CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D5066F-5172-19F7-191A-12676BCA94CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D5066F-5172-19F7-191A-12676BCA94CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA68567-5219-0D9D-2D48-1F1BB23F1BB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA68567-5219-0D9D-2D48-1F1BB23F1BB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA68567-5219-0D9D-2D48-1F1BB23F1BB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA68567-5219-0D9D-2D48-1F1BB23F1BB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -402,6 +420,9 @@ Global
 		{2CE0A69E-F428-4AAA-A59B-33B728C0D59A} = {68310C5A-62F2-40F4-A5C6-0314FDAC28E1}
 		{90685FAF-F47D-4FF1-8A5A-993E50BA9EF6} = {68310C5A-62F2-40F4-A5C6-0314FDAC28E1}
 		{3CD798CA-020F-4AE7-A718-CCF366D88FE5} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
+		{3715B64C-9514-716F-CDAC-02F748484E0D} = {68310C5A-62F2-40F4-A5C6-0314FDAC28E1}
+		{C4D5066F-5172-19F7-191A-12676BCA94CF} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
+		{0EA68567-5219-0D9D-2D48-1F1BB23F1BB0} = {6A52BEBE-4E44-41AC-8D1B-748DFA27D902}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEB92BC2-1DB4-4057-8D49-2E995AA1F80B}

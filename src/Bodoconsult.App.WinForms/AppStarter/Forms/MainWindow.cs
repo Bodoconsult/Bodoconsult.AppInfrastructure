@@ -16,7 +16,7 @@ public sealed partial class MainWindow : Form
 
     private IMainWindowViewModel _viewModel;
 
-    private const int CP_NOCLOSE_BUTTON = 0x200;
+    private const int CpNocloseButton = 0x200;
 
     private readonly Timer _timer = new()
         {
@@ -91,7 +91,7 @@ public sealed partial class MainWindow : Form
         get
         {
             var myCp = base.CreateParams;
-            myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+            myCp.ClassStyle = myCp.ClassStyle | CpNocloseButton;
             return myCp;
         }
     }

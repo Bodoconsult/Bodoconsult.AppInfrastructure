@@ -55,7 +55,7 @@ public class I18N : II18N
     /// <summary>
     /// All loaded providers
     /// </summary>
-    public List<ILocalesProvider> Providers { get; } = new List<ILocalesProvider>();
+    public List<ILocalesProvider> Providers { get; } = [];
 
     private readonly List<string> _locales = [];
     private bool _throwWhenKeyNotFound;

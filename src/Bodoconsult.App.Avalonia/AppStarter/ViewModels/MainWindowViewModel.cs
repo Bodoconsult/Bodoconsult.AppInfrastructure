@@ -34,7 +34,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
 
     private readonly IAppEventListener _listener;
 
-    private readonly List<string> _logData = new();
+    private readonly List<string> _logData = [];
 
     private EventLevel _logEventLevel;
     private double _width = 100;

@@ -19,7 +19,7 @@ public abstract class RegionManagerBase : IRegionManager
     /// <summary>
     /// Registered window definitions
     /// </summary>
-    protected readonly List<UiWindowDefinition> InternalWindows = new();
+    protected readonly List<UiWindowDefinition> InternalWindows = [];
 
     /// <summary>
     /// Readonly list of all registered viewmodel-view-bindings
@@ -112,7 +112,7 @@ public abstract class RegionManagerBase : IRegionManager
         {
             throw new ArgumentNullException(nameof(viewModel));
         }
-        
+
         region.Router.Navigate.Execute(viewModel);
     }
 
@@ -123,6 +123,8 @@ public abstract class RegionManagerBase : IRegionManager
     /// <returns>The registered window</returns>
     public IUiWindow RegisterWindowInstances(IUiWindow window)
     {
+        ArgumentNullException.ThrowIfNull(window.Name);
+
         if (Windows.ContainsKey(window.Name))
         {
             return window;
@@ -142,6 +144,8 @@ public abstract class RegionManagerBase : IRegionManager
     /// <param name="uiWindow"></param>
     public void Dispose(IUiWindow uiWindow)
     {
+        ArgumentNullException.ThrowIfNull(uiWindow.Name);
+
         var regionsToDelete = Regions.Where(x => x.Value.UiWindow == uiWindow).ToList();
 
         foreach (var region in regionsToDelete)
@@ -201,7 +205,7 @@ public abstract class RegionManagerBase : IRegionManager
             // Try to use existing instance
             if (!Windows.TryGetValue(windowType.Name, out uiWindow))
             {
-                throw new ArgumentNullException(nameof(wwd.Factory));
+                ArgumentNullException.ThrowIfNull(wwd.Factory);
             }
         }
         else
@@ -215,10 +219,7 @@ public abstract class RegionManagerBase : IRegionManager
             }
         }
 
-        if (uiWindow == null)
-        {
-            throw new ArgumentNullException(nameof(uiWindow));
-        }
+        ArgumentNullException.ThrowIfNull(uiWindow);
 
         return uiWindow;
     }

@@ -9,9 +9,13 @@ For getting started see the README.md files in the project documentation folders
 
 >   [&#8618; **Bodoconsult.App.Wpf**](Bodoconsult.App.Wpf/README.md)
 
+>   [&#8618; **Bodoconsult.App.Wpf.ReactiveUi**](Bodoconsult.App.Wpf.ReactiveUi/README.md)
+
 >   [&#8618; **Bodoconsult.App.Wpf.Documents**](Bodoconsult.App.Wpf.Documents/README.md)
 
 >   [&#8618; **Bodoconsult.App.Avalonia**](Bodoconsult.App.Avalonia/README.md)
+
+>   [&#8618; **Bodoconsult.App.Avalonia.ReactiveUi**](Bodoconsult.App.Avalonia.ReactiveUi/README.md)
 
 >   [&#8618; **Bodoconsult.Pdf**](Bodoconsult.Pdf/README.md)
 

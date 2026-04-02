@@ -43,7 +43,7 @@ public class PlainTextParagraphFormatter
     /// <summary>
     /// Lines produced from content
     /// </summary>
-    public List<string> Lines { get; } = new();
+    public List<string> Lines { get; } = [];
 
     /// <summary>
     /// Page width in number of chars. Public only for tests

@@ -74,7 +74,7 @@ public class WindowsCredentials : ICredentials
     /// <summary>
     /// Attributes
     /// </summary>
-    public List<CredentialAttribute> Attributes { get; set; } = new();
+    public List<CredentialAttribute> Attributes { get; set; } = [];
 
     /// <summary>
     /// Target alias

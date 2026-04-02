@@ -139,13 +139,13 @@ public class JsonXmlHelper
     public static void SaveDataTableAsXml(string fileName, DataTable data)
     {
 
-        var strXML = new StringWriter();
+        var strXml = new StringWriter();
 
 
         if (string.IsNullOrEmpty(data.TableName)) data.TableName = "Data";
 
-        data.WriteXml(strXML, XmlWriteMode.WriteSchema, false);
-        var xml = strXML.ToString();
+        data.WriteXml(strXml, XmlWriteMode.WriteSchema, false);
+        var xml = strXml.ToString();
 
         File.WriteAllText(fileName, xml, Encoding.UTF8);
 

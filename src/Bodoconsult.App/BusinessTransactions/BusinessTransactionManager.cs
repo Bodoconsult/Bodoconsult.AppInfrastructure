@@ -13,7 +13,7 @@ namespace Bodoconsult.App.BusinessTransactions;
 /// </summary>
 public class BusinessTransactionManager : IBusinessTransactionManager
 {
-    private readonly object _transactionLock = new();
+    private readonly Lock _transactionLock = new();
 
     private readonly IAppLoggerProxy _logger;
 

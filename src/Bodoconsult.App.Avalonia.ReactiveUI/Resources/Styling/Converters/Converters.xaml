@@ -1,0 +1,15 @@
+﻿<models:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:models="clr-namespace:Bodoconsult.App.Avalonia.Models;assembly=Bodoconsult.App.Avalonia"
+      xmlns:bc="clr-namespace:Bodoconsult.Avalonia.Base.Converters;assembly=Bodoconsult.Avalonia.Base"
+      xmlns:converters="clr-namespace:Bodoconsult.App.Avalonia.Converters;assembly=Bodoconsult.App.Avalonia">
+
+    <converters:DateTimeConverter x:Key="DateTimeConverter" />
+    <converters:DateTimeUiConverter x:Key="DateTimeUiConverter" />
+    <converters:PercentageConverter  x:Key="PercentageConverter" />
+    <converters:NumberConverter  x:Key="NumberConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:NullImageConverter x:Key="NullImageConverter" />
+    <!--<ValueAsAngleConverter x:Key="ValueAsAngleConverter" />
+    <CoerceValueConverter x:Key="CoerceValueConverter" />-->
+</models:SharedResourceDictionary>

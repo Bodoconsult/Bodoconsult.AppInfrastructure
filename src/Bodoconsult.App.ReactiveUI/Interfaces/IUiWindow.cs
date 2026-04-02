@@ -12,7 +12,7 @@ public interface IUiWindow
     /// <summary>
     /// Window name
     /// </summary>
-    string Name { get; set; }
+    string? Name { get; set; }
 
     /// <summary>
     /// Current region manager

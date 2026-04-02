@@ -70,9 +70,9 @@ public class ClientManager : IClientManager
 
 
     /// <summary>
-    /// Add a connected client to the conencted clients
+    /// Add a connected client to the connected clients
     /// </summary>
-    /// <param name="client">Current client to add to the conencted clients</param>
+    /// <param name="client">Current client to add to the connected clients</param>
     public void AddClient(IClient client)
     {
 
@@ -88,7 +88,7 @@ public class ClientManager : IClientManager
     }
 
     /// <summary>
-    /// Remove a client from the conencted clients list
+    /// Remove a client from the connected clients list
     /// </summary>
     /// <param name="client">Current client to remove</param>
     public void RemoveClient(IClient client)

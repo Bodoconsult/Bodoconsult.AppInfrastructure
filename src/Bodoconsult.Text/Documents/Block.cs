@@ -23,7 +23,7 @@ public abstract class Block: TextElement
     /// <summary>
     /// Allowed child block types
     /// </summary>
-    protected List<Type> AllowedBlocks = new();
+    protected List<Type> AllowedBlocks = [];
 
     /// <summary>
     /// All child blocks of the element
@@ -39,7 +39,7 @@ public abstract class Block: TextElement
     /// <summary>
     /// Allowed child inline types
     /// </summary>
-    protected List<Type> AllowedInlines = new();
+    protected List<Type> AllowedInlines = [];
 
     /// <summary>
     /// All child inlines of the element

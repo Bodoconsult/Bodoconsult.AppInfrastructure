@@ -12,7 +12,7 @@ namespace Bodoconsult.Charting;
 /// <typeparam name="T"></typeparam>
 public class StockChart<T> : BaseChart<T> where T: IChartItemData
 {
-    private readonly List<ChartItemData> _data = new();
+    private readonly List<ChartItemData> _data = [];
 
     /// <summary>
     /// Creates the chart
