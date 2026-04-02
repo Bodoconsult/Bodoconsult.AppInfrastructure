@@ -146,7 +146,7 @@ public static class StructuredTextExtensions
 
                 var fileName = text.Substring(i + 10, j - i - 10);
 
-                if (fileName.Contains("\\"))
+                if (fileName.Contains('\\'))
                 {
                     fileName = Path.Combine(dirPath, fileName);
                 }

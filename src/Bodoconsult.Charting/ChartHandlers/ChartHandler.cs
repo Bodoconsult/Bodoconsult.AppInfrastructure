@@ -243,41 +243,20 @@ public class ChartHandler : IChartHandler
             ChartData.LabelsForSeries = ChartData.PropertiesToUseForChart.Skip(1).ToList();
         }
 
-        switch (ChartData.ChartType)
+        chart = ChartData.ChartType switch
         {
-            case ChartType.ColumnChart:
-                chart = new ColumnChart<ChartItemData>();
-                break;
-            case ChartType.BarChart:
-                chart = new BarChart<ChartItemData>();
-                break;
-            case ChartType.StackedBarChart:
-                chart = new StackedBarChart<ChartItemData>();
-                break;
-            case ChartType.PointChart:
-                chart = new PointChart<PointChartItemData>();
-                break;
-            case ChartType.StackedColumnChart:
-                chart = new StackedColumnChart<ChartItemData>();
-                break;
-            case ChartType.StackedColumn100Chart:
-                chart = new StackedColumn100Chart<ChartItemData>();
-                break;
-            case ChartType.PieChart:
-                chart = new PieChart<PieChartItemData>();
-                break;
-            case ChartType.LineChart:
-                chart = new LineChart<ChartItemData>();
-                break;
-            case ChartType.Histogram:
-                chart = new LineChartHistogram<ChartItemData>();
-                break;
-            case ChartType.StockChart:
-                chart = new StockChart<ChartItemData>();
-                break;
-            default:
-                throw new NotImplementedException($"No such chart type: {ChartData.ChartType}");
-        }
+            ChartType.ColumnChart => new ColumnChart<ChartItemData>(),
+            ChartType.BarChart => new BarChart<ChartItemData>(),
+            ChartType.StackedBarChart => new StackedBarChart<ChartItemData>(),
+            ChartType.PointChart => new PointChart<PointChartItemData>(),
+            ChartType.StackedColumnChart => new StackedColumnChart<ChartItemData>(),
+            ChartType.StackedColumn100Chart => new StackedColumn100Chart<ChartItemData>(),
+            ChartType.PieChart => new PieChart<PieChartItemData>(),
+            ChartType.LineChart => new LineChart<ChartItemData>(),
+            ChartType.Histogram => new LineChartHistogram<ChartItemData>(),
+            ChartType.StockChart => new StockChart<ChartItemData>(),
+            _ => throw new NotImplementedException($"No such chart type: {ChartData.ChartType}")
+        };
 
         chart.ChartData = (ChartData)ChartData.Clone();
         chart.InitChart();
@@ -307,16 +286,10 @@ public class ChartHandler : IChartHandler
         ChartData.ChartStyle.IntervalYLineWidth = (int)(ChartData.ChartStyle.IntervalYLineWidth * ratio);
         ChartData.ChartStyle.IntervalXLineWidth = (int)(ChartData.ChartStyle.IntervalXLineWidth * ratio);
 
-        switch (ChartData.ChartType)
+        ChartData.ChartStyle.SeriesLineWidth = ChartData.ChartType switch
         {
-            case ChartType.StackedBarChart:
-            case ChartType.StackedColumn100Chart:
-            case ChartType.StackedColumnChart:
-                ChartData.ChartStyle.SeriesLineWidth = 0;
-                break;
-            default:
-                ChartData.ChartStyle.SeriesLineWidth = (int)(ChartData.ChartStyle.SeriesLineWidth * ratio * 1.2);
-                break;
-        }
+            ChartType.StackedBarChart or ChartType.StackedColumn100Chart or ChartType.StackedColumnChart => 0,
+            _ => (int)(ChartData.ChartStyle.SeriesLineWidth * ratio * 1.2)
+        };
     }
 }

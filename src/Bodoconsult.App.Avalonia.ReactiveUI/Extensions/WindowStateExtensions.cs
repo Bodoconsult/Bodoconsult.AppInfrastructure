@@ -19,16 +19,12 @@ public static class WindowStateExtensions
     /// <returns><see cref="UiWindowState"/> created and registered to region manager</returns>
     public static UiWindowState ToUiWindowState(this WindowState windowState)
     {
-        switch (windowState)
+        return windowState switch
         {
-            case WindowState.Normal:
-                return UiWindowState.Normal;
-            case WindowState.Minimized:
-                return UiWindowState.Minimized;
-            case WindowState.Maximized:
-                return UiWindowState.Maximized;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(windowState), windowState, null);
-        }
+            WindowState.Normal => UiWindowState.Normal,
+            WindowState.Minimized => UiWindowState.Minimized,
+            WindowState.Maximized => UiWindowState.Maximized,
+            _ => throw new ArgumentOutOfRangeException(nameof(windowState), windowState, null)
+        };
     }
 }

@@ -1188,30 +1188,14 @@ public class XlsxBuilder
                 throw new ArgumentNullException(nameof(column));
             }
 
-            switch (typeName)
+            column.Width = typeName switch
             {
-                case "datetime":
-                    column.Width = 15;
-                    break;
-                case "boolean":
-                    column.Width = 10;
-                    break;
-                case "single":
-                case "double":
-                case "decimal":
-                    column.Width = 25;
-                    break;
-                case "int":
-                case "int32":
-                case "byte":
-                case "int16":
-                case "int64":
-                    column.Width = 15;
-                    break;
-                default:
-                    column.Width = 36;
-                    break;
-            }
+                "datetime" => 15,
+                "boolean" => 10,
+                "single" or "double" or "decimal" => 25,
+                "int" or "int32" or "byte" or "int16" or "int64" => 15,
+                _ => 36
+            };
 
             SetValue(headLine);
             col++;

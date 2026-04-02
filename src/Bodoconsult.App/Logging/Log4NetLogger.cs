@@ -226,22 +226,15 @@ public class Log4NetLogger : ILogger
     /// <exception cref="ArgumentOutOfRangeException">Log level not existing</exception>
     public bool IsEnabled(LogLevel logLevel)
     {
-        switch (logLevel)
+        return logLevel switch
         {
-            case LogLevel.Critical:
-                return _log.IsFatalEnabled;
-            case LogLevel.Debug:
-            case LogLevel.Trace:
-                return _log.IsDebugEnabled;
-            case LogLevel.Error:
-                return _log.IsErrorEnabled;
-            case LogLevel.Information:
-                return _log.IsInfoEnabled;
-            case LogLevel.Warning:
-                return _log.IsWarnEnabled;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(logLevel));
-        }
+            LogLevel.Critical => _log.IsFatalEnabled,
+            LogLevel.Debug or LogLevel.Trace => _log.IsDebugEnabled,
+            LogLevel.Error => _log.IsErrorEnabled,
+            LogLevel.Information => _log.IsInfoEnabled,
+            LogLevel.Warning => _log.IsWarnEnabled,
+            _ => throw new ArgumentOutOfRangeException(nameof(logLevel))
+        };
     }
 
     /// <summary>Writes a log entry.</summary>
@@ -259,10 +252,7 @@ public class Log4NetLogger : ILogger
             return;
         }
 
-        if (formatter == null)
-        {
-            throw new ArgumentNullException(nameof(formatter));
-        }
+        ArgumentNullException.ThrowIfNull(formatter);
 
         var message = formatter(state, exception);
 

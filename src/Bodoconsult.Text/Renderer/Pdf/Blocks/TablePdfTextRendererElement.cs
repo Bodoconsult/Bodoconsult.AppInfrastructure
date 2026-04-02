@@ -51,18 +51,12 @@ public class TablePdfTextRendererElement : PdfTextRendererElementBase
         {
             var col = new PdfColumn(column.Name);
 
-            switch (DocumentRendererHelper.GetAlignment(column.DataType))
+            col.TextAlignment = DocumentRendererHelper.GetAlignment(column.DataType) switch
             {
-                case "Center":
-                    col.TextAlignment = PdfTextAlignment.Center;
-                    break;
-                case "Right":
-                    col.TextAlignment = PdfTextAlignment.Right;
-                    break;
-                default:
-                    col.TextAlignment = PdfTextAlignment.Left;
-                    break;
-            }
+                "Center" => PdfTextAlignment.Center,
+                "Right" => PdfTextAlignment.Right,
+                _ => PdfTextAlignment.Left
+            };
 
             col.MaxLength = column.MaxLength;
 

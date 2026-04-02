@@ -268,33 +268,21 @@ public class BaseChart<T> : IChart where T : IChartItemData
     {
         //var dColor = System.Drawing.Color.DeepSkyBlue;
 
-        switch (seriesNumber)
+        return seriesNumber switch
         {
-            case 0:
-                return Colors.OrangeRed;
-            case 1:
-                return Colors.RoyalBlue;
-            case 2:
-                return Colors.Gold;
-            case 3:
-                return Colors.Orange;
-            case 4:
-                return Colors.CadetBlue;
-            case 5:
-                return Colors.Coral;
-            case 6:
-                return Colors.Lime;
-            case 7:
-                return Colors.DarkOrange;
-            case 8:
-                return Colors.Red;
-            case 9:
-                return Colors.Yellow;
-            case 10:    
-                return Colors.Blue;
-            default:
-                return Color.RandomHue();
-        }
+            0 => Colors.OrangeRed,
+            1 => Colors.RoyalBlue,
+            2 => Colors.Gold,
+            3 => Colors.Orange,
+            4 => Colors.CadetBlue,
+            5 => Colors.Coral,
+            6 => Colors.Lime,
+            7 => Colors.DarkOrange,
+            8 => Colors.Red,
+            9 => Colors.Yellow,
+            10 => Colors.Blue,
+            _ => Color.RandomHue()
+        };
     }
 
 

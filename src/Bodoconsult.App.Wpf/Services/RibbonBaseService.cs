@@ -318,7 +318,7 @@ public class RibbonBaseService : IRibbonService
         return erg;
     }
 
-    private static ImageSource GetBitmapImage(string path, double width, double height)
+    private static TransformedBitmap GetBitmapImage(string path, double width, double height)
     {
  
         var bimg = new BitmapImage();

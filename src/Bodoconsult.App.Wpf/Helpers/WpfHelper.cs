@@ -311,29 +311,15 @@ public static class WpfHelper
 
         Application.Current.Dispatcher.Invoke(() =>
         {
-
-            BitmapEncoder encoder;
-
-            switch (format)
+            BitmapEncoder encoder = format switch
             {
-                case ImageFormat.Jpeg:
-                    encoder = new JpegBitmapEncoder();
-                    break;
-                case ImageFormat.Png:
-                    encoder = new PngBitmapEncoder();
-                    break;
-                case ImageFormat.Bmp:
-                    encoder = new BmpBitmapEncoder();
-                    break;
-                case ImageFormat.Gif:
-                    encoder = new GifBitmapEncoder();
-                    break;
-                case ImageFormat.Tif:
-                    encoder = new TiffBitmapEncoder();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("format", format, null);
-            }
+                ImageFormat.Jpeg => new JpegBitmapEncoder(),
+                ImageFormat.Png => new PngBitmapEncoder(),
+                ImageFormat.Bmp => new BmpBitmapEncoder(),
+                ImageFormat.Gif => new GifBitmapEncoder(),
+                ImageFormat.Tif => new TiffBitmapEncoder(),
+                _ => throw new ArgumentOutOfRangeException("format", format, null)
+            };
 
             var rtb = RenderVisualToBitmap(visual, width, height);
 
@@ -373,29 +359,15 @@ public static class WpfHelper
 
         Application.Current.Dispatcher.Invoke(() =>
         {
-            BitmapEncoder encoder;
-
-            switch (format)
+            BitmapEncoder encoder = format switch
             {
-                case ImageFormat.Jpeg:
-                    encoder = new JpegBitmapEncoder();
-                    break;
-                case ImageFormat.Png:
-                    encoder = new PngBitmapEncoder();
-                    break;
-                case ImageFormat.Bmp:
-                    encoder = new BmpBitmapEncoder();
-                    break;
-                case ImageFormat.Gif:
-                    encoder = new GifBitmapEncoder();
-                    break;
-                case ImageFormat.Tif:
-                    encoder = new TiffBitmapEncoder();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("format", format, null);
-            }
-
+                ImageFormat.Jpeg => new JpegBitmapEncoder(),
+                ImageFormat.Png => new PngBitmapEncoder(),
+                ImageFormat.Bmp => new BmpBitmapEncoder(),
+                ImageFormat.Gif => new GifBitmapEncoder(),
+                ImageFormat.Tif => new TiffBitmapEncoder(),
+                _ => throw new ArgumentOutOfRangeException("format", format, null)
+            };
 
             // Save current canvas transform
             var transform = canvas.LayoutTransform;

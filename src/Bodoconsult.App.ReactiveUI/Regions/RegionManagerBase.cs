@@ -3,6 +3,7 @@
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
 using System.Collections.Concurrent;
+using System.Runtime.Serialization;
 
 namespace Bodoconsult.App.ReactiveUI.Regions;
 
@@ -103,15 +104,8 @@ public abstract class RegionManagerBase : IRegionManager
     /// <param name="viewModel">Viewmodel</param>
     public void Navigate<T>(UiRegion region, T viewModel) where T : class, IRoutableViewModel
     {
-        if (region == null)
-        {
-            throw new ArgumentNullException(nameof(region));
-        }
-
-        if (viewModel == null)
-        {
-            throw new ArgumentNullException(nameof(viewModel));
-        }
+        ArgumentNullException.ThrowIfNull(region);
+        ArgumentNullException.ThrowIfNull(viewModel);
 
         region.Router.Navigate.Execute(viewModel);
     }

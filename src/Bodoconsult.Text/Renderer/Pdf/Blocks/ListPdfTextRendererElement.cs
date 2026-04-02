@@ -21,41 +21,19 @@ public class ListPdfTextRendererElement : PdfTextRendererElementBase
         _list = list;
         ClassName = list.StyleName;
 
-        switch (list.ListStyleType)
+        LocalCss = list.ListStyleType switch
         {
-            case ListStyleTypeEnum.Disc:
-                LocalCss = "list-style-type: disc";
-                break;
-            case ListStyleTypeEnum.Circle:
-                LocalCss = "list-style-type: circle";
-                break;
-            case ListStyleTypeEnum.Square:
-                LocalCss = "list-style-type: square";
-                break;
-            case ListStyleTypeEnum.Customized:
-                LocalCss = $"list-style-type: '{_list.ListStyleTypeChar}'";
-                break;
-            case ListStyleTypeEnum.Decimal:
-                LocalCss = "list-style-type: decimal";
-                break;
-            case ListStyleTypeEnum.DecimalLeadingZero:
-                LocalCss = "list-style-type: decimal-leading-zero";
-                break;
-            case ListStyleTypeEnum.UpperRoman:
-                LocalCss = "list-style-type: upper-roman";
-                break;
-            case ListStyleTypeEnum.LowerRoman:
-                LocalCss = "list-style-type: lower-roman";
-                break;
-            case ListStyleTypeEnum.UpperLatin:
-                LocalCss = "list-style-type: upper-latin";
-                break;
-            case ListStyleTypeEnum.LowerLatin:
-                LocalCss = "list-style-type: lower-latin";
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
+            ListStyleTypeEnum.Disc => "list-style-type: disc",
+            ListStyleTypeEnum.Circle => "list-style-type: circle",
+            ListStyleTypeEnum.Square => "list-style-type: square",
+            ListStyleTypeEnum.Customized => $"list-style-type: '{_list.ListStyleTypeChar}'",
+            ListStyleTypeEnum.Decimal => "list-style-type: decimal",
+            ListStyleTypeEnum.DecimalLeadingZero => "list-style-type: decimal-leading-zero",
+            ListStyleTypeEnum.UpperRoman => "list-style-type: upper-roman",
+            ListStyleTypeEnum.LowerRoman => "list-style-type: lower-roman",
+            ListStyleTypeEnum.UpperLatin => "list-style-type: upper-latin",
+            ListStyleTypeEnum.LowerLatin => "list-style-type: lower-latin",
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 }

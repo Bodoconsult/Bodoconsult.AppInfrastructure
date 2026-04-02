@@ -56,19 +56,12 @@ public class XmlDataExportService<T> : DataExportServiceBase<T> where T : class
 
     private void LoadBaseData()
     {
-        string encodingName;
-        switch (Encoding.HeaderName.ToLowerInvariant())
+        var encodingName = Encoding.HeaderName.ToLowerInvariant() switch
         {
-            case "utf-8":
-                encodingName = "utf-8";
-                break;
-            case "utf-32":
-                encodingName = "utf-32";
-                break;
-            default:
-                encodingName = "utf-16";
-                break;
-        }
+            "utf-8" => "utf-8",
+            "utf-32" => "utf-32",
+            _ => "utf-16"
+        };
         var name = typeof(T).Name;
         HeaderData = Encoding.GetBytes($"<?xml version=\"1.0\" encoding=\"{encodingName}\"?>{Environment.NewLine}<ArrayOf{name}>{Environment.NewLine}");
         FooterData = Encoding.GetBytes($"</ArrayOf{name}>");

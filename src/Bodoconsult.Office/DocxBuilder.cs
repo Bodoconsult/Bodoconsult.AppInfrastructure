@@ -541,26 +541,15 @@ public class DocxBuilder : IDisposable
         // Page number
         if (section == ITypography.PageFieldIndicator)
         {
-            string pNf;
-            switch (pageNumberFormat)
+            var pNf = pageNumberFormat switch
             {
-                case PageNumberFormatEnum.UpperRoman:
-                    pNf = "ROMAN";
-                    break;
-                case PageNumberFormatEnum.LowerRoman:
-                    pNf = "roman";
-                    break;
-                case PageNumberFormatEnum.UpperLatin:
-                    pNf = "ALPHABETIC";
-                    break;
-                case PageNumberFormatEnum.LowerLatin:
-                    pNf = "alphabetic";
-                    break;
-                case PageNumberFormatEnum.Decimal:
-                default:
-                    pNf = "Arabic";
-                    break;
-            }
+                PageNumberFormatEnum.UpperRoman => "ROMAN",
+                PageNumberFormatEnum.LowerRoman => "roman",
+                PageNumberFormatEnum.UpperLatin => "ALPHABETIC",
+                PageNumberFormatEnum.LowerLatin => "alphabetic",
+                PageNumberFormatEnum.Decimal => "Arabic",
+                _ => "Arabic"
+            };
 
             if (!string.IsNullOrEmpty(typoMetaData.PageNumberPrefix))
             {
@@ -753,21 +742,13 @@ public class DocxBuilder : IDisposable
         var leftFirstLine = MeasurementHelper.GetTwipsFromCm(typoStyle.FirstLineIndent);
         var line = MeasurementHelper.GetTwipsFromCm(typoStyle.LineHeight);
 
-        LineSpacingRuleValues lsrv;
-
-        switch (typoStyle.LineSpacingRule)
+        var lsrv = typoStyle.LineSpacingRule switch
         {
-            case LineSpacingRuleEnum.Exact:
-                lsrv = LineSpacingRuleValues.Auto;
-                break;
-            case LineSpacingRuleEnum.AtLeast:
-                lsrv = LineSpacingRuleValues.AtLeast;
-                break;
-            case LineSpacingRuleEnum.Auto:
-            default:
-                lsrv = LineSpacingRuleValues.Auto;
-                break;
-        }
+            LineSpacingRuleEnum.Exact => LineSpacingRuleValues.Auto,
+            LineSpacingRuleEnum.AtLeast => LineSpacingRuleValues.AtLeast,
+            LineSpacingRuleEnum.Auto => LineSpacingRuleValues.Auto,
+            _ => LineSpacingRuleValues.Auto
+        };
 
         var spacing = new SpacingBetweenLines
         {
@@ -1268,27 +1249,14 @@ public class DocxBuilder : IDisposable
 
     private static ImagePart AddImagePart(OpenXmlPart docPart, string path, string ext)
     {
-        PartTypeInfo imageType;
-
-        switch (ext)
+        var imageType = ext switch
         {
-            case ".png":
-                imageType = ImagePartType.Png;
-                break;
-            case ".gif":
-                imageType = ImagePartType.Gif;
-                break;
-            case ".jp2":
-                imageType = ImagePartType.Jp2;
-                break;
-            case ".svg":
-                imageType = ImagePartType.Svg;
-                break;
-            //case ".jpg":
-            default:
-                imageType = ImagePartType.Jpeg;
-                break;
-        }
+            ".png" => ImagePartType.Png,
+            ".gif" => ImagePartType.Gif,
+            ".jp2" => ImagePartType.Jp2,
+            ".svg" => ImagePartType.Svg,
+            _ => ImagePartType.Jpeg
+        };
 
         switch (docPart)
         {

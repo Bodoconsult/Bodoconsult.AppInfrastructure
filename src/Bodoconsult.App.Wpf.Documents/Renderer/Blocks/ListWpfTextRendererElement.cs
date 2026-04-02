@@ -28,42 +28,20 @@ public class ListWpfTextRendererElement : WpfTextRendererElementBase
         _list = list;
         ClassName = list.StyleName;
 
-        switch (list.ListStyleType)
+        _markerStyle = list.ListStyleType switch
         {
-            case ListStyleTypeEnum.Disc:
-                _markerStyle = TextMarkerStyle.Disc;
-                break;
-            case ListStyleTypeEnum.Circle:
-                _markerStyle = TextMarkerStyle.Circle;
-                break;
-            case ListStyleTypeEnum.Square:
-                _markerStyle = TextMarkerStyle.Square;
-                break;
-            case ListStyleTypeEnum.Customized:
-                _markerStyle = TextMarkerStyle.Disc;
-                break;
-            case ListStyleTypeEnum.Decimal:
-                _markerStyle = TextMarkerStyle.Decimal;
-                break;
-            case ListStyleTypeEnum.DecimalLeadingZero:
-                _markerStyle = TextMarkerStyle.Decimal;
-                break;
-            case ListStyleTypeEnum.UpperRoman:
-                _markerStyle = TextMarkerStyle.UpperRoman;
-                break;
-            case ListStyleTypeEnum.LowerRoman:
-                _markerStyle = TextMarkerStyle.LowerRoman;
-                break;
-            case ListStyleTypeEnum.UpperLatin:
-                _markerStyle = TextMarkerStyle.UpperLatin;
-                break;
-            case ListStyleTypeEnum.LowerLatin:
-                _markerStyle = TextMarkerStyle.LowerLatin;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
+            ListStyleTypeEnum.Disc => TextMarkerStyle.Disc,
+            ListStyleTypeEnum.Circle => TextMarkerStyle.Circle,
+            ListStyleTypeEnum.Square => TextMarkerStyle.Square,
+            ListStyleTypeEnum.Customized => TextMarkerStyle.Disc,
+            ListStyleTypeEnum.Decimal => TextMarkerStyle.Decimal,
+            ListStyleTypeEnum.DecimalLeadingZero => TextMarkerStyle.Decimal,
+            ListStyleTypeEnum.UpperRoman => TextMarkerStyle.UpperRoman,
+            ListStyleTypeEnum.LowerRoman => TextMarkerStyle.LowerRoman,
+            ListStyleTypeEnum.UpperLatin => TextMarkerStyle.UpperLatin,
+            ListStyleTypeEnum.LowerLatin => TextMarkerStyle.LowerLatin,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     /// <summary>

@@ -91,7 +91,7 @@ internal class MeasurementHelperTests
     public void GetDxaFromCm_1ptAsCm_ReturnsCm()
     {
         // Arrange 
-        double input = MeasurementHelper.GetCmFromPt(1);
+        var input = MeasurementHelper.GetCmFromPt(1);
 
         // Act  
         var result = MeasurementHelper.GetDxaFromCm(input);

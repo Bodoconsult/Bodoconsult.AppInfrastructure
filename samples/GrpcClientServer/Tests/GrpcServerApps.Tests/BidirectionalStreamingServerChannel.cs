@@ -40,7 +40,7 @@ public class BidirectionalStreamingServerChannel
 
     public CancellationTokenSource CancellationTokenSource { get; } = new();
 
-    private readonly object _counterLock = new();
+    private readonly Lock _counterLock = new();
 
     public int Counter
 

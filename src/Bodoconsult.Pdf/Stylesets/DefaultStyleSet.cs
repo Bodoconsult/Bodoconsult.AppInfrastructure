@@ -1482,36 +1482,19 @@ public class DefaultStyleSet : IStyleSet
     /// <returns>Page format</returns>
     public static PageFormat GetPageFormat(string paperFormatName)
     {
-        switch (paperFormatName.ToUpperInvariant())
+        return paperFormatName.ToUpperInvariant() switch
         {
-            case "A1":
-            case "DIN A1":
-                return PageFormat.A1;
-            case "A2":
-            case "DIN A2":
-                return PageFormat.A2;
-            case "A3":
-            case "DIN A3":
-                return PageFormat.A3;
-            case "A5":
-            case "DIN A5":
-                return PageFormat.A5;
-            case "B5":
-            case "DIN B5":
-                return PageFormat.B5;
-            case "LETTER":
-                return PageFormat.Letter;
-            case "LEGAL":
-                return PageFormat.Legal;
-            case "LEDGER":
-                return PageFormat.Ledger;
-            case "P11x17":
-                return PageFormat.P11x17;
-            //case "A4":
-            //case "DIN A4":
-            default:
-                return PageFormat.A4;
-        }
+            "A1" or "DIN A1" => PageFormat.A1,
+            "A2" or "DIN A2" => PageFormat.A2,
+            "A3" or "DIN A3" => PageFormat.A3,
+            "A5" or "DIN A5" => PageFormat.A5,
+            "B5" or "DIN B5" => PageFormat.B5,
+            "LETTER" => PageFormat.Letter,
+            "LEGAL" => PageFormat.Legal,
+            "LEDGER" => PageFormat.Ledger,
+            "P11x17" => PageFormat.P11x17,
+            _ => PageFormat.A4
+        };
     }
 
     /// <summary>

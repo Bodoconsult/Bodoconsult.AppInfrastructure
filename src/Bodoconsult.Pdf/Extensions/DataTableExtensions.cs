@@ -171,22 +171,13 @@ public static class DataTableExtensions
         }
 
         var t = type.Name.Replace("System.", string.Empty).ToLower();
-        switch (t)
+        return t switch
         {
-            case "datetime":
-                return Convert.ToDateTime(dataCell).ToString("d", cultureInfo);
-            case "decimal":
-            case "double":
-            case "single":
-                return Convert.ToDouble(dataCell).ToString("#,##0.00", cultureInfo);
-            case "int":
-            case "int16":
-            case "int32":
-            case "int64":
-                return Convert.ToInt64(dataCell).ToString("#,##0", cultureInfo);
-            default:
-                return dataCell.ToString();
-        }
+            "datetime" => Convert.ToDateTime(dataCell).ToString("d", cultureInfo),
+            "decimal" or "double" or "single" => Convert.ToDouble(dataCell).ToString("#,##0.00", cultureInfo),
+            "int" or "int16" or "int32" or "int64" => Convert.ToInt64(dataCell).ToString("#,##0", cultureInfo),
+            _ => dataCell.ToString()
+        };
     }
 
     /// <summary>

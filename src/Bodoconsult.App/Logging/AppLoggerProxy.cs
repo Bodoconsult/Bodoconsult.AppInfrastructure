@@ -24,7 +24,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// </summary>
     public ILoggerFactory LoggerFactory { get; private set; }
 
-    private IProducerConsumerQueue<LogData> _logMessages;
+    private ProducerConsumerQueue<LogData> _logMessages;
 
     private ILogger _logger;
 
@@ -105,8 +105,6 @@ public class AppLoggerProxy : IAppLoggerProxy
                     "{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - Thread {logData.ThreadId} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}: {logData.Exception}{sb}",
                     logData.LogDate, logData.ThreadId, logData.LogLevel, fileName, logData.SourceMethod, logData.SourceRowNumber, logData.Message, logData.Exception, sb.ToString().TrimEnd());
             }
-
-                
             //: $"{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}: {logData.Exception.Message}{(string.IsNullOrEmpty(logData.Exception.StackTrace) ? "" : $"\r\n{logData.Exception.StackTrace}")}\r\n{FormatArgs(logData.Args)}");
         }
         catch
@@ -146,7 +144,6 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-
         _logMessages?.Enqueue(log);
     }
 
@@ -176,7 +173,6 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
 
         _logMessages?.Enqueue(log);
-
     }
 
 
@@ -1666,6 +1662,12 @@ public class AppLoggerProxy : IAppLoggerProxy
     private static bool IsMethodToBeIncluded(StackFrame pStackMethod)
     {
         var lMethod = pStackMethod.GetMethod();
+
+        if (lMethod == null)
+        {
+            return true;
+        }
+
         return lMethod.DeclaringType != typeof(AppLoggerProxy);
     }
 

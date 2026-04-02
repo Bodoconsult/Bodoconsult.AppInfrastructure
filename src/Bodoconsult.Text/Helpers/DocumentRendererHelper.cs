@@ -29,21 +29,15 @@ public static class DocumentRendererHelper
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static string GetFormattedNumber(int page, PageNumberFormatEnum pageNumberFormat)
     {
-        switch (pageNumberFormat)
+        return pageNumberFormat switch
         {
-            case PageNumberFormatEnum.Decimal:
-                return page.ToString("0");
-            case PageNumberFormatEnum.UpperRoman:
-                return page.ArabicToRoman().ToUpperInvariant();
-            case PageNumberFormatEnum.LowerRoman:
-                return page.ArabicToRoman().ToLowerInvariant();
-            case PageNumberFormatEnum.UpperLatin:
-                return page.ToUpperLatin();
-            case PageNumberFormatEnum.LowerLatin:
-                return page.ToLowerLatin();
-            default:
-                throw new ArgumentOutOfRangeException(nameof(pageNumberFormat), pageNumberFormat, null);
-        }
+            PageNumberFormatEnum.Decimal => page.ToString("0"),
+            PageNumberFormatEnum.UpperRoman => page.ArabicToRoman().ToUpperInvariant(),
+            PageNumberFormatEnum.LowerRoman => page.ArabicToRoman().ToLowerInvariant(),
+            PageNumberFormatEnum.UpperLatin => page.ToUpperLatin(),
+            PageNumberFormatEnum.LowerLatin => page.ToLowerLatin(),
+            _ => throw new ArgumentOutOfRangeException(nameof(pageNumberFormat), pageNumberFormat, null)
+        };
     }
 
     /// <summary>

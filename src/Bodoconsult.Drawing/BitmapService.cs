@@ -155,38 +155,18 @@ public class BitmapService : IDisposable
     //=== determine image rotation
     private RotateFlipType GetRotateFlipType(int rotateValue)
     {
-        var flipType = RotateFlipType.RotateNoneFlipNone;
-
-        switch (rotateValue)
+        var flipType = rotateValue switch
         {
-            case 1:
-                flipType = RotateFlipType.RotateNoneFlipNone;
-                break;
-            case 2:
-                flipType = RotateFlipType.RotateNoneFlipX;
-                break;
-            case 3:
-                flipType = RotateFlipType.Rotate180FlipNone;
-                break;
-            case 4:
-                flipType = RotateFlipType.Rotate180FlipX;
-                break;
-            case 5:
-                flipType = RotateFlipType.Rotate90FlipX;
-                break;
-            case 6:
-                flipType = RotateFlipType.Rotate90FlipNone;
-                break;
-            case 7:
-                flipType = RotateFlipType.Rotate270FlipX;
-                break;
-            case 8:
-                flipType = RotateFlipType.Rotate270FlipNone;
-                break;
-            default:
-                flipType = RotateFlipType.RotateNoneFlipNone;
-                break;
-        }
+            1 => RotateFlipType.RotateNoneFlipNone,
+            2 => RotateFlipType.RotateNoneFlipX,
+            3 => RotateFlipType.Rotate180FlipNone,
+            4 => RotateFlipType.Rotate180FlipX,
+            5 => RotateFlipType.Rotate90FlipX,
+            6 => RotateFlipType.Rotate90FlipNone,
+            7 => RotateFlipType.Rotate270FlipX,
+            8 => RotateFlipType.Rotate270FlipNone,
+            _ => RotateFlipType.RotateNoneFlipNone
+        };
 
         return flipType;
     }

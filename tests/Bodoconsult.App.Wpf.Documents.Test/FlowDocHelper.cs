@@ -94,27 +94,12 @@ public static class FlowDocHelper
         {
             for (var col = 0; col < columns; col++)
             {
-                string content;
-
-                switch (col)
+                var content = col switch
                 {
-                    case 1:
-                        content = $"{row},{col}";
-                        break;
-
-                    case 2:
-                        content = $"{row},{col}%";
-                        break;
-
-                    //case 3:
-
-                    //    break;
-                    default:
-                        content = $"Content R{row}C{col}";
-                        break;
-
-                }
-
+                    1 => $"{row},{col}",
+                    2 => $"{row},{col}%",
+                    _ => $"Content R{row}C{col}"
+                };
 
                 erg[row, col] = row == 0 ? $"Header {col}" : content;
             }

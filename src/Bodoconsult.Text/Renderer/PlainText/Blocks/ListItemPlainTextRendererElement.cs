@@ -34,7 +34,7 @@ public class ListItemPlainTextRendererElement : ParagraphBasePlainTextRendererEl
     public override void RenderIt(ITextDocumentRenderer renderer)
     {
         // Get the content of all inlines as string
-        string listChars = " ";
+        var listChars = " ";
 
         var list = (List)_listItem.Parent;
 

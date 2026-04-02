@@ -67,26 +67,13 @@ public class DataTableParser
     {
         var dt = type.ToString().ToLower().Replace("system.", string.Empty);
 
-        switch (dt)
+        return dt switch
         {
-            case "decimal":
-            case "double":
-            case "single":
-                return "#,##0.00";
-            case "datetime":
-            case "timespan":
-                return "dd.mm.yyyy";
-            case "byte":
-            case "int16":
-            case "int32":
-            case "int64":
-            case "uint16":
-            case "uint32":
-            case "uint64":
-                return "#,##0";
-            default:
-                return null;
-        }
+            "decimal" or "double" or "single" => "#,##0.00",
+            "datetime" or "timespan" => "dd.mm.yyyy",
+            "byte" or "int16" or "int32" or "int64" or "uint16" or "uint32" or "uint64" => "#,##0",
+            _ => null
+        };
     }
 
     /// <summary>

@@ -1,5 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Extensions;
 using Bodoconsult.Pdf.Helpers;
@@ -18,7 +19,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Bodoconsult.App.Abstractions.Helpers;
+using System.Runtime.Serialization;
 using DataTableExtensions = Bodoconsult.Pdf.Extensions.DataTableExtensions;
 
 // https://www.pdfsharp.net/wiki-1.5/Print.aspx?Page=Watermark-sample
@@ -290,52 +291,21 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <returns>Page setup for individual settings</returns>
     public static void SetPage(ITypoPageStyle style, IStyleSet styleSet)
     {
-        var format = PageFormat.A4;
-
-        switch (style.TypoPaperFormat.PaperFormatName.ToLowerInvariant())
+        var format = style.TypoPaperFormat.PaperFormatName.ToLowerInvariant() switch
         {
-            case "a0":
-                format = PageFormat.A0;
-                break;
-            case "a1":
-                format = PageFormat.A1;
-                break;
-            case "a2":
-                format = PageFormat.A2;
-                break;
-            case "a3":
-                format = PageFormat.A3;
-                break;
-            case "a4":
-                format = PageFormat.A4;
-                break;
-            case "a5":
-                format = PageFormat.A5;
-                break;
-            case "b5":
-                format = PageFormat.B5;
-                break;
-            case "ledger":
-                format = PageFormat.Ledger;
-                break;
-            case "letter":
-                format = PageFormat.Letter;
-                break;
-            case "legal":
-                format = PageFormat.Legal;
-                break;
-            case "p11x17":
-                format = PageFormat.P11x17;
-                break;
-                //case "a0":
-                //    format = PageFormat.A0;
-                //    break;
-                //case "a0":
-                //    format = PageFormat.A0;
-                //    break;
-                //default:
-                //break;
-        }
+            "a0" => PageFormat.A0,
+            "a1" => PageFormat.A1,
+            "a2" => PageFormat.A2,
+            "a3" => PageFormat.A3,
+            "a4" => PageFormat.A4,
+            "a5" => PageFormat.A5,
+            "b5" => PageFormat.B5,
+            "ledger" => PageFormat.Ledger,
+            "letter" => PageFormat.Letter,
+            "legal" => PageFormat.Legal,
+            "p11x17" => PageFormat.P11x17,
+            _ => PageFormat.A4
+        };
 
         // More than one column
         if (style.NumberOfColumns > 1)
@@ -1115,10 +1085,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
     private void CreateHeaderFooterElement(ITypoMetaData documentMetaData, string section, Paragraph para, int position, bool isHeader, PageNumberFormatEnum pageNumberFormat)
     {
-        if (documentMetaData == null)
-        {
-            throw new ArgumentNullException(nameof(documentMetaData));
-        }
+        ArgumentNullException.ThrowIfNull(documentMetaData);
 
         var width = StyleSet.PageSetup.PageWidth.Point -
                                         StyleSet.PageSetup.LeftMargin.Point -
@@ -1402,21 +1369,13 @@ public abstract class PdfBuilderBase : IPdfBuilder
             var column = table.AddColumn();
             column.Borders.Color = borderColor;
             column.Width = Unit.FromCentimeter(col.MaxLength * 0.16);
-            switch (col.TextAlignment)
+            column.Format.Alignment = col.TextAlignment switch
             {
-                case PdfTextAlignment.Left:
-                    column.Format.Alignment = ParagraphAlignment.Left;
-                    break;
-                case PdfTextAlignment.Center:
-                    column.Format.Alignment = ParagraphAlignment.Center;
-                    break;
-                case PdfTextAlignment.Right:
-                    column.Format.Alignment = ParagraphAlignment.Right;
-                    break;
-                default:
-                    column.Format.Alignment = ParagraphAlignment.Left;
-                    break;
-            }
+                PdfTextAlignment.Left => ParagraphAlignment.Left,
+                PdfTextAlignment.Center => ParagraphAlignment.Center,
+                PdfTextAlignment.Right => ParagraphAlignment.Right,
+                _ => ParagraphAlignment.Left
+            };
         }
 
         // Kopfzeile schreiben
@@ -1511,7 +1470,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="additionalInfosStyleName">Style name for the additonal info</param>
     /// <param name="width"></param>
     /// <param name="tableStyle">Name of the style to use for table formatting (not all properties supported)</param>
-    [Obsolete]
+    [Obsolete("Do not use it. Prefer using AddTable method with <see cref=\"PdfTable\"/> parameter instead")]
     public void AddTable(DataTable dt, string heading, string headingStyleName, string additionalInfos, string additionalInfosStyleName, double width = 0, string tableStyle = "NormalTable")
     {
         var pdfTable = dt.Columns[0].ColumnName.ToLowerInvariant() == "cssstyle" ? 
@@ -2391,18 +2350,12 @@ public abstract class PdfBuilderBase : IPdfBuilder
         foreach (var field in listFields)
         {
             var columnDef = Table.AddColumn(Unit.FromCentimeter(field.Width));
-            switch (field.TextAlign)
+            columnDef.Format.Alignment = field.TextAlign switch
             {
-                case PdfTextAlignment.Center:
-                    columnDef.Format.Alignment = ParagraphAlignment.Center;
-                    break;
-                case PdfTextAlignment.Right:
-                    columnDef.Format.Alignment = ParagraphAlignment.Right;
-                    break;
-                default:
-                    columnDef.Format.Alignment = ParagraphAlignment.Left;
-                    break;
-            }
+                PdfTextAlignment.Center => ParagraphAlignment.Center,
+                PdfTextAlignment.Right => ParagraphAlignment.Right,
+                _ => ParagraphAlignment.Left
+            };
         }
 
 
@@ -2465,7 +2418,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             html = string.Empty;
         }
 
-        if (!html.Contains("<"))
+        if (!html.Contains('<'))
         {
             AddParagraph(html);
             return;

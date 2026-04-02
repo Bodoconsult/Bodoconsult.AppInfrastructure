@@ -29,7 +29,7 @@ public class PieChart<T> : BaseChart<T> where T : PieChartItemData
             total += data.YValue;
         }
 
-        int i = 0;
+        var i = 0;
         for (var index = 0; index < ChartData.DataSource.Count; index++)
         {
             var data = (PieChartItemData)ChartData.DataSource[index];

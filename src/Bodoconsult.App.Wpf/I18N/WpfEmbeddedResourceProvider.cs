@@ -107,7 +107,7 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
             return translations;
         }
 
-        string s = System.IO.Packaging.PackUriHelper.UriSchemePack;
+        var s = System.IO.Packaging.PackUriHelper.UriSchemePack;
 
         var uri = new Uri(path, UriKind.RelativeOrAbsolute);
 

@@ -339,7 +339,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
 
         MsgServerIsListeningOnPort = AppBuilder.AppGlobals.AppStartParameter.Port == 0 ? string.Empty : $"{UiMessages.MsgServerIsListeningOnPort} {AppBuilder.AppGlobals.AppStartParameter.Port}";
         MsgHowToShutdownServer = UiMessages.MsgHowToShutdownServer;
-        MsgServerProcessId = $"{UiMessages.MsgServerProcessId} {Process.GetCurrentProcess().Id}";
+        MsgServerProcessId = $"{UiMessages.MsgServerProcessId} {Environment.ProcessId}";
     }
 
     /// <summary>
