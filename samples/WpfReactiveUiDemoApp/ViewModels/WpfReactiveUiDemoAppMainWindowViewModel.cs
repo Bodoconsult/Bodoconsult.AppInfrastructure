@@ -114,7 +114,7 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
     {
         try
         {
-            Region1?.Navigate(new FirstViewModel(Region1));
+            //Region1?.Navigate(new FirstViewModel(Region1));
 
             var windowViewModel = new Window1ViewModel(RegionManager);
 

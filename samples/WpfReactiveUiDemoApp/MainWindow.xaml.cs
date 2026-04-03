@@ -9,6 +9,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 using Bodoconsult.App.Wpf.ReactiveUI.Converters;
+using ReactiveUI.SourceGenerators;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp;
@@ -122,6 +123,15 @@ public partial class MainWindow : IUiWindow
         {
             // Do nothing
         }
+    }
+
+    /// <summary>
+    /// Load the region manager
+    /// </summary>
+    /// <param name="regionManager">Current region manager instance</param>
+    public void LoadRegionManager(IRegionManager regionManager)
+    {
+        RegionManager = regionManager;
     }
 
     ///// <summary>

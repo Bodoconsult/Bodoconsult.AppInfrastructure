@@ -94,4 +94,10 @@ public interface IRegionManager
     /// <returns><see cref="IUiWindow"/> instance the view is loaded in</returns>
     IUiWindow Navigate<TWindowViewModel, TViewModel>(TWindowViewModel windowViewModel, TViewModel viewModel, string regionName) where TWindowViewModel : class, IUiWindowViewModel where TViewModel: IUiRegionViewModel;
 
+    /// <summary>
+    /// Find the regions for an existing window instance
+    /// </summary>
+    /// <param name="window">Window</param>
+    /// <param name="wwd">UI window definition</param>
+    void FindRegions(IUiWindow window, UiWindowDefinition wwd);
 }

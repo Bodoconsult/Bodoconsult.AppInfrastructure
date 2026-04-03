@@ -1,15 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using AvaloniaReactiveUiDemoApp.ViewModels;
+using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
+using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
+using ReactiveUI.Avalonia;
+using System;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using Bodoconsult.App.ReactiveUI.Regions;
-using AvaloniaReactiveUiDemoApp.ViewModels;
-using ReactiveUI.Avalonia;
 
 namespace AvaloniaReactiveUiDemoApp.Views;
 
@@ -85,7 +86,7 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
     /// <summary>
     /// Current region manager
     /// </summary>
-    public IRegionManager? RegionManager => ViewModel?.RegionManager;
+    public IRegionManager? RegionManager { get; set; }
 
     /// <summary>
     /// Region in the current window
@@ -110,5 +111,14 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
         {
             // Do nothing
         }
+    }
+
+    /// <summary>
+    /// Load the region manager
+    /// </summary>
+    /// <param name="regionManager">Current region manager instance</param>
+    public void LoadRegionManager(IRegionManager regionManager)
+    {
+        RegionManager = regionManager;
     }
 }

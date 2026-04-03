@@ -47,6 +47,12 @@ public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
     [Reactive]
     public partial UiRegion? Region3 { get; set; }
 
+    /// <summary>
+    /// Is the window registered already
+    /// </summary>
+    [Reactive]
+    public partial bool IsRegistered { get; set; }
+
     [ReactiveCommand]
     public void GoToSecondView()
     {

@@ -74,7 +74,7 @@ public partial class Window1 : IUiWindow
     /// <summary>
     /// Current region manager
     /// </summary>
-    public IRegionManager? RegionManager => ViewModel?.RegionManager;
+    public IRegionManager? RegionManager { get; private set; }
 
     /// <summary>
     /// Region in the current window
@@ -99,5 +99,14 @@ public partial class Window1 : IUiWindow
         {
             // Do nothing
         }
+    }
+
+    /// <summary>
+    /// Load the region manager
+    /// </summary>
+    /// <param name="regionManager">Current region manager instance</param>
+    public void LoadRegionManager(IRegionManager regionManager)
+    {
+        RegionManager = regionManager;
     }
 }

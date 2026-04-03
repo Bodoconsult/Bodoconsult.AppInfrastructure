@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
+using ReactiveUI.SourceGenerators;
 
 namespace Bodoconsult.App.ReactiveUI.Tests;
 
@@ -33,5 +34,14 @@ public class DummyUiWindow : IUiWindow
     public void Dispose(object? sender, EventArgs e)
     {
         // Do nothing
+    }
+
+    /// <summary>
+    /// Load the region manager
+    /// </summary>
+    /// <param name="regionManager">Current region manager instance</param>
+    public void LoadRegionManager(IRegionManager regionManager)
+    {
+        RegionManager = regionManager;
     }
 }

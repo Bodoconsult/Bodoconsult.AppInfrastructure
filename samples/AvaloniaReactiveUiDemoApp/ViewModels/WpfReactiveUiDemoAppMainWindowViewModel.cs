@@ -112,9 +112,9 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     [ReactiveCommand]
     public IObservable<Unit> GoToWindow1()
     {
-        try
-        {
-            Region1?.Navigate(new FirstViewModel(Region1));
+        //try
+        //{
+            //Region1?.Navigate(new FirstViewModel(Region1));
 
             var windowViewModel = new Window1ViewModel(RegionManager);
 
@@ -122,12 +122,12 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
 
             RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
             return Observable.Return(Unit.Default);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        //}
+        //catch (Exception e)
+        //{
+        //    Console.WriteLine(e);
+        //    throw;
+        //}
     }
 
     [ReactiveCommand]

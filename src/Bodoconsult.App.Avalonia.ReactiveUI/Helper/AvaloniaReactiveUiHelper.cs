@@ -2,6 +2,7 @@
 
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Helper;
@@ -29,23 +30,22 @@ public static class AvaloniaReactiveUiHelper
     /// </summary>
     /// <typeparam name="T">Type of the requested descendant</typeparam>
     /// <param name="result">List with all found descendants</param>
-    /// <param name="visual">Current visual</param>
-    public static void AllDescendantsOfType<T>(List<T> result, Visual visual) where T : class
+    /// <param name="window">Current visual</param>
+    public static void AllDescendantsOfType<T>(List<T> result, Window window) where T : class
     {
-        var visualChildren = visual.GetVisualDescendants().ToList();
-        var visualChildrenCount = visualChildren.LongCount();
+        var children = window.GetLogicalDescendants().ToList();
+        var childrenCount = children.LongCount();
 
-        for (var i = 0; i < visualChildrenCount; i++)
+        for (var i = 0; i < childrenCount; i++)
         {
-            var child = visualChildren[i];
+            var child = children[i];
 
-            if (child is T item)
+            if (child is not T item)
             {
-                result.Add(item);
                 continue;
             }
-
-            AllDescendantsOfType(result, child);
+            
+            result.Add(item);
         }
     }
 }

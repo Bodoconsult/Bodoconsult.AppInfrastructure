@@ -133,6 +133,13 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
         }
     }
 
+    public void LoadRegionManager(IRegionManager regionManager)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsRegistered { get; }
+
     ///// <summary>
     ///// Allows the ViewModel to be used on the XAML via a dependency property
     ///// </summary>

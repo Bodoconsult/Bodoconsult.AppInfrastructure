@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.ComponentModel;
 using Bodoconsult.App.ReactiveUI.Regions;
 
 namespace Bodoconsult.App.ReactiveUI.Interfaces;
@@ -30,4 +31,10 @@ public interface IUiWindow
     /// <param name="sender">Do not use</param>
     /// <param name="e">Do not use</param>
     void Dispose(object? sender, EventArgs e);
+
+    /// <summary>
+    /// Load the region manager
+    /// </summary>
+    /// <param name="regionManager">Current region manager instance</param>
+    void LoadRegionManager(IRegionManager regionManager);
 }

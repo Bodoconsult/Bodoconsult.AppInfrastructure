@@ -7,6 +7,7 @@ using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using Avalonia.Controls;
 using ReactiveUI.Avalonia;
 
 
@@ -51,39 +52,11 @@ public class AvaloniaRegionManager : RegionManagerBase
         }
 
         // Find regions in the window
-        var childs = AvaloniaReactiveUiHelper.FindChildren<RoutedViewHost>(window);
-
-        if (childs == null)
-        {
-            // ReSharper disable once LocalizableElement
-            throw new ArgumentNullException(nameof(childs), $"No region childs defined for {type.Name}");
-        }
+        FindRegions(window, wwd);
 
         // Now register the window
         var uiWindow = RegisterWindowInstances(window);
         window.Closed += uiWindow.Dispose;
-
-        if (window.UiRegions.Count != 0)
-        {
-            return uiWindow;
-        }
-
-
-        // Now register the regions for the window
-        foreach (var regionName in wwd.Regions)
-        {
-            var regionContainer = childs.FirstOrDefault(x => x.Name == regionName);
-
-            if (regionContainer == null)
-            {
-                throw new ArgumentNullException(nameof(regionName), regionName);
-            }
-
-            // Register region if not registered already
-            ArgumentNullException.ThrowIfNull(regionContainer.Name);
-            uiWindow.CreateUiRegion(regionContainer.Name);
-            
-        }
 
         return uiWindow;
     }
@@ -132,5 +105,43 @@ public class AvaloniaRegionManager : RegionManagerBase
         });
 
         return uiWindow;
+    }
+
+    /// <summary>
+    /// Find the regions for an existing window instance
+    /// </summary>
+    /// <param name="window">Window</param>
+    /// <param name="wwd"></param>
+    public override void FindRegions(IUiWindow window, UiWindowDefinition wwd)
+    {
+        if (window is not Window w)
+        {
+            throw new ArgumentException($"window must be of type Window but was {window.GetType().Name}");
+        }
+
+        var childs = AvaloniaReactiveUiHelper.FindChildren<RoutedViewHost>(w);
+
+        ArgumentNullException.ThrowIfNull(childs, $"No region childs defined for {w.GetType().Name}");
+
+        if (window.UiRegions.Count != 0)
+        {
+            return;
+        }
+
+        // Now register the regions for the window
+        foreach (var regionName in wwd.Regions)
+        {
+            var regionContainer = childs.FirstOrDefault(x => x.Name == regionName);
+
+            if (regionContainer == null)
+            {
+                throw new ArgumentNullException(nameof(regionName), regionName);
+            }
+
+            // Register region if not registered already
+            ArgumentNullException.ThrowIfNull(regionContainer.Name);
+            window.CreateUiRegion(regionContainer.Name);
+
+        }
     }
 }

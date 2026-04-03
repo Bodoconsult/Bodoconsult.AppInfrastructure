@@ -214,6 +214,22 @@ public abstract class RegionManagerBase : IRegionManager
 
         ArgumentNullException.ThrowIfNull(uiWindow);
 
+        uiWindow.LoadRegionManager(this);
+
+        // Now find the regions
+        FindRegions(uiWindow, wwd);
+
         return uiWindow;
+    }
+
+
+    /// <summary>
+    /// Find the regions for an existing window instance
+    /// </summary>
+    /// <param name="window">Window</param>
+    /// <param name="wwd">UI window definition</param>
+    public virtual void FindRegions(IUiWindow window, UiWindowDefinition wwd)
+    {
+        throw new NotSupportedException();
     }
 }

@@ -7,6 +7,7 @@ using Bodoconsult.App.Wpf.Helpers;
 using ReactiveUI;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Windows;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 
@@ -48,39 +49,12 @@ public class WpfRegionManager : RegionManagerBase
             window.Name = window.ViewModel?.InstanceName;
         }
 
-        // Find regions in the window
-        var childs = WpfHelper.FindVisualChildren<RoutedViewHost>(window).ToList();
-
-        if (childs == null || childs.Count == 0)
-        {
-            // ReSharper disable once LocalizableElement
-            throw new ArgumentNullException(nameof(childs), $"No region childs defined for {type.Name}");
-        }
-
         // Now register the window
         var uiWindow = RegisterWindowInstances(window);
         window.Closed += uiWindow.Dispose;
 
-        if (window.UiRegions.Count != 0)
-        {
-            return uiWindow;
-        }
-
-
-        // Now register the regions for the window
-        foreach (var regionName in wwd.Regions)
-        {
-            var regionContainer = childs.FirstOrDefault(x => x.Name == regionName);
-
-            if (regionContainer == null)
-            {
-                throw new ArgumentNullException(nameof(regionName), regionName);
-            }
-
-            // Register region if not registered already
-            uiWindow.CreateUiRegion(regionContainer.Name);
-            
-        }
+        // Find the regions now
+        FindRegions(uiWindow, wwd);
 
         return uiWindow;
     }
@@ -103,7 +77,7 @@ public class WpfRegionManager : RegionManagerBase
         {
             throw new ArgumentException($"View {uiWindow.GetType().Name} is not a ReactiveWindow instance as expected");
         }
-
+        
         reactiveWindow.ViewModel = windowViewModel;
         reactiveWindow.Focus();
         reactiveWindow.Show();
@@ -129,5 +103,43 @@ public class WpfRegionManager : RegionManagerBase
         });
 
         return uiWindow;
+    }
+
+    /// <summary>
+    /// Find the regions for an existing window instance
+    /// </summary>
+    /// <param name="window">Window</param>
+    /// <param name="wwd">UI window definition</param>
+    public override void FindRegions(IUiWindow window, UiWindowDefinition wwd)
+    {
+        if (window is not Window w)
+        {
+            throw new ArgumentException($"window must be of type Window but was {window.GetType().Name}");
+        }
+
+        var childs = WpfHelper.FindVisualChildren<RoutedViewHost>(w).ToList();
+
+        ArgumentNullException.ThrowIfNull(childs, $"No region childs defined for {w.GetType().Name}");
+
+        if (window.UiRegions.Count != 0)
+        {
+            return;
+        }
+
+        // Now register the regions for the window
+        foreach (var regionName in wwd.Regions)
+        {
+            var regionContainer = childs.FirstOrDefault(x => x.Name == regionName);
+
+            if (regionContainer == null)
+            {
+                throw new ArgumentNullException(nameof(regionName), regionName);
+            }
+
+            // Register region if not registered already
+            ArgumentNullException.ThrowIfNull(regionContainer.Name);
+            window.CreateUiRegion(regionContainer.Name);
+
+        }
     }
 }
