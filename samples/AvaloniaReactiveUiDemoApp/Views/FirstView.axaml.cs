@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
-using Avalonia.ReactiveUI;
 using AvaloniaReactiveUiDemoApp.ViewModels;
 using ReactiveUI;
+using ReactiveUI.Avalonia;
 
 namespace AvaloniaReactiveUiDemoApp.Views;
 

@@ -75,7 +75,7 @@
 	  </EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ReactiveUI.Avalonia" Version="*" />
+		<PackageReference Include="ReactiveUI.Avalonia" Version="11.4.12" />
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
 		<PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />
 	</ItemGroup>

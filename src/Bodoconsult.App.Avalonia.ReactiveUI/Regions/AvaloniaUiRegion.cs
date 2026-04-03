@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Avalonia.ReactiveUI;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
+using ReactiveUI.Avalonia;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 

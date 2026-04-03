@@ -107,32 +107,32 @@ public partial class App : Application
         // Prepare the DI container package
         builder.LoadDiContainerServiceProviderPackage();
         builder.RegisterDiServices();
-        builder.FinalizeDiContainerSetup();
+        // builder.FinalizeDiContainerSetup(); Do not run here
 
-        // Create the viewmodel now
-        MainWindowViewModel = builder.CreateViewModel();
-        MainWindowViewModel.HeaderBackColor = TypoColors.DarkBlue;
-        MainWindowViewModel.BodyBackColor = TypoColors.Beige;
-        MainWindowViewModel.AppExe = param.AppExe;
+        //// Create the viewmodel now
+        //MainWindowViewModel = builder.CreateViewModel();
+        //MainWindowViewModel.HeaderBackColor = TypoColors.DarkBlue;
+        //MainWindowViewModel.BodyBackColor = TypoColors.Beige;
+        //MainWindowViewModel.AppExe = param.AppExe;
 
-        //var eventLevel = EventLevel.Warning;
-        //var listener = new AppEventListener(eventLevel);
-
-
-
-        //MainWindowViewModel = new AvaloniaApp1MainWindowViewModel(listener)
-        //{
-        //    HeaderBackColor = Colors.DarkBlue,
-        //    BodyBackColor = Colors.Beige,
-        //    AppExe = param.AppExe
-        //};
+        ////var eventLevel = EventLevel.Warning;
+        ////var listener = new AppEventListener(eventLevel);
 
 
 
-        DataContext = MainWindowViewModel;
+        ////MainWindowViewModel = new AvaloniaApp1MainWindowViewModel(listener)
+        ////{
+        ////    HeaderBackColor = Colors.DarkBlue,
+        ////    BodyBackColor = Colors.Beige,
+        ////    AppExe = param.AppExe
+        ////};
 
-        // Load the logo now
-        MainWindowViewModel.LoadLogo(type.Assembly, param.LogoRessourcePath);
+
+
+        //DataContext = MainWindowViewModel;
+
+        //// Load the logo now
+        //MainWindowViewModel.LoadLogo(type.Assembly, param.LogoRessourcePath);
 
         // Now finally start the app and wait
         builder.StartApplication();

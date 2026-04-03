@@ -7,9 +7,9 @@ using ReactiveUI;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using Avalonia.ReactiveUI;
 using Bodoconsult.App.ReactiveUI.Regions;
 using AvaloniaReactiveUiDemoApp.ViewModels;
+using ReactiveUI.Avalonia;
 
 namespace AvaloniaReactiveUiDemoApp.Views;
 

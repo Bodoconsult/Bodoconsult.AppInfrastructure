@@ -74,6 +74,8 @@ namespace Bodoconsult.App;
         var executable = new FileInfo(s);
 
         var currentDir = executable.DirectoryName;
+        ArgumentNullException.ThrowIfNull(currentDir);
+
         param.AppPath = currentDir;
         param.AppExe = executable.Name.Replace(".dll", ".exe");
         param.ConfigFile = Path.Combine(currentDir, "appsettings.json");

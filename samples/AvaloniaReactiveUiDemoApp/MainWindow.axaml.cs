@@ -8,15 +8,14 @@ using ReactiveUI;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using Avalonia.ReactiveUI;
 using Bodoconsult.App.Avalonia.ReactiveUI.Converters;
 using AvaloniaReactiveUiDemoApp.ViewModels;
+using ReactiveUI.Avalonia;
 
 namespace AvaloniaReactiveUiDemoApp;
 
 public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWindowViewModel>, IUiWindow
 {
-
     private AvaloniaUiMenuBuilder? _menuBuilder;
     private MenuControlViewModel? _menuControlViewModel;
 

@@ -7,6 +7,7 @@ using Bodoconsult.App.Avalonia.ReactiveUI.AppStarter;
 using Bodoconsult.App.ReactiveUI.DependecyResolvers;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
+using ReactiveUI.Avalonia;
 using ReactiveUI.Builder;
 using Splat;
 
@@ -45,6 +46,7 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
         var dpr = new MicrosoftDependencyResolver(AppGlobals.DiContainer.ServiceCollection);
 
         var appB = dpr.CreateReactiveUIBuilder(); // Register Avalonia platform services
+        appB.WithAvalonia();
 
         // View location
         appB.ConfigureViewLocator(LoadViewLocation);
