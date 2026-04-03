@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.Reflection;
 using System.Windows;

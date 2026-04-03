@@ -18,5 +18,11 @@ internal sealed class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
-            .LogToTrace();
+            .LogToTrace()
+            //.UseReactiveUI(rxui =>
+            //{
+            //    // Optional: add custom registration here via rxui.WithRegistration(...)
+            //})
+        ;
+
 }

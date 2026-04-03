@@ -7,10 +7,6 @@ using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Helpers;
 using System.Diagnostics;
-using System.Windows;
-using Avalonia.Media;
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Avalonia.Interfaces;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 
 namespace AvaloniaReactiveUiDemoApp;
@@ -37,10 +33,7 @@ public partial class App : Application
             //// Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             //// More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             //DisableAvaloniaDataAnnotationValidation();
-            //desktop.MainWindow = new MainWindow
-            //{
-            //    DataContext = new MainWindowViewModel(),
-            //};
+            //desktop.MainWindow = new MainWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
@@ -49,17 +42,17 @@ public partial class App : Application
 
         Debug.Print("Hello, World!");
 
-        Console.WriteLine("AvaloniaApp1 initiation starts...");
+        Console.WriteLine("AvaloniaReactiveUiDemoApp initiation starts...");
 
         var globals = Globals.Instance;
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
 
         // Set additional app start parameters as required
         var param = globals.AppStartParameter;
-        param.AppName = "AvaloniaApp1: Demo app";
+        param.AppName = "AvaloniaReactiveUiDemoApp: Demo app";
         param.SoftwareTeam = "Robert Leisner";
-        param.LogoRessourcePath = "AvaloniaApp1.Resources.logo.jpg";
-        param.AppFolderName = "AvaloniaApp1";
+        param.LogoRessourcePath = "AvaloniaReactiveUiDemoApp.Resources.logo.jpg";
+        param.AppFolderName = "AvaloniaReactiveUiDemoApp";
 
         const string performanceToken = "--PERF";
 
@@ -109,34 +102,7 @@ public partial class App : Application
         builder.RegisterDiServices();
         // builder.FinalizeDiContainerSetup(); Do not run here
 
-        //// Create the viewmodel now
-        //MainWindowViewModel = builder.CreateViewModel();
-        //MainWindowViewModel.HeaderBackColor = TypoColors.DarkBlue;
-        //MainWindowViewModel.BodyBackColor = TypoColors.Beige;
-        //MainWindowViewModel.AppExe = param.AppExe;
-
-        ////var eventLevel = EventLevel.Warning;
-        ////var listener = new AppEventListener(eventLevel);
-
-
-
-        ////MainWindowViewModel = new AvaloniaApp1MainWindowViewModel(listener)
-        ////{
-        ////    HeaderBackColor = Colors.DarkBlue,
-        ////    BodyBackColor = Colors.Beige,
-        ////    AppExe = param.AppExe
-        ////};
-
-
-
-        //DataContext = MainWindowViewModel;
-
-        //// Load the logo now
-        //MainWindowViewModel.LoadLogo(type.Assembly, param.LogoRessourcePath);
-
         // Now finally start the app and wait
         builder.StartApplication();
-
-        //base.OnStartup(e);
     }
 }

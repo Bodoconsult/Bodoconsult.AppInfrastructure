@@ -3,7 +3,6 @@
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
 using System.Collections.Concurrent;
-using System.Runtime.Serialization;
 
 namespace Bodoconsult.App.ReactiveUI.Regions;
 

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Interfaces;
-using System.Numerics;
 
 namespace Bodoconsult.App.ClientNotifications;
 

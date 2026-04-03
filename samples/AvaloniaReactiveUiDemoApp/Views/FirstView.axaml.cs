@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using AvaloniaReactiveUiDemoApp.ViewModels;
+﻿using AvaloniaReactiveUiDemoApp.ViewModels;
 using ReactiveUI;
 using ReactiveUI.Avalonia;
 

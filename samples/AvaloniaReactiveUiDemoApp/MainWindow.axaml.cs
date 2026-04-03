@@ -1,4 +1,6 @@
-﻿using Bodoconsult.App.ReactiveUI.Extensions;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Avalonia.ReactiveUI.Menus;
@@ -55,8 +57,8 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
 
         // Now build the menu
         viewModel.DefineMenuItems();
-        
-        _menuBuilder =  new AvaloniaUiMenuBuilder(viewModel.TranslationService);
+
+        _menuBuilder = new AvaloniaUiMenuBuilder(viewModel.TranslationService);
         viewModel.MenuBuilder = _menuBuilder;
         _menuControlViewModel.LoadMenuBuilder(_menuBuilder);
         viewModel.BuildIt();
@@ -70,8 +72,8 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
         ArgumentNullException.ThrowIfNull(DocumentRegion.Name);
         ArgumentNullException.ThrowIfNull(MenuRegion.Name);
 
-        viewModel.Region1=window.FindRegion(DocumentRegion.Name);
-        viewModel.Region2=window.FindRegion(MenuRegion.Name);
+        viewModel.Region1 = window.FindRegion(DocumentRegion.Name);
+        viewModel.Region2 = window.FindRegion(MenuRegion.Name);
 
         ArgumentNullException.ThrowIfNull(viewModel.Region1);
         ArgumentNullException.ThrowIfNull(viewModel.Region2);

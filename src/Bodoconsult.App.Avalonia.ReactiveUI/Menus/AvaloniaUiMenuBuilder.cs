@@ -66,17 +66,17 @@ public class AvaloniaUiMenuBuilder : UiMenuBuilderBase
 
         };
 
-        if (!string.IsNullOrEmpty(item.StyleName))
-        {
-            menuItem.Classes.Add(item.StyleName); 
-        }
+        //if (!string.IsNullOrEmpty(item.StyleName))
+        //{
+        //    menuItem.Classes.Add(item.StyleName); 
+        //}
 
         if (item.CommandDefinition != null)
         {
             menuItem.Command = ReactiveCommand.CreateFromObservable(item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
         }
 
-        MenuItemsInternal.Add(menuItem);
+        //MenuItemsInternal.Add(menuItem);
 
         if (parentItem is not { ParentObject: not null })
         {
@@ -103,10 +103,10 @@ public class AvaloniaUiMenuBuilder : UiMenuBuilderBase
         };
         item.ParentObject =  menuItem;
 
-        if (!string.IsNullOrEmpty(item.StyleName))
-        {
-            menuItem.Classes.Add(item.StyleName);
-        }
+        //if (!string.IsNullOrEmpty(item.StyleName))
+        //{
+        //    menuItem.Classes.Add(item.StyleName);
+        //}
 
         MenuItemsInternal.Add(menuItem);
 
@@ -125,16 +125,16 @@ public class AvaloniaUiMenuBuilder : UiMenuBuilderBase
     /// <param name="parentItem">Parent item or null</param>
     public override void BuildSeparatorUiMenuItem(SeparatorUiMenuItem item, GroupUiMenuItem? parentItem)
     {
-        var menuItem = new Separator()
+        var menuItem = new Separator
         {
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center,
         };
 
-        if (!string.IsNullOrEmpty(item.StyleName))
-        {
-            menuItem.Classes.Add(item.StyleName);
-        }
+        //if (!string.IsNullOrEmpty(item.StyleName))
+        //{
+        //    menuItem.Classes.Add(item.StyleName);
+        //}
 
         MenuItemsInternal.Add(menuItem);
 

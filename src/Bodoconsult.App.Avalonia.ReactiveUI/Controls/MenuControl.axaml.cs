@@ -6,6 +6,8 @@ using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Controls;
 
+// https://medium.com/@adamciszewski/avalonia-user-vs-templated-control-code-examples-b05301baf3c0
+
 /// <summary>
 /// Menu control
 /// </summary>
@@ -26,6 +28,7 @@ public partial class MenuControl : UserControl
             MenuBuiltDelegate = MenuBuiltDelegate
         };
         DataContext = _viewModel;
+        IsVisible = true;
 
         //Initialize();
     }
@@ -49,6 +52,7 @@ public partial class MenuControl : UserControl
             }
 
             LocalMenu.IsVisible = true;
+
         }, DispatcherPriority.Normal, cts.Token);
     }
 

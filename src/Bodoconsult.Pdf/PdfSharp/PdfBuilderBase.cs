@@ -19,7 +19,6 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using DataTableExtensions = Bodoconsult.Pdf.Extensions.DataTableExtensions;
 
 // https://www.pdfsharp.net/wiki-1.5/Print.aspx?Page=Watermark-sample

@@ -7,7 +7,6 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 using AvaloniaReactiveUiDemoApp.AppData;
 using AvaloniaReactiveUiDemoApp.ViewModels;
-using AvaloniaReactiveUiDemoApp.Views;
 
 namespace AvaloniaReactiveUiDemoApp.DiContainerProvider;
 
@@ -30,7 +29,7 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         // Regions manager with all window types loaded with regions
         var rm = new AvaloniaRegionManager();
         rm.RegisterWindow<MainWindow, AvaloniaReactiveUiDemoAppMainWindowViewModel>(["DocumentRegion", "MenuRegion"], null);
-        rm.RegisterWindow<Window1, Window1ViewModel>(["DocumentRegion", "MenuRegion"], () => new Window1());
+        rm.RegisterWindow<Views.Window1, Window1ViewModel>(["DocumentRegion", "MenuRegion"], () => new Views.Window1());
 
         diContainer.AddSingleton<IRegionManager>(rm);
 

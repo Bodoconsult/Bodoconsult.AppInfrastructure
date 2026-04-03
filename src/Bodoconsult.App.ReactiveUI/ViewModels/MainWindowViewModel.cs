@@ -10,7 +10,6 @@ using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.Reflection;
 using DynamicData;
@@ -591,6 +590,6 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
 
         MenuBuilder.Clear();
         MenuBuilder.AddRange(MenuItems);
-        MenuBuilder?.BuildIt();
+        MenuBuilder.BuildIt();
     }
 }
