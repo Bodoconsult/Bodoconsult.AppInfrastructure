@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BusinessTransactions;
 
 namespace Bodoconsult.App.Interfaces;

@@ -23,7 +23,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.GrpcBackgroundService.Interfaces;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.App.Interfaces;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
 using Google.Protobuf.WellKnownTypes;

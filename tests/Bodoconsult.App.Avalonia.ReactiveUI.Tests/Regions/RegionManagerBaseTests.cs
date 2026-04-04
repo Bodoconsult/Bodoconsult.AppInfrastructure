@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.ReactiveUI.Tests.Menus;
 using Bodoconsult.App.ReactiveUI.Tests.TestData;
 

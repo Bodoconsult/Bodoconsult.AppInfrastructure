@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Helpers;
-using Bodoconsult.App.Interfaces;
+using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.App.Test.HelperTests;
 

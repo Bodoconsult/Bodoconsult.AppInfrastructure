@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
-using Avalonia.VisualTree;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Helper;
 

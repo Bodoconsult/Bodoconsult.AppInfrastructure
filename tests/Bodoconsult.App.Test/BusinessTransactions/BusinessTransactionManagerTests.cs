@@ -3,7 +3,6 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BusinessTransactions;
 using Bodoconsult.App.BusinessTransactions.RequestData;
-using Bodoconsult.App.Interfaces;
 using Bodoconsult.App.Test.Helpers;
 using Bodoconsult.App.Test.SampleBusinessLogic;
 using Bodoconsult.App.Test.TestData;

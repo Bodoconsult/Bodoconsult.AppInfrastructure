@@ -9,7 +9,6 @@ using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 using Bodoconsult.App.Wpf.ReactiveUI.Converters;
-using ReactiveUI.SourceGenerators;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp;

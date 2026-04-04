@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 // Licence MIT
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.Interfaces;
 

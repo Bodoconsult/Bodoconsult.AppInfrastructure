@@ -46,7 +46,6 @@ public class IUiWindowExtensionsTests
             Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
             Assert.That(rmb.Windows.Count, Is.EqualTo(1));
             Assert.That(rmb.Regions.Count, Is.EqualTo(1));
-
         }
     }
 }

@@ -2,7 +2,6 @@
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
-using ReactiveUI.SourceGenerators;
 
 namespace Bodoconsult.App.ReactiveUI.Tests.Menus;
 

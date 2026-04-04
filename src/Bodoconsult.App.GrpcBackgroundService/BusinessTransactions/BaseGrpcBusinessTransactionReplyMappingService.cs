@@ -22,7 +22,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.GrpcBackgroundService.Interfaces;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.App.Interfaces;
 using Google.Protobuf.WellKnownTypes;
 
 namespace Bodoconsult.App.GrpcBackgroundService.BusinessTransactions;

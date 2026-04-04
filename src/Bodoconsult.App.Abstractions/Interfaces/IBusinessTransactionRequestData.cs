@@ -2,7 +2,7 @@
 
 using Bodoconsult.App.Abstractions.Benchmarking;
 
-namespace Bodoconsult.App.Interfaces;
+namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
 /// Interface for defining minimum requirements for business transaction request data

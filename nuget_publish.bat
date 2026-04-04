@@ -5,6 +5,15 @@ dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.snupkg --sourc
 dotnet nuget push packages\Bodoconsult.App.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.%version%.snupkg --source https://api.nuget.org/v3/index.json
 
+dotnet nuget push packages\Bodoconsult.App.ReactiveUi.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.App.ReactiveUi.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+dotnet nuget push packages\Bodoconsult.App.Avalonia.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.App.Avalonia.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+dotnet nuget push packages\Bodoconsult.App.Avalonia.ReactiveUi.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.App.Avalonia.ReactiveUi.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
 dotnet nuget push packages\Bodoconsult.App.WinForms.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.WinForms.%version%.snupkg --source https://api.nuget.org/v3/index.json
 
@@ -19,6 +28,9 @@ dotnet nuget push packages\Bodoconsult.App.Windows.%version%.snupkg --source htt
 
 dotnet nuget push packages\Bodoconsult.App.Wpf.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.Wpf.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+dotnet nuget push packages\Bodoconsult.App.Wpf.ReactiveUi.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.App.Wpf.ReactiveUi.%version%.snupkg --source https://api.nuget.org/v3/index.json
 
 dotnet nuget push packages\Bodoconsult.App.Wpf.Documents.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.Wpf.Documents.%version%.snupkg --source https://api.nuget.org/v3/index.json

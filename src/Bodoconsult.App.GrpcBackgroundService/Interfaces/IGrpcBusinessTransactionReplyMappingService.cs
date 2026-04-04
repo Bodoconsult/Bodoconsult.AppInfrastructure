@@ -18,7 +18,7 @@
 
 #endregion
 
-using Bodoconsult.App.Interfaces;
+using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.App.GrpcBackgroundService.Interfaces;
 

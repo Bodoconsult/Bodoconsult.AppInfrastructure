@@ -18,7 +18,7 @@
 
 #endregion
 
-using Bodoconsult.App.Interfaces;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Google.Protobuf;
 using Grpc.Core;
 

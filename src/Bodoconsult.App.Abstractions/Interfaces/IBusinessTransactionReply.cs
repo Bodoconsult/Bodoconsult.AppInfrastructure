@@ -1,20 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Abstractions.Interfaces;
-
-namespace Bodoconsult.App.Interfaces;
+namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
 /// Basic content of a business transaction reply
 /// </summary>
 public interface IBusinessTransactionReply: IClientNotification
 {
-
     /// <summary>
     /// The current request data
     /// </summary>
     public IBusinessTransactionRequestData RequestData { get; set; }
-
 
     /// <summary>
     /// Current error code. Default is 0 for no error happened
