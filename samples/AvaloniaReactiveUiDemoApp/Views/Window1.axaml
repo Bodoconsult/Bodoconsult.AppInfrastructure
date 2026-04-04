@@ -10,16 +10,8 @@
                            mc:Ignorable="d"
                            Title="Window1" Height="450" Width="800">
 
-    <controls:Grid>
-        <controls:Grid.RowDefinitions>
-            <controls:RowDefinition Height="*" />
-            <controls:RowDefinition Height="Auto" />
-        </controls:Grid.RowDefinitions>
-        <controls:Grid controls:Grid.Row="0" >
-            <controls:Grid.ColumnDefinitions>
-                <controls:ColumnDefinition Width="50*"></controls:ColumnDefinition>
-                <controls:ColumnDefinition Width="50*"></controls:ColumnDefinition>
-            </controls:Grid.ColumnDefinitions>
+    <controls:Grid RowDefinitions="*,Auto">
+        <controls:Grid controls:Grid.Row="0" ColumnDefinitions="50*,50*">
             <reactiveUi:RoutedViewHost controls:Grid.Column="0" x:Name="MenuRegion"
                                        HorizontalContentAlignment="Stretch"
                                        VerticalContentAlignment="Stretch" />
@@ -27,7 +19,6 @@
                                        HorizontalContentAlignment="Stretch"
                                        VerticalContentAlignment="Stretch" />
         </controls:Grid>
-
 
         <controls:StackPanel controls:Grid.Row="1" Orientation="Horizontal" Margin="15">
             <controls:Button x:Name="GoNextButton" Content="Go to first" />

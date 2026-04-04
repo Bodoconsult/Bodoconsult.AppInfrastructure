@@ -84,6 +84,11 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
     }
 
     /// <summary>
+    /// Window instance name
+    /// </summary>
+    public string? InstanceName { get; set; }
+
+    /// <summary>
     /// Current region manager
     /// </summary>
     public IRegionManager? RegionManager { get; set; }

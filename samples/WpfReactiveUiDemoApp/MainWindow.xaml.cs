@@ -96,6 +96,11 @@ public partial class MainWindow : IUiWindow
     }
 
     /// <summary>
+    /// Window instance name
+    /// </summary>
+    public string? InstanceName { get; set; }
+
+    /// <summary>
     /// Current region manager
     /// </summary>
     public IRegionManager? RegionManager { get; private set; }

@@ -11,9 +11,9 @@ namespace Bodoconsult.App.ReactiveUI.Interfaces;
 public interface IUiWindow
 {
     /// <summary>
-    /// Window name
+    /// Window instance name
     /// </summary>
-    string? Name { get; set; }
+    string? InstanceName { get; set; }
 
     /// <summary>
     /// Current region manager

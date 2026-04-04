@@ -18,12 +18,14 @@ public static class IUiWindowExtensions
     /// <returns>Newly created <see cref="UiRegion"/> instance</returns>
     public static UiRegion? CreateUiRegion(this IUiWindow window, string regionName)
     {
-        if (window.RegionManager == null)
-        {
-            throw new ArgumentNullException(nameof(window.RegionManager));
-        }
 
-        if (window.UiRegions.Any(x => x.RegionName == $"{window.Name}.{regionName}"))
+        ArgumentNullException.ThrowIfNull(window.RegionManager);
+        //if (window.RegionManager == null)
+        //{
+        //    throw new ArgumentNullException(nameof(window.RegionManager));
+        //}
+
+        if (window.UiRegions.Any(x => x.RegionName == $"{window.InstanceName}.{regionName}"))
         {
             return null;
         }
@@ -42,6 +44,6 @@ public static class IUiWindowExtensions
     /// <returns>Region or null if no region with the requested name was found</returns>
     public static UiRegion? FindRegion(this IUiWindow window, string regionName)
     {
-        return window.UiRegions.FirstOrDefault(x => x.RegionName == $"{window.Name}.{regionName}");
+        return window.UiRegions.FirstOrDefault(x => x.RegionName == $"{window.InstanceName}.{regionName}");
     }
 }

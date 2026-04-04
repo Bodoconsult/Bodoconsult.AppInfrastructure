@@ -71,7 +71,10 @@ public abstract class RegionManagerBase : IRegionManager
     /// <param name="region">Region to register</param>
     public void RegisterRegion(UiRegion region)
     {
-        Regions.Add(region.RegionName, region);
+        if (!Regions.TryAdd(region.RegionName, region))
+        {
+            throw new ArgumentException($"Window type {region.RegionName} is already registered");
+        }
     }
 
     ///// <summary>
@@ -109,26 +112,23 @@ public abstract class RegionManagerBase : IRegionManager
         region.Router.Navigate.Execute(viewModel);
     }
 
+
     /// <summary>
     /// Register a window instance
     /// </summary>
     /// <param name="window">Window to register</param>
+    /// <param name="instanceName">The name of the window instance</param>
     /// <returns>The registered window</returns>
-    public IUiWindow RegisterWindowInstances(IUiWindow window)
+    public IUiWindow RegisterWindowInstances(IUiWindow window, string instanceName)
     {
-        ArgumentNullException.ThrowIfNull(window.Name);
+        window.InstanceName = instanceName;
 
-        if (Windows.ContainsKey(window.Name))
+        if (Windows.ContainsKey(instanceName) || Windows.TryAdd(instanceName, window))
         {
             return window;
         }
 
-        if (!Windows.TryAdd(window.Name, window))
-        {
-            throw new ArgumentException($"Window name {window.Name} already exists!");
-        }
-
-        return window;
+        throw new ArgumentException($"Window name {instanceName} already exists!");
     }
 
     /// <summary>
@@ -137,8 +137,6 @@ public abstract class RegionManagerBase : IRegionManager
     /// <param name="uiWindow"></param>
     public void Dispose(IUiWindow uiWindow)
     {
-        ArgumentNullException.ThrowIfNull(uiWindow.Name);
-
         var regionsToDelete = Regions.Where(x => x.Value.UiWindow == uiWindow).ToList();
 
         foreach (var region in regionsToDelete)
@@ -149,9 +147,11 @@ public abstract class RegionManagerBase : IRegionManager
             }
         }
 
-        if (Windows.ContainsKey(uiWindow.Name) && !Windows.Remove(uiWindow.Name))
+        var instance = Windows.ToList().FirstOrDefault(x => x.Value == uiWindow);
+
+        if (Windows.ContainsValue(uiWindow) && !Windows.Remove(instance.Key))
         {
-            throw new ArgumentException($"Window {uiWindow.Name} could NOT be deleted!");
+            throw new ArgumentException($"Window {uiWindow.InstanceName} could NOT be deleted!");
         }
     }
 
@@ -209,6 +209,7 @@ public abstract class RegionManagerBase : IRegionManager
             {
                 // Create the window now
                 uiWindow = wwd.Factory.Invoke();
+                uiWindow.InstanceName = instanceName;
             }
         }
 

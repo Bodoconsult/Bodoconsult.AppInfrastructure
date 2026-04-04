@@ -126,10 +126,6 @@ public static class WpfHelper
 #pragma warning restore 1591
     }
 
-
-
-
-
     /// <summary>
     /// Get WPF color from System.Drawing color
     /// </summary>
@@ -182,7 +178,6 @@ public static class WpfHelper
         }
     }
 
-
     /// <summary>
     /// Find a resource in a ressource dictionary
     /// </summary>
@@ -203,13 +198,12 @@ public static class WpfHelper
         }
         catch
         {
-            return default(T);
+            return default;
         }
     }
 
-
     /// <summary>
-    /// Find a resource in a the current application
+    /// Find a resource in the current application
     /// </summary>
     /// <param name="ressourceName">name of the requested ressource</param>
     /// <returns>resource object</returns>
@@ -217,8 +211,6 @@ public static class WpfHelper
     {
         try
         {
-
-
             return Application.Current.Resources[ressourceName];
         }
         catch
@@ -241,10 +233,9 @@ public static class WpfHelper
         }
         catch
         {
-            return default(T);
+            return default;
         }
     }
-
 
     /// <summary>
     /// Dump the visual tree to debug window
@@ -258,7 +249,7 @@ public static class WpfHelper
 
         Trace.WriteLine($"{string.Empty.PadLeft(level)}{typeName}: {name}");
 
-        if (parent == null) return;
+        //if (parent == null) return;
 
         for (var i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
         {
@@ -275,7 +266,7 @@ public static class WpfHelper
     public static void DumpLogicalTree(object parent, int level)
     {
         var typeName = parent.GetType().Name;
-        string name = null;
+        string name;
         var doParent = parent as DependencyObject;
         // Not everything in the logical tree is a dependency object
         if (doParent != null)
@@ -344,7 +335,6 @@ public static class WpfHelper
         return rtb;
     }
 
-
     /// <summary>
     /// Renders a canvas into a memory stream
     /// </summary>
@@ -400,15 +390,11 @@ public static class WpfHelper
 
             // Restore previously saved layout
             canvas.LayoutTransform = transform;
-
-
-
         });
 
         return stream;
 
     }
-
 
     /// <summary>
     /// 
@@ -420,26 +406,22 @@ public static class WpfHelper
     /// <param name="format"></param>
     public static void RenderCanvasToFile(Canvas canvas, int width, int height, string path, ImageFormat format)
     {
+        ArgumentNullException.ThrowIfNull(path);
 
         //Matrix transform = PresentationSource.FromVisual(canvas).CompositionTarget.TransformToDevice;
         //var stream = RenderCanvasToImageStream(canvas, (int)(width * transform.M11), (int)(height * transform.M22), format);
 
         var stream = RenderCanvasToImageStream(canvas, width, height, format);
 
-
         if (File.Exists(path))
         {
             File.Delete(path);
         }
 
-        using (var fstream = File.OpenWrite(path))
-        {
-            stream.WriteTo(fstream);
-            fstream.Flush();
-            fstream.Close();
-        }
-
-
+        using var fstream = File.OpenWrite(path);
+        stream.WriteTo(fstream);
+        fstream.Flush();
+        fstream.Close();
     }
 
     /// <summary>
@@ -458,6 +440,8 @@ public static class WpfHelper
     /// <param name="fileName">Path to the XAML to</param>
     public static void SaveElementAsXamlFile(FrameworkElement element, string fileName)
     {
+        ArgumentNullException.ThrowIfNull(fileName);
+
         var xamlString = XamlWriter.Save(element);
 
         if (File.Exists(fileName))
@@ -465,12 +449,9 @@ public static class WpfHelper
             File.Delete(fileName);
         }
 
-        using (var sr = new StreamWriter(fileName, false, Encoding.UTF8))
-        {
-            sr.Write(xamlString);
-        }
+        using var sr = new StreamWriter(fileName, false, Encoding.UTF8);
+        sr.Write(xamlString);
     }
-
 
     /// <summary>
     /// Load an WPF element from a XAML file
@@ -499,7 +480,6 @@ public static class WpfHelper
         return erg;
     }
 
-
     /// <summary>
     /// Print a visual
     /// </summary>
@@ -520,8 +500,6 @@ public static class WpfHelper
         dlg.PrintVisual(visual, message);
     }
 
-
-
     // http://www.hardcodet.net/2008/02/find-wpf-parent
 
     /// <summary>
@@ -539,21 +517,15 @@ public static class WpfHelper
         //get parent item
         var parentObject = GetParentObject(child);
 
-        //we've reached the end of the tree
-        if (parentObject == null)
+        return parentObject switch
         {
-            return null;
-        }
-
-        //check if the parent matches the type we're looking for
-        var parent = parentObject as T;
-        if (parent != null)
-        {
-            return parent;
-        }
-
-        //use recursion to proceed with next level
-        return TryFindParent<T>(parentObject);
+            //we've reached the end of the tree
+            null => null,
+            //check if the parent matches the type we're looking for
+            T parent => parent,
+            //use recursion to proceed with next level
+            _ => TryFindParent<T>(parentObject)
+        };
     }
 
     /// <summary>
@@ -567,25 +539,25 @@ public static class WpfHelper
     /// null.</returns>
     public static DependencyObject GetParentObject(this DependencyObject child)
     {
-        if (child == null) return null;
-
-        //handle content elements separately
-        var contentElement = child as ContentElement;
-        if (contentElement != null)
+        switch (child)
         {
-            var parent = ContentOperations.GetParent(contentElement);
-            if (parent != null) return parent;
+            case null:
+                return null;
+            //handle content elements separately
+            case ContentElement contentElement:
+                {
+                    var parent = ContentOperations.GetParent(contentElement);
+                    if (parent != null) return parent;
 
-            var fce = contentElement as FrameworkContentElement;
-            return fce != null ? fce.Parent : null;
-        }
-
-        //also try searching for parent in framework elements (such as DockPanel, etc)
-        var frameworkElement = child as FrameworkElement;
-        if (frameworkElement != null)
-        {
-            var parent = frameworkElement.Parent;
-            if (parent != null) return parent;
+                    return contentElement is FrameworkContentElement fce ? fce.Parent : null;
+                }
+            //also try searching for parent in framework elements (such as DockPanel, etc)
+            case FrameworkElement frameworkElement:
+                {
+                    var parent = frameworkElement.Parent;
+                    if (parent != null) return parent;
+                    break;
+                }
         }
 
         //if it's not a ContentElement/FrameworkElement, rely on VisualTreeHelper
@@ -593,29 +565,89 @@ public static class WpfHelper
     }
 
     /// <summary>
-    /// Form: http://stackoverflow.com/questions/974598/find-all-controls-in-wpf-window-by-type
+    /// Find the logical childs of a certain type for an objects 
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="depObj"></param>
-    /// <returns></returns>
-    public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+    /// <typeparam name="T">Requested type</typeparam>
+    /// <param name="depObj">Object to search in</param>
+    /// <returns>List with the found objects</returns>
+    public static List<T> FindLogicalChildren<T>(DependencyObject depObj) where T : DependencyObject
+    {
+        var result = new List<T>();
+
+        FindLogicalChildrenInternal(result, depObj);
+
+        return result;
+    }
+
+    /// <summary>
+    /// Find the logical childs of a certain type for an objects 
+    /// </summary>
+    /// <typeparam name="T">Requested type</typeparam>
+    /// <param name="result">List with the found objects</param>
+    /// <param name="depObj">Object to search in</param>
+    public static void FindLogicalChildrenInternal<T>(List<T> result, DependencyObject depObj) where T : DependencyObject
     {
         if (depObj == null)
         {
-            yield break;
+            return;
         }
 
-        for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+        var childs = LogicalTreeHelper.GetChildren(depObj);
+
+        foreach (var child in childs)
+        {
+            switch (child)
+            {
+                case T dependencyObject:
+                    result.Add(dependencyObject);
+                    break;
+                case DependencyObject depChild:
+                    FindLogicalChildrenInternal(result, depChild);
+                    break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Find the visual childs of a certain type for an objects 
+    /// </summary>
+    /// <typeparam name="T">Requested type</typeparam>
+    /// <param name="depObj">Object to search in</param>
+    /// <returns>List with the found objects</returns>
+    public static List<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+    {
+        var result = new List<T>();
+
+        FindVisualChildrenInternal(result, depObj);
+
+        return result;
+    }
+
+    /// <summary>
+    /// Find the visual childs of a certain type for an objects 
+    /// </summary>
+    /// <typeparam name="T">Requested type</typeparam>
+    /// <param name="result">List with the found objects</param>
+    /// <param name="depObj">Object to search in</param>
+    public static void FindVisualChildrenInternal<T>(List<T> result, DependencyObject depObj) where T : DependencyObject
+    {
+        if (depObj == null)
+        {
+            return;
+        }
+
+        var childCount = VisualTreeHelper.GetChildrenCount(depObj);
+
+        for (var i = 0; i < childCount; i++)
         {
             var child = VisualTreeHelper.GetChild(depObj, i);
             if (child is T dependencyObject)
             {
-                yield return dependencyObject;
+                result.Add(dependencyObject);
             }
-
-            foreach (var childOfChild in FindVisualChildren<T>(child))
+            else
             {
-                yield return childOfChild;
+                FindVisualChildrenInternal(result, child);
             }
         }
     }

@@ -12,6 +12,8 @@ public class IUiWindowExtensionsTests
     public void RegisterRegion_ValidSetupNoFactory_RegionRegistered()
     {
         // Arrange 
+        const string instanceName = "Blubb";
+
         var rmb = new DummyRegionManager();
 
         var regions = new List<string>
@@ -24,7 +26,7 @@ public class IUiWindowExtensionsTests
 
         var window = new DummyUiWindow();
 
-        rmb.RegisterWindowInstances(window);
+        rmb.RegisterWindowInstances(window, instanceName);
 
         // Act
         var region = window.CreateUiRegion(regions[0]);

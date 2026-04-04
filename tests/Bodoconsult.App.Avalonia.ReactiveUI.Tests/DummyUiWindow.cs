@@ -17,6 +17,11 @@ public class DummyUiWindow : IUiWindow
     public string? Name { get; set; } = "Test";
 
     /// <summary>
+    /// Window instance name
+    /// </summary>
+    public string? InstanceName { get; set; } = "Test";
+
+    /// <summary>
     /// Current region manager
     /// </summary>
     public IRegionManager? RegionManager { get; set; }

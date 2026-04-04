@@ -104,6 +104,11 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
     }
 
     /// <summary>
+    /// Window instance name
+    /// </summary>
+    public string? InstanceName { get; set; }
+
+    /// <summary>
     /// Current region manager
     /// </summary>
     public IRegionManager? RegionManager { get; private set; }

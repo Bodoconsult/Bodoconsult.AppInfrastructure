@@ -10,7 +10,7 @@
                                     mc:Ignorable="d" 
                                     d:DesignHeight="450" d:DesignWidth="800">
     <controls:Grid>
-        <controls:TextBox>Hallo</controls:TextBox>
+        <!--<controls:TextBox>Hallo 1</controls:TextBox>-->
         <controls:TextBlock x:Name="PathTextBlock" Foreground="Black" Margin="10" />
     </controls:Grid>
 </reactiveUi:ReactiveUserControl>

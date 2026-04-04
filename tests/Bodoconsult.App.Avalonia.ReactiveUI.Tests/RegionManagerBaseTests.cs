@@ -120,6 +120,7 @@ public class RegionManagerBaseTests
     {
         // Arrange 
         var rmb = new DummyRegionManager();
+        const string instanceName = "Blubb";
 
         var regions = new List<string>
         {
@@ -132,7 +133,7 @@ public class RegionManagerBaseTests
         var window = new DummyUiWindow();
 
         // Act  
-        rmb.RegisterWindowInstances(window);
+        rmb.RegisterWindowInstances(window, instanceName);
 
         // Assert
         Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
@@ -145,6 +146,7 @@ public class RegionManagerBaseTests
     {
         // Arrange 
         var rmb = new DummyRegionManager();
+        const string instanceName = "Blubb";
 
         var regions = new List<string>
         {
@@ -156,7 +158,7 @@ public class RegionManagerBaseTests
 
         var window = new DummyUiWindow();
 
-        rmb.RegisterWindowInstances(window);
+        rmb.RegisterWindowInstances(window, instanceName);
 
         var region = new UiRegion(window, regions[0]);
 

@@ -19,11 +19,7 @@
             <controls1:Button x:Name="GoNewWindowInstance2Button" Content="Go to new window" Margin="5 0 0 0" />
         </controls1:StackPanel>
 
-        <controls1:Grid Background="Red">
-            <controls1:Grid.ColumnDefinitions>
-                <controls1:ColumnDefinition Width="50*"></controls1:ColumnDefinition>
-                <controls1:ColumnDefinition Width="50*"></controls1:ColumnDefinition>
-            </controls1:Grid.ColumnDefinitions>
+        <controls1:Grid Background="Red" ColumnDefinitions="50*,50*">
             <rxui:RoutedViewHost controls1:Grid.Column="0" x:Name="MenuRegion"
                                  HorizontalContentAlignment="Stretch"
                                  VerticalContentAlignment="Stretch" />

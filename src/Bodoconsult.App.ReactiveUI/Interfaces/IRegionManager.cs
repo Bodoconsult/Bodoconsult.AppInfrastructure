@@ -67,8 +67,9 @@ public interface IRegionManager
     /// Register a window instance
     /// </summary>
     /// <param name="window">Window to register</param>
+    /// <param name="instanceName">The name of the window instance</param>
     /// <returns>The registered window</returns>
-    IUiWindow RegisterWindowInstances(IUiWindow window);
+    IUiWindow RegisterWindowInstances(IUiWindow window, string instanceName);
 
     /// <summary>
     /// Dispose the UI window and its regions

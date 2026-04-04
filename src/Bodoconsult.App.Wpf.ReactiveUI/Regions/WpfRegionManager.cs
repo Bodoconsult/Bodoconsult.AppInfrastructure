@@ -37,20 +37,10 @@ public class WpfRegionManager : RegionManagerBase
         }
 
         // Set the instance name for the window now. Must be unique in the RegionManagerBase.Windows dictionary
-        if (string.IsNullOrEmpty(window.ViewModel?.InstanceName))
-        {
-            if (string.IsNullOrEmpty(window.Name))
-            {
-                window.Name = window.GetType().Name;
-            }
-        }
-        else
-        {
-            window.Name = window.ViewModel?.InstanceName;
-        }
+        var instanceName = string.IsNullOrEmpty(window.ViewModel?.InstanceName) ? window.GetType().Name : window.ViewModel?.InstanceName ?? window.GetType().Name;
 
         // Now register the window
-        var uiWindow = RegisterWindowInstances(window);
+        var uiWindow = RegisterWindowInstances(window, instanceName);
         window.Closed += uiWindow.Dispose;
 
         // Find the regions now
@@ -70,7 +60,6 @@ public class WpfRegionManager : RegionManagerBase
     /// <returns><see cref="IUiWindow"/> instance the view is loaded in</returns>
     public override IUiWindow Navigate<TWindowViewModel, TViewModel>(TWindowViewModel windowViewModel, TViewModel viewModel, string regionName)
     {
-
         var uiWindow = base.Navigate(windowViewModel, viewModel, regionName);
 
         if (uiWindow is not ReactiveWindow<TWindowViewModel> reactiveWindow)
@@ -87,10 +76,7 @@ public class WpfRegionManager : RegionManagerBase
         {
             var region = uiWindow.FindRegion(regionName);
 
-            if (region == null)
-            {
-                throw new ArgumentNullException(nameof(region), $"Region {regionName} not found");
-            }
+            ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
             if (viewModel is not IUiRegionViewModel uvm)
             {
@@ -117,7 +103,7 @@ public class WpfRegionManager : RegionManagerBase
             throw new ArgumentException($"window must be of type Window but was {window.GetType().Name}");
         }
 
-        var childs = WpfHelper.FindVisualChildren<RoutedViewHost>(w).ToList();
+        var childs = WpfHelper.FindLogicalChildren<RoutedViewHost>(w).ToList();
 
         ArgumentNullException.ThrowIfNull(childs, $"No region childs defined for {w.GetType().Name}");
 
@@ -131,10 +117,7 @@ public class WpfRegionManager : RegionManagerBase
         {
             var regionContainer = childs.FirstOrDefault(x => x.Name == regionName);
 
-            if (regionContainer == null)
-            {
-                throw new ArgumentNullException(nameof(regionName), regionName);
-            }
+            ArgumentNullException.ThrowIfNull(regionContainer, $"Region {regionName} not found");
 
             // Register region if not registered already
             ArgumentNullException.ThrowIfNull(regionContainer.Name);

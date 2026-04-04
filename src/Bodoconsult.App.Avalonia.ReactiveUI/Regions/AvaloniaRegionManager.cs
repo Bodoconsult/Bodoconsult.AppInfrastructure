@@ -39,24 +39,14 @@ public class AvaloniaRegionManager : RegionManagerBase
         }
 
         // Set the instance name for the window now. Must be unique in the RegionManagerBase.Windows dictionary
-        if (string.IsNullOrEmpty(window.ViewModel?.InstanceName))
-        {
-            if (string.IsNullOrEmpty(window.Name))
-            {
-                window.Name = window.GetType().Name;
-            }
-        }
-        else
-        {
-            window.Name = window.ViewModel?.InstanceName;
-        }
-
-        // Find regions in the window
-        FindRegions(window, wwd);
+        var instanceName = string.IsNullOrEmpty(window.ViewModel?.InstanceName) ? window.GetType().Name : window.ViewModel?.InstanceName ?? window.GetType().Name;
 
         // Now register the window
-        var uiWindow = RegisterWindowInstances(window);
+        var uiWindow = RegisterWindowInstances(window, instanceName);
         window.Closed += uiWindow.Dispose;
+
+        // Find regions in the window
+        FindRegions(uiWindow, wwd);
 
         return uiWindow;
     }
@@ -72,7 +62,6 @@ public class AvaloniaRegionManager : RegionManagerBase
     /// <returns><see cref="IUiWindow"/> instance the view is loaded in</returns>
     public override IUiWindow Navigate<TWindowViewModel, TViewModel>(TWindowViewModel windowViewModel, TViewModel viewModel, string regionName)
     {
-
         var uiWindow = base.Navigate(windowViewModel, viewModel, regionName);
 
         if (uiWindow is not ReactiveWindow<TWindowViewModel> reactiveWindow)
@@ -89,10 +78,7 @@ public class AvaloniaRegionManager : RegionManagerBase
         {
             var region = uiWindow.FindRegion(regionName);
 
-            if (region == null)
-            {
-                throw new ArgumentNullException(nameof(region), $"Region {regionName} not found");
-            }
+            ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
             if (viewModel is not IUiRegionViewModel uvm)
             {
