@@ -3,7 +3,7 @@
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 
-namespace Bodoconsult.App.ReactiveUI.Tests;
+namespace Bodoconsult.App.ReactiveUI.Tests.TestData;
 
 /// <summary>
 /// Dummy implementation of <see cref="IUiWindowViewModel"/>

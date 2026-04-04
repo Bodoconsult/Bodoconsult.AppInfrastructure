@@ -1,9 +1,11 @@
-Release notes for Bodoconsult.App.Avalonia
+Release notes for Bodoconsult.App.ReactiveUi
 ==========================
 
 
-# 1.0.8
+# 1.0.9
 
 -   New package
 
--   Added central classes MainViewModel, MainView, BaseAvaloniaAppBuilder, AvaloniaStarterUi etc. building app start infrastructure for Avalonia based projects
+-   Added base classes for OS independent menu generation (normal menus and context menus)
+
+-   Added base classes for region based navigation

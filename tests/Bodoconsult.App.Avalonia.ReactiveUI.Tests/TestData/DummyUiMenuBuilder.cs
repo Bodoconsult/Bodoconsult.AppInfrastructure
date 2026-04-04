@@ -3,7 +3,7 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
 
-namespace Bodoconsult.App.ReactiveUI.Tests;
+namespace Bodoconsult.App.ReactiveUI.Tests.TestData;
 
 /// <summary>
 /// Dummy implementation of <see cref="UiMenuBuilderBase"/> for testing

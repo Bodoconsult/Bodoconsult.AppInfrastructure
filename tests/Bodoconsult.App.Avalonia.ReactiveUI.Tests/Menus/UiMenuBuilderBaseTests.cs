@@ -3,8 +3,9 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
 using Bodoconsult.App.ReactiveUI.Tests.Helpers;
+using Bodoconsult.App.ReactiveUI.Tests.TestData;
 
-namespace Bodoconsult.App.ReactiveUI.Tests;
+namespace Bodoconsult.App.ReactiveUI.Tests.Menus;
 
 [TestFixture]
 public class UiMenuBuilderBaseTests
@@ -19,9 +20,12 @@ public class UiMenuBuilderBaseTests
         var builder = new DummyUiMenuBuilder(i18N);
 
         // Assert
-        Assert.That(builder.MenuItems, Is.Not.Null);
-        Assert.That(builder.MenuItems.Count, Is.EqualTo(0));
-        Assert.That(builder.TopLevelMenuItems.Count, Is.EqualTo(0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(builder.MenuItems, Is.Not.Null);
+            Assert.That(builder.MenuItems.Count, Is.EqualTo(0));
+            Assert.That(builder.TopLevelMenuItems.Count, Is.EqualTo(0));
+        }
     }
 
     [Test]
@@ -38,8 +42,11 @@ public class UiMenuBuilderBaseTests
         builder.Add(item);
 
         // Assert
-        Assert.That(builder.MenuItems.Count, Is.EqualTo(1));
-        Assert.That(builder.TopLevelMenuItems.Count, Is.EqualTo(1));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(builder.MenuItems.Count, Is.EqualTo(1));
+            Assert.That(builder.TopLevelMenuItems.Count, Is.EqualTo(1));
+        }
     }
 
     [Test]
@@ -57,9 +64,12 @@ public class UiMenuBuilderBaseTests
         builder.BuildIt();
 
         // Assert
-        Assert.That(builder.NumberOfGroups, Is.EqualTo(1));
-        Assert.That(builder.NumberOfCommands, Is.EqualTo(0));
-        Assert.That(builder.NumberOfSeparators, Is.EqualTo(0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(builder.NumberOfGroups, Is.EqualTo(1));
+            Assert.That(builder.NumberOfCommands, Is.EqualTo(0));
+            Assert.That(builder.NumberOfSeparators, Is.EqualTo(0));
+        }
     }
 
     [Test]
@@ -76,9 +86,12 @@ public class UiMenuBuilderBaseTests
         builder.BuildIt();
 
         // Assert
-        Assert.That(builder.NumberOfGroups, Is.EqualTo(2));
-        Assert.That(builder.NumberOfCommands, Is.EqualTo(3));
-        Assert.That(builder.NumberOfSeparators, Is.EqualTo(1));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(builder.NumberOfGroups, Is.EqualTo(2));
+            Assert.That(builder.NumberOfCommands, Is.EqualTo(3));
+            Assert.That(builder.NumberOfSeparators, Is.EqualTo(1));
+        }
     }
 
     [Test]
@@ -93,8 +106,11 @@ public class UiMenuBuilderBaseTests
         MenuBuilderHelper.LoadMenuItems(builder);
 
         // Assert
-        Assert.That(builder.MenuItems.Count, Is.Not.EqualTo(0));
-        Assert.That(builder.TopLevelMenuItems.Count, Is.Not.EqualTo(0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(builder.MenuItems.Count, Is.Not.EqualTo(0));
+            Assert.That(builder.TopLevelMenuItems.Count, Is.Not.EqualTo(0));
+        }
     }
 
     [Test]
@@ -114,6 +130,9 @@ public class UiMenuBuilderBaseTests
         builder.Clear();
 
         // Assert
-        Assert.That(builder.MenuItems.Count, Is.EqualTo(0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(builder.MenuItems.Count, Is.EqualTo(0));
+        }
     }
 }

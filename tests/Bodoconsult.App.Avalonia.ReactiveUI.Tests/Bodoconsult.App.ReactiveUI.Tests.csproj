@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,10 +28,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+
     <PackageReference Include="NUnit3TestAdapter" Version="5.2.0" />
-    <PackageReference Include="ReactiveUI" Version="*" />
+    <PackageReference Include="ReactiveUI.Avalonia" Version="11.4.12" />
     <PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
     <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />
+    <PackageReference Include="ReactiveUI.Testing" Version="23.2.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,8 +2,10 @@
 
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Tests.Menus;
+using Bodoconsult.App.ReactiveUI.Tests.TestData;
 
-namespace Bodoconsult.App.ReactiveUI.Tests;
+namespace Bodoconsult.App.ReactiveUI.Tests.Extensions;
 
 [TestFixture]
 public class IUiWindowExtensionsTests
@@ -24,7 +26,11 @@ public class IUiWindowExtensionsTests
 
         rmb.RegisterWindow<DummyUiWindow, DummyUiWindowViewModel>(regions, null);
 
-        var window = new DummyUiWindow();
+        var window = new DummyUiWindow
+        {
+            RegionManager = rmb,
+            InstanceName = instanceName
+        };
 
         rmb.RegisterWindowInstances(window, instanceName);
 
@@ -32,12 +38,15 @@ public class IUiWindowExtensionsTests
         var region = window.CreateUiRegion(regions[0]);
 
         // Assert
-        Assert.That(region, Is.Not.Null);
-        rmb.RegisterRegion(region);
-        Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
-        Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
-        Assert.That(rmb.Windows.Count, Is.EqualTo(1));
-        Assert.That(rmb.Regions.Count, Is.EqualTo(1));
-    }
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(region, Is.Not.Null);
+            ArgumentNullException.ThrowIfNull(region);
+            Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
+            Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
+            Assert.That(rmb.Windows.Count, Is.EqualTo(1));
+            Assert.That(rmb.Regions.Count, Is.EqualTo(1));
 
+        }
+    }
 }

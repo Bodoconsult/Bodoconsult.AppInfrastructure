@@ -5,7 +5,15 @@ Bodoconsult.App.ReactiveUi
 
 ## What does the library
 
-Bodoconsult.App.ReactiveUi is a library with basic functionality for multilayered monolithic Avalonia based applications. 
+Bodoconsult.App.ReactiveUi is a base library with basic functionality for multilayered monolithic WPF or Avalonia based applications. Here some one the features:
+
+-   Navigation supporting regions in window instances.
+
+-   OS independent definition of menus and context menus
+
+-   View model base class MainWindowViewModel for app main window
+
+See sample apps AvaloniaReactiveUiDemoApp and WpfReactiveUiDemoApp for a simple introduction how to work with menus and region based navigation.
 
 ## How to use the library
 
@@ -18,7 +26,6 @@ See page [app start infrastructure](../Bodoconsult.App/AppStartInfrastructure.md
 # Basic ideas for platform independent view models based on ReactiveUI
 
 -   Instead of storing colors in color classes dependent on platforms (System.Drawing.Media, ...), store colors as HTML string (like #FFFFFF) and use converters to get the requested color class instance from.
-
 
 
 # About us

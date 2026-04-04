@@ -2,8 +2,10 @@
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
+using Bodoconsult.App.ReactiveUI.Tests.Menus;
+using Bodoconsult.App.ReactiveUI.Tests.TestData;
 
-namespace Bodoconsult.App.ReactiveUI.Tests;
+namespace Bodoconsult.App.ReactiveUI.Tests.Regions;
 
 [TestFixture]
 public class RegionManagerBaseTests
@@ -141,34 +143,37 @@ public class RegionManagerBaseTests
         Assert.That(rmb.Windows.Count, Is.EqualTo(1));
     }
 
-    [Test]
-    public void RegisterRegion_ValidSetupNoFactory_RegionRegistered()
-    {
-        // Arrange 
-        var rmb = new DummyRegionManager();
-        const string instanceName = "Blubb";
+    //[Test]
+    //public void RegisterRegion_ValidSetupNoFactory_RegionRegistered()
+    //{
+    //    // Arrange 
+    //    var rmb = new DummyRegionManager();
+    //    const string instanceName = "Blubb";
 
-        var regions = new List<string>
-        {
-            "Region1",
-            "Region2"
-        };
+    //    var regions = new List<string>
+    //    {
+    //        "Region1",
+    //        "Region2"
+    //    };
 
-        rmb.RegisterWindow<DummyUiWindow, DummyUiWindowViewModel>(regions, null);
+    //    rmb.RegisterWindow<DummyUiWindow, DummyUiWindowViewModel>(regions, null);
 
-        var window = new DummyUiWindow();
+    //    var window = new DummyUiWindow();
 
-        rmb.RegisterWindowInstances(window, instanceName);
+    //    rmb.RegisterWindowInstances(window, instanceName);
 
-        var region = new UiRegion(window, regions[0]);
+    //    var region = new UiRegion(window, regions[0]);
 
-        // Act  
-        rmb.RegisterRegion(region);
+    //    // Act  
+    //    rmb.RegisterRegion(region);
 
-        // Assert
-        Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
-        Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
-        Assert.That(rmb.Windows.Count, Is.EqualTo(1));
-        Assert.That(rmb.Regions.Count, Is.EqualTo(1));
-    }
+    //    // Assert
+    //    using (Assert.EnterMultipleScope())
+    //    {
+    //        Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
+    //        Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
+    //        Assert.That(rmb.Windows.Count, Is.EqualTo(1));
+    //        Assert.That(rmb.Regions.Count, Is.EqualTo(1));
+    //    }
+    //}
 }

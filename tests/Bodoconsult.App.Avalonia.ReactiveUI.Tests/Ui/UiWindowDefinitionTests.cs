@@ -1,8 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.ReactiveUI.Interfaces;
 
-namespace Bodoconsult.App.ReactiveUI.Tests;
+// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Tests.Menus;
+
+namespace Bodoconsult.App.ReactiveUI.Tests.Ui;
 
 [TestFixture]
 public class UiWindowDefinitionTests
@@ -23,10 +27,13 @@ public class UiWindowDefinitionTests
         var wd = new UiWindowDefinition(type, regions, null);
 
         // Assert
-        Assert.That(wd.WindowType, Is.EqualTo(type));
-        Assert.That(wd.Regions, Is.Not.Null);
-        Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
-        Assert.That(wd.Factory, Is.Null);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(wd.WindowType, Is.EqualTo(type));
+            Assert.That(wd.Regions, Is.Not.Null);
+            Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
+            Assert.That(wd.Factory, Is.Null);
+        }
     }
 
     [Test]
@@ -45,10 +52,12 @@ public class UiWindowDefinitionTests
         var wd = new UiWindowDefinition(type, regions, () => new DummyUiWindow());
 
         // Assert
-        Assert.That(wd.WindowType, Is.EqualTo(type));
-        Assert.That(wd.Regions, Is.Not.Null);
-        Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
-        Assert.That(wd.Factory, Is.Not.Null);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(wd.WindowType, Is.EqualTo(type));
+            Assert.That(wd.Regions, Is.Not.Null);
+            Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
+            Assert.That(wd.Factory, Is.Not.Null);
+        }
     }
-
 }
