@@ -77,7 +77,7 @@ internal static class Program
         builder.FinalizeDiContainerSetup();
 
         // Now finally start the app and wait
-        builder.StartApplication();
+        builder.StartApplication(null);
 
         Environment.Exit(0);
     }

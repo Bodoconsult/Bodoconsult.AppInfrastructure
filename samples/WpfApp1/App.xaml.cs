@@ -104,7 +104,7 @@ public partial class App : Application
         builder.MainWindowViewModel = viewModel;
 
         // Now finally start the app and wait
-        builder.StartApplication();
+        builder.StartApplication(null);
 
         base.OnStartup(e);
 

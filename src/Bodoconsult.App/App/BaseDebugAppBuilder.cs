@@ -36,7 +36,8 @@ public class BaseDebugAppBuilder : BaseAppBuilder
     /// <summary>
     /// Start the application
     /// </summary>
-    public override void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public override void StartApplication(CancellationToken? cancellationToken)
     {
         // Do nothing
     }

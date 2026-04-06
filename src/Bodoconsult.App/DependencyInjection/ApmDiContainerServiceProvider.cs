@@ -12,7 +12,6 @@ namespace Bodoconsult.App.DependencyInjection;
 /// </summary>
 public class ApmDiContainerServiceProvider : IDiContainerServiceProvider
 {
-
     /// <summary>
     /// Default ctor
     /// </summary>

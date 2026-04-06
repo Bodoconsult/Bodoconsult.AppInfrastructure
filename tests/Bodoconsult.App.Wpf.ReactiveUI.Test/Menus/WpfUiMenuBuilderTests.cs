@@ -4,7 +4,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Tests.Helpers;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using NUnit.Framework;
-using System;
 using System.Threading;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Test.Menus;

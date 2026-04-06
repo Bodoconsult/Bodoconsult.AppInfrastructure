@@ -12,9 +12,8 @@ namespace Bodoconsult.App.BackgroundService.App;
 /// <summary>
 /// Base class for <see cref="IAppBuilder"/> implementations running a background service but not using GRPC
 /// </summary>
-public class BaseBackgroundServiceAppBuilder: BaseAppBuilder
+public class BaseBackgroundServiceAppBuilder : BaseAppBuilder
 {
-
     private readonly HostApplicationBuilder _builder;
     private IHost _host;
 
@@ -31,29 +30,37 @@ public class BaseBackgroundServiceAppBuilder: BaseAppBuilder
     }
 
     /// <summary>
+    /// Timeout is ms to wait for a graceful shutdown
+    /// </summary>
+    public int ShutdownTimeout { get; set; } = 10;
+
+    /// <summary>
     /// Register DI container services
     /// </summary>
     public override void RegisterDiServices()
     {
         DiContainerServiceProviderPackage.AddServices(AppGlobals.DiContainer);
 
-        AppGlobals.DiContainer.AddSingleton((IAppBuilder)this);
+        AppGlobals.DiContainer.AddSingleton<IAppBuilder>(this);
     }
 
     /// <summary>
     /// Start the application
     /// </summary>
-    public override void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public override void StartApplication(CancellationToken? cancellationToken)
     {
+        _builder.Services.Configure<HostOptions>(options =>
+        {
+            options.ShutdownTimeout = TimeSpan.FromSeconds(ShutdownTimeout); // Allow 10 seconds for shutdown
+        });
         _builder.Services.AddHostedService<BackgroundServiceAppStarter>();
 
         _host = _builder.Build();
+
         AppGlobals.DiContainer.LoadServiceProvider(_host.Services);
-
+        
         DiContainerServiceProviderPackage.LateBindObjects(AppGlobals.DiContainer);
-            
-
-        StartApplicationService();
 
         _host.Run();
     }

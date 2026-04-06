@@ -134,7 +134,7 @@ public class App : Application
         builder.MainWindowViewModel = MainWindowViewModel;
 
         // Now finally start the app and wait
-        builder.StartApplication();
+        builder.StartApplication(null);
 
         //base.OnStartup(e);
     }

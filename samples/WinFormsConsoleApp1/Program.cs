@@ -91,7 +91,7 @@ internal static class Program
         builder.MainWindowViewModel = viewModel;
 
         // Now finally start the app and wait
-        builder.StartApplication();
+        builder.StartApplication(null);
 
         Environment.Exit(0);
     }

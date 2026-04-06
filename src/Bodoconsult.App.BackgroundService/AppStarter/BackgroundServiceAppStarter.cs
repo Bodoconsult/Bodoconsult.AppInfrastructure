@@ -1,8 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using System.Threading;
 
 namespace Bodoconsult.App.BackgroundService.AppStarter;
+
+// https://www.codegenes.net/blog/graceful-shutdown-with-generic-host-in-net-core-2-1/
 
 /// <summary>
 /// <see cref="IAppStarter"/> implementation for a background service NOT using GRPC
@@ -32,26 +35,33 @@ public class BackgroundServiceAppStarter : Microsoft.Extensions.Hosting.Backgrou
     /// <remarks>See <see href="https://learn.microsoft.com/dotnet/core/extensions/workers">Worker Services in .NET</see> for implementation guidelines.</remarks>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-
-        var task = Task.Run(Start, stoppingToken);
+        var task = Task.Run(()=>Start(stoppingToken), stoppingToken);
 
         await Task.Run(() =>
         {
-            while (true)
+            try
             {
-                var isStopped = stoppingToken.IsCancellationRequested
-                                || task.IsCompleted
-                                || task.IsCanceled ||
-                                task.IsFaulted
-                    ;
-                if (isStopped)
+                while (!stoppingToken.IsCancellationRequested)
                 {
-                    break;
+                    var isStopped = stoppingToken.IsCancellationRequested
+                                    || task.IsCompleted
+                                    || task.IsCanceled ||
+                                    task.IsFaulted;
+                    if (isStopped)
+                    {
+                        break;
+                    }
+                    Task.Delay(100, stoppingToken);
                 }
-                Task.Delay(1000);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Start failed", e);
+                return false;
             }
 
-            return true;
         });
 
         AppBuilder.StopApplication();
@@ -65,9 +75,25 @@ public class BackgroundServiceAppStarter : Microsoft.Extensions.Hosting.Backgrou
     /// <summary>
     /// Start the app
     /// </summary>
+    /// <param name="stoppingToken"></param>
+    public void Start(CancellationToken stoppingToken)
+    {
+        try
+        {
+            AppBuilder.StartApplicationService(stoppingToken);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Start failed", e);
+        }
+    }
+
+    /// <summary>
+    /// Start the app
+    /// </summary>
     public void Start()
     {
-        AppBuilder.StartApplication();
+        // Do nothing
     }
 
     /// <summary>

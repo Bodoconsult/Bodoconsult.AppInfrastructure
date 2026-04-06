@@ -79,7 +79,7 @@ public class BaseAppStarterUi : IAppStarterUi
         try
         {
             // Start app logic in a separate thread from UI
-            var appThread = new Thread(AppBuilder.StartApplicationService)
+            var appThread = new Thread(() => AppBuilder.StartApplicationService(null))
             {
                 Priority = ThreadPriority.AboveNormal,
                 IsBackground = true

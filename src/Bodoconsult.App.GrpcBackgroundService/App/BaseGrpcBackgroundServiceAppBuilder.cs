@@ -98,7 +98,8 @@ public class BaseGrpcBackgroundServiceAppBuilder : BaseAppBuilder
     /// <summary>
     /// Start the application
     /// </summary>
-    public override void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public override void StartApplication(CancellationToken? cancellationToken)
     {
         Builder.Services.AddHostedService<GrpcBackgroundServiceAppStarter>();
 
@@ -109,7 +110,7 @@ public class BaseGrpcBackgroundServiceAppBuilder : BaseAppBuilder
 
         RegisterProtoServices();
 
-        StartApplicationService();
+        StartApplicationService(cancellationToken);
 
         GrpcServer.Run();
     }

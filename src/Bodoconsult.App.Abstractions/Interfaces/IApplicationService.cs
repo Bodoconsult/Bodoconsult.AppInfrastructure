@@ -27,7 +27,8 @@ public interface IApplicationService
     /// <summary>
     /// Start the application
     /// </summary>
-    void StartApplication();
+    /// <param name="cancellationToken">Current cancellation token or null</param>
+    void StartApplication(CancellationToken? cancellationToken);
 
 
     /// <summary>

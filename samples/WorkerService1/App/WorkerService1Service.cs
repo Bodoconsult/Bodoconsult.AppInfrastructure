@@ -58,7 +58,8 @@ public class WorkerService1Service : IApplicationService
     /// <summary>
     /// Start the application
     /// </summary>
-    public void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public void StartApplication(CancellationToken? cancellationToken)
     {
         _isStarting = true;
 
@@ -75,9 +76,22 @@ public class WorkerService1Service : IApplicationService
         Debug.Print("");
         while (i < 15)
         {
+            if (cancellationToken is { IsCancellationRequested: true })
+            {
+                break;
+            }
             Debug.Print("Processing workload...");
             Console.WriteLine("Processing workload...");
-            AsyncHelper.Delay(1000);
+
+            if (cancellationToken.HasValue)
+            {
+                AsyncHelper.Delay(1000, cancellationToken.Value);
+            }
+            else
+            {
+                AsyncHelper.Delay(1000);
+            }
+
             i++;
         }
 

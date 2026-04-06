@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading;
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
@@ -58,7 +59,8 @@ public class AvaloniaConsoleApp1Service : IApplicationService
     /// <summary>
     /// Start the application
     /// </summary>
-    public void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public void StartApplication(CancellationToken? cancellationToken)
     {
         _isStarting = true;
 

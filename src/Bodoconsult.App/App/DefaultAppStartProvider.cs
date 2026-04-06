@@ -20,7 +20,6 @@ public class DefaultAppStartProvider : IAppStartProvider
         AppGlobals = appGlobals;
     }
 
-
     /// <summary>
     /// Global app settings
     /// </summary>
@@ -125,7 +124,7 @@ public class DefaultAppStartProvider : IAppStartProvider
         {
             return Convert.ToInt32(calue);
         }
-        catch (Exception e)
+        catch // (Exception e)
         {
             return 0;
         }

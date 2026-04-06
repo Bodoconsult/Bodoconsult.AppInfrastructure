@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Bodoconsult.App.Avalonia.ReactiveUI.Controls.ContextMenuControl">
     <Grid>
-        <ContextMenu x:Name="LocalMenu" DockPanel.Dock="Top" ItemsSource="{Binding Path=MenuItems}" Background="{Binding Path=BackgroundBrush}">
+        <ContextMenu x:Name="LocalMenu" DockPanel.Dock="Top" Background="{Binding Path=BackgroundBrush}">
         </ContextMenu>
     </Grid>
 </UserControl>

@@ -29,7 +29,8 @@ public class MyDebugAppBuilder : BaseDebugAppBuilder
     /// <summary>
     /// Start the application
     /// </summary>
-    public override void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public override void StartApplication(CancellationToken? cancellationToken)
     {
         var dpr = new MicrosoftDependencyResolver(AppGlobals.DiContainer.ServiceCollection);
 

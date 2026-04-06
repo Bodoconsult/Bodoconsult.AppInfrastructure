@@ -92,6 +92,6 @@ public partial class App : Application
         // builder.FinalizeDiContainerSetup(); Do not run here
 
         // Now finally start the app and wait
-        builder.StartApplication();
+        builder.StartApplication(null);
     }
 }

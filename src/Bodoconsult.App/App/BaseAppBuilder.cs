@@ -165,7 +165,8 @@ namespace Bodoconsult.App;
     /// <summary>
     /// Start the application. Default start mode is a console app.
     /// </summary>
-    public virtual void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public virtual void StartApplication(CancellationToken? cancellationToken)
     {
         var appStarter = new ConsoleAppStarterUi(this)
         {
@@ -191,13 +192,14 @@ namespace Bodoconsult.App;
     /// <summary>
     /// Start the application service
     /// </summary>
-    public void StartApplicationService()
+    /// <param name="cancellationToken"></param>
+    public void StartApplicationService(CancellationToken? cancellationToken)
     {
         ApplicationServer = AppGlobals.DiContainer.Get<IApplicationService>();
         ApplicationServer.RequestApplicationStopDelegate = RequestApplicationStop;
         ApplicationServer.RegisterServices();
         ApplicationServer.LicenseMissingDelegate = TerminateIfLicenseMissing;
-        ApplicationServer.StartApplication();
+        ApplicationServer.StartApplication(cancellationToken);
 
         AppGlobals.Logger.LogWarning($"{AppGlobals.AppStartParameter.AppName} app is started!");
     }
@@ -234,7 +236,7 @@ namespace Bodoconsult.App;
         AppGlobals.Logger.LogInformation($"{AppGlobals.AppStartParameter.AppName} app restarts...");
         AppGlobals.Logger.LogInformation(AppGlobals.AppStartParameter.AppVersion);
 
-        StartApplicationService();
+        StartApplicationService(null);
     }
 
     /// <summary>

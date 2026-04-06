@@ -51,7 +51,6 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
     /// <remarks>See <see href="https://learn.microsoft.com/dotnet/core/extensions/workers">Worker Services in .NET</see> for implementation guidelines.</remarks>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-
         //var task = Task.Run(Start, stoppingToken);
         Start();
 
@@ -64,7 +63,7 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
                 {
                     break;
                 }
-                Task.Delay(1000);
+                Task.Delay(1000, stoppingToken);
             }
 
             return true;

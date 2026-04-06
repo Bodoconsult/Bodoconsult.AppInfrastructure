@@ -22,7 +22,8 @@ public class BaseConsoleWpfAppBuilder: BaseAppBuilder
     /// <summary>
     /// Start the application
     /// </summary>
-    public override void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public override void StartApplication(CancellationToken? cancellationToken)
     {
         // Inject it to UI
         var appStarter = new ConsoleWpfAppStarterUi(this);

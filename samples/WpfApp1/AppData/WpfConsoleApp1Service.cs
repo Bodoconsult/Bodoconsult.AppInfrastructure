@@ -58,7 +58,8 @@ public class WpfApp1Service : IApplicationService
     /// <summary>
     /// Start the application
     /// </summary>
-    public void StartApplication()
+    /// <param name="cancellationToken"></param>
+    public void StartApplication(CancellationToken? cancellationToken)
     {
         _isStarting = true;
 

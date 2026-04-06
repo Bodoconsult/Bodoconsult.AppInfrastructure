@@ -37,7 +37,6 @@ public class PdfBuilderTests
     [Test]
     public void TestPdfCreatorWithDefaultStyleSheet2Files()
     {
-
         var fileName1 = Path.Combine(TestHelper.TempPath, "pdf1.pdf");
 
         CreateFile(fileName1);
@@ -45,7 +44,6 @@ public class PdfBuilderTests
         var fileName2 = Path.Combine(TestHelper.TempPath, "pdf2.pdf");
 
         CreateFile(fileName2);
-
     }
 
 
@@ -143,10 +141,10 @@ public class PdfBuilderTests
 
         pdf.AddDefinitionList(DataHelper.GetDefinitionListAsDataTable());
 
-#pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0618 // Type or member is obsolete
         pdf.AddTable(DataHelper.GetSmallDataTable(), "Tabellenüberschrift", "NoHeading1", "some additional info",
             "Details", pdf.Width);
-#pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0618 // Type or member is obsolete
 
         pdf.AddTableFrame(DataHelper.GetSmallDataTable(), "Tabellenüberschrift Frame", "NoHeading1", "some additional info",
             "Details", pdf.Width / 2);

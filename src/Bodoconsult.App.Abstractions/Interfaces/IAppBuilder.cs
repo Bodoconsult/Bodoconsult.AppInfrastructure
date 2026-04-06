@@ -69,18 +69,17 @@ public interface IAppBuilder
     /// </summary>
     void FinalizeDiContainerSetup();
 
-
-
-
     /// <summary>
     /// Start the application. Default start mode is a console app.
     /// </summary>
-    void StartApplication();
+    /// <param name="cancellationToken">Current cancellation token or null</param>
+    void StartApplication(CancellationToken? cancellationToken);
 
     /// <summary>
     /// Start the application service
     /// </summary>
-    void StartApplicationService();
+    /// <param name="cancellationToken">Current cancellation token or null</param>
+    void StartApplicationService(CancellationToken? cancellationToken);
 
     /// <summary>
     /// Suspend the app
@@ -91,7 +90,6 @@ public interface IAppBuilder
     /// Restart the app if it is in suspend state
     /// </summary>
     void RestartApplication();
-
 
     /// <summary>
     /// Stops the application
