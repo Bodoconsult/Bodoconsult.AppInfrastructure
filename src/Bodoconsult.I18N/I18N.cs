@@ -22,20 +22,33 @@ public class I18N : II18N
 {
     #region Singleton factory
 
+    /// <summary>
+    /// Should a dummy be created as static instance?
+    /// </summary>
+    public static bool IsDummyRequested { get; set; }
+
     // Thread-safe implementation of singleton pattern
-    private static Lazy<I18N> _instance;
+    private static Lazy<II18N> _instance;
+
+    /// <summary>
+    /// Reset the static instance <see cref="Current"/>
+    /// </summary>
+    public static void ResetCurrent()
+    {
+        _instance = null;
+    }
 
     /// <summary>
     /// Get a singleton instance of I18N
     /// </summary>
     /// <returns></returns>
-    public static I18N Current
+    public static II18N Current
     {
         get
         {
             try
             {
-                _instance ??= new Lazy<I18N>(() => new I18N());
+                _instance ??= new Lazy<II18N>(() => IsDummyRequested ? new DummyI18N() : new I18N());
                 return _instance.Value;
             }
             catch (Exception e)
@@ -43,7 +56,6 @@ public class I18N : II18N
                 Console.WriteLine(e);
                 throw;
             }
-
         }
     }
 

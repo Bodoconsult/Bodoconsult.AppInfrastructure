@@ -13,7 +13,7 @@ public abstract class UiMenuItemBase : IUiMenuItem
     /// Default ctor
     /// </summary>
     /// <param name="name">Name of the menu item or an I18N identifier</param>
-    public UiMenuItemBase(string name)
+    protected UiMenuItemBase(string name)
     {
         Name=name;
     }

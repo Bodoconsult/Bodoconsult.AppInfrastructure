@@ -21,4 +21,7 @@ dotnet nuget push packages\Bodoconsult.App.%version%.snupkg --source \\BCGS03DS\
 dotnet nuget push packages\Bodoconsult.App.BackgroundService.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.App.BackgroundService.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
 
+dotnet nuget push packages\Bodoconsult.I18N.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.I18N.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
 pause

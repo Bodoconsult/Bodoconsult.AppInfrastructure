@@ -47,5 +47,4 @@ public class MenuControlViewModelTests
         Assert.That(vm.MenuItems, Is.Not.Null);
         Assert.That(vm.MenuItems.Count, Is.EqualTo(builder.MenuItemsSource.Count));
     }
-
 }
