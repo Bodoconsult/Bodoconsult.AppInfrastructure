@@ -1,12 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.ReactiveUI.Tests.Helpers;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using NUnit.Framework;
-using Bodoconsult.App.ReactiveUI.Tests.Helpers;
+using System;
+using System.Threading;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Test.Menus;
 
+[Apartment(ApartmentState.STA)]
 [TestFixture]
 internal class WpfUiMenuBuilderTests
 {

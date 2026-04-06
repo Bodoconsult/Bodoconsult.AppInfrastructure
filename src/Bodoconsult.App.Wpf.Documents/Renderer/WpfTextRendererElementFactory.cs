@@ -363,6 +363,11 @@ public class WpfTextRendererElementFactory : IWpfTextRendererElementFactory
             return new CodeStyleWpfTextRendererElement(codeStyle);
         }
 
+        if (textElement is WatermarkStyle waterMarkStyle)
+        {
+            return new WatermarkStyleWpfTextRendererElement(waterMarkStyle);
+        }
+
         if (textElement is DefinitionListStyle definitionListStyle)
         {
             return new DefinitionListStyleWpfTextRendererElement(definitionListStyle);

@@ -1,6 +1,4 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
-
-// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 // Licence MIT
 
 using Bodoconsult.App.Abstractions.Delegates;
@@ -13,7 +11,6 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// </summary>
 public interface IAppGlobals: IDisposable
 {
-
     /// <summary>
     /// This event is set if the application is started only as singleton
     /// </summary>

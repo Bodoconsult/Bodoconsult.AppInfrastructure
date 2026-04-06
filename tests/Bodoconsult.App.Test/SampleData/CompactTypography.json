@@ -127,6 +127,8 @@
   "HeaderTemplate": "<<text>>||<<logo>>",
   "FooterTemplate": "<<text>>|<<date>>|<<page>>",
   "PageNumberPrefix": "Page",
+  "BackgroundImagePath": null,
+  "WatermarkText": null,
   "ChartStyle": {
     "$type": "Bodoconsult.App.Abstractions.Interfaces.ChartStyle, Bodoconsult.App.Abstractions",
     "AxisLineColor": {

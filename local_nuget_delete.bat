@@ -5,5 +5,6 @@ dotnet nuget delete Bodoconsult.App %version% --source \\BCGS03DS\Data$\Projekte
 dotnet nuget delete Bodoconsult.App.ReactiveUi %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
 dotnet nuget delete Bodoconsult.App.Avalonia %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
 dotnet nuget delete Bodoconsult.App.Avalonia.ReactiveUi %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
+dotnet nuget delete Bodoconsult.App.BackgroundService %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
 
 pause

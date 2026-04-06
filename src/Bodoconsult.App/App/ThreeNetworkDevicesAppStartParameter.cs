@@ -1,5 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
-// Licence MIT
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Reflection;
 using Bodoconsult.App.Abstractions.Interfaces;
@@ -9,7 +8,7 @@ namespace Bodoconsult.App;
 /// <summary>
 /// Base iplementation of <see cref="IAppStartParameter"/>
 /// </summary>
-public class AppStartParameter: IAppStartParameter
+public class ThreeNetworkDevicesAppStartParameter : I3NetworkDevicesAppStartParameter
 {
     /// <summary>
     /// Is the app started as singleton?
@@ -116,4 +115,24 @@ public class AppStartParameter: IAppStartParameter
     /// Number of old backups to keep
     /// </summary>
     public int NumberOfBackupsToKeep { get; set; } = 30;
+
+    /// <summary>
+    /// IP address of the network device 2
+    /// </summary>
+    public string IpAddress2 { get; set; }
+
+    /// <summary>
+    /// Port of the network device 2
+    /// </summary>
+    public int Port2 { get; set; }
+
+    /// <summary>
+    /// IP address of the network device 3
+    /// </summary>
+    public string IpAddress3 { get; set; }
+
+    /// <summary>
+    /// Port of the network device 3
+    /// </summary>
+    public int Port3 { get; set; }
 }

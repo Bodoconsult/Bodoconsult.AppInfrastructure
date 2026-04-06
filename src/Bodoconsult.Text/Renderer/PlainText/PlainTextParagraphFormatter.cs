@@ -231,7 +231,6 @@ public class PlainTextParagraphFormatter
 
         switch (_paragraphStyle.TextAlignment)
         {
-
             case TypoTextAlignment.Right:
                 fLine = $"{_leftMargin}{_leftBorderChar}{_leftPadding}{line.PadLeft(WidthInChars)}{_rightPadding}{_rightBorderChar}";
                 break;

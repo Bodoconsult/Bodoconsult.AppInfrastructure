@@ -81,14 +81,18 @@ internal class ByteArrayDataExportServiceTests
         // Act  
         service.Add(data);
 
+        var path = service.CurrentFilePath;
+
         service.Stop();
 
         // Assert
-        Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-        Assert.That(File.Exists(service.CurrentFilePath));
+        Wait.Until(() => File.Exists(path));
+
+        Assert.That(string.IsNullOrEmpty(path), Is.False);
+        Assert.That(File.Exists(path));
         Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(1));
 
-        FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
+        FileSystemHelper.RunInDebugMode(path);
     }
 
 

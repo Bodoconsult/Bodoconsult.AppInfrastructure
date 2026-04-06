@@ -363,6 +363,11 @@ public class DocxTextRendererElementFactory : IDocxTextRendererElementFactory
             return new CodeStyleDocxTextRendererElement(codeStyle);
         }
 
+        if (textElement is WatermarkStyle watermarkStyle)
+        {
+            return new WatermarkStyleDocxTextRendererElement(watermarkStyle);
+        }
+
         if (textElement is DefinitionListStyle definitionListStyle)
         {
             return new DefinitionListStyleDocxTextRendererElement(definitionListStyle);

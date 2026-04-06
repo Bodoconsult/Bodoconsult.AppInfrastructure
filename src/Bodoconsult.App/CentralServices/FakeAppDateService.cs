@@ -34,7 +34,7 @@ public class FakeAppDateService : IAppDateService
     /// <summary>
     /// return the current date only
     /// </summary>
-    public DateTime Today => DateTimeToDeliver + Offset;
+    public DateTime Today => DateTime.Today + Offset;
 
     /// <summary>
     /// Reset the current offset to a zero time span

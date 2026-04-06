@@ -83,6 +83,11 @@ public interface IAppStartParameter
     string AppFolderName { get; set; }
 
     /// <summary>
+    /// IP address of the network device 1 or null if no device is connected via IP
+    /// </summary>
+    string IpAddress { get; set; }
+
+    /// <summary>
     /// Port the app is listening on
     /// </summary>
     int Port { get; set; }

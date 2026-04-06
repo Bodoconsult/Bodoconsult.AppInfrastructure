@@ -15,4 +15,10 @@ dotnet nuget push packages\Bodoconsult.App.Avalonia.%version%.snupkg --source \\
 dotnet nuget push packages\Bodoconsult.App.Avalonia.ReactiveUi.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.App.Avalonia.ReactiveUi.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
 
+dotnet nuget push packages\Bodoconsult.App.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.App.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.App.BackgroundService.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.App.BackgroundService.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
 pause

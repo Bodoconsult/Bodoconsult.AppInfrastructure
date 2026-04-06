@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.BusinessTransactions.Replies;
 
 namespace Bodoconsult.App.Test.HelperTests;
 
@@ -29,8 +30,6 @@ internal class TypeHelperTests
     public void GetTypesDerivedFrom_DefaultSetup_ListWithTypesReturned()
     {
         // Arrange 
-            
-
         var baseType = typeof(IBusinessTransactionReply);
         var ass = typeof(IBusinessTransactionReply).Assembly;
 
@@ -58,7 +57,7 @@ internal class TypeHelperTests
 
         // Assert
         Assert.That(result, Is.Not.Null);
-        Assert.That(result.Count, Is.EqualTo(0));
+        Assert.That(result.Count, Is.EqualTo(1));
 
         //foreach (var type in result)
         //{

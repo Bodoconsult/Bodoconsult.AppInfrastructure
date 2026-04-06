@@ -26,7 +26,7 @@ public class MenuControlViewModelTests
         var vm = new MenuControlViewModel();
 
         // Assert
-        Assert.That(vm.MenuItems.Count, Is.EqualTo(builder.MenuItemsSource.Count));
+        Assert.That(vm.MenuItems, Is.Null);
     }
 
     [Test]
@@ -44,6 +44,7 @@ public class MenuControlViewModelTests
         vm.LoadMenuBuilder(builder);
 
         // Assert
+        Assert.That(vm.MenuItems, Is.Not.Null);
         Assert.That(vm.MenuItems.Count, Is.EqualTo(builder.MenuItemsSource.Count));
     }
 

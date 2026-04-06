@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace Bodoconsult.App;
 
@@ -16,7 +17,7 @@ public class DefaultAppStartProvider : IAppStartProvider
     /// <param name="appGlobals">Current app globals</param>
     public DefaultAppStartProvider(IAppGlobals appGlobals)
     {
-        AppGlobals=appGlobals;
+        AppGlobals = appGlobals;
     }
 
 
@@ -60,17 +61,19 @@ public class DefaultAppStartProvider : IAppStartProvider
         }
 
         AppGlobals.AppStartParameter ??= new AppStartParameter();
-            
+
+        var asp = AppGlobals.AppStartParameter;
+
         if (string.IsNullOrEmpty(AppGlobals.AppStartParameter.DefaultConnectionString))
         {
-            AppGlobals.AppStartParameter.DefaultConnectionString = AppConfigurationProvider.ReadDefaultConnection();
+            asp.DefaultConnectionString = AppConfigurationProvider.ReadDefaultConnection();
         }
 
         if (AppGlobals is IAppGlobalsWithDatabase withDatabase)
         {
             if (withDatabase.ContextConfig != null)
             {
-                withDatabase.ContextConfig.ConnectionString = AppGlobals.AppStartParameter.DefaultConnectionString;
+                withDatabase.ContextConfig.ConnectionString = asp.DefaultConnectionString;
             }
         }
 
@@ -81,58 +84,50 @@ public class DefaultAppStartProvider : IAppStartProvider
         }
 
         // Read AppName
-        var calue = section["AppName"];
-        if (!string.IsNullOrEmpty(calue))
+        asp.AppName = ReadStringProperty(section, "AppName");
+        asp.AppFolderName = ReadStringProperty(section, "AppFolderName") ?? "MyApp";
+        asp.IpAddress = ReadStringProperty(section, "IpAddress");
+        asp.Port = ReadIntProperty(section, "Port");
+        asp.NumberOfBackupsToKeep = ReadIntProperty(section, "NumberOfBackupsToKeep");
+        asp.BackupPath = ReadStringProperty(section, "BackupPath");
+
+        switch (asp)
         {
-            AppGlobals.AppStartParameter.AppName = calue;
+            case I2NetworkDevicesAppStartParameter asp2:
+                asp2.IpAddress2 = ReadStringProperty(section, "IpAddress2");
+                asp2.Port2 = ReadIntProperty(section, "Port2");
+                break;
+            case I3NetworkDevicesAppStartParameter asp3:
+                asp3.IpAddress2 = ReadStringProperty(section, "IpAddress2");
+                asp3.Port2 = ReadIntProperty(section, "Port2");
+
+                asp3.IpAddress3 = ReadStringProperty(section, "IpAddress3");
+                asp3.Port3 = ReadIntProperty(section, "Port3");
+                break;
+        }
+    }
+
+    private static string ReadStringProperty(IConfigurationSection section, string propertyName)
+    {
+        var calue = section[propertyName];
+        return !string.IsNullOrEmpty(calue) ? calue : null;
+    }
+
+    private static int ReadIntProperty(IConfigurationSection section, string propertyName)
+    {
+        var calue = section[propertyName];
+        if (string.IsNullOrEmpty(calue))
+        {
+            return 0;
         }
 
-        // Read AppFolderName
-        calue = section["AppFolderName"];
-        if (!string.IsNullOrEmpty(calue))
+        try
         {
-            AppGlobals.AppStartParameter.AppFolderName = calue;
+            return Convert.ToInt32(calue);
         }
-
-        // Read port
-        calue = section["Port"];
-        if (!string.IsNullOrEmpty(calue))
+        catch (Exception e)
         {
-            var iResult = 0;
-            try
-            {
-                iResult = Convert.ToInt32(calue);
-            }
-            catch //(Exception e)
-            {
-                // Do nothing
-            }
-
-            AppGlobals.AppStartParameter.Port = iResult;
-        }
-
-        // Read backup path
-        calue = section["BackupPath"];
-        if (!string.IsNullOrEmpty(calue))
-        {
-            AppGlobals.AppStartParameter.BackupPath = calue;
-        }
-
-        // Read NumberOfBackupsToKeep
-        calue = section["NumberOfBackupsToKeep"];
-        if (!string.IsNullOrEmpty(calue))
-        {
-            var iResult = 0;
-            try
-            {
-                iResult = Convert.ToInt32(calue);
-            }
-            catch //(Exception e)
-            {
-                // Do nothing
-            }
-
-            AppGlobals.AppStartParameter.NumberOfBackupsToKeep = iResult;
+            return 0;
         }
     }
 

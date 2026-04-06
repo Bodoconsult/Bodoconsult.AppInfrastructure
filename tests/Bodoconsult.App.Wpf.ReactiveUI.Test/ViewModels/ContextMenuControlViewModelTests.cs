@@ -24,7 +24,7 @@ public class ContextMenuControlViewModelTests
         var vm = new ContextMenuControlViewModel();
 
         // Assert
-        Assert.That(vm.MenuItems.Count, Is.EqualTo(builder.MenuItemsSource.Count));
+        Assert.That(vm.MenuItems, Is.Null);
     }
 
     [Test]
@@ -42,6 +42,7 @@ public class ContextMenuControlViewModelTests
         vm.LoadMenuBuilder(builder);
 
         // Assert
+        Assert.That(vm.MenuItems, Is.Not.Null);
         Assert.That(vm.MenuItems.Count, Is.EqualTo(builder.MenuItemsSource.Count));
     }
 

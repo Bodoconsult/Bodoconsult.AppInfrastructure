@@ -127,6 +127,8 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// </summary>
     public void Start()
     {
+        CurrentFilePath = CreateCurrentFilePath();
+
         _cachingQueue.StartConsumer();
         _storingQueue.StartConsumer();
 
@@ -154,23 +156,25 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
         //Debug.Print($"Stop: {CurrentFilePath}: {_currentFileSize} byte");
         StoreCacheToStoringQueue(FileState.Finalize);
 
-        Thread.Sleep(200);
+        Thread.Sleep(250);
 
         _cachingQueue.StopConsumer();
         _storingQueue.StopConsumer();
 
         // Now finalize the last filestream
-        if (_currentFileStream != null)
+        if (_currentFileStream == null)
         {
-            // Add a footer now if required
-            if (FooterData != null)
-            {
-                _currentFileStream.Write(FooterData.Value.Span);
-            }
-
-            _currentFileStream.Close();
-            _currentFileStream.Dispose();
+            return;
         }
+
+        // Add a footer now if required
+        if (FooterData != null)
+        {
+            _currentFileStream.Write(FooterData.Value.Span);
+        }
+
+        _currentFileStream.Close();
+        _currentFileStream.Dispose();
     }
 
     private void StoreCacheToStoringQueue(FileState fileState)
@@ -282,8 +286,6 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// <param name="data">Current data to be stored</param>
     private void AddCacheToStoring(MemoryStream data)
     {
-        var fileName = CreateCurrentFilePath();
-
         if (data.Length == 0)
         {
             return;
@@ -301,11 +303,11 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
 
                 _currentFileStream.Close();
                 _currentFileStream.Dispose();
+
+                CurrentFilePath = CreateCurrentFilePath();
             }
 
-            CurrentFilePath = CreateCurrentFilePath();
-
-            _currentFileStream = new FileStream(fileName, FileMode.Append, FileAccess.Write, FileShare.Read);
+            _currentFileStream = new FileStream(CurrentFilePath, FileMode.Append, FileAccess.Write, FileShare.Read);
             lock (_currentFileSizeLock)
             {
                 _currentFileSize = 0;
