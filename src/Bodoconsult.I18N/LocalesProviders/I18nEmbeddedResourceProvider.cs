@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.I18N.Helpers;
 
 namespace Bodoconsult.I18N.LocalesProviders;
@@ -82,7 +83,7 @@ public class I18NEmbeddedResourceLocalesProvider : BaseResourceProvider
 
         if (!success) return translations;
 
-        var content = FileHelper.GetTextResource(_assembly, result);
+        var content = ResourceHelper.GetTextResource(_assembly, result);
 
         var lines = content.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 

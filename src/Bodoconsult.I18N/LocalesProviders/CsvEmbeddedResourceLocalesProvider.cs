@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.I18N.Helpers;
 
 namespace Bodoconsult.I18N.LocalesProviders;
@@ -83,7 +84,7 @@ public class CsvEmbeddedResourceLocalesProvider : BaseResourceProvider
             return translations;
         }
 
-        var content = FileHelper.GetTextResource(_assembly, result);
+        var content = ResourceHelper.GetTextResource(_assembly, result);
 
         var lines = content.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
@@ -93,8 +94,8 @@ public class CsvEmbeddedResourceLocalesProvider : BaseResourceProvider
         foreach (var line in lines)
         {
             var isEmpty = string.IsNullOrWhiteSpace(line);
-            var isComment = !isEmpty && line.Trim().StartsWith("#");
-            var isKeyValuePair = !isEmpty && !isComment && line.Contains(";");
+            var isComment = !isEmpty && line.Trim().StartsWith('#');
+            var isKeyValuePair = !isEmpty && !isComment && line.Contains(';');
 
             if ((isEmpty || isComment || isKeyValuePair) && key != null && value != null)
             {

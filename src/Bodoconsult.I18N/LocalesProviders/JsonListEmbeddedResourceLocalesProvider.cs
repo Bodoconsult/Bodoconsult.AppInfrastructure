@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.I18N.Helpers;
 
 namespace Bodoconsult.I18N.LocalesProviders;
@@ -73,7 +74,7 @@ public class JsonListEmbeddedResourceLocalesProvider : BaseResourceProvider
 
         if (!success) return translations;
 
-        var json = FileHelper.GetTextResource(_assembly, result);
+        var json = ResourceHelper.GetTextResource(_assembly, result);
 
         var content = JsonSerializer.Deserialize<List<JsonKvp>>(json)
             .ToDictionary(x => x.Key.Trim(), x => x.Value.Trim().UnescapeLineBreaks());

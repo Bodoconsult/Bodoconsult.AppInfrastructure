@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.I18N.Helpers;
 using Bodoconsult.I18N.LocalesProviders;
 
@@ -78,7 +79,7 @@ public class I18NEmbeddedResourceProvider: BaseResourceProvider
             // ToDo: 4digits
         }
 
-        var content = FileHelper.GetTextResource(_assembly, result);
+        var content = ResourceHelper.GetTextResource(_assembly, result);
 
         var lines = content.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
