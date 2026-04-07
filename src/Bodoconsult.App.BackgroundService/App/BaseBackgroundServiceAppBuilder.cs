@@ -47,8 +47,7 @@ public class BaseBackgroundServiceAppBuilder : BaseAppBuilder
     /// <summary>
     /// Start the application
     /// </summary>
-    /// <param name="cancellationToken"></param>
-    public override void StartApplication(CancellationToken? cancellationToken)
+    public override void StartApplication()
     {
         _builder.Services.Configure<HostOptions>(options =>
         {
@@ -74,5 +73,4 @@ public class BaseBackgroundServiceAppBuilder : BaseAppBuilder
         ApplicationServer?.StopApplication();
         _host?.StopAsync();
     }
-
 }

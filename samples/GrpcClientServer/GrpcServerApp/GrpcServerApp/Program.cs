@@ -83,7 +83,7 @@ public static class Program
         // builder.FinalizeDiContainerSetup(); Do not call this method for a background service. It is too early for it
 
         // Now finally start the app and wait
-        _builder.StartApplication(null);
+        _builder.StartApplication();
 
         Environment.Exit(0);
     }

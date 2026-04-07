@@ -20,6 +20,7 @@ public class App : Application
 {
     public IMainWindowViewModel MainWindowViewModel { get; set; }
 
+    /// <summary>Initializes the application by loading XAML etc.</summary>
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -134,7 +135,7 @@ public class App : Application
         builder.MainWindowViewModel = MainWindowViewModel;
 
         // Now finally start the app and wait
-        builder.StartApplication(null);
+        builder.StartApplication();
 
         //base.OnStartup(e);
     }

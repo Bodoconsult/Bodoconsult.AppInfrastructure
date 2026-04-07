@@ -51,7 +51,7 @@ public static class AssemblySetup
         Globals.Instance.Logger.LogInformation("Starting tests...");
 
         // Start test app with ReactiveUI
-        builder.StartApplication(null);
+        builder.StartApplication();
 
     }
 

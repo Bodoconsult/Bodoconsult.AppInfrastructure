@@ -118,8 +118,7 @@ internal class FakeAppBuilder : IAppBuilder
     /// <summary>
     /// Start the application. Default start mode is a console app.
     /// </summary>
-    /// <param name="cancellationToken"></param>
-    public void StartApplication(CancellationToken? cancellationToken)
+    public void StartApplication()
     {
         WasStartApplication = true;
     }

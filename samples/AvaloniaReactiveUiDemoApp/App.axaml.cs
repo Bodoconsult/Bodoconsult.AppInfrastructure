@@ -18,6 +18,7 @@ public partial class App : Application
 {
     public IRxMainWindowViewModel? MainWindowViewModel { get; set; }
 
+    /// <summary>Initializes the application by loading XAML etc.</summary>
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -103,6 +104,6 @@ public partial class App : Application
         // builder.FinalizeDiContainerSetup(); Do not run here
 
         // Now finally start the app and wait
-        builder.StartApplication(null);
+        builder.StartApplication();
     }
 }

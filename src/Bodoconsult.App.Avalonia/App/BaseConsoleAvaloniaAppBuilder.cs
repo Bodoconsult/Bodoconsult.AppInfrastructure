@@ -22,8 +22,7 @@ public class BaseConsoleAvaloniaAppBuilder: BaseAppBuilder
     /// <summary>
     /// Start the application
     /// </summary>
-    /// <param name="cancellationToken"></param>
-    public override void StartApplication(CancellationToken? cancellationToken)
+    public override void StartApplication()
     {
         // Inject it to UI
         var appStarter = new ConsoleAvaloniaAppStarterUi(this);

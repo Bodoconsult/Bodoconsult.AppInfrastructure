@@ -72,8 +72,7 @@ public interface IAppBuilder
     /// <summary>
     /// Start the application. Default start mode is a console app.
     /// </summary>
-    /// <param name="cancellationToken">Current cancellation token or null</param>
-    void StartApplication(CancellationToken? cancellationToken);
+    void StartApplication();
 
     /// <summary>
     /// Start the application service

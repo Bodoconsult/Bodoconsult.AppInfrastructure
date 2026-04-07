@@ -165,8 +165,7 @@ namespace Bodoconsult.App;
     /// <summary>
     /// Start the application. Default start mode is a console app.
     /// </summary>
-    /// <param name="cancellationToken"></param>
-    public virtual void StartApplication(CancellationToken? cancellationToken)
+    public virtual void StartApplication()
     {
         var appStarter = new ConsoleAppStarterUi(this)
         {

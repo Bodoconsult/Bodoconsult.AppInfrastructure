@@ -39,8 +39,7 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
     /// <summary>
     /// Start the application
     /// </summary>
-    /// <param name="cancellationToken"></param>
-    public override void StartApplication(CancellationToken? cancellationToken)
+    public override void StartApplication()
     {
         var dpr = new MicrosoftDependencyResolver(AppGlobals.DiContainer.ServiceCollection);
 
@@ -105,7 +104,7 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
 
         appStarter.Wait();
 
-        StartApplicationService(cancellationToken);
+        StartApplicationService(null);
     }
 
     /// <summary>
