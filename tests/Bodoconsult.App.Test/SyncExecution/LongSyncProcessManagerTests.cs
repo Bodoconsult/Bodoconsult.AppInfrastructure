@@ -1,4 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.SyncExecution;
 using Bodoconsult.App.Benchmarking;
@@ -7,7 +7,7 @@ using Bodoconsult.App.Test.Helpers;
 namespace Bodoconsult.App.Test.SyncExecution;
 
 [TestFixture]
-public class GuidSyncProcessManagerTests
+public class LongSyncProcessManagerTests
 {
     private readonly AppBenchProxy _benchLogger = TestHelper.GetFakeAppBenchProxy();
 
@@ -21,9 +21,9 @@ public class GuidSyncProcessManagerTests
     public void AddSyncProcess_ValidOrder_ProcessIsAddedToSyncQueue()
     {
         // Arrange 
-        var op = new SyncProcessManager<Guid, DummyClass>();
+        var op = new SyncProcessManager<long, DummyClass>();
 
-        var processId = Guid.NewGuid();
+        var processId = 99;
 
         // Act 
         var result = op.AddSyncProcess(processId, 1000);
@@ -43,9 +43,9 @@ public class GuidSyncProcessManagerTests
     public void GetSyncProcessDataForProcess_ValidOrder_ReturnsData()
     {
         // Arrange 
-        var op = new SyncProcessManager<Guid, DummyClass>();
+        var op = new SyncProcessManager<long, DummyClass>();
 
-        var processId = Guid.NewGuid();
+        var processId = 98;
 
         var dummyData = op.AddSyncProcess(processId, 1000);
 
@@ -69,9 +69,9 @@ public class GuidSyncProcessManagerTests
     public void RemoveSyncProces_ValidOrder_ProcessIsRemovedFromSyncQueue()
     {
         // Arrange 
-        var op = new SyncProcessManager<Guid, DummyClass>();
+        var op = new SyncProcessManager<long, DummyClass>();
 
-        var processId = Guid.NewGuid();
+        var processId = 97;
 
         var result = op.AddSyncProcess(processId, 1000);
 

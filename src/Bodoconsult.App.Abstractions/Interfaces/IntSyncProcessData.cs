@@ -3,14 +3,14 @@
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
-/// Helper class for running process identified by a key value in a sync manner
+/// Helper class for running process identified by an int value in a sync manner
 /// </summary>
-public class SyncProcessData<TKey, T> : IDisposable where T: class
+public class IntSyncProcessData<T> : IDisposable where T : class
 {
     /// <summary>
     /// Default ctor
     /// </summary>
-    public SyncProcessData(TKey processId, int timeout)
+    public IntSyncProcessData(int processId, int timeout)
     {
         ProcessId = processId;
 
@@ -51,7 +51,7 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     /// <summary>
     /// Process ID
     /// </summary>
-    public TKey ProcessId { get; }
+    public int ProcessId { get; }
 
     /// <summary>
     /// CancellationTokenSource used for running an order in a sync manner
