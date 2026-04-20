@@ -29,6 +29,20 @@ public class BaseBackgroundServiceAppBuilder : BaseAppBuilder
     }
 
     /// <summary>
+    /// Configure the host app builder
+    /// </summary>
+    /// <param name="configureAction">Configure action expecting a <see cref="HostApplicationBuilder"/> instance</param>
+    public void ConfigureHostBuilder(Action<HostApplicationBuilder> configureAction)
+    {
+        if (configureAction == null)
+        {
+            return;
+        }
+
+        configureAction.Invoke(_builder);
+    }
+
+    /// <summary>
     /// Timeout is ms to wait for a graceful shutdown
     /// </summary>
     public int ShutdownTimeout { get; set; } = 10;

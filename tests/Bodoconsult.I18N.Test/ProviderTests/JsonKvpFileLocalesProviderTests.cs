@@ -1,11 +1,12 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
-using System.Linq;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.LocalesProviders;
 using Bodoconsult.I18N.Test.Helpers;
 using NUnit.Framework;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace Bodoconsult.I18N.Test.ProviderTests;
 
@@ -22,11 +23,10 @@ internal class JsonKvpFileLocalesProviderTests
 
         // Arrange
         const string key = "en";
-        const string resourceFolder = "SamplesFiles\\JsonKvpLocales";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "SamplesFiles\\JsonKvpLocales");
         //const string value = "Is not null";
 
-        ILocalesProvider provider = new JsonKvpFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new JsonKvpFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 
@@ -50,13 +50,11 @@ internal class JsonKvpFileLocalesProviderTests
     [TestCase("es", "tres")]
     public void TestLoadResourceItem(string language, string expectedResult)
     {
-
         // Arrange
-        const string resourceFolder = "SamplesFiles\\JsonKvpLocales";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "SamplesFiles\\JsonKvpLocales");
         const string translationKey = "three";
 
-        ILocalesProvider provider = new JsonKvpFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new JsonKvpFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 

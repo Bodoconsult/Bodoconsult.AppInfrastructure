@@ -3,6 +3,7 @@
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
+using Bodoconsult.App.CentralServices;
 using Bodoconsult.App.Factories;
 using Bodoconsult.App.Interfaces;
 using Bodoconsult.App.Logging;
@@ -17,14 +18,14 @@ namespace Bodoconsult.App.DependencyInjection;
 ///     - IAppLoggerProxyFactory for logging for creating specialized logfiles
 ///     - IAppBenchProxy for benchmarking
 ///     - IGeneralAppManagementManager for general app management
+///     - IAppDateService for app date management
 ///     - IAppEventListener for app event listening
+///     - IAppEventSourceFactory for APM
 /// 
 /// </summary>
 public class BasicAppServicesConfig2ContainerServiceProvider : IDiContainerServiceProvider
 {
-
     private readonly string _benchmarkFileName;
-
     private readonly IAppGlobals _appGlobals;
 
     /// <summary>
@@ -64,9 +65,15 @@ public class BasicAppServicesConfig2ContainerServiceProvider : IDiContainerServi
         // General app management
         diContainer.AddSingleton<IGeneralAppManagementService, GeneralAppManagementService>();
         diContainer.AddSingleton<IGeneralAppManagementManager, GeneralAppManagementManager>();
+        
+        // App date time service
+        diContainer.AddSingleton<IAppDateService, AppDateService>();
 
         // AppEventListener 
         diContainer.AddSingleton<IAppEventListener, AppEventListener>();
+
+        // Event source factory
+        diContainer.AddSingleton<IAppEventSourceFactory, AppApmEventSourceFactory>();
     }
 
     /// <summary>

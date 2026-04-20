@@ -7,11 +7,9 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// </summary>
 public interface IAppEventSourceFactory
 {
-
     /// <summary>
     /// Create an instance of an <see cref="IAppEventSource"/> based implementation
     /// </summary>
     /// <returns><see cref="IAppEventSource"/> based instance</returns>
     IAppEventSource CreateInstance();
-
 }

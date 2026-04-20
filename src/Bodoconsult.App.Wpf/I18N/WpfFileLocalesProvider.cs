@@ -17,18 +17,15 @@ public class WpfFileLocalesProvider : BaseResourceProvider
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="assembly">Assembly to load the locales from</param>
-    /// <param name="resourceFolder">Folder relative to app path the locales are stored in. Locales file must be named Culture.XX.xaml with XX being the language identifier</param>
-    public WpfFileLocalesProvider(Assembly assembly, string resourceFolder)
+    /// <param name="resourceFolder">Full ressource folder path the locales are stored in. Locales file must be named Culture.XX.xaml with XX being the language identifier</param>
+    public WpfFileLocalesProvider(string resourceFolder)
     {
-        var dir = new FileInfo(assembly.Location).DirectoryName;
-
-        if (string.IsNullOrEmpty(dir))
+        if (string.IsNullOrEmpty(resourceFolder))
         {
             return;
         }
 
-        _resourceFolder = Path.Combine(dir, resourceFolder);
+        _resourceFolder = resourceFolder;
     }
 
     /// <summary>

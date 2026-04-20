@@ -44,7 +44,8 @@ public class Log4NetProvider : ILoggerProvider
     /// </summary>
     public Log4NetProvider()
     {
-        var s = typeof(Log4NetProvider).Assembly.Location;
+        var s = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(s); ;
         // ReSharper disable once AssignNullToNotNullAttribute
         s = Path.Combine(new FileInfo(s).DirectoryName, "log4net.config");
         _log4NetConfigFile = s;

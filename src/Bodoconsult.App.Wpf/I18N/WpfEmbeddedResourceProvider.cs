@@ -98,7 +98,6 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
     {
         var translations = new Dictionary<string, string>();
 
-
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var path);
 

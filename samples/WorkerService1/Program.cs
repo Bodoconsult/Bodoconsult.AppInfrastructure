@@ -43,7 +43,7 @@ internal static class Program
 #endif
 
         // Load basic app metadata
-        builder.LoadBasicSettings(typeof(Program));
+        builder.LoadBasicSettings();
 
         // Process the config file
         builder.ProcessConfiguration();
@@ -77,8 +77,6 @@ internal static class Program
 
         // Now finally start the app and wait
         builder.StartApplication();
-
-        Environment.Exit(0);
     }
 }
 

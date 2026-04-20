@@ -55,9 +55,11 @@ public class Log4NetLogger : ILogger
     /// </summary>
     public Log4NetLogger()
     {
-        var assPath = typeof(Log4NetLogger).Assembly.Location;
+        var assPath = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(assPath);
 
         var dir = new FileInfo(assPath).DirectoryName;
+        ArgumentNullException.ThrowIfNull(dir);
 
         var fileName = Path.Combine(dir, "logfile.log");
 
@@ -138,10 +140,10 @@ public class Log4NetLogger : ILogger
 
     public Log4NetLogger(string name, string configFileName)
     {
+        var s = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(s);
 
-        var type = typeof(Log4NetLogger);
-
-        var filePath = Path.Combine(new FileInfo(type.Assembly.Location).DirectoryName, configFileName);
+        var filePath = Path.Combine(s, configFileName);
 
         var xmlElement = ParseLog4NetConfigFile(filePath);
 

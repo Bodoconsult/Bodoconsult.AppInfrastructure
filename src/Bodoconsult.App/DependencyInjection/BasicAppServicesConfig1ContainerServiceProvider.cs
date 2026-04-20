@@ -3,8 +3,10 @@
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
+using Bodoconsult.App.CentralServices;
 using Bodoconsult.App.Factories;
 using Bodoconsult.App.Interfaces;
+using Bodoconsult.App.Logging;
 using Microsoft.Extensions.Logging;
 
 namespace Bodoconsult.App.DependencyInjection;
@@ -16,14 +18,13 @@ namespace Bodoconsult.App.DependencyInjection;
 ///     - IAppLoggerProxyFactory for logging for creating specialized logfiles
 ///     - IAppBenchProxy for benchmarking
 ///     - IGeneralAppManagementManager for general app management
+///     - IAppDateService for app date management
 ///     
 /// 
 /// </summary>
 public class BasicAppServicesConfig1ContainerServiceProvider : IDiContainerServiceProvider
 {
-
     private readonly string _benchmarkFileName;
-
     private readonly IAppGlobals _appGlobals;
 
     /// <summary>
@@ -64,6 +65,14 @@ public class BasicAppServicesConfig1ContainerServiceProvider : IDiContainerServi
         diContainer.AddSingleton<IGeneralAppManagementService, GeneralAppManagementService>();
         diContainer.AddSingleton<IGeneralAppManagementManager, GeneralAppManagementManager>();
 
+        // App date time service
+        diContainer.AddSingleton<IAppDateService, AppDateService>();
+
+        // AppEventListener 
+        diContainer.AddSingleton<IAppEventListener, DummyAppEventListener>();
+
+        // Event source factory
+        diContainer.AddSingleton<IAppEventSourceFactory, FakeAppEventSourceFactory>();
     }
 
     /// <summary>
@@ -79,6 +88,5 @@ public class BasicAppServicesConfig1ContainerServiceProvider : IDiContainerServi
         // Set logger to current logger factory
         var loggerFactory = diContainer.Get<ILoggerFactory>();
         appLogger.UpdateILoggerFactory(loggerFactory);
-
     }
 }

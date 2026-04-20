@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.AppStarter;
 using Bodoconsult.App.BusinessTransactions.RequestData;
@@ -59,19 +60,19 @@ namespace Bodoconsult.App;
     /// <summary>
     /// Load basic settings
     /// </summary>
-    /// <param name="appStartType">Type of the app entry class (probably Program)</param>
-    public void LoadBasicSettings(Type appStartType)
+    public void LoadBasicSettings()
     {
-        var s = appStartType.Assembly.Location;
+        var s = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(s);
 
-        var assemName = appStartType.Assembly.GetName();
-
-        var param = AppGlobals.AppStartParameter;
-        param.SoftwareRevision = assemName.Version;
-
-        param.AppVersion = $"{assemName.Name}, Version {param.SoftwareRevision}";
+        var versionInfo = FileVersionInfo.GetVersionInfo(s);
 
         var executable = new FileInfo(s);
+        var assemName = executable.Name.Replace(executable.Extension, "", StringComparison.InvariantCultureIgnoreCase);
+
+        var param = AppGlobals.AppStartParameter;
+        param.SoftwareRevision = new Version(versionInfo.FileMajorPart, versionInfo.FileMinorPart, versionInfo.FileBuildPart);
+        param.AppVersion = $"{assemName}, Version {param.SoftwareRevision}";
 
         var currentDir = executable.DirectoryName;
         ArgumentNullException.ThrowIfNull(currentDir);

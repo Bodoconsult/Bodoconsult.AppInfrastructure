@@ -1,11 +1,12 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System.Linq;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.LocalesProviders;
 using Bodoconsult.I18N.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
+using System.Linq;
 
 namespace Bodoconsult.I18N.Test.ProviderTests;
 
@@ -19,14 +20,12 @@ internal class I18NFileLocalesProviderTests
     [Test]
     public void TestRegisterLocaleItems()
     {
-
         // Arrange
         const string key = "de";
-        const string resourceFolder = "LocalesFiles";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "LocalesFiles");
         //const string value = "Is not null";
 
-        ILocalesProvider provider = new I18NFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new I18NFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 
@@ -36,11 +35,10 @@ internal class I18NFileLocalesProviderTests
         // Assert
         Assert.That(provider.LocaleItems.Any());
 
-        var success = provider.LocaleItems.TryGetValue(key, out var result);
+        var success = provider.LocaleItems.TryGetValue(key, out _);
 
         Assert.That(success);
         //Assert.That(value, result);
-
     }
 
 
@@ -50,13 +48,11 @@ internal class I18NFileLocalesProviderTests
     [TestCase("en", "Contains")]
     public void TestLoadResourceItem(string language, string expectedResult)
     {
-
         // Arrange
-        const string resourceFolder = "LocalesFiles";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "LocalesFiles");
         const string translationKey = "Contains";
 
-        ILocalesProvider provider = new I18NFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new I18NFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 

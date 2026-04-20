@@ -98,25 +98,25 @@ public static class InlineConverterMethods
         return solidColorBrush.Color.ToTypoColor();
     }
 
-    /// <summary>
-    /// Convert a <see cref="TypoColor"/> to a <see cref="SolidColorBrush"/>
-    /// </summary>
-    /// <param name="htmlColor">HTML color string like #FFFFFFFF with alpha channel as leading part</param>
-    /// <returns><see cref="SolidColorBrush"/> instance</returns>
-    public static SolidColorBrush FromHtmlColorToSolidColorBrush(string htmlColor)
-    {
-        var o = ColorToHexConverter.ParseHexString(htmlColor, AlphaComponentPosition.Leading);
+    ///// <summary>
+    ///// Convert a <see cref="TypoColor"/> to a <see cref="SolidColorBrush"/>
+    ///// </summary>
+    ///// <param name="htmlColor">HTML color string like #FFFFFFFF with alpha channel as leading part</param>
+    ///// <returns><see cref="SolidColorBrush"/> instance</returns>
+    //public static SolidColorBrush FromHtmlColorToSolidColorBrush(string htmlColor)
+    //{
+    //    var o = ColorToHexConverter.ParseHexString(htmlColor, AlphaComponentPosition.Leading);
 
-        if (o == null)
-        {
-            throw new ArgumentNullException(nameof(o));
-        }
+    //    if (o == null)
+    //    {
+    //        throw new ArgumentNullException(nameof(o));
+    //    }
 
-        var color = (Color)o;
+    //    var color = (Color)o;
 
-        var brush = new SolidColorBrush(color);
-        return brush;
-    }
+    //    var brush = new SolidColorBrush(color);
+    //    return brush;
+    //}
 
     /// <summary>
     /// Convert a <see cref="SolidColorBrush"/> to a <see cref="TypoColor"/>

@@ -54,7 +54,7 @@ public partial class App : Application
 #endif
 
         // Load basic app metadata
-        builder.LoadBasicSettings(type);
+        builder.LoadBasicSettings();
 
         // Process the config file
         builder.ProcessConfiguration();

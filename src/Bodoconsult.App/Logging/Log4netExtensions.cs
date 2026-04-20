@@ -68,7 +68,8 @@ public static class Log4NetExtensions
             throw new ArgumentNullException(nameof(factory));
         }
 
-        var s = typeof(Log4NetExtensions).Assembly.Location;
+        var s = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(s);
 
         // ReSharper disable once AssignNullToNotNullAttribute
         s = Path.Combine(new FileInfo(s).DirectoryName, "log4net.config");

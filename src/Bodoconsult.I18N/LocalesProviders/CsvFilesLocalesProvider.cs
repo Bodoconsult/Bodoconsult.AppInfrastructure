@@ -27,18 +27,15 @@ public class CsvFileLocalesProvider : BaseResourceProvider
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="assembly">Current assembly</param>
-    /// <param name="resourceFolder">Ressource folder name</param>
-    public CsvFileLocalesProvider(Assembly assembly, string resourceFolder)
+    /// <param name="resourceFolder">Full ressource folder path the locales are stored in. Locales file must be named Culture.XX.xaml with XX being the language identifier</param>
+    public CsvFileLocalesProvider(string resourceFolder)
     {
-        var dir = new FileInfo(assembly.Location).DirectoryName;
-
-        if (string.IsNullOrEmpty(dir))
+        if (string.IsNullOrEmpty(resourceFolder))
         {
             return;
         }
 
-        _resourceFolder = Path.Combine(dir, resourceFolder);
+        _resourceFolder = resourceFolder;
     }
 
 
@@ -106,7 +103,9 @@ public class CsvFileLocalesProvider : BaseResourceProvider
             }
 
             if (isEmpty || isComment)
+            {
                 continue;
+            }
 
             if (isKeyValuePair)
             {

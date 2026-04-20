@@ -86,10 +86,11 @@ public class FlowDocumentService
     /// </summary>
     private void BaseConstructor()
     {
+        var fileName = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(fileName);
+
         try
         {
-            var fileName = GetType().Assembly.Location;
-
             var fi = new FileInfo(fileName);
 
             _currentDir = fi.DirectoryName;

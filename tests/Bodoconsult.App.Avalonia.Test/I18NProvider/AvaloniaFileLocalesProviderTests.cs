@@ -9,13 +9,13 @@ namespace Bodoconsult.App.Avalonia.Test.I18NProvider;
 internal class AvaloniaFileLocalesProviderTests
 {
 
-    private const string LocalesFiles = "LocalesFiles";
+    private readonly string _localesFiles = Path.Combine(TestHelper.GetFolderPath,  "LocalesFiles");
 
     [Test]
     public void RegisterLocaleItems_ExistingLocales_LocalesLoaded()
     {
         // Arrange 
-        var provider = new AvaloniaFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
+        var provider = new AvaloniaFileLocalesProvider(_localesFiles);
 
         // Act  
         provider.RegisterLocaleItems();
@@ -29,7 +29,7 @@ internal class AvaloniaFileLocalesProviderTests
     public void LoadResourceItem_CultureEn_TranslationsLoaded()
     {
         // Arrange 
-        var provider = new AvaloniaFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
+        var provider = new AvaloniaFileLocalesProvider(_localesFiles);
         provider.RegisterLocaleItems();
 
         // Act  
@@ -44,7 +44,7 @@ internal class AvaloniaFileLocalesProviderTests
     public void LoadResourceItem_CultureDe_TranslationsLoaded()
     {
         // Arrange 
-        var provider = new AvaloniaFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
+        var provider = new AvaloniaFileLocalesProvider(_localesFiles);
         provider.RegisterLocaleItems();
 
         // Act  

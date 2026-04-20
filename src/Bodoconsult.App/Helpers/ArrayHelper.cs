@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Buffers;
+using System.Reflection;
 using System.Text;
 
 namespace Bodoconsult.App.Helpers;

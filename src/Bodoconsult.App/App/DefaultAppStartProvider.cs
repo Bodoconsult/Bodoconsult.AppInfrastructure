@@ -83,41 +83,41 @@ public class DefaultAppStartProvider : IAppStartProvider
         }
 
         // Read AppName
-        asp.AppName = ReadStringProperty(section, "AppName");
-        asp.AppFolderName = ReadStringProperty(section, "AppFolderName") ?? "MyApp";
-        asp.IpAddress = ReadStringProperty(section, "IpAddress");
-        asp.Port = ReadIntProperty(section, "Port");
-        asp.NumberOfBackupsToKeep = ReadIntProperty(section, "NumberOfBackupsToKeep");
-        asp.BackupPath = ReadStringProperty(section, "BackupPath");
+        asp.AppName = ReadStringProperty(section, "AppName", asp.AppName);
+        asp.AppFolderName = ReadStringProperty(section, "AppFolderName", asp.AppFolderName) ?? "MyApp";
+        asp.IpAddress = ReadStringProperty(section, "IpAddress", asp.IpAddress);
+        asp.Port = ReadIntProperty(section, "Port", asp.Port);
+        asp.NumberOfBackupsToKeep = ReadIntProperty(section, "NumberOfBackupsToKeep", asp.NumberOfBackupsToKeep);
+        asp.BackupPath = ReadStringProperty(section, "BackupPath", asp.BackupPath);
 
         switch (asp)
         {
             case I2NetworkDevicesAppStartParameter asp2:
-                asp2.IpAddress2 = ReadStringProperty(section, "IpAddress2");
-                asp2.Port2 = ReadIntProperty(section, "Port2");
+                asp2.IpAddress2 = ReadStringProperty(section, "IpAddress2", asp2.IpAddress2);
+                asp2.Port2 = ReadIntProperty(section, "Port2", asp2.Port2);
                 break;
             case I3NetworkDevicesAppStartParameter asp3:
-                asp3.IpAddress2 = ReadStringProperty(section, "IpAddress2");
-                asp3.Port2 = ReadIntProperty(section, "Port2");
+                asp3.IpAddress2 = ReadStringProperty(section, "IpAddress2", asp3.IpAddress2);
+                asp3.Port2 = ReadIntProperty(section, "Port2", asp3.Port2);
 
-                asp3.IpAddress3 = ReadStringProperty(section, "IpAddress3");
-                asp3.Port3 = ReadIntProperty(section, "Port3");
+                asp3.IpAddress3 = ReadStringProperty(section, "IpAddress3",asp3.IpAddress2);
+                asp3.Port3 = ReadIntProperty(section, "Port3", asp3.Port3);
                 break;
         }
     }
 
-    private static string ReadStringProperty(IConfigurationSection section, string propertyName)
+    private static string ReadStringProperty(IConfigurationSection section, string propertyName, string currentValue)
     {
         var calue = section[propertyName];
-        return !string.IsNullOrEmpty(calue) ? calue : null;
+        return !string.IsNullOrEmpty(calue) ? calue : currentValue;
     }
 
-    private static int ReadIntProperty(IConfigurationSection section, string propertyName)
+    private static int ReadIntProperty(IConfigurationSection section, string propertyName, int currentValue)
     {
         var calue = section[propertyName];
         if (string.IsNullOrEmpty(calue))
         {
-            return 0;
+            return currentValue;
         }
 
         try
@@ -129,7 +129,6 @@ public class DefaultAppStartProvider : IAppStartProvider
             return 0;
         }
     }
-
 
     /// <summary>
     /// Load the current <see cref="IDefaultAppLoggerProvider"/> implementation

@@ -23,6 +23,7 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.GrpcBackgroundService.AppStarter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 // https://github.com/grpc/grpc-dotnet/blob/master/examples/Worker/Server/Program.cs
 
@@ -53,6 +54,20 @@ public class BaseGrpcBackgroundServiceAppBuilder : BaseAppBuilder
         // Prepare the service builder instance
         Builder = WebApplication.CreateBuilder(args);
         AppGlobals.DiContainer = new DiContainer(Builder.Services);
+    }
+
+    /// <summary>
+    /// Configure the host app builder
+    /// </summary>
+    /// <param name="configureAction">Configure action expecting a <see cref="HostApplicationBuilder"/> instance</param>
+    public void ConfigureHostBuilder(Action<WebApplicationBuilder> configureAction)
+    {
+        if (configureAction == null)
+        {
+            return;
+        }
+
+        configureAction.Invoke(Builder);
     }
 
     /// <summary>

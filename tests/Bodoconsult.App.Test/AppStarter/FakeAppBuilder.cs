@@ -64,8 +64,7 @@ internal class FakeAppBuilder : IAppBuilder
     /// <summary>
     /// Load basic settings
     /// </summary>
-    /// <param name="appStartType">Type of the app entry class (probably Program)</param>
-    public void LoadBasicSettings(Type appStartType)
+    public void LoadBasicSettings()
     {
         throw new NotImplementedException();
     }

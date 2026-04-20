@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
-using System.Threading;
 
 namespace Bodoconsult.App.BackgroundService.AppStarter;
 
@@ -22,8 +22,9 @@ public class BackgroundServiceAppStarter : Microsoft.Extensions.Hosting.Backgrou
     public BackgroundServiceAppStarter(IAppLoggerProxy logger, IAppBuilder appBilder)
     {
         _logger = logger;
+        _logger.LogInformation("Service initialized");
         AppBuilder = appBilder;
-        AppBuilder.LoadAppStarterUi( this);
+        AppBuilder.LoadAppStarterUi(this);
     }
 
     /// <summary>
@@ -35,36 +36,53 @@ public class BackgroundServiceAppStarter : Microsoft.Extensions.Hosting.Backgrou
     /// <remarks>See <see href="https://learn.microsoft.com/dotnet/core/extensions/workers">Worker Services in .NET</see> for implementation guidelines.</remarks>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var task = Task.Run(()=>Start(stoppingToken), stoppingToken);
+        var error = false;
 
-        await Task.Run(() =>
+        try
         {
-            try
+            _logger.LogInformation("Service starts...");
+
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            Task.Run(() => Start(stoppingToken), stoppingToken);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
+            while (!stoppingToken.IsCancellationRequested)
             {
-                while (!stoppingToken.IsCancellationRequested)
+                var isStopped = stoppingToken.IsCancellationRequested;
+
+                if (isStopped)
                 {
-                    var isStopped = stoppingToken.IsCancellationRequested
-                                    || task.IsCompleted
-                                    || task.IsCanceled ||
-                                    task.IsFaulted;
-                    if (isStopped)
-                    {
-                        break;
-                    }
-                    Task.Delay(100, stoppingToken);
+                    Debug.Print("Service was stopped");
+                    _logger.LogInformation("Service was stopped");
+                    break;
                 }
-
-                return true;
+                // ReSharper disable once MethodSupportsCancellation
+                await Task.Delay(100);
+                Debug.Print("Service is running");
             }
-            catch (Exception e)
-            {
-                _logger.LogError("Start failed", e);
-                return false;
-            }
+        }
+        catch (OperationCanceledException)
+        {
+            // When the stopping token is canceled, for example, a call made from services.msc,
+            // we shouldn't exit with a non-zero exit code. In other words, this is expected...
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Running service failed", e);
+            error = true;
+        }
 
-        });
+        try
+        {
+            AppBuilder.StopApplication();
+            _logger.LogInformation("Service stopped");
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Stopping service failed", e);
+        }
 
-        AppBuilder.StopApplication();
+        Environment.Exit(error ? 1 : 0);
     }
 
     /// <summary>
@@ -103,7 +121,7 @@ public class BackgroundServiceAppStarter : Microsoft.Extensions.Hosting.Backgrou
     /// <param name="appTitle">App title to set</param>
     public void TerminateAppWithMessage(string message, string appTitle)
     {
-           // Do nothing 
+        // Do nothing 
     }
 
     /// <summary>
@@ -112,6 +130,6 @@ public class BackgroundServiceAppStarter : Microsoft.Extensions.Hosting.Backgrou
     /// <param name="ex">Exception raised</param>
     public void HandleException(Exception ex)
     {
-        throw new NotImplementedException();
+        _logger.LogError("Handle exception", ex);
     }
 }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -17,6 +18,9 @@ public class TestHelper
         var fi = new FileInfo(Assembly.Location);
 
         AppPath = fi.DirectoryName;
+
+        ArgumentNullException.ThrowIfNull(AppPath);
+        ArgumentNullException.ThrowIfNull(fi.Directory?.Parent?.Parent?.Parent?.Parent?.Parent);
 
         if (AppPath.Contains("\\windows\\"))
         {

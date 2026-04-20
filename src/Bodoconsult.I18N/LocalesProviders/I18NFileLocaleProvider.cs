@@ -26,16 +26,15 @@ public class I18NFileLocalesProvider : BaseResourceProvider
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="assembly">Assembly to load the locales files from</param>
-    /// <param name="resourceFolder">Relative path to assembly of the folder with the locales files </param>
-    public I18NFileLocalesProvider(Assembly assembly, string resourceFolder)
+    /// <param name="resourceFolder">Full ressource folder path the locales are stored in. Locales file must be named Culture.XX.xaml with XX being the language identifier</param>
+    public I18NFileLocalesProvider(string resourceFolder)
     {
-        //_assembly = assembly;
-        var dir = new FileInfo(assembly.Location).DirectoryName;
+        if (string.IsNullOrEmpty(resourceFolder))
+        {
+            return;
+        }
 
-        if (string.IsNullOrEmpty(dir)) return;
-
-        _resourceFolder = Path.Combine(dir, resourceFolder);
+        _resourceFolder = resourceFolder;
     }
 
 

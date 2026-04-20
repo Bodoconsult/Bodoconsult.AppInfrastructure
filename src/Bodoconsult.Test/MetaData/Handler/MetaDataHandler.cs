@@ -69,11 +69,15 @@ public class MetaDataHandler
     private void LoadAssemblyDocumentation(Assembly assembly)
     {
 
+        // Do not replace with Environment.ProcessPath
         var fileName = new FileInfo(assembly.Location).Name;
 
         var xmlFile = assembly.Location.Replace(".dll", ".xml");
 
-        if (!File.Exists(xmlFile)) return;
+        if (!File.Exists(xmlFile))
+        {
+            return;
+        }
 
         Debug.Print(fileName);
         Debug.Print(xmlFile);
@@ -100,9 +104,6 @@ public class MetaDataHandler
     /// <param name="type"></param>
     public TypeMetaData AddType(Type type)
     {
-
-        //var fileName = new FileInfo(type.Assembly.Location).Name;
-
         var item = new TypeMetaData
         {
             FullName = string.Empty,
@@ -110,10 +111,7 @@ public class MetaDataHandler
             CurrentType = type
         };
 
-
         TypeMetaDatas.Add(item);
-
-
 
         // Read data from 
         FindXmlDataClass(item);
@@ -220,7 +218,7 @@ public class MetaDataHandler
 
     private void FindXmlData(string prefix, IMetaData item, Type type)
     {
-
+        // Do not replace with Environment.ProcessPath
         var assFileName = new FileInfo(type.Assembly.Location).Name;
 
         var docu = Documentation.FirstOrDefault(x => x.AssemblyFileName == assFileName);

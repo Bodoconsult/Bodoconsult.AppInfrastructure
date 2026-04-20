@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.IO;
 using Bodoconsult.App.Wpf.I18N;
 using Bodoconsult.App.Wpf.Test.Helpers;
 using NUnit.Framework;
@@ -9,14 +10,13 @@ namespace Bodoconsult.App.Wpf.Test.I18NProvider;
 [TestFixture]
 internal class WpfFileLocalesProviderTests
 {
-
-    private const string LocalesFiles = "LocalesFiles";
+    private readonly string _localesFiles = Path.Combine( TestHelper.GetFolderPath, "LocalesFiles");
 
     [Test]
     public void RegisterLocaleItems_ExistingLocales_LocalesLoaded()
     {
         // Arrange 
-        var provider = new WpfFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
+        var provider = new WpfFileLocalesProvider(_localesFiles);
 
         // Act  
         provider.RegisterLocaleItems();
@@ -30,7 +30,7 @@ internal class WpfFileLocalesProviderTests
     public void LoadResourceItem_CultureEn_TranslationsLoaded()
     {
         // Arrange 
-        var provider = new WpfFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
+        var provider = new WpfFileLocalesProvider(_localesFiles);
         provider.RegisterLocaleItems();
 
         // Act  
@@ -45,7 +45,7 @@ internal class WpfFileLocalesProviderTests
     public void LoadResourceItem_CultureDe_TranslationsLoaded()
     {
         // Arrange 
-        var provider = new WpfFileLocalesProvider(TestHelper.CurrentAssembly, LocalesFiles);
+        var provider = new WpfFileLocalesProvider(_localesFiles);
         provider.RegisterLocaleItems();
 
         // Act  

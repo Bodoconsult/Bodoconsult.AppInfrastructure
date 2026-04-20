@@ -47,7 +47,6 @@ public class CsvEmbeddedResourceLocalesProvider : BaseResourceProvider
     /// </summary>
     public override void RegisterLocaleItems()
     {
-
         var len = _resourceFolder.Length;
 
         var localeResources = _assembly.GetManifestResourceNames().Where(x => x.StartsWith(_resourceFolder, StringComparison.InvariantCultureIgnoreCase) &&

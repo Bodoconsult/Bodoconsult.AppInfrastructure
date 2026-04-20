@@ -2,6 +2,7 @@
 
 
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.LocalesProviders;
@@ -20,14 +21,12 @@ internal class JsonListFileLocalesProviderTests
     [Test]
     public void TestRegisterLocaleItems()
     {
-
         // Arrange
         const string key = "en";
-        const string resourceFolder = "SamplesFiles\\JsonListLocales";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "SamplesFiles\\JsonListLocales");
         //const string value = "Is not null";
 
-        ILocalesProvider provider = new JsonListFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new JsonListFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 
@@ -43,7 +42,6 @@ internal class JsonListFileLocalesProviderTests
         //Assert.That(value, result);
 
         Debug.Print(provider.ToString());
-
     }
 
 
@@ -51,13 +49,11 @@ internal class JsonListFileLocalesProviderTests
     [TestCase("es", "tres")]
     public void TestLoadResourceItem(string language, string expectedResult)
     {
-
         // Arrange
-        const string resourceFolder = "SamplesFiles\\JsonListLocales";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "SamplesFiles\\JsonListLocales");
         const string translationKey = "three";
 
-        ILocalesProvider provider = new JsonListFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new JsonListFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 

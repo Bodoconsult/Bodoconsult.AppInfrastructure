@@ -19,7 +19,6 @@ public class AppConfigurationProvider : IAppConfigurationProvider
         ConfigFile = configFile;
     }
 
-
     /// <summary>
     /// Full path to the JSON config file to use for the current app
     /// </summary>

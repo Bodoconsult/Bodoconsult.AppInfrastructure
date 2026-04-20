@@ -43,7 +43,7 @@ public static class Program
 #endif
 
         // Load basic app metadata
-        _builder.LoadBasicSettings(typeof(Program));
+        _builder.LoadBasicSettings();
 
         // Process the config file
         _builder.ProcessConfiguration();

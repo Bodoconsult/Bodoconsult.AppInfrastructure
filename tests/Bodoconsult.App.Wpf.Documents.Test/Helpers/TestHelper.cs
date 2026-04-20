@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -15,6 +16,8 @@ internal static class TestHelper
         var fi = new FileInfo(Assembly.Location);
 
         AppPath = fi.DirectoryName;
+
+        ArgumentNullException.ThrowIfNull(fi.Directory?.Parent?.Parent?.Parent?.Parent);
 
         TestDataPath = Path.Combine(fi.Directory.Parent.Parent.Parent.Parent.FullName, "TestData");
 

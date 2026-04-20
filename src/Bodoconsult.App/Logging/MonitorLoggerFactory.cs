@@ -45,28 +45,8 @@ public class MonitorLoggerFactory : IMonitorLoggerFactory
         {
             return _logger;
         }
-
-        //var configFilePath = Path.Combine(new FileInfo(type.Assembly.Location).DirectoryName, "log4net.config");
-
-        //_logger = File.Exists(configFilePath) ? 
-        //    new Log4NetLogger(FileName, "log4net.config") : 
-        //    new Log4NetLogger(FileName);
             
         _logger = new Log4NetLogger(FileName);
-
-        //switch (categoryName)
-        //{
-        //    case "Default":
-        //        _logger = new Log4NetLogger(FileName);
-        //        break;
-        //    case "Display":
-        //        _logger = new Log4NetLogger(FileName,3, 1 * 1024 * 1024);
-        //        break;
-        //    default:
-        //        _logger = new Log4NetLogger(FileName);
-        //        break;
-        //}
-            
         return _logger;
     }
 

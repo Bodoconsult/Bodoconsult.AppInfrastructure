@@ -11,7 +11,6 @@ namespace Bodoconsult.App.Wpf.Test.I18NProvider;
 [TestFixture]
 internal class WpfEmbeddedResourceProviderTests
 {
-
     private const string Path = "Locales";
 
     [Test]

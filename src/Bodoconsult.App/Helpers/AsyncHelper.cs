@@ -30,7 +30,7 @@ public static class AsyncHelper
     }
 
     /// <summary>
-    /// Run a async method call in a syncron manner
+    /// Run an async method call in a syncron manner
     /// </summary>
     /// <param name="func">Method call</param>
     public static void RunSync(Func<Task> func)
@@ -45,7 +45,7 @@ public static class AsyncHelper
     /// <summary>
     /// Fire and forget an action. Task is returned to have the chance to add ContinueWith if required.
     /// </summary>
-    /// <param name="action">Action to fire and forgett</param>
+    /// <param name="action">Action to fire and forget</param>
     /// <returns>Task of the fired action</returns>
     public static Task FireAndForget2(Action action)
     {
@@ -55,7 +55,7 @@ public static class AsyncHelper
     /// <summary>
     /// Fire and forget an action.
     /// </summary>
-    /// <param name="action">Action to fire and forgett</param>
+    /// <param name="action">Action to fire and forget</param>
     /// <returns>Task of the fired action</returns>
     public static void FireAndForget(Action action)
     {

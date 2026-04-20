@@ -104,7 +104,7 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
 
         appStarter.Wait();
 
-        StartApplicationService(null);
+        //StartApplicationService(null);
     }
 
     /// <summary>

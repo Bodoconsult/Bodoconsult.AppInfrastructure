@@ -14,7 +14,6 @@ namespace Bodoconsult.App;
 /// </summary>
 public class GeneralAppManagementManager : IGeneralAppManagementManager
 {
-
     private readonly IGeneralAppManagementService _service;
     private readonly IAppLoggerProxy _appLogger;
 

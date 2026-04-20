@@ -50,7 +50,7 @@ internal static class Program
 
         // Load basic app metadata
             
-        builder.LoadBasicSettings(typeof(Program));
+        builder.LoadBasicSettings();
 
         // Process the config file
         builder.ProcessConfiguration();

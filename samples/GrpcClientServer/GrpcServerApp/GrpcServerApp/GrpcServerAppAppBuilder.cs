@@ -30,6 +30,9 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace GrpcServerApp;
 
+/// <summary>
+/// A windows service called GrpcServerApp
+/// </summary>
 public class GrpcServerAppAppBuilder : BaseGrpcBackgroundServiceAppBuilder
 {
     /// <summary>
@@ -39,6 +42,15 @@ public class GrpcServerAppAppBuilder : BaseGrpcBackgroundServiceAppBuilder
     /// <param name="args">Command line args</param>
     public GrpcServerAppAppBuilder(IAppGlobals appGlobals, string[] args) : base(appGlobals,  args)
     {
+        ConfigureHostBuilder(ConfigureAction);
+    }
+
+    private static void ConfigureAction(WebApplicationBuilder webApplicationBuilder)
+    {
+        webApplicationBuilder.Services.AddWindowsService(options =>
+        {
+            options.ServiceName = "GrpcServerApp";
+        });
 
     }
 

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.ComponentModel;
 using System.Diagnostics;
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
@@ -70,11 +71,17 @@ public class WorkerService1Service : IApplicationService
 
         _isStarting = false;
 
-        // Do start your workload here
-        var i = 0;
+        Task.Run(() =>
+        {
+            DoWork(cancellationToken);
+        });
+    }
 
+    private void DoWork(CancellationToken? cancellationToken)
+    {
+        // Do start your workload here
         Debug.Print("");
-        while (i < 15)
+        while (true)
         {
             if (cancellationToken is { IsCancellationRequested: true })
             {
@@ -91,9 +98,9 @@ public class WorkerService1Service : IApplicationService
             {
                 AsyncHelper.Delay(1000);
             }
-
-            i++;
         }
+
+        Debug.Print("Stop requested...");
 
         if (RequestApplicationStopDelegate == null)
         {

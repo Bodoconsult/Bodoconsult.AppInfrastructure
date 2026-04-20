@@ -1,12 +1,13 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System.Diagnostics;
-using System.Linq;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.LocalesProviders;
 using Bodoconsult.I18N.Test.Helpers;
 using NUnit.Framework;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace Bodoconsult.I18N.Test.ProviderTests;
 
@@ -23,11 +24,10 @@ internal class CsvFileLocalesProviderTests
 
         // Arrange
         const string key = "en";
-        const string resourceFolder = "SamplesFiles\\CsvLineLocales";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "SamplesFiles\\CsvLineLocales");
         //const string value = "Is not null";
 
-        ILocalesProvider provider = new CsvFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new CsvFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 
@@ -53,11 +53,10 @@ internal class CsvFileLocalesProviderTests
     {
 
         // Arrange
-        const string resourceFolder = "SamplesFiles\\CsvLineLocales";
+        var resourceFolder = Path.Combine(TestHelper.GetFolderPath, "SamplesFiles\\CsvLineLocales");
         const string translationKey = "three";
 
-        ILocalesProvider provider = new CsvFileLocalesProvider(TestHelper.CurrentAssembly,
-            resourceFolder);
+        ILocalesProvider provider = new CsvFileLocalesProvider(resourceFolder);
 
         Assert.That(!provider.LocaleItems.Any());
 

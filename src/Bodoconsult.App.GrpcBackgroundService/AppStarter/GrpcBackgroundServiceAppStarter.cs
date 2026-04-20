@@ -38,8 +38,9 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
     public GrpcBackgroundServiceAppStarter(IAppLoggerProxy logger, IAppBuilder appBuilder)
     {
         _logger = logger;
+        _logger.LogInformation("Service initialized");
         AppBuilder = appBuilder;
-        AppBuilder.LoadAppStarterUi( this);
+        AppBuilder.LoadAppStarterUi(this);
     }
 
     /// <summary>
@@ -51,10 +52,12 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
     /// <remarks>See <see href="https://learn.microsoft.com/dotnet/core/extensions/workers">Worker Services in .NET</see> for implementation guidelines.</remarks>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        //var task = Task.Run(Start, stoppingToken);
-        Start();
+        var error = false;
 
-        await Task.Run(() =>
+        Start();
+        _logger.LogInformation("Service started");
+
+        try
         {
             while (true)
             {
@@ -63,13 +66,31 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
                 {
                     break;
                 }
-                Task.Delay(1000, stoppingToken);
+                // ReSharper disable once MethodSupportsCancellation
+                await Task.Delay(1000);
             }
+        }
+        catch (OperationCanceledException)
+        {
+            // When the stopping token is canceled, for example, a call made from services.msc,
+            // we shouldn't exit with a non-zero exit code. In other words, this is expected...
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Running service failed", e);
+            error = true;
+        }
 
-            return true;
-        });
+        try
+        {
+            AppBuilder.StopApplication();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Stopping service failed", e);
+        }
 
-        AppBuilder.StopApplication();
+        Environment.Exit(error ? 1 : 0);
     }
 
     /// <summary>
@@ -92,7 +113,7 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
     /// <param name="appTitle">App title to set</param>
     public void TerminateAppWithMessage(string message, string appTitle)
     {
-            
+        // Do nothing
     }
 
     /// <summary>
@@ -101,6 +122,6 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
     /// <param name="ex">Exception raised</param>
     public void HandleException(Exception ex)
     {
-        throw new NotImplementedException();
+        _logger.LogError("Handle exception", ex);
     }
 }

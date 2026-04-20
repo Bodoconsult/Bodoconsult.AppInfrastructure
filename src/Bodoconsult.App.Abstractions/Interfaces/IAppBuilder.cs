@@ -36,8 +36,7 @@ public interface IAppBuilder
     /// <summary>
     /// Load basic settings
     /// </summary>
-    /// <param name="appStartType">Type of the app entry class (probably Program)</param>
-    void LoadBasicSettings(Type appStartType);
+    void LoadBasicSettings();
 
     /// <summary>
     /// Process the configuration from <see cref="IAppStartParameter.ConfigFile"/>

@@ -10,6 +10,7 @@ using ReactiveUI;
 using ReactiveUI.Avalonia;
 using ReactiveUI.Builder;
 using Splat;
+using System.Runtime.Intrinsics.Arm;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.App;
 
@@ -106,7 +107,7 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
 
         appStarter.Wait();
 
-        StartApplicationService(null);
+        //StartApplicationService(null);
     }
 
     /// <summary>

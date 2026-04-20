@@ -25,15 +25,15 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="assembly">Current assembly</param>
-    /// <param name="resourceFolder">Ressource folder name</param>
-    public JsonListFileLocalesProvider(Assembly assembly, string resourceFolder)
+    /// <param name="resourceFolder">Full ressource folder path the locales are stored in. Locales file must be named Culture.XX.xaml with XX being the language identifier</param>
+    public JsonListFileLocalesProvider(string resourceFolder)
     {
-        var dir = new FileInfo(assembly.Location).DirectoryName;
+        if (string.IsNullOrEmpty(resourceFolder))
+        {
+            return;
+        }
 
-        if (string.IsNullOrEmpty(dir)) return;
-
-        _resourceFolder = Path.Combine(dir, resourceFolder);
+        _resourceFolder = resourceFolder;
     }
 
     /// <summary>
@@ -70,7 +70,10 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success) return translations;
+        if (!success)
+        {
+            return translations;
+        }
 
         var json = File.ReadAllText(result);
 
@@ -80,7 +83,10 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
         foreach (var kvp in content)
         {
 
-            if (translations.Any(x => x.Key == kvp.Key)) continue;
+            if (translations.Any(x => x.Key == kvp.Key))
+            {
+                continue;
+            }
 
             translations.Add(kvp.Key, kvp.Value);
         }
