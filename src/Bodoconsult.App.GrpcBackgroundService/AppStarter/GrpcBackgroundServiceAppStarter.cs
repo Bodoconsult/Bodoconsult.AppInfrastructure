@@ -90,7 +90,24 @@ public class GrpcBackgroundServiceAppStarter : BackgroundService, IAppStarter
             _logger.LogError("Stopping service failed", e);
         }
 
-        Environment.Exit(error ? 1 : 0);
+        // Stop logging now
+        try
+        {
+            if (_logger != null)
+            {
+                _logger.StopLogging();
+                _logger.Dispose();
+            }
+        }
+        catch
+        {
+            // Do nothing
+        }
+
+        if (error)
+        {
+            Environment.Exit(1);
+        }
     }
 
     /// <summary>

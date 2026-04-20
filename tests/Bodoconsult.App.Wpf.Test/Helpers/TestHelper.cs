@@ -22,6 +22,5 @@ internal static class TestHelper
 
     public static Assembly CurrentAssembly { get; }
 
-
     public static string GetFolderPath { get; }
 }

@@ -214,22 +214,6 @@ public class WorkerService1Service : IApplicationService
         {
             // Do nothing
         }
-
-        // Stop logging now
-        try
-        {
-            if (_appLogger != null)
-            {
-                _appLogger.StopLogging();
-                _appLogger.Dispose();
-            }
-
-        }
-        catch
-        {
-            // Do nothing
-        }
-
     }
 
     /// <summary>

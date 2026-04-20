@@ -32,7 +32,9 @@ public class ReportBaseTests
     {
         _i18N.Reset();
 
-        var provider = new WpfFileLocalesProvider(TestHelper.Assembly, "Locales");
+        var path = Path.Combine(TestHelper.AppPath, "Locales");
+
+        var provider = new WpfFileLocalesProvider(path);
         _i18N.AddProvider(provider);
 
 

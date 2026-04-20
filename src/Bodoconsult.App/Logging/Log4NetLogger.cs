@@ -142,8 +142,11 @@ public class Log4NetLogger : ILogger
     {
         var s = Environment.ProcessPath;
         ArgumentNullException.ThrowIfNull(s);
+        
+        var dir = new FileInfo(s).DirectoryName;
+        ArgumentNullException.ThrowIfNull(dir);
 
-        var filePath = Path.Combine(s, configFileName);
+        var filePath = Path.Combine(dir, configFileName);
 
         var xmlElement = ParseLog4NetConfigFile(filePath);
 

@@ -59,5 +59,4 @@ internal class WpfEmbeddedResourceProviderTests
         // Assert
         Assert.That(translations.Count, Is.Not.EqualTo(0));
     }
-
 }

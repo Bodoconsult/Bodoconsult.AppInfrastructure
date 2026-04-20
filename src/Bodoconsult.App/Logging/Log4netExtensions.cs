@@ -44,10 +44,7 @@ public static class Log4NetExtensions
     /// <exception cref="ArgumentNullException">Throws if factory is null</exception>
     public static ILoggerFactory AddLog4Net(this ILoggerFactory factory, string log4NetConfigFile)
     {
-        if (factory == null)
-        {
-            throw new ArgumentNullException(nameof(factory));
-        }
+        ArgumentNullException.ThrowIfNull(factory);
 
         using var p = new Log4NetProvider(log4NetConfigFile);
         factory.AddProvider(p);
@@ -63,10 +60,7 @@ public static class Log4NetExtensions
     /// <exception cref="ArgumentNullException">Throws if factory is null</exception>
     public static ILoggerFactory AddLog4Net(this ILoggerFactory factory)
     {
-        if (factory == null)
-        {
-            throw new ArgumentNullException(nameof(factory));
-        }
+        ArgumentNullException.ThrowIfNull(factory);
 
         var s = Environment.ProcessPath;
         ArgumentNullException.ThrowIfNull(s);
@@ -87,10 +81,8 @@ public static class Log4NetExtensions
     /// <param name="builder">The extension method argument.</param>
     public static ILoggingBuilder AddLog4Net(this ILoggingBuilder builder)
     {
-        if (builder == null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        ArgumentNullException.ThrowIfNull(builder);
+
         builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<ILoggerProvider, Log4NetProvider>());
         return builder;
     }
