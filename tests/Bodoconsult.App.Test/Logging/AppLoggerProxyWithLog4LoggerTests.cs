@@ -35,7 +35,6 @@ internal class AppLoggerProxyWithLog4LoggerTests
         _logger.Dispose();
     }
 
-
     [Test]
     public void LogInformation_StringMessage_EntryWritten()
     {
@@ -46,9 +45,7 @@ internal class AppLoggerProxyWithLog4LoggerTests
         _logger.LogInformation(message);
 
         // Assert
-
         CheckLogFile(message);
-
     }
 
     [Test]
@@ -63,7 +60,6 @@ internal class AppLoggerProxyWithLog4LoggerTests
         // Assert
 
         CheckLogFile(message);
-
     }
 
     [Test]
@@ -78,7 +74,28 @@ internal class AppLoggerProxyWithLog4LoggerTests
         // Assert
 
         CheckLogFile(message);
+    }
 
+    [Test]
+    public void LogDebug_MultipleMessages_EntryWritten()
+    {
+        // Arrange 
+        const string message = "Debug";
+
+        // Act  
+        Assert.DoesNotThrow(() =>
+        {
+            for (var i = 0; i < 10000; i++)
+            {
+                AsyncHelper.FireAndForget(() =>
+                {
+                    _logger.LogDebug($"{message}{i}");
+                });
+            }
+        });
+
+        // Assert
+        Assert.Pass();
     }
 
     [Test]
@@ -91,9 +108,7 @@ internal class AppLoggerProxyWithLog4LoggerTests
         _logger.LogError(message);
 
         // Assert
-
         CheckLogFile(message);
-
     }
 
     [Test]
@@ -108,7 +123,6 @@ internal class AppLoggerProxyWithLog4LoggerTests
         // Assert
 
         CheckLogFile(message);
-
     }
 
     private void CheckLogFile(string message)
@@ -120,6 +134,5 @@ internal class AppLoggerProxyWithLog4LoggerTests
         var content = File.ReadAllText(LogFile);
 
         Assert.That(content.Contains(message), Is.EqualTo(true));
-
     }
 }

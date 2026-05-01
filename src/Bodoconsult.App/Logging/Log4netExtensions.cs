@@ -74,7 +74,6 @@ public static class Log4NetExtensions
         return factory;
     }
 
-
     /// <summary>
     /// Adds a Log4Net logger provider named to the factory
     /// </summary>

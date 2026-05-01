@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using Bodoconsult.App.Logging;
 using Bodoconsult.App.Test.App;
+using Bodoconsult.App.Test.DataExportServices;
 using NUnit.Framework.Legacy;
 
 namespace Bodoconsult.App.Test.Logging;
@@ -10,14 +11,14 @@ namespace Bodoconsult.App.Test.Logging;
 [TestFixture]
 [NonParallelizable]
 [SingleThreaded]
-public class MonitorLoggerFactoryTests
+internal class MonitorLoggerFactoryTests
 {
     [Test]
     public void TestCreateLogger()
     {
         // Arrange 
-        const string towerSn = "999999";
-        var filePath = Path.Combine(Globals.Instance.DataPath, $"{towerSn}.log");
+        const string deviceName = "999999";
+        var filePath = Path.Combine(Globals.Instance.DataPath, $"{deviceName}.log");
 
         DeleteFile(filePath);
 
@@ -28,16 +29,14 @@ public class MonitorLoggerFactoryTests
 
         // Assert
         Assert.That(logger, Is.Not.Null);
-
     }
-
 
     [Test]
     public void TestCheckQueue()
     {
         // Arrange 
-        const string towerSn = "999999";
-        var filePath = Path.Combine(Globals.Instance.DataPath, $"{towerSn}.log");
+        const string deviceName = "999999";
+        var filePath = Path.Combine(Globals.Instance.DataPath, $"{deviceName}.log");
 
         DeleteFile(filePath);
 

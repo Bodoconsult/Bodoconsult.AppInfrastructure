@@ -24,6 +24,8 @@ License - Url: https://licenses.nuget.org/Apache-2.0
 Project - Url: https://github.com/apache/logging-log4net
 */
 
+// https://stackify.com/log4net-guide-dotnet-logging/
+
 using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
@@ -96,7 +98,7 @@ public class Log4NetLogger : ILogger
             MaxSizeRollBackups = 20,
             StaticLogFileName = true,
             LockingModel = new FileAppender.MinimalLock(),
-            Name = $"FileAppender_{plainFileName}"
+            Name = $"RollingFileAppender_{plainFileName}"
         };
         appender.AddFilter(filter);
         appender.Layout = layout;

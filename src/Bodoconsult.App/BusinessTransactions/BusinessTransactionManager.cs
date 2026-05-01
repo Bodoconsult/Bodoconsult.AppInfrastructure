@@ -121,7 +121,6 @@ public class BusinessTransactionManager : IBusinessTransactionManager
     /// <returns></returns>
     public IBusinessTransactionReply RunBusinessTransaction(int transactionId, IBusinessTransactionRequestData requestData)
     {
-
         _logger.LogDebug($"Transaction {transactionId} with GUID {requestData.TransactionGuid} received");
         requestData.Benchmark?.AddStep("InternalReceived");
 
@@ -198,5 +197,17 @@ public class BusinessTransactionManager : IBusinessTransactionManager
                 RequestData = requestData
             };
         }
+    }
+
+    /// <summary>
+    /// Run a business transaction asyncronous
+    /// </summary>
+    /// <param name="transactionId">ID of the requested transaction</param>
+    /// <param name="requestData">Data delivered by the request</param>
+    /// <returns></returns>
+    public async Task<IBusinessTransactionReply> RunBusinessTransactionAsync(int transactionId, IBusinessTransactionRequestData requestData)
+    {
+        var result = await Task.Run(() => RunBusinessTransaction(transactionId, requestData));
+        return result;
     }
 }

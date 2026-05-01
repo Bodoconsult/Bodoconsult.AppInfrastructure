@@ -89,22 +89,23 @@ public class Log4NetProvider : ILoggerProvider
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     protected virtual void Dispose(bool disposing)
     {
-
-        if (disposing)
+        if (!disposing)
         {
-            //#pragma warning disable 
-            try
-            {
-                _loggers.Clear();
-                    
-            }
-#pragma warning disable CA1031
-            catch //(Exception e)
-            {
-                // ignored
-            }
-#pragma warning restore CA1031
+            return;
         }
+
+        //#pragma warning disable 
+        try
+        {
+            _loggers.Clear();
+                    
+        }
+#pragma warning disable CA1031
+        catch //(Exception e)
+        {
+            // ignored
+        }
+#pragma warning restore CA1031
     }
 
     private Log4NetLogger CreateLoggerImplementation(string name)

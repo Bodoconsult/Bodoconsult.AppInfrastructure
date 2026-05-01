@@ -26,12 +26,18 @@ public interface IBusinessTransactionManager
     BusinessTransaction CheckForBusinessTransaction(int transactionId);
 
     /// <summary>
-    /// Run a business transaction 
+    /// Run a business transaction syncronous
     /// </summary>
     /// <param name="transactionId">ID of the requested transaction</param>
     /// <param name="requestData">Data delivered by the request</param>
     /// <returns></returns>
     IBusinessTransactionReply RunBusinessTransaction(int transactionId, IBusinessTransactionRequestData requestData);
 
-
+    /// <summary>
+    /// Run a business transaction asyncronous
+    /// </summary>
+    /// <param name="transactionId">ID of the requested transaction</param>
+    /// <param name="requestData">Data delivered by the request</param>
+    /// <returns></returns>
+    Task<IBusinessTransactionReply> RunBusinessTransactionAsync(int transactionId, IBusinessTransactionRequestData requestData);
 }

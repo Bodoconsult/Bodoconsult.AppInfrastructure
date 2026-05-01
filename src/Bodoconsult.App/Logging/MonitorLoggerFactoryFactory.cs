@@ -38,26 +38,14 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     /// <summary>
     /// Create a monitor logger factory
     /// </summary>
-    /// <param name="clientType">Client type as string</param>
+    /// <param name="clientType">Client or device type as string</param>
     /// <param name="ipAddress">Current IP address of the client</param>
     /// <returns>Monitor logger factory</returns>
     public IMonitorLoggerFactory CreateInstance(string clientType, string ipAddress)
     {
-        var fileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"Cients_{clientType}_{ipAddress.Replace(".", "_")}.log");
+        var fileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"{clientType}_{ipAddress.Replace(".", "_")}.log");
         return CreateInstanceInternally(fileName);
     }
-
-    ///// <summary>
-    ///// Create a monitor logger factory
-    ///// </summary>
-    ///// <param name="clientType">Client type as string</param>
-    ///// <returns>Monitor logger factory</returns>
-    //public IMonitorLoggerFactory CreateInstance(string clientType)
-    //{
-    //    var fileName = Path.Combine(Globals.DataPath, $"StSys_{clientType}.log");
-
-    //    return CreateInstanceInternally(fileName);
-    //}
 
     /// <summary>
     /// Internal method to create the client logger factory
@@ -68,6 +56,14 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     {
         //lock (_lock)
         //{
+
+        var fi = new FileInfo(fileName);
+
+        if (fi.Extension == string.Empty)
+        {
+            fileName += ".log";
+        }
+
         if (_loggerFactories.ContainsKey(fileName))
         {
             var success = _loggerFactories.TryGetValue(fileName, out var factory);

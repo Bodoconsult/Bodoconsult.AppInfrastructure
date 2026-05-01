@@ -48,4 +48,15 @@ public class FakeBusinessTransactionManager: IBusinessTransactionManager
         ExpectedBusinessTransactionReply.RequestData = requestData;
         return ExpectedBusinessTransactionReply;
     }
+
+    /// <summary>
+    /// Run a business transaction asyncronous
+    /// </summary>
+    /// <param name="transactionId">ID of the requested transaction</param>
+    /// <param name="requestData">Data delivered by the request</param>
+    /// <returns></returns>
+    public Task<IBusinessTransactionReply> RunBusinessTransactionAsync(int transactionId, IBusinessTransactionRequestData requestData)
+    {
+        throw new NotImplementedException();
+    }
 }

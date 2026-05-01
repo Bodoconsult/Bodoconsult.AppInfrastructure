@@ -1,0 +1,29 @@
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.Abstractions.Helpers;
+using Bodoconsult.App.Helpers;
+
+namespace Bodoconsult.App.Test.HelperTests;
+
+[TestFixture]
+internal class ArrayHelperTests
+{
+    [Test]
+    public void GetStringFromArrayCsharpStyle_ValidArray_ReturnsString()
+    {
+        // Arrange 
+        var data = new byte[]
+        {
+            0x3c, 0x42, 0x45, 0x47, 0x49, 0x4e, 0x3e, 0x73, 0x65, 0x74, 0x2c, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2c,
+            0x6d, 0x6f, 0x64, 0x65, 0x2c, 0x63, 0x6f, 0x6e, 0x74, 0x69, 0x6e, 0x69, 0x6f, 0x75, 0x73, 0xa
+        };
+
+        // Act  
+        var result = ArrayHelper.GetStringFromArrayCsharpStyle(data);
+
+        // Assert
+        Assert.That(result.Length, Is.Not.EqualTo(0));
+        Assert.That(result.Contains("[0A]"));
+        Assert.That(result.Contains("0xa"));
+    }
+}
