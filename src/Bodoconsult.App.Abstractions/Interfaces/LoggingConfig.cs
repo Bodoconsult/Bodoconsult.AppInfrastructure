@@ -26,7 +26,6 @@ public class LoggingConfig
     /// </summary>
     public LogLevel MinimumLogLevel { get; set; }
 
-
     /// <summary>
     /// Output filters set for logging
     /// </summary>
@@ -36,7 +35,6 @@ public class LoggingConfig
     /// Logging configurators to use
     /// </summary>
     public List<ILoggerProviderConfigurator> LoggerProviderConfigurators { get; } = [];
-
 
     /// <summary>
     /// Console config configuration

@@ -1,8 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Logging.LoggingConfigurators;
+using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace Bodoconsult.App.Logging;
 
@@ -11,7 +15,6 @@ namespace Bodoconsult.App.Logging;
 /// </summary>
 public static class AppLoggerExtensions
 {
-
     /// <summary>
     /// Add a default logger
     /// </summary>
@@ -22,14 +25,11 @@ public static class AppLoggerExtensions
     {
         serviceCollection.AddLogging(builder =>
             {
-
                 // Clear all default providers
                 builder.ClearProviders();
 
-
                 // Add minimum log level from config
                 builder.SetMinimumLevel(loggingConfig.MinimumLogLevel);
-
 
                 // Add filters from config
                 foreach (var filter in loggingConfig.Filters)
@@ -48,13 +48,52 @@ public static class AppLoggerExtensions
     }
 
     /// <summary>
+    /// Add a default logger
+    /// </summary>
+    /// <param name="serviceCollection">Current service collection</param>
+    /// <param name="loggingConfig">Current logger configuration</param>
+    /// <param name="monitorLogFilename">Current monitor log filename</param>
+    public static void AddMonitorLogger(this IServiceCollection serviceCollection, LoggingConfig loggingConfig, string monitorLogFilename)
+    {
+        serviceCollection.AddLogging(builder =>
+            {
+                // Clear all default providers
+                builder.ClearProviders();
+
+                // Add minimum log level from config
+                builder.SetMinimumLevel(loggingConfig.MinimumLogLevel);
+
+                // Add filters from config
+                foreach (var filter in loggingConfig.Filters)
+                {
+                    var key = filter.Key.ToUpperInvariant() == "DEFAULT" ? null : filter.Key;
+                    builder.AddFilter(key, filter.Value);
+                }
+
+                // Add the providers found activated in appsettings.json without Log4Net
+                foreach (var c in loggingConfig.LoggerProviderConfigurators.Where(x => x.Section != null))
+                {
+                    if (c is Log4NetLoggingProviderConfigurator)
+                    {
+                        continue;
+                    }
+                    c.AddServices(builder, loggingConfig);
+                }
+
+                // Now add monitor logger
+                var mon = new Log4NetMonitorProvider(monitorLogFilename);
+                builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<ILoggerProvider>(mon));
+            }
+        );
+    }
+
+    /// <summary>
     /// Create the configured default logger factory
     /// </summary>
     /// <param name="loggingConfig">Current logging configuration</param>
     /// <returns>Configured default logger</returns>
     public static ILoggerFactory GetDefaultLogger(LoggingConfig loggingConfig)
     {
-
         IServiceCollection serviceCollection = new ServiceCollection();
         serviceCollection.AddDefaultLogger(loggingConfig);
 
@@ -73,13 +112,13 @@ public static class AppLoggerExtensions
         return new AppLoggerProxy(new FakeLoggerFactory(), new LogDataFactory());
     }
 
-
     /// <summary>
     /// Get a default app logger proxy
     /// </summary>
     /// <returns></returns>
     public static IAppLoggerProxy GetDefaultAppLoggerProxy(LoggingConfig loggingConfig)
     {
-        return new AppLoggerProxy(GetDefaultLogger(loggingConfig), new LogDataFactory());
+        ArgumentNullException.ThrowIfNull(loggingConfig.LogDataFactory);
+        return new AppLoggerProxy(GetDefaultLogger(loggingConfig), loggingConfig.LogDataFactory);
     }
 }

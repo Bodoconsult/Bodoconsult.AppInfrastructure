@@ -44,7 +44,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
     /// </summary>
     public void LoadLoggingConfigFromConfiguration()
     {
-        LoggingConfig .LogDataFactory = new LogDataFactory();
+        LoggingConfig.LogDataFactory = new LogDataFactory();
 
         var config = AppConfigurationProvider.ReadLoggingSection();
 
@@ -55,7 +55,6 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
         AddFilters(kids);
 
         AddLoggerProviders(kids);
-
     }
 
     /// <summary>
@@ -63,13 +62,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
     /// </summary>
     public void LoadDefaultLogger()
     {
-        IServiceCollection serviceCollection = new ServiceCollection();
-        serviceCollection.AddDefaultLogger(LoggingConfig);
-
-        var logFactory = serviceCollection.BuildServiceProvider()
-            .GetService<ILoggerFactory>();
-
-        DefaultLogger = new AppLoggerProxy(logFactory, LoggingConfig.LogDataFactory);
+        DefaultLogger = AppLoggerExtensions.GetDefaultAppLoggerProxy(LoggingConfig);
     }
 
     private void AddLoggerProviders(List<IConfigurationSection> kids)
@@ -94,7 +87,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
         {
             return;
         }
-            
+
         // Add filters from config
         var logLevels = section.GetChildren();
         foreach (var logLevel in logLevels)

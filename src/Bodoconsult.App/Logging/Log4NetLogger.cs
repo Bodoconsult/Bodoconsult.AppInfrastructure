@@ -68,7 +68,6 @@ public class Log4NetLogger : ILogger
         InitLoggerFromCode(fileName);
     }
 
-
     /// <summary>
     /// Setup for a Log4Net logger
     /// </summary>

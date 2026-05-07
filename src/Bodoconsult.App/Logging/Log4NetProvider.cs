@@ -75,8 +75,7 @@ public class Log4NetProvider : ILoggerProvider
 
         impl.IsEnabled(LogLevel.Trace);
 
-
-        return _loggers.GetOrAdd(categoryName, CreateLoggerImplementation);
+        return _loggers.GetOrAdd(categoryName, impl);
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
