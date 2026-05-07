@@ -2,7 +2,6 @@
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
-
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>
 
@@ -13,7 +12,6 @@
 		<VersionPrefix>1.0.9</VersionPrefix>
 		<Version />
 		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>en</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -28,10 +26,13 @@
 
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
-		<IncludeSymbols>true</IncludeSymbols>
+		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<DebugType>embedded</DebugType>
+		<!--<DebugType>embedded</DebugType>-->
+
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
 	</PropertyGroup>
 
 	<ItemGroup>

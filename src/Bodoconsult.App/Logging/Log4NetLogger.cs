@@ -179,8 +179,6 @@ public class Log4NetLogger : ILogger
     #endregion 
 
 
-
-
     /// <summary>
     /// Parse a Log4Net config file
     /// </summary>
@@ -262,6 +260,8 @@ public class Log4NetLogger : ILogger
         ArgumentNullException.ThrowIfNull(formatter);
 
         var message = formatter(state, exception);
+        //Trace.TraceInformation(message);
+        Trace.WriteLine(message);
 
         if (string.IsNullOrEmpty(message) && exception == null)
         {

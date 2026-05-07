@@ -50,7 +50,7 @@ public class Globals : IAppGlobals
     /// </summary>
     public Globals()
     {
-        DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+        DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
         LogfilePath = DataPath;
     }
 

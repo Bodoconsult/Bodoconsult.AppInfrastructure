@@ -10,7 +10,7 @@ namespace Bodoconsult.App.Logging.LoggingConfigurators;
 /// <summary>
 /// Configures a DEBUG window logger
 /// </summary>
-public class DebugLoggingProviderConfigurator: ILoggerProviderConfigurator
+public class DebugLoggingProviderConfigurator : ILoggerProviderConfigurator
 {
     /// <summary>
     /// The name of the section in the appsettings.json file
@@ -29,12 +29,10 @@ public class DebugLoggingProviderConfigurator: ILoggerProviderConfigurator
     /// <param name="loggingConfig">Current logging config</param>
     public void AddServices(ILoggingBuilder builder, LoggingConfig loggingConfig)
     {
-#if DEBUG
-            // Debug
-            if (Debugger.IsAttached)
-            {
-                builder.AddDebug();
-            }
-#endif
+        // Debug
+        if (Debugger.IsAttached)
+        {
+            builder.AddDebug();
+        }
     }
 }

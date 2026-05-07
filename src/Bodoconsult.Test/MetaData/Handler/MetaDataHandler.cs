@@ -307,10 +307,9 @@ public class MetaDataHandler
 
             if (i < 0) return value;
 
-            var j = 0;
             while (i >= 0)
             {
-                j = value.IndexOf("\" />", i, StringComparison.Ordinal);
+                var j = value.IndexOf("\" />", i, StringComparison.Ordinal);
 
                 var s = value.Substring(i + 13, j - i - 13);
 

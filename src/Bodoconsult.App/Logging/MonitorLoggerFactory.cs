@@ -11,10 +11,7 @@ namespace Bodoconsult.App.Logging;
 /// </summary>
 public class MonitorLoggerFactory : IMonitorLoggerFactory
 {
-
     private ILogger _logger;
-
-    private readonly Type _type = typeof(Log4NetLogger);
 
     /// <summary>
     /// Default ctor
@@ -24,7 +21,6 @@ public class MonitorLoggerFactory : IMonitorLoggerFactory
     {
         FileName = fileName;
     }
-
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()

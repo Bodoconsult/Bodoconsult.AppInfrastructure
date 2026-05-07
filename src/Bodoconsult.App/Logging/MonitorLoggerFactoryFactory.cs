@@ -30,9 +30,7 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     public IMonitorLoggerFactory CreateInstance(string deviceName)
     {
         var fileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"{deviceName}.log");
-
-        var factory = new MonitorLoggerFactory(fileName);
-        return factory;
+        return CreateInstanceInternally(fileName);
     }
 
     /// <summary>
@@ -85,7 +83,6 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
             }
 
             throw new ArgumentException("Client logger factory could not be added to internal cache");
-
         }
         //}
     }
