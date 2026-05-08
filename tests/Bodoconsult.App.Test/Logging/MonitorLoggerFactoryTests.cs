@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Logging;
 using Bodoconsult.App.Test.App;
 using Bodoconsult.App.Test.DataExportServices;
 using NUnit.Framework.Legacy;
+using System.Diagnostics;
 
 namespace Bodoconsult.App.Test.Logging;
 
@@ -14,7 +15,7 @@ namespace Bodoconsult.App.Test.Logging;
 internal class MonitorLoggerFactoryTests
 {
     [Test]
-    public void TestCreateLogger()
+    public void CreateLogger_ValidSetup_LoggerCreated()
     {
         // Arrange 
         const string deviceName = "999999";
@@ -23,6 +24,7 @@ internal class MonitorLoggerFactoryTests
         DeleteFile(filePath);
 
         var factory = new MonitorLoggerFactory(filePath);
+        factory.LoggingConfig = Globals.Instance.LoggingConfig;
 
         // Act  
         var logger = factory.CreateLogger("Hallo");
@@ -41,14 +43,30 @@ internal class MonitorLoggerFactoryTests
         DeleteFile(filePath);
 
         var factory = new MonitorLoggerFactory(filePath);
+        factory.LoggingConfig = Globals.Instance.LoggingConfig;
+
         var loggerProxy = new AppLoggerProxy(factory, Globals.Instance.LogDataFactory);
         loggerProxy.LogError("Testerror");
 
         // Act  
 
         // Assert
-        FileAssert.Exists(filePath);
-        loggerProxy.Dispose();
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(loggerProxy, Is.Not.Null);
+            loggerProxy.Dispose();
+            Task.Delay(200);
+
+            var fi = new FileInfo(filePath);
+
+            Wait.Until(() => fi.Exists);
+            Assert.That(fi.Exists, Is.True);
+
+            Assert.That(fi.Length, Is.Not.Zero);
+        }
+
+        DeleteFile(filePath);
     }
 
     private static void DeleteFile(string filePath)

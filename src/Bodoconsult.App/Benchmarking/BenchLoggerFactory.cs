@@ -58,6 +58,11 @@ public class BenchLoggerFactory : IMonitorLoggerFactory
     }
 
     /// <summary>
+    /// Current logging config: NOT used for the current implementation
+    /// </summary>
+    public LoggingConfig LoggingConfig { get; set; }
+
+    /// <summary>
     /// Full file path of the log file
     /// </summary>
     public string FileName { get; }

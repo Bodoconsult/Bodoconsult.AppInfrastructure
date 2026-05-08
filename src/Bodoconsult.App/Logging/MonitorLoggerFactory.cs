@@ -35,14 +35,15 @@ public class MonitorLoggerFactory : IMonitorLoggerFactory
     /// <returns>The <see cref="T:Microsoft.Extensions.Logging.ILogger" />.</returns>
     public ILogger CreateLogger(string categoryName)
     {
-
         // Use caching
         if (_logger != null)
         {
             return _logger;
         }
-            
-        _logger = new Log4NetLogger(FileName);
+
+        ArgumentNullException.ThrowIfNull(LoggingConfig);
+
+        _logger = AppLoggerExtensions.GetMonitorLogger(LoggingConfig, FileName).CreateLogger(categoryName);
         return _logger;
     }
 
@@ -54,6 +55,11 @@ public class MonitorLoggerFactory : IMonitorLoggerFactory
     {
         // Do nothing
     }
+
+    /// <summary>
+    /// Current logging config
+    /// </summary>
+    public LoggingConfig LoggingConfig { get; set; }
 
     /// <summary>
     /// Full file path of the log file

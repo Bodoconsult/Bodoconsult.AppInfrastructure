@@ -19,7 +19,8 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     /// <param name="appGlobals">Current app globals</param>
     public MonitorLoggerFactoryFactory(IAppGlobals appGlobals)
     {
-        _appGlobals=appGlobals;
+        ArgumentNullException.ThrowIfNull(appGlobals.LoggingConfig); 
+        _appGlobals =appGlobals;
     }
 
     /// <summary>
@@ -75,6 +76,11 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
         else
         {
             var factory = new MonitorLoggerFactory(fileName);
+            
+
+
+            factory.LoggingConfig = _appGlobals.LoggingConfig;
+            
             var success = _loggerFactories.TryAdd(fileName, factory);
 
             if (success)

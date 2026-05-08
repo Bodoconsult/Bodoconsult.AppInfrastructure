@@ -50,4 +50,6 @@ Release notes for Bodoconsult.App
 
 -   Added MemoryStreamBufferPool for reusing instances of MemoryStream class
 
+-   Improved monitor logging supporting additional log targets as defined in appsettings.json file (but log to other file as defined by the monitor logger)
+
 

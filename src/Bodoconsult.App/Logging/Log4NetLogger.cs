@@ -260,7 +260,7 @@ public class Log4NetLogger : ILogger
 
         var message = formatter(state, exception);
         //Trace.TraceInformation(message);
-        Trace.WriteLine(message);
+        //Trace.WriteLine(message);
 
         if (string.IsNullOrEmpty(message) && exception == null)
         {

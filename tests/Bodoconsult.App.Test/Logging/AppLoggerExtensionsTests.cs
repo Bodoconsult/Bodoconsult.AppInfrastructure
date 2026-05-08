@@ -1,84 +1,81 @@
-﻿//// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-//using Bodoconsult.App.Logging;
+using Bodoconsult.App.Helpers;
+using Bodoconsult.App.Logging;
+using Bodoconsult.App.Test.App;
 
-//namespace Bodoconsult.App.Test.Logging
-//{
-//    [TestFixture]
-//    // ReSharper disable once InconsistentNaming
-//    public class AppLoggerExtensionsTests
-//    {
-//        [Test]
-//        public void TestLoadDebugLog4Net()
-//        {
-//            // Arrange
-//            var config = new LoggingConfig();
+namespace Bodoconsult.App.Test.Logging;
 
-//            // Act
-//            var factory = AppLoggerExtensions.GetDefaultLogger(config);
+[TestFixture]
+internal class AppLoggerExtensionsTests
+{
+    [Test]
+    public void GetDefaultLogger_ValidLogConfig_ReturnsLogger()
+    {
+        // Arrange 
+        var logConfig = Globals.Instance.LoggingConfig;
 
-//            // Assert
-//            Assert.That(factory, Is.Not.Null);
-//        }
+        // Act  
+        var logger = AppLoggerExtensions.GetDefaultLogger(logConfig);
 
-//        [Test]
-//        public void TestLoadDebug()
-//        {
-//            // Arrange
-//            var config = new LoggingConfig();
+        // Assert
+        Assert.That(logger, Is.Not.Null);
+    }
 
-//            // Act
-//            var factory = AppLoggerExtensions.GetDefaultLogger(config);
+    [Test]
+    public void GetMonitorLogger_ValidLogConfig_ReturnsLogger()
+    {
+        // Arrange 
+        var fileName = Path.GetTempFileName();
+        var logConfig = Globals.Instance.LoggingConfig;
 
-//            // Assert
-//            Assert.That(factory, Is.Not.Null);
+        // Act  
+        var logger = AppLoggerExtensions.GetMonitorLogger(logConfig, fileName);
 
-//        }
+        // Assert
+        Assert.That(logger, Is.Not.Null);
+    }
 
-//        [Test]
-//        public void TestLoadLog4Net()
-//        {
-//            // Arrange
-//            var config = new LoggingConfig();
+    [Test]
+    public void GetDefaultAppLoggerProxy_ValidLogConfig_ReturnsLogger()
+    {
+        // Arrange 
+        var logConfig = Globals.Instance.LoggingConfig;
 
-//            // Act
-//            var factory = AppLoggerExtensions.GetDefaultLogger(config);
+        // Act  
+        var logger = AppLoggerExtensions.GetDefaultAppLoggerProxy(logConfig);
 
-//            // Assert
-//            Assert.That(factory, Is.Not.Null);
-//        }
+        // Assert
+        Assert.That(logger, Is.Not.Null);
+    }
 
+    [Test]
+    public void GetMonitorAppLoggerProxy_ValidLogConfig_ReturnsLogger()
+    {
+        // Arrange 
+        var fileName = Path.GetTempFileName();
+        var logConfig = Globals.Instance.LoggingConfig;
 
-//        [Test]
-//        public void TestLoadConsole()
-//        {
-//            // Arrange
-//            var config = new LoggingConfig();
+        // Act  
+        var logger = AppLoggerExtensions.GetMonitorAppLoggerProxy(logConfig, fileName);
+        logger.LogInformation("Test");
+        logger.LogError("TestError");
 
-//            // Act
-//            var factory = AppLoggerExtensions.GetDefaultLogger(config);
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(logger, Is.Not.Null);
+            logger.Dispose();
+            Task.Delay(200);
 
-//            // Assert
-//            Assert.That(factory, Is.Not.Null);
-//            Assert.That(config.UseConsoleProvider, Is.True);
-//            Assert.That(config.UseLog4NetProvider, Is.False);
-//            Assert.That(config.UseDebugProvider, Is.False);
+            var fi = new FileInfo(fileName);
 
-//        }
+            Wait.Until(() => fi.Exists);
+            Assert.That(fi.Exists, Is.True);
 
+            Assert.That(fi.Length, Is.Not.Zero);
 
-//        //[Test]
-//        //public void TestLoadFromAppSettings()
-//        //{
-//        //    // Arrange
-//        //    var config = Globals.LoadLoggingConfig();
-
-//        //    // Act
-//        //    var factory = AppLoggerExtensions.GetDefaultLogger(config);
-
-//        //    // Assert
-//        //    Assert.That(factory));
-
-//        //}
-//    }
-//}
+            fi.Delete();
+        }
+    }
+}

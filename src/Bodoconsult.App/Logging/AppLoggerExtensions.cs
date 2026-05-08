@@ -104,6 +104,23 @@ public static class AppLoggerExtensions
     }
 
     /// <summary>
+    /// Create the configured monitor logger factory
+    /// </summary>
+    /// <param name="loggingConfig">Current logging configuration</param>
+    /// <param name="monitorLogFilename">Current monitor log filename</param>
+    /// <returns>Configured default logger</returns>
+    public static ILoggerFactory GetMonitorLogger(LoggingConfig loggingConfig, string monitorLogFilename)
+    {
+        IServiceCollection serviceCollection = new ServiceCollection();
+        serviceCollection.AddMonitorLogger(loggingConfig, monitorLogFilename);
+
+        var logFactory = serviceCollection.BuildServiceProvider()
+            .GetService<ILoggerFactory>();
+
+        return logFactory;
+    }
+
+    /// <summary>
     /// Get a fake app logger proxy
     /// </summary>
     /// <returns></returns>
@@ -120,5 +137,15 @@ public static class AppLoggerExtensions
     {
         ArgumentNullException.ThrowIfNull(loggingConfig.LogDataFactory);
         return new AppLoggerProxy(GetDefaultLogger(loggingConfig), loggingConfig.LogDataFactory);
+    }
+
+    /// <summary>
+    /// Get a monitor logger proxy
+    /// </summary>
+    /// <returns></returns>
+    public static IAppLoggerProxy GetMonitorAppLoggerProxy(LoggingConfig loggingConfig, string monitorLogFilename)
+    {
+        ArgumentNullException.ThrowIfNull(loggingConfig.LogDataFactory);
+        return new AppLoggerProxy(GetMonitorLogger( loggingConfig, monitorLogFilename), loggingConfig.LogDataFactory);
     }
 }

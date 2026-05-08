@@ -16,7 +16,7 @@ internal class Log4NetMonitorProviderTests
 
         // Act  
         var logger = provider.CreateLogger("Default");
-        
+
         // Assert
         Assert.That(logger, Is.Not.Null);
     }
