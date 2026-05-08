@@ -27,8 +27,8 @@ public static class GeneralHelper
     /// <param name="lineNumber">Curren caller line number  (leave null normally)</param>
     /// <returns>Dequeued item</returns>
     public static T DequeueFromQueue<T>(ConcurrentQueue<T> queue, 
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string memberName = null,
+        [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (queue.Count == 0)
@@ -67,8 +67,8 @@ public static class GeneralHelper
     /// <param name="lineNumber">Curren caller line number  (leave null normally)</param>
     /// <returns>Peeked item</returns>
     public static T PeekFromQueue<T>(ConcurrentQueue<T> queue, 
-        [CallerMemberName] string memberName = "",  
-        [CallerFilePath] string filepath = "", 
+        [CallerMemberName] string memberName = null,  
+        [CallerFilePath] string filepath = null, 
         [CallerLineNumber] int lineNumber = 0)
     {
 

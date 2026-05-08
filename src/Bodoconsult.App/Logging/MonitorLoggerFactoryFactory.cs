@@ -51,7 +51,7 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     /// </summary>
     /// <param name="fileName">Full filepath for the logfile</param>
     /// <returns>Client logger factory</returns>
-    private IMonitorLoggerFactory CreateInstanceInternally(string fileName)
+    private MonitorLoggerFactory CreateInstanceInternally(string fileName)
     {
         //lock (_lock)
         //{

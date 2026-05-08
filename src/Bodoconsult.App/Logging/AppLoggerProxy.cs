@@ -17,15 +17,14 @@ namespace Bodoconsult.App.Logging;
 public class AppLoggerProxy : IAppLoggerProxy
 {
     private readonly ILogDataFactory _logDataFactory;
-
-    /// <summary>
-    /// Current logger factory instance
-    /// </summary>
-    public ILoggerFactory LoggerFactory { get; private set; }
-
     private ProducerConsumerQueue<LogData> _logMessages;
-
     private ILogger _logger;
+
+    //private readonly bool _isFatalEnabled;
+    private readonly bool _isDebugEnabled;
+    //private readonly bool _isErrorEnabled;
+    private readonly bool _isInfoEnabled;
+    private readonly bool _isWarnEnabled;
 
     /// <summary>
     /// Default ctor
@@ -34,11 +33,16 @@ public class AppLoggerProxy : IAppLoggerProxy
     {
         LoggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
         _logger = loggerFactory.CreateLogger(string.Intern("Default"));
+        //_isFatalEnabled = _logger.IsEnabled(LogLevel.Critical);
+        _isDebugEnabled = _logger.IsEnabled(LogLevel.Debug);
+        //_isErrorEnabled = _logger.IsEnabled(LogLevel.Error);
+        _isInfoEnabled = _logger.IsEnabled(LogLevel.Information);
+        _isWarnEnabled = _logger.IsEnabled(LogLevel.Warning);
+
         BaseCtor();
 
         _logDataFactory = logDataFactory;
     }
-
 
     /// <summary>
     /// Ctor
@@ -56,11 +60,15 @@ public class AppLoggerProxy : IAppLoggerProxy
         _logDataFactory = logDataFactory;
     }
 
-
     private void BaseCtor()
     {
         StartLogging();
     }
+
+    /// <summary>
+    /// Current logger factory instance
+    /// </summary>
+    public ILoggerFactory LoggerFactory { get; private set; }
 
     /// <summary>
     /// Update logger factory. This method is intended to be used when at app start the logger factory has to changed from the interim one to the one used in the DI container
@@ -132,6 +140,10 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
 
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
@@ -162,6 +174,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Exception = exception;
@@ -173,8 +190,6 @@ public class AppLoggerProxy : IAppLoggerProxy
 
         _logMessages?.Enqueue(log);
     }
-
-
 
     /// <summary>Formats and writes a debug log message.</summary>
     /// <param name="eventId">The event id associated with the log.</param>
@@ -190,6 +205,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -200,7 +220,6 @@ public class AppLoggerProxy : IAppLoggerProxy
 
         _logMessages?.Enqueue(log);
     }
-
 
     /// <summary>Formats and writes a debug log message.</summary>
     /// <param name="eventId">The event id associated with the log.</param>
@@ -218,6 +237,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -244,6 +268,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -271,6 +300,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -295,6 +329,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerLineNumber] int lineNumber = 0
     )
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Debug;
@@ -319,6 +358,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerLineNumber] int lineNumber = 0
     )
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Debug;
@@ -347,6 +391,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Exception = exception;
@@ -377,6 +426,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Exception = exception;
@@ -404,6 +458,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -431,6 +490,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -457,6 +521,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -484,6 +553,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -507,6 +581,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Trace;
@@ -530,6 +609,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isDebugEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Trace;
@@ -557,6 +641,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Exception = exception;
@@ -587,6 +676,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Exception = exception;
@@ -614,6 +708,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -641,6 +740,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -667,6 +771,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -694,6 +803,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -717,6 +831,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Information;
@@ -741,6 +860,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogDate = timeStamp;
@@ -764,6 +888,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isInfoEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Information;
@@ -791,6 +920,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Exception = exception;
@@ -821,6 +955,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Exception = exception;
@@ -848,6 +987,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -875,6 +1019,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -903,6 +1052,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -929,6 +1083,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -953,6 +1112,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Warning;
@@ -976,6 +1140,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_isWarnEnabled)
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = LogLevel.Warning;
@@ -1444,6 +1613,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_logger.IsEnabled(logLevel))
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = logLevel;
@@ -1470,6 +1644,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_logger.IsEnabled(logLevel))
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Message = message;
         log.LogLevel = logLevel;
@@ -1497,6 +1676,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_logger.IsEnabled(logLevel))
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -1527,6 +1711,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_logger.IsEnabled(logLevel))
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.EventId = eventId;
         log.Message = message;
@@ -1558,6 +1747,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_logger.IsEnabled(logLevel))
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;
@@ -1589,6 +1783,11 @@ public class AppLoggerProxy : IAppLoggerProxy
         [CallerFilePath] string filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
+        if (!_logger.IsEnabled(logLevel))
+        {
+            return;
+        }
+
         var log = _logDataFactory.DequeueInstance();
         log.Exception = exception;
         log.Message = message;

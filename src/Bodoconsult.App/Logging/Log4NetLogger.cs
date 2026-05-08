@@ -207,8 +207,6 @@ public class Log4NetLogger : ILogger
         }
 
         node = node["log4net"];
-
-
         return node;
     }
 
@@ -259,8 +257,6 @@ public class Log4NetLogger : ILogger
         ArgumentNullException.ThrowIfNull(formatter);
 
         var message = formatter(state, exception);
-        //Trace.TraceInformation(message);
-        //Trace.WriteLine(message);
 
         if (string.IsNullOrEmpty(message) && exception == null)
         {
