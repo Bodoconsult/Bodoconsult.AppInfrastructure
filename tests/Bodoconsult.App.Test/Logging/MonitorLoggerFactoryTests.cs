@@ -34,7 +34,7 @@ internal class MonitorLoggerFactoryTests
     }
 
     [Test]
-    public void TestCheckQueue()
+    public void LogMessages_ValidSetup_MessagesLogged()
     {
         // Arrange 
         const string deviceName = "999999";
@@ -46,11 +46,12 @@ internal class MonitorLoggerFactoryTests
         factory.LoggingConfig = Globals.Instance.LoggingConfig;
 
         var loggerProxy = new AppLoggerProxy(factory, Globals.Instance.LogDataFactory);
-        loggerProxy.LogError("Testerror");
 
         // Act  
+        loggerProxy.LogInformation("Testinfo");
+        loggerProxy.LogDebug("Testdebug");
+        loggerProxy.LogError("Testerror");
 
-        // Assert
         // Assert
         using (Assert.EnterMultipleScope())
         {
