@@ -8,7 +8,7 @@ namespace Bodoconsult.App.DataExportServices;
 /// <summary>
 /// Fake implementation of IDataExportService&lt;byte[]&gt;
 /// </summary>
-public class FakeDataExportService : IDataExportService<byte[]>
+public class FakeDataExportService : IMemoryDataExportService
 {
     /// <summary>
     /// Data were logged
@@ -121,5 +121,14 @@ public class FakeDataExportService : IDataExportService<byte[]>
     public ReadOnlyMemory<byte> ToMemory(byte[] data)
     {
         return data.AsMemory();
+    }
+
+    /// <summary>
+    /// Add an item to store in the export file
+    /// </summary>
+    /// <param name="data"></param>
+    public void Add(Memory<byte> data)
+    {
+        WasLogged = true;
     }
 }

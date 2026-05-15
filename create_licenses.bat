@@ -1,2 +1,2 @@
-C:\Daten\Projekte\NET\Tools\NugetLicenses\NugetUtility.exe -i C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App -md --outfile C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\lic.md
+C:\Daten\Projekte\NET\Tools\NugetLicenses\NugetUtility.exe  -i C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure -md --outfile C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\lic.md --include-project-file
 pause

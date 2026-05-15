@@ -9,7 +9,7 @@ namespace Bodoconsult.App.DataExportServices;
 /// <summary>
 /// Data export service using XML as export format. XML creation is slowly compared to other formats like JSON. So pay attention to performance if you use this service
 /// </summary>
-public class XmlDataExportService<T> : DataExportServiceBase<T> where T : class
+public class XmlDataExportService<T> : BaseDataExportService<T> where T : class
 {
     private readonly XmlSerializer _xmlSerializer = new(typeof(T));
     private readonly XmlSerializerNamespaces _namespaces = new([XmlQualifiedName.Empty]);

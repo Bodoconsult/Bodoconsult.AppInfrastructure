@@ -5,7 +5,7 @@ namespace Bodoconsult.App.DataExportServices;
 /// <summary>
 /// Data export service for UTF8 strings
 /// </summary>
-public class StringDataExportService : DataExportServiceBase<string>
+public class StringDataExportService : BaseDataExportService<string>
 {
     /// <summary>
     /// Converts an object of type T into a ReadOnlyMemory&lt;byte&gt; instance

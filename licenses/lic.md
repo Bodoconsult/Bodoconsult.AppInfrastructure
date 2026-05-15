@@ -4,6 +4,8 @@
 
 >	[AvaloniaConsoleApp1](#referenced-libraries-for-avaloniaconsoleapp1)
 
+>	[AvaloniaReactiveUiDemoApp](#referenced-libraries-for-avaloniareactiveuidemoapp)
+
 >	[ConsoleApp1](#referenced-libraries-for-consoleapp1)
 
 >	[ConsoleWpfApp1](#referenced-libraries-for-consolewpfapp1)
@@ -16,9 +18,17 @@
 
 >	[GrpcServerApps.Tests](#referenced-libraries-for-grpcserverappstests)
 
+>	[TestAvaloniaApplication1](#referenced-libraries-for-testavaloniaapplication1)
+
 >	[WorkerService1](#referenced-libraries-for-workerservice1)
 
+>	[WpfReactiveDemoApp](#referenced-libraries-for-wpfreactivedemoapp)
+
+>	[WpfReactiveUiDemoApp](#referenced-libraries-for-wpfreactiveuidemoapp)
+
 >	[Bodoconsult.App.Abstractions](#referenced-libraries-for-bodoconsultappabstractions)
+
+>	[Bodoconsult.App.Avalonia.ReactiveUI](#referenced-libraries-for-bodoconsultappavaloniareactiveui)
 
 >	[Bodoconsult.App.Avalonia](#referenced-libraries-for-bodoconsultappavalonia)
 
@@ -26,11 +36,15 @@
 
 >	[Bodoconsult.App.GrpcBackgroundService](#referenced-libraries-for-bodoconsultappgrpcbackgroundservice)
 
+>	[Bodoconsult.App.ReactiveUI](#referenced-libraries-for-bodoconsultappreactiveui)
+
 >	[Bodoconsult.App.Windows](#referenced-libraries-for-bodoconsultappwindows)
 
 >	[Bodoconsult.App.WinForms](#referenced-libraries-for-bodoconsultappwinforms)
 
 >	[Bodoconsult.App.Wpf.Documents](#referenced-libraries-for-bodoconsultappwpfdocuments)
+
+>	[Bodoconsult.App.Wpf.ReactiveUI](#referenced-libraries-for-bodoconsultappwpfreactiveui)
 
 >	[Bodoconsult.App.Wpf](#referenced-libraries-for-bodoconsultappwpf)
 
@@ -50,7 +64,9 @@
 
 >	[Bodoconsult.Pdf](#referenced-libraries-for-bodoconsultpdf)
 
->	[Bodoconsult.Text.Pdf](#referenced-libraries-for-bodoconsulttextpdf)
+>	[Bodoconsult.App.Avalonia.ReactiveUI.Test](#referenced-libraries-for-bodoconsultappavaloniareactiveuitest)
+
+>	[Bodoconsult.App.ReactiveUI.Tests](#referenced-libraries-for-bodoconsultappreactiveuitests)
 
 >	[Bodoconsult.App.Avalonia.Test](#referenced-libraries-for-bodoconsultappavaloniatest)
 
@@ -59,6 +75,8 @@
 >	[Bodoconsult.App.Windows.Test](#referenced-libraries-for-bodoconsultappwindowstest)
 
 >	[Bodoconsult.App.Wpf.Documents.Test](#referenced-libraries-for-bodoconsultappwpfdocumentstest)
+
+>	[Bodoconsult.App.Wpf.ReactiveUI.Test](#referenced-libraries-for-bodoconsultappwpfreactiveuitest)
 
 >	[Bodoconsult.App.Wpf.Test](#referenced-libraries-for-bodoconsultappwpftest)
 
@@ -222,6 +240,88 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/CommunityToolkit/dotnet
 
+# Referenced libraries for AvaloniaReactiveUiDemoApp
+
+## Nuget package library Avalonia by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Desktop by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Diagnostics by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Themes.Fluent by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+
+Allows to get an observables for property changed events.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactivemarbles/ObservableEvents
+
+## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
+
+Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
+## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
+
 # Referenced libraries for ConsoleApp1
 
 ## Nuget package library System.Text.Json by Microsoft
@@ -289,6 +389,16 @@ Project-Url: https://github.com/grpc/grpc-dotnet.git
 ## Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
 Hosting and startup infrastructures for applications.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/runtime
+
+## Nuget package library Microsoft.Extensions.Hosting.WindowsServices by Microsoft
+
+.NET hosting infrastructure for Windows Services.
 
 License: MIT
 
@@ -395,6 +505,68 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
+# Referenced libraries for TestAvaloniaApplication1
+
+## Nuget package library Avalonia by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Desktop by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Diagnostics by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Themes.Fluent by Avalonia Team
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
+
+Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
 # Referenced libraries for WorkerService1
 
 ## Nuget package library Microsoft.Extensions.Hosting by Microsoft
@@ -406,6 +578,100 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/runtime
+
+## Nuget package library Microsoft.Extensions.Hosting.WindowsServices by Microsoft
+
+.NET hosting infrastructure for Windows Services.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/runtime
+
+# Referenced libraries for WpfReactiveDemoApp
+
+## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+
+Allows to get an observables for property changed events.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactivemarbles/ObservableEvents
+
+## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
+
+## Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors
+
+Contains the ReactiveUI platform specific extensions for Windows Presentation Foundation (WPF)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
+# Referenced libraries for WpfReactiveUiDemoApp
+
+## Nuget package library MahApps.Metro by Jan Karger,  Dennis Daume,  Brendan Forster,  Paul Jenkins,  Jake Ginnivan,  Alex Mitchell
+
+The goal of MahApps.Metro is to allow devs to quickly and easily cobble together a 'Modern' UI for their WPF apps (>= .Net 4.5), with minimal effort.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/MahApps/MahApps.Metro.git
+
+## Nuget package library MahApps.Metro.IconPacks by Jan Karger
+
+IconPacks for stylish awesome WPF and UWP applications.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/MahApps/MahApps.Metro.IconPacks.git
+
+## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+
+Allows to get an observables for property changed events.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactivemarbles/ObservableEvents
+
+## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
+
+## Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors
+
+Contains the ReactiveUI platform specific extensions for Windows Presentation Foundation (WPF)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
 
 # Referenced libraries for Bodoconsult.App.Abstractions
 
@@ -419,7 +685,15 @@ License-Url: https://github.com/dotnet/wpf/blob/main/LICENSE.TXT
 
 Project-Url: https://github.com/dotnet/wpf
 
+## How to Convert Between Roman and Arabic Numerals in C# by Andrew Comeau
 
+Article describing how to convert between Roman and Arabic Numerals.
+
+License: unknown
+
+License-Url: 
+
+Project-Url: [How to Convert Between Roman and Arabic Numerals in C#](https://www.andrewcomeau.com/programming/convert-roman-arabic-numerals-csharp/)
 
 ## Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
@@ -434,6 +708,16 @@ Project-Url: https://github.com/dotnet/runtime
 ## Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/runtime
+
+## Nuget package library Microsoft.Extensions.Hosting by Microsoft
+
+Hosting and startup infrastructures for applications.
 
 License: MIT
 
@@ -480,6 +764,38 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/runtime
+
+# Referenced libraries for Bodoconsult.App.Avalonia.ReactiveUI
+
+## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+
+Allows to get an observables for property changed events.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactivemarbles/ObservableEvents
+
+## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
+
+Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
+## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
 
 # Referenced libraries for Bodoconsult.App.Avalonia
 
@@ -627,6 +943,38 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/runtime
+
+# Referenced libraries for Bodoconsult.App.ReactiveUI
+
+## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+
+Allows to get an observables for property changed events.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactivemarbles/ObservableEvents
+
+## Nuget package library ReactiveUI by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the base package with the base platform implementations
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
+## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
 
 # Referenced libraries for Bodoconsult.App.Windows
 
@@ -874,6 +1222,135 @@ License: LICENSE.md
 License-Url: https://www.nuget.org/packages/XpsToPdf/1.0.6/License
 
 Project-Url: https://github.com/XpsToPdf/XpsToPdf
+
+# Referenced libraries for Bodoconsult.App.Wpf.ReactiveUI
+
+# Entypo fonts by Daniel Bruce
+
+Project uri: http://www.entypo.com/
+
+License uri: http://creativecommons.org/licenses/by-sa/3.0/	
+
+Entypo is created by Daniel Bruce and released under the Creative Commons, Share Alike/Attribution license.
+
+# License for icons
+
+Bodoconsult.App.Wpf.Unity uses some ModernUIIcons.com icons. Therefore here the license info for ModernUIIcons.com:
+
+Project uri: http://templarian.com/
+
+License uri: http://creativecommons.org/licenses/by-nd/3.0/
+
+Please carefully understand the license and download the latest icons at ModernUIIcons.com.
+
+## Understand Your Rights
+No Attribution and No Derived Works
+http://creativecommons.org/licenses/by-nd/3.0/ *
+
+- If your project is open source include this license file in the source.
+- Nothing is needed in the front facing project (UNLESS you
+  are using any of the icons listed below in the attribution section).
+- Commercial use is not only allowed but encouraged. If it is an icon
+  in the attribution list below, you still need to attribute those!
+- Do not distribute the entire package (I've allowed this dozens of
+  times for open source projects, but email me first).
+
+## Creator
+- Austin Andrews (@templarian)
+
+## Contributor**
+- Jay Zawrotny (@JayZawrotny)
+  - A Bunch
+- Oren Nachman
+  - appbar.chevron.down
+  - appbar.chevron.up
+  - appbar.chevron.left
+  - appbar.chevron.right
+
+## Derived Works
+- Alex Peattie
+  - Social: http://www.alexpeattie.com/projects/justvector_icons/
+
+## Attribution***
+- Kris Vandermotten (@kvandermotten)
+  - appbar.medical.pulse
+- Constantin Kichinsky (@kichinsky)
+  - appbar.currency.rubles
+  - appbar.currency.grivna
+- Massimo Savazzi (@msavazzi)
+  - List of missing exported icons
+- Proletkult Graphik, from The Noun Project
+  - appbar.draw.pen (inspired)
+- Olivier Guin, from The Noun Project
+  - appbar.draw.marker
+- Gibran Bisio, from The Noun Project
+  - appbar.draw.bucket
+Andrew Forrester, from The Noun Project
+  - appbar.fingerprint
+
+* The license is for attribution, but this is not required.
+** Developers and designers that emailed Templarian the source .design icons to be added into the package. PNGs also accepted, but may take longer to be added.
+*** Icons I've copied so closely you want to attribute them and are also under the CC license.
+
+Contact
+- http://templarian.com/
+- admin[@]templarian[.]com
+
+* Does not apply to copyrighted logos
+- Skype
+- Facebook
+- Twitter
+- etc...
+
+## Nuget package library MahApps.Metro by Jan Karger,  Dennis Daume,  Brendan Forster,  Paul Jenkins,  Jake Ginnivan,  Alex Mitchell
+
+The goal of MahApps.Metro is to allow devs to quickly and easily cobble together a 'Modern' UI for their WPF apps (>= .Net 4.5), with minimal effort.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/MahApps/MahApps.Metro.git
+
+## Nuget package library MahApps.Metro.IconPacks by Jan Karger
+
+IconPacks for stylish awesome WPF and UWP applications.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/MahApps/MahApps.Metro.IconPacks.git
+
+## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+
+Allows to get an observables for property changed events.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactivemarbles/ObservableEvents
+
+## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
+
+## Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors
+
+Contains the ReactiveUI platform specific extensions for Windows Presentation Foundation (WPF)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
 
 # Referenced libraries for Bodoconsult.App.Wpf
 
@@ -1338,19 +1815,181 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/empira/PDFsharp
 
-# Referenced libraries for Bodoconsult.Text.Pdf
+# Referenced libraries for Bodoconsult.App.Avalonia.ReactiveUI.Test
 
-## Nuget package library PDFsharp-MigraDoc by PDFsharp Team
+## Nuget package library coverlet.collector by tonerdo
 
-MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
-This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
-See https://docs.pdfsharp.net for details.
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/empira/PDFsharp
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 6.0+
+            - .NET 8.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
+
+Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
+# Referenced libraries for Bodoconsult.App.ReactiveUI.Tests
+
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 6.0+
+            - .NET 8.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit.Analyzers by NUnit
+
+This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
+
+Version 3.0 and upwards works in Visual Studio 2019 (version 16.3) or newer and also enables supression of compiler errors such as errors arising from nullable reference types. For Visual Studio 2017 one must use versions below 3.0 - note that these versions are no longer updated, so version 2.10.0 is the last version that works in Visual Studio 2017.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit.analyzers
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+
+Allows to get an observables for property changed events.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactivemarbles/ObservableEvents
+
+## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
+
+Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
+## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+
+A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
+
+## Nuget package library ReactiveUI.Testing by .NET Foundation and Contributors
+
+Provides extensions for testing ReactiveUI based applications
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
 
 # Referenced libraries for Bodoconsult.App.Avalonia.Test
 
@@ -1665,6 +2304,16 @@ Project-Url: https://github.com/dotnet/runtime
 
 # Referenced libraries for Bodoconsult.App.Windows.Test
 
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
 The MSbuild targets and properties for building .NET test projects.
@@ -1722,6 +2371,73 @@ Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 # Referenced libraries for Bodoconsult.App.Wpf.Documents.Test
 
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 6.0+
+            - .NET 8.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+# Referenced libraries for Bodoconsult.App.Wpf.ReactiveUI.Test
+
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
 The MSbuild targets and properties for building .NET test projects.
@@ -1768,6 +2484,16 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 # Referenced libraries for Bodoconsult.App.Wpf.Test
+
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
@@ -1886,6 +2612,16 @@ Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 # Referenced libraries for Bodoconsult.Charting.Test
 
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
 The MSbuild targets and properties for building .NET test projects.
@@ -1930,7 +2666,7 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1952,6 +2688,16 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/ScottPlot/ScottPlot.git
 
 # Referenced libraries for Bodoconsult.Drawing.Test
+
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
@@ -1987,7 +2733,7 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2019,6 +2765,16 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/winforms
 
 # Referenced libraries for Bodoconsult.I18N.Test
+
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
@@ -2067,6 +2823,16 @@ Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 # Referenced libraries for Bodoconsult.Office.Tests
 
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
 The MSbuild targets and properties for building .NET test projects.
@@ -2101,7 +2867,7 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2113,6 +2879,16 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 # Referenced libraries for Bodoconsult.Pdf.Test
+
+## Nuget package library coverlet.collector by tonerdo
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 

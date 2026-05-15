@@ -8,7 +8,7 @@ namespace Bodoconsult.App.DataExportServices;
 /// <summary>
 /// Data export service for JSON
 /// </summary>
-public class JsonDataExportService<T> : DataExportServiceBase<T> where T : class
+public class JsonDataExportService<T> : BaseDataExportService<T> where T : class
 {
     /// <summary>
     /// Default ctor

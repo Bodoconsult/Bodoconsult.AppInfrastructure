@@ -9,7 +9,7 @@ namespace Bodoconsult.App.Test.DataExportServices;
 /// <summary>
 /// Data export service for TestData instances
 /// </summary>
-public class TestDataExportService : DataExportServiceBase<TestData>
+public class TestDataExportService : BaseDataExportService<TestData>
 {
     private readonly CultureInfo _cultureInfo = new("en-us");
 

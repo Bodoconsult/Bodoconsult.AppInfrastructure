@@ -12,26 +12,38 @@ namespace Bodoconsult.App.DataExportServices;
 /// Base class for data export services
 /// </summary>
 /// <typeparam name="T">Type of the class to export</typeparam>
-public abstract class DataExportServiceBase<T> : IDataExportService<T> where T : class
+public abstract class BaseDataExportService<T> : IDataExportService<T> where T : class
 {
-    private bool _isStarted;
-    private readonly Lock _isStartedLock = new();
     private readonly Lock _cacheLock = new();
     private long _currentFileSize;
     private readonly Lock _currentFileSizeLock = new();
     private readonly List<ReadOnlyMemory<byte>> _cache = [];
-    private readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> _cachingQueue = new();
+    
     private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
     private readonly MemoryStreamBufferPool _storeDataBufferPool = new();
 
     private FileStream _currentFileStream;
 
     /// <summary>
+    /// Is the export service started
+    /// </summary>
+    protected bool IsStarted;
+    /// <summary>
+    /// Lock object for <see cref="IsStarted"/>
+    /// </summary>
+    protected readonly Lock IsStartedLock = new();
+
+    /// <summary>
+    /// The caching queue to add the data to for writing it to the file
+    /// </summary>
+    protected readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> CachingQueue = new();
+
+    /// <summary>
     /// Default ctor
     /// </summary>
-    protected DataExportServiceBase()
+    protected BaseDataExportService()
     {
-        _cachingQueue.ConsumerTaskDelegate = AddDataToCache;
+        CachingQueue.ConsumerTaskDelegate = AddDataToCache;
         _storingQueue.ConsumerTaskDelegate = AddCacheToStoring;
 
         _storeDataBufferPool.Allocate(100);
@@ -40,11 +52,11 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// <summary>
     /// Ctor supplying an encoding
     /// </summary>
-    protected DataExportServiceBase(Encoding encoding)
+    protected BaseDataExportService(Encoding encoding)
     {
         Encoding = encoding;
 
-        _cachingQueue.ConsumerTaskDelegate = AddDataToCache;
+        CachingQueue.ConsumerTaskDelegate = AddDataToCache;
         _storingQueue.ConsumerTaskDelegate = AddCacheToStoring;
 
         _storeDataBufferPool.Allocate(100);
@@ -129,15 +141,15 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     {
         CurrentFilePath = CreateCurrentFilePath();
 
-        _cachingQueue.StartConsumer();
+        CachingQueue.StartConsumer();
         _storingQueue.StartConsumer();
 
         //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
         StoreCacheToStoringQueue(FileState.Start);
 
-        lock (_isStartedLock)
+        lock (IsStartedLock)
         {
-            _isStarted = true;
+            IsStarted = true;
         }
     }
 
@@ -146,9 +158,9 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// </summary>
     public void Stop()
     {
-        lock (_isStartedLock)
+        lock (IsStartedLock)
         {
-            _isStarted = false;
+            IsStarted = false;
         }
 
         Thread.Sleep(250);
@@ -158,7 +170,7 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
 
         Thread.Sleep(250);
 
-        _cachingQueue.StopConsumer();
+        CachingQueue.StopConsumer();
         _storingQueue.StopConsumer();
 
         // Now finalize the last filestream
@@ -241,16 +253,16 @@ public abstract class DataExportServiceBase<T> : IDataExportService<T> where T :
     /// <param name="data"></param>
     public void Add(T data)
     {
-        lock (_isStartedLock)
+        lock (IsStartedLock)
         {
-            if (!_isStarted)
+            if (!IsStarted)
             {
                 return;
             }
         }
 
         var rm = ToMemory(data);
-        _cachingQueue.Enqueue(rm);
+        CachingQueue.Enqueue(rm);
     }
 
     /// <summary>
