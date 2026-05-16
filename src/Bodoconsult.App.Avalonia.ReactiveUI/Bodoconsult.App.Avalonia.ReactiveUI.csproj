@@ -127,4 +127,10 @@
 		<None Include="..\..\LICENSE.md" Link="LICENSE.md" />
 		<None Include="..\..\doc\Bodoconsult.App.Avalonia.ReactiveUI\README.md" Link="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\CopyrightWindow.axaml.cs">
+	    <DependentUpon>CopyrightWindow.axaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
 </Project>

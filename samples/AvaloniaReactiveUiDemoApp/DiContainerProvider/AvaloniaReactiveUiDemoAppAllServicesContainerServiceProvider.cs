@@ -7,6 +7,9 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 using AvaloniaReactiveUiDemoApp.AppData;
 using AvaloniaReactiveUiDemoApp.ViewModels;
+using Bodoconsult.App.Avalonia.ReactiveUI;
+using Bodoconsult.App.Avalonia.ReactiveUI.Views;
+using Bodoconsult.App.ReactiveUI.ViewModels;
 
 namespace AvaloniaReactiveUiDemoApp.DiContainerProvider;
 
@@ -36,6 +39,7 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         // View models
         diContainer.AddTransient<AvaloniaReactiveUiDemoAppMainWindowViewModel, AvaloniaReactiveUiDemoAppMainWindowViewModel>();
         diContainer.AddTransient<FirstViewModel, FirstViewModel>();
+        diContainer.AddTransient<CopyrightViewModel, CopyrightViewModel>();
 
         //diContainer.AddTransient<ViewModel1, ViewModel1>();
         //diContainer.AddTransient<ViewModel2, ViewModel2>();

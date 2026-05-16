@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:viewModels="clr-namespace:Bodoconsult.App.ReactiveUI.ViewModels;assembly=Bodoconsult.App.ReactiveUI"
+                         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                         x:Class="Bodoconsult.App.Avalonia.ReactiveUI.Views.CopyrightWindow"
+                         Title="Copyright"
+                         Background="LightGray"
+                         Width="800" Height="450">
+	<Design.DataContext>
+		<viewModels:DummyCopyrightViewModel />
+	</Design.DataContext>
+	<ScrollViewer>
+		<StackPanel Margin="10,10,10,10">
+			<Label Content="{Binding AppTitle}" FontSize="20" FontWeight="Bold"></Label>
+
+			<Label FontSize="14" Margin="0, 10, 0, 0" FontWeight="Bold">Modules</Label>
+			<Border BorderBrush="Black" BorderThickness="1">
+				<TextBlock Text="{Binding ModulesInfo}" Background="White" Padding="10, 10, 10, 10" ></TextBlock>
+			</Border>
+
+			<Label FontSize="14" Margin="0, 10, 0, 0" FontWeight="Bold">Tools</Label>
+			<Border BorderBrush="Black" BorderThickness="1">
+				<TextBlock  Text="{Binding ToolInfo}" Background="White" Padding="10, 10, 10, 10"></TextBlock>
+			</Border>
+
+			<Label FontSize="14" Margin="0, 10, 0, 0" FontWeight="Bold">Licenses</Label>
+			<Border BorderBrush="Black" BorderThickness="1">
+				<TextBlock  Text="{Binding LicenseInfo}" Background="White" Padding="10, 10, 10, 10"></TextBlock>
+			</Border>
+
+		</StackPanel>
+	</ScrollViewer>
+</Window>

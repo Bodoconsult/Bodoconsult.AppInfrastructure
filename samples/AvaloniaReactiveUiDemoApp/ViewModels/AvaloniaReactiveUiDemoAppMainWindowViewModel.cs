@@ -1,15 +1,19 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Avalonia.Controls;
+using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Avalonia.ReactiveUI.Views;
+using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Menus;
 using Bodoconsult.App.ReactiveUI.Ui;
 using Bodoconsult.App.ReactiveUI.ViewModels;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Reactive;
 using System.Reactive.Linq;
-using Avalonia.Controls;
-using Bodoconsult.App.ReactiveUI.Menus;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
 
@@ -72,6 +76,17 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         };
 
         groupItem.AddChild(command3);
+
+        // Group Help
+        var helpGroupItem = new GroupUiMenuItem("Help");
+        MenuItems.Add(helpGroupItem);
+
+        var command4 = new CommandUiMenuItem("Copyright")
+        {
+            CommandDefinition = new UiCommandDefinition(GoToCopyright, null)
+        };
+
+        helpGroupItem.AddChild(command4);
     }
 
     // Sync command 
@@ -152,5 +167,23 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    [ReactiveCommand]
+    public IObservable<Unit> GoToCopyright()
+    {
+        return Observable.Start(() =>
+        {
+            var vm = Globals.Instance.DiContainer.Get<CopyrightViewModel>();
+            vm.LoadLicenseInfo();
+            vm.LoadToolInfo();
+
+            var window = new CopyrightWindow
+            {
+                DataContext = vm,
+                WindowState = Avalonia.Controls.WindowState.Normal
+            };
+            window.Show();
+        }, RxSchedulers.MainThreadScheduler);
     }
 }

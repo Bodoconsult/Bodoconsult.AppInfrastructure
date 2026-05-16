@@ -1,4 +1,6 @@
-﻿using Bodoconsult.App.ReactiveUI.Interfaces;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 

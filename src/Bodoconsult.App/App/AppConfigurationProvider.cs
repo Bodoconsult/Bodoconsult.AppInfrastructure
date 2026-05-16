@@ -10,7 +10,6 @@ namespace Bodoconsult.App;
 /// </summary>
 public class AppConfigurationProvider : IAppConfigurationProvider
 {
-
     /// <summary>
     /// Default ctor
     /// </summary>

@@ -21,6 +21,9 @@
 	  <Content Include="log4net.config">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
+	  <Content Include="TOOLS.md">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -47,6 +50,10 @@
 
 	<ItemGroup>
 	  <Folder Include="UserControls\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\LICENSE.md" Link="LICENSE.md" />
 	</ItemGroup>
 
 	<ItemGroup>
