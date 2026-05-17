@@ -18,6 +18,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  
 ## Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Windows Event Log logger provider implementation for Microsoft.Extensions.Logging.
 
 License: MIT
@@ -27,6 +29,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
+
+Copyright: (c) .NET Foundation and Contributors.  All rights reserved.
 
 The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
 
@@ -41,6 +45,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/CommunityToolkit/WindowsCommunityToolkit.git
 
 ## Nuget package library Microsoft.Win32.Registry by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Provides support for accessing and modifying the Windows Registry.
 
@@ -61,6 +67,8 @@ Project-Url: git://github.com/dotnet/runtime
 
 ## Nuget package library System.Drawing.Common by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Provides access to GDI+ graphics functionality.
 
       Commonly Used Types:
@@ -80,6 +88,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/winforms
 
 ## Nuget package library System.Security.Cryptography.ProtectedData by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Provides access to Windows Data Protection Api.
 

@@ -2,6 +2,8 @@
 
 ## Nuget package library Avalonia by Avalonia Team
 
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
+
 Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
 
 License: MIT
@@ -11,6 +13,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library Avalonia.Desktop by Avalonia Team
+
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
 Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
 
@@ -22,6 +26,8 @@ Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library Avalonia.Diagnostics by Avalonia Team
 
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
+
 Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
 
 License: MIT
@@ -31,6 +37,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
+
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
 Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
 
@@ -42,6 +50,8 @@ Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library Avalonia.Themes.Fluent by Avalonia Team
 
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
+
 Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
 
 License: MIT
@@ -51,6 +61,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library coverlet.collector by tonerdo
+
+Copyright: (c) 2018 Toni Solarin-Sodara
 
 Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
 
@@ -62,6 +74,8 @@ Project-Url: https://github.com/coverlet-coverage/coverlet.git
 
 ## Nuget package library MessageBox.Avalonia by Lary
 
+Copyright: 
+
 Messagebox for AvaloniaUI
 
 License: MIT
@@ -71,6 +85,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: messagebox.avalonia
 
 ## Nuget package library Microsoft.AspNetCore.TestHost by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
@@ -84,6 +100,8 @@ Project-Url: https://github.com/dotnet/aspnetcore
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 The MSbuild targets and properties for building .NET test projects.
 
 License: MIT
@@ -93,6 +111,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/microsoft/vstest
 
 ## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
 
 NUnit is a unit-testing framework for all .NET languages.
             It can run on macOS, Linux and Windows operating systems.
@@ -116,6 +136,8 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit.Analyzers by NUnit
 
+Copyright: Copyright (c) 2018-2025 NUnit project
+
 This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
 
 Version 3.0 and upwards works in Visual Studio 2019 (version 16.3) or newer and also enables supression of compiler errors such as errors arising from nullable reference types. For Visual Studio 2017 one must use versions below 3.0 - note that these versions are no longer updated, so version 2.10.0 is the last version that works in Visual Studio 2017.
@@ -127,6 +149,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/nunit/nunit.analyzers
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
 
 The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
 
@@ -140,6 +164,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 ## Nuget package library System.Data.DataSetExtensions by Microsoft
+
+Copyright: © Microsoft Corporation.  All rights reserved.
 
 Provides extensions to form LINQ expressions and method queries against DataTable objects.
 

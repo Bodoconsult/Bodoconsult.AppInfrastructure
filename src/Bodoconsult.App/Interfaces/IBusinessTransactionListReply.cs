@@ -10,7 +10,6 @@ namespace Bodoconsult.App.Interfaces;
 /// </summary>
 public interface IBusinessTransactionListReply: IBusinessTransactionReply
 {
-
     /// <summary>
     /// Current number of pages (if applicable)
     /// </summary>

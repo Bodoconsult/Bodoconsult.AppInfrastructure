@@ -16,6 +16,8 @@ Bitonal conversion: https://medium.com/@robert.cichielo/dithering-color-images-w
 
 ## Nuget package library System.Drawing.Common by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Provides access to GDI+ graphics functionality.
 
       Commonly Used Types:

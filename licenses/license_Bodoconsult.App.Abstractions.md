@@ -22,6 +22,8 @@ Project-Url: [How to Convert Between Roman and Arabic Numerals in C#](https://ww
 
 ## Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 JSON configuration provider implementation for Microsoft.Extensions.Configuration. This package enables you to read your application's settings from a JSON file. You can use JsonConfigurationExtensions.AddJsonFile extension method on IConfigurationBuilder to add the JSON configuration provider to the configuration builder.
 
 License: MIT
@@ -31,6 +33,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.
 
@@ -42,6 +46,8 @@ Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Hosting and startup infrastructures for applications.
 
 License: MIT
@@ -51,6 +57,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Extensions.Logging by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Logging infrastructure default implementation for Microsoft.Extensions.Logging.
 
@@ -62,6 +70,8 @@ Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Console logger provider implementation for Microsoft.Extensions.Logging.
 
 License: MIT
@@ -72,6 +82,8 @@ Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Debug output logger provider implementation for Microsoft.Extensions.Logging. This logger logs messages to a debugger monitor by writing messages with System.Diagnostics.Debug.WriteLine().
 
 License: MIT
@@ -81,6 +93,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/runtime
 
 ## Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 EventSource/EventListener logger provider implementation for Microsoft.Extensions.Logging.
 

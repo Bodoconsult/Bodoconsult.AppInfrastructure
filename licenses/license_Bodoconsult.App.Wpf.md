@@ -21,6 +21,8 @@ PERFORMANCE OF THIS SOFTWARE.
  
 ## Nuget package library CommunityToolkit.Mvvm by Microsoft
 
+Copyright: (c) .NET Foundation and Contributors. All rights reserved.
+
 This package includes a .NET MVVM library with helpers such as:
       - ObservableObject: a base class for objects implementing the INotifyPropertyChanged interface.
       - ObservableRecipient: a base class for observable objects with support for the IMessenger service.
@@ -39,6 +41,8 @@ Project-Url: https://github.com/CommunityToolkit/dotnet
 
 ## Nuget package library Microsoft-WindowsAPICodePack-Core by rpastric, contre, dahall
 
+Copyright: Copyright © 2020
+
 The Core code for the WindowsAPICodePack. This is an updated version containing all available bug fixes for this code as of 2020-01-04.
 
 License: 
@@ -49,6 +53,8 @@ Project-Url: https://github.com/contre/Windows-API-Code-Pack-1.1
 
 ## Nuget package library Microsoft-WindowsAPICodePack-Shell by rpastric, contre, dahall
 
+Copyright: Copyright © 2020
+
 The Shell code for the WindowsAPICodePack. This is an updated version containing all available bug fixes for this code as of 2020-01-04.
 
 License: 
@@ -58,6 +64,8 @@ License-Url: https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE
 Project-Url: https://github.com/contre/Windows-API-Code-Pack-1.1
 
 ## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
+
+Copyright: (c) .NET Foundation and Contributors.  All rights reserved.
 
 The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
 
@@ -73,6 +81,8 @@ Project-Url: https://github.com/CommunityToolkit/WindowsCommunityToolkit.git
 
 ## Nuget package library Microsoft.Xaml.Behaviors.Wpf by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Easily add interactivity to your apps using XAML Behaviors for WPF. Behaviors encapsulate reusable functionalities for elements that can be easily added to your XAML without the need for more imperative code.
 
 License: MIT
@@ -82,6 +92,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/microsoft/XamlBehaviorsWpf
 
 ## Nuget package library System.Data.DataSetExtensions by Microsoft
+
+Copyright: © Microsoft Corporation.  All rights reserved.
 
 Provides extensions to form LINQ expressions and method queries against DataTable objects.
 
@@ -105,6 +117,8 @@ License-Url: https://github.com/dotnet/corefx/blob/master/LICENSE.TXT
 Project-Url: 
 
 ## Nuget package library System.Drawing.Common by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Provides access to GDI+ graphics functionality.
 

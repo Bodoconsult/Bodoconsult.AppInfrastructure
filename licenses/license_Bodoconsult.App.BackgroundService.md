@@ -2,6 +2,8 @@
 
 ## Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Hosting and startup infrastructures for applications.
 
 License: MIT

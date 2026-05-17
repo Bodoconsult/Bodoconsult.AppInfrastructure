@@ -2,6 +2,8 @@
 
 ## Nuget package library coverlet.collector by tonerdo
 
+Copyright: (c) 2018 Toni Solarin-Sodara
+
 Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
 
 License: MIT
@@ -12,6 +14,8 @@ Project-Url: https://github.com/coverlet-coverage/coverlet.git
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 The MSbuild targets and properties for building .NET test projects.
 
 License: MIT
@@ -21,6 +25,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/microsoft/vstest
 
 ## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
 
 NUnit is a unit-testing framework for all .NET languages.
             It can run on macOS, Linux and Windows operating systems.
@@ -44,6 +50,8 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit.Analyzers by NUnit
 
+Copyright: Copyright (c) 2018-2025 NUnit project
+
 This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
 
 Version 3.0 and upwards works in Visual Studio 2019 (version 16.3) or newer and also enables supression of compiler errors such as errors arising from nullable reference types. For Visual Studio 2017 one must use versions below 3.0 - note that these versions are no longer updated, so version 2.10.0 is the last version that works in Visual Studio 2017.
@@ -55,6 +63,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/nunit/nunit.analyzers
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
 
 The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
 
@@ -69,6 +79,8 @@ Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 ## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
 
+Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+
 Allows to get an observables for property changed events.
 
 License: MIT
@@ -78,6 +90,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/reactivemarbles/ObservableEvents
 
 ## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
+
+Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors
 
 Contains the ReactiveUI platform specific extensions for Avalonia
 
@@ -89,6 +103,8 @@ Project-Url: https://github.com/reactiveui/reactiveui
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
+Copyright: Copyright (c) .NET Foundation and Contributors
+
 A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI
 
 License: MIT
@@ -98,6 +114,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
 
 ## Nuget package library ReactiveUI.Testing by .NET Foundation and Contributors
+
+Copyright: Copyright (c) .NET Foundation and Contributors
 
 Provides extensions for testing ReactiveUI based applications
 

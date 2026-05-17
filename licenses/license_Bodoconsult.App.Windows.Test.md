@@ -2,6 +2,8 @@
 
 ## Nuget package library coverlet.collector by tonerdo
 
+Copyright: (c) 2018 Toni Solarin-Sodara
+
 Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
 
 License: MIT
@@ -11,6 +13,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/coverlet-coverage/coverlet.git
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 The MSbuild targets and properties for building .NET test projects.
 
@@ -22,6 +26,8 @@ Project-Url: https://github.com/microsoft/vstest
 
 ## Nuget package library Newtonsoft.Json by James Newton-King
 
+Copyright: Copyright © James Newton-King 2008
+
 Json.NET is a popular high-performance JSON framework for .NET
 
 License: MIT
@@ -31,6 +37,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
 ## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
 
 NUnit is a unit-testing framework for all .NET languages.
             It can run on macOS, Linux and Windows operating systems.
@@ -53,6 +61,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
 
 The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
 

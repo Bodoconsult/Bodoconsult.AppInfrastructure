@@ -2,6 +2,8 @@
 
 ## Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
 
 This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc
@@ -13,6 +15,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/aspnetcore
 
 ## Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Additional APIs for ASP.NET Core data protection.
 
@@ -26,6 +30,8 @@ Project-Url: https://github.com/dotnet/aspnetcore
 
 ## Nuget package library Microsoft.AspNetCore.TestHost by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 ASP.NET Core web server for writing and running tests.
 
 This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc
@@ -37,6 +43,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/aspnetcore
 
 ## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
+
+Copyright: (c) .NET Foundation and Contributors.  All rights reserved.
 
 The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
 
@@ -51,6 +59,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/CommunityToolkit/WindowsCommunityToolkit.git
 
 ## Nuget package library System.Drawing.Common by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Provides access to GDI+ graphics functionality.
 
@@ -71,6 +81,8 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/dotnet/winforms
 
 ## Nuget package library System.Text.Json by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
 
 Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.
 

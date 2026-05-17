@@ -31,6 +31,8 @@ SOFTWARE.
 
 ## Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.
 
 License: MIT

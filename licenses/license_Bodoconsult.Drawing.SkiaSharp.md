@@ -16,6 +16,8 @@ Bitonal conversion: https://medium.com/@robert.cichielo/dithering-color-images-w
 
 ## Nuget package library ScottPlot by Scott Harden
 
+Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC
+
 ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.
 
 License: MIT

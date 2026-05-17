@@ -2,6 +2,8 @@
 
 ## Nuget package library DocumentFormat.OpenXml by Microsoft
 
+Copyright: © Microsoft Corporation. All rights reserved.
+
 The Open XML SDK provides tools for working with Office Word, Excel, and PowerPoint documents. It supports scenarios such as:
 
 - High-performance generation of word-processing documents, spreadsheets, and presentations.
