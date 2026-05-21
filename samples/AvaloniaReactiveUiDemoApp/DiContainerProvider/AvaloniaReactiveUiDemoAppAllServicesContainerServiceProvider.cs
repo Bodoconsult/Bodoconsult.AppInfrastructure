@@ -7,9 +7,11 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 using AvaloniaReactiveUiDemoApp.AppData;
 using AvaloniaReactiveUiDemoApp.ViewModels;
+using Bodoconsult.App.Avalonia.Helpers;
 using Bodoconsult.App.Avalonia.ReactiveUI;
 using Bodoconsult.App.Avalonia.ReactiveUI.Views;
 using Bodoconsult.App.ReactiveUI.ViewModels;
+using Bodoconsult.App.Avalonia.Interfaces;
 
 namespace AvaloniaReactiveUiDemoApp.DiContainerProvider;
 

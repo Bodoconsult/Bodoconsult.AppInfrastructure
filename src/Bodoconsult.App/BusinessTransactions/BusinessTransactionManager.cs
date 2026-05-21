@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.Delegates;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
+using System.Diagnostics;
 
 namespace Bodoconsult.App.BusinessTransactions;
 
@@ -121,14 +122,14 @@ public class BusinessTransactionManager : IBusinessTransactionManager
     /// <returns></returns>
     public IBusinessTransactionReply RunBusinessTransaction(int transactionId, IBusinessTransactionRequestData requestData)
     {
-        _logger.LogDebug($"Transaction {transactionId} with GUID {requestData.TransactionGuid} received");
-        requestData.Benchmark?.AddStep("InternalReceived");
-
         BusinessTransaction transaction;
         string msg;
 
         try
         {
+            _logger.LogDebug($"Transaction {transactionId} with GUID {requestData.TransactionGuid} received");
+            requestData.Benchmark?.AddStep("InternalReceived");
+
             transaction = CheckForBusinessTransaction(transactionId);
         }
         catch (Exception e)
@@ -204,10 +205,30 @@ public class BusinessTransactionManager : IBusinessTransactionManager
     /// </summary>
     /// <param name="transactionId">ID of the requested transaction</param>
     /// <param name="requestData">Data delivered by the request</param>
-    /// <returns></returns>
+    /// <returns>Business transaction reply</returns>
     public async Task<IBusinessTransactionReply> RunBusinessTransactionAsync(int transactionId, IBusinessTransactionRequestData requestData)
     {
         var result = await Task.Run(() => RunBusinessTransaction(transactionId, requestData));
         return result;
+    }
+
+    /// <summary>
+    /// Run a business transaction in a fire-and-forget manner not waiting for the reply
+    /// </summary>
+    /// <param name="transactionId">ID of the requested transaction</param>
+    /// <param name="requestData">Data delivered by the request</param>
+    public void RunBusinessTransactionFireAndForget(int transactionId, IBusinessTransactionRequestData requestData)
+    {
+        AsyncHelper.FireAndForget(() =>
+        {
+            try
+            {
+                RunBusinessTransaction(transactionId, requestData);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Running BT {transactionId} failed", e);
+            }
+        });
     }
 }

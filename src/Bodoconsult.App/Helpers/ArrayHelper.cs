@@ -42,7 +42,7 @@ public static class ArrayHelper
         for (var stack = 0; stack < stackLen; stack++)
         {
             for (var row = 0; row < rowLen; row++)
-            { 
+            {
                 for (var subindex = 0; subindex < subindexLen; subindex++)
                 {
                     if (array1[stack, row, subindex] != array2[stack, row, subindex])
@@ -321,5 +321,78 @@ public static class ArrayHelper
             $"{s[..^2]} }}" :
             $"{s} }}";
 
+    }
+
+    /// <summary>
+    /// Get a byte array from a string
+    /// </summary>
+    /// <param name="arrayString">Array as string like 0x00x10x20x2d without delimiter between the byte data</param>
+    /// <returns>Byte array</returns>
+    /// <exception cref="ArgumentException">At least one value is not parseable to byte datatype</exception>
+    public static byte[] GetBytes(string arrayString)
+    {
+        var s = arrayString
+            .Replace(" ", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Replace("{", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Replace("}", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Replace("0x", ",", StringComparison.InvariantCultureIgnoreCase)
+            .Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        var ar = new byte[s.Length];
+
+        var e = string.Empty;
+
+        try
+        {
+            for (var index = 0; index < s.Length; index++)
+            {
+                e = $"{s[index]}";
+                var d = Convert.ToByte(e, 16);
+                ar[index] = d;
+            }
+        }
+        catch
+        {
+            throw new ArgumentException($"{e} not parseable to byte");
+        }
+
+        return ar;
+    }
+
+    /// <summary>
+    /// Get a byte array from a string
+    /// </summary>
+    /// <param name="arrayString">Array as string like 0x0, 0x1, 0x2, 0x2d without delimiter between the byte data</param>
+    /// <param name="delimiter">Delimiter char like comma or semicolon</param>
+    /// <returns>Byte array</returns>
+    /// <exception cref="ArgumentException">At least one value is not parseable to byte datatype</exception>
+    public static byte[] GetBytes(string arrayString, char delimiter)
+    {
+        var s = arrayString
+            .Replace(" ", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Replace("{", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Replace("}", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Replace("0x", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+
+        var ar = new byte[s.Length];
+
+        var e = string.Empty;
+
+        try
+        {
+            for (var index = 0; index < s.Length; index++)
+            {
+                e = s[index];
+                var d = Convert.ToByte(e, 16);
+                ar[index] = d;
+            }
+        }
+        catch
+        {
+            throw new ArgumentException($"{e} not parseable to byte");
+        }
+
+        return ar;
     }
 }

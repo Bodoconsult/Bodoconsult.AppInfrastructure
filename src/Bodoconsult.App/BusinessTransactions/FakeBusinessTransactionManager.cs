@@ -59,4 +59,14 @@ public class FakeBusinessTransactionManager: IBusinessTransactionManager
     {
         throw new NotImplementedException();
     }
+
+    /// <summary>
+    /// Run a business transaction in a fire-and-forget manner not waiting for the reply
+    /// </summary>
+    /// <param name="transactionId">ID of the requested transaction</param>
+    /// <param name="requestData">Data delivered by the request</param>
+    public void RunBusinessTransactionFireAndForget(int transactionId, IBusinessTransactionRequestData requestData)
+    {
+        throw new NotImplementedException();
+    }
 }

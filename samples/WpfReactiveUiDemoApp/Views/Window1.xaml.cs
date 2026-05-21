@@ -114,4 +114,14 @@ public partial class Window1 : IUiWindow
     {
         RegionManager = regionManager;
     }
+
+    /// <summary>
+    /// Show an info dialog
+    /// </summary>
+    /// <param name="message">Message to show</param>
+    /// <returns>True</returns>
+    public Task<bool?> ShowInfoDialog(string message)
+    {
+        throw new NotImplementedException();
+    }
 }

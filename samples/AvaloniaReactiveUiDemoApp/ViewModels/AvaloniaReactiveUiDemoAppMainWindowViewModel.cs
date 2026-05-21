@@ -3,6 +3,7 @@
 using Avalonia.Controls;
 using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Avalonia.Helpers;
 using Bodoconsult.App.Avalonia.ReactiveUI.Views;
 using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.ReactiveUI.Extensions;
@@ -14,6 +15,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Threading.Channels;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
 
@@ -22,6 +24,10 @@ namespace AvaloniaReactiveUiDemoApp.ViewModels;
 /// </summary>
 public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
 {
+    private readonly Interaction<string, bool> _confirm;
+
+    public Interaction<string, bool> Confirm => this._confirm;
+
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -30,7 +36,9 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     /// <param name="regionManager">Region manager</param>
     public AvaloniaReactiveUiDemoAppMainWindowViewModel(IAppEventListener listener, II18N translationService,
         IRegionManager regionManager) : base(listener, translationService, regionManager)
-    { }
+    {
+        _confirm = new Interaction<string, bool>();
+    }
 
     /// <summary>
     /// Create the main form of the application
@@ -87,6 +95,22 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         };
 
         helpGroupItem.AddChild(command4);
+
+        var command5 = new CommandUiMenuItem("Show info dialog")
+        {
+            CommandDefinition = new UiCommandDefinition(GoToInfoDialog, null)
+        };
+
+        helpGroupItem.AddChild(command5);
+    }
+
+    private IObservable<Unit> GoToInfoDialog()
+    {
+        return Observable.StartAsync(async () =>
+        {
+            // this will throw an exception if nothing handles the interaction
+            _ = await _confirm.Handle("Hello user!");
+        });
     }
 
     // Sync command 

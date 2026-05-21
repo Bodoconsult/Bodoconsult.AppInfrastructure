@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using Microsoft.Extensions.Logging;
 
 namespace Bodoconsult.App.Abstractions.Interfaces;

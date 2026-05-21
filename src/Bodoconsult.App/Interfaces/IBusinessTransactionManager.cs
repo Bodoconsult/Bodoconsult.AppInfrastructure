@@ -10,13 +10,11 @@ namespace Bodoconsult.App.Interfaces;
 /// </summary>
 public interface IBusinessTransactionManager
 {
-
     /// <summary>
     /// Add the transaction delivered by the provider to an internal storage
     /// </summary>
     /// <param name="provider"></param>
     void AddProvider(IBusinessTransactionProvider provider);
-
 
     /// <summary>
     /// Check for business transaction and return it
@@ -30,7 +28,7 @@ public interface IBusinessTransactionManager
     /// </summary>
     /// <param name="transactionId">ID of the requested transaction</param>
     /// <param name="requestData">Data delivered by the request</param>
-    /// <returns></returns>
+    /// <returns>Business transaction reply</returns>
     IBusinessTransactionReply RunBusinessTransaction(int transactionId, IBusinessTransactionRequestData requestData);
 
     /// <summary>
@@ -38,6 +36,13 @@ public interface IBusinessTransactionManager
     /// </summary>
     /// <param name="transactionId">ID of the requested transaction</param>
     /// <param name="requestData">Data delivered by the request</param>
-    /// <returns></returns>
+    /// <returns>Business transaction reply</returns>
     Task<IBusinessTransactionReply> RunBusinessTransactionAsync(int transactionId, IBusinessTransactionRequestData requestData);
+
+    /// <summary>
+    /// Run a business transaction in a fire-and-forget manner not waiting for the reply
+    /// </summary>
+    /// <param name="transactionId">ID of the requested transaction</param>
+    /// <param name="requestData">Data delivered by the request</param>
+    void RunBusinessTransactionFireAndForget(int transactionId, IBusinessTransactionRequestData requestData);
 }

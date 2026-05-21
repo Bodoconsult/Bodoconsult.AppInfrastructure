@@ -26,4 +26,32 @@ internal class ArrayHelperTests
         Assert.That(result.Contains("[0A]"));
         Assert.That(result.Contains("0xa"));
     }
+
+
+    [Test]
+    public void GetBytes_ValidArrayStringWithoutDelimiter_ReturnsArray()
+    {
+        // Arrange 
+        const string arrayString = "{ 0x30x20x10x0}";
+
+        // Act  
+        var result = ArrayHelper.GetBytes(arrayString);
+
+        // Assert
+        Assert.That(result.Length, Is.EqualTo(4));
+    }
+
+    [Test]
+    public void GetBytes_ValidArrayStringWithDelimiter_ReturnsArray()
+    {
+        // Arrange 
+        const string arrayString = "{ 0x3, 0x4, 0x2, 0x1}";
+
+        // Act  
+        var result = ArrayHelper.GetBytes(arrayString, ',');
+
+        // Assert
+        Assert.That(result.Length, Is.EqualTo(4));
+    }
+
 }

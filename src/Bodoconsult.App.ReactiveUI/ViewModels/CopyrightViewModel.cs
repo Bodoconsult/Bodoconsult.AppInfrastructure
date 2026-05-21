@@ -58,6 +58,8 @@ public partial class CopyrightViewModel : ReactiveObject
     /// <param name="modulInfo">Module info string</param>
     public void LoadModule(string modulInfo)
     {
+        modulInfo = modulInfo.Trim();
+
         if (string.IsNullOrEmpty(modulInfo) || _modules.Contains(modulInfo))
         {
             return;

@@ -36,4 +36,11 @@ public interface IUiWindow
     /// </summary>
     /// <param name="regionManager">Current region manager instance</param>
     void LoadRegionManager(IRegionManager regionManager);
+
+    /// <summary>
+    /// Show an info dialog
+    /// </summary>
+    /// <param name="message">Message to show</param>
+    /// <returns>True</returns>
+    Task<bool?> ShowInfoDialog(string message);
 }

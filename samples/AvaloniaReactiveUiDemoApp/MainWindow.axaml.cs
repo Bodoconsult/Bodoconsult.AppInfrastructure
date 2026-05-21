@@ -12,6 +12,7 @@ using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 using Bodoconsult.App.Avalonia.ReactiveUI.Converters;
 using AvaloniaReactiveUiDemoApp.ViewModels;
+using Bodoconsult.App.Avalonia.Helpers;
 using ReactiveUI.Avalonia;
 
 namespace AvaloniaReactiveUiDemoApp;
@@ -37,7 +38,16 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
                 }
 
                 RegisterAllRouterBindings(x, disposables);
+
+                x.Confirm
+                    .RegisterHandler(async interaction =>
+                    {
+                        var deleteIt = await this.ShowInfoDialog(interaction.Input) ?? true;
+                        interaction.SetOutput(deleteIt);
+                    });
             });
+
+            
         });
     }
 
@@ -138,12 +148,25 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
         }
     }
 
+    /// <summary>
+    /// Load the region manager
+    /// </summary>
+    /// <param name="regionManager">Current region manager instance</param>
     public void LoadRegionManager(IRegionManager regionManager)
     {
         throw new NotImplementedException();
     }
 
-    public bool IsRegistered { get; }
+    /// <summary>
+    /// Show an info dialog
+    /// </summary>
+    /// <param name="message">Message to show</param>
+    public async Task<bool?> ShowInfoDialog(string message)
+    {
+        return await DialogHelper.ShowInfoDialog(this, message);
+    }
+
+    public bool IsRegistered { get; set; }
 
     ///// <summary>
     ///// Allows the ViewModel to be used on the XAML via a dependency property

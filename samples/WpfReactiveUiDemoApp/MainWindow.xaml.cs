@@ -138,6 +138,16 @@ public partial class MainWindow : IUiWindow
         RegionManager = regionManager;
     }
 
+    /// <summary>
+    /// Show an info dialog
+    /// </summary>
+    /// <param name="message">Message to show</param>
+    /// <returns>True</returns>
+    public Task<bool?> ShowInfoDialog(string message)
+    {
+        throw new NotImplementedException();
+    }
+
     ///// <summary>
     ///// Allows the ViewModel to be used on the XAML via a dependency property
     ///// </summary>

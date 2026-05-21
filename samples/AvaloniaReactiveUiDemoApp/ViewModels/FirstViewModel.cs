@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 
@@ -47,8 +48,14 @@ public partial class FirstViewModel : ReactiveObject, IUiRegionViewModel
     /// Method based late injection of <see cref="ReactiveUI.IScreen"/> instance for navigation
     /// </summary>
     /// <param name="screen"></param>
-    public void InjectScreen(IScreen screen)
+    public void InjectScreen(UiRegion screen)
     {
         HostScreen = screen;
+        UiRegion = screen;
     }
+
+    /// <summary>
+    /// UI region the viewmodel is loaded in
+    /// </summary>
+    public UiRegion? UiRegion { get; private set; }
 }

@@ -77,7 +77,6 @@ public class AvaloniaRegionManager : RegionManagerBase
         reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
         {
             var region = uiWindow.FindRegion(regionName);
-
             ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
             if (viewModel is not IUiRegionViewModel uvm)

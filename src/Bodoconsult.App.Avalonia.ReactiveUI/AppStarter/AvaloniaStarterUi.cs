@@ -28,7 +28,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
     private readonly AppEventListener _listener;
     private readonly IRegionManager _regionManager;
 
-    private IRxMainWindowViewModel _viewModel;
+    private readonly IRxMainWindowViewModel _viewModel;
 
     ///// <summary>
     ///// Default ctor
@@ -124,7 +124,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
         ArgumentNullException.ThrowIfNull(Application.Current);
 
         ConsoleService.ConsoleHandle = ConsoleService.CsGetConsoleWindow();
-        ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowShow);
+        ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowHide);
 
         _viewModel.LoadAppBuilder(AppBuilder);
         _viewModel.AppVersion = AppBuilder.AppGlobals.AppStartParameter.AppVersion;
