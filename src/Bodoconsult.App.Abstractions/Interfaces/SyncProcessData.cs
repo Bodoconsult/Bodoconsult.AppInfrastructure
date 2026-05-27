@@ -13,6 +13,7 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     public SyncProcessData(TKey processId, int timeout)
     {
         ProcessId = processId;
+        TaskCompletionSource = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
 
         // Create the CancellationTokenSource to implement timeout for sync running
         var cts = new CancellationTokenSource(timeout + 100);
@@ -44,7 +45,6 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     public Task<T> CreateWaitingTask()
     {
         // Now wait
-        TaskCompletionSource = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
         return TaskCompletionSource.Task;
     }
 
@@ -77,7 +77,7 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
             {
                 if (!CancellationTokenSource.IsCancellationRequested)
                 {
-                    CancellationTokenSource.Cancel();
+                    CancellationTokenSource.Cancel(false);
                 }
 
                 CancellationTokenSource.Dispose();

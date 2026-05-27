@@ -32,6 +32,19 @@ public static class AsyncHelper
     /// <summary>
     /// Run an async method call in a syncron manner
     /// </summary>
+    /// <typeparam name="TResult">Type of return value of the method call</typeparam>
+    /// <param name="task">Method call</param>
+    /// <returns>Return value of the method</returns>
+    public static TResult RunSync<TResult>(Task<TResult> task)
+    {
+        return task
+            .GetAwaiter()
+            .GetResult();
+    }
+
+    /// <summary>
+    /// Run an async method call in a syncron manner
+    /// </summary>
     /// <param name="func">Method call</param>
     public static void RunSync(Func<Task> func)
     {
