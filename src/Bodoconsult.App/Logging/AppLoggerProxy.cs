@@ -32,7 +32,18 @@ public class AppLoggerProxy : IAppLoggerProxy
     public AppLoggerProxy(ILoggerFactory loggerFactory, ILogDataFactory logDataFactory)
     {
         LoggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
-        _logger = loggerFactory.CreateLogger(string.Intern("Default"));
+
+        if (loggerFactory is IMonitorLoggerFactory monitor)
+        {
+            var fi = new FileInfo(monitor.FileName);
+            var category = fi.Name.Replace(fi.Extension, string.Empty);
+            _logger = loggerFactory.CreateLogger(category);
+        }
+        else
+        {
+            _logger = loggerFactory.CreateLogger(string.Intern("Default"));
+        }
+
         //_isFatalEnabled = _logger.IsEnabled(LogLevel.Critical);
         _isDebugEnabled = _logger.IsEnabled(LogLevel.Debug);
         //_isErrorEnabled = _logger.IsEnabled(LogLevel.Error);
@@ -2009,7 +2020,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     }
 
     #endregion
-    
+
     /// <summary>
     /// Dispose the logger
     /// </summary>

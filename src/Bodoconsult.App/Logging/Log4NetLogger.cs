@@ -35,6 +35,7 @@ using log4net.Config;
 using log4net.Core;
 using log4net.Filter;
 using log4net.Layout;
+using log4net.Repository;
 using log4net.Repository.Hierarchy;
 using Microsoft.Extensions.Logging;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
@@ -166,13 +167,50 @@ public class Log4NetLogger : ILogger
         //_log.Fatal("log4net init successful");
     }
 
-    private void InitLoggerFromXml(string name, XmlElement xmlElement)
+    /// <summary>
+    /// Ctor to provide XML content to configure the Log4Net logger
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="xmlElement"></param>
+    /// <param name="repoName">Repository name</param>
+    public Log4NetLogger(string name, XmlElement xmlElement, string repoName)
     {
-        var loggerRepository = LogManager.CreateRepository(
-            Assembly.GetCallingAssembly(), typeof(Hierarchy));
-        XmlConfigurator.Configure(loggerRepository, xmlElement);
+        InitLoggerFromXml(name, xmlElement, repoName);
+        //_log.Fatal("log4net init successful");
+    }
 
-        _log = LogManager.GetLogger(loggerRepository.Name, name);
+    private void InitLoggerFromXml(string name, XmlElement xmlElement, string repoName = null)
+    {
+        ILoggerRepository loggerRepository;
+
+        if (repoName == null)
+        {
+            loggerRepository = LogManager.CreateRepository(Assembly.GetCallingAssembly(), typeof(Hierarchy));
+            XmlConfigurator.Configure(loggerRepository, xmlElement);
+
+            _log = LogManager.GetLogger(loggerRepository.Name, name);
+        }
+        else
+        {
+            var repositoryName = repoName;
+            var loggerName = repoName;
+            try
+            {
+                var repos = LoggerManager.GetAllRepositories();
+
+                if (repos.All(x => x.Name != repositoryName))
+                {
+                    loggerRepository = LoggerManager.CreateRepository(repositoryName);
+                    XmlConfigurator.Configure(loggerRepository, xmlElement);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.Message);
+                //logger.LogError("Error when initializing monitor logger: {0}",e);
+            }
+            _log = LogManager.GetLogger(repositoryName, loggerName);
+        }
     }
 
     #endregion 

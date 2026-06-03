@@ -103,7 +103,7 @@ public class Log4NetMonitorProvider : ILoggerProvider
         var xml = Parselog4NetConfigFile(_log4NetConfigFile);
 
         // Now create the logger
-        var l = new Log4NetLogger(name, xml);
+        var l = new Log4NetLogger(name, xml, _plainMonitorLogFilename);
         return l;
     }
 

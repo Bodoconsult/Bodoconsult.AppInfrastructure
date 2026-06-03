@@ -70,6 +70,66 @@ internal class MonitorLoggerFactoryTests
         DeleteFile(filePath);
     }
 
+    [Test]
+    public void LogMessages_2Loggers_MessagesLogged()
+    {
+        // Arrange 
+        const string deviceName = "999999";
+        var filePath = Path.Combine(Globals.Instance.DataPath, $"{deviceName}1.log");
+        var filePath2 = Path.Combine(Globals.Instance.DataPath, $"{deviceName}2.log");
+
+        DeleteFile(filePath);
+        DeleteFile(filePath2);
+
+        var factory = new MonitorLoggerFactory(filePath);
+        factory.LoggingConfig = Globals.Instance.LoggingConfig;
+
+        var factory2 = new MonitorLoggerFactory(filePath2);
+        factory2.LoggingConfig = Globals.Instance.LoggingConfig;
+
+        var loggerProxy = new AppLoggerProxy(factory, Globals.Instance.LogDataFactory);
+        var loggerProxy2 = new AppLoggerProxy(factory2, Globals.Instance.LogDataFactory);
+
+        // Act  
+        loggerProxy.LogInformation("Testinfo");
+        loggerProxy2.LogInformation("Testinfo2");
+        loggerProxy.LogDebug("Testdebug");
+        loggerProxy2.LogDebug("Testdebug2");
+        loggerProxy.LogError("Testerror");
+        loggerProxy2.LogError("Testerror2");
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(loggerProxy, Is.Not.Null);
+            loggerProxy.Dispose();
+            Task.Delay(200);
+
+            Assert.That(loggerProxy2, Is.Not.Null);
+            loggerProxy2.Dispose();
+            Task.Delay(200);
+
+            var fi = new FileInfo(filePath);
+
+            Wait.Until(() => fi.Exists);
+            Assert.That(fi.Exists, Is.True);
+
+            Assert.That(fi.Length, Is.Not.Zero);
+
+            var fi2 = new FileInfo(filePath2);
+
+            Wait.Until(() => fi2.Exists);
+            Assert.That(fi2.Exists, Is.True);
+
+            Assert.That(fi2.Length, Is.Not.Zero);
+
+            Assert.That(fi2.Length, Is.GreaterThan(fi.Length));
+        }
+
+        DeleteFile(filePath);
+        DeleteFile(filePath2);
+    }
+
     private static void DeleteFile(string filePath)
     {
         try

@@ -10,9 +10,7 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : struct
 {
-
     private Thread _consumerThread;
-
 
     /// <summary>
     /// Contains the internal queue
@@ -51,7 +49,6 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
         {
             // Do nothing
         }
-
     }
 
     /// <summary>
