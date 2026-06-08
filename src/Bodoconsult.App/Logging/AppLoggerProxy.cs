@@ -113,7 +113,8 @@ public class AppLoggerProxy : IAppLoggerProxy
                     logData.EventId,
                     null,
                     "{LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - Thread {ThreadId} - {LogLevel} - {fileName}.{SourceMethod}.R{logData.SourceRowNumber} - {Message}{sb}",
-                    logData.LogDate, logData.ThreadId, logData.LogLevel, fileName, logData.SourceMethod, logData.SourceRowNumber, logData.Message, sb.ToString().TrimEnd());
+                    logData.LogDate, logData.ThreadId, logData.LogLevel, fileName, logData.SourceMethod,
+                    logData.SourceRowNumber, logData.Message, sb.ToString().TrimEnd());
             }
             else
             {
@@ -121,7 +122,8 @@ public class AppLoggerProxy : IAppLoggerProxy
                     logData.EventId,
                     null,
                     "{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - Thread {logData.ThreadId} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}: {logData.Exception}{sb}",
-                    logData.LogDate, logData.ThreadId, logData.LogLevel, fileName, logData.SourceMethod, logData.SourceRowNumber, logData.Message, logData.Exception, sb.ToString().TrimEnd());
+                    logData.LogDate, logData.ThreadId, logData.LogLevel, fileName, logData.SourceMethod,
+                    logData.SourceRowNumber, logData.Message, logData.Exception, sb.ToString().TrimEnd());
             }
             //: $"{logData.LogDate:yyyy.MM.dd HH:mm:ss.fffffff} - {logData.LogLevel} - {fileName}.{logData.SourceMethod}.R{logData.SourceRowNumber} - {logData.Message}: {logData.Exception.Message}{(string.IsNullOrEmpty(logData.Exception.StackTrace) ? "" : $"\r\n{logData.Exception.StackTrace}")}\r\n{FormatArgs(logData.Args)}");
         }
@@ -129,8 +131,25 @@ public class AppLoggerProxy : IAppLoggerProxy
         {
             Debug.Print("Logger error");
         }
-
-        _logDataFactory.EnqueueInstance(logData);
+        finally
+        {
+            try
+            {
+                _logDataFactory.EnqueueInstance(logData);
+            }
+            catch
+            {
+                logData.Message = string.Empty;
+                logData.SourceFile = string.Empty;
+                logData.SourceMethod = string.Empty;
+                logData.Exception = null;
+                logData.Args = null;
+                logData.Exception = null;
+                logData.Message = null;
+                logData.SourceMethod = string.Empty;
+            }
+            
+        }
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -1843,126 +1862,139 @@ public class AppLoggerProxy : IAppLoggerProxy
     }
 
 
-    /// <summary>
-    /// Get Current stack as customized string
-    /// @see LogStackTrace
-    /// </summary>
-    private static string CurrentStackCustomizedLog()
-    {
-        var lStackLog = new StringBuilder();
-        var lCurrentStack = new StackTrace(true);
-        // the true value is used to include source file info
+    ///// <summary>
+    ///// Get Current stack as customized string
+    ///// @see LogStackTrace
+    ///// </summary>
+    //private static string CurrentStackCustomizedLog()
+    //{
+    //    var lStackLog = new StringBuilder();
+    //    var lCurrentStack = new StackTrace(true);
+    //    // the true value is used to include source file info
 
-        for (var x = 0; x < lCurrentStack.FrameCount; ++x)
-        {
-            var lMethodCall = lCurrentStack.GetFrame(x);
-            if (IsMethodToBeIncluded(lMethodCall))
-                lStackLog.AppendLine(MethodCallLog(lMethodCall));
-        }
-        return lStackLog.ToString();
-    }
+    //    for (var x = 0; x < lCurrentStack.FrameCount; ++x)
+    //    {
+    //        var lMethodCall = lCurrentStack.GetFrame(x);
+    //        if (IsMethodToBeIncluded(lMethodCall))
+    //        {
+    //            lStackLog.AppendLine(MethodCallLog(lMethodCall));
+    //        }
+    //    }
+    //    return lStackLog.ToString();
+    //}
 
-    /// <summary>
-    /// This method is used to keep Logger methods out of the returned log
-    /// (the methods actually included in a StackTrace
-    /// depend on compiler optimizations).
-    /// @see LogStackTrace
-    /// </summary>
-    private static bool IsMethodToBeIncluded(StackFrame pStackMethod)
-    {
-        var lMethod = pStackMethod.GetMethod();
+    ///// <summary>
+    ///// This method is used to keep Logger methods out of the returned log
+    ///// (the methods actually included in a StackTrace
+    ///// depend on compiler optimizations).
+    ///// @see LogStackTrace
+    ///// </summary>
+    //private static bool IsMethodToBeIncluded(StackFrame pStackMethod)
+    //{
+    //    var lMethod = pStackMethod.GetMethod();
 
-        if (lMethod == null)
-        {
-            return true;
-        }
+    //    if (lMethod == null)
+    //    {
+    //        return true;
+    //    }
 
-        return lMethod.DeclaringType != typeof(AppLoggerProxy);
-    }
-
-
-    /// <summary>
-    /// Instead of visiting each field of stackFrame,
-    /// the StackFrame.ToString() method could be used, 
-    /// but the returned text would not include the class name.
-    /// @see LogStackTrace
-    /// </summary>
-    private static string MethodCallLog(StackFrame pMethodCall)
-    {
-        var lMethodCallLog = new StringBuilder();
-
-        var lMethod = pMethodCall.GetMethod();
-        lMethodCallLog.Append(lMethod.DeclaringType);
-        lMethodCallLog.Append(".");
-        lMethodCallLog.Append(pMethodCall.GetMethod().Name);
-
-        var lMethodParameters = lMethod.GetParameters();
-        lMethodCallLog.Append("(");
-        for (var x = 0; x < lMethodParameters.Length; ++x)
-        {
-            if (x > 0)
-            {
-                lMethodCallLog.Append(", ");
-            }
-
-            var lMethodParameter = lMethodParameters[x];
-            lMethodCallLog.Append(lMethodParameter.ParameterType.Name);
-            lMethodCallLog.Append(" ");
-            lMethodCallLog.Append(lMethodParameter.Name);
-        }
-        lMethodCallLog.Append(")");
-
-        var lSourceFileName = pMethodCall.GetFileName();
-        if (string.IsNullOrEmpty(lSourceFileName))
-        {
-            return lMethodCallLog.ToString();
-        }
-
-        lMethodCallLog.Append(" in ");
-        lMethodCallLog.Append(lSourceFileName);
-        lMethodCallLog.Append(": line ");
-        lMethodCallLog.Append(pMethodCall.GetFileLineNumber());
-
-        return lMethodCallLog.ToString();
-    }
-
-    /// <summary>
-    /// Log message and StackTrace with the current log level
-    /// </summary>
-    /// <param name="logLevel">Entry will be written on this level.</param>
-    /// <param name="message">Format string of the log message.</param>
-    /// <param name="memberName">Calling method name (filled automatically by compiler)</param>
-    /// <param name="filepath">Calling file name (filled automatically by compiler)</param>
-    /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
-    public void LogStackTrace(LogLevel logLevel, string message, string memberName = null, string filepath = null, int lineNumber = 0)
-    {
-        var lLogMessage = new StringBuilder();
-
-        // format pretty message
-        if (!string.IsNullOrEmpty(message))
-        {
-            lLogMessage.Append(message);
-            lLogMessage.AppendLine();
-        }
-        lLogMessage.Append("======================================================================");
-        lLogMessage.AppendLine();
-        lLogMessage.Append("CallStack:");
-        lLogMessage.AppendLine();
-        lLogMessage.Append(CurrentStackCustomizedLog());
-        lLogMessage.Append("======================================================================");
+    //    return lMethod.DeclaringType != typeof(AppLoggerProxy);
+    //}
 
 
-        var log = _logDataFactory.DequeueInstance();
-        log.Exception = null;
-        log.Message = lLogMessage.ToString();
-        log.LogLevel = logLevel;
-        log.SourceFile = filepath;
-        log.SourceMethod = memberName;
-        log.SourceRowNumber = lineNumber;
-        log.Args = [];
+    ///// <summary>
+    ///// Instead of visiting each field of stackFrame,
+    ///// the StackFrame.ToString() method could be used, 
+    ///// but the returned text would not include the class name.
+    ///// @see LogStackTrace
+    ///// </summary>
+    //private static string MethodCallLog(StackFrame pMethodCall)
+    //{
+    //    if (pMethodCall == null)
+    //    {
+    //        return string.Empty;
+    //    }
 
-        _logMessages?.Enqueue(log);
-    }
+    //    var lMethodCallLog = new StringBuilder();
+
+    //    var lMethod = pMethodCall.GetMethod();
+
+    //    if (lMethod == null)
+    //    {
+    //        return string.Empty;
+    //    }
+
+    //    lMethodCallLog.Append(lMethod.DeclaringType);
+    //    lMethodCallLog.Append('.');
+    //    lMethodCallLog.Append(lMethod.Name);
+
+    //    var lMethodParameters = lMethod.GetParameters();
+    //    lMethodCallLog.Append('(');
+    //    for (var x = 0; x < lMethodParameters.Length; ++x)
+    //    {
+    //        if (x > 0)
+    //        {
+    //            lMethodCallLog.Append(", ");
+    //        }
+
+    //        var lMethodParameter = lMethodParameters[x];
+    //        lMethodCallLog.Append(lMethodParameter.ParameterType.Name);
+    //        lMethodCallLog.Append(' ');
+    //        lMethodCallLog.Append(lMethodParameter.Name);
+    //    }
+    //    lMethodCallLog.Append(')');
+
+    //    var lSourceFileName = pMethodCall.GetFileName();
+    //    if (string.IsNullOrEmpty(lSourceFileName))
+    //    {
+    //        return lMethodCallLog.ToString();
+    //    }
+
+    //    lMethodCallLog.Append(" in ");
+    //    lMethodCallLog.Append(lSourceFileName);
+    //    lMethodCallLog.Append(": line ");
+    //    lMethodCallLog.Append(pMethodCall.GetFileLineNumber());
+
+    //    return lMethodCallLog.ToString();
+    //}
+
+    ///// <summary>
+    ///// Log message and StackTrace with the current log level
+    ///// </summary>
+    ///// <param name="logLevel">Entry will be written on this level.</param>
+    ///// <param name="message">Format string of the log message.</param>
+    ///// <param name="memberName">Calling method name (filled automatically by compiler)</param>
+    ///// <param name="filepath">Calling file name (filled automatically by compiler)</param>
+    ///// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
+    //public void LogStackTrace(LogLevel logLevel, string message, string memberName = null, string filepath = null, int lineNumber = 0)
+    //{
+    //    var lLogMessage = new StringBuilder();
+
+    //    // format pretty message
+    //    if (!string.IsNullOrEmpty(message))
+    //    {
+    //        lLogMessage.Append(message);
+    //        lLogMessage.AppendLine();
+    //    }
+    //    lLogMessage.Append("======================================================================");
+    //    lLogMessage.AppendLine();
+    //    lLogMessage.Append("CallStack:");
+    //    lLogMessage.AppendLine();
+    //    lLogMessage.Append(CurrentStackCustomizedLog());
+    //    lLogMessage.Append("======================================================================");
+
+
+    //    var log = _logDataFactory.DequeueInstance();
+    //    log.Exception = null;
+    //    log.Message = lLogMessage.ToString();
+    //    log.LogLevel = logLevel;
+    //    log.SourceFile = filepath;
+    //    log.SourceMethod = memberName;
+    //    log.SourceRowNumber = lineNumber;
+    //    log.Args = [];
+
+    //    _logMessages?.Enqueue(log);
+    //}
 
     ///// <summary>
     ///// Formats and writes a log message at the specified log level.

@@ -6,7 +6,7 @@ using System.Collections.Concurrent;
 namespace Bodoconsult.App.Abstractions.SyncExecution;
 
 /// <summary>
-/// Current implementation of <see cref="ISyncProcessManager{TKey,T}"/> for processes identified by a Guid
+/// Current implementation of <see cref="ISyncProcessManager{TKey,T}"/> for processes identified by a Guid, a long or int value
 /// </summary>
 public class SyncProcessManager<TKey, T> : ISyncProcessManager<TKey, T> where T : class
 {

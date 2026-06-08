@@ -49,7 +49,6 @@ public partial class ContextMenuControlViewModel : ReactiveObject
             .Subscribe();
     }
 
-
     /// <summary>
     ///  Menu items
     /// </summary>

@@ -20,10 +20,9 @@ public sealed class LogData : IResetable
     public LogLevel LogLevel { get; set; } = LogLevel.Information;
 
     /// <summary>
-    /// The thread ID creating this instance. Default: Thread.CurrentThread.ManagedThreadId
+    /// The thread ID creating this instance. Default: Environment.CurrentManagedThreadId
     /// </summary>
-    public int ThreadId { get; set; } = Thread.CurrentThread.ManagedThreadId;
-
+    public int ThreadId { get; set; } = Environment.CurrentManagedThreadId;
 
     /// <summary>
     /// Source file
@@ -50,7 +49,6 @@ public sealed class LogData : IResetable
     /// </summary>
     public Exception Exception { get; set; }
 
-
     /// <summary>
     /// EventId to log
     /// </summary>
@@ -73,7 +71,7 @@ public sealed class LogData : IResetable
         Exception = null;
         Args = null;
         Exception = null;
-        Message = null;
-        SourceMethod = null;
+        Message = string.Empty;
+        SourceMethod = string.Empty;
     }
 }

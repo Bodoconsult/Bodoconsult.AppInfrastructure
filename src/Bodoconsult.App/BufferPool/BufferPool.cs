@@ -14,7 +14,6 @@ public class BufferPool<T>
     private Func<T> _factoryMethod;
     private readonly ConcurrentQueue<T> _queue = new();
 
-
     /// <summary>
     /// Default ctor. Use <see cref="LoadFactoryMethod"/> to load a custimized load method
     /// </summary>
@@ -45,7 +44,6 @@ public class BufferPool<T>
     /// The current length of the internal queue
     /// </summary>
     public int LengthOfQueue => _queue.Count;
-
 
     /// <summary>
     /// Pre-allocate a certain number of objects stored in the pool
@@ -87,7 +85,6 @@ public class BufferPool<T>
         _queue.Enqueue(buffer);
         // Debug.Print($"LogPool ENQUEUE{_queue.Count}");
     }
-
 
     /// <summary>
     /// Clear the buffer pool to avoid blocking memory
