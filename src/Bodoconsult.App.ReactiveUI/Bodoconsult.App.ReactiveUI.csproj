@@ -35,7 +35,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ReactiveUI" Version="*" />
+		<PackageReference Include="ReactiveUI" Version="*" PrivateAssets="all"/>
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
 		<PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />
 	</ItemGroup>
