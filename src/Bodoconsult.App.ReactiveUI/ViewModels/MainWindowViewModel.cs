@@ -351,10 +351,10 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
         //try
         //{
 
-        //if (assembly == null)
-        //{
-        //    return;
-        //}
+        if (assembly == null)
+        {
+            return;
+        }
 
         var logoStream = assembly.GetManifestResourceStream(ressourcePath);
 

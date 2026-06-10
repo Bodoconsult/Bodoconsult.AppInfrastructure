@@ -18,14 +18,17 @@ public class RegionManagerBaseTests
         var rmb = new DummyRegionManager();
 
         // Assert
-        Assert.That(rmb.ViewModelBindings, Is.Not.Null);
-        Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(0));
-        Assert.That(rmb.WindowDefinitions, Is.Not.Null);
-        Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(0));
-        Assert.That(rmb.Regions, Is.Not.Null);
-        Assert.That(rmb.Regions.Count, Is.EqualTo(0));
-        Assert.That(rmb.Windows, Is.Not.Null);
-        Assert.That(rmb.Windows.Count, Is.EqualTo(0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(rmb.ViewModelBindings, Is.Not.Null);
+            Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(0));
+            Assert.That(rmb.WindowDefinitions, Is.Not.Null);
+            Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(0));
+            Assert.That(rmb.Regions, Is.Not.Null);
+            Assert.That(rmb.Regions.Count, Is.EqualTo(0));
+            Assert.That(rmb.Windows, Is.Not.Null);
+            Assert.That(rmb.Windows.Count, Is.EqualTo(0));
+        }
     }
 
     [Test]
@@ -44,21 +47,24 @@ public class RegionManagerBaseTests
         rmb.RegisterWindow<DummyUiWindow, DummyUiWindowViewModel>(regions, null);
 
         // Assert
-        Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
-        Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
+            Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
 
-        var vmb = rmb.ViewModelBindings[0];
+            var vmb = rmb.ViewModelBindings[0];
 
-        Assert.That(vmb.Key, Is.EqualTo(typeof(DummyUiWindowViewModel)));
-        Assert.That(vmb.Value, Is.EqualTo(typeof(DummyUiWindow)));
+            Assert.That(vmb.Key, Is.EqualTo(typeof(DummyUiWindowViewModel)));
+            Assert.That(vmb.Value, Is.EqualTo(typeof(DummyUiWindow)));
 
-        var wd = rmb.WindowDefinitions[0];
+            var wd = rmb.WindowDefinitions[0];
 
-        Assert.That(wd.WindowType, Is.EqualTo(typeof(DummyUiWindow)));
-        Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
-        Assert.That(wd.Regions[0], Is.EqualTo(regions[0]));
-        Assert.That(wd.Regions[1], Is.EqualTo(regions[1]));
-        Assert.That(wd.Factory, Is.Null);
+            Assert.That(wd.WindowType, Is.EqualTo(typeof(DummyUiWindow)));
+            Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
+            Assert.That(wd.Regions[0], Is.EqualTo(regions[0]));
+            Assert.That(wd.Regions[1], Is.EqualTo(regions[1]));
+            Assert.Null(wd.Factory);
+        }
     }
 
     [Test]
@@ -79,21 +85,24 @@ public class RegionManagerBaseTests
         rmb.RegisterWindow<DummyUiWindow, DummyUiWindowViewModel>(regions, factory);
 
         // Assert
-        Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
-        Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
+            Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
 
-        var vmb = rmb.ViewModelBindings[0];
+            var vmb = rmb.ViewModelBindings[0];
 
-        Assert.That(vmb.Key, Is.EqualTo(typeof(DummyUiWindowViewModel)));
-        Assert.That(vmb.Value, Is.EqualTo(typeof(DummyUiWindow)));
+            Assert.That(vmb.Key, Is.EqualTo(typeof(DummyUiWindowViewModel)));
+            Assert.That(vmb.Value, Is.EqualTo(typeof(DummyUiWindow)));
 
-        var wd = rmb.WindowDefinitions[0];
+            var wd = rmb.WindowDefinitions[0];
 
-        Assert.That(wd.WindowType, Is.EqualTo(typeof(DummyUiWindow)));
-        Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
-        Assert.That(wd.Regions[0], Is.EqualTo(regions[0]));
-        Assert.That(wd.Regions[1], Is.EqualTo(regions[1]));
-        Assert.That(wd.Factory, Is.Not.Null);
+            Assert.That(wd.WindowType, Is.EqualTo(typeof(DummyUiWindow)));
+            Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
+            Assert.That(wd.Regions[0], Is.EqualTo(regions[0]));
+            Assert.That(wd.Regions[1], Is.EqualTo(regions[1]));
+            Assert.NotNull(wd.Factory);
+        }
     }
 
     [Test]
@@ -137,9 +146,12 @@ public class RegionManagerBaseTests
         rmb.RegisterWindowInstances(window, instanceName);
 
         // Assert
-        Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
-        Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
-        Assert.That(rmb.Windows.Count, Is.EqualTo(1));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(rmb.WindowDefinitions.Count, Is.EqualTo(1));
+            Assert.That(rmb.ViewModelBindings.Count, Is.EqualTo(1));
+            Assert.That(rmb.Windows.Count, Is.EqualTo(1));
+        }
     }
 
     //[Test]

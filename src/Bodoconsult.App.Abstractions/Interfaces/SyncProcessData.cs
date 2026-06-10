@@ -49,6 +49,15 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     }
 
     /// <summary>
+    /// Set the result for the task
+    /// </summary>
+    /// <param name="data">Return value for the waiting task</param>
+    public void SetResult(T data)
+    {
+        TaskCompletionSource?.TrySetResult(data);
+    }
+
+    /// <summary>
     /// Process ID
     /// </summary>
     public TKey ProcessId { get; }

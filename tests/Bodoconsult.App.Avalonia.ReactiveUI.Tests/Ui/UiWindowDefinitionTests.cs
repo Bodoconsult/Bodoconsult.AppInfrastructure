@@ -32,7 +32,7 @@ public class UiWindowDefinitionTests
             Assert.That(wd.WindowType, Is.EqualTo(type));
             Assert.That(wd.Regions, Is.Not.Null);
             Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
-            Assert.That(wd.Factory, Is.Null);
+            Assert.Null(wd.Factory);
         }
     }
 
@@ -55,9 +55,9 @@ public class UiWindowDefinitionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(wd.WindowType, Is.EqualTo(type));
-            Assert.That(wd.Regions, Is.Not.Null);
+            Assert.NotNull(wd.Regions);
             Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
-            Assert.That(wd.Factory, Is.Not.Null);
+            Assert.Null(wd.Factory);
         }
     }
 }

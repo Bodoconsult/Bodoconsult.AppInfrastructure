@@ -185,7 +185,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -218,7 +218,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -248,7 +248,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -281,7 +281,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -311,7 +311,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -344,7 +344,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -371,7 +371,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -401,7 +401,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
 
@@ -435,7 +435,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -471,7 +471,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -501,7 +501,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -534,7 +534,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -564,7 +564,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -597,7 +597,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -623,7 +623,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -652,7 +652,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -685,7 +685,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -721,7 +721,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -751,7 +751,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -784,7 +784,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -814,7 +814,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -847,7 +847,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -873,7 +873,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>
@@ -902,7 +902,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -931,7 +931,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -964,7 +964,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -1000,7 +1000,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -1030,7 +1030,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -1063,7 +1063,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -1096,7 +1096,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -1126,7 +1126,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -1155,7 +1155,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
 
@@ -1182,7 +1182,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1202,7 +1202,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1230,7 +1230,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1261,7 +1261,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1286,7 +1286,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1314,7 +1314,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1339,7 +1339,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1367,7 +1367,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1388,7 +1388,24 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
+    }
+
+    private void AddToQueue(LogData log)
+    {
+        if (_logMessages == null)
+        {
+            return;
+        }
+
+        try
+        {
+            _logMessages.Enqueue(log);
+        }
+        catch //(Exception e)
+        {
+            log.Reset();
+        }
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1412,7 +1429,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -1440,7 +1457,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
 
@@ -1472,7 +1489,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -1497,7 +1514,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -1525,7 +1542,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -1550,7 +1567,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -1578,7 +1595,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -1599,7 +1616,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -1623,7 +1640,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>
@@ -1656,7 +1673,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>
@@ -1686,7 +1703,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>
@@ -1719,7 +1736,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>
@@ -1755,7 +1772,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
 
@@ -1790,7 +1807,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceMethod = memberName;
         log.SourceRowNumber = lineNumber;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
     /// <summary>
@@ -1827,7 +1844,7 @@ public class AppLoggerProxy : IAppLoggerProxy
         log.SourceRowNumber = lineNumber;
         log.Args = args;
 
-        _logMessages?.Enqueue(log);
+        AddToQueue(log);
     }
 
 
@@ -1993,7 +2010,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     //    log.SourceRowNumber = lineNumber;
     //    log.Args = [];
 
-    //    _logMessages?.Enqueue(log);
+    //    AddToQueue(log);
     //}
 
     ///// <summary>
