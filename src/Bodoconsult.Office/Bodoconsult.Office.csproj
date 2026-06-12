@@ -8,20 +8,10 @@
 	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	  <Deterministic>False</Deterministic>
 
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <PackageOutputPath>..\..\packages\</PackageOutputPath>
-	  <Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-	  <Authors>Robert Leisner</Authors>
-	  <VersionPrefix>1.0.9</VersionPrefix>
-	  <Version />
-	  <Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-	  <Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <RepositoryType>git</RepositoryType>
-	  <NeutralLanguage>en</NeutralLanguage>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
-
-	  <RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 	  <RepositoryType>git</RepositoryType>
 	  <PackageTags>OpenXml Excel xlsx database DataTable</PackageTags>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

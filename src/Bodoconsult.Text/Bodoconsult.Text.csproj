@@ -4,22 +4,14 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-		<Authors>Robert Leisner</Authors>
-		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-
-		<VersionPrefix>1.0.9</VersionPrefix>
-		<Version />
 		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageId>Bodoconsult.Text</PackageId>
 		<PackageTags>Output structured text HTML plain text ascii</PackageTags>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Simple class for collecting structured text in an app and export it to HTML or an ASCII plain text file. Use library to create simple reports from apps or from unit testing i.e. for auditors or as documentation.</Description>
 		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>

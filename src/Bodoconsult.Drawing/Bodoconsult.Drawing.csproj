@@ -7,19 +7,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.9</VersionPrefix>
-		<Version />
-		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-
-		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageId>Bodoconsult.Drawing</PackageId>
 		<PackageTags>System.Drawing;image;thumbnail;bitmap;manipulation;OpenGraph</PackageTags>
 		<Description>Library for simple image manipulation like creating thumbnails or resizing images</Description>

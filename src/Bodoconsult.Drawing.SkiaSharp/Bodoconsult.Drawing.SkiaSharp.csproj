@@ -5,24 +5,13 @@
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-		<Authors>Robert Leisner</Authors>
-		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-
-		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.9</VersionPrefix>
-		<Version />
 		<PackageId>Bodoconsult.Drawing.SkiaSharp</PackageId>
 		<PackageTags>Base services for bitmap handling</PackageTags>
 		<Description>Base services for bitmap handling</Description>

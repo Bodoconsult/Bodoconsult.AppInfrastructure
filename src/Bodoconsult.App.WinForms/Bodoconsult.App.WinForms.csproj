@@ -5,23 +5,13 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
-
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>
 
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.9</VersionPrefix>
-		<Version />
-		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-
-		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageId>Bodoconsult.App.WinForms</PackageId>
 		<PackageTags>App;WinForm;</PackageTags>
 		<Description>Added IAppBuilder and base classes for it to support background services too with app infrastructure</Description>

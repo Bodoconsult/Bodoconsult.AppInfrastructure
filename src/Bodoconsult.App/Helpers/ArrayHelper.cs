@@ -231,14 +231,19 @@ public static class ArrayHelper
     /// Get a string with array data in C# style
     /// </summary>
     /// <param name="data">Array data</param>
+    /// <param name="showClearText">Show the array as clear text too</param>
     /// <returns>String with array data</returns>
-    public static string GetStringFromArrayCsharpStyle(ReadOnlyMemory<byte> data)
+    public static string GetStringFromArrayCsharpStyle(ReadOnlyMemory<byte> data, bool showClearText = true)
     {
-
         var result = new StringBuilder();
 
-        result.Append(GetStringFromArray(data));
+        // Show the array as clear text
+        if (showClearText)
+        {
+            result.Append(GetStringFromArray(data));
+        }
 
+        // Now show the array in C# style
         result.Append("  { ");
 
         for (var i = 0; i < data.Length; i++)

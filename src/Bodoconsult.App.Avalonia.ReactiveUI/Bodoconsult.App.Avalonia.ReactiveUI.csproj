@@ -9,19 +9,10 @@
 		<Deterministic>False</Deterministic>
 		<AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
 
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.9</VersionPrefix>
-		<Version />
-		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-
-		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageId>Bodoconsult.App.Avalonia.ReactiveUI</PackageId>
 		<PackageTags>App;Avalonia;ReactiveUI</PackageTags>
 		<Description>New package</Description>
@@ -36,45 +27,45 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Entypo.ttf" />
-	  <None Remove="Resources\Localization\de.txt" />
-	  <None Remove="Resources\Localization\en.txt" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\aligncenter.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\alignjustify.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\alignleft.PNG" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\alignright.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\codeblock.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\codeinline.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editcopy.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editcut.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editpaste.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editredo.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\editundo.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\filesave.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontbold.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontgrow.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontitalic.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontshrink.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\fontunderline.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\indentdecrease.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\indentincrease.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\listbullets.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\listnumbers.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\LogonImage.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\normaltext.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\PrintDocument.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\save.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\separator.png" />
-	  <None Remove="Resources\Styling\BitmapGraphics\Assets\test.jpg" />
+		<None Remove="Resources\Entypo.ttf" />
+		<None Remove="Resources\Localization\de.txt" />
+		<None Remove="Resources\Localization\en.txt" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\aligncenter.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\alignjustify.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\alignleft.PNG" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\alignright.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\codeblock.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\codeinline.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\editcopy.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\editcut.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\editpaste.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\editredo.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\editundo.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\filesave.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\fontbold.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\fontgrow.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\fontitalic.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\fontshrink.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\fontunderline.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\indentdecrease.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\indentincrease.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\listbullets.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\listnumbers.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\LogonImage.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\normaltext.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\PrintDocument.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\save.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\separator.png" />
+		<None Remove="Resources\Styling\BitmapGraphics\Assets\test.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Localization\de.txt">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="Resources\Localization\en.txt">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
+		<EmbeddedResource Include="Resources\Localization\de.txt">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Localization\en.txt">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="ReactiveUI.Avalonia" Version="12.0.3" />
@@ -83,46 +74,46 @@
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.8" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
-	  <ProjectReference Include="..\Bodoconsult.App.ReactiveUI\Bodoconsult.App.ReactiveUI.csproj" />
-	  <ProjectReference Include="..\Bodoconsult.App.Avalonia\Bodoconsult.App.Avalonia.csproj" />
-	  <ProjectReference Include="..\Bodoconsult.App\Bodoconsult.App.csproj" />
+		<ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+		<ProjectReference Include="..\Bodoconsult.App.ReactiveUI\Bodoconsult.App.ReactiveUI.csproj" />
+		<ProjectReference Include="..\Bodoconsult.App.Avalonia\Bodoconsult.App.Avalonia.csproj" />
+		<ProjectReference Include="..\Bodoconsult.App\Bodoconsult.App.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Interfaces\" />
-	  <Folder Include="Resources\Styling\BitmapGraphics\Icons\" />
-	  <Folder Include="Resources\Styling\VectorGraphics\Assets\" />
-	  <Folder Include="Resources\Styling\VectorGraphics\Icons\" />
+		<Folder Include="Interfaces\" />
+		<Folder Include="Resources\Styling\BitmapGraphics\Icons\" />
+		<Folder Include="Resources\Styling\VectorGraphics\Assets\" />
+		<Folder Include="Resources\Styling\VectorGraphics\Icons\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Resource Include="Resources\Entypo.ttf" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\aligncenter.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\alignjustify.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\alignleft.PNG" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\alignright.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\codeblock.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\codeinline.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editcopy.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editcut.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editpaste.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editredo.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\editundo.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\filesave.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontbold.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontgrow.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontitalic.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontshrink.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\fontunderline.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\indentdecrease.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\indentincrease.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\listbullets.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\listnumbers.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\LogonImage.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\normaltext.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\PrintDocument.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\save.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\separator.png" />
-	  <Resource Include="Resources\Styling\BitmapGraphics\Assets\test.jpg" />
+		<Resource Include="Resources\Entypo.ttf" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\aligncenter.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\alignjustify.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\alignleft.PNG" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\alignright.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\codeblock.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\codeinline.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\editcopy.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\editcut.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\editpaste.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\editredo.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\editundo.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\filesave.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\fontbold.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\fontgrow.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\fontitalic.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\fontshrink.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\fontunderline.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\indentdecrease.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\indentincrease.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\listbullets.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\listnumbers.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\LogonImage.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\normaltext.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\PrintDocument.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\save.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\separator.png" />
+		<Resource Include="Resources\Styling\BitmapGraphics\Assets\test.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -131,8 +122,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\CopyrightWindow.axaml.cs">
-	    <DependentUpon>CopyrightWindow.axaml</DependentUpon>
-	  </Compile>
+		<Compile Update="Views\CopyrightWindow.axaml.cs">
+			<DependentUpon>CopyrightWindow.axaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 </Project>

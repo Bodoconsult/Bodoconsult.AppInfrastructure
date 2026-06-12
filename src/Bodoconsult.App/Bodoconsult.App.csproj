@@ -5,19 +5,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-		<Authors>Robert Leisner</Authors>
-		<VersionPrefix>1.0.9</VersionPrefix>
-		<Version />
-		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-
-		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageId>Bodoconsult.App</PackageId>
 		<PackageTags>Layered app basic tools</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -46,14 +37,14 @@
 	</ItemGroup>-->
 
 	<ItemGroup>
-	  <None Remove=".%24BusinessTransactions1.drawio.bkp" />
-	  <None Remove=".%24BusinessTransactions2.drawio.bkp" />
-	  <None Remove=".%24BusinessTransactions3.drawio.bkp" />
-	  <None Remove=".editorconfig" />
-	  <None Remove=".gitignore" />
-	  <None Remove="Bodoconsult.App.csproj.DotSettings" />
-	  <None Remove="BusinessTransactions3.zip" />
-	  <None Remove="OpenSourceMetaData.json" />
+		<None Remove=".%24BusinessTransactions1.drawio.bkp" />
+		<None Remove=".%24BusinessTransactions2.drawio.bkp" />
+		<None Remove=".%24BusinessTransactions3.drawio.bkp" />
+		<None Remove=".editorconfig" />
+		<None Remove=".gitignore" />
+		<None Remove="Bodoconsult.App.csproj.DotSettings" />
+		<None Remove="BusinessTransactions3.zip" />
+		<None Remove="OpenSourceMetaData.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -84,19 +75,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+		<ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
+		<EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
+		<EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
+		<EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
 	</ItemGroup>
 
 </Project>
