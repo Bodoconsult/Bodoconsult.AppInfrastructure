@@ -47,6 +47,8 @@ public class DefaultAppStartProvider : IAppStartProvider
     {
         AppConfigurationProvider = new AppConfigurationProvider(AppGlobals.AppStartParameter.ConfigFile);
         AppConfigurationProvider.LoadConfigurationFromConfigFile();
+
+        AppGlobals.ConfigurationRoot = AppConfigurationProvider.Configuration;
     }
 
     /// <summary>
@@ -106,13 +108,52 @@ public class DefaultAppStartProvider : IAppStartProvider
         }
     }
 
-    private static string ReadStringProperty(IConfigurationSection section, string propertyName, string currentValue)
+    /// <summary>
+    /// Read a string value from a config section
+    /// </summary>
+    /// <param name="section">Section</param>
+    /// <param name="propertyName">Property name</param>
+    /// <param name="currentValue">Current value to keep if config section does not provide a value</param>
+    /// <returns>String value</returns>
+    public static string ReadStringProperty(IConfigurationSection section, string propertyName, string currentValue)
     {
         var calue = section[propertyName];
         return !string.IsNullOrEmpty(calue) ? calue : currentValue;
     }
 
-    private static int ReadIntProperty(IConfigurationSection section, string propertyName, int currentValue)
+    /// <summary>
+    /// Read a boolean value from a config section
+    /// </summary>
+    /// <param name="section">Section</param>
+    /// <param name="propertyName">Property name</param>
+    /// <param name="currentValue">Current value to keep if config section does not provide a value</param>
+    /// <returns>Boolean value</returns>
+    public static bool ReadBoolProperty(IConfigurationSection section, string propertyName, bool currentValue)
+    {
+        var calue = section[propertyName];
+        if (string.IsNullOrEmpty(calue))
+        {
+            return currentValue;
+        }
+
+        try
+        {
+            return Convert.ToBoolean(calue);
+        }
+        catch // (Exception e)
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Read an int value from a config section
+    /// </summary>
+    /// <param name="section">Section</param>
+    /// <param name="propertyName">Property name</param>
+    /// <param name="currentValue">Current value to keep if config section does not provide a value</param>
+    /// <returns>Int value</returns>
+    public static int ReadIntProperty(IConfigurationSection section, string propertyName, int currentValue)
     {
         var calue = section[propertyName];
         if (string.IsNullOrEmpty(calue))
@@ -123,6 +164,31 @@ public class DefaultAppStartProvider : IAppStartProvider
         try
         {
             return Convert.ToInt32(calue);
+        }
+        catch // (Exception e)
+        {
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// Read an int value from a config section
+    /// </summary>
+    /// <param name="section">Section</param>
+    /// <param name="propertyName">Property name</param>
+    /// <param name="currentValue">Current value to keep if config section does not provide a value</param>
+    /// <returns>Int value</returns>
+    public static long ReadLongProperty(IConfigurationSection section, string propertyName, long currentValue)
+    {
+        var calue = section[propertyName];
+        if (string.IsNullOrEmpty(calue))
+        {
+            return currentValue;
+        }
+
+        try
+        {
+            return Convert.ToInt64(calue);
         }
         catch // (Exception e)
         {

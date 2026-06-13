@@ -3,6 +3,7 @@
 
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
@@ -79,6 +80,10 @@ public interface IAppGlobals: IDisposable
     /// <summary>
     /// Externally registered version
     /// </summary>
-    string ProductVersion { get; set; } 
+    string ProductVersion { get; set; }
 
+    /// <summary>
+    /// The current configuration loaded from appsettings.json
+    /// </summary>
+    IConfigurationRoot ConfigurationRoot { get; set; }
 }

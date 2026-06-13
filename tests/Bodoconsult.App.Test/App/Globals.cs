@@ -4,6 +4,7 @@ using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace Bodoconsult.App.Test.App;
 
@@ -153,4 +154,9 @@ public class Globals : IAppGlobals
     /// Externally registered version
     /// </summary>
     public string ProductVersion { get; set; }
+
+    /// <summary>
+    /// The current configuration loaded from appsettings.json
+    /// </summary>
+    public IConfigurationRoot ConfigurationRoot { get; set; }
 }

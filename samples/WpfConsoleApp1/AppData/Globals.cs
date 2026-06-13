@@ -4,6 +4,7 @@ using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace WpfConsoleApp1.AppData;
 
@@ -118,4 +119,8 @@ public class Globals : IAppGlobals
     /// </summary>
     public string ProductVersion { get; set; }
 
+    /// <summary>
+    /// The current configuration loaded from appsettings.json
+    /// </summary>
+    public IConfigurationRoot ConfigurationRoot { get; set; }
 }

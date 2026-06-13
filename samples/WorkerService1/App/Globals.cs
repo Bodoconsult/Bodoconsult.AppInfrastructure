@@ -117,4 +117,9 @@ public class Globals : IAppGlobals
     /// Externally registered version
     /// </summary>
     public string ProductVersion { get; set; }
+
+    /// <summary>
+    /// The current configuration loaded from appsettings.json
+    /// </summary>
+    public IConfigurationRoot ConfigurationRoot { get; set; }
 }
