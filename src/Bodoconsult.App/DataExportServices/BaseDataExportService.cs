@@ -18,7 +18,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     private long _currentFileSize;
     private readonly Lock _currentFileSizeLock = new();
     private readonly List<ReadOnlyMemory<byte>> _cache = [];
-    
+
     private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
     private readonly MemoryStreamBufferPool _storeDataBufferPool = new();
 
@@ -78,7 +78,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     public long MaxFileSize { get; set; } = 10000000;
 
     /// <summary>
-    /// Cache size as number of T instances to cache before saving to file
+    /// Cache size as number of T instances to cache before saving to file. Default: 10
     /// </summary>
     public int CacheSize { get; set; } = 1000;
 
@@ -141,8 +141,8 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     {
         CurrentFilePath = CreateCurrentFilePath();
 
-        CachingQueue.StartConsumer();
         _storingQueue.StartConsumer();
+        CachingQueue.StartConsumer();
 
         //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
         StoreCacheToStoringQueue(FileState.Start);
@@ -179,6 +179,8 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             return;
         }
 
+        _currentFileStream.Flush(true);
+
         // Add a footer now if required
         if (FooterData != null)
         {
@@ -213,7 +215,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
             lock (_currentFileSizeLock)
             {
-                _currentFileSize +=memory.Length;
+                _currentFileSize += memory.Length;
             }
 
             //Debug.Print(ArrayHelper.GetStringFromArray(memory));
@@ -319,7 +321,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
                 CurrentFilePath = CreateCurrentFilePath();
             }
 
-            _currentFileStream = new FileStream(CurrentFilePath, FileMode.Append, FileAccess.Write, FileShare.Read);
+            _currentFileStream = new FileStream(CurrentFilePath, FileMode.Append, FileAccess.Write, FileShare.None);
             lock (_currentFileSizeLock)
             {
                 _currentFileSize = 0;
@@ -335,6 +337,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         // Debug.Print($"Count: {data.Count}");
         data.Position = 0;
         data.CopyTo(_currentFileStream);
+        _currentFileStream.Flush(true);
 
         _storeDataBufferPool.Enqueue(data);
     }
@@ -351,30 +354,33 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             isNewFile = _currentFileSize > MaxFileSize;
         }
 
+        int count;
         lock (_cacheLock)
         {
             _cache.Add(data);
-
-            if (isNewFile)
-            {
-                // Last writing to current file
-                //Debug.Print($"Finalize: {CurrentFilePath}: {_currentFileSize} byte");
-                StoreCacheToStoringQueue(FileState.Finalize);
-
-                // Rolling to new current file
-                //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
-                StoreCacheToStoringQueue(FileState.Start);
-
-                return;
-            }
-
-            if (_cache.Count < CacheSize)
-            {
-                return;
-            }
-
-            StoreCacheToStoringQueue(FileState.AddData);
+            count = _cache.Count;
         }
+
+        if (isNewFile)
+        {
+            // Last writing to current file
+            //Debug.Print($"Finalize: {CurrentFilePath}: {_currentFileSize} byte");
+            StoreCacheToStoringQueue(FileState.Finalize);
+
+            // Rolling to new current file
+            //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
+            StoreCacheToStoringQueue(FileState.Start);
+
+            return;
+        }
+
+        if (count < CacheSize)
+        {
+            return;
+        }
+
+        StoreCacheToStoringQueue(FileState.AddData);
+
     }
 
     private enum FileState

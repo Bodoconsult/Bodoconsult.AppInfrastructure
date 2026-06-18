@@ -113,7 +113,7 @@ public partial class CopyrightViewModel : ReactiveObject
         }
 
         var s = ReadMarkDownFile(filePath);
-       ToolInfo = s;
+        ToolInfo = s;
     }
 
     private static string ReadMarkDownFile(string filePath)

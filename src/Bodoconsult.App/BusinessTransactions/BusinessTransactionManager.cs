@@ -85,7 +85,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
         if (!CreateBusinessTransactionDelegates.ContainsKey(transactionId))
         {
             throw new ArgumentException(
-                $"Checking for business transaction: No definition loaded for {transactionId}");
+                $"Checking for business transaction: No definition loaded for BT {transactionId}");
         }
 
         CreateBusinessTransactionDelegates.TryGetValue(transactionId, out var td);
@@ -93,7 +93,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
         if (td == null)
         {
             throw new ArgumentException(
-                $"Checking for business transaction: No definition delegate for {transactionId}");
+                $"Checking for business transaction: No definition delegate for BT {transactionId}");
         }
 
 
@@ -103,7 +103,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
         if (t.RunBusinessTransactionDelegate == null)
         {
             throw new ArgumentException(
-                $"Checking for business transaction: Transaction {transactionId} does not have an runner method");
+                $"Checking for business transaction: BT {transactionId} does not have an runner method");
         }
 
         lock (_transactionLock)
@@ -127,14 +127,14 @@ public class BusinessTransactionManager : IBusinessTransactionManager
 
         try
         {
-            _logger.LogDebug($"Transaction {transactionId} with GUID {requestData.TransactionGuid} received");
+            _logger.LogDebug($"BT {transactionId} / {requestData.TransactionGuid} requested");
             requestData.Benchmark?.AddStep("InternalReceived");
 
             transaction = CheckForBusinessTransaction(transactionId);
         }
         catch (Exception e)
         {
-            msg = $"Checking for transaction {transactionId} failed";
+            msg = $"Checking for BT {transactionId} failed";
             _logger.LogError(msg, e);
 
             requestData.Benchmark?.AddStep("InternalDone");
@@ -148,7 +148,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
 
         if (transaction == null)
         {
-            msg = $"Transaction {transactionId} NOT found";
+            msg = $"BT {transactionId} NOT found";
             _logger.LogError(msg);
 
             requestData.Benchmark?.AddStep("InternalDone");
@@ -165,7 +165,6 @@ public class BusinessTransactionManager : IBusinessTransactionManager
 
         try
         {
-
             var stopWatch = new Stopwatch();
             stopWatch.Start();
             
@@ -173,7 +172,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
 
             stopWatch.Stop();
 
-            _logger.LogDebug($"Transaction {transactionId} with GUID {requestData.TransactionGuid} was successful. Duration {stopWatch.ElapsedMilliseconds} ms");
+            _logger.LogDebug($"BT {transactionId} / GUID {requestData.TransactionGuid}: was successful ({stopWatch.ElapsedMilliseconds} ms)");
             _eventSource.ReportIncrement(BusinessTransactionEventSourceProvider.BtmRunBusinessTransactionSuccess);
             _eventSource.ReportMetric(BusinessTransactionEventSourceProvider.BtmRunBusinessTransactionDuration, stopWatch.ElapsedMilliseconds);
 
@@ -183,12 +182,11 @@ public class BusinessTransactionManager : IBusinessTransactionManager
             return result;
 
             // ToDo: EventCounter for transaction
-
         }
         catch (Exception e)
         {
 
-            msg = $"Transaction {transactionId} with GUID {requestData.TransactionGuid} failed: {e.Message}: {e.StackTrace}";
+            msg = $"BT {transactionId} / {requestData.TransactionGuid} failed: {e.Message}: {e.StackTrace}";
             _logger.LogError(msg);
             requestData.Benchmark?.AddStep("InternalDone");
             return new DefaultBusinessTransactionReply
@@ -227,7 +225,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
             }
             catch (Exception e)
             {
-                _logger.LogError($"Running BT {transactionId} failed", e);
+                _logger.LogError($"Running BT {transactionId} / {requestData.TransactionGuid} failed", e);
             }
         });
     }

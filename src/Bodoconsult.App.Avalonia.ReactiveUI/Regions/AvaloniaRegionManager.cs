@@ -33,10 +33,7 @@ public class AvaloniaRegionManager : RegionManagerBase
 
         var wwd = InternalWindows.FirstOrDefault(x => x.WindowType == type);
 
-        if (wwd.WindowType == null)
-        {
-            throw new ArgumentNullException(nameof(wwd), $"No window definition found for {type.Name}");
-        }
+        ArgumentNullException.ThrowIfNull(wwd.WindowType,  $"No window definition found for {type.Name}");
 
         // Set the instance name for the window now. Must be unique in the RegionManagerBase.Windows dictionary
         var instanceName = string.IsNullOrEmpty(window.ViewModel?.InstanceName) ? window.GetType().Name : window.ViewModel?.InstanceName ?? window.GetType().Name;

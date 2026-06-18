@@ -86,6 +86,10 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
         foreach (var item in InternalQueue.GetConsumingEnumerable())
         {
             ConsumerTaskDelegate.Invoke(item);
+            if (!IsActivated)
+            {
+                break;
+            }
         }
     }
 
@@ -95,8 +99,7 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
     public void StopConsumer()
     {
         InternalQueue?.CompleteAdding();
-
-        //Thread.Sleep(50);
+        IsActivated = false;
 
         RunInternal();
 
@@ -104,7 +107,7 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
         {
             _consumerThread?.Join();
         }
-        IsActivated = false;
+        
         InternalQueue?.Dispose();
         InternalQueue = null;
         ConsumerTaskDelegate = null;

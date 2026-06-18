@@ -126,12 +126,11 @@ internal class ByteArrayDataExportServiceTests
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }
 
-
     [Test]
     public void Add_ValidDefaultSetup1000000_FileWritten()
     {
         // Arrange 
-        const string text = "Blubb\r\n";
+        const string text = "BlubbR\r\n";
 
         var data = Encoding.UTF8.GetBytes(text);
 
