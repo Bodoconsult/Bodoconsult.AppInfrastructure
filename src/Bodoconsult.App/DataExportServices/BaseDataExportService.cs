@@ -154,6 +154,14 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     }
 
     /// <summary>
+    /// Flush the cache to disk
+    /// </summary>
+    public void FlushCache()
+    {
+        StoreCacheToStoringQueue(FileState.AddData);
+    }
+
+    /// <summary>
     /// Save all data and then stop the data export
     /// </summary>
     public void Stop()
