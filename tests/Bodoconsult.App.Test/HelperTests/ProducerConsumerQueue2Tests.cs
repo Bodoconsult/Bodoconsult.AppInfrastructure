@@ -5,11 +5,13 @@ using Bodoconsult.App.Helpers;
 namespace Bodoconsult.App.Test.HelperTests;
 
 [TestFixture]
-public class ProducerConsumerQueueTests
+public class ProducerConsumerQueue2Tests
 {
-
+    private Memory<byte> _data = new byte[] { 0x0, 0x1 }.AsMemory();
+    private Memory<byte> _data2 = new byte[] { 0x0, 0x1 }.AsMemory();
+    private Memory<byte> _data3 = new byte[] { 0x0, 0x1 }.AsMemory();
     private int _counter;
-    private readonly List<string> _received = [];
+    private readonly List<Memory<byte>> _received = [];
     private bool _wasFired;
 
     private void Reset()
@@ -19,7 +21,7 @@ public class ProducerConsumerQueueTests
         _wasFired = false;
     }
 
-    private void ConsumerTaskDelegate(string value)
+    private void ConsumerTaskDelegate(Memory<byte> value)
     {
         _counter++;
         _received.Add(value);
@@ -33,7 +35,7 @@ public class ProducerConsumerQueueTests
         Reset();
 
         // Act  
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new ProducerConsumerQueue2<Memory<byte>>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -50,7 +52,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new ProducerConsumerQueue2<Memory<byte>>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -70,22 +72,20 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        const string s1 = "Blubb";
-
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new ProducerConsumerQueue2<Memory<byte>>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue(s1);
+        pc.Enqueue(_data);
 
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(1));
         Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received.Contains(s1), Is.True);
+        Assert.That(_received.Contains(_data), Is.True);
 
         pc.StopConsumer();
         Assert.That(pc.IsActivated, Is.False);
@@ -97,22 +97,20 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        const string s1 = "Blubb";
-
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new ProducerConsumerQueue2<Memory<byte>>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue([s1]);
+        pc.Enqueue([_data]);
 
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(1));
         Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received.Contains(s1), Is.True);
+        Assert.That(_received.Contains(_data), Is.True);
 
         pc.StopConsumer();
         Assert.That(pc.IsActivated, Is.False);
@@ -125,28 +123,24 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        const string s1 = "Blubb";
-        const string s2 = "Blabb";
-        const string s3 = "Blobb";
-
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new ProducerConsumerQueue2<Memory<byte>>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue(s1);
-        pc.Enqueue(s2);
-        pc.Enqueue(s3);
+        pc.Enqueue(_data);
+        pc.Enqueue(_data2);
+        pc.Enqueue(_data3);
 
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(3));
         Assert.That(_received.Count, Is.EqualTo(3));
-        Assert.That(_received.Contains(s1), Is.True);
-        Assert.That(_received.Contains(s2), Is.True);
-        Assert.That(_received.Contains(s3), Is.True);
+        Assert.That(_received.Contains(_data), Is.True);
+        Assert.That(_received.Contains(_data2), Is.True);
+        Assert.That(_received.Contains(_data3), Is.True);
 
         pc.StopConsumer();
         Assert.That(pc.IsActivated, Is.False);
@@ -158,7 +152,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>();
+        var queue = new ProducerConsumerQueue2<Memory<byte>>();
 
         // Act and assert
         Assert.Throws<ArgumentNullException>(() =>
@@ -177,12 +171,12 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>();
+        var queue = new ProducerConsumerQueue2<Memory<byte>>();
 
         // Act and assert
         Assert.DoesNotThrow(() =>
         {
-            queue.Enqueue("Test");
+            queue.Enqueue(_data);
         });
 
     }
@@ -193,7 +187,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>
+        var queue = new ProducerConsumerQueue2<Memory<byte>>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -202,7 +196,7 @@ public class ProducerConsumerQueueTests
         // Act and assert
         Assert.DoesNotThrow(() =>
         {
-            queue.Enqueue("Test");
+            queue.Enqueue(_data);
         });
 
         // Assert
@@ -217,7 +211,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>
+        var queue = new ProducerConsumerQueue2<Memory<byte>>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -225,7 +219,7 @@ public class ProducerConsumerQueueTests
 
         Assert.DoesNotThrow(() =>
         {
-            queue.Enqueue("Test");
+            queue.Enqueue(_data);
         });
 
         // Act 

@@ -158,5 +158,5 @@ public class Globals : IAppGlobals
     /// <summary>
     /// The current configuration loaded from appsettings.json
     /// </summary>
-    public IConfigurationRoot ConfigurationRoot { get; set; }
+    public IConfigurationRoot? ConfigurationRoot { get; set; }
 }

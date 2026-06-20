@@ -12,4 +12,10 @@ public interface IMemoryDataExportService : IDataExportService<byte[]>
     /// </summary>
     /// <param name="data"></param>
     void Add(Memory<byte> data);
+
+    /// <summary>
+    /// Add an item to store in the export file
+    /// </summary>
+    /// <param name="data">List with Memory&lt;byte&gt; elements</param>
+    void AddRange(IList<Memory<byte>> data);
 }

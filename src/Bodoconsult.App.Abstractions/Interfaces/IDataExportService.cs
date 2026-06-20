@@ -8,7 +8,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// Interface for generic data export services
 /// </summary>
 /// <typeparam name="T">Type of class to store in a file</typeparam>
-public interface IDataExportService<in T> where T : class
+public interface IDataExportService<T> where T : class
 {
     /// <summary>
     /// Encoding to use for string based exports like XML, JSON etc.
@@ -97,14 +97,20 @@ public interface IDataExportService<in T> where T : class
     /// <summary>
     /// Add an item to store in the export file
     /// </summary>
-    /// <param name="data"></param>
+    /// <param name="data">Data item to store</param>
     void Add(T data);
+
+    /// <summary>
+    /// Add a list of items to store in the export file
+    /// </summary>
+    /// <param name="data">List of data items to store</param>
+    void AddRange(IList<T> data);
 
     /// <summary>
     /// Converts an object of type T into a ReadOnlyMemory&lt;byte&gt; instance
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
+    /// <param name="data">Data item to store</param>
+    /// <returns>Memory ´representation of the data item to store</returns>
     /// <exception cref="NotSupportedException">Thrown if type T is NOT string, ReadOnlyMemory&lt;byte&gt; or byte[]</exception>
     ReadOnlyMemory<byte> ToMemory(T data);
 }

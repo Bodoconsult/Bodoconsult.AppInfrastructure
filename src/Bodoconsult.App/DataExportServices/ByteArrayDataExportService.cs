@@ -37,4 +37,24 @@ public class ByteArrayDataExportService : BaseDataExportService<byte[]>, IMemory
         var rm = data;
         CachingQueue.Enqueue(rm);
     }
+
+    /// <summary>
+    /// Add an item to store in the export file
+    /// </summary>
+    /// <param name="data">List with Memory&lt;byte&gt; elements</param>
+    public void AddRange(IList<Memory<byte>> data)
+    {
+        lock (IsStartedLock)
+        {
+            if (!IsStarted)
+            {
+                return;
+            }
+        }
+
+        foreach (var rm in data)
+        {
+            CachingQueue.Enqueue(rm);
+        }
+    }
 }

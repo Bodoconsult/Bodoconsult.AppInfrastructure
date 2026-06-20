@@ -275,6 +275,27 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         CachingQueue.Enqueue(rm);
     }
 
+
+    /// <summary>
+    /// Add a list of items to store in the export file
+    /// </summary>
+    /// <param name="data">List of data items to store</param>
+    public void AddRange(IList<T> data)
+    {
+        lock (IsStartedLock)
+        {
+            if (!IsStarted)
+            {
+                return;
+            }
+        }
+
+        foreach (var rm in data)
+        {
+            CachingQueue.Enqueue(ToMemory( rm));
+        }
+    }
+
     /// <summary>
     /// Converts an object of type T into a ReadOnlyMemory&lt;byte&gt; instance
     /// </summary>

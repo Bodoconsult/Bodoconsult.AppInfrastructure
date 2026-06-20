@@ -121,6 +121,15 @@ public class FakeDataExportService : IMemoryDataExportService
     }
 
     /// <summary>
+    /// Add a list of items to store in the export file
+    /// </summary>
+    /// <param name="data">List of data items to store</param>
+    public void AddRange(IList<byte[]> data)
+    {
+        WasLogged = true;
+    }
+
+    /// <summary>
     /// Converts an object of type T into a ReadOnlyMemory&lt;byte&gt; instance
     /// </summary>
     /// <param name="data"></param>
@@ -136,6 +145,15 @@ public class FakeDataExportService : IMemoryDataExportService
     /// </summary>
     /// <param name="data"></param>
     public void Add(Memory<byte> data)
+    {
+        WasLogged = true;
+    }
+
+    /// <summary>
+    /// Add an item to store in the export file
+    /// </summary>
+    /// <param name="data">List with Memory&lt;byte&gt; elements</param>
+    public void AddRange(IList<Memory<byte>> data)
     {
         WasLogged = true;
     }

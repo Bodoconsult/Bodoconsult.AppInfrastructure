@@ -6,15 +6,14 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// A delegate for consumer task used in <see cref="IProducerConsumerQueue{TType}"/>. Supports many producers but only one consumer.
 /// </summary>
 /// <typeparam name="T">A class type</typeparam>
-/// <param name="data">Current instance of TType</param>
-public delegate void ConsumerTaskDelegate2<in T>(T data) where T : struct;
+/// <param name="value">Current instance of TType</param>
+public delegate void ConsumerTaskDelegate2<in T>(T value) where T : struct;
 
 /// <summary>
 /// Implements a thread-safe generic producer consumer based pattern using threads. Use it for structs
 /// </summary>
 public interface IProducerConsumerQueue2<T> : IDisposable where T : struct
 {
-
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
@@ -32,6 +31,12 @@ public interface IProducerConsumerQueue2<T> : IDisposable where T : struct
     void Enqueue(T item);
 
     /// <summary>
+    /// Enqueue a liast of itema to the internal queue for processing as soon as possible
+    /// </summary>
+    /// <param name="items">List of items to add to the queue</param>
+    void Enqueue(IList<T> items);
+
+    /// <summary>
     /// Start the consumer thread
     /// </summary>
     void StartConsumer();
@@ -40,5 +45,4 @@ public interface IProducerConsumerQueue2<T> : IDisposable where T : struct
     /// Stop the consumer thread
     /// </summary>
     void StopConsumer();
-
 }

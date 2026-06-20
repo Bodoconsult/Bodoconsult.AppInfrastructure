@@ -37,18 +37,42 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
         //{
         //    throw new ArgumentException("InternalQueue is null. Run StartConsumer() first!");
         //}
-        try
-        {
+        //try
+        //{
             if (InternalQueue == null || InternalQueue.IsCompleted)
             {
                 return;
             }
             InternalQueue.Add(item);
-        }
-        catch //(Exception e)
-        {
-            // Do nothing
-        }
+        //}
+        //catch //(Exception e)
+        //{
+        //    // Do nothing
+        //}
+    }
+
+    /// <summary>
+    /// Enqueue a liast of itema to the internal queue for processing as soon as possible
+    /// </summary>
+    /// <param name="items">List of items to add to the queue</param>
+    public void Enqueue(IList<T> items)
+    {
+        //try
+        //{
+            if (InternalQueue == null || InternalQueue.IsCompleted)
+            {
+                return;
+            }
+
+            foreach (var tItem in items)
+            {
+                InternalQueue.Add(tItem);
+            }
+        //}
+        //catch //(Exception e)
+        //{
+        //    // Do nothing
+        //}
     }
 
     /// <summary>

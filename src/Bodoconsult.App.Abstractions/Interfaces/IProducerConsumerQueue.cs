@@ -33,6 +33,12 @@ public interface IProducerConsumerQueue<T>: IDisposable where T: class
     void Enqueue(T item);
 
     /// <summary>
+    /// Enqueue a liast of itema to the internal queue for processing as soon as possible
+    /// </summary>
+    /// <param name="items">List of items to add to the queue</param>
+    void Enqueue(IList<T> items);
+
+    /// <summary>
     /// Start the consumer thread
     /// </summary>
     void StartConsumer();

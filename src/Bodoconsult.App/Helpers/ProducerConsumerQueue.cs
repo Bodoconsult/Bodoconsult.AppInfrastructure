@@ -39,19 +39,42 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
         //{
         //    throw new ArgumentException("InternalQueue is null. Run StartConsumer() first!");
         //}
-        try
-        {
-            if (InternalQueue==null || InternalQueue.IsCompleted)
+        //try
+        //{
+            if (InternalQueue == null || InternalQueue.IsCompleted)
             {
                 return;
             }
             InternalQueue.Add(item);
-        }
-        catch //(Exception e)
-        {
-            // Do nothing
-        }
+        //}
+        //catch //(Exception e)
+        //{
+        //    // Do nothing
+        //}
+    }
 
+    /// <summary>
+    /// Enqueue a liast of itema to the internal queue for processing as soon as possible
+    /// </summary>
+    /// <param name="items">List of items to add to the queue</param>
+    public void Enqueue(IList<T> items)
+    {
+        //try
+        //{
+            if (InternalQueue == null || InternalQueue.IsCompleted)
+            {
+                return;
+            }
+
+            foreach (var tItem in items)
+            {
+                InternalQueue.Add(tItem);
+            }
+        //}
+        //catch //(Exception e)
+        //{
+        //    // Do nothing
+        //}
     }
 
     /// <summary>
@@ -99,7 +122,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     {
         InternalQueue?.CompleteAdding();
 
-        
+
 
         //Thread.Sleep(50);
         if (_consumerThread is { IsAlive: true })
@@ -116,7 +139,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     public void Dispose()
     {
         StopConsumer();
-            
+
         IsActivated = false;
         _consumerThread = null;
     }
