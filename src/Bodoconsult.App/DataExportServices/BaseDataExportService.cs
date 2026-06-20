@@ -290,10 +290,13 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             }
         }
 
-        foreach (var rm in data)
-        {
-            CachingQueue.Enqueue(ToMemory( rm));
-        }
+        var mem = data.Select(ToMemory).ToList();
+        CachingQueue.Enqueue(mem);
+
+        //foreach (var rm in data)
+        //{
+        //    CachingQueue.Enqueue(ToMemory( rm));
+        //}
     }
 
     /// <summary>
