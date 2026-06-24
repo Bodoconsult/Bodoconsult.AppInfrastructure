@@ -3,16 +3,17 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Logging;
+using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.ReactiveUI.Ui;
+using DynamicData;
 using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Tracing;
 using System.Reflection;
-using DynamicData;
 
 namespace Bodoconsult.App.ReactiveUI.ViewModels;
 
@@ -534,6 +535,14 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
     public void StartEventListener()
     {
         _logDataTimer = new Timer(dispatcherTimer_Tick, null, 1000, 1000);
+    }
+
+    /// <summary>
+    /// Navigate to start user controls for the regions. Does nothing as base implementation. Override in derived classes if necessary
+    /// </summary>
+    public virtual void NavigateToStart()
+    {
+        // Do nothing
     }
 
     private void dispatcherTimer_Tick(object? state)

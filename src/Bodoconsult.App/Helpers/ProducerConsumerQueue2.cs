@@ -13,6 +13,10 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
     private Thread _consumerThread;
 
     /// <summary>
+    /// Thread priority
+    /// </summary>
+    public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
+    /// <summary>
     /// Contains the internal queue
     /// </summary>
     public BlockingCollection<T> InternalQueue;
@@ -89,7 +93,7 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
 
         _consumerThread = new Thread(RunInternal)
         {
-            //Priority = _threadPriority,
+            Priority = ThreadPriority,
             IsBackground = true
         };
         _consumerThread.Start();

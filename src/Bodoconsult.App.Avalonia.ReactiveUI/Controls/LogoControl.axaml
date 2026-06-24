@@ -1,8 +1,14 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Bodoconsult.App.Avalonia.ReactiveUI.LogoControl">
-  Welcome to Avalonia!
-</UserControl>
+<avalonia:ReactiveUserControl     x:TypeArguments="viewModels:LogoViewModel"
+                                    x:Class="Bodoconsult.App.Avalonia.ReactiveUI.Controls.LogoControl"
+                              xmlns="https://github.com/avaloniaui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:avalonia="http://reactiveui.net"
+                                    xmlns:viewModels="clr-namespace:Bodoconsult.App.Avalonia.ReactiveUI.ViewModels"
+                                    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450">
+	<StackPanel>
+        <Image Source="{Binding Path=Logo}"></Image>
+		<TextBlock Text="{Binding Path=AppTitle}"></TextBlock>
+    </StackPanel>
+</avalonia:ReactiveUserControl >

@@ -2,6 +2,7 @@
 
 using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 namespace Bodoconsult.App.DataExportServices;
 
@@ -14,6 +15,11 @@ public class FakeDataExportService : IMemoryDataExportService
     /// Data were logged
     /// </summary>
     public bool WasLogged { get; set; }
+
+    /// <summary>
+    /// The  number of bytes logged
+    /// </summary>
+    public long BytesLogged { get; set; }
 
     /// <summary>
     /// Encoding to use for string based exports like XML, JSON etc.
@@ -118,6 +124,14 @@ public class FakeDataExportService : IMemoryDataExportService
     public void Add(byte[] data)
     {
         WasLogged = true;
+        if (data.Length+ BytesLogged > long.MaxValue)
+        {
+            BytesLogged = data.Length;
+        }
+        else
+        {
+            BytesLogged += data.Length;
+        }
     }
 
     /// <summary>
@@ -127,6 +141,18 @@ public class FakeDataExportService : IMemoryDataExportService
     public void AddRange(IList<byte[]> data)
     {
         WasLogged = true;
+
+        foreach (var item in data)
+        {
+            if (BytesLogged + item.Length > long.MaxValue)
+            {
+                BytesLogged = item.Length;
+            }
+            else
+            {
+                BytesLogged += item.Length;
+            }
+        }
     }
 
     /// <summary>
@@ -147,6 +173,15 @@ public class FakeDataExportService : IMemoryDataExportService
     public void Add(Memory<byte> data)
     {
         WasLogged = true;
+
+        if (BytesLogged + data.Length > long.MaxValue)
+        {
+            BytesLogged = data.Length;
+        }
+        else
+        {
+            BytesLogged += data.Length;
+        }
     }
 
     /// <summary>
@@ -156,5 +191,18 @@ public class FakeDataExportService : IMemoryDataExportService
     public void AddRange(IList<Memory<byte>> data)
     {
         WasLogged = true;
+
+        foreach (var item in data)
+        {
+            if (BytesLogged + item.Length > long.MaxValue)
+            {
+                BytesLogged = item.Length;
+            }
+            else
+            {
+                BytesLogged += item.Length;
+            }
+        }
+
     }
 }

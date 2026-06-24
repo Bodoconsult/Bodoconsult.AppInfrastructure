@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Collections.Concurrent;
 using Bodoconsult.App.Abstractions.Interfaces;
+using System.Collections.Concurrent;
 
 namespace Bodoconsult.App.Helpers;
 
@@ -10,9 +10,12 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : class
 {
-
     private Thread _consumerThread;
 
+    /// <summary>
+    /// Thread priority
+    /// </summary>
+    public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
 
     /// <summary>
     /// Contains the internal queue
@@ -91,7 +94,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
 
         _consumerThread = new Thread(RunInternal)
         {
-            //Priority = _threadPriority,
+            Priority = ThreadPriority,
             IsBackground = true
         };
         _consumerThread.Start();

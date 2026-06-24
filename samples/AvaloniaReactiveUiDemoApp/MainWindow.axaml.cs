@@ -108,9 +108,9 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
         this.BindCommand(viewModel, x => x.Region1!.GoBack, x => x.GoBackButton)
             .DisposeWith(disposables);
 
-        var vm2 = new SecondViewModel(viewModel.Region2);
+        // Start content
+        viewModel.NavigateToStart();
 
-        viewModel.Region2.Navigate(vm2);
     }
 
     /// <summary>

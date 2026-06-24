@@ -18,7 +18,7 @@ internal class XmlDataExportServiceTests
     }
 
     [Test]
-    public void Ctor_ValidDefaultSetup_PropsSetCorretctly()
+    public void Ctor_ValidDefaultSetup_PropsSetCorrectly()
     {
         // Arrange 
 
@@ -30,7 +30,7 @@ internal class XmlDataExportServiceTests
     }
 
     [Test]
-    public void Ctor_ValidNonDefaultSetup_PropsSetCorretctly()
+    public void Ctor_ValidNonDefaultSetup_PropsSetCorrectly()
     {
         // Arrange 
 

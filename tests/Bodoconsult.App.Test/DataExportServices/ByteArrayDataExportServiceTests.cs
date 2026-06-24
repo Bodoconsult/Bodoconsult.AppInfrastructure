@@ -18,7 +18,7 @@ internal class ByteArrayDataExportServiceTests
     }
 
     [Test]
-    public void Ctor_ValidDefaultSetup_PropsSetCorretctly()
+    public void Ctor_ValidDefaultSetup_PropsSetCorrectly()
     {
         // Arrange 
 
@@ -33,7 +33,7 @@ internal class ByteArrayDataExportServiceTests
     }
 
     [Test]
-    public void Ctor_ValidNonDefaultSetup_PropsSetCorretctly()
+    public void Ctor_ValidNonDefaultSetup_PropsSetCorrectly()
     {
         // Arrange 
 
@@ -131,6 +131,7 @@ internal class ByteArrayDataExportServiceTests
     {
         // Arrange 
         const string text = "BlubbR\r\n";
+        const int count = 1000000;
 
         var data = Encoding.UTF8.GetBytes(text);
 
@@ -141,7 +142,7 @@ internal class ByteArrayDataExportServiceTests
         service.Start();
 
         // Act
-        for (var i = 0; i < 1000000; i++)
+        for (var i = 0; i < count; i++)
         {
             service.Add(data);
         }
@@ -149,9 +150,18 @@ internal class ByteArrayDataExportServiceTests
         service.Stop();
 
         // Assert
-        Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-        Assert.That(File.Exists(service.CurrentFilePath));
-        Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(1000000));
+        var path = service.CurrentFilePath;
+
+        Assert.That(path, Is.Not.Null);
+        Assert.That(string.IsNullOrEmpty(path), Is.False);
+
+        var fi = new FileInfo(path);
+        Assert.That(fi, Is.Not.Null);
+
+        Assert.That(fi.Exists);
+        Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(count));
+
+        Assert.That(fi.Length, Is.GreaterThanOrEqualTo(count * text.Length));
 
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }

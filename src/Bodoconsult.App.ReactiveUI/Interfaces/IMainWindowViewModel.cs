@@ -177,4 +177,9 @@ public interface IRxMainWindowViewModel : IUiWindowViewModel, IUiMenuWindow
     /// Start the event listener
     /// </summary>
     void StartEventListener();
+
+    /// <summary>
+    /// Navigate to start user controls for the regions
+    /// </summary>
+    void NavigateToStart();
 }

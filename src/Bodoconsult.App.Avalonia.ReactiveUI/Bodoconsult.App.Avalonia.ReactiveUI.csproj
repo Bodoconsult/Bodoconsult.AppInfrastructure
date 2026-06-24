@@ -80,7 +80,6 @@
 		<ProjectReference Include="..\Bodoconsult.App\Bodoconsult.App.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Interfaces\" />
 		<Folder Include="Resources\Styling\BitmapGraphics\Icons\" />
 		<Folder Include="Resources\Styling\VectorGraphics\Assets\" />
 		<Folder Include="Resources\Styling\VectorGraphics\Icons\" />

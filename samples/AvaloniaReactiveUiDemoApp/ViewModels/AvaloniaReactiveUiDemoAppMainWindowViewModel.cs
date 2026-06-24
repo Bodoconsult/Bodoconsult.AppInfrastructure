@@ -16,6 +16,7 @@ using ReactiveUI.SourceGenerators;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Channels;
+using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
 
@@ -24,6 +25,7 @@ namespace AvaloniaReactiveUiDemoApp.ViewModels;
 /// </summary>
 public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
 {
+    private readonly IAppGlobals _appGlobals;
     private readonly Interaction<string, bool> _confirm;
 
     public Interaction<string, bool> Confirm => this._confirm;
@@ -34,10 +36,26 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     /// <param name="listener">Current app event listener</param>
     /// <param name="translationService">Translation service</param>
     /// <param name="regionManager">Region manager</param>
+    /// <param name="appGlobals">Current app globals</param>
     public AvaloniaReactiveUiDemoAppMainWindowViewModel(IAppEventListener listener, II18N translationService,
-        IRegionManager regionManager) : base(listener, translationService, regionManager)
+        IRegionManager regionManager, IAppGlobals appGlobals) : base(listener, translationService, regionManager)
     {
+        _appGlobals = appGlobals;
         _confirm = new Interaction<string, bool>();
+    }
+
+    /// <summary>
+    /// Navigate to start user controls for the regions. Loads <see cref="LogoViewModel"/> based control
+    /// </summary>
+    public override void NavigateToStart()
+    {
+        var vm = _appGlobals.DiContainer.Get<LogoViewModel>();
+        Region1?.Navigate(vm);
+
+        ArgumentNullException.ThrowIfNull(Region2);
+
+        var vm2 = new SecondViewModel(Region2);
+        Region2.Navigate(vm2);
     }
 
     /// <summary>

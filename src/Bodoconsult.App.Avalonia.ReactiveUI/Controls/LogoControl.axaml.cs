@@ -1,11 +1,15 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
-namespace Bodoconsult.App.Avalonia.ReactiveUI;
+namespace Bodoconsult.App.Avalonia.ReactiveUI.Controls;
 
+/// <summary>
+/// Logo cobtrol code behind
+/// </summary>
 public partial class LogoControl : UserControl
 {
+    /// <summary>
+    /// Default ctor
+    /// </summary>
     public LogoControl()
     {
         InitializeComponent();
