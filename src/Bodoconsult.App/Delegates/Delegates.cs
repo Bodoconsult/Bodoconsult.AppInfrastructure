@@ -19,4 +19,3 @@ public delegate BusinessTransaction CreateBusinessTransactionDelegate();
 /// <returns>A buiness action reply</returns>
 
 public delegate IBusinessTransactionReply RunBusinessTransactionDelegate(IBusinessTransactionRequestData requestData);
-

@@ -11,6 +11,11 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 public interface IDataExportService<T> where T : class
 {
     /// <summary>
+    /// Thread priority
+    /// </summary>
+    public ThreadPriority ThreadPriority { get; set; }
+
+    /// <summary>
     /// Encoding to use for string based exports like XML, JSON etc.
     /// </summary>
     Encoding Encoding { get; }

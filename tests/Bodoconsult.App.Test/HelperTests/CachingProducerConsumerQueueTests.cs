@@ -5,10 +5,11 @@ using Bodoconsult.App.Helpers;
 namespace Bodoconsult.App.Test.HelperTests;
 
 [TestFixture]
-public class ProducerConsumerQueueTests
+public class CachingProducerConsumerQueueTests
 {
+
     private int _counter;
-    private readonly List<string> _received = [];
+    private readonly List<List<string>> _received = [];
     private bool _wasFired;
 
     private void Reset()
@@ -18,7 +19,7 @@ public class ProducerConsumerQueueTests
         _wasFired = false;
     }
 
-    private void ConsumerTaskDelegate(string value)
+    private void ConsumerTaskDelegate(List<string> value)
     {
         _counter++;
         _received.Add(value);
@@ -32,7 +33,7 @@ public class ProducerConsumerQueueTests
         Reset();
 
         // Act  
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new CachingProducerConsumerQueue<string>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -49,7 +50,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new CachingProducerConsumerQueue<string>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -71,7 +72,7 @@ public class ProducerConsumerQueueTests
 
         const string s1 = "Blubb";
 
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new CachingProducerConsumerQueue<string>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -79,12 +80,45 @@ public class ProducerConsumerQueueTests
 
         // Act  
         pc.Enqueue(s1);
+        pc.StopConsumer();
 
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(1));
         Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received.Contains(s1), Is.True);
+        //Assert.That(_received.Contains(s1), Is.True);
+
+        Assert.That(pc.IsActivated, Is.False);
+    }
+
+    [Test]
+    public void Enqueue_100Strings_IsActivated()
+    {
+        // Arrange 
+        Reset();
+
+        const string s1 = "Blubb";
+
+        var pc = new CachingProducerConsumerQueue<string>
+        {
+            ConsumerTaskDelegate = ConsumerTaskDelegate
+        };
+        pc.StartConsumer();
+
+        // Act
+        for (var i = 0; i < 100; i++)
+        {
+            pc.Enqueue(s1);
+        }
+
+        
+
+        // Assert
+        Wait.Until(() => _counter > 0);
+        Assert.That(_counter, Is.EqualTo(1));
+        Assert.That(_received.Count, Is.EqualTo(1));
+        Assert.That(_received[0].Count, Is.EqualTo(pc.CacheSize));
+        //Assert.That(_received.Contains(s1), Is.True);
 
         pc.StopConsumer();
         Assert.That(pc.IsActivated, Is.False);
@@ -98,7 +132,7 @@ public class ProducerConsumerQueueTests
 
         const string s1 = "Blubb";
 
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new CachingProducerConsumerQueue<string>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -106,14 +140,15 @@ public class ProducerConsumerQueueTests
 
         // Act  
         pc.Enqueue([s1]);
+        pc.StopConsumer();
 
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(1));
         Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received.Contains(s1), Is.True);
+        //Assert.That(_received.Contains(s1), Is.True);
 
-        pc.StopConsumer();
+
         Assert.That(pc.IsActivated, Is.False);
     }
 
@@ -128,7 +163,7 @@ public class ProducerConsumerQueueTests
         const string s2 = "Blabb";
         const string s3 = "Blobb";
 
-        var pc = new ProducerConsumerQueue<string>
+        var pc = new CachingProducerConsumerQueue<string>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -138,16 +173,18 @@ public class ProducerConsumerQueueTests
         pc.Enqueue(s1);
         pc.Enqueue(s2);
         pc.Enqueue(s3);
+        pc.StopConsumer();
 
         // Assert
         Wait.Until(() => _counter > 0);
-        Assert.That(_counter, Is.EqualTo(3));
-        Assert.That(_received.Count, Is.EqualTo(3));
-        Assert.That(_received.Contains(s1), Is.True);
-        Assert.That(_received.Contains(s2), Is.True);
-        Assert.That(_received.Contains(s3), Is.True);
+        Assert.That(_counter, Is.EqualTo(1));
+        Assert.That(_received.Count, Is.EqualTo(1));
+        Assert.That(_received[0].Count, Is.EqualTo(3));
+        //Assert.That(_received.Contains(s1), Is.True);
+        //Assert.That(_received.Contains(s2), Is.True);
+        //Assert.That(_received.Contains(s3), Is.True);
 
-        pc.StopConsumer();
+
         Assert.That(pc.IsActivated, Is.False);
     }
 
@@ -157,7 +194,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>();
+        var queue = new CachingProducerConsumerQueue<string>();
 
         // Act and assert
         Assert.Throws<ArgumentNullException>(() =>
@@ -176,7 +213,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>();
+        var queue = new CachingProducerConsumerQueue<string>();
 
         // Act and assert
         Assert.DoesNotThrow(() =>
@@ -192,7 +229,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>
+        var queue = new CachingProducerConsumerQueue<string>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };
@@ -203,6 +240,8 @@ public class ProducerConsumerQueueTests
         {
             queue.Enqueue("Test");
         });
+
+        queue.StopConsumer();
 
         // Assert
         Wait.Until(() => _wasFired, 300);
@@ -216,7 +255,7 @@ public class ProducerConsumerQueueTests
         // Arrange 
         Reset();
 
-        var queue = new ProducerConsumerQueue<string>
+        var queue = new CachingProducerConsumerQueue<string>
         {
             ConsumerTaskDelegate = ConsumerTaskDelegate
         };

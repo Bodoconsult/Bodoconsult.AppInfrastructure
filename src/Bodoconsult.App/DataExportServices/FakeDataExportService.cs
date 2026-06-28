@@ -22,6 +22,11 @@ public class FakeDataExportService : IMemoryDataExportService
     public long BytesLogged { get; set; }
 
     /// <summary>
+    /// Thread priority
+    /// </summary>
+    public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
+
+    /// <summary>
     /// Encoding to use for string based exports like XML, JSON etc.
     /// </summary>
     public Encoding Encoding => Encoding.UTF8;

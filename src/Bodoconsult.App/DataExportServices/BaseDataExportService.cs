@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BufferPool;
 using Bodoconsult.App.Helpers;
@@ -19,7 +21,12 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     private readonly Lock _currentFileSizeLock = new();
     private readonly List<ReadOnlyMemory<byte>> _cache = [];
 
-    private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new();
+    private AutoResetEvent _closeEvent;
+
+    private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new()
+    {
+        ThreadPriority = ThreadPriority.AboveNormal
+    };
     private readonly MemoryStreamBufferPool _storeDataBufferPool = new();
 
     private FileStream _currentFileStream;
@@ -36,7 +43,9 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// <summary>
     /// The caching queue to add the data to for writing it to the file
     /// </summary>
-    protected readonly ProducerConsumerQueue2<ReadOnlyMemory<byte>> CachingQueue = new();
+    protected readonly CachingProducerConsumerQueue2<ReadOnlyMemory<byte>> CachingQueue = new();
+
+    private int _cacheSize = 1000;
 
     /// <summary>
     /// Default ctor
@@ -63,6 +72,11 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     }
 
     /// <summary>
+    /// Thread priority
+    /// </summary>
+    public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
+
+    /// <summary>
     /// Encoding to use for string based exports like XML, JSON etc.
     /// </summary>
     public Encoding Encoding { get; set; } = Encoding.Unicode;
@@ -80,7 +94,15 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// <summary>
     /// Cache size as number of T instances to cache before saving to file. Default: 10
     /// </summary>
-    public int CacheSize { get; set; } = 1000;
+    public int CacheSize
+    {
+        get => _cacheSize;
+        set
+        {
+            _cacheSize = value;
+            CachingQueue.CacheSize = _cacheSize;
+        }
+    }
 
     /// <summary>
     /// The directory path for the export target. Default: Path.GetTempPath();
@@ -141,6 +163,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     {
         CurrentFilePath = CreateCurrentFilePath();
 
+        _storingQueue.ThreadPriority = ThreadPriority;
         _storingQueue.StartConsumer();
         CachingQueue.StartConsumer();
 
@@ -171,12 +194,16 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             IsStarted = false;
         }
 
-        Thread.Sleep(250);
+        _closeEvent = new AutoResetEvent(false);
+        _closeEvent.WaitOne(2000);
+        _closeEvent.Reset();
+
+        Debug.Print($"Cache {CachingQueue.InternalQueue.Count} Storing {_storingQueue.InternalQueue.Count}");
 
         //Debug.Print($"Stop: {CurrentFilePath}: {_currentFileSize} byte");
         StoreCacheToStoringQueue(FileState.Finalize);
 
-        Thread.Sleep(250);
+        _closeEvent.WaitOne(500);
 
         CachingQueue.StopConsumer();
         _storingQueue.StopConsumer();
@@ -208,6 +235,11 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         {
             data = _cache.ToList();
             _cache.Clear();
+        }
+
+        if (data.Count == 0)
+        {
+            return;
         }
 
         var ms = _storeDataBufferPool.Dequeue();
@@ -243,16 +275,6 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         {
             return;
         }
-
-        //// Add a footer now if required
-        //if (fileState == FileState.Finalize)
-        //{
-        //    // Add a footer if required
-        //    if (FooterData != null)
-        //    {
-        //        ms.Write(FooterData.Value.Span);
-        //    }
-        //}
 
         _storingQueue.Enqueue(ms);
     }
@@ -292,11 +314,6 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
         var mem = data.Select(ToMemory).ToList();
         CachingQueue.Enqueue(mem);
-
-        //foreach (var rm in data)
-        //{
-        //    CachingQueue.Enqueue(ToMemory( rm));
-        //}
     }
 
     /// <summary>
@@ -337,6 +354,8 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             return;
         }
 
+        //Trace.TraceInformation($"DataExportService: Waiting {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
+
         if (_currentFileStream == null || _currentFileSize >= MaxFileSize)
         {
             if (_currentFileStream != null)
@@ -372,25 +391,31 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         _currentFileStream.Flush(true);
 
         _storeDataBufferPool.Enqueue(data);
+
+        if (_closeEvent == null)
+        {
+            return;
+        }
+
+        _closeEvent.Set();
     }
 
     /// <summary>
     /// Add data to the internal cache waiting for storing
     /// </summary>
     /// <param name="data">Current data to be stored</param>
-    private void AddDataToCache(ReadOnlyMemory<byte> data)
+    private void AddDataToCache(List<ReadOnlyMemory<byte>> data)
     {
+        lock (_cacheLock)
+        {
+            _cache.AddRange(data);
+        }
+
+        // cache size is reached. Is a new file required?
         bool isNewFile;
         lock (_currentFileSizeLock)
         {
             isNewFile = _currentFileSize > MaxFileSize;
-        }
-
-        int count;
-        lock (_cacheLock)
-        {
-            _cache.Add(data);
-            count = _cache.Count;
         }
 
         if (isNewFile)
@@ -403,16 +428,24 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
             StoreCacheToStoringQueue(FileState.Start);
 
+            CheckIfCompleted();
             return;
         }
 
-        if (count < CacheSize)
-        {
-            return;
-        }
-
+        // No new file required
         StoreCacheToStoringQueue(FileState.AddData);
+        CheckIfCompleted();
+    }
 
+    private void CheckIfCompleted()
+    {
+        lock (IsStartedLock)
+        {
+            if (!IsStarted && _closeEvent!=null)
+            {
+                _closeEvent.Set();
+            }
+        }
     }
 
     private enum FileState
