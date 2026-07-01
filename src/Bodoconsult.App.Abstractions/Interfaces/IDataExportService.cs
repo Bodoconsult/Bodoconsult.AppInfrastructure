@@ -11,9 +11,14 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 public interface IDataExportService<T> where T : class
 {
     /// <summary>
+    /// Flush to disk interval
+    /// </summary>
+    byte FlushInterval { get; set; }
+
+    /// <summary>
     /// Thread priority
     /// </summary>
-    public ThreadPriority ThreadPriority { get; set; }
+    ThreadPriority ThreadPriority { get; set; }
 
     /// <summary>
     /// Encoding to use for string based exports like XML, JSON etc.
@@ -21,9 +26,14 @@ public interface IDataExportService<T> where T : class
     Encoding Encoding { get; }
 
     /// <summary>
-    /// Counts the rows since the service was started
+    /// Counts the processed rows since the service was started
     /// </summary>
-    int RowCounter { get; }
+    ulong RowCounter { get; }
+
+    /// <summary>
+    /// Counts the arrived rows since the service was started
+    /// </summary>
+    ulong RowCounter2 { get; }
 
     /// <summary>
     /// Maximum file size before rolling to next file. Default: 10 MB

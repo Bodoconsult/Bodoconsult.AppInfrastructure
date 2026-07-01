@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.BufferPool;
 using Bodoconsult.App.Helpers;
@@ -20,10 +19,11 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     private long _currentFileSize;
     private readonly Lock _currentFileSizeLock = new();
     private readonly List<ReadOnlyMemory<byte>> _cache = [];
+    private byte _flushCounter;
 
     private AutoResetEvent _closeEvent;
 
-    private readonly ProducerConsumerQueue<MemoryStream> _storingQueue = new()
+    private readonly ProducerConsumerQueueAsync<MemoryStream> _storingQueue = new()
     {
         ThreadPriority = ThreadPriority.AboveNormal
     };
@@ -72,6 +72,11 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     }
 
     /// <summary>
+    /// Flush to disk interval
+    /// </summary>
+    public byte FlushInterval { get; set; } = 5;
+
+    /// <summary>
     /// Thread priority
     /// </summary>
     public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
@@ -84,7 +89,12 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// <summary>
     /// Counts the rows since the service was started
     /// </summary>
-    public int RowCounter { get; private set; }
+    public ulong RowCounter { get; private set; }
+
+    /// <summary>
+    /// Counts the arrived rows since the service was started
+    /// </summary>
+    public ulong RowCounter2 { get; private set; }
 
     /// <summary>
     /// Maximum file size before rolling to next file. Default: 10 MB
@@ -181,7 +191,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// </summary>
     public void FlushCache()
     {
-        StoreCacheToStoringQueue(FileState.AddData);
+        CachingQueue.Flush();
     }
 
     /// <summary>
@@ -194,11 +204,15 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             IsStarted = false;
         }
 
+        FlushCache();
+
+        _currentFileStream?.Flush(true);
+
         _closeEvent = new AutoResetEvent(false);
-        _closeEvent.WaitOne(2000);
+        _closeEvent.WaitOne(10000);
         _closeEvent.Reset();
 
-        Debug.Print($"Cache {CachingQueue.InternalQueue.Count} Storing {_storingQueue.InternalQueue.Count}");
+        Debug.Print($"InboundCache {CachingQueue.InternalQueue.Count} Cache {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
 
         //Debug.Print($"Stop: {CurrentFilePath}: {_currentFileSize} byte");
         StoreCacheToStoringQueue(FileState.Finalize);
@@ -268,6 +282,10 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
                 ms.Write(separator);
             }
 
+            if (RowCounter == ulong.MaxValue)
+            {
+                RowCounter = 0;
+            }
             RowCounter++;
         }
 
@@ -347,14 +365,15 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// Add data to the storing queue
     /// </summary>
     /// <param name="data">Current data to be stored</param>
-    private void AddCacheToStoring(MemoryStream data)
+    private async Task AddCacheToStoring(MemoryStream data)
     {
         if (data.Length == 0)
         {
+            CheckCancellation();
             return;
         }
 
-        //Trace.TraceInformation($"DataExportService: Waiting {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
+        //Debug.Print($"DataExportService: Waiting {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
 
         if (_currentFileStream == null || _currentFileSize >= MaxFileSize)
         {
@@ -367,7 +386,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
                 }
 
                 _currentFileStream.Close();
-                _currentFileStream.Dispose();
+                await _currentFileStream.DisposeAsync();
 
                 CurrentFilePath = CreateCurrentFilePath();
             }
@@ -387,17 +406,33 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
         // Debug.Print($"Count: {data.Count}");
         data.Position = 0;
-        data.CopyTo(_currentFileStream);
-        _currentFileStream.Flush(true);
+        await data.CopyToAsync(_currentFileStream);
+        
 
-        _storeDataBufferPool.Enqueue(data);
+        _flushCounter++;
+        if (_flushCounter == FlushInterval)
+        {
+            _flushCounter = 0;
+            _currentFileStream.Flush(true);
+        }
+        else
+        {
+            await _currentFileStream.FlushAsync();
+        }
 
-        if (_closeEvent == null)
+        CheckCancellation();
+    }
+
+    private void CheckCancellation()
+    {
+        if (_closeEvent == null || _cache.Count == 0 || _storingQueue.InternalQueue == null || _storingQueue.InternalQueue.Count > 0)
         {
             return;
         }
 
+        //Debug.Print($"DataExportService: Waiting {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
         _closeEvent.Set();
+
     }
 
     /// <summary>
@@ -409,6 +444,11 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         lock (_cacheLock)
         {
             _cache.AddRange(data);
+            if (RowCounter2 == ulong.MaxValue)
+            {
+                RowCounter = 0;
+            }
+            RowCounter2 += (ulong)data.Count;
         }
 
         // cache size is reached. Is a new file required?
@@ -428,25 +468,13 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             //Debug.Print($"Start: {CurrentFilePath}: {_currentFileSize} byte");
             StoreCacheToStoringQueue(FileState.Start);
 
-            CheckIfCompleted();
             return;
         }
 
         // No new file required
         StoreCacheToStoringQueue(FileState.AddData);
-        CheckIfCompleted();
     }
 
-    private void CheckIfCompleted()
-    {
-        lock (IsStartedLock)
-        {
-            if (!IsStarted && _closeEvent!=null)
-            {
-                _closeEvent.Set();
-            }
-        }
-    }
 
     private enum FileState
     {

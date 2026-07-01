@@ -197,6 +197,25 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
         ConsumerTaskDelegate = null;
     }
 
+    /// <summary>
+    /// Flush the cache to <see cref="ICachingProducerConsumerQueue{T}.ConsumerTaskDelegate"/>
+    /// </summary>
+    public void Flush()
+    {
+        // Clear the cache
+        lock (_cacheLock)
+        {
+            if (_cache.Count > 0)
+            {
+                var data = new List<T>(_cache.Count + 1);
+                data.AddRange(_cache);
+                _cache.Clear();
+
+                InternalQueue.Add(data);
+            }
+        }
+    }
+
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
     {

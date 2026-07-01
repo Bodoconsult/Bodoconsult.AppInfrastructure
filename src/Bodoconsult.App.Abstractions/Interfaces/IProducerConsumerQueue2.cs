@@ -31,7 +31,7 @@ public interface IProducerConsumerQueue2<T> : IDisposable where T : struct
     void Enqueue(T item);
 
     /// <summary>
-    /// Enqueue a liast of itema to the internal queue for processing as soon as possible
+    /// Enqueue a list of itema to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">List of items to add to the queue</param>
     void Enqueue(IList<T> items);

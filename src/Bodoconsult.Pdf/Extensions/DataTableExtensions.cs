@@ -183,7 +183,7 @@ public static class DataTableExtensions
     /// <summary>
     /// CSS color settings for Bodoconsult website
     /// </summary>
-    public static Dictionary<string, Color> BodoconsultCssColors => new Dictionary<string, Color>()
+    public static Dictionary<string, Color> BodoconsultCssColors => new Dictionary<string, Color>
     {
         { "wr_cell_h1", Colors.GreenYellow },
         { "wr_cell_h2", Colors.YellowGreen },

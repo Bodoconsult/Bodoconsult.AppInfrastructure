@@ -33,7 +33,7 @@ public class ProducerConsumerQueue3<T> : IProducerConsumerQueue<T> where T : cla
     }
 
     /// <summary>
-    /// Enqueue a liast of itema to the internal queue for processing as soon as possible
+    /// Enqueue a list of itema to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">List of items to add to the queue</param>
     public void Enqueue(IList<T> items)

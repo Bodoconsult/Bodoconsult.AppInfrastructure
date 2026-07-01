@@ -134,7 +134,7 @@ public class FlowDocumentServiceTests
         var typoService = new TypographySettingsService
         {
             MaxImageHeight = 300,
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",
@@ -278,7 +278,7 @@ public class FlowDocumentServiceTests
         var typoService = new TypographySettingsService(typo)
         {
             MaxImageHeight = 300,
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",
@@ -302,7 +302,7 @@ public class FlowDocumentServiceTests
 
         typoService.LoadTypography(typo);
         typoService.MaxImageHeight = 300;
-        typoService.DocumentMetaData = new TypoMetaData()
+        typoService.DocumentMetaData = new TypoMetaData
         {
             LogoPath = TestHelper.TestLogoImage,
             FooterText = "Bodoconsult GmbH",
@@ -388,7 +388,7 @@ public class FlowDocumentServiceTests
         var typoService = new TypographySettingsService(typo)
         {
             MaxImageHeight = 300,
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",

@@ -141,7 +141,7 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
 
         var style = (Style)WpfHelper.FindResource(item.StyleName, path);
 
-        var menuItem = new Separator()
+        var menuItem = new Separator
         {
             VerticalContentAlignment = VerticalAlignment.Center,
             HorizontalContentAlignment = HorizontalAlignment.Center,

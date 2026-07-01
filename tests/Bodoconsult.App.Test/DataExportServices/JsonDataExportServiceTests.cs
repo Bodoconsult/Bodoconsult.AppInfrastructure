@@ -34,7 +34,7 @@ internal class JsonDataExportServiceTests
         // Arrange 
 
         // Act  
-        var service = new JsonDataExportService<TestData>()
+        var service = new JsonDataExportService<TestData>
         {
             FileName = "Export"
         };

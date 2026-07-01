@@ -22,6 +22,11 @@ public class FakeDataExportService : IMemoryDataExportService
     public long BytesLogged { get; set; }
 
     /// <summary>
+    /// Flush to disk interval
+    /// </summary>
+    public byte FlushInterval { get; set; } = 5;
+
+    /// <summary>
     /// Thread priority
     /// </summary>
     public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
@@ -34,7 +39,12 @@ public class FakeDataExportService : IMemoryDataExportService
     /// <summary>
     /// Counts the rows since the service was started
     /// </summary>
-    public int RowCounter { get; set; }
+    public ulong RowCounter { get; set; }
+
+    /// <summary>
+    /// Counts the arrived rows since the service was started
+    /// </summary>
+    public ulong RowCounter2 { get; set; }
 
     /// <summary>
     /// Maximum file size before rolling to next file. Default: 10 MB

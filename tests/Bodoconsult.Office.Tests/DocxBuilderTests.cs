@@ -1152,7 +1152,7 @@ internal class DocxBuilderTests
 
     private TypoMetaData CreateTypoMetaData()
     {
-        return new TypoMetaData()
+        return new TypoMetaData
         {
             Authors = "Robert Leisner",
             Company = "Bodoconsult",

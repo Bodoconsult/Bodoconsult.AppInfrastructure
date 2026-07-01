@@ -1,22 +1,21 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.Abstractions.Interfaces;
 using System.Collections.Concurrent;
+using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.App.Helpers;
 
 /// <summary>
-/// Thread-safe implementation for a <see cref="IProducerConsumerQueue{TType}"/>. Supports one or many producers but only one consumer.
+/// Thread-safe implementation for a <see cref="IProducerConsumerQueueAsync2{TType}"/>. Supports one or many producers but only one consumer.
 /// </summary>
-public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : class
+public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> where T : struct
 {
-    private Thread _consumerThread;
+    private CancellationTokenSource _cancellationTokenSource;
 
     /// <summary>
     /// Thread priority
     /// </summary>
     public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
-
     /// <summary>
     /// Contains the internal queue
     /// </summary>
@@ -25,7 +24,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    public ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }
+    public ConsumerTaskDelegateAsync2<T> ConsumerTaskDelegate { get; set; }
 
     /// <summary>
     /// Is the queue started?
@@ -92,12 +91,11 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
 
         InternalQueue = new BlockingCollection<T>();
 
-        _consumerThread = new Thread(RunInternal)
+        _cancellationTokenSource = new CancellationTokenSource();
+        Task.Factory.StartNew(async () =>
         {
-            Priority = ThreadPriority,
-            IsBackground = true
-        };
-        _consumerThread.Start();
+            await RunInternal();
+        }, TaskCreationOptions.LongRunning);
 
         IsActivated = true;
     }
@@ -105,16 +103,18 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <summary>
     /// Internal consumer method. If queue does not have any items InternalQueue.GetConsumingEnumerable waits for new items!!!!
     /// </summary>
-    private void RunInternal()
+    private async Task RunInternal()
     {
         if (InternalQueue == null)
         {
             return;
         }
 
-        foreach (var item in InternalQueue.GetConsumingEnumerable())
+        Thread.CurrentThread.Priority = ThreadPriority;
+
+        foreach (var item in InternalQueue.GetConsumingEnumerable(_cancellationTokenSource.Token))
         {
-            ConsumerTaskDelegate.Invoke(item);
+            await ConsumerTaskDelegate.Invoke(item);
         }
     }
 
@@ -124,15 +124,9 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     public void StopConsumer()
     {
         InternalQueue?.CompleteAdding();
-
-
-
-        //Thread.Sleep(50);
-        if (_consumerThread is { IsAlive: true })
-        {
-            _consumerThread?.Join();
-        }
         IsActivated = false;
+        _cancellationTokenSource?.Cancel(false);
+
         InternalQueue?.Dispose();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
@@ -144,6 +138,5 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
         StopConsumer();
 
         IsActivated = false;
-        _consumerThread = null;
     }
 }

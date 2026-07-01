@@ -35,7 +35,7 @@ internal class XmlDataExportServiceTests
         // Arrange 
 
         // Act  
-        var service = new XmlDataExportService<TestData>()
+        var service = new XmlDataExportService<TestData>
         {
             FileName = "Export"
         };

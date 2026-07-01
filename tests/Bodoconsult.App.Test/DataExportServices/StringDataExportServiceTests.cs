@@ -33,7 +33,7 @@ internal class StringDataExportServiceTests
         // Arrange 
 
         // Act  
-        var service = new StringDataExportService()
+        var service = new StringDataExportService
         {
             FileName = "Export"
         };

@@ -170,7 +170,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// </summary>
     public void StopConsumer()
     {
-        // Claer the cache
+        // Clear the cache
         lock (_cacheLock)
         {
             if (_cache.Count > 0)
@@ -195,6 +195,25 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
         InternalQueue?.Dispose();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
+    }
+
+    /// <summary>
+    /// Flush the cache to <see cref="ICachingProducerConsumerQueue{T}.ConsumerTaskDelegate"/>
+    /// </summary>
+    public void Flush()
+    {
+        // Clear the cache
+        lock (_cacheLock)
+        {
+            if (_cache.Count > 0)
+            {
+                var data = new List<T>(_cache.Count + 1);
+                data.AddRange(_cache);
+                _cache.Clear();
+
+                InternalQueue.Add(data);
+            }
+        }
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

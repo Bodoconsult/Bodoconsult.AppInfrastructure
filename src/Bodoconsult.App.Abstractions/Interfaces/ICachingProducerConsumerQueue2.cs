@@ -49,6 +49,11 @@ public interface ICachingProducerConsumerQueue2<T> where T : struct
     /// </summary>
     void StopConsumer();
 
+    /// <summary>
+    /// Flush the cache to <see cref="ConsumerTaskDelegate"/>
+    /// </summary>
+    void Flush();
+
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     void Dispose();
 }

@@ -10,11 +10,10 @@ namespace Bodoconsult.App.Test.DataExportServices;
 [TestFixture]
 internal class ByteArrayDataExportServiceTests
 {
-    [SetUp]
-    public void SetUp()
+    [OneTimeSetUp]
+    public void OneTimeSetup()
     {
         TestHelper.CleanTempPath();
-
     }
 
     [Test]
@@ -38,7 +37,7 @@ internal class ByteArrayDataExportServiceTests
         // Arrange 
 
         // Act  
-        var service = new ByteArrayDataExportService()
+        var service = new ByteArrayDataExportService
         {
             FileName = "Export",
             FileExtension = "bin"
@@ -64,74 +63,13 @@ internal class ByteArrayDataExportServiceTests
         Assert.That(string.IsNullOrEmpty(result), Is.False);
     }
 
-    [Test]
-    public void Add_ValidDefaultSetup_FileWritten()
-    {
-        // Arrange 
-        const string text = "Blubb";
-
-        var data = Encoding.UTF8.GetBytes(text);
-
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
-        service.Start();
-
-        // Act  
-        service.Add(data);
-
-        var path = service.CurrentFilePath;
-
-        service.Stop();
-
-        // Assert
-        Wait.Until(() => File.Exists(path));
-
-        Assert.That(string.IsNullOrEmpty(path), Is.False);
-        Assert.That(File.Exists(path));
-        Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(1));
-
-        FileSystemHelper.RunInDebugMode(path);
-    }
-
-
-    [Test]
-    public void Add_ValidDefaultSetup1000_FileWritten()
+    [TestCase(10, TestName = "Add_ValidDefaultSetup10_FileWritten")]
+    [TestCase(1000, TestName= "Add_ValidDefaultSetup1000_FileWritten")]
+    [TestCase(1000000, TestName = "Add_ValidDefaultSetup1000000_FileWritten")]
+    public void Add_ValidDefaultSetup_FileWritten(int count)
     {
         // Arrange 
         const string text = "Blubb\r\n";
-
-        var data = Encoding.UTF8.GetBytes(text);
-
-        var service = new ByteArrayDataExportService
-        {
-            FileExtension = "bin"
-        };
-        service.Start();
-
-        // Act
-        for (var i = 0; i < 1000; i++)
-        {
-            service.Add(data);
-        }
-
-        service.Stop();
-
-        // Assert
-        Assert.That(string.IsNullOrEmpty(service.CurrentFilePath), Is.False);
-        Assert.That(File.Exists(service.CurrentFilePath));
-        Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(1000));
-
-        FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
-    }
-
-    [Test]
-    public void Add_ValidDefaultSetup1000000_FileWritten()
-    {
-        // Arrange 
-        const string text = "BlubbR\r\n";
-        const int count = 1000000;
 
         var data = Encoding.UTF8.GetBytes(text);
 
@@ -157,12 +95,55 @@ internal class ByteArrayDataExportServiceTests
 
         var fi = new FileInfo(path);
         Assert.That(fi, Is.Not.Null);
-
         Assert.That(fi.Exists);
+
+        Wait.Until(() => fi.Length > 0);
+
+        Assert.That(service.RowCounter2, Is.GreaterThanOrEqualTo(count));
         Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(count));
 
         Assert.That(fi.Length, Is.GreaterThanOrEqualTo(count * text.Length));
 
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }
+
+    //[Test]
+    //public void Add_ValidDefaultSetup1000000_FileWritten()
+    //{
+    //    // Arrange 
+    //    const string text = "BlubbR\r\n";
+    //    const int count = 1000000;
+
+    //    var data = Encoding.UTF8.GetBytes(text);
+
+    //    var service = new ByteArrayDataExportService
+    //    {
+    //        FileExtension = "bin"
+    //    };
+    //    service.Start();
+
+    //    // Act
+    //    for (var i = 0; i < count; i++)
+    //    {
+    //        service.Add(data);
+    //    }
+
+    //    service.Stop();
+
+    //    // Assert
+    //    var path = service.CurrentFilePath;
+
+    //    Assert.That(path, Is.Not.Null);
+    //    Assert.That(string.IsNullOrEmpty(path), Is.False);
+
+    //    var fi = new FileInfo(path);
+    //    Assert.That(fi, Is.Not.Null);
+
+    //    Assert.That(fi.Exists);
+    //    Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(count));
+
+    //    Assert.That(fi.Length, Is.GreaterThanOrEqualTo(count * text.Length));
+
+    //    FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
+    //}
 }

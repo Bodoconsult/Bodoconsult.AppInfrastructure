@@ -73,7 +73,7 @@ public class ReportBaseTests
         var typoService = new TypographySettingsService
         {
             MaxImageHeight = 300,
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",
@@ -171,7 +171,7 @@ public class ReportBaseTests
         //Arrange
         var typoService = new TypographySettingsService
         {
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",
@@ -197,7 +197,7 @@ public class ReportBaseTests
 
         var typoService = new TypographySettingsService();
         DocumentHelper.A4ElegantPrintDefintion(typoService);
-        typoService.DocumentMetaData = new TypoMetaData()
+        typoService.DocumentMetaData = new TypoMetaData
         {
             LogoPath = TestHelper.TestLogoImage,
             FooterText = "Bodoconsult GmbH",
@@ -227,7 +227,7 @@ public class ReportBaseTests
         var typoService = new TypographySettingsService(typo)
         {
             MaxImageHeight = 300,
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",
@@ -254,7 +254,7 @@ public class ReportBaseTests
         //Arrange
         var typoService = new TypographySettingsService();
         DocumentHelper.A4ElegantPrintDefintion(typoService);
-        typoService.DocumentMetaData = new TypoMetaData()
+        typoService.DocumentMetaData = new TypoMetaData
         {
             LogoPath = TestHelper.TestLogoImage,
             FooterText = "Bodoconsult GmbH",
@@ -288,7 +288,7 @@ public class ReportBaseTests
         var typoService = new TypographySettingsService(typo)
         {
             MaxImageHeight = 300,
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",
@@ -486,7 +486,7 @@ public class ReportBaseTests
         var typoService = new TypographySettingsService
         {
             MaxImageHeight = 300,
-            DocumentMetaData = new TypoMetaData()
+            DocumentMetaData = new TypoMetaData
             {
                 LogoPath = TestHelper.TestLogoImage,
                 FooterText = "Bodoconsult GmbH",

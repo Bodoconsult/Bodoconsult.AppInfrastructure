@@ -1,5 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
-
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
@@ -7,25 +6,18 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// A delegate for consumer task used in <see cref="IProducerConsumerQueue{TType}"/>. Supports many producers but only one consumer.
 /// </summary>
 /// <typeparam name="T">A class type</typeparam>
-/// <param name="data">Current instance of TType</param>
-public delegate void ConsumerTaskDelegate<in T>(T data) where T : class;
+/// <param name="value">Current instance of TType</param>
+public delegate Task ConsumerTaskDelegateAsync2<in T>(T value) where T : struct;
 
 /// <summary>
-/// A delegate for consumer task used in <see cref="IProducerConsumerQueue{TType}"/>. Supports many producers but only one consumer.
+/// Implements a thread-safe generic producer consumer based pattern using threads. Use it for structs
 /// </summary>
-/// <typeparam name="T">A class type</typeparam>
-/// <param name="data">Current instance of TType</param>
-public delegate Task ConsumerTaskDelegateAsync<in T>(T data) where T : class;
-
-/// <summary>
-/// Implements a thread-safe generic producer consumer based pattern using threads: Use it for classes
-/// </summary>
-public interface IProducerConsumerQueue<T>: IDisposable where T: class
+public interface IProducerConsumerQueueAsync2<T> : IDisposable where T : struct
 {
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }
+    ConsumerTaskDelegateAsync2<T> ConsumerTaskDelegate { get; set; }
 
     /// <summary>
     /// Is the queue started?
@@ -53,5 +45,4 @@ public interface IProducerConsumerQueue<T>: IDisposable where T: class
     /// Stop the consumer thread
     /// </summary>
     void StopConsumer();
-
 }
