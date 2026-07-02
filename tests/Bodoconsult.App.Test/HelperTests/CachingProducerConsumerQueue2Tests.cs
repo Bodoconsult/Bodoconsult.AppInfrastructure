@@ -97,26 +97,28 @@ public class CachingProducerConsumerQueue2Tests
         // Arrange 
         Reset();
 
+        const int count = 100;
+
         var pc = new CachingProducerConsumerQueue2<Memory<byte>>
         {
-            ConsumerTaskDelegate = ConsumerTaskDelegate
+            ConsumerTaskDelegate = ConsumerTaskDelegate,
+            CacheSize = 10
         };
         pc.StartConsumer();
 
         // Act
-        for (var i = 0; i < 100; i++)
+        for (var i = 0; i < count; i++)
         {
             pc.Enqueue(_data);
         }
-        
+
+        pc.StopConsumer();
+
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(1));
         Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received[0].Count, Is.EqualTo(pc.CacheSize));
-        //Assert.That(_received.Contains(_data), Is.True);
-
-        pc.StopConsumer();
+        Assert.That(_received[0].Count, Is.EqualTo(count));
         Assert.That(pc.IsActivated, Is.False);
     }
 

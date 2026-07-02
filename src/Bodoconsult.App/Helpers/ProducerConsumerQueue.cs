@@ -10,7 +10,7 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : class
 {
-    private Thread _consumerThread;
+    private CancellationTokenSource _cancellationTokenSource;
 
     /// <summary>
     /// Thread priority
@@ -44,7 +44,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
         //}
         //try
         //{
-            if (InternalQueue == null || InternalQueue.IsCompleted)
+            if (!IsActivated || InternalQueue == null || InternalQueue.IsCompleted)
             {
                 return;
             }
@@ -64,7 +64,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     {
         //try
         //{
-            if (InternalQueue == null || InternalQueue.IsCompleted)
+            if (!IsActivated || InternalQueue == null || InternalQueue.IsCompleted)
             {
                 return;
             }
@@ -92,12 +92,8 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
 
         InternalQueue = new BlockingCollection<T>();
 
-        _consumerThread = new Thread(RunInternal)
-        {
-            Priority = ThreadPriority,
-            IsBackground = true
-        };
-        _consumerThread.Start();
+        _cancellationTokenSource = new CancellationTokenSource();
+        Task.Factory.StartNew(RunInternal, TaskCreationOptions.LongRunning);
 
         IsActivated = true;
     }
@@ -112,10 +108,17 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
             return;
         }
 
-        foreach (var item in InternalQueue.GetConsumingEnumerable())
+        Thread.CurrentThread.Priority = ThreadPriority;
+
+        foreach (var item in InternalQueue.GetConsumingEnumerable(_cancellationTokenSource.Token))
         {
             ConsumerTaskDelegate.Invoke(item);
         }
+    }
+
+    private bool IsCompleted()
+    {
+        return InternalQueue.IsCompleted;
     }
 
     /// <summary>
@@ -123,16 +126,10 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// </summary>
     public void StopConsumer()
     {
-        InternalQueue?.CompleteAdding();
-
-
-
-        //Thread.Sleep(50);
-        if (_consumerThread is { IsAlive: true })
-        {
-            _consumerThread?.Join();
-        }
         IsActivated = false;
+        InternalQueue?.CompleteAdding();
+        Wait.Until(IsCompleted);
+        _cancellationTokenSource?.Cancel(false);
         InternalQueue?.Dispose();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
@@ -144,6 +141,5 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
         StopConsumer();
 
         IsActivated = false;
-        _consumerThread = null;
     }
 }

@@ -71,6 +71,10 @@ public class ProducerConsumerQueue3<T> : IProducerConsumerQueue<T> where T : cla
 
         IsActivated = true;
     }
+    private bool IsCompleted()
+    {
+        return _channel.Writer.TryComplete();
+    }
 
     /// <summary>
     /// Stop the consumer thread
@@ -79,10 +83,9 @@ public class ProducerConsumerQueue3<T> : IProducerConsumerQueue<T> where T : cla
     {
         IsActivated = false;
 
-         _channel.Writer.TryComplete();
+        Wait.Until(IsCompleted);
 
         _cancellationTokenSource?.Cancel(false);
-        
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

@@ -1,7 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Collections.Concurrent;
 using Bodoconsult.App.Abstractions.Interfaces;
+using System.Collections.Concurrent;
+using System.Diagnostics;
 
 namespace Bodoconsult.App.Helpers;
 
@@ -12,8 +13,33 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
 {
     private readonly Lock _cacheLock = new();
     private readonly List<T> _cache = new(100);
+    private CancellationTokenSource _cancellationTokenSource;
+    private readonly WatchDog _watchDog;
 
-    private Thread _consumerThread;
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    public CachingProducerConsumerQueue2()
+    {
+        _watchDog = new WatchDog(Runner, 20);
+        _watchDog.StartWatchDog();
+    }
+
+    private void Runner()
+    {
+        int count;
+        lock (_cacheLock)
+        {
+            count = _cache.Count;
+        }
+
+        Debug.Print($"Runner {count}");
+
+        if (count >= CacheSize)
+        {
+            Flush();
+        }
+    }
 
     /// <summary>
     /// Cache size
@@ -46,46 +72,15 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// <param name="item">Item to add to the queue</param>
     public void Enqueue(T item)
     {
-        //if (InternalQueue == null)
-        //{
-        //    throw new ArgumentException("InternalQueue is null. Run StartConsumer() first!");
-        //}
-        //try
-        //{
-        if (InternalQueue == null || InternalQueue.IsCompleted)
+        if (!IsActivated)
         {
             return;
         }
-
-        List<T> data = null;
 
         lock (_cacheLock)
         {
-            if (_cache.Count == CacheSize - 1)
-            {
-                data = new List<T>(_cache.Count + 1);
-                data.AddRange(_cache);
-                data.Add(item);
-                _cache.Clear();
-            }
-            else
-            {
-                _cache.Add(item);
-            }
+            _cache.Add(item);
         }
-
-        if (data == null)
-        {
-            return;
-        }
-
-        InternalQueue.Add(data);
-
-        //}
-        //catch //(Exception e)
-        //{
-        //    // Do nothing
-        //}
     }
 
     /// <summary>
@@ -94,37 +89,41 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// <param name="items">Items to add to the queue</param>
     public void Enqueue(List<T> items)
     {
-        if (InternalQueue == null || InternalQueue.IsCompleted)
+        if (!IsActivated)
         {
             return;
         }
 
-        List<T> data = null;
-
-        lock (_cacheLock)
+        if (items.Count < CacheSize)
         {
-            if (_cache.Count >= CacheSize - items.Count)
+            lock (_cacheLock)
             {
-                data = new List<T>(_cache.Count + 1);
-                data.AddRange(_cache);
-                data.AddRange(items);
-                _cache.Clear();
+                _cache.AddRange(items);
             }
-            else
+        }
+        else
+        {
+            var list = new List<T>(CacheSize);
+            for (var i = 0; i < items.Count; i += CacheSize)
             {
-                foreach (var item in items)
+                list = i + CacheSize >= items.Count ? 
+                    items.GetRange(i, items.Count - i) : 
+                    items.GetRange(i, CacheSize);
+
+                if (list.Count <= 0)
                 {
-                    _cache.Add(item);
+                    continue;
                 }
+
+                lock (_cacheLock)
+                {
+                    _cache.AddRange(list);
+                }
+
+                list.Clear();
             }
+            list.Clear();
         }
-
-        if (data == null)
-        {
-            return;
-        }
-
-        InternalQueue.Add(data);
     }
 
     /// <summary>
@@ -138,13 +137,8 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
         }
 
         InternalQueue = new BlockingCollection<List<T>>();
-
-        _consumerThread = new Thread(RunInternal)
-        {
-            Priority = ThreadPriority,
-            IsBackground = true
-        };
-        _consumerThread.Start();
+        _cancellationTokenSource = new CancellationTokenSource();
+        Task.Factory.StartNew(RunInternal, TaskCreationOptions.LongRunning);
 
         IsActivated = true;
     }
@@ -159,10 +153,17 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
             return;
         }
 
-        foreach (var item in InternalQueue.GetConsumingEnumerable())
+        Thread.CurrentThread.Priority = ThreadPriority;
+
+        foreach (var item in InternalQueue.GetConsumingEnumerable(_cancellationTokenSource.Token))
         {
             ConsumerTaskDelegate.Invoke(item);
         }
+    }
+
+    private bool IsCompleted()
+    {
+        return InternalQueue?.IsCompleted ?? true;
     }
 
     /// <summary>
@@ -170,28 +171,18 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// </summary>
     public void StopConsumer()
     {
-        // Claer the cache
-        lock (_cacheLock)
-        {
-            if (_cache.Count > 0)
-            {
-                var data = new List<T>(_cache.Count + 1);
-                data.AddRange(_cache);
-                _cache.Clear();
+        IsActivated = false;
 
-                InternalQueue.Add(data);
-            }
-        }
+        // Flush the cache
+        Flush();
 
         // Now stop queue
         InternalQueue?.CompleteAdding();
 
         //Thread.Sleep(50);
-        if (_consumerThread is { IsAlive: true })
-        {
-            _consumerThread?.Join();
-        }
-        IsActivated = false;
+        Wait.Until(IsCompleted);
+        _cancellationTokenSource?.Cancel(false);
+
         InternalQueue?.Dispose();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
@@ -203,17 +194,26 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     public void Flush()
     {
         // Clear the cache
+        if (InternalQueue == null || InternalQueue.IsCompleted)
+        {
+            return;
+        }
+
+        List<T> data;
+
         lock (_cacheLock)
         {
-            if (_cache.Count > 0)
-            {
-                var data = new List<T>(_cache.Count + 1);
-                data.AddRange(_cache);
-                _cache.Clear();
-
-                InternalQueue.Add(data);
-            }
+            data = new List<T>(_cache.Count);
+            data.AddRange(_cache);
+            _cache.Clear();
         }
+
+        if (data.Count == 0)
+        {
+            return;
+        }
+
+        InternalQueue.Add(data);
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
@@ -221,7 +221,8 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     {
         StopConsumer();
 
+        _watchDog.StopWatchDog();
+
         IsActivated = false;
-        _consumerThread = null;
     }
 }

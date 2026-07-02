@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Helpers;
+using Microsoft.Testing.Platform.Extensions.Messages;
 
 namespace Bodoconsult.App.Test.HelperTests;
 
@@ -97,30 +98,32 @@ public class CachingProducerConsumerQueueTests
         // Arrange 
         Reset();
 
+        const int count = 100;
         const string s1 = "Blubb";
 
         var pc = new CachingProducerConsumerQueue<string>
         {
-            ConsumerTaskDelegate = ConsumerTaskDelegate
+            ConsumerTaskDelegate = ConsumerTaskDelegate,
+            CacheSize = 10
         };
         pc.StartConsumer();
 
         // Act
-        for (var i = 0; i < 100; i++)
+        for (var i = 0; i < count; i++)
         {
             pc.Enqueue(s1);
         }
 
-        
+        pc.StopConsumer();
 
         // Assert
-        Wait.Until(() => _counter > 0);
+        Wait.Until(() => _counter >= 1);
         Assert.That(_counter, Is.EqualTo(1));
         Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received[0].Count, Is.EqualTo(pc.CacheSize));
-        //Assert.That(_received.Contains(s1), Is.True);
+        Assert.That(_received[0].Count, Is.EqualTo(count));
+        //Assert.That(_received.Contains(_data), Is.True);
 
-        pc.StopConsumer();
+
         Assert.That(pc.IsActivated, Is.False);
     }
 

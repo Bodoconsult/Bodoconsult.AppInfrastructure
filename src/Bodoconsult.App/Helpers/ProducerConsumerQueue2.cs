@@ -10,7 +10,7 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : struct
 {
-    private Thread _consumerThread;
+    private CancellationTokenSource _cancellationTokenSource;
 
     /// <summary>
     /// Thread priority
@@ -91,12 +91,8 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
 
         InternalQueue = new BlockingCollection<T>();
 
-        _consumerThread = new Thread(RunInternal)
-        {
-            Priority = ThreadPriority,
-            IsBackground = true
-        };
-        _consumerThread.Start();
+        _cancellationTokenSource = new CancellationTokenSource();
+        Task.Factory.StartNew(RunInternal, TaskCreationOptions.LongRunning);
 
         IsActivated = true;
     }
@@ -111,6 +107,8 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
             return;
         }
 
+        Thread.CurrentThread.Priority = ThreadPriority;
+
         foreach (var item in InternalQueue.GetConsumingEnumerable())
         {
             ConsumerTaskDelegate.Invoke(item);
@@ -121,21 +119,20 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
         }
     }
 
+    private bool IsCompleted()
+    {
+        return InternalQueue.IsCompleted;
+    }
+
     /// <summary>
     /// Stop the consumer thread
     /// </summary>
     public void StopConsumer()
     {
-        InternalQueue?.CompleteAdding();
         IsActivated = false;
-
-        RunInternal();
-
-        if (_consumerThread is { IsAlive: true })
-        {
-            _consumerThread?.Join();
-        }
-        
+        InternalQueue?.CompleteAdding();
+        Wait.Until(IsCompleted);
+        _cancellationTokenSource?.Cancel(false);
         InternalQueue?.Dispose();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
@@ -147,6 +144,5 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
         StopConsumer();
 
         IsActivated = false;
-        _consumerThread = null;
     }
 }

@@ -122,14 +122,20 @@ public class ProducerConsumerQueueAsync<T> : IProducerConsumerQueueAsync<T> wher
         }
     }
 
+    private bool IsCompleted()
+    {
+        return InternalQueue.IsCompleted;
+    }
+
     /// <summary>
     /// Stop the consumer thread
     /// </summary>
     public void StopConsumer()
     {
-        InternalQueue?.CompleteAdding();
-        _cancellationTokenSource?.Cancel(false);
         IsActivated = false;
+        InternalQueue?.CompleteAdding();
+        Wait.Until(IsCompleted);
+        _cancellationTokenSource?.Cancel(false);
         InternalQueue?.Dispose();
         InternalQueue = null;
         ConsumerTaskDelegate = null;

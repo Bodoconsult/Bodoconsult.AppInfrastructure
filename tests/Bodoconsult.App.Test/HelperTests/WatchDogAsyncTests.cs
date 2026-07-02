@@ -1,4 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
@@ -6,7 +6,7 @@ using Bodoconsult.App.Helpers;
 namespace Bodoconsult.App.Test.HelperTests;
 
 [TestFixture]
-internal class WatchDogTests
+internal class WatchDogAsyncTests
 {
     private bool _isFired;
     private int _firedCount;
@@ -21,12 +21,22 @@ internal class WatchDogTests
     /// <summary>
     /// Runner method for the watchdog
     /// </summary>
-    private void Runner()
+    private Task Runner()
+    {
+        _isFired = true;
+        _firedCount++;
+        return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// Runner emthod for the watchdog
+    /// </summary>
+    private void RunnerAsync()
     {
         _isFired = true;
         _firedCount++;
     }
-
+    
     [Test]
     public void Ctor_DefaultSetup_PropsSetCorrectly()
     {
@@ -35,9 +45,9 @@ internal class WatchDogTests
         _firedCount = 0;
         const int delayTime = 500;
 
-        WatchDogRunnerDelegate runner = Runner;
+        WatchDogRunnerDelegateAsync runner = Runner;
 
-        var w = new WatchDog(runner, delayTime);
+        var w = new WatchDogAsync(runner, delayTime);
 
         // Act  
         AsyncHelper.Delay((int)(delayTime * 1.5));
@@ -46,6 +56,7 @@ internal class WatchDogTests
         Assert.That(w.WatchDogRunnerDelegate, Is.EqualTo(runner));
         Assert.That(w.DelayUntilNextRunnerFired, Is.EqualTo(delayTime));
         Assert.That(!_isFired);
+
     }
 
     [Test]
@@ -55,9 +66,9 @@ internal class WatchDogTests
         _isFired = false;
         const int delayTime = 500;
 
-        WatchDogRunnerDelegate runner = Runner;
+        WatchDogRunnerDelegateAsync runner = Runner;
 
-        var w = new WatchDog(runner, delayTime);
+        var w = new WatchDogAsync(runner, delayTime);
         w.StartWatchDog();
 
         // Act  
@@ -76,9 +87,9 @@ internal class WatchDogTests
         _isFired = false;
         const int delayTime = 500;
 
-        WatchDogRunnerDelegate runner = Runner;
+        WatchDogRunnerDelegateAsync runner = Runner;
 
-        var w = new WatchDog(runner, delayTime);
+        var w = new WatchDogAsync(runner, delayTime);
         w.StartWatchDog();
 
         // Act  
@@ -97,9 +108,9 @@ internal class WatchDogTests
         _isFired = false;
         const int delayTime = 500;
 
-        WatchDogRunnerDelegate runner = Runner;
+        WatchDogRunnerDelegateAsync runner = Runner;
 
-        var w = new WatchDog(runner, delayTime);
+        var w = new WatchDogAsync(runner, delayTime);
 
         // Act  1
         w.StartWatchDog();
@@ -118,6 +129,6 @@ internal class WatchDogTests
 
         // Assert
         Assert.That(_isFired);
-        Assert.That(_firedCount, Is.GreaterThanOrEqualTo(5));
+        Assert.That(_firedCount, Is.GreaterThanOrEqualTo(8));
     }
 }

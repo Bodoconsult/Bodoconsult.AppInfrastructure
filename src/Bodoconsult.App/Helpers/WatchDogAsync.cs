@@ -1,16 +1,16 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.App.Helpers;
 
 /// <summary>
-/// Default implementation of <see cref="IWatchDog"/>. A watchdog meant here is an interval based polling mechanism.
+/// Default implementation of <see cref="IWatchDogAsync"/>. A watchdog meant here is an interval based polling mechanism
 /// A timer is fired always at the fixed time interval. This may lead to multiple <see cref="WatchDogRunnerDelegate"/> instances running if the
 /// runtime of each of thisinstances is longer than the timer interval. A watchdog runs a <see cref="WatchDogRunnerDelegate"/> instance and
 /// afterwards it waits for the <see cref="DelayUntilNextRunnerFired"/> interval before running the next instance
 /// </summary>
-public class WatchDog : IWatchDog
+public class WatchDogAsync : IWatchDogAsync
 {
     private CancellationTokenSource _cancellationToken;
     private readonly ThreadPriority _threadPriority;
@@ -19,11 +19,11 @@ public class WatchDog : IWatchDog
     /// Default ctor
     /// </summary>
     /// <param name="watchDogRunnerDelegate"></param>
-    /// <param name="delayUntilNextRunnerFired">Delay in ms until next run</param>
-    public WatchDog(WatchDogRunnerDelegate watchDogRunnerDelegate, int delayUntilNextRunnerFired)
+    /// <param name="delayUntilNextRunnerFired">Delay until next run</param>
+    public WatchDogAsync(WatchDogRunnerDelegateAsync watchDogRunnerDelegate, int delayUntilNextRunnerFired)
     {
         ArgumentNullException.ThrowIfNull(watchDogRunnerDelegate);
-        WatchDogRunnerDelegate = watchDogRunnerDelegate ?? throw new ArgumentNullException(nameof(watchDogRunnerDelegate));
+        WatchDogRunnerDelegate = watchDogRunnerDelegate;
         DelayUntilNextRunnerFired = delayUntilNextRunnerFired;
         _threadPriority = ThreadPriority.Normal;
     }
@@ -32,9 +32,9 @@ public class WatchDog : IWatchDog
     /// Ctor with additional thread priority setting
     /// </summary>
     /// <param name="watchDogRunnerDelegate"></param>
-    /// <param name="delayUntilNextRunnerFired">Delay until next run</param>
+    /// <param name="delayUntilNextRunnerFired">Delay until next run in ms</param>
     /// <param name="threadPriority">Thread priority</param>
-    public WatchDog(WatchDogRunnerDelegate watchDogRunnerDelegate, int delayUntilNextRunnerFired, ThreadPriority threadPriority)
+    public WatchDogAsync(WatchDogRunnerDelegateAsync watchDogRunnerDelegate, int delayUntilNextRunnerFired, ThreadPriority threadPriority)
     {
         ArgumentNullException.ThrowIfNull(watchDogRunnerDelegate);
         WatchDogRunnerDelegate = watchDogRunnerDelegate;
@@ -45,7 +45,7 @@ public class WatchDog : IWatchDog
     /// <summary>
     /// The method to run by the watchdog
     /// </summary>
-    public WatchDogRunnerDelegate WatchDogRunnerDelegate { get; }
+    public WatchDogRunnerDelegateAsync WatchDogRunnerDelegate { get; }
 
     /// <summary>
     /// Is the watchdog activated? If yes, <see cref="IWatchDog.WatchDogRunnerDelegate"/> is called.
@@ -54,7 +54,7 @@ public class WatchDog : IWatchDog
     public bool IsActivated { get; set; } = true;
 
     /// <summary>
-    /// The delay after the runner method was running in ms
+    /// The delay after the runner method was running in milliseconds
     /// </summary>
     public int DelayUntilNextRunnerFired { get; set; }
 
@@ -97,14 +97,14 @@ public class WatchDog : IWatchDog
             if (IsActivated)
             {
                 //Run the delegate
-                WatchDogRunnerDelegate.Invoke();
+                await WatchDogRunnerDelegate.Invoke();
             }
 
             // Delay the thread as requested
             await Task.Delay(DelayUntilNextRunnerFired, _cancellationToken.Token);
         }
 
-        WatchDogRunnerDelegate.Invoke();
+        await WatchDogRunnerDelegate.Invoke();
     }
 
     /// <summary>
