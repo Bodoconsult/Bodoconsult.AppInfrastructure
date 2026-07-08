@@ -25,11 +25,8 @@ public partial class LogoViewModel : ReactiveObject, IRoutableViewModel, ILogoVi
     {
         _appGlobals = appGlobals;
 
-        var modulInfo = $"{AppTitle} {_appGlobals.AppStartParameter.AppVersion}";
+        var modulInfo = $"{_appGlobals.AppStartParameter.AppName} {_appGlobals.AppStartParameter.AppVersion}";
         AppTitle = modulInfo;
-
-
-
     }
 
     /// <summary>

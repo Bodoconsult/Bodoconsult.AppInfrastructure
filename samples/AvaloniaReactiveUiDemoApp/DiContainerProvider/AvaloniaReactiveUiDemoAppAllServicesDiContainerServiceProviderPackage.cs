@@ -15,7 +15,6 @@ public class AvaloniaReactiveUiDemoAppAllServicesDiContainerServiceProviderPacka
 
     public AvaloniaReactiveUiDemoAppAllServicesDiContainerServiceProviderPackage(IAppGlobals appGlobals) : base(appGlobals)
     {
-
         DoNotBuildDiContainer = true;
 
         // Basic app services
@@ -39,5 +38,4 @@ public class AvaloniaReactiveUiDemoAppAllServicesDiContainerServiceProviderPacka
         provider = new AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider();
         ServiceProviders.Add(provider);
     }
-
 }

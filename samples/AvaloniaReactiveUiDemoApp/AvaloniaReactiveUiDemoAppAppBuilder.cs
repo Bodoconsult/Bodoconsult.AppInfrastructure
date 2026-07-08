@@ -7,6 +7,8 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using AvaloniaReactiveUiDemoApp.DiContainerProvider;
 using AvaloniaReactiveUiDemoApp.ViewModels;
 using AvaloniaReactiveUiDemoApp.Views;
+using Bodoconsult.App.Avalonia.ReactiveUI.Controls;
+using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 
 namespace AvaloniaReactiveUiDemoApp;
 
@@ -36,6 +38,7 @@ public class AvaloniaReactiveUiDemoAppAppBuilder : BaseAvaloniaReactiveUiAppBuil
     {
         locator.Map<FirstViewModel, FirstView>(() => new FirstView());
         locator.Map<SecondViewModel, SecondView>(() => new SecondView());
+        locator.Map<LogoViewModel, LogoControl>(() => new LogoControl());
     }
 
     /// <summary>

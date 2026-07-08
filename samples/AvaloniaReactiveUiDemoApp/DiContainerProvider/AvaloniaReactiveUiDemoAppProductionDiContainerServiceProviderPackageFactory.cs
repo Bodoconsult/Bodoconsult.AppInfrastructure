@@ -22,8 +22,6 @@ public class AvaloniaReactiveUiDemoAppProductionDiContainerServiceProviderPackag
     /// </summary>
     public IAppGlobals AppGlobals { get; }
 
-
-
     /// <summary>
     /// Create an instance of <see cref="IDiContainerServiceProviderPackage"/>. Should be a singleton instance
     /// </summary>

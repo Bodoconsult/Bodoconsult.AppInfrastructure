@@ -67,5 +67,20 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         //// Example 2: Load business transactions
         //var btl = diContainer.Get<IBusinessTransactionLoader>();
         //btl.LoadProviders();
+
+        var vm = diContainer.Get<LogoViewModel>();
+
+        var exe = Environment.ProcessPath;
+
+        if (exe == null)
+        {
+            return;
+        }
+
+        var fi = new FileInfo(exe);
+
+        var fileName = Path.Combine( fi.DirectoryName ?? "", "logo.jpg");
+
+        vm.LoadLogoFromFile(fileName);
     }
 }

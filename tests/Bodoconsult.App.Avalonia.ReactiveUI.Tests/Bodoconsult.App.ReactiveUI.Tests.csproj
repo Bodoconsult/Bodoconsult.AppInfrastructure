@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\LICENSE.md" Link="LICENSE.md" />
   </ItemGroup>
 

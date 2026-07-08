@@ -1,7 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Runtime.Versioning;
+using Avalonia;
 using NUnit.Framework;
+using Splat;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Test;
 
@@ -26,4 +28,14 @@ public static class AssemblySetup
     {
         //DispatcherService.OpenDispatcher();
     }
+
+    //public static AppBuilder BuildAvaloniaApp()
+    //{
+    //    //Bootstrapper.RegisterAsync(Locator.CurrentMutable, Locator.Current).Wait();
+    //    return AppBuilder.Configure<App>()
+    //        .UsePlatformDetect()
+    //        .WithInterFont()!
+    //        .LogToTrace()
+    //        .UseReactiveUI();
+    //}
 }
