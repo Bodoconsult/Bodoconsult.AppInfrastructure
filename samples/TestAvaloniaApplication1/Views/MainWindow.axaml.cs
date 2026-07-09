@@ -3,23 +3,22 @@
 using System;
 using Avalonia.Controls;
 
-namespace TestAvaloniaApplication1.Views
+namespace TestAvaloniaApplication1.Views;
+
+public partial class MainWindow : Window
 {
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void FileOpen_OnClick(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+    private void FileOpen_OnClick(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 
-        private void FileSaveAs_OnClick(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+    private void FileSaveAs_OnClick(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }

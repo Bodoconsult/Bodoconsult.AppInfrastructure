@@ -90,19 +90,22 @@ internal class ByteArrayDataExportServiceTests
         // Assert
         var path = service.CurrentFilePath;
 
-        Assert.That(path, Is.Not.Null);
-        Assert.That(string.IsNullOrEmpty(path), Is.False);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(path, Is.Not.Null);
+            Assert.That(string.IsNullOrEmpty(path), Is.False);
 
-        var fi = new FileInfo(path);
-        Assert.That(fi, Is.Not.Null);
-        Assert.That(fi.Exists);
+            var fi = new FileInfo(path);
+            Assert.That(fi, Is.Not.Null);
+            Assert.That(fi.Exists);
 
-        Wait.Until(() => fi.Length > 0);
+            Wait.Until(() => fi.Length > 0);
 
-        Assert.That(service.RowCounter2, Is.GreaterThanOrEqualTo(count));
-        Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(count));
+            Assert.That(service.RowCounter2, Is.GreaterThanOrEqualTo(count));
+            Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(count));
 
-        Assert.That(fi.Length, Is.GreaterThanOrEqualTo(count * text.Length));
+            Assert.That(fi.Length, Is.GreaterThanOrEqualTo(count * text.Length));
+        }
 
         FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
     }
@@ -136,21 +139,24 @@ internal class ByteArrayDataExportServiceTests
         // Assert
         var path = service.CurrentFilePath;
 
-        Assert.That(path, Is.Not.Null);
-        Assert.That(string.IsNullOrEmpty(path), Is.False);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(path, Is.Not.Null);
+            Assert.That(string.IsNullOrEmpty(path), Is.False);
 
-        var fi = new FileInfo(path);
-        Assert.That(fi, Is.Not.Null);
-        Assert.That(fi.Exists);
+            var fi = new FileInfo(path);
+            Assert.That(fi, Is.Not.Null);
+            Assert.That(fi.Exists);
 
-        Wait.Until(() => fi.Length > 0);
+            Wait.Until(() => fi.Length > 0);
 
-        Assert.That(service.RowCounter2, Is.GreaterThanOrEqualTo(count));
-        Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(count));
+            Assert.That(service.RowCounter2, Is.GreaterThanOrEqualTo(count));
+            Assert.That(service.RowCounter, Is.GreaterThanOrEqualTo(count));
 
-        Assert.That(fi.Length, Is.GreaterThanOrEqualTo(count * text.Length));
+            Assert.That(fi.Length, Is.GreaterThanOrEqualTo(count * text.Length));
 
-        FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
+            FileSystemHelper.RunInDebugMode(service.CurrentFilePath);
+        }
     }
 
     //[Test]

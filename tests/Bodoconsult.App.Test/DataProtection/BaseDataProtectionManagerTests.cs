@@ -5,6 +5,7 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Test.App;
+using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP;
 
 namespace Bodoconsult.App.Test.DataProtection;
 
@@ -220,11 +221,14 @@ internal abstract class BaseDataProtectionManagerTests
         // Act
         dpm.SaveValues();
 
-        Assert.That(File.Exists(filePath), Is.False);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(File.Exists(filePath), Is.False);
 
-        // Assert
-        Wait.Until(() => File.Exists(filePath));
-        Assert.That(File.Exists(filePath), Is.False);
+            // Assert
+            Wait.Until(() => File.Exists(filePath));
+            Assert.That(File.Exists(filePath), Is.False);
+        }
 
         dpm.Dispose();
     }
