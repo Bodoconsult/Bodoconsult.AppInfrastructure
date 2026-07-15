@@ -214,8 +214,6 @@ public class ChartHandler : IChartHandler
 
         AdjustChartDataToRequestedSize();
 
-        IChart chart;
-
         if (ChartData.DataSource == null)
         {
             throw new Exception("ChartHandler.Export: DataSource is empty");
@@ -243,7 +241,7 @@ public class ChartHandler : IChartHandler
             ChartData.LabelsForSeries = ChartData.PropertiesToUseForChart.Skip(1).ToList();
         }
 
-        chart = ChartData.ChartType switch
+        IChart chart = ChartData.ChartType switch
         {
             ChartType.ColumnChart => new ColumnChart<ChartItemData>(),
             ChartType.BarChart => new BarChart<ChartItemData>(),

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Buffers;
+using System.IO.Compression;
 using System.Reflection;
 using System.Text;
 
@@ -399,5 +400,45 @@ public static class ArrayHelper
         }
 
         return ar;
+    }
+
+    /// <summary>
+    /// Compress byte data
+    /// </summary>
+    /// <param name="data">Decompressed byte data to compress</param>
+    /// <returns>Compressed byte data</returns>
+    public static byte[] Compress(byte[] data)
+    {
+        using var memoryStream = new MemoryStream();
+
+        using (var deflateStream = new DeflateStream(memoryStream, CompressionMode.Compress))
+        {
+            deflateStream.Write(data, 0, data.Length);
+        }
+
+        var compressArray = memoryStream.ToArray();
+
+        return compressArray;
+    }
+
+    /// <summary>
+    /// Decompress an byte array
+    /// </summary>
+    /// <param name="data">Compressed byte data</param>
+    /// <returns>Decompressed byte data</returns>
+    public static byte[] Decompress(byte[] data)
+    {
+        using var decompressedStream = new MemoryStream();
+
+        using (var compressStream = new MemoryStream(data))
+        {
+            using (var deflateStream = new DeflateStream(compressStream, CompressionMode.Decompress))
+            {
+                deflateStream.CopyTo(decompressedStream);
+            }
+        }
+        var decompressedArray = decompressedStream.ToArray();
+
+        return decompressedArray;
     }
 }

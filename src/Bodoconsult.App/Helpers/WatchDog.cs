@@ -5,12 +5,12 @@ using Bodoconsult.App.Abstractions.Interfaces;
 namespace Bodoconsult.App.Helpers;
 
 /// <summary>
-/// Default implementation of <see cref="IWatchDog"/>. A watchdog meant here is an interval based polling mechanism.
-/// A timer is fired always at the fixed time interval. This may lead to multiple <see cref="WatchDogRunnerDelegate"/> instances running if the
-/// runtime of each of thisinstances is longer than the timer interval. A watchdog runs a <see cref="WatchDogRunnerDelegate"/> instance and
-/// afterwards it waits for the <see cref="DelayUntilNextRunnerFired"/> interval before running the next instance
-/// </summary>
-public class WatchDog : IWatchDog
+    /// Default implementation of <see cref="IWatchDog"/>. A watchdog meant here is an interval based polling mechanism.
+    /// A timer is fired always at the fixed time interval. This may lead to multiple <see cref="WatchDogRunnerDelegate"/> instances running if the
+    /// runtime of each of thisinstances is longer than the timer interval. A watchdog runs a <see cref="WatchDogRunnerDelegate"/> instance and
+    /// afterwards it waits for the <see cref="DelayUntilNextRunnerFired"/> interval before running the next instance
+    /// </summary>
+    public class WatchDog : IWatchDog
 {
     private CancellationTokenSource _cancellationToken;
     private readonly ThreadPriority _threadPriority;

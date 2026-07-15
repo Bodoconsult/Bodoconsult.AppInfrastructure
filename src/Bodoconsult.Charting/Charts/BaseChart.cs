@@ -99,7 +99,6 @@ public class BaseChart<T> : IChart where T : IChartItemData
         AddTitle();
     }
 
-
     /// <returns>Byte array</returns>
     public byte[] RenderImagePng(int width, int height)
     {
