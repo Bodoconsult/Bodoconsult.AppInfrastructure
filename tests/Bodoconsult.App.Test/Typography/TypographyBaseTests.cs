@@ -9,11 +9,9 @@ using Newtonsoft.Json;
 
 namespace Bodoconsult.App.Test.Typography;
 
-
 [TestFixture]
 public class TypographyBaseTests
 {
-
     /// <summary>
     /// Value used for float is equal to 0 comparisons
     /// </summary>
@@ -121,9 +119,7 @@ public class TypographyBaseTests
         Assert.That(File.Exists(fileName));
         Assert.That(typo2, Is.Not.Null);
         Assert.That(t.MarginUnit - typo2.MarginUnit < Tolerance);
-
     }
-
 
     [Test]
     public void ExportImport_Compact_Successful()
@@ -135,7 +131,6 @@ public class TypographyBaseTests
             MarginTopFactor = 1,
             MarginBottomFactor = 1
         };
-
 
         t.SetMargins();
 
@@ -175,7 +170,6 @@ public class TypographyBaseTests
         sw11.WriteLine(json);
         sw11.Close();
     }
-
 
     private static T ImportFromJson<T>(string fileName) where T : ITypography
     {

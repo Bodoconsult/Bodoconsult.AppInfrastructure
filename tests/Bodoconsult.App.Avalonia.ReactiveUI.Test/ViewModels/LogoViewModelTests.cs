@@ -27,7 +27,7 @@ internal class LogoViewModelTests
         Assert.That(string.IsNullOrEmpty( vm.AppTitle), Is.False);
     }
 
-    [Explicit]
+    //[Explicit]
     [AvaloniaTest]
     public void LoadLogoFromRessources_ValidSetup_LogoLoaded()
     {
