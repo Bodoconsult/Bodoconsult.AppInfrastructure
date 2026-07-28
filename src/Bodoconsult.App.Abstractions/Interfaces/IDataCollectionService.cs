@@ -21,13 +21,13 @@ public interface IDataCollectionService<T>: IDisposable where T : class
     /// </summary>
     ForwardCollectDataDelegate<T> ForwardCollectDataDelegate { get; }
 
-    /// <summary>
-    /// The time period the service is collecting data in ms. The service is collecting data every <see cref="CollectionInterval"/> ms for this period of time. <see cref="CollectionInterval"/> must be bigger than <see cref="CollectionTime"/>
-    /// </summary>
-    int CollectionTime { get; set; }
+    ///// <summary>
+    ///// The time period the service is collecting data in ms. The service is collecting data every <see cref="CollectionInterval"/> ms for this period of time. <see cref="CollectionInterval"/> must be bigger than <see cref="CollectionTime"/>
+    ///// </summary>
+    //int CollectionTime { get; set; }
 
     /// <summary>
-    /// The time interval the service is collecting data for a period of <see cref="CollectionTime"/>> ms in ms. 
+    /// The time interval the service is collecting data for a certain period in ms. 
     /// </summary>
     int CollectionInterval { get; set; }
 

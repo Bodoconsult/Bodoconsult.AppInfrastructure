@@ -1,22 +1,26 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Diagnostics;
-using Bodoconsult.App.Abstractions.Interfaces;
 using System.Timers;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 
 namespace Bodoconsult.App.DataCollectionServices;
 
 /// <summary>
-/// Current implementation of <see cref="IDataCollectionService&lt;T&gt;"/>
+/// Base class for <see cref="IDataCollectionService&lt;T&gt;"/> implementations
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class DataCollectionService<T> : IDataCollectionService<T> where T : class
+public abstract class BaseDataCollectionService<T> : IDataCollectionService<T> where T : class
 {
     private System.Timers.Timer _aTimer;
     private readonly Lock _dataLock = new();
     private readonly Lock _isActiveLock = new();
-    private readonly ProducerConsumerQueue<List<T>> _queue = new();
+    
+    /// <summary>
+    /// The internal queue
+    /// </summary>
+    protected readonly ProducerConsumerQueue<List<T>> Queue = new();
 
     /// <summary>
     /// Do not use directly
@@ -24,32 +28,30 @@ public class DataCollectionService<T> : IDataCollectionService<T> where T : clas
     private bool _isActive;
 
     /// <summary>
-    /// Defauult ctor
+    /// The internal delegate to handle data in the queue
     /// </summary>
-    /// <param name="forwardCollectDataDelegate">Delegate to forward collected data from an <see cref="IDataCollectionService&lt;T&gt;"/> implementation after collection time has passed</param>
-    public DataCollectionService(ForwardCollectDataDelegate<T> forwardCollectDataDelegate)
-    {
-        ForwardCollectDataDelegate = forwardCollectDataDelegate;
-        _queue.ConsumerTaskDelegate = ConsumerTaskDelegate;
-    }
-
-    private void ConsumerTaskDelegate(List<T> data)
+    /// <param name="data">Data in the queue</param>
+    protected void ConsumerTaskDelegate(List<T> data)
     {
         ForwardCollectDataDelegate.Invoke(data);
     }
 
     /// <summary>
+    /// Default ctor
+    /// </summary>
+    protected BaseDataCollectionService(ForwardCollectDataDelegate<T> forwardCollectDataDelegate)
+    {
+        Queue.ConsumerTaskDelegate = ConsumerTaskDelegate;
+        ForwardCollectDataDelegate = forwardCollectDataDelegate;
+    }
+
+    /// <summary>
     /// Delegate to forward collected data from an <see cref="IDataCollectionService&lt;T&gt;"/> implementation after collection time has passed
     /// </summary>
-    public ForwardCollectDataDelegate<T> ForwardCollectDataDelegate { get; }
+    public ForwardCollectDataDelegate<T> ForwardCollectDataDelegate { get; protected set; }
 
     /// <summary>
-    /// The time period the service is collecting data in ms. The service is collecting data every <see cref="CollectionInterval"/> ms for this period of time. <see cref="CollectionInterval"/> must be bigger than <see cref="CollectionTime"/>. Default: 1000ms
-    /// </summary>
-    public int CollectionTime { get; set; } = 1000;
-
-    /// <summary>
-    /// The time interval the service is collecting data for a period of <see cref="CollectionTime"/>> ms in ms. Default: 5000ms
+    /// The time interval the service is collecting data for a period in ms. Default: 5000ms
     /// </summary>
     public int CollectionInterval { get; set; } = 5000;
 
@@ -65,7 +67,7 @@ public class DataCollectionService<T> : IDataCollectionService<T> where T : clas
                 return _isActive;
             }
         }
-        private set
+        protected set
         {
             lock (_isActiveLock)
             {
@@ -82,14 +84,9 @@ public class DataCollectionService<T> : IDataCollectionService<T> where T : clas
     /// <summary>
     /// Start the data collection
     /// </summary>
-    public void Start()
+    public virtual void Start()
     {
-        if (CollectionInterval < CollectionTime + 500)
-        {
-            throw new ArgumentException("Collection interval must be bigger by 500ms at least than Collection period");
-        }
-
-        _queue.StartConsumer();
+        Queue.StartConsumer();
 
         _aTimer = new System.Timers.Timer(CollectionInterval);
         // Hook up the Elapsed event for the timer. 
@@ -98,19 +95,15 @@ public class DataCollectionService<T> : IDataCollectionService<T> where T : clas
         _aTimer.Enabled = true;
     }
 
-    private void OnTimedEvent(object sender, ElapsedEventArgs e)
+    /// <summary>
+    /// Timer event
+    /// </summary>
+    /// <param name="sender">Sender</param>
+    /// <param name="e">EventArgs</param>
+    /// <exception cref="NotSupportedException"></exception>
+    protected virtual void OnTimedEvent(object sender, ElapsedEventArgs e)
     {
-        Debug.Print("Collecting...");
-        IsActive = true;
-        Task.Delay(CollectionTime).GetAwaiter().GetResult();
-        IsActive = false;
-
-        Debug.Print("Collecting stopped");
-
-        var data = Data.ToList();
-        Data.Clear();
-
-        _queue.Enqueue(data);
+        throw new NotSupportedException("Override in derived classes");
     }
 
     /// <summary>
@@ -118,7 +111,7 @@ public class DataCollectionService<T> : IDataCollectionService<T> where T : clas
     /// </summary>
     public void Stop()
     {
-        _queue.StopConsumer();
+        Queue.StopConsumer();
 
         _aTimer?.Stop();
         _aTimer?.Dispose();
@@ -162,11 +155,19 @@ public class DataCollectionService<T> : IDataCollectionService<T> where T : clas
         }
     }
 
+    /// <summary>
+    /// Set the property <see cref="IsActive"/> to true. Do NOT use in production code. Intedned only for unit tests
+    /// </summary>
+    public void SetIsActive()
+    {
+        IsActive = true;
+    }
+
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
     {
-        _queue.StopConsumer();
-        _queue.Dispose();
+        Queue.StopConsumer();
+        Queue.Dispose();
 
         _aTimer?.Dispose();
     }

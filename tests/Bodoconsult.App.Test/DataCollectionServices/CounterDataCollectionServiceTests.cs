@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.DataCollectionServices;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.DataCollectionServices;
 using Bodoconsult.App.Helpers;
 
 namespace Bodoconsult.App.Test.DataCollectionServices;
 
-internal class TimePeriodDataCollectionServiceTests
+internal class CounterDataCollectionServiceTests
 {
     private int _numberOfDataForwarded;
     private CancellationTokenSource _cts;
@@ -27,7 +27,7 @@ internal class TimePeriodDataCollectionServiceTests
 
         // Act  
         ForwardCollectDataDelegate<TestData> forwardCollectDataDelegate = ForwardCollectDataDelegate;
-        var dcs = new TimePeriodDataCollectionService<TestData>(forwardCollectDataDelegate);
+        var dcs = new CounterDataCollectionService<TestData>(forwardCollectDataDelegate);
 
         // Assert
         using (Assert.EnterMultipleScope())
@@ -43,7 +43,7 @@ internal class TimePeriodDataCollectionServiceTests
     {
         // Arrange 
         ForwardCollectDataDelegate<TestData> forwardCollectDataDelegate = ForwardCollectDataDelegate;
-        var dcs = new TimePeriodDataCollectionService<TestData>(forwardCollectDataDelegate);
+        var dcs = new CounterDataCollectionService<TestData>(forwardCollectDataDelegate);
 
         // Act  
         dcs.Add([new TestData()]);
@@ -60,7 +60,7 @@ internal class TimePeriodDataCollectionServiceTests
     {
         // Arrange 
         ForwardCollectDataDelegate<TestData> forwardCollectDataDelegate = ForwardCollectDataDelegate;
-        var dcs = new TimePeriodDataCollectionService<TestData>(forwardCollectDataDelegate);
+        var dcs = new CounterDataCollectionService<TestData>(forwardCollectDataDelegate);
 
         // Act  
         dcs.Add(new TestData());
@@ -77,12 +77,14 @@ internal class TimePeriodDataCollectionServiceTests
     {
         // Arrange 
         ForwardCollectDataDelegate<TestData> forwardCollectDataDelegate = ForwardCollectDataDelegate;
-        var dcs = new TimePeriodDataCollectionService<TestData>(forwardCollectDataDelegate);
+        var dcs = new CounterDataCollectionService<TestData>(forwardCollectDataDelegate);
         dcs.CollectionInterval = 1500;
+        dcs.CollectionCounter = 1;
         dcs.SetIsActive();
 
         // Act  
         dcs.Start();
+
         dcs.Add(new TestData());
 
         Task.Delay(dcs.CollectionInterval * 3).GetAwaiter().GetResult();
@@ -105,7 +107,7 @@ internal class TimePeriodDataCollectionServiceTests
     {
         // Arrange 
         ForwardCollectDataDelegate<TestData> forwardCollectDataDelegate = ForwardCollectDataDelegate;
-        var dcs = new TimePeriodDataCollectionService<TestData>(forwardCollectDataDelegate);
+        var dcs = new CounterDataCollectionService<TestData>(forwardCollectDataDelegate);
         dcs.CollectionInterval = 1500;
 
         AsyncHelper.FireAndForget(() =>
@@ -138,8 +140,9 @@ internal class TimePeriodDataCollectionServiceTests
     {
         // Arrange 
         ForwardCollectDataDelegate<TestData> forwardCollectDataDelegate = ForwardCollectDataDelegate;
-        var dcs = new TimePeriodDataCollectionService<TestData>(forwardCollectDataDelegate);
+        var dcs = new CounterDataCollectionService<TestData>(forwardCollectDataDelegate);
         dcs.CollectionInterval = 1500;
+        dcs.CollectionCounter = 1;
         dcs.SetIsActive();
 
         // Act  
@@ -166,7 +169,7 @@ internal class TimePeriodDataCollectionServiceTests
     }
 
 
-    private void ReceiveMessages(TimePeriodDataCollectionService<TestData> dcs)
+    private void ReceiveMessages(CounterDataCollectionService<TestData> dcs)
     {
         while (!_cts.IsCancellationRequested)
         {

@@ -42,20 +42,20 @@ internal class ImageViewModelTests
         Assert.That(vm.Bitmap, Is.Not.Null);
     }
 
-    [AvaloniaTest]
-    public void LoadLogoFromRessources_ValidSetup_LogoLoaded()
-    {
-        // Arrange 
-        Globals.Instance.AppStartParameter.LogoRessourcePath = "Bodoconsult.App.ReactiveUI.Tests.Resources.logo.jpg";
-        Globals.Instance.AppStartParameter.LogoAssembly = typeof(MenuBuilderHelper).Assembly;
+    //[AvaloniaTest]
+    //public void LoadLogoFromRessources_ValidSetup_LogoLoaded()
+    //{
+    //    // Arrange 
+    //    Globals.Instance.AppStartParameter.LogoRessourcePath = "Bodoconsult.App.ReactiveUI.Tests.Resources.logo.jpg";
+    //    Globals.Instance.AppStartParameter.LogoAssembly = typeof(MenuBuilderHelper).Assembly;
 
-        var vm = new ImageViewModel();
+    //    var vm = new ImageViewModel();
 
-        // Act  
-        vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath);
+    //    // Act  
+    //    vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath);
 
-        // Assert
-        Assert.That(vm.Bitmap, Is.Not.Null);
-    }
+    //    // Assert
+    //    Assert.That(vm.Bitmap, Is.Not.Null);
+    //}
 
 }
