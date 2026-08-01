@@ -1,8 +1,8 @@
-﻿using System.Reactive;
-using System.Reactive.Linq;
+﻿using System.Reactive.Linq;
 using ReactiveUI;
 using Splat;
 using AvaloniaReactiveUiDemoApp.Views;
+using ReactiveUI.Primitives;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
 
@@ -13,10 +13,10 @@ public class MainViewModel : ReactiveObject, IScreen
     public RoutingState Router { get; }
 
     // The command that navigates a user to first view model.
-    public ReactiveCommand<Unit, IRoutableViewModel> GoNext { get; }
+    public ReactiveCommand<RxVoid, IRoutableViewModel> GoNext { get; }
 
     // The command that navigates a user back.
-    public ReactiveCommand<Unit, IRoutableViewModel> GoBack { get; }
+    public ReactiveCommand<RxVoid, IRoutableViewModel> GoBack { get; }
 
     public MainViewModel()
     {
@@ -46,11 +46,10 @@ public class MainViewModel : ReactiveObject, IScreen
         // execute the default Router.NavigateBack command. Another
         // option is to define your own command with custom
         // canExecute condition as such:
-        var canGoBack = this
-            .WhenAnyValue(x => x.Router.NavigationStack.Count)
-            .Select(count => count > 0);
+        var canGoBack = Observable.Select(this
+                .WhenAnyValue(x => x.Router.NavigationStack.Count), count => count > 0);
         GoBack = ReactiveCommand.CreateFromObservable(
-            () => Router.NavigateBack.Execute(Unit.Default),
+            () => Router.NavigateBack.Execute(RxVoid.Default),
             canGoBack);
     }
 }

@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
-using DynamicData;
-using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using Bodoconsult.App.ReactiveUI.Delegates;
+using DynamicData;
+using DynamicData.Binding;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 

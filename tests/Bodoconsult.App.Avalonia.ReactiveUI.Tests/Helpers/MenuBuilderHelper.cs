@@ -4,8 +4,7 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
 using Bodoconsult.App.ReactiveUI.Ui;
 using System.Diagnostics;
-using System.Reactive;
-using System.Reactive.Linq;
+using ReactiveUI.Primitives;
 
 namespace Bodoconsult.App.ReactiveUI.Tests.Helpers;
 
@@ -45,17 +44,17 @@ public static class MenuBuilderHelper
         builder.Add(groupItem);
     }
 
-    private static IObservable<Unit> DoSomethingAsync()
+    private static async Task<RxVoid> DoSomethingAsync()
     {
         Debug.Print("Hello World 1!");
-        Task.Delay(TimeSpan.FromSeconds(3));
-        return Observable.Return(Unit.Default);
+        await Task.Delay(TimeSpan.FromSeconds(3));
+        return RxVoid.Default;
     }
 
-    private static IObservable<Unit> DoSomethingAsync2()
+    private static async Task<RxVoid> DoSomethingAsync2()
     {
         Debug.Print("Hello World 1!");
-        Task.Delay(TimeSpan.FromSeconds(3));
-        return Observable.Return(Unit.Default);
+        await Task.Delay(TimeSpan.FromSeconds(3));
+        return RxVoid.Default;
     }
 }

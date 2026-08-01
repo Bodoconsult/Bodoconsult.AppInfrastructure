@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using System.Collections.Concurrent;
+using System.Threading.Channels;
 
 namespace Bodoconsult.App.Helpers;
 
@@ -20,7 +20,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <summary>
     /// Contains the internal queue
     /// </summary>
-    public BlockingCollection<T> InternalQueue;
+    public Channel<T> InternalQueue;
 
     /// <summary>
     /// The delegate to consume each item added to the queue
@@ -38,22 +38,11 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <param name="item">Item to add to the queue</param>
     public void Enqueue(T item)
     {
-        //if (InternalQueue == null)
-        //{
-        //    throw new ArgumentException("InternalQueue is null. Run StartConsumer() first!");
-        //}
-        //try
-        //{
-            if (!IsActivated || InternalQueue == null || InternalQueue.IsCompleted)
-            {
-                return;
-            }
-            InternalQueue.Add(item);
-        //}
-        //catch //(Exception e)
-        //{
-        //    // Do nothing
-        //}
+        if (!IsActivated)
+        {
+            return;
+        }
+        InternalQueue.Writer.TryWrite(item);
     }
 
     /// <summary>
@@ -62,22 +51,17 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <param name="items">List of items to add to the queue</param>
     public void Enqueue(IList<T> items)
     {
-        //try
-        //{
-            if (!IsActivated || InternalQueue == null || InternalQueue.IsCompleted)
-            {
-                return;
-            }
+        if (!IsActivated)
+        {
+            return;
+        }
 
-            foreach (var tItem in items)
-            {
-                InternalQueue.Add(tItem);
-            }
-        //}
-        //catch //(Exception e)
-        //{
-        //    // Do nothing
-        //}
+        var writer = InternalQueue.Writer;
+
+        foreach (var tItem in items)
+        {
+            writer.TryWrite(tItem);
+        }
     }
 
     /// <summary>
@@ -90,7 +74,12 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }
 
-        InternalQueue = new BlockingCollection<T>();
+        InternalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(100)
+        {
+            SingleReader = true,
+            SingleWriter = false,
+            FullMode = BoundedChannelFullMode.Wait
+        });
 
         _cancellationTokenSource = new CancellationTokenSource();
         Task.Factory.StartNew(RunInternal, TaskCreationOptions.LongRunning);
@@ -101,24 +90,26 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <summary>
     /// Internal consumer method. If queue does not have any items InternalQueue.GetConsumingEnumerable waits for new items!!!!
     /// </summary>
-    private void RunInternal()
+    private async Task<bool> RunInternal()
     {
         if (InternalQueue == null)
         {
-            return;
+            return true;
         }
 
         Thread.CurrentThread.Priority = ThreadPriority;
 
-        foreach (var item in InternalQueue.GetConsumingEnumerable(_cancellationTokenSource.Token))
-        {
-            ConsumerTaskDelegate.Invoke(item);
-        }
-    }
+        var reader = InternalQueue.Reader;
 
-    private bool IsCompleted()
-    {
-        return InternalQueue.IsCompleted;
+        while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
+        {
+            while (reader.TryRead(out var item))
+            {
+                ConsumerTaskDelegate.Invoke(item);
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -127,10 +118,8 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     public void StopConsumer()
     {
         IsActivated = false;
-        InternalQueue?.CompleteAdding();
-        Wait.Until(IsCompleted);
         _cancellationTokenSource?.Cancel(false);
-        InternalQueue?.Dispose();
+        InternalQueue?.Writer.TryComplete();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
     }

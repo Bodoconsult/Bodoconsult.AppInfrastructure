@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reactive.Concurrency;
 using Bodoconsult.App.Abstractions.Interfaces;
 using ReactiveUI.Builder;
+using ReactiveUI.Primitives.Concurrency;
 
 namespace Bodoconsult.App.ReactiveUI.Interfaces;
 
@@ -19,10 +19,10 @@ public interface IReactiveUiAppGlobals: IAppGlobals
     /// <summary>
     /// Current thread scheduler use for UI tasks
     /// </summary>
-    IScheduler? MainUiThreadScheduler { get; set; }
+    ISequencer? MainUiThreadScheduler { get; set; }
 
     /// <summary>
     /// Current thread scheduler used for non-UI tasks
     /// </summary>
-    IScheduler? TaskpoolScheduler { get; set; }
+    ISequencer? TaskpoolScheduler { get; set; }
 }

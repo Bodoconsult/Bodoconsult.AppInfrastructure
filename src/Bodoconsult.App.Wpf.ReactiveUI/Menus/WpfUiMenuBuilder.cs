@@ -3,12 +3,12 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
-using DynamicData;
-using DynamicData.Binding;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Bodoconsult.App.Wpf.Helpers;
+using DynamicData;
+using DynamicData.Binding;
 using ReactiveUI;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Menus;
@@ -77,7 +77,7 @@ public class WpfUiMenuBuilder : UiMenuBuilderBase
 
         if (item.CommandDefinition != null)
         {
-            menuItem.Command = ReactiveCommand.CreateFromObservable(item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
+            menuItem.Command = ReactiveCommand.CreateFromTask(item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
         }
 
         MenuItemsInternal.Add(menuItem);

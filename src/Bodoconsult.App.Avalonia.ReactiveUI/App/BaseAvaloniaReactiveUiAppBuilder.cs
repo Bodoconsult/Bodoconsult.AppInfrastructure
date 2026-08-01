@@ -10,7 +10,6 @@ using ReactiveUI;
 using ReactiveUI.Avalonia;
 using ReactiveUI.Builder;
 using Splat;
-using System.Runtime.Intrinsics.Arm;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.App;
 
@@ -44,14 +43,33 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
     /// </summary>
     public override void StartApplication()
     {
+        //// Load ReactiveUI and Avalonia
+        //AppGlobals.DiContainer.ServiceCollection.UseMicrosoftDependencyResolver();
+
+        //var x = AppLocator.CurrentMutable
+        //    .CreateReactiveUIBuilder()
+        //    .WithAvalonia();
+
+        //LoadViewLocation(x);
+
+        //x.BuildApp();
+        
+        //var provider = AppGlobals.DiContainer.BuildServiceProvider();
+        //provider.UseMicrosoftDependencyResolver();
+
+
         var dpr = new MicrosoftDependencyResolver(AppGlobals.DiContainer.ServiceCollection);
 
         var appB = dpr.CreateReactiveUIBuilder(); // Register Avalonia platform services
         appB.WithAvalonia();
 
-        // View location
-        appB.ConfigureViewLocator(LoadViewLocation);
+        // View locations
+        LoadViewLocation(appB);
+
+        // Build the app now
         var h = appB.BuildApp();
+
+
 
         if (dpr.ServiceProvider == null)
         {
@@ -68,13 +86,7 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
             AppLocator.SetLocator(dpr);
         }
 
-        if (AppGlobals is IReactiveUiAppGlobals uiAppGlobals)
-        {
-            uiAppGlobals.ReactiveUiInstance = h;
 
-            uiAppGlobals.MainUiThreadScheduler = h.MainThreadScheduler;
-            uiAppGlobals.TaskpoolScheduler = h.TaskpoolScheduler;
-        }
 
         AppGlobals.DiContainer.LoadServiceProvider(dpr.ServiceProvider);
 
@@ -83,6 +95,9 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
         //// For checking if DI container works
         //var service = AppLocator.Current.GetService<IAppLoggerProxy>();
         //var service2 = AppGlobals.DiContainer.Get<AvaloniaReactiveUiDemoAppMainWindowViewModel>();
+
+
+        var service = AppLocator.Current.GetService<IViewLocator>();
 
         // Logger
         AddLogger();
@@ -122,8 +137,8 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
     /// <summary>
     /// Load view location
     /// </summary>
-    /// <param name="locator">The locator to use for the app instance</param>
-    public virtual void LoadViewLocation(DefaultViewLocator locator)
+    /// <param name="appB">The app builder to use for the app instance</param>
+    public virtual void LoadViewLocation(IReactiveUIBuilder appB)
     {
         // Do nothing
     }

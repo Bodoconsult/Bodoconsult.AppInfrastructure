@@ -1,22 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Avalonia.Controls;
-using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Avalonia.Helpers;
-using Bodoconsult.App.Avalonia.ReactiveUI.Views;
-using Bodoconsult.App.BusinessTransactions.RequestData;
+using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
 using Bodoconsult.App.ReactiveUI.Ui;
 using Bodoconsult.App.ReactiveUI.ViewModels;
 using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-using System.Reactive;
+using ReactiveUI.Primitives;
 using System.Reactive.Linq;
-using System.Threading.Channels;
-using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
 
@@ -28,7 +22,14 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     private readonly IAppGlobals _appGlobals;
     private readonly Interaction<string, bool> _confirm;
 
-    public Interaction<string, bool> Confirm => this._confirm;
+    public Interaction<string, bool> Confirm => _confirm;
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToWindow1Command { get; set; }
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToFirstViewCommand { get; set; }
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToWindow1Instance2Command { get; set; }
+
 
     /// <summary>
     /// Default ctor
@@ -42,6 +43,10 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     {
         _appGlobals = appGlobals;
         _confirm = new Interaction<string, bool>();
+
+        GoToWindow1Command = ReactiveCommand.CreateFromTask(GoToWindow1);
+        GoToFirstViewCommand = ReactiveCommand.CreateFromTask(GoToFirstView);
+        GoToWindow1Instance2Command = ReactiveCommand.CreateFromTask(GoToWindow1Instance2);
     }
 
     /// <summary>
@@ -120,15 +125,14 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         };
 
         helpGroupItem.AddChild(command5);
+
     }
 
-    private IObservable<Unit> GoToInfoDialog()
+    private async Task<RxVoid> GoToInfoDialog()
     {
-        return Observable.StartAsync(async () =>
-        {
-            // this will throw an exception if nothing handles the interaction
-            _ = await _confirm.Handle("Hello user!");
-        });
+        // this will throw an exception if nothing handles the interaction
+        _ = await _confirm.Handle("Hello user!");
+        return RxVoid.Default;
     }
 
     // Sync command 
@@ -151,13 +155,36 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     /// Async version of the command
     /// </summary>
     /// <returns></returns>
-    [ReactiveCommand]
-    public IObservable<Unit> GoToFirstView()
+    public Task<RxVoid> GoToFirstView()
+    {
+        Region1?.Navigate(new FirstViewModel(Region1));
+        return Task.FromResult(RxVoid.Default);
+    }
+
+    public Task<RxVoid> GoToWindow1()
+    {
+        var windowViewModel = new Window1ViewModel(RegionManager);
+
+        var vm = new FirstViewModel();
+
+        RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+        return Task.FromResult(RxVoid.Default);
+    }
+
+    public Task<RxVoid> GoToWindow1Instance2()
     {
         try
         {
             Region1?.Navigate(new FirstViewModel(Region1));
-            return Observable.Return(Unit.Default);
+
+            var windowViewModel = new Window1ViewModel(RegionManager)
+            {
+                InstanceName = "Window1Instance2"
+            };
+
+            var vm = new FirstViewModel();
+            RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+            return Task.FromResult(RxVoid.Default);
         }
         catch (Exception e)
         {
@@ -166,29 +193,7 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         }
     }
 
-    [ReactiveCommand]
-    public IObservable<Unit> GoToWindow1()
-    {
-        //try
-        //{
-            //Region1?.Navigate(new FirstViewModel(Region1));
-
-            var windowViewModel = new Window1ViewModel(RegionManager);
-
-            var vm = new FirstViewModel();
-
-            RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
-            return Observable.Return(Unit.Default);
-        //}
-        //catch (Exception e)
-        //{
-        //    Console.WriteLine(e);
-        //    throw;
-        //}
-    }
-
-    [ReactiveCommand]
-    public IObservable<Unit> GoToWindow1Instance2()
+    public Task<RxVoid> GoToCopyright()
     {
         try
         {
@@ -201,31 +206,14 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
 
             var vm = new FirstViewModel();
 
+
             RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
-            return Observable.Return(Unit.Default);
+            return Task.FromResult(RxVoid.Default);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
-    }
-
-    [ReactiveCommand]
-    public IObservable<Unit> GoToCopyright()
-    {
-        return Observable.Start(() =>
-        {
-            var vm = Globals.Instance.DiContainer.Get<CopyrightViewModel>();
-            vm.LoadLicenseInfo();
-            vm.LoadToolInfo();
-
-            var window = new CopyrightWindow
-            {
-                DataContext = vm,
-                WindowState = Avalonia.Controls.WindowState.Normal
-            };
-            window.Show();
-        }, RxSchedulers.MainThreadScheduler);
     }
 }

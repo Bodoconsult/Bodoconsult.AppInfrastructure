@@ -40,9 +40,11 @@ public class DiContainer
     /// <summary>
     /// Create the service provider. Must be called after <see cref="ServiceCollection"/> is fully configured.
     /// </summary>
-    public void BuildServiceProvider()
+    /// <returns><see cref="ServiceProvider"/> instance</returns>
+    public IServiceProvider BuildServiceProvider()
     {
         ServiceProvider = ServiceCollection.BuildServiceProvider();
+        return ServiceProvider;
     }
 
     /// <summary>

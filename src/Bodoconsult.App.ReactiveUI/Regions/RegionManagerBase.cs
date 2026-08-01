@@ -3,6 +3,7 @@
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
 using System.Collections.Concurrent;
+using ReactiveUI.Primitives;
 
 namespace Bodoconsult.App.ReactiveUI.Regions;
 
@@ -109,7 +110,15 @@ public abstract class RegionManagerBase : IRegionManager
         ArgumentNullException.ThrowIfNull(region);
         ArgumentNullException.ThrowIfNull(viewModel);
 
-        region.Router.Navigate.Execute(viewModel);
+        try
+        {
+            SubscribeExtensions.Subscribe(region.Router.Navigate.Execute(viewModel));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
 

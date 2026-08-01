@@ -13,7 +13,7 @@
 		<PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="19.2.1" />-->
 		<PackageReference Include="ReactiveUI.WPF" Version="*" />
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
-		<PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />
+		<PackageReference Include="ReactiveUI.Extensions" Version="*" PrivateAssets="all" />
 		<!--<PackageReference Include="Splat" Version="19.2.1" />
 		<PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="19.2.1" />-->
 	</ItemGroup>

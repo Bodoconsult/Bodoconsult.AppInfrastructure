@@ -71,7 +71,8 @@
 	<ItemGroup>
 		<PackageReference Include="ReactiveUI.WPF" Version="*" />
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
-		<PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />
+		<PackageReference Include="ReactiveUI.Extensions" Version="*" PrivateAssets="all" />
+		<PackageReference Include="ReactiveUI.Routing" Version="*" />
 		<PackageReference Include="MahApps.Metro" Version="2.4.11" />
 		<PackageReference Include="MahApps.Metro.IconPacks" Version="6.2.1" />
 	</ItemGroup>

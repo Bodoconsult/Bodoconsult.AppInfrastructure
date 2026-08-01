@@ -3,7 +3,6 @@
 // https://www.codestudy.net/blog/how-can-i-set-processor-affinity-to-a-thread-or-a-task-in-net/#high-priority-tips-for-tpl-tasks
 
 using System.Collections.Concurrent;
-using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.App.Helpers;

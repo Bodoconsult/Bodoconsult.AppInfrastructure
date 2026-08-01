@@ -222,6 +222,8 @@ public class ProducerConsumerQueue2Tests
             queue.Enqueue(_data);
         });
 
+        Task.Delay(200).Wait();
+
         // Act 
         queue.StopConsumer();
 

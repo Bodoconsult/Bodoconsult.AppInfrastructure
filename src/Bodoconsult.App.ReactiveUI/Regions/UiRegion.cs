@@ -2,8 +2,8 @@
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
-using System.Reactive;
 using System.Reactive.Linq;
+using ReactiveUI.Primitives;
 
 namespace Bodoconsult.App.ReactiveUI.Regions;
 
@@ -27,11 +27,10 @@ public class UiRegion : ReactiveObject, IScreen
         // execute the default Router.NavigateBack command. Another
         // option is to define your own command with custom
         // canExecute condition as such:
-        var canGoBack = this
-            .WhenAnyValue(x => x.Router.NavigationStack.Count)
-            .Select(count => count > 0);
+        var canGoBack = Observable.Select(this
+                .WhenAnyValue(x => x.Router.NavigationStack.Count), count => count > 0);
         GoBack = ReactiveCommand.CreateFromObservable(
-            () => Router.NavigateBack.Execute(Unit.Default),
+            () => Router.NavigateBack.Execute(RxVoid.Default),
             canGoBack);
     }
 
@@ -51,5 +50,5 @@ public class UiRegion : ReactiveObject, IScreen
     /// <summary>
     /// The command that navigates a user back
     /// </summary>
-    public ReactiveCommand<Unit, IRoutableViewModel> GoBack { get; }
+    public ReactiveCommand<RxVoid, IRoutableViewModel> GoBack { get; }
 }

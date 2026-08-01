@@ -1,4 +1,6 @@
-﻿using Bodoconsult.App.Abstractions.Interfaces;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.Abstractions.Interfaces;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 

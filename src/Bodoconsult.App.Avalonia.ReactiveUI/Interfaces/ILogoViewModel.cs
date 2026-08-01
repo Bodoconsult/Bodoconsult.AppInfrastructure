@@ -3,8 +3,6 @@
 using Avalonia.Media.Imaging;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.ReactiveUI.Regions;
-using ReactiveUI;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Interfaces;
 

@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Runtime.Versioning;
-using Avalonia;
 using NUnit.Framework;
-using Splat;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Test;
 

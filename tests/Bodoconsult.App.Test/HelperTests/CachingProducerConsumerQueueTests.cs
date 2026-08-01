@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Helpers;
-using Microsoft.Testing.Platform.Extensions.Messages;
 
 namespace Bodoconsult.App.Test.HelperTests;
 

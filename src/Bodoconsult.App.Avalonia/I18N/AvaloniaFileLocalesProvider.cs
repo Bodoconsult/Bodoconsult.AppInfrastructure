@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reflection;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Bodoconsult.I18N.LocalesProviders;

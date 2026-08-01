@@ -2,13 +2,11 @@
 
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Converters;
 using Avalonia.Media;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.Extensions;
 using Bodoconsult.App.Avalonia.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Ui;
-using Color = Avalonia.Media.Color;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Converters;
 

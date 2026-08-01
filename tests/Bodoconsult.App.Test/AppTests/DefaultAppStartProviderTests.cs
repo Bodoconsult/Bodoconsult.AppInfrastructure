@@ -2,7 +2,6 @@
 
 
 using Bodoconsult.App.Test.App;
-using Microsoft.Extensions.Configuration;
 
 namespace Bodoconsult.App.Test.AppTests;
 

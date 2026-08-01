@@ -2,11 +2,9 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Logging.LoggingConfigurators;
-using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
 
 namespace Bodoconsult.App.Logging;
 

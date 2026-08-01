@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.IO;
-using System.Reflection;
 using Bodoconsult.App.Wpf.Models;
 using Bodoconsult.I18N.LocalesProviders;
 

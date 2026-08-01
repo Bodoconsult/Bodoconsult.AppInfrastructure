@@ -3,13 +3,12 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Menus;
 using Bodoconsult.App.ReactiveUI.Ui;
 using Bodoconsult.App.ReactiveUI.ViewModels;
-using ReactiveUI.SourceGenerators;
-using System.Reactive;
-using System.Reactive.Linq;
+using ReactiveUI;
+using ReactiveUI.Primitives;
 using System.Windows;
-using Bodoconsult.App.ReactiveUI.Menus;
 
 namespace WpfReactiveUiDemoApp.ViewModels;
 
@@ -18,6 +17,7 @@ namespace WpfReactiveUiDemoApp.ViewModels;
 /// </summary>
 public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewModel
 {
+
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -26,7 +26,17 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
     /// <param name="regionManager">Region manager</param>
     public WpfReactiveUiDemoAppMainWindowViewModel(IAppEventListener listener, II18N translationService,
         IRegionManager regionManager) : base(listener, translationService, regionManager)
-    { }
+    {
+        GoToWindow1Command = ReactiveCommand.CreateFromTask(GoToWindow1);
+        GoToFirstViewCommand = ReactiveCommand.CreateFromTask(GoToFirstView);
+        GoToWindow1Instance2Command = ReactiveCommand.CreateFromTask(GoToWindow1Instance2);
+    }
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToWindow1Command { get; set; }
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToFirstViewCommand { get; set; }
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToWindow1Instance2Command { get; set; }
 
     /// <summary>
     /// Create the main form of the application
@@ -94,63 +104,69 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
     /// Async version of the command
     /// </summary>
     /// <returns></returns>
-    [ReactiveCommand]
-    public IObservable<Unit> GoToFirstView()
+
+    public Task<RxVoid> GoToFirstView()
     {
-        try
+        return new Task<RxVoid>(() =>
         {
-            Region1?.Navigate(new FirstViewModel(Region1));
-            return Observable.Return(Unit.Default);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-
-    [ReactiveCommand]
-    public IObservable<Unit> GoToWindow1()
-    {
-        try
-        {
-            //Region1?.Navigate(new FirstViewModel(Region1));
-
-            var windowViewModel = new Window1ViewModel(RegionManager);
-
-            var vm = new FirstViewModel();
-
-            RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
-            return Observable.Return(Unit.Default);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-
-    [ReactiveCommand]
-    public IObservable<Unit> GoToWindow1Instance2()
-    {
-        try
-        {
-            Region1?.Navigate(new FirstViewModel(Region1));
-
-            var windowViewModel = new Window1ViewModel(RegionManager)
+            try
             {
-                InstanceName = "Window1Instance2"
-            };
+                Region1?.Navigate(new FirstViewModel(Region1));
+                return RxVoid.Default;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        });
+    }
 
-            var vm = new FirstViewModel();
-
-            RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
-            return Observable.Return(Unit.Default);
-        }
-        catch (Exception e)
+    public Task<RxVoid> GoToWindow1()
+    {
+        return new Task<RxVoid>(() =>
         {
-            Console.WriteLine(e);
-            throw;
-        }
+            try
+            {
+
+                var windowViewModel = new Window1ViewModel(RegionManager);
+
+                var vm = new FirstViewModel();
+
+                RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+                return RxVoid.Default;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        });
+    }
+
+    public Task<RxVoid> GoToWindow1Instance2()
+    {
+        return new Task<RxVoid>(() =>
+        {
+            try
+            {
+                Region1?.Navigate(new FirstViewModel(Region1));
+
+                var windowViewModel = new Window1ViewModel(RegionManager)
+                {
+                    InstanceName = "Window1Instance2"
+                };
+
+                var vm = new FirstViewModel();
+
+                RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+                return RxVoid.Default;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        });
     }
 }

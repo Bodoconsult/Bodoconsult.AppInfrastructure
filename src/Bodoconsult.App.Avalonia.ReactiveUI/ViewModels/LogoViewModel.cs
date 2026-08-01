@@ -13,7 +13,7 @@ namespace Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 /// <summary>
 /// Viewmodel for a logo 
 /// </summary>
-public partial class LogoViewModel : ReactiveObject, IRoutableViewModel, ILogoViewModel
+public partial class LogoViewModel : ReactiveObject, ILogoViewModel
 {
     private readonly IAppGlobals _appGlobals;
 

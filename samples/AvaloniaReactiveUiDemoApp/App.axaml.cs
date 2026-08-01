@@ -7,9 +7,7 @@ using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Helpers;
 using System.Diagnostics;
-using System.Reflection;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using ReactiveUI.Builder;
 
 namespace AvaloniaReactiveUiDemoApp;
 

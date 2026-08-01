@@ -4,12 +4,14 @@ using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
+using ReactiveUI.Primitives;
 using ReactiveUI.SourceGenerators;
 
 namespace WpfReactiveUiDemoApp.ViewModels;
 
 public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
 {
+
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -17,7 +19,11 @@ public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
     public Window1ViewModel(IRegionManager regionManager)
     {
         RegionManager = regionManager;
+        GoToSecondViewCommand = ReactiveCommand.CreateFromTask(GoToSecondView);
     }
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToSecondViewCommand { get; set; }
+
 
     /// <summary>
     /// Instance name of the window. If null or string.Empty the window instance name is derived from the window type name (loading the window as a singleton instance)
@@ -47,21 +53,24 @@ public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
     [Reactive]
     public partial UiRegion? Region3 { get; set; }
 
-    [ReactiveCommand]
-    public void GoToSecondView()
+
+    public Task<RxVoid> GoToSecondView()
     {
-        try
+        return new Task<RxVoid>(() =>
         {
-            Region1?.Navigate(new SecondViewModel(Region1));
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+            try
+            {
+                Region1?.Navigate(new SecondViewModel(Region1));
+                return RxVoid.Default;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        });
     }
 
-    //[ReactiveCommand]
     //public void GoToMainWindow()
     //{
     //    try

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Collections.Concurrent;
-using System.Diagnostics;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 

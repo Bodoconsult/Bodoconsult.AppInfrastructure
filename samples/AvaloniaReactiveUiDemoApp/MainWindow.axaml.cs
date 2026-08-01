@@ -1,19 +1,18 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.ReactiveUI.Extensions;
-using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.ReactiveUI.Regions;
+using AvaloniaReactiveUiDemoApp.ViewModels;
+using Bodoconsult.App.Avalonia.Helpers;
+using Bodoconsult.App.Avalonia.ReactiveUI.Converters;
 using Bodoconsult.App.Avalonia.ReactiveUI.Menus;
 using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
+using Bodoconsult.App.ReactiveUI.Extensions;
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
-using System.Reactive.Disposables;
-using System.Reactive.Disposables.Fluent;
-using System.Reactive.Linq;
-using Bodoconsult.App.Avalonia.ReactiveUI.Converters;
-using AvaloniaReactiveUiDemoApp.ViewModels;
-using Bodoconsult.App.Avalonia.Helpers;
 using ReactiveUI.Avalonia;
+using ReactiveUI.Primitives;
+using ReactiveUI.Primitives.Disposables;
 
 namespace AvaloniaReactiveUiDemoApp;
 
@@ -28,32 +27,34 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
 
         InitializeComponent();
 
-        this.WhenActivated(disposables =>
+        this.WhenActivated(d =>
         {
-            this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
+            SubscribeExtensions.Subscribe(this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
             {
                 if (x == null)
                 {
                     return;
                 }
 
-                RegisterAllRouterBindings(x, disposables);
-
-                x.Confirm
-                    .RegisterHandler(async interaction =>
-                    {
-                        var deleteIt = await this.ShowInfoDialog(interaction.Input) ?? true;
-                        interaction.SetOutput(deleteIt);
-                    });
+                RegisterAllRouterBindings(x, d);
             });
 
-            
+            //RegisterAllRouterBindings(ViewModel, d);
         });
     }
 
-    public void RegisterAllRouterBindings(AvaloniaReactiveUiDemoAppMainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void RegisterAllRouterBindings(AvaloniaReactiveUiDemoAppMainWindowViewModel? viewModel, MultipleDisposable disposables)
     {
+        ArgumentNullException.ThrowIfNull(viewModel);
         ArgumentNullException.ThrowIfNull(MainMenu.DataContext);
+
+        viewModel.Confirm
+            .RegisterHandler(async interaction =>
+            {
+                var deleteIt = await this.ShowInfoDialog(interaction.Input) ?? true;
+                interaction.SetOutput(deleteIt);
+            });
+
 
         // Bind WindowState
         this.Bind(viewModel, vm => vm.WindowState,
@@ -77,7 +78,7 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
         RegionManager = viewModel.RegionManager;
 
         var rm = (AvaloniaRegionManager)viewModel.RegionManager;
-        var window = rm.RegisterInstances<MainWindow, AvaloniaReactiveUiDemoAppMainWindowViewModel>(this, disposables);
+        var window = rm.RegisterInstances<MainWindow, AvaloniaReactiveUiDemoAppMainWindowViewModel>(this);
 
         ArgumentNullException.ThrowIfNull(DocumentRegion.Name);
         ArgumentNullException.ThrowIfNull(MenuRegion.Name);
@@ -107,6 +108,10 @@ public partial class MainWindow : ReactiveWindow<AvaloniaReactiveUiDemoAppMainWi
 
         this.BindCommand(viewModel, x => x.Region1!.GoBack, x => x.GoBackButton)
             .DisposeWith(disposables);
+
+
+        //var vm = Globals.Instance .DiContainer.Get<LogoViewModel>();
+        //DocumentRegion.Router.Navigate.Execute(vm);
 
         // Start content
         viewModel.NavigateToStart();

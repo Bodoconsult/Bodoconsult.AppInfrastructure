@@ -4,7 +4,6 @@
 using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Bodoconsult.App.Logging;

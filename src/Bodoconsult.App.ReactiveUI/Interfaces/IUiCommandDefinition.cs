@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reactive;
+using ReactiveUI.Primitives;
 
 namespace Bodoconsult.App.ReactiveUI.Interfaces;
 
@@ -12,7 +12,7 @@ public interface IUiCommandDefinition
     /// <summary>
     /// Action to execute with the command
     /// </summary>
-    Func<IObservable<Unit>> ExecuteMethod { get;  }
+    Func<Task<RxVoid>> ExecuteMethod { get;  }
 
     /// <summary>
     /// Condition func to return true if the ExcuteMethod may run or false if not

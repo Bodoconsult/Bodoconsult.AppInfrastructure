@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.App.Helpers;
@@ -12,11 +11,14 @@ using Bodoconsult.App.Wpf.Documents.Test.Helpers;
 using Bodoconsult.App.Wpf.Helpers;
 using Bodoconsult.App.Wpf.I18N;
 using NUnit.Framework;
+using System.IO;
+using System.Runtime.Versioning;
 
 // ReSharper disable InconsistentNaming
 
 namespace Bodoconsult.App.Wpf.Documents.Test;
 
+[SupportedOSPlatform("windows")]
 [TestFixture]
 public class ReportBaseTests
 {

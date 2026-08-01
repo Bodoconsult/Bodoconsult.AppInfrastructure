@@ -3,11 +3,6 @@
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bodoconsult.App.Avalonia.ViewModels;
 
@@ -24,14 +19,21 @@ public partial class InfoDialogViewModel : ObservableObject
     public string Message { get; }
 
     /// <summary>
+    /// Window title for the dialog
+    /// </summary>
+    public string Title { get;  }
+
+    /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="dialog">Dialog window</param>
     /// <param name="message">Dialog message to show</param>
-    public InfoDialogViewModel(Window dialog, string message)
+    /// <param name="title">Title. Default: Info</param>
+    public InfoDialogViewModel(Window dialog, string message, string title= "Info")
     {
         _dialog = dialog;
         Message = message;
+        Title = title;
     }
 
     /// <summary>

@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Runtime.InteropServices.ComTypes;
-
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>

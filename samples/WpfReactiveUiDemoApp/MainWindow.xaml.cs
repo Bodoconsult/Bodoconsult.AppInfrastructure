@@ -1,14 +1,15 @@
-﻿using Bodoconsult.App.ReactiveUI.Extensions;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using Bodoconsult.App.Wpf.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 using ReactiveUI;
-using System.Reactive.Disposables;
-using System.Reactive.Disposables.Fluent;
-using System.Reactive.Linq;
 using Bodoconsult.App.Wpf.ReactiveUI.Converters;
+using ReactiveUI.Primitives;
+using ReactiveUI.Primitives.Disposables;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp;
@@ -25,20 +26,24 @@ public partial class MainWindow : IUiWindow
 
         this.WhenActivated(disposables =>
         {
-            this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
-            {
-                if (x == null)
-                {
-                    return;
-                }
+            //SubscribeExtensions.Subscribe(this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler),  x =>
+            //{
+            //    if (x == null)
+            //    {
+            //        return;
+            //    }
 
-                RegisterAllRouterBindings(x, disposables);
-            });
+            //    RegisterAllRouterBindings(x, disposables);
+            //});
+
+            RegisterAllRouterBindings(ViewModel, disposables);
         });
     }
 
-    public void RegisterAllRouterBindings(WpfReactiveUiDemoAppMainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void RegisterAllRouterBindings(WpfReactiveUiDemoAppMainWindowViewModel? viewModel, MultipleDisposable disposables)
     {
+        ArgumentNullException.ThrowIfNull(viewModel);
+
         // Bind WindowState
         this.Bind(viewModel, vm => vm.WindowState,
                 view => view.WindowState,

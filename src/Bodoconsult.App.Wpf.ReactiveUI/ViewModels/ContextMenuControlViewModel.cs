@@ -2,12 +2,12 @@
 
 using Bodoconsult.App.ReactiveUI.Delegates;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
-using DynamicData;
-using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using DynamicData;
+using DynamicData.Binding;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 

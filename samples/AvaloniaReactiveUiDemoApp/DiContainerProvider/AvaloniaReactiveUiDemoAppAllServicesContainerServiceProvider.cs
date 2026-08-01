@@ -1,18 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Abstractions.DependencyInjection;
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Logging;
-using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 using AvaloniaReactiveUiDemoApp.AppData;
 using AvaloniaReactiveUiDemoApp.ViewModels;
-using Bodoconsult.App.Avalonia.Helpers;
-using Bodoconsult.App.Avalonia.ReactiveUI;
-using Bodoconsult.App.Avalonia.ReactiveUI.Views;
-using Bodoconsult.App.ReactiveUI.ViewModels;
-using Bodoconsult.App.Avalonia.Interfaces;
+using Bodoconsult.App.Abstractions.DependencyInjection;
+using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
+using Bodoconsult.App.Logging;
+using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.ReactiveUI.ViewModels;
+using ReactiveUI.Builder;
+
 
 namespace AvaloniaReactiveUiDemoApp.DiContainerProvider;
 
@@ -31,7 +29,7 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         diContainer.AddSingleton<IAppEventListener, AppEventListener>();
 
         // Load all other services required for the app now
-        
+
         // Regions manager with all window types loaded with regions
         var rm = new AvaloniaRegionManager();
         rm.RegisterWindow<MainWindow, AvaloniaReactiveUiDemoAppMainWindowViewModel>(["DocumentRegion", "MenuRegion"], null);
@@ -68,6 +66,10 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         //var btl = diContainer.Get<IBusinessTransactionLoader>();
         //btl.LoadProviders();
 
+
+
+
+
         var vm = diContainer.Get<LogoViewModel>();
 
         var exe = Environment.ProcessPath;
@@ -82,5 +84,16 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         var fileName = Path.Combine( fi.DirectoryName ?? "", "logo.jpg");
 
         vm.LoadLogoFromFile(fileName);
+    }
+
+    /// <summary>
+    /// Load view location
+    /// </summary>
+    /// <param name="appB">The app builder to use for the app instance</param>
+    public void LoadViewLocation(IReactiveUIBuilder appB)
+    {
+        appB.WithViewsFromAssembly(this.GetType().Assembly);
+        appB.WithViewsFromAssembly(typeof(LogoViewModel).Assembly);
+        appB.WithViewsFromAssembly(typeof(CopyrightViewModel).Assembly);
     }
 }

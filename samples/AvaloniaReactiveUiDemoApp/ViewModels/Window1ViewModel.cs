@@ -4,11 +4,12 @@ using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
+using ReactiveUI.Primitives;
 using ReactiveUI.SourceGenerators;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
 
-public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
+public partial class Window1ViewModel : ReactiveObject, IUiWindowViewModel
 {
     /// <summary>
     /// Default ctor
@@ -17,6 +18,8 @@ public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
     public Window1ViewModel(IRegionManager regionManager)
     {
         RegionManager = regionManager;
+
+        GoToSecondViewCommand = ReactiveCommand.CreateFromTask(GoToSecondView);
     }
 
     /// <summary>
@@ -53,12 +56,16 @@ public partial class Window1ViewModel: ReactiveObject, IUiWindowViewModel
     [Reactive]
     public partial bool IsRegistered { get; set; }
 
-    [ReactiveCommand]
-    public void GoToSecondView()
+
+    public ReactiveCommand<RxVoid, RxVoid> GoToSecondViewCommand { get; set; }
+
+
+    public Task<RxVoid> GoToSecondView()
     {
         try
         {
             Region1?.Navigate(new SecondViewModel(Region1));
+            return Task.FromResult(RxVoid.Default);
         }
         catch (Exception e)
         {

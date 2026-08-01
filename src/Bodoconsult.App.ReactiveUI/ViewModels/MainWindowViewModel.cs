@@ -3,17 +3,16 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Logging;
-using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.ReactiveUI.Ui;
-using DynamicData;
-using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Tracing;
 using System.Reflection;
+using DynamicData;
+using DynamicData.Binding;
 
 namespace Bodoconsult.App.ReactiveUI.ViewModels;
 
@@ -564,10 +563,6 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
             1000,
             1000);
     }
-
-
-    /// <summary>Gets the Router associated with this Screen.</summary>
-    public RoutingState Router { get; set; } = new();
 
     /// <summary>
     /// Menu items for a menu in the window

@@ -3,8 +3,6 @@
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Logging;
 using Bodoconsult.App.Test.App;
-using Bodoconsult.App.Test.DataExportServices;
-using NUnit.Framework.Legacy;
 using System.Diagnostics;
 
 namespace Bodoconsult.App.Test.Logging;

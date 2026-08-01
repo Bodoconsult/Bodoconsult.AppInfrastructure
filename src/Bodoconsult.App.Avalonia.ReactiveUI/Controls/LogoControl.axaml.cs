@@ -1,4 +1,3 @@
-using Avalonia.Controls;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 using ReactiveUI.Avalonia;
 

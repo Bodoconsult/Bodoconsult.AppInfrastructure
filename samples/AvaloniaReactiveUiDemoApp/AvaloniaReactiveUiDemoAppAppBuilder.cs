@@ -2,13 +2,12 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.App;
-using ReactiveUI;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using AvaloniaReactiveUiDemoApp.DiContainerProvider;
 using AvaloniaReactiveUiDemoApp.ViewModels;
-using AvaloniaReactiveUiDemoApp.Views;
-using Bodoconsult.App.Avalonia.ReactiveUI.Controls;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
+using Bodoconsult.App.ReactiveUI.ViewModels;
+using ReactiveUI.Builder;
 
 namespace AvaloniaReactiveUiDemoApp;
 
@@ -33,12 +32,12 @@ public class AvaloniaReactiveUiDemoAppAppBuilder : BaseAvaloniaReactiveUiAppBuil
     /// <summary>
     /// Load view location
     /// </summary>
-    /// <param name="locator">The locator to use for the app instance</param>
-    public override void LoadViewLocation(DefaultViewLocator locator)
+    /// <param name="appB">The app builder to use for the app instance</param>
+    public override void LoadViewLocation(IReactiveUIBuilder appB)
     {
-        locator.Map<FirstViewModel, FirstView>(() => new FirstView());
-        locator.Map<SecondViewModel, SecondView>(() => new SecondView());
-        locator.Map<LogoViewModel, LogoControl>(() => new LogoControl());
+        appB.WithViewsFromAssembly(this.GetType().Assembly);
+        appB.WithViewsFromAssembly(typeof(LogoViewModel).Assembly);
+        appB.WithViewsFromAssembly(typeof(CopyrightViewModel).Assembly);
     }
 
     /// <summary>

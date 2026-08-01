@@ -4,10 +4,9 @@ using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.Wpf.ReactiveUI.Regions;
 using ReactiveUI;
-using System.Reactive.Disposables;
-using System.Reactive.Disposables.Fluent;
-using System.Reactive.Linq;
 using Bodoconsult.App.ReactiveUI.Regions;
+using ReactiveUI.Primitives;
+using ReactiveUI.Primitives.Disposables;
 using WpfReactiveUiDemoApp.ViewModels;
 
 namespace WpfReactiveUiDemoApp.Views;
@@ -23,24 +22,23 @@ public partial class Window1 : IUiWindow
 
         this.WhenActivated(disposables =>
         {
-            this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
-            {
-                if (x == null)
-                {
-                    return;
-                }
+            //SubscribeExtensions.Subscribe(this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
+            //{
+            //    if (x == null)
+            //    {
+            //        return;
+            //    }
 
-                RegisterAllRouterBindings(x, disposables);
-            });
+            //    RegisterAllRouterBindings(x, disposables);
+            //});
+
+            RegisterAllRouterBindings(ViewModel, disposables);
         });
     }
 
-    public void RegisterAllRouterBindings(Window1ViewModel viewModel, CompositeDisposable disposables)
+    public void RegisterAllRouterBindings(Window1ViewModel? viewModel, MultipleDisposable disposables)
     {
-        //if (viewModel == null)
-        //{
-        //    return;
-        //}
+        ArgumentNullException.ThrowIfNull(viewModel);
 
         var rm = (WpfRegionManager)viewModel.RegionManager;
         var window = rm.RegisterInstances<Window1, Window1ViewModel>(this, disposables);

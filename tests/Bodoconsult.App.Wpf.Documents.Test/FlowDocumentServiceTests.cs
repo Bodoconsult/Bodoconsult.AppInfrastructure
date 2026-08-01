@@ -1,11 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System.IO;
-using System.Reflection;
-using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Wpf.Documents.General;
@@ -13,11 +8,17 @@ using Bodoconsult.App.Wpf.Documents.Services;
 using Bodoconsult.App.Wpf.Documents.Test.Helpers;
 using Bodoconsult.App.Wpf.Helpers;
 using NUnit.Framework;
+using System.IO;
+using System.Runtime.Versioning;
+using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Bodoconsult.App.Wpf.Documents.Test;
 
 [TestFixture]
 [RequiresThread(ApartmentState.STA)]
+[SupportedOSPlatform("windows")]
 public class FlowDocumentServiceTests
 {
     private readonly string _tempPath = Path.GetTempPath();
@@ -28,7 +29,7 @@ public class FlowDocumentServiceTests
 
     public FlowDocumentServiceTests()
     {
-        var fi = new FileInfo(Assembly.GetExecutingAssembly().Location);
+        //var fi = new FileInfo(Assembly.GetExecutingAssembly().Location);
 
 
         _chartXamlPath = Path.Combine(_testDataPath, "3DChart.xaml");

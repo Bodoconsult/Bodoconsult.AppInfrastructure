@@ -73,7 +73,7 @@ public class AvaloniaUiMenuBuilder : UiMenuBuilderBase
 
         if (item.CommandDefinition != null)
         {
-            menuItem.Command = ReactiveCommand.CreateFromObservable(item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
+            menuItem.Command = ReactiveCommand.CreateFromTask(item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
         }
 
         //MenuItemsInternal.Add(menuItem);

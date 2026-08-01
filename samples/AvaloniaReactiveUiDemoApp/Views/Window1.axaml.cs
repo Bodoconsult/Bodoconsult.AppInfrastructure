@@ -7,9 +7,8 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 using ReactiveUI.Avalonia;
-using System.Reactive.Disposables;
-using System.Reactive.Disposables.Fluent;
-using System.Reactive.Linq;
+using ReactiveUI.Primitives;
+using ReactiveUI.Primitives.Disposables;
 
 namespace AvaloniaReactiveUiDemoApp.Views;
 
@@ -24,7 +23,7 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
 
         this.WhenActivated(disposables =>
         {
-            this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
+            ObservableExtensions.Subscribe(this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
             {
                 if (x == null)
                 {
@@ -36,7 +35,7 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
         });
     }
 
-    public void RegisterAllRouterBindings(Window1ViewModel viewModel, CompositeDisposable disposables)
+    public void RegisterAllRouterBindings(Window1ViewModel viewModel, MultipleDisposable disposables)
     {
         //if (viewModel == null)
         //{
@@ -44,7 +43,7 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
         //}
 
         var rm = (AvaloniaRegionManager)viewModel.RegionManager;
-        var window = rm.RegisterInstances<Window1, Window1ViewModel>(this, disposables);
+        var window = rm.RegisterInstances<Window1, Window1ViewModel>(this);
 
         ArgumentNullException.ThrowIfNull(DocumentRegion.Name);
         ArgumentNullException.ThrowIfNull(MenuRegion.Name);

@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using System.Reactive;
+using ReactiveUI.Primitives;
 
 namespace Bodoconsult.App.ReactiveUI.Ui;
 
@@ -15,7 +15,7 @@ public class UiCommandDefinition : IUiCommandDefinition
     /// </summary>
     /// <param name="executeMethod">Action to execute with the command</param>
     /// <param name="canExecuteMethod">Observable to return true if the ExcuteMethod may run or false if not</param>
-    public UiCommandDefinition(Func<IObservable<Unit>> executeMethod, IObservable<bool>? canExecuteMethod)
+    public UiCommandDefinition(Func<Task<RxVoid>> executeMethod, IObservable<bool>? canExecuteMethod)
     {
         ExecuteMethod = executeMethod;
         CanExecuteMethod = canExecuteMethod;
@@ -24,7 +24,7 @@ public class UiCommandDefinition : IUiCommandDefinition
     /// <summary>
     /// Async task to execute with the command
     /// </summary>
-    public Func<IObservable<Unit>> ExecuteMethod { get;  }
+    public Func<Task<RxVoid>> ExecuteMethod { get;  }
 
     /// <summary>
     /// Condition func to return true if the ExcuteMethod may run or false if not

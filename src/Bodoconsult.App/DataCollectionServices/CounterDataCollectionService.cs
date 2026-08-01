@@ -3,7 +3,6 @@
 using System.Diagnostics;
 using System.Timers;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Helpers;
 
 namespace Bodoconsult.App.DataCollectionServices;
 
@@ -21,7 +20,7 @@ public class CounterDataCollectionService<T> : BaseDataCollectionService<T> wher
     { }
 
     /// <summary>
-    /// The number of counts the service is collecting data in ms. The service is collecting data every <see cref="CollectionInterval"/> ms until the number of counts is reached
+    /// The number of counts the service is collecting data in ms. The service is collecting data every CollectionInterval ms until the number of counts is reached
     /// </summary>
     public int CollectionCounter { get; set; } = 10;
 

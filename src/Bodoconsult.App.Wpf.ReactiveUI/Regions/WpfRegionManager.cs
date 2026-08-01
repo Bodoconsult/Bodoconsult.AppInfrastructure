@@ -5,9 +5,9 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.Helpers;
 using ReactiveUI;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
 using System.Windows;
+using ReactiveUI.Primitives;
+using ReactiveUI.Primitives.Disposables;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;
 
@@ -25,7 +25,7 @@ public class WpfRegionManager : RegionManagerBase
     /// <param name="disposables">Disposables</param>
     /// <returns><see cref="IUiWindow"/> instance</returns>
     /// <exception cref="ArgumentNullException">Thrown if there are no RoutedViewHost controls in the window or a region name is not defined in the window</exception>
-    public IUiWindow RegisterInstances<T, TViewModel>(T window, CompositeDisposable disposables) where T : ReactiveWindow<TViewModel>, IUiWindow where TViewModel : class, IUiWindowViewModel
+    public IUiWindow RegisterInstances<T, TViewModel>(T window, MultipleDisposable disposables) where T : ReactiveWindow<TViewModel>, IUiWindow where TViewModel : class, IUiWindowViewModel
     {
         var type = typeof(T);
 
@@ -66,27 +66,29 @@ public class WpfRegionManager : RegionManagerBase
         {
             throw new ArgumentException($"View {uiWindow.GetType().Name} is not a ReactiveWindow instance as expected");
         }
-        
+
         reactiveWindow.ViewModel = windowViewModel;
         reactiveWindow.Focus();
         reactiveWindow.Show();
 
         // Activate navigation to target region now
-        reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(x =>
-        {
-            var region = uiWindow.FindRegion(regionName);
-
-            ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
-
-            if (viewModel is not IUiRegionViewModel uvm)
+        SubscribeExtensions.Subscribe(
+            reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
             {
-                throw new ArgumentException($"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
-            }
+                var region = uiWindow.FindRegion(regionName);
 
-            uvm.InjectScreen(region);
+                ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
-            region.Router.Navigate.Execute(viewModel);
-        });
+                if (viewModel is not IUiRegionViewModel uvm)
+                {
+                    throw new ArgumentException(
+                        $"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
+                }
+
+                uvm.InjectScreen(region);
+
+                region.Router.Navigate.Execute(viewModel);
+            });
 
         return uiWindow;
     }

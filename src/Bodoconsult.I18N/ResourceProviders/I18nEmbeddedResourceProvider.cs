@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Bodoconsult.App.Abstractions.Helpers;
-using Bodoconsult.I18N.Helpers;
 using Bodoconsult.I18N.LocalesProviders;
 
 namespace Bodoconsult.I18N.ResourceProviders;

@@ -1,7 +1,8 @@
-﻿using ReactiveUI;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using ReactiveUI;
 using Splat;
-using System.Reactive;
-using System.Reactive.Linq;
+using ReactiveUI.Primitives;
 using WpfReactiveDemoApp.Views;
 
 namespace WpfReactiveDemoApp.ViewModels;
@@ -13,10 +14,10 @@ public class MainViewModel : ReactiveObject, IScreen
     public RoutingState Router { get; }
 
     // The command that navigates a user to first view model.
-    public ReactiveCommand<Unit, IRoutableViewModel> GoNext { get; }
+    public ReactiveCommand<RxVoid, RxVoid> GoNextCommand { get; }
 
     // The command that navigates a user back.
-    public ReactiveCommand<Unit, IRoutableViewModel> GoBack { get; }
+    public ReactiveCommand<RxVoid, RxVoid> GoBackCommand { get; }
 
     public MainViewModel()
     {
@@ -40,17 +41,27 @@ public class MainViewModel : ReactiveObject, IScreen
         // of a view model, this allows you to pass parameters to 
         // your view models, or to reuse existing view models.
         //
-        GoNext = ReactiveCommand.CreateFromObservable(() => Router.Navigate.Execute(new FirstViewModel(this)));
+        GoNextCommand = ReactiveCommand.CreateFromTask(GoToNext);
 
         // You can also ask the router to go back. One option is to 
         // execute the default Router.NavigateBack command. Another
         // option is to define your own command with custom
         // canExecute condition as such:
-        var canGoBack = this
-            .WhenAnyValue(x => x.Router.NavigationStack.Count)
-            .Select(count => count > 0);
-        GoBack = ReactiveCommand.CreateFromObservable(
-            () => Router.NavigateBack.Execute(Unit.Default),
-            canGoBack);
+
+        var source = this.WhenAnyValue(x => x.Router.NavigationStack.Count);
+        var canGoBack = source.Select(count => count > 0);
+        GoBackCommand = ReactiveCommand.CreateFromTask(GoBack, canGoBack);
+    }
+
+    public Task<RxVoid> GoToNext()
+    {
+        Router.Navigate.Execute(new FirstViewModel(this));
+        return Task.FromResult(RxVoid.Default);
+    }
+
+    public Task<RxVoid> GoBack()
+    {
+        Router.NavigateBack.Execute(RxVoid.Default);
+        return Task.FromResult(RxVoid.Default);
     }
 }
