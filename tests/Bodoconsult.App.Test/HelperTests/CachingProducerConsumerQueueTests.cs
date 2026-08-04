@@ -80,6 +80,9 @@ public class CachingProducerConsumerQueueTests
 
         // Act  
         pc.Enqueue(s1);
+
+        Task.Delay(200).Wait();
+
         pc.StopConsumer();
 
         // Assert
@@ -144,6 +147,8 @@ public class CachingProducerConsumerQueueTests
         pc.Enqueue([s1]);
         pc.StopConsumer();
 
+        Task.Delay(200).Wait();
+
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(1));
@@ -175,7 +180,9 @@ public class CachingProducerConsumerQueueTests
         pc.Enqueue(s1);
         pc.Enqueue(s2);
         pc.Enqueue(s3);
+
         pc.StopConsumer();
+        Task.Delay(200).Wait();
 
         // Assert
         Wait.Until(() => _counter > 0);
@@ -244,6 +251,7 @@ public class CachingProducerConsumerQueueTests
         });
 
         queue.StopConsumer();
+        Task.Delay(200).Wait();
 
         // Assert
         Wait.Until(() => _wasFired, 300);
@@ -267,6 +275,8 @@ public class CachingProducerConsumerQueueTests
         {
             queue.Enqueue("Test");
         });
+
+        Task.Delay(200).Wait();
 
         // Act 
         queue.StopConsumer();

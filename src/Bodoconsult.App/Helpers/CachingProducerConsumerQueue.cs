@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Threading.Channels;
 
 namespace Bodoconsult.App.Helpers;
 
@@ -54,7 +54,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// <summary>
     /// Contains the internal queue
     /// </summary>
-    public BlockingCollection<List<T>> InternalQueue;
+    public Channel<List<T>> InternalQueue;
 
     /// <summary>
     /// The delegate to consume each item added to the queue
@@ -136,14 +136,19 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }
 
-        InternalQueue = new BlockingCollection<List<T>>();
+        InternalQueue = Channel.CreateBounded<List<T>>(new BoundedChannelOptions(CacheSize)
+        {
+            SingleReader = true,
+            SingleWriter = false,
+            FullMode = BoundedChannelFullMode.Wait
+        });
         _cancellationTokenSource = new CancellationTokenSource();
 
         var wait = new AutoResetEvent(false);
 
-        Task.Factory.StartNew(() =>
+        Task.Factory.StartNew(async () =>
         {
-            RunInternal(wait);
+           _ =  await RunInternal(wait);
         }, TaskCreationOptions.LongRunning);
 
         wait.WaitOne(1000);
@@ -154,26 +159,28 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// <summary>
     /// Internal consumer method. If queue does not have any items InternalQueue.GetConsumingEnumerable waits for new items!!!!
     /// </summary>
-    private void RunInternal(AutoResetEvent wait)
+    private async Task<bool> RunInternal(AutoResetEvent wait)
     {
         if (InternalQueue == null)
         {
-            return;
+            return true;
         }
 
         Thread.CurrentThread.Priority = ThreadPriority;
 
         wait.Set();
 
-        foreach (var item in InternalQueue.GetConsumingEnumerable(_cancellationTokenSource.Token))
-        {
-            ConsumerTaskDelegate.Invoke(item);
-        }
-    }
+        var reader = InternalQueue.Reader;
 
-    private bool IsCompleted()
-    {
-        return InternalQueue?.IsCompleted ?? true;
+        while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
+        {
+            while (reader.TryRead(out var item))
+            {
+                ConsumerTaskDelegate.Invoke(item);
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -186,16 +193,23 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
         // Flush the cache
         Flush();
 
-        // Now stop queue
-        InternalQueue?.CompleteAdding();
+        Task.Delay(200).Wait();
 
-        //Thread.Sleep(50);
-        Wait.Until(IsCompleted);
         _cancellationTokenSource?.Cancel(false);
-        
-        InternalQueue?.Dispose();
+        InternalQueue?.Writer.TryComplete();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
+
+        //// Now stop queue
+        //InternalQueue?.CompleteAdding();
+
+        ////Thread.Sleep(50);
+        //Wait.Until(IsCompleted);
+        //_cancellationTokenSource?.Cancel(false);
+
+        //InternalQueue?.Dispose();
+        //InternalQueue = null;
+        //ConsumerTaskDelegate = null;
     }
 
     /// <summary>
@@ -204,7 +218,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     public void Flush()
     {
         // Clear the cache
-        if (InternalQueue == null || InternalQueue.IsCompleted)
+        if (InternalQueue == null)
         {
             return;
         }
@@ -223,7 +237,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
             return;
         }
 
-        InternalQueue.Add(data);
+        InternalQueue.Writer.TryWrite(data);
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

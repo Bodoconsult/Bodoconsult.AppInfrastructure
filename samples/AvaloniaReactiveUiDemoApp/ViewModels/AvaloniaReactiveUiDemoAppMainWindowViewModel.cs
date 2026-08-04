@@ -206,7 +206,6 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
 
             var vm = new FirstViewModel();
 
-
             RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
             return Task.FromResult(RxVoid.Default);
         }

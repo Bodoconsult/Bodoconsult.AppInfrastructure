@@ -212,7 +212,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         _closeEvent.WaitOne(10000);
         _closeEvent.Reset();
 
-        Debug.Print($"InboundCache {CachingQueue.InternalQueue.Count} Cache {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
+        Debug.Print($"Cache {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
 
         //Debug.Print($"Stop: {CurrentFilePath}: {_currentFileSize} byte");
         StoreCacheToStoringQueue(FileState.Finalize);
@@ -320,7 +320,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// Add a list of items to store in the export file
     /// </summary>
     /// <param name="data">List of data items to store</param>
-    public void AddRange(IList<T> data)
+    public void AddRange(IEnumerable<T> data)
     {
         lock (IsStartedLock)
         {

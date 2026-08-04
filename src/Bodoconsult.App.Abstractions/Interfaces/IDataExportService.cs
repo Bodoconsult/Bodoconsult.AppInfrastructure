@@ -119,7 +119,7 @@ public interface IDataExportService<T> where T : class
     /// Add a list of items to store in the export file
     /// </summary>
     /// <param name="data">List of data items to store</param>
-    void AddRange(IList<T> data);
+    void AddRange(IEnumerable<T> data);
 
     /// <summary>
     /// Converts an object of type T into a ReadOnlyMemory&lt;byte&gt; instance

@@ -3,6 +3,7 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Threading.Channels;
 
 namespace Bodoconsult.App.Helpers;
 
@@ -54,7 +55,7 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// <summary>
     /// Contains the internal queue
     /// </summary>
-    public BlockingCollection<List<T>> InternalQueue;
+    public Channel<List<T>> InternalQueue;
 
     /// <summary>
     /// The delegate to consume each item added to the queue
@@ -136,9 +137,22 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }
 
-        InternalQueue = new BlockingCollection<List<T>>();
+        InternalQueue = Channel.CreateBounded<List<T>>(new BoundedChannelOptions(CacheSize)
+        {
+            SingleReader = true,
+            SingleWriter = false,
+            FullMode = BoundedChannelFullMode.Wait
+        });
         _cancellationTokenSource = new CancellationTokenSource();
-        Task.Factory.StartNew(RunInternal, TaskCreationOptions.LongRunning);
+
+        var wait = new AutoResetEvent(false);
+
+        Task.Factory.StartNew(async () =>
+        {
+            _ = await RunInternal(wait);
+        }, TaskCreationOptions.LongRunning);
+
+        wait.WaitOne(1000);
 
         IsActivated = true;
     }
@@ -146,24 +160,27 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// <summary>
     /// Internal consumer method. If queue does not have any items InternalQueue.GetConsumingEnumerable waits for new items!!!!
     /// </summary>
-    private void RunInternal()
+    private async Task<bool> RunInternal(AutoResetEvent wait)
     {
         if (InternalQueue == null)
         {
-            return;
+            return true;
         }
 
         Thread.CurrentThread.Priority = ThreadPriority;
+        wait.Set();
 
-        foreach (var item in InternalQueue.GetConsumingEnumerable(_cancellationTokenSource.Token))
+        var reader = InternalQueue.Reader;
+
+        while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
         {
-            ConsumerTaskDelegate.Invoke(item);
+            while (reader.TryRead(out var item))
+            {
+                ConsumerTaskDelegate.Invoke(item);
+            }
         }
-    }
 
-    private bool IsCompleted()
-    {
-        return InternalQueue?.IsCompleted ?? true;
+        return true;
     }
 
     /// <summary>
@@ -176,14 +193,10 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
         // Flush the cache
         Flush();
 
-        // Now stop queue
-        InternalQueue?.CompleteAdding();
+        Task.Delay(200).Wait();
 
-        //Thread.Sleep(50);
-        Wait.Until(IsCompleted);
         _cancellationTokenSource?.Cancel(false);
-
-        InternalQueue?.Dispose();
+        InternalQueue?.Writer.TryComplete();
         InternalQueue = null;
         ConsumerTaskDelegate = null;
     }
@@ -194,7 +207,7 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     public void Flush()
     {
         // Clear the cache
-        if (InternalQueue == null || InternalQueue.IsCompleted)
+        if (InternalQueue == null)
         {
             return;
         }
@@ -213,7 +226,7 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
             return;
         }
 
-        InternalQueue.Add(data);
+        InternalQueue.Writer.TryWrite(data);
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

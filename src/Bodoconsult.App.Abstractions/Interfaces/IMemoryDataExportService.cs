@@ -17,5 +17,5 @@ public interface IMemoryDataExportService : IDataExportService<byte[]>
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data">List with Memory&lt;byte&gt; elements</param>
-    void AddRange(IList<Memory<byte>> data);
+    void AddRange(IEnumerable<Memory<byte>> data);
 }
