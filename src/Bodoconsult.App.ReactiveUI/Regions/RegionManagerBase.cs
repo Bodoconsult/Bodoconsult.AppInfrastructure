@@ -112,7 +112,7 @@ public abstract class RegionManagerBase : IRegionManager
 
         try
         {
-            SubscribeExtensions.Subscribe(region.Router.Navigate.Execute(viewModel));
+            SubscribeExtensions.Subscribe(region.Router.Navigate.Execute(viewModel).ObserveOn(RxSchedulers.MainThreadScheduler));
         }
         catch (Exception e)
         {

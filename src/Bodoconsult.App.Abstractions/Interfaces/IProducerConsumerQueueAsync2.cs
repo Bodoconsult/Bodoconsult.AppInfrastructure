@@ -15,6 +15,11 @@ public delegate Task ConsumerTaskDelegateAsync2<in T>(T value) where T : struct;
 public interface IProducerConsumerQueueAsync2<T> : IDisposable where T : struct
 {
     /// <summary>
+    /// Capacity of the queue
+    /// </summary>
+    int Capacity { get; set; }
+
+    /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
     ConsumerTaskDelegateAsync2<T> ConsumerTaskDelegate { get; set; }
@@ -34,7 +39,7 @@ public interface IProducerConsumerQueueAsync2<T> : IDisposable where T : struct
     /// Enqueue a list of itema to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">List of items to add to the queue</param>
-    void Enqueue(IList<T> items);
+    void Enqueue(IEnumerable<T> items);
 
     /// <summary>
     /// Start the consumer thread

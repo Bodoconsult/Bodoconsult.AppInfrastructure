@@ -14,6 +14,11 @@ public class ProducerConsumerQueue3<T> : IProducerConsumerQueue<T> where T : cla
     private CancellationTokenSource _cancellationTokenSource;
 
     /// <summary>
+    /// Capacity of the queue
+    /// </summary>
+    public int Capacity { get; set; } = 100;
+
+    /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
     public ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Bodoconsult.App.Abstractions.Interfaces;
@@ -9,6 +8,8 @@ using Bodoconsult.App.ReactiveUI.Menus;
 using DynamicData;
 using DynamicData.Binding;
 using ReactiveUI;
+using ReactiveUI.Primitives.Concurrency;
+using System.Collections.ObjectModel;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Menus;
 
@@ -73,7 +74,7 @@ public class AvaloniaUiMenuBuilder : UiMenuBuilderBase
 
         if (item.CommandDefinition != null)
         {
-            menuItem.Command = ReactiveCommand.CreateFromTask(item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod);
+            menuItem.Command = ReactiveCommand.CreateFromTask(item.CommandDefinition.ExecuteMethod, item.CommandDefinition.CanExecuteMethod, AvaloniaScheduler.Instance);
         }
 
         //MenuItemsInternal.Add(menuItem);

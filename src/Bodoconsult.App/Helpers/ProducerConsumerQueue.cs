@@ -23,6 +23,11 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     public Channel<T> InternalQueue;
 
     /// <summary>
+    /// Capacity of the queue
+    /// </summary>
+    public int Capacity { get; set; } = 100;
+
+    /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
     public ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }
@@ -74,7 +79,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }
 
-        InternalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(100)
+        InternalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(Capacity)
         {
             SingleReader = true,
             SingleWriter = false,
@@ -120,6 +125,9 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
         IsActivated = false;
         _cancellationTokenSource?.Cancel(false);
         InternalQueue?.Writer.TryComplete();
+
+        Task.Delay(200).Wait();
+
         InternalQueue = null;
         ConsumerTaskDelegate = null;
     }

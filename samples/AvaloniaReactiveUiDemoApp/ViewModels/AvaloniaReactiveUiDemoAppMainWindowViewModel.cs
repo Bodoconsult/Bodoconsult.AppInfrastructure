@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Avalonia.Controls;
+using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
+using Bodoconsult.App.Avalonia.ReactiveUI.Views;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Menus;
@@ -10,6 +12,7 @@ using Bodoconsult.App.ReactiveUI.Ui;
 using Bodoconsult.App.ReactiveUI.ViewModels;
 using ReactiveUI;
 using ReactiveUI.Primitives;
+using ReactiveUI.Primitives.Concurrency;
 using System.Reactive.Linq;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
@@ -44,9 +47,9 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         _appGlobals = appGlobals;
         _confirm = new Interaction<string, bool>();
 
-        GoToWindow1Command = ReactiveCommand.CreateFromTask(GoToWindow1);
-        GoToFirstViewCommand = ReactiveCommand.CreateFromTask(GoToFirstView);
-        GoToWindow1Instance2Command = ReactiveCommand.CreateFromTask(GoToWindow1Instance2);
+        GoToWindow1Command = ReactiveCommand.CreateFromTask(GoToWindow1, null, AvaloniaScheduler.Instance);
+        GoToFirstViewCommand = ReactiveCommand.CreateFromTask(GoToFirstView, null, AvaloniaScheduler.Instance);
+        GoToWindow1Instance2Command = ReactiveCommand.CreateFromTask(GoToWindow1Instance2, null, AvaloniaScheduler.Instance);
     }
 
     /// <summary>
@@ -197,16 +200,15 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     {
         try
         {
-            Region1?.Navigate(new FirstViewModel(Region1));
+            var vm = Globals.Instance.DiContainer.Get<CopyrightViewModel>();
 
-            var windowViewModel = new Window1ViewModel(RegionManager)
+            var window = new CopyrightWindow
             {
-                InstanceName = "Window1Instance2"
+                DataContext = vm,
+                WindowState = Avalonia.Controls.WindowState.Normal
             };
+            window.Show();
 
-            var vm = new FirstViewModel();
-
-            RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
             return Task.FromResult(RxVoid.Default);
         }
         catch (Exception e)

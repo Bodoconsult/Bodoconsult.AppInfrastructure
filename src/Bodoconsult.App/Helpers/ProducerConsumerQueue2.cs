@@ -13,6 +13,11 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
     private CancellationTokenSource _cancellationTokenSource;
 
     /// <summary>
+    /// Capacity of the queue
+    /// </summary>
+    public int Capacity { get; set; } = 100;
+
+    /// <summary>
     /// Thread priority
     /// </summary>
     public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
@@ -74,7 +79,7 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }
 
-        InternalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(100)
+        InternalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(Capacity)
         {
             SingleReader = true,
             SingleWriter = false,
@@ -120,6 +125,9 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
         IsActivated = false;
         _cancellationTokenSource?.Cancel(false);
         InternalQueue?.Writer.TryComplete();
+
+        Task.Delay(200).Wait();
+
         InternalQueue = null;
         ConsumerTaskDelegate = null;
     }

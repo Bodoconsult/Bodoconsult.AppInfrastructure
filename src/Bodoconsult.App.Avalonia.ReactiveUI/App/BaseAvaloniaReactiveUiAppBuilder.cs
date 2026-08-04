@@ -69,8 +69,6 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
         // Build the app now
         var h = appB.BuildApp();
 
-
-
         if (dpr.ServiceProvider == null)
         {
             throw new ArgumentNullException(nameof(dpr.ServiceProvider));

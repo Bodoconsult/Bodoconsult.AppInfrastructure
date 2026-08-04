@@ -49,6 +49,7 @@
 		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
 		<PackageReference Include="ReactiveUI.Avalonia" Version="12.1.0" />
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
+		<!--<PackageReference Include="ReactiveUI.Primitives" Version="*" PrivateAssets="all" />-->
 		<PackageReference Include="ReactiveUI.Routing" Version="*" />
 	</ItemGroup>
 

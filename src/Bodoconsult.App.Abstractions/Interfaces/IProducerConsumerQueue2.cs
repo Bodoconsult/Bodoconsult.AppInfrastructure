@@ -15,6 +15,11 @@ public delegate void ConsumerTaskDelegate2<in T>(T value) where T : struct;
 public interface IProducerConsumerQueue2<T> : IDisposable where T : struct
 {
     /// <summary>
+    /// Capacity of the queue
+    /// </summary>
+    int Capacity { get; set; }
+
+    /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
     ConsumerTaskDelegate2<T> ConsumerTaskDelegate { get; set; }

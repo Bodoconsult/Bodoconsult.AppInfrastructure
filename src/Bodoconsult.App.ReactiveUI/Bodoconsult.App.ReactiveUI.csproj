@@ -27,7 +27,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="ReactiveUI" Version="*" PrivateAssets="all" />
-		<PackageReference Include="ReactiveUI.Extensions" Version="*" PrivateAssets="all" />
+		<!--<PackageReference Include="ReactiveUI.Primitives" Version="*" PrivateAssets="all" />-->
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
 		<PackageReference Include="ReactiveUI.Routing" Version="*" />
 	</ItemGroup>

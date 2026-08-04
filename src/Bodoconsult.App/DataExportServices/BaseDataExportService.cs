@@ -212,7 +212,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         _closeEvent.WaitOne(10000);
         _closeEvent.Reset();
 
-        Debug.Print($"Cache {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
+        //Debug.Print($"Cache {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
 
         //Debug.Print($"Stop: {CurrentFilePath}: {_currentFileSize} byte");
         StoreCacheToStoringQueue(FileState.Finalize);
@@ -425,7 +425,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
     private void CheckCancellation()
     {
-        if (_closeEvent == null || _cache.Count == 0 || _storingQueue.InternalQueue == null || _storingQueue.InternalQueue.Count > 0)
+        if (_closeEvent == null || _cache.Count == 0 || _storingQueue.InternalQueue == null)
         {
             return;
         }

@@ -23,6 +23,11 @@ public delegate Task ConsumerTaskDelegateAsync<in T>(T data) where T : class;
 public interface IProducerConsumerQueue<T>: IDisposable where T: class
 {
     /// <summary>
+    /// Capacity of the queue
+    /// </summary>
+    int Capacity { get; set; }
+    
+    /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
     ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }
