@@ -30,6 +30,7 @@ public class SyncProcessManager<TKey, T> : ISyncProcessManager<TKey, T> where T 
     public SyncProcessData<TKey, T> AddSyncProcess(TKey processId, int timeout)
     {
         var syncData = new SyncProcessData<TKey, T>(processId, timeout);
+        
         _syncExecutionQueue.TryAdd(processId, syncData);
         return syncData;
     }

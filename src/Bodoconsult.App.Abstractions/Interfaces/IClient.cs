@@ -10,7 +10,7 @@ public interface IClient
     /// <summary>
     /// Current client manager instance
     /// </summary>
-    IClientManager ClientManager { get; }
+    IClientManager? ClientManager { get; }
 
     /// <summary>
     /// information about connected client

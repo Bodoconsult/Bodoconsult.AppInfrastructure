@@ -35,8 +35,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -51,8 +51,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -65,8 +65,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogDebug(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
 
@@ -82,8 +82,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -96,8 +96,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogDebug(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -112,8 +112,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a debug log message.</summary>
@@ -123,8 +123,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogDebug("Processing request from {Address}", address)</example>
     void LogDebug(string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
 
@@ -137,8 +137,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <example>logger.LogDebug("Processing request from {Address}", address)</example>
     void LogDebug(string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -153,8 +153,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -171,8 +171,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
 
@@ -186,8 +186,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogTrace(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -202,8 +202,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -216,8 +216,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogTrace(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -232,8 +232,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -243,8 +243,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogTrace("Processing request from {Address}", address)</example>
     void LogTrace(string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a trace log message.</summary>
@@ -256,8 +256,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <example>logger.LogTrace("Processing request from {Address}", address)</example>
     void LogTrace(string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -272,8 +272,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -290,8 +290,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -304,8 +304,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogInformation(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -320,8 +320,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -334,8 +334,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogInformation(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -350,8 +350,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
 
@@ -362,8 +362,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogInformation("Processing request from {Address}", address)</example>
     void LogInformation(string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>
@@ -376,8 +376,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     void LogInformation(string message,
         DateTime timeStamp,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an informational log message.</summary>
@@ -389,8 +389,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <example>logger.LogInformation("Processing request from {Address}", address)</example>
     void LogInformation(string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -405,8 +405,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -423,8 +423,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -437,8 +437,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogWarning(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -453,8 +453,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -467,8 +467,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogWarning(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -483,8 +483,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -494,8 +494,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogWarning("Processing request from {Address}", address)</example>
     void LogWarning(string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a warning log message.</summary>
@@ -507,8 +507,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <example>logger.LogWarning("Processing request from {Address}", address)</example>
     void LogWarning(string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
 
@@ -522,8 +522,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogError(
         string message,
         Exception exception,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
 
@@ -541,8 +541,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -555,8 +555,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogError(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -571,8 +571,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -585,8 +585,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogError(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -601,8 +601,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -612,8 +612,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogError("Processing request from {Address}", address)</example>
     void LogError(string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -625,8 +625,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <example>logger.LogError("Processing request from {Address}", address)</example>
     void LogError(string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -641,8 +641,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -659,8 +659,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -673,8 +673,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogCritical(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -689,8 +689,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -703,8 +703,8 @@ public interface IAppLoggerProxy : IDisposable
     void LogCritical(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -719,8 +719,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -730,8 +730,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogCritical("Processing request from {Address}", address)</example>
     void LogCritical(string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>Formats and writes a critical log message.</summary>
@@ -743,8 +743,8 @@ public interface IAppLoggerProxy : IDisposable
     /// <example>logger.LogCritical("Processing request from {Address}", address)</example>
     void LogCritical(string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>
@@ -758,8 +758,8 @@ public interface IAppLoggerProxy : IDisposable
     void Log(
         LogLevel logLevel,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>
@@ -775,8 +775,8 @@ public interface IAppLoggerProxy : IDisposable
         LogLevel logLevel,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>
@@ -792,8 +792,8 @@ public interface IAppLoggerProxy : IDisposable
         LogLevel logLevel,
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>
@@ -811,8 +811,8 @@ public interface IAppLoggerProxy : IDisposable
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>
@@ -828,8 +828,8 @@ public interface IAppLoggerProxy : IDisposable
         LogLevel logLevel,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
     /// <summary>
@@ -847,8 +847,8 @@ public interface IAppLoggerProxy : IDisposable
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = "",
-        [CallerFilePath] string filepath = "",
+        [CallerMemberName] string? memberName = "",
+        [CallerFilePath] string? filepath = "",
         [CallerLineNumber] int lineNumber = 0);
 
 
