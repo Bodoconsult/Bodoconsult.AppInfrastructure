@@ -11,7 +11,7 @@ namespace Bodoconsult.App.PerformanceLogging;
 /// </summary>
 public class PerformanceLoggerManager: IPerformanceLoggerManager
 {
-    private IWatchDog _watchDog;
+    private IWatchDog? _watchDog;
 
     /// <summary>
     /// Default ctor
@@ -30,7 +30,7 @@ public class PerformanceLoggerManager: IPerformanceLoggerManager
     /// <summary>
     /// Current status message delegate to be called from the <see cref="IPerformanceLoggerManager.Log"/> method
     /// </summary>
-    public StatusMessageDelegate StatusMessageDelegate { get; set; }
+    public StatusMessageDelegate StatusMessageDelegate { get; set; } = _ => { };
 
     /// <summary>
     /// Start the performance logging
@@ -54,7 +54,7 @@ public class PerformanceLoggerManager: IPerformanceLoggerManager
     /// </summary>
     public void StopLogging()
     {
-        _watchDog.StopWatchDog();
+        _watchDog?.StopWatchDog();
 
         PerformanceLogger.StopLogger();
     }
@@ -64,6 +64,6 @@ public class PerformanceLoggerManager: IPerformanceLoggerManager
     /// </summary>
     public void Log()
     {
-        StatusMessageDelegate?.Invoke(PerformanceLogger.GetCountersAsString());
+        StatusMessageDelegate.Invoke(PerformanceLogger.GetCountersAsString() ?? string.Empty);
     }
 }

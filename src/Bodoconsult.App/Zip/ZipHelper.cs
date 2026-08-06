@@ -15,7 +15,7 @@ public static class ZipHelper
     /// <param name="zipPath">Target path for the ZIP archive</param>
     /// <param name="folderPath">Folde rpath to archive</param>
     /// <param name="filter">Filter expression like *.log or null</param>
-    public static void CreateZipArchive(string zipPath, string folderPath, string filter = null)
+    public static void CreateZipArchive(string zipPath, string folderPath, string? filter = null)
     {
         if (zipPath == null)
         {
@@ -63,7 +63,6 @@ public static class ZipHelper
                     }
                 }
             }
-
         }
     }
 }

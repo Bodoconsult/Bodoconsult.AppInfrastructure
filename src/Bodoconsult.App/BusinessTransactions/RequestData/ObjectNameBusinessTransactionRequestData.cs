@@ -11,6 +11,6 @@ public class ObjectNameBusinessTransactionRequestData : BaseBusinessTransactionR
     /// <summary>
     /// The name of the requested object
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }

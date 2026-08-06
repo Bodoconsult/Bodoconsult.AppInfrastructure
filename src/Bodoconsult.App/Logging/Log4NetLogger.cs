@@ -49,7 +49,7 @@ public class Log4NetLogger : ILogger
 {
     ////private readonly string _name;
     ////private readonly XmlElement _xmlElement;
-    private ILog _log;
+    private ILog? _log;
 
     #region Ctors
 
@@ -153,7 +153,6 @@ public class Log4NetLogger : ILogger
         var xmlElement = ParseLog4NetConfigFile(filePath);
 
         InitLoggerFromXml(name, xmlElement);
-
     }
 
     /// <summary>
@@ -179,8 +178,10 @@ public class Log4NetLogger : ILogger
         //_log.Fatal("log4net init successful");
     }
 
-    private void InitLoggerFromXml(string name, XmlElement xmlElement, string repoName = null)
+    private void InitLoggerFromXml(string name, XmlElement? xmlElement, string? repoName = null)
     {
+        ArgumentNullException.ThrowIfNull(xmlElement);
+
         ILoggerRepository loggerRepository;
 
         if (repoName == null)
@@ -221,7 +222,7 @@ public class Log4NetLogger : ILogger
     /// </summary>
     /// <param name="filename">Log4Net config filename</param>
     /// <returns>XML element</returns>
-    public static XmlElement ParseLog4NetConfigFile(string filename)
+    public static XmlElement? ParseLog4NetConfigFile(string filename)
     {
         var log4NetConfig = new XmlDocument();
 
@@ -253,7 +254,7 @@ public class Log4NetLogger : ILogger
     /// <param name="state">The identifier for the scope.</param>
     /// <typeparam name="TState">The type of the state to begin scope for.</typeparam>
     /// <returns>An <see cref="T:System.IDisposable" /> that ends the logical operation scope on dispose.</returns>
-    public IDisposable BeginScope<TState>(TState state)
+    public IDisposable? BeginScope<TState>(TState state) where TState : notnull
     {
         return null;
     }
@@ -266,6 +267,7 @@ public class Log4NetLogger : ILogger
     /// <exception cref="ArgumentOutOfRangeException">Log level not existing</exception>
     public bool IsEnabled(LogLevel logLevel)
     {
+        ArgumentNullException.ThrowIfNull(_log);
         return logLevel switch
         {
             LogLevel.Critical => _log.IsFatalEnabled,
@@ -285,7 +287,7 @@ public class Log4NetLogger : ILogger
     /// <param name="formatter">Function to create a <see cref="T:System.String" /> message of the <paramref name="state" /> and <paramref name="exception" />.</param>
     /// <typeparam name="TState">The type of the object to be written.</typeparam>
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
-        Exception exception, Func<TState, Exception, string> formatter)
+        Exception? exception, Func<TState, Exception?, string> formatter)
     {
         if (!IsEnabled(logLevel))
         {
@@ -293,6 +295,7 @@ public class Log4NetLogger : ILogger
         }
 
         ArgumentNullException.ThrowIfNull(formatter);
+        ArgumentNullException.ThrowIfNull(_log);
 
         var message = formatter(state, exception);
 

@@ -10,5 +10,5 @@ public interface IAppGlobalsWithDatabase: IAppGlobals
     /// <summary>
     /// Current database context or null
     /// </summary>
-    IContextConfig ContextConfig { get; set; }
+    IContextConfig? ContextConfig { get; set; }
 }

@@ -26,7 +26,7 @@ internal class XmlDataExportServiceTests
         var service = new XmlDataExportService<TestData>();
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]
@@ -41,7 +41,7 @@ internal class XmlDataExportServiceTests
         };
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]

@@ -12,10 +12,10 @@ public class DoNotSendBusinessTransactionReply : IBusinessTransactionReply
     /// <summary>
     /// The notification object to send via GRPC etc to the client
     /// </summary>
-    public object NotificationObjectToSend { get; set; }
+    public object? NotificationObjectToSend { get; set; }
 
     /// <summary>The current request data</summary>
-    public IBusinessTransactionRequestData RequestData { get; set; }
+    public IBusinessTransactionRequestData? RequestData { get; set; }
 
     /// <summary>
     /// Current error code. Default is 0 for no error happened
@@ -23,10 +23,10 @@ public class DoNotSendBusinessTransactionReply : IBusinessTransactionReply
     public int ErrorCode { get; set; }
 
     /// <summary>Current message provided by the business transaction</summary>
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
     /// <summary>
     /// Current error message provided by the business transaction
     /// </summary>
-    public string ExceptionMessage { get; set; }
+    public string? ExceptionMessage { get; set; }
 }

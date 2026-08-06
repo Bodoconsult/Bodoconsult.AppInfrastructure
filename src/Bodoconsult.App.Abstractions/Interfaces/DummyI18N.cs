@@ -34,7 +34,7 @@ public class DummyI18N : II18N
     public List<ILocalesProvider> Providers { get; } = [];
 
     /// <summary>Occurs when a property value changes.</summary>
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
@@ -52,12 +52,12 @@ public class DummyI18N : II18N
     /// <summary>
     /// Current locale language as <see cref="PortableLanguage"/> instance
     /// </summary>
-    public PortableLanguage Language { get; set; }
+    public PortableLanguage? Language { get; set; }
 
     /// <summary>
     /// Current locale
     /// </summary>
-    public string Locale { get; set; }
+    public string? Locale { get; set; }
 
     /// <summary>
     /// Available languages found by the providers. 
@@ -184,9 +184,9 @@ public class DummyI18N : II18N
     /// </summary>
     /// <typeparam name="TEnum">Enum</typeparam>
     /// <returns>Dictionary with translated enum values</returns>
-    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>()
+    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>() where TEnum : notnull
     {
-        return null;
+        return new();
     }
 
     /// <summary>
@@ -196,7 +196,7 @@ public class DummyI18N : II18N
     /// <returns>List with translated enum values</returns>
     public List<string> TranslateEnumToList<TEnum>()
     {
-        return null;
+        return new();
     }
 
     /// <summary>
@@ -206,6 +206,6 @@ public class DummyI18N : II18N
     /// <returns>List with translated enum values as<see cref="Tuple"/> instances</returns>
     public List<Tuple<TEnum, string>> TranslateEnumToTupleList<TEnum>()
     {
-        return null;
+        return new();
     }
 }

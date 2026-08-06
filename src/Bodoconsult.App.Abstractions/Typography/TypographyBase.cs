@@ -135,17 +135,17 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Name(s) of the author(s)
     /// </summary>
-    public string Authors { get; set; }
+    public string Authors { get; set; } = "Authors";
 
     /// <summary>
     /// Company name
     /// </summary>
-    public string Company { get; set; }
+    public string Company { get; set; } = "Company";
 
     /// <summary>
     /// Company website
     /// </summary>
-    public string CompanyWebsite { get; set; }
+    public string? CompanyWebsite { get; set; }
 
     /// <summary>
     /// Default font name
@@ -297,7 +297,7 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Coordinates of the vertical lines of the typo grid
     /// </summary>
-    public double[] VerticalLines { get; private set; }
+    public double[]? VerticalLines { get; private set; }
 
     /// <summary>
     /// Create all vertical lines for the typographic grid
@@ -324,7 +324,7 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Path to logo to print in the page header
     /// </summary>
-    public string LogoPath { get; set; }
+    public string? LogoPath { get; set; }
 
     /// <summary>
     /// Width of the logo in the page header in cm
@@ -334,27 +334,27 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Title of the document
     /// </summary>
-    public string Title { get; set; }
+    public string Title { get; set; } = "Your title";
 
     /// <summary>
     /// Document description
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Keywords separated by comma
     /// </summary>
-    public string Keywords { get; set; }
+    public string? Keywords { get; set; }
 
     /// <summary>
     /// Footer text
     /// </summary>
-    public string FooterText { get; set; }
+    public string? FooterText { get; set; }
 
     /// <summary>
     /// Header text
     /// </summary>
-    public string HeaderText { get; set; }
+    public string? HeaderText { get; set; }
 
     /// <summary>
     /// Defines a template for the header. Segments left, middle or right are separated by pipe.
@@ -388,12 +388,12 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Path to the background image or null if no background image should be used. For a A4 portrait page the size of the image should be 1400 px x 1980 px
     /// </summary>
-    public string BackgroundImagePath { get; set; }
+    public string? BackgroundImagePath { get; set; }
 
     /// <summary>
     /// Watermark text
     /// </summary>
-    public string WatermarkText { get; set; }
+    public string? WatermarkText { get; set; }
 
     /// <summary>
     /// Styling for charts in the document

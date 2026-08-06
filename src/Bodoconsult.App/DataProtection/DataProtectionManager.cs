@@ -13,15 +13,8 @@ namespace Bodoconsult.App.DataProtection;
 /// </summary>
 public class DataProtectionManager : IDataProtectionManager
 {
-    /// <summary>
-    /// File path to save the values in. Public only for testing
-    /// </summary>
-    public string FilePath;
-
-
     private readonly ProducerConsumerQueue<object> _saveValuesRequestQueue = new();
-
-    private readonly List<KeyValuePair<string, string>> _values = [];
+    private readonly List<KeyValuePair<string, string?>> _values = [];
 
     /// <summary>
     /// Default ctor
@@ -45,15 +38,20 @@ public class DataProtectionManager : IDataProtectionManager
     }
 
     /// <summary>
+    /// File path to save the values in. Public only for testing
+    /// </summary>
+    public string FilePath { get; }
+
+    /// <summary>
     /// Delegate to read a string input from console, UI, etc.
     /// </summary>
     /// <returns>Read string input</returns>
-    public ReadStringDelegate ReadStringDelegate { get; set; }
+    public ReadStringDelegate ReadStringDelegate { get; set; } = _ => string.Empty;
 
     /// <summary>
     /// Current values to protect
     /// </summary>
-    public List<KeyValuePair<string, string>> Values => _values.ToList();
+    public List<KeyValuePair<string, string?>> Values => _values.ToList();
 
     /// <summary>
     /// Available keys
@@ -107,7 +105,9 @@ public class DataProtectionManager : IDataProtectionManager
 
         var json = FileProtectionService.Unprotect(data);
 
-        var result = JsonSerializer.Deserialize<List<KeyValuePair<string, string>>>(json);
+        var result = JsonSerializer.Deserialize<List<KeyValuePair<string, string?>>>(json);
+
+        ArgumentNullException.ThrowIfNull(result);
 
         ClearAll();
         _values.AddRange(result);
@@ -136,7 +136,6 @@ public class DataProtectionManager : IDataProtectionManager
         }
 
         _saveValuesRequestQueue.Enqueue(new object());
-
     }
 
     /// <summary>
@@ -153,7 +152,7 @@ public class DataProtectionManager : IDataProtectionManager
     /// <param name="key">Key to be added</param>
     public void AddKey(string key)
     {
-        _values.Add(new KeyValuePair<string, string>(key, null));
+        _values.Add(new KeyValuePair<string, string?>(key, null));
     }
 
     /// <summary>
@@ -183,7 +182,7 @@ public class DataProtectionManager : IDataProtectionManager
             _values.RemoveAll(x => x.Key == kvp.Key);
         }
 
-        kvp = new KeyValuePair<string, string>(key, cipher);
+        kvp = new KeyValuePair<string, string?>(key, cipher);
         _values.Add(kvp);
 
         if (doNotSave)
@@ -198,7 +197,7 @@ public class DataProtectionManager : IDataProtectionManager
     /// </summary>
     /// <param name="key">Key the secret was stored with</param>
     /// <returns>Secret or null if the key does not exist</returns>
-    public string Unprotect(string key)
+    public string? Unprotect(string key)
     {
         var kvp = _values.FirstOrDefault(x => x.Key.Equals(key));
 
@@ -207,17 +206,19 @@ public class DataProtectionManager : IDataProtectionManager
             return null;
         }
 
+        if (kvp.Value == null)
+        {
+            return null;
+        }
+
         var secret = DataProtectionService.Unprotect(key, kvp.Value);
         return secret;
-
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
     {
         _saveValuesRequestQueue.StopConsumer();
-        _saveValuesRequestQueue?.Dispose();
+        _saveValuesRequestQueue.Dispose();
     }
-
-
 }

@@ -11,7 +11,7 @@ namespace Bodoconsult.App.Logging;
 /// </summary>
 public class MonitorLoggerFactory : IMonitorLoggerFactory
 {
-    private ILogger _logger;
+    private ILogger? _logger;
 
     /// <summary>
     /// Default ctor
@@ -43,7 +43,11 @@ public class MonitorLoggerFactory : IMonitorLoggerFactory
 
         ArgumentNullException.ThrowIfNull(LoggingConfig);
 
-        _logger = AppLoggerExtensions.GetMonitorLogger(LoggingConfig, FileName).CreateLogger(categoryName);
+        var logger = AppLoggerExtensions.GetMonitorLogger(LoggingConfig, FileName);
+
+        ArgumentNullException.ThrowIfNull(logger);
+
+        _logger = logger.CreateLogger(categoryName);
         return _logger;
     }
 
@@ -59,7 +63,7 @@ public class MonitorLoggerFactory : IMonitorLoggerFactory
     /// <summary>
     /// Current logging config
     /// </summary>
-    public LoggingConfig LoggingConfig { get; set; }
+    public LoggingConfig? LoggingConfig { get; set; }
 
     /// <summary>
     /// Full file path of the log file

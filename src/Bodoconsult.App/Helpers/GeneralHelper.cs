@@ -11,7 +11,6 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public static class GeneralHelper
 {
-
     /// <summary>
     /// Delay time in milliseconds for accessing concurrent queues
     /// </summary>
@@ -26,12 +25,12 @@ public static class GeneralHelper
     /// <param name="filepath">Current caller file path (leave null normally)</param>
     /// <param name="lineNumber">Curren caller line number  (leave null normally)</param>
     /// <returns>Dequeued item</returns>
-    public static T DequeueFromQueue<T>(ConcurrentQueue<T> queue, 
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+    public static T? DequeueFromQueue<T>(ConcurrentQueue<T> queue, 
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
-        if (queue.Count == 0)
+        if (queue.IsEmpty)
         {
             return default;
         }
@@ -40,12 +39,12 @@ public static class GeneralHelper
 
         // ReSharper disable once TooWideLocalVariableScope
         // ReSharper disable once InlineOutVariableDeclaration
-        T item;
+        T? item;
 
         while (queue.Count > 0 && i < 10)
         {
             var success = queue.TryDequeue(out item);
-            if (success)
+            if (success && item!=null)
             {
                 return item;
             }
@@ -54,7 +53,6 @@ public static class GeneralHelper
         }
 
         throw new ConcurrentQueueAccessException($"GeneralHelper.DequeueFromQueue: error dequeuing: {memberName}. File: {filepath} Line: {lineNumber}");
-
     }
 
     /// <summary>
@@ -66,16 +64,16 @@ public static class GeneralHelper
     /// <param name="filepath">Current caller file path (leave null normally)</param>
     /// <param name="lineNumber">Curren caller line number  (leave null normally)</param>
     /// <returns>Peeked item</returns>
-    public static T PeekFromQueue<T>(ConcurrentQueue<T> queue, 
-        [CallerMemberName] string memberName = null,  
-        [CallerFilePath] string filepath = null, 
+    public static T? PeekFromQueue<T>(ConcurrentQueue<T> queue, 
+        [CallerMemberName] string? memberName = null,  
+        [CallerFilePath] string? filepath = null, 
         [CallerLineNumber] int lineNumber = 0)
     {
 
         var i = 0;
         // ReSharper disable once TooWideLocalVariableScope
         // ReSharper disable once InlineOutVariableDeclaration
-        T item;
+        T? item;
 
         while (queue.Count > 0 && i < 10)
         {
@@ -89,6 +87,5 @@ public static class GeneralHelper
         }
 
         throw new ConcurrentQueueAccessException($"GeneralHelper.PeekFromQueue: error peeking: {memberName}. File: {filepath} Line: {lineNumber}");
-
     }
 }

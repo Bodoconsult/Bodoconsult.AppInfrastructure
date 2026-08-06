@@ -16,6 +16,8 @@ public class WpfReactiveUiDemoAppAllServicesDiContainerServiceProviderPackage : 
     public WpfReactiveUiDemoAppAllServicesDiContainerServiceProviderPackage(IAppGlobals appGlobals) : base(appGlobals)
     {
 
+        ArgumentNullException.ThrowIfNull(appGlobals.Logger);
+
         DoNotBuildDiContainer = true;
 
         // Basic app services

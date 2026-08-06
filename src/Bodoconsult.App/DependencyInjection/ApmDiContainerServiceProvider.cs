@@ -17,8 +17,9 @@ public class ApmDiContainerServiceProvider : IDiContainerServiceProvider
     /// </summary>
     /// <param name="appStartParameter">Current app start parameter</param>
     /// <param name="statusMessageDelegate">Status message delegate sending a status message to UI</param>
-    public ApmDiContainerServiceProvider(IAppStartParameter appStartParameter, StatusMessageDelegate statusMessageDelegate)
+    public ApmDiContainerServiceProvider(IAppStartParameter appStartParameter, StatusMessageDelegate? statusMessageDelegate)
     {
+        ArgumentNullException.ThrowIfNull(statusMessageDelegate);
         AppStartParameter = appStartParameter;
         StatusMessageDelegate = statusMessageDelegate;
     }

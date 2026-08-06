@@ -15,6 +15,8 @@ public class AvaloniaReactiveUiDemoAppAllServicesDiContainerServiceProviderPacka
 
     public AvaloniaReactiveUiDemoAppAllServicesDiContainerServiceProviderPackage(IAppGlobals appGlobals) : base(appGlobals)
     {
+        ArgumentNullException.ThrowIfNull(appGlobals.Logger);
+
         DoNotBuildDiContainer = true;
 
         // Basic app services

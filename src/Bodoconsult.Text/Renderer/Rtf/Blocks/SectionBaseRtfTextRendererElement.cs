@@ -115,7 +115,7 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
 
         var md = renderer.Document.DocumentMetaData;
         var sb = new StringBuilder();
-        string s;
+        //string s;
 
         var isHeader = false;
 
@@ -300,12 +300,9 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
         renderer.Content.Append(sb);
     }
 
-    private static void CreateHeaderFooterElement(StringBuilder content, ITypoMetaData documentMetaData, string section, int position, bool isHeader)
+    private static void CreateHeaderFooterElement(StringBuilder content, DocumentMetaData documentMetaData, string section, int position, bool isHeader)
     {
-        if (documentMetaData == null)
-        {
-            throw new ArgumentNullException(nameof(documentMetaData));
-        }
+        ArgumentNullException.ThrowIfNull(documentMetaData);
 
         if (position == 1)
         {

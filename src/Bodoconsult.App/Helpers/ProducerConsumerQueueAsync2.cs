@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using System.Collections.Concurrent;
 using System.Threading.Channels;
 
 namespace Bodoconsult.App.Helpers;
@@ -11,16 +10,22 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> where T : struct
 {
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _cancellationTokenSource = new();
 
     /// <summary>
     /// Thread priority
     /// </summary>
     public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
+
     /// <summary>
     /// Contains the internal queue
     /// </summary>
-    public Channel<T> InternalQueue;
+    private Channel<T> _internalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(100)
+    {
+        SingleReader = true,
+        SingleWriter = false,
+        FullMode = BoundedChannelFullMode.Wait
+    });
 
     /// <summary>
     /// Capacity of the queue
@@ -30,7 +35,7 @@ public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> wh
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    public ConsumerTaskDelegateAsync2<T> ConsumerTaskDelegate { get; set; }
+    public ConsumerTaskDelegateAsync2<T> ConsumerTaskDelegate { get; set; } = _ => Task.CompletedTask;
 
     /// <summary>
     /// Is the queue started?
@@ -43,11 +48,7 @@ public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> wh
     /// <param name="item">Item to add to the queue</param>
     public void Enqueue(T item)
     {
-        if (InternalQueue == null)
-        {
-            return;
-        }
-        InternalQueue.Writer.TryWrite(item);
+        _internalQueue.Writer.TryWrite(item);
     }
 
     /// <summary>
@@ -56,12 +57,7 @@ public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> wh
     /// <param name="items">List of items to add to the queue</param>
     public void Enqueue(IEnumerable<T> items)
     {
-        if (InternalQueue == null)
-        {
-            return;
-        }
-
-        var writer = InternalQueue.Writer;
+        var writer = _internalQueue.Writer;
 
         foreach (var tItem in items)
         {
@@ -79,12 +75,16 @@ public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> wh
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }
 
-        InternalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(Capacity)
+        _internalQueue.Writer.TryComplete();
+
+        _internalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(Capacity)
         {
             SingleReader = true,
             SingleWriter = false,
             FullMode = BoundedChannelFullMode.Wait
         });
+
+        _cancellationTokenSource.Dispose();
 
         _cancellationTokenSource = new CancellationTokenSource();
         Task.Factory.StartNew(async () =>
@@ -100,14 +100,9 @@ public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> wh
     /// </summary>
     private async Task RunInternal()
     {
-        if (InternalQueue == null)
-        {
-            return;
-        }
-
         Thread.CurrentThread.Priority = ThreadPriority;
 
-        var reader = InternalQueue.Reader;
+        var reader = _internalQueue.Reader;
 
         while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
         {
@@ -124,13 +119,12 @@ public class ProducerConsumerQueueAsync2<T> : IProducerConsumerQueueAsync2<T> wh
     public void StopConsumer()
     {
         IsActivated = false;
-        _cancellationTokenSource?.Cancel(false);
-        InternalQueue?.Writer.TryComplete();
+        _cancellationTokenSource.Cancel(false);
+        _internalQueue.Writer.TryComplete();
 
         Task.Delay(200).Wait();
 
-        InternalQueue = null;
-        ConsumerTaskDelegate = null;
+        ConsumerTaskDelegate  = _ => Task.CompletedTask;
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

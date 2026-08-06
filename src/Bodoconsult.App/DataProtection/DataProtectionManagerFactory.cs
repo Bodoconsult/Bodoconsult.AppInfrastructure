@@ -15,7 +15,7 @@ public class DataProtectionManagerFactory : IDataProtectionManagerFactory
 
     private readonly IFileProtectionService _fileProtectionService;
 
-    private IDataProtectionManager _dataProtectionManager;
+    private IDataProtectionManager? _dataProtectionManager;
 
     /// <summary>
     /// Default ctor

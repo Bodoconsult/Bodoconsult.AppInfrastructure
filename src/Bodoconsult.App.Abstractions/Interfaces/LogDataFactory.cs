@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.BufferPool;
+namespace Bodoconsult.App.Abstractions.Interfaces;
 
-namespace Bodoconsult.App.Logging;
+using BufferPool;
 
 /// <summary>
 /// Factory for <see cref="LogData"/> instances with integrated buffer pool to reduce GC pressure

@@ -21,7 +21,7 @@ public class AppBenchProxy : IAppBenchProxy
     /// </summary>
     public ILoggerFactory LoggerFactory { get; }
 
-    private ProducerConsumerQueue<LogData> _logMessages;
+    private readonly ProducerConsumerQueue<LogData> _logMessages = new();
 
     private readonly ILogger _logger;
 
@@ -38,6 +38,7 @@ public class AppBenchProxy : IAppBenchProxy
         BaseCtor();
 
         _logDataFactory = logDataFactory;
+        _logMessages.ConsumerTaskDelegate = WriteLogEntry;
     }
 
 
@@ -93,7 +94,7 @@ public class AppBenchProxy : IAppBenchProxy
         log.SourceRowNumber = 0;
         log.Args = [];
 
-        _logMessages?.Enqueue(log);
+        _logMessages.Enqueue(log);
     }
 
     /// <summary>
@@ -112,7 +113,7 @@ public class AppBenchProxy : IAppBenchProxy
         log.SourceRowNumber = 0;
         log.Args = [];
 
-        _logMessages?.Enqueue(log);
+        _logMessages.Enqueue(log);
     }
 
     /// <summary>
@@ -131,7 +132,7 @@ public class AppBenchProxy : IAppBenchProxy
         log.SourceRowNumber = 0;
         log.Args = [];
 
-        _logMessages?.Enqueue(log);
+        _logMessages.Enqueue(log);
     }
 
 
@@ -141,15 +142,12 @@ public class AppBenchProxy : IAppBenchProxy
     /// </summary>
     public void StartLogging()
     {
-        if (_logMessages != null)
-        {
+        //if (_logMessages != null)
+        //{
             StopLogging();
-        }
+        //}
 
-        _logMessages = new ProducerConsumerQueue<LogData>
-        {
-            ConsumerTaskDelegate = WriteLogEntry
-        };
+
         _logMessages.StartConsumer();
     }
 
@@ -218,7 +216,6 @@ public class AppBenchProxy : IAppBenchProxy
     /// </summary>
     public void Dispose()
     {
-
         Dispose(true);
         GC.SuppressFinalize(this);
     }

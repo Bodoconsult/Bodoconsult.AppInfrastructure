@@ -9,7 +9,7 @@ namespace Bodoconsult.App.Logging;
 /// </summary>
 public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
 {
-    private readonly object _lock = new();
+    //private readonly object _lock = new();
     private readonly Dictionary<string, MonitorLoggerFactory> _loggerFactories = new();
     private readonly IAppGlobals _appGlobals;
 
@@ -28,8 +28,9 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     /// </summary>
     /// <param name="deviceName">Current tower serial number</param>
     /// <returns></returns>
-    public IMonitorLoggerFactory CreateInstance(string deviceName)
+    public IMonitorLoggerFactory? CreateInstance(string deviceName)
     {
+        ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DataPath);
         var fileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"{deviceName}.log");
         return CreateInstanceInternally(fileName);
     }
@@ -40,8 +41,9 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     /// <param name="clientType">Client or device type as string</param>
     /// <param name="ipAddress">Current IP address of the client</param>
     /// <returns>Monitor logger factory</returns>
-    public IMonitorLoggerFactory CreateInstance(string clientType, string ipAddress)
+    public IMonitorLoggerFactory? CreateInstance(string clientType, string ipAddress)
     {
+        ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DataPath);
         var fileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"{clientType}_{ipAddress.Replace(".", "_")}.log");
         return CreateInstanceInternally(fileName);
     }
@@ -51,7 +53,7 @@ public class MonitorLoggerFactoryFactory : IMonitorLoggerFactoryFactory
     /// </summary>
     /// <param name="fileName">Full filepath for the logfile</param>
     /// <returns>Client logger factory</returns>
-    private MonitorLoggerFactory CreateInstanceInternally(string fileName)
+    private MonitorLoggerFactory? CreateInstanceInternally(string fileName)
     {
         //lock (_lock)
         //{

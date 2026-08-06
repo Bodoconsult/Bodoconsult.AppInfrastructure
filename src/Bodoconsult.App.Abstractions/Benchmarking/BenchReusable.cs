@@ -9,11 +9,11 @@ namespace Bodoconsult.App.Abstractions.Benchmarking;
 /// </summary>
 public class BenchReusable : IBench, IResetable
 {
-    private IAppBenchProxy _proxy;
+    private IAppBenchProxy? _proxy;
 
     private bool Stopped { get; set; }
     private bool Started { get; set; }
-    private string Key { get; set; }
+    private string Key { get; set; } = string.Empty;
 
 
     /// <summary>
@@ -23,7 +23,7 @@ public class BenchReusable : IBench, IResetable
     /// <param name="key">Key to identify the nechmarked object in the CSV file or Benchmark Viewer</param>
     /// <param name="comment">Your comment if required</param>
     /// <param name="autoStart">Start automatically</param>
-    public void Initialize(IAppBenchProxy proxy, string key, string comment = "", bool autoStart = true)
+    public void Initialize(IAppBenchProxy proxy, string key, string? comment = "", bool autoStart = true)
     {
         _proxy = proxy;
         Key = key;
@@ -38,17 +38,14 @@ public class BenchReusable : IBench, IResetable
     /// <summary>
     /// Start benchmark
     /// </summary>
-    /// <param name="comment"></param>
-    public void Start(string comment)
+    /// <param name="comment">Comment to add</param>
+    public void Start(string? comment)
     {
         Started = true;
         Stopped = false;
 
         //write
-        if (_proxy != null)
-        {
-            _proxy.LogStart(Key, comment);
-        }
+        _proxy?.LogStart(Key, comment ?? "Start");
     }
 
 
@@ -60,10 +57,7 @@ public class BenchReusable : IBench, IResetable
     {
         Stopped = true;
 
-        if (_proxy != null)
-        {
-            _proxy.LogStop(Key, comment);
-        }
+        _proxy?.LogStop(Key, comment);
     }
 
     /// <summary>
@@ -97,7 +91,7 @@ public class BenchReusable : IBench, IResetable
     {
         _proxy = null;
         Started = false;
-        Key = null;
+        Key = string.Empty;
         Stopped = false;
     }
 }

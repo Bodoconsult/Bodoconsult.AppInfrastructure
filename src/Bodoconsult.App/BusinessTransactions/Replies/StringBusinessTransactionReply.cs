@@ -10,6 +10,6 @@ public class StringBusinessTransactionReply : DefaultBusinessTransactionReply
     /// <summary>
     /// String to transport with the reply
     /// </summary>
-    public string Content { get; set; }
+    public string? Content { get; set; }
 
 }

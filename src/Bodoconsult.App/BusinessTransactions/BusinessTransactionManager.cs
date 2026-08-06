@@ -69,8 +69,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
     /// <returns>Business transaction</returns>
     public BusinessTransaction CheckForBusinessTransaction(int transactionId)
     {
-
-        BusinessTransaction t;
+        BusinessTransaction? t;
 
         lock (_transactionLock)
         {
@@ -84,16 +83,14 @@ public class BusinessTransactionManager : IBusinessTransactionManager
 
         if (!CreateBusinessTransactionDelegates.ContainsKey(transactionId))
         {
-            throw new ArgumentException(
-                $"Checking for business transaction: No definition loaded for BT {transactionId}");
+            throw new ArgumentException($"Checking for business transaction: No definition loaded for BT {transactionId}");
         }
 
         CreateBusinessTransactionDelegates.TryGetValue(transactionId, out var td);
 
         if (td == null)
         {
-            throw new ArgumentException(
-                $"Checking for business transaction: No definition delegate for BT {transactionId}");
+            throw new ArgumentException($"Checking for business transaction: No definition delegate for BT {transactionId}");
         }
 
 
@@ -102,8 +99,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
 
         if (t.RunBusinessTransactionDelegate == null)
         {
-            throw new ArgumentException(
-                $"Checking for business transaction: BT {transactionId} does not have an runner method");
+            throw new ArgumentException($"Checking for business transaction: BT {transactionId} does not have an runner method");
         }
 
         lock (_transactionLock)
@@ -146,19 +142,19 @@ public class BusinessTransactionManager : IBusinessTransactionManager
             };
         }
 
-        if (transaction == null)
-        {
-            msg = $"BT {transactionId} NOT found";
-            _logger.LogError(msg);
+        //if (transaction == null)
+        //{
+        //    msg = $"BT {transactionId} NOT found";
+        //    _logger.LogError(msg);
 
-            requestData.Benchmark?.AddStep("InternalDone");
-            return new DefaultBusinessTransactionReply
-            {
-                ErrorCode = 1,
-                Message = msg,
-                RequestData = requestData
-            };
-        }
+        //    requestData.Benchmark?.AddStep("InternalDone");
+        //    return new DefaultBusinessTransactionReply
+        //    {
+        //        ErrorCode = 1,
+        //        Message = msg,
+        //        RequestData = requestData
+        //    };
+        //}
 
         // Set the transaction ID for the request data now to transfer it to the reply
         requestData.TransactionId = transactionId;
@@ -168,7 +164,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
             var stopWatch = new Stopwatch();
             stopWatch.Start();
             
-            var result = transaction.RunBusinessTransactionDelegate(requestData);
+            var result = transaction.RunBusinessTransactionDelegate!(requestData);
 
             stopWatch.Stop();
 

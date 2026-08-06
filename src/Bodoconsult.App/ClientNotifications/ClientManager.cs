@@ -93,8 +93,10 @@ public class ClientManager : IClientManager
     /// <param name="client">Current client to remove</param>
     public void RemoveClient(IClient client)
     {
-        AllConnectedClients.TryRemove(client.ClientData.Id, out client);
-        AppLogger.LogInformation($"Client removed {client?.ClientData.Type} {client?.ClientData.Id} Count: {AllConnectedClients.Count}");
+        if (AllConnectedClients.TryRemove(client.ClientData.Id, out _))
+        {
+            AppLogger.LogInformation($"Client removed {client.ClientData.Type} {client.ClientData.Id} Count: {AllConnectedClients.Count}");
+        }
     }
 
     /// <summary>

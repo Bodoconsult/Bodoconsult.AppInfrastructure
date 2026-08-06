@@ -46,6 +46,8 @@ public partial class App : Application
         Console.WriteLine("AvaloniaReactiveUiDemoApp initiation starts...");
 
         var globals = Globals.Instance;
+
+        ArgumentNullException.ThrowIfNull(globals.LoggingConfig);
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
 
         // Set additional app start parameters as required
@@ -96,7 +98,7 @@ public partial class App : Application
         Console.WriteLine(string.Empty);
         Console.WriteLine(string.Empty);
 
-        Console.WriteLine($"Logging config: {ObjectHelper.GetObjectPropertiesAsString(Globals.Instance.LoggingConfig)}");
+        Console.WriteLine($"Logging config: {ObjectHelper.GetObjectPropertiesAsString(globals.LoggingConfig)}");
 
         // Prepare the DI container package
         builder.LoadDiContainerServiceProviderPackage();

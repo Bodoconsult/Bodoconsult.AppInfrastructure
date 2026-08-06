@@ -13,7 +13,7 @@ namespace Bodoconsult.App.Factories;
 /// </summary>
 public class FakeAppEventSourceFactory : IAppEventSourceFactory
 {
-    private IAppEventSource _appApmEventSource;
+    private IAppEventSource? _appApmEventSource;
 
     /// <summary>
     /// Create an instance of a <see cref="FakeAppEventSource"/>

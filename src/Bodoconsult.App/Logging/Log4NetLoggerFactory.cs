@@ -34,7 +34,7 @@ namespace Bodoconsult.App.Logging;
 public class Log4NetLoggerFactory : ILoggerFactory
 {
 
-    private ILogger _logger;
+    private ILogger? _logger;
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()

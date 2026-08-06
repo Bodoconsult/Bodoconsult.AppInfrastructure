@@ -25,7 +25,7 @@ internal class JsonDataExportServiceTests
         var service = new JsonDataExportService<TestData>();
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]
@@ -40,7 +40,7 @@ internal class JsonDataExportServiceTests
         };
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]

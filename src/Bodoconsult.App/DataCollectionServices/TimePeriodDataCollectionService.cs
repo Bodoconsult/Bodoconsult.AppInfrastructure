@@ -42,7 +42,7 @@ public class TimePeriodDataCollectionService<T> : BaseDataCollectionService<T> w
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="e">EventArgs</param>
-    protected override void OnTimedEvent(object sender, ElapsedEventArgs e)
+    protected override void OnTimedEvent(object? sender, ElapsedEventArgs? e)
     {
         Debug.Print("Collecting...");
         IsActive = true;

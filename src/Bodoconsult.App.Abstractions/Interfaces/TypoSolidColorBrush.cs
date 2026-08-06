@@ -28,6 +28,6 @@ public class TypoSolidColorBrush : TypoBrush
     /// <param name="color"></param>
     public TypoSolidColorBrush(string color)
     {
-        TypoColor = TypoColor.FromHtml(color);
+        TypoColor = TypoColor.FromHtml(color) ?? TypoColors.Black;
     }
 }

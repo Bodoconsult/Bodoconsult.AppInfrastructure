@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.BufferPool;
 using Bodoconsult.App.Helpers;
 using System.Text;
+using Bodoconsult.App.Abstractions.BufferPool;
+
 // ReSharper disable InconsistentlySynchronizedField
 
 namespace Bodoconsult.App.DataExportServices;
@@ -21,7 +21,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     private readonly List<ReadOnlyMemory<byte>> _cache = [];
     private byte _flushCounter;
 
-    private AutoResetEvent _closeEvent;
+    private AutoResetEvent? _closeEvent;
 
     private readonly ProducerConsumerQueueAsync<MemoryStream> _storingQueue = new()
     {
@@ -29,7 +29,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     };
     private readonly MemoryStreamBufferPool _storeDataBufferPool = new();
 
-    private FileStream _currentFileStream;
+    private FileStream? _currentFileStream;
 
     /// <summary>
     /// Is the export service started
@@ -140,7 +140,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// <summary>
     /// The current file path the data are stored in
     /// </summary>
-    public string CurrentFilePath { get; set; }
+    public string CurrentFilePath { get; set; } = string.Empty;
 
     /// <summary>
     /// Header data to add at the start of the file. Mainly intended for XML or JSON
@@ -425,7 +425,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
     private void CheckCancellation()
     {
-        if (_closeEvent == null || _cache.Count == 0 || _storingQueue.InternalQueue == null)
+        if (_closeEvent == null || _cache.Count == 0)
         {
             return;
         }

@@ -12,7 +12,7 @@ namespace Bodoconsult.App.Factories;
 public class AppApmEventSourceFactory : IAppEventSourceFactory
 {
 
-    private AppApmEventSource _appApmEventSource;
+    private AppApmEventSource? _appApmEventSource;
 
     private readonly IAppLoggerProxy _appLogger;
 

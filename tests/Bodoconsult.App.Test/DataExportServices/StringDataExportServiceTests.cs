@@ -24,7 +24,7 @@ internal class StringDataExportServiceTests
         var service = new StringDataExportService();
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]
@@ -39,7 +39,7 @@ internal class StringDataExportServiceTests
         };
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]

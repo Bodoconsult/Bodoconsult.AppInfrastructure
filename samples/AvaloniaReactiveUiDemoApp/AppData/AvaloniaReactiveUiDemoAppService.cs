@@ -213,5 +213,4 @@ public class AvaloniaReactiveUiDemoAppService : IApplicationService
     /// Current <see cref="IApplicationService.LicenseMissingDelegate"/>
     /// </summary>
     public LicenseMissingDelegate? LicenseMissingDelegate { get; set; }
-
 }

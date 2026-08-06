@@ -13,7 +13,7 @@ namespace Bodoconsult.App.DataCollectionServices;
 /// <typeparam name="T"></typeparam>
 public abstract class BaseDataCollectionService<T> : IDataCollectionService<T> where T : class
 {
-    private System.Timers.Timer _aTimer;
+    private System.Timers.Timer? _aTimer;
     private readonly Lock _dataLock = new();
     private readonly Lock _isActiveLock = new();
     
@@ -101,7 +101,7 @@ public abstract class BaseDataCollectionService<T> : IDataCollectionService<T> w
     /// <param name="sender">Sender</param>
     /// <param name="e">EventArgs</param>
     /// <exception cref="NotSupportedException"></exception>
-    protected virtual void OnTimedEvent(object sender, ElapsedEventArgs e)
+    protected virtual void OnTimedEvent(object? sender, ElapsedEventArgs? e)
     {
         throw new NotSupportedException("Override in derived classes");
     }

@@ -12,7 +12,7 @@ public interface IMonitorLoggerFactory : ILoggerFactory
     /// <summary>
     /// Current logging config
     /// </summary>
-    public LoggingConfig LoggingConfig { get; set; }
+    public LoggingConfig? LoggingConfig { get; set; }
 
     /// <summary>
     /// Current full file path to log int

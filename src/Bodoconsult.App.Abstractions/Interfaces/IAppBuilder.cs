@@ -15,22 +15,22 @@ public interface IAppBuilder
     /// <summary>
     /// Current <see cref="IAppStarterUi"/> instance
     /// </summary>
-    public IAppStarter AppStarter { get; }
+    public IAppStarter? AppStarter { get; }
 
     /// <summary>
     /// Current app start provider
     /// </summary>
-    IAppStartProvider AppStartProvider { get; }
+    IAppStartProvider? AppStartProvider { get; }
 
     /// <summary>
     /// Package with all DI container services to load for uasge in the app
     /// </summary>
-    IDiContainerServiceProviderPackage DiContainerServiceProviderPackage { get;  }
+    IDiContainerServiceProviderPackage? DiContainerServiceProviderPackage { get;  }
 
     /// <summary>
     /// Current app server
     /// </summary>
-    public IApplicationService ApplicationServer { get; }
+    public IApplicationService? ApplicationServer { get; }
 
 
     /// <summary>

@@ -37,12 +37,12 @@ public interface ITypoMetaData
     /// <summary>
     /// Company website
     /// </summary>
-    string CompanyWebsite { get; set; }
+    string? CompanyWebsite { get; set; }
 
     /// <summary>
     /// Path to logo to print in the page header
     /// </summary>
-    string LogoPath { get; set; }
+    string? LogoPath { get; set; }
 
     /// <summary>
     /// Width of the logo to print in the page header in cm
@@ -57,22 +57,22 @@ public interface ITypoMetaData
     /// <summary>
     /// Document description
     /// </summary>
-    string Description { get; set; }
+    string? Description { get; set; }
 
     /// <summary>
     /// Keywords separated by comma
     /// </summary>
-    string Keywords { get; set; }
+    string? Keywords { get; set; }
 
     /// <summary>
     /// Footer text
     /// </summary>
-    public string FooterText { get; set; }
+    public string? FooterText { get; set; }
 
     /// <summary>
     /// Header text
     /// </summary>
-    public string HeaderText { get; set; }
+    public string? HeaderText { get; set; }
 
     /// <summary>
     /// Defines a template for the header. Segments left, middle or right are separated by pipe.
@@ -106,10 +106,10 @@ public interface ITypoMetaData
     /// <summary>
     /// Path to the background image or null if no background image should be used. For a A4 portrait page the size of the image should be 1400 px x 1980 px
     /// </summary>
-    string BackgroundImagePath { get; set; }
+    string? BackgroundImagePath { get; set; }
 
     /// <summary>
     /// Watermark text
     /// </summary>
-    string WatermarkText { get; set; }
+    string? WatermarkText { get; set; }
 }

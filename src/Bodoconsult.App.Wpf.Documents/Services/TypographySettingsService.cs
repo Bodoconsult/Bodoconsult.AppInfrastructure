@@ -404,6 +404,9 @@ public class TypographySettingsService: BasePageSettingsService
                 MeasurementHelper.GetDiuFromCm(Typography.TypoMargins.Right),
                 MeasurementHelper.GetDiuFromCm(Typography.TypoMargins.Bottom - Typography.PageFooterHeight - Typography.PageFooterMargin));
 
+            HeaderFontName = Typography.FontName;
+            FooterFontName = Typography.FontName;
+
             RegularFontSize = MeasurementHelper.GetDiuFromPoint(Typography.FontSize);
             SmallFontSize = MeasurementHelper.GetDiuFromPoint(Typography.SmallFontSize);
             ExtraSmallFontSize = MeasurementHelper.GetDiuFromPoint(Typography.ExtraSmallFontSize);

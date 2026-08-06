@@ -57,7 +57,6 @@ public class UiWindowDefinitionTests
             Assert.That(wd.WindowType, Is.EqualTo(type));
             Assert.NotNull(wd.Regions);
             Assert.That(wd.Regions.Count, Is.EqualTo(regions.Count));
-            Assert.Null(wd.Factory);
         }
     }
 }

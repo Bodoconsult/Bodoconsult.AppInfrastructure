@@ -15,5 +15,5 @@ public class ObjectIdStringBusinessTransactionRequestData : BaseBusinessTransact
     /// <summary>
     /// The string value provided by the request
     /// </summary>
-    public string Value { get; set; }
+    public string? Value { get; set; }
 }

@@ -135,7 +135,7 @@ public interface IRxMainWindowViewModel : IUiWindowViewModel, IUiMenuWindow
     /// </summary>
     /// <param name="assembly">Assembly to load the logo from</param>
     /// <param name="ressourcePath">Ressource path</param>
-    void LoadLogo(Assembly assembly, string ressourcePath);
+    void LoadLogo(Assembly? assembly, string ressourcePath);
 
     /// <summary>
     /// Shutdown for app

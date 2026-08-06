@@ -83,7 +83,7 @@ public interface II18NClient: INotifyPropertyChanged, IDisposable
     /// </summary>
     /// <typeparam name="TEnum">Enum</typeparam>
     /// <returns>Dictionary with translated enum values</returns>
-    Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>();
+    Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>() where TEnum : notnull;
 
     /// <summary>
     /// Translate an enum to a list

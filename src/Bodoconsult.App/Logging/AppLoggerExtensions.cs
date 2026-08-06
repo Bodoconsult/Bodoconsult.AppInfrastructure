@@ -90,7 +90,7 @@ public static class AppLoggerExtensions
     /// </summary>
     /// <param name="loggingConfig">Current logging configuration</param>
     /// <returns>Configured default logger</returns>
-    public static ILoggerFactory GetDefaultLogger(LoggingConfig loggingConfig)
+    public static ILoggerFactory? GetDefaultLogger(LoggingConfig loggingConfig)
     {
         IServiceCollection serviceCollection = new ServiceCollection();
         serviceCollection.AddDefaultLogger(loggingConfig);
@@ -107,7 +107,7 @@ public static class AppLoggerExtensions
     /// <param name="loggingConfig">Current logging configuration</param>
     /// <param name="monitorLogFilename">Current monitor log filename</param>
     /// <returns>Configured default logger</returns>
-    public static ILoggerFactory GetMonitorLogger(LoggingConfig loggingConfig, string monitorLogFilename)
+    public static ILoggerFactory? GetMonitorLogger(LoggingConfig loggingConfig, string monitorLogFilename)
     {
         IServiceCollection serviceCollection = new ServiceCollection();
         serviceCollection.AddMonitorLogger(loggingConfig, monitorLogFilename);
@@ -134,7 +134,12 @@ public static class AppLoggerExtensions
     public static IAppLoggerProxy GetDefaultAppLoggerProxy(LoggingConfig loggingConfig)
     {
         ArgumentNullException.ThrowIfNull(loggingConfig.LogDataFactory);
-        return new AppLoggerProxy(GetDefaultLogger(loggingConfig), loggingConfig.LogDataFactory);
+
+        var logger = GetDefaultLogger(loggingConfig);
+
+        ArgumentNullException.ThrowIfNull(logger);
+
+        return new AppLoggerProxy(logger, loggingConfig.LogDataFactory);
     }
 
     /// <summary>
@@ -144,6 +149,11 @@ public static class AppLoggerExtensions
     public static IAppLoggerProxy GetMonitorAppLoggerProxy(LoggingConfig loggingConfig, string monitorLogFilename)
     {
         ArgumentNullException.ThrowIfNull(loggingConfig.LogDataFactory);
-        return new AppLoggerProxy(GetMonitorLogger( loggingConfig, monitorLogFilename), loggingConfig.LogDataFactory);
+
+        var logger = GetMonitorLogger(loggingConfig, monitorLogFilename);
+
+        ArgumentNullException.ThrowIfNull(logger);
+
+        return new AppLoggerProxy(logger, loggingConfig.LogDataFactory);
     }
 }

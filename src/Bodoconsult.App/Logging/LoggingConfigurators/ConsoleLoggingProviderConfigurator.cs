@@ -20,7 +20,7 @@ public class ConsoleLoggingProviderConfigurator : ILoggerProviderConfigurator
     /// <summary>
     /// The configuration section from appsettings.json or null if not existing
     /// </summary>
-    public IConfigurationSection Section { get; set; }
+    public IConfigurationSection? Section { get; set; }
 
     /// <summary>
     /// Add the DI container service used for the current logger provider
@@ -29,6 +29,7 @@ public class ConsoleLoggingProviderConfigurator : ILoggerProviderConfigurator
     /// <param name="loggingConfig">Current logging config</param>
     public void AddServices(ILoggingBuilder builder, LoggingConfig loggingConfig)
     {
+        ArgumentNullException.ThrowIfNull(Section);
 
         var oValue = Section.GetChildren().FirstOrDefault(x => x.Key == "DisableColors");
         if (oValue is { Value: not null })

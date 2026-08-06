@@ -59,12 +59,12 @@ public class FakeDataExportService : IMemoryDataExportService
     /// <summary>
     /// The directory path for the export target. Default: Path.GetTempPath();
     /// </summary>
-    public string TargetPath { get; set; }
+    public string TargetPath { get; set; } = string.Empty;
 
     /// <summary>
     /// The plain filename for the export file without extension, timestamp etc.
     /// </summary>
-    public string FileName { get; set; }
+    public string FileName { get; set; } = string.Empty;
 
     /// <summary>
     /// Pattern for the full filename including timestamp etc.
@@ -72,17 +72,17 @@ public class FakeDataExportService : IMemoryDataExportService
     /// {1} Timestamp
     /// {2} FileExtension
     /// </summary>
-    public string FileNamePattern { get; set; }
+    public string FileNamePattern { get; set; } = string.Empty;
 
     /// <summary>
     /// File extension to use for the export files without dot. Default: txt
     /// </summary>
-    public string FileExtension { get; set; }
+    public string FileExtension { get; set; } = string.Empty;
 
     /// <summary>
     /// The current file path the data are stored in
     /// </summary>
-    public string CurrentFilePath { get; set; }
+    public string CurrentFilePath { get; set; } = string.Empty;
 
     /// <summary>
     /// Header data to add at the start of the file. Mainly intended for XML or JSON
@@ -218,6 +218,5 @@ public class FakeDataExportService : IMemoryDataExportService
                 BytesLogged += item.Length;
             }
         }
-
     }
 }

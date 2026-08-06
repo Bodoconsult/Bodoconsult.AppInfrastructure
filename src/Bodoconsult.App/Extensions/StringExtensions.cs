@@ -101,7 +101,7 @@ public static class StringExtensions
     /// <param name="value">String</param>
     /// <param name="length">Allowed maximum length</param>
     /// <returns>Truncated string</returns>
-    public static string LimitToLength(this string value, int length)
+    public static string? LimitToLength(this string? value, int length)
     {
         if (value == null)
         {
@@ -123,7 +123,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">Secure string</param>
     /// <returns>Clear text string</returns>
-    public static string SecureStringToString(this SecureString value)
+    public static string? SecureStringToString(this SecureString value)
     {
         var ptr = Marshal.SecureStringToGlobalAllocUnicode(value);
         try

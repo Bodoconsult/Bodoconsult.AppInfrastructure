@@ -27,12 +27,12 @@ public sealed class LogData : IResetable
     /// <summary>
     /// Source file
     /// </summary>
-    public string SourceFile { get; set; } = string.Empty;
+    public string? SourceFile { get; set; } = string.Empty;
 
     /// <summary>
     /// Source method
     /// </summary>
-    public string SourceMethod { get; set; } = string.Empty;
+    public string? SourceMethod { get; set; } = string.Empty;
 
     /// <summary>
     /// Source row number
@@ -42,12 +42,12 @@ public sealed class LogData : IResetable
     /// <summary>
     /// Message to log
     /// </summary>
-    public string Message { get; set; } = string.Empty;
+    public string? Message { get; set; } = string.Empty;
 
     /// <summary>
     /// Exception to log
     /// </summary>
-    public Exception Exception { get; set; }
+    public Exception? Exception { get; set; }
 
     /// <summary>
     /// EventId to log
@@ -57,7 +57,7 @@ public sealed class LogData : IResetable
     /// <summary>
     /// Args delivered from the caller
     /// </summary>
-    public object[] Args { get; set; }
+    public object[]? Args { get; set; }
 
     /// <summary>
     /// Reset the class to default values

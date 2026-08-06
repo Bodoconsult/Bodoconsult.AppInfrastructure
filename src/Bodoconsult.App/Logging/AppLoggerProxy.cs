@@ -17,7 +17,7 @@ namespace Bodoconsult.App.Logging;
 public class AppLoggerProxy : IAppLoggerProxy
 {
     private readonly ILogDataFactory _logDataFactory;
-    private ProducerConsumerQueue<LogData> _logMessages;
+    private ProducerConsumerQueue<LogData> _logMessages = new();
     private ILogger _logger;
 
     //private readonly bool _isFatalEnabled;
@@ -166,8 +166,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -200,8 +200,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -231,8 +231,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogDebug(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -262,9 +262,9 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogDebug(
         EventId eventId,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -294,8 +294,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogDebug(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -326,8 +326,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -354,8 +354,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogDebug("Processing request from {Address}", address)</example>
     public void LogDebug(string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0
     )
     {
@@ -383,8 +383,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <example>logger.LogDebug("Processing request from {Address}", address)</example>
     public void LogDebug(string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0
     )
     {
@@ -417,8 +417,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -451,9 +451,9 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         Exception exception,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -484,8 +484,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogTrace(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -516,8 +516,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -547,8 +547,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogTrace(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -578,9 +578,9 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogTrace(
         Exception exception,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -607,8 +607,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogTrace("Processing request from {Address}", address)</example>
     public void LogTrace(string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -635,8 +635,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <example>logger.LogTrace("Processing request from {Address}", address)</example>
     public void LogTrace(string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isDebugEnabled)
@@ -667,8 +667,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -702,8 +702,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -734,8 +734,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogInformation(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -766,8 +766,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -797,8 +797,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogInformation(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -829,8 +829,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -857,8 +857,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogInformation("Processing request from {Address}", address)</example>
     public void LogInformation(string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -886,8 +886,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     public void LogInformation(string message,
         DateTime timeStamp,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -914,8 +914,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <example>logger.LogInformation("Processing request from {Address}", address)</example>
     public void LogInformation(string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isInfoEnabled)
@@ -946,8 +946,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -981,8 +981,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -1013,8 +1013,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogWarning(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -1045,8 +1045,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -1078,8 +1078,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -1109,8 +1109,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogWarning(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -1138,8 +1138,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <example>logger.LogWarning("Processing request from {Address}", address)</example>
     public void LogWarning(string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -1166,8 +1166,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogWarning("Processing request from {Address}", address)</example>
     public void LogWarning(string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_isWarnEnabled)
@@ -1192,7 +1192,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="filepath">Calling file name (filled automatically by compiler)</param>
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogError("Error while processing request from 123", exception)</example>
-    public void LogError(string message, Exception exception, string memberName = null, string filepath = null,
+    public void LogError(string message, Exception exception, string? memberName = null, string? filepath = null,
         int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1217,8 +1217,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1247,8 +1247,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1274,8 +1274,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogError(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1300,9 +1300,9 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogError(
         EventId eventId,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1327,8 +1327,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogError(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1353,9 +1353,9 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogError(
         Exception exception,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1377,8 +1377,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogError("Processing request from {Address}", address)</example>
     public void LogError(string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1393,11 +1393,6 @@ public class AppLoggerProxy : IAppLoggerProxy
 
     private void AddToQueue(LogData log)
     {
-        if (_logMessages == null)
-        {
-            return;
-        }
-
         try
         {
             _logMessages.Enqueue(log);
@@ -1417,8 +1412,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <example>logger.LogError("Processing request from {Address}", address)</example>
     public void LogError(string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1444,8 +1439,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1475,8 +1470,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1502,8 +1497,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogCritical(
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1529,8 +1524,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         EventId eventId,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1555,8 +1550,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void LogCritical(
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1582,8 +1577,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         Exception exception,
         string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1605,8 +1600,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="lineNumber">Calling method line number (filled automatically by compiler)</param>
     /// <example>logger.LogCritical("Processing request from {Address}", address)</example>
     public void LogCritical(string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1628,8 +1623,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <example>logger.LogCritical("Processing request from {Address}", address)</example>
     public void LogCritical(string message,
         object[] args,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         var log = _logDataFactory.DequeueInstance();
@@ -1655,9 +1650,9 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void Log(
         LogLevel logLevel,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_logger.IsEnabled(logLevel))
@@ -1687,8 +1682,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     public void Log(
         LogLevel logLevel,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_logger.IsEnabled(logLevel))
@@ -1719,8 +1714,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         LogLevel logLevel,
         EventId eventId,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_logger.IsEnabled(logLevel))
@@ -1753,9 +1748,9 @@ public class AppLoggerProxy : IAppLoggerProxy
         LogLevel logLevel,
         EventId eventId,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_logger.IsEnabled(logLevel))
@@ -1790,8 +1785,8 @@ public class AppLoggerProxy : IAppLoggerProxy
         LogLevel logLevel,
         Exception exception,
         string message,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_logger.IsEnabled(logLevel))
@@ -1825,9 +1820,9 @@ public class AppLoggerProxy : IAppLoggerProxy
         LogLevel logLevel,
         Exception exception,
         string message,
-        object[] args = null,
-        [CallerMemberName] string memberName = null,
-        [CallerFilePath] string filepath = null,
+        object[]? args = null,
+        [CallerMemberName] string? memberName = null,
+        [CallerFilePath] string? filepath = null,
         [CallerLineNumber] int lineNumber = 0)
     {
         if (!_logger.IsEnabled(logLevel))
@@ -1853,10 +1848,10 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// </summary>
     public void StartLogging()
     {
-        if (_logMessages != null)
-        {
+        //if (_logMessages != null)
+        //{
             StopLogging();
-        }
+        //}
 
         _logMessages = new ProducerConsumerQueue<LogData>
         {
@@ -1870,12 +1865,11 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// </summary>
     public void StopLogging()
     {
-        if (_logMessages == null)
-        {
-            return;
-        }
+        //if (_logMessages == null)
+        //{
+        //    return;
+        //}
         _logMessages.StopConsumer();
-        _logMessages = null;
     }
 
 
@@ -2042,9 +2036,8 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <param name="args">Args delivered by the method caller</param>
     /// <param name="s">String to add the args as text</param>
     /// <returns>JSON formatted string</returns>
-    public static string FormatArgs(object[] args, StringBuilder s)
+    public static string FormatArgs(object[]? args, StringBuilder s)
     {
-
         if (args == null || args.Length == 0)
         {
             return string.Empty;
@@ -2058,14 +2051,13 @@ public class AppLoggerProxy : IAppLoggerProxy
                 s.AppendLine($"{e.GetType().Name}: {e.Message} {e.StackTrace}: " //+ Globals.JsonSerializeNice(e)
                              );
             }
-            else if (arg != null)
+            else // if (arg != null)
             {
                 ObjectHelper.GetObjectPropertiesAsString(arg, s);
             }
         }
 
         return s.Replace(string.Intern("00000000-0000-0000-0000-000000000000"), string.Intern("Empty")).ToString();
-
     }
 
     #endregion
@@ -2081,7 +2073,7 @@ public class AppLoggerProxy : IAppLoggerProxy
             return;
         }
         StopLogging();
-        LoggerFactory?.Dispose();
+        LoggerFactory.Dispose();
     }
 
     /// <summary>

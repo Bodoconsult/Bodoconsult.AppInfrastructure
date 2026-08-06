@@ -30,7 +30,7 @@ public class DebugAppLoggerProvider : IDefaultAppLoggerProvider
     /// <summary>
     /// Current app configuration provider
     /// </summary>
-    public IAppConfigurationProvider AppConfigurationProvider => null;
+    public IAppConfigurationProvider? AppConfigurationProvider => null;
 
     /// <summary>
     /// Current logging config
@@ -40,8 +40,7 @@ public class DebugAppLoggerProvider : IDefaultAppLoggerProvider
     /// <summary>
     /// The app default logger instance create by the provider
     /// </summary>
-    public IAppLoggerProxy DefaultLogger { get; private set; }
-
+    public IAppLoggerProxy? DefaultLogger { get; private set; }
 
     /// <summary>
     /// Load the logging settings from <see cref="IAppConfigurationProvider.Configuration"/>
@@ -62,7 +61,8 @@ public class DebugAppLoggerProvider : IDefaultAppLoggerProvider
         var logFactory = serviceCollection.BuildServiceProvider()
             .GetService<ILoggerFactory>();
 
+        ArgumentNullException.ThrowIfNull(logFactory);
+
         DefaultLogger = new AppLoggerProxy(logFactory, LoggingConfig.LogDataFactory);
     }
-
 }

@@ -11,7 +11,7 @@ public interface IDefaultAppLoggerProvider
     /// <summary>
     /// Current app configuration provider
     /// </summary>
-    IAppConfigurationProvider AppConfigurationProvider { get;  }
+    IAppConfigurationProvider? AppConfigurationProvider { get;  }
 
     /// <summary>
     /// Current logging config
@@ -21,7 +21,7 @@ public interface IDefaultAppLoggerProvider
     /// <summary>
     /// The app default logger instance create by the provider
     /// </summary>
-    IAppLoggerProxy DefaultLogger { get; }
+    IAppLoggerProxy? DefaultLogger { get; }
 
     /// <summary>
     /// Load the logging settings from <see cref="IAppConfigurationProvider.Configuration"/>

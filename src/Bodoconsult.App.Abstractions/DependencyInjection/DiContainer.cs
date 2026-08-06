@@ -35,7 +35,7 @@ public class DiContainer
     /// <summary>
     /// Current <see cref="IServiceProvider"/> instance or null if <see cref="BuildServiceProvider"/> was not called
     /// </summary>
-    public IServiceProvider ServiceProvider { get; private set; }
+    public IServiceProvider? ServiceProvider { get; private set; }
 
     /// <summary>
     /// Create the service provider. Must be called after <see cref="ServiceCollection"/> is fully configured.
@@ -54,6 +54,8 @@ public class DiContainer
     /// <returns>Object instance of the requested type</returns>
     public T Get<T>()
     {
+        ArgumentNullException.ThrowIfNull(ServiceProvider);
+
         //if (ServiceCollection.Count < 2)
         //{
         //    return default;
@@ -61,7 +63,8 @@ public class DiContainer
 
         try
         {
-            return (T)ServiceProvider.GetService(typeof(T));
+            var t = ServiceProvider.GetService(typeof(T));
+            return t == null ? throw new ArgumentNullException(): (T)t;
         }
         catch (Exception e)
         {
@@ -156,6 +159,7 @@ public class DiContainer
     /// </summary>
     public List<string> UpdateServices()
     {
+        ArgumentNullException.ThrowIfNull(ServiceProvider);
 
         var result = new List<string>();
 
@@ -169,17 +173,17 @@ public class DiContainer
                 continue;
             }
 
-            var instance = (IServiceRequiresAppSettingsUpdate)ServiceProvider.GetService(type);
-
-            if (instance == null)
+            var o = ServiceProvider.GetService(type);
+            if (o == null)
             {
                 continue;
             }
 
+            var instance = (IServiceRequiresAppSettingsUpdate)o;
+
             instance.UpdateService();
 
             result.Add(instance.GetType().Name);
-
         }
 
         return result;

@@ -1,16 +1,49 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
 
 using System.Collections.Concurrent;
 
-namespace Bodoconsult.App.BufferPool;
+namespace Bodoconsult.App.Abstractions.BufferPool;
 
 /// <summary>
-/// Buffer pool is used to store reusable <see cref="MemoryStream"/>> instances to reduce GC pressure
+/// Buffer pool is used to store reusable objects to reduce GC pressure
 /// </summary>
-public class MemoryStreamBufferPool
+/// <typeparam name="T">Type of the object class to store</typeparam>
+public class BufferPool<T>
 {
-    private readonly Func<MemoryStream> _factoryMethod = () => new MemoryStream();
-    private readonly ConcurrentQueue<MemoryStream> _queue = new();
+    private Func<T> _factoryMethod = DummyFactoryMethod;
+    private readonly ConcurrentQueue<T> _queue = new();
+
+    /// <summary>
+    /// Default ctor. Use <see cref="LoadFactoryMethod"/> to load a custimized load method
+    /// </summary>
+    public BufferPool()
+    {
+        // Do nothing
+    }
+
+    private static T DummyFactoryMethod()
+    {
+        throw new NotSupportedException("Load a factory method");
+    }
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="factoryMethod">Factory method for object creation</param>
+    public BufferPool(Func<T> factoryMethod)
+    {
+        _factoryMethod = factoryMethod;
+    }
+
+    /// <summary>
+    /// Load the factory method
+    /// </summary>
+    /// <param name="factoryMethod">Factory method</param>
+    public void LoadFactoryMethod(Func<T> factoryMethod)
+    {
+        _factoryMethod = factoryMethod;
+    }
 
     /// <summary>
     /// The current length of the internal queue
@@ -33,7 +66,7 @@ public class MemoryStreamBufferPool
     /// Dequeue an object to use from buffer pool
     /// </summary>
     /// <returns>Instance of type T or null if an error happend</returns>
-    public MemoryStream Dequeue()
+    public T Dequeue()
     {
         // Debug.Print($"LogPool DEQUEUE{_queue.Count}");
 
@@ -52,10 +85,8 @@ public class MemoryStreamBufferPool
     /// Queue a used object back to the buffer pool
     /// </summary>
     /// <param name="buffer">Reusable object to store in the pool</param>
-    public void Enqueue(MemoryStream buffer)
+    public void Enqueue(T buffer)
     {
-        buffer.Position = 0;
-        buffer.SetLength(0);
         _queue.Enqueue(buffer);
         // Debug.Print($"LogPool ENQUEUE{_queue.Count}");
     }

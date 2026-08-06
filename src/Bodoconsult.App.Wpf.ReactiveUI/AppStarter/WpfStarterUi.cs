@@ -100,7 +100,7 @@ public class WpfStarterUi : BaseAppStarterUi
     /// </summary>
     public override void Wait()
     {
-
+        ArgumentNullException.ThrowIfNull(ConsoleService);
         ConsoleService.ConsoleHandle = ConsoleService.CsGetConsoleWindow();
         ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowShow);
 
@@ -125,7 +125,7 @@ public class WpfStarterUi : BaseAppStarterUi
     {
         MessageBox.Show(message, appTitle);
 
-        _viewModel?.ShutDown();
+        _viewModel.ShutDown();
 
         Environment.Exit(0);
     }

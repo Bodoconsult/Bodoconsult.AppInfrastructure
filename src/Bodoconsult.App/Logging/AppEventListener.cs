@@ -16,7 +16,7 @@ namespace Bodoconsult.App.Logging;
 /// </summary>
 public class AppEventListener : EventListener, IAppEventListener
 {
-    private EventSource _eventSource;
+    private EventSource? _eventSource;
 
     private EventLevel _eventLevel;
 
@@ -125,7 +125,7 @@ public class AppEventListener : EventListener, IAppEventListener
     /// </summary>
     /// <param name="eventDataPayload"></param>
     /// <returns>A formatted string with not empty payload data</returns>
-    private static string GetPayloadString(ReadOnlyCollection<object> eventDataPayload)
+    private static string GetPayloadString(ReadOnlyCollection<object?>? eventDataPayload)
     {
         var result = new StringBuilder();
 
@@ -178,9 +178,14 @@ public class AppEventListener : EventListener, IAppEventListener
         //var args = new Dictionary<string, string>() { { "FilterSpecs", "App*:Information;*" } };
         // Set the default level (verbosity) to Error, and only ask for the formatted messages in this case.
 
+        if (_eventSource == null)
+        {
+            return;
+        }
+
         if (_eventLevel == EventLevel.Informational)
         {
-            var args = new Dictionary<string, string>
+            var args = new Dictionary<string, string?>
                 {
                     { "FilterSpecs", "Microsoft.EntityFrameworkCore*:Warning;*" }
                 };

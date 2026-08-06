@@ -21,6 +21,7 @@ public class MyDebugAppBuilder : BaseDebugAppBuilder
     /// </summary>
     public override void RegisterDiServices()
     {
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
         DiContainerServiceProviderPackage.AddServices(AppGlobals.DiContainer);
 
         AppGlobals.DiContainer.AddSingleton<IAppBuilder>(this);

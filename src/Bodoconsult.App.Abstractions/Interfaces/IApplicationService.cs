@@ -12,7 +12,7 @@ public interface IApplicationService
     /// <summary>
     /// Request application stop delegate
     /// </summary>
-    RequestApplicationStopDelegate RequestApplicationStopDelegate { get; set; }
+    RequestApplicationStopDelegate? RequestApplicationStopDelegate { get; set; }
 
     /// <summary>
     /// Current app globals
@@ -50,7 +50,7 @@ public interface IApplicationService
     /// <summary>
     /// Current <see cref="LicenseMissingDelegate"/>
     /// </summary>
-    public LicenseMissingDelegate LicenseMissingDelegate { get; set; }
+    public LicenseMissingDelegate? LicenseMissingDelegate { get; set; }
 
     //void ServerShutdown();
 

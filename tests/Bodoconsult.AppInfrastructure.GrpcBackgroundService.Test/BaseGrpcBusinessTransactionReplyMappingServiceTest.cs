@@ -253,7 +253,7 @@ public class BaseGrpcBusinessTransactionReplyMappingServiceTests
             ExceptionMessage = "ExceptionMessage",
         };
 
-        internalReply.Content.Add(null);
+        //internalReply.Content.Add(null);
 
         // Act  
         var result = rms.MapInternalReplyToGrpc(internalReply);

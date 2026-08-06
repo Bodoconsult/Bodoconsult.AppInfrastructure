@@ -109,11 +109,15 @@ public class Log4NetProvider : ILoggerProvider
 
     private Log4NetLogger CreateLoggerImplementation(string name)
     {
-        var l = new Log4NetLogger(name, Parselog4NetConfigFile(_log4NetConfigFile));
+        var xml = Parselog4NetConfigFile(_log4NetConfigFile);
+
+        ArgumentNullException.ThrowIfNull(xml);
+
+        var l = new Log4NetLogger(name, xml);
         return l;
     }
 
-    private static XmlElement Parselog4NetConfigFile(string filename)
+    private static XmlElement? Parselog4NetConfigFile(string filename)
     {
         var log4NetConfig = new XmlDocument();
 

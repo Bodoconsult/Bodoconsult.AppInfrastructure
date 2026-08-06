@@ -31,7 +31,7 @@ public class StringToFileService : IStringToFileService
     /// <summary>
     /// Full filepath for saving the content in
     /// </summary>
-    public string FilePath { get; set; }
+    public string FilePath { get; set; } = string.Empty;
 
     /// <summary>
     /// Encoding to use for string to byte array conversions. Default: UTF8

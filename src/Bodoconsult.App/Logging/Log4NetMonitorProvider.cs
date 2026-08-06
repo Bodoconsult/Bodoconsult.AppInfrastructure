@@ -101,12 +101,14 @@ public class Log4NetMonitorProvider : ILoggerProvider
         // Load the default config file
         var xml = Parselog4NetConfigFile(_log4NetConfigFile);
 
+        ArgumentNullException.ThrowIfNull(xml);
+
         // Now create the logger
         var l = new Log4NetLogger(name, xml, _plainMonitorLogFilename);
         return l;
     }
 
-    private XmlElement Parselog4NetConfigFile(string filename)
+    private XmlElement? Parselog4NetConfigFile(string filename)
     {
         var xml = new XmlDocument();
         xml.Load(filename);

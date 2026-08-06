@@ -16,14 +16,13 @@ public class ExceptionReplyData
     /// <summary>
     /// Message to log for the error
     /// </summary>
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
 
     /// <summary>
     /// Additional error message with information like stack trace
     /// </summary>
-    public string ErrorMessage { get; set; }
-
+    public string? ErrorMessage { get; set; }
 
     /// <summary>
     /// Deliver always an empty error message

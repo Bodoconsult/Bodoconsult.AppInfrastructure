@@ -3,7 +3,6 @@
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Logging;
 using Microsoft.Extensions.Configuration;
 
 namespace Bodoconsult.App.ReactiveUI.Tests.App;
@@ -74,11 +73,6 @@ public class Globals : IAppGlobals
     public IAppStartParameter AppStartParameter { get; set; } = new AppStartParameter();
 
     /// <summary>
-    /// Current log data entry factory
-    /// </summary>
-    public ILogDataFactory LogDataFactory { get; set; } = new LogDataFactory();
-
-    /// <summary>
     /// Current logging config
     /// </summary>
     public LoggingConfig LoggingConfig { get; set; } = new();
@@ -91,7 +85,7 @@ public class Globals : IAppGlobals
     /// <summary>
     /// Current dependency injection (DI) container
     /// </summary>
-    public DiContainer? DiContainer { get; set; } = new();
+    public DiContainer DiContainer { get; set; } = new();
 
     /// <summary>
     /// Base path, where the app stores data created by the app like backups, migrations logs and normal log files.

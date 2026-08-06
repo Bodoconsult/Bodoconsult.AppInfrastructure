@@ -13,7 +13,7 @@ public class BaseAppStarterUi : IAppStarterUi
     /// <summary>
     /// Console service for managing the console
     /// </summary>
-    protected IConsoleService ConsoleService;
+    protected IConsoleService? ConsoleService;
 
     /// <summary>
     /// Default ctor
@@ -62,6 +62,8 @@ public class BaseAppStarterUi : IAppStarterUi
             //    return false;
             //}
 
+            ArgumentNullException.ThrowIfNull(ConsoleService);
+
             ConsoleService.ConsoleHandle = ConsoleService.CsGetConsoleWindow();
             ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowShow);
             return true;
@@ -88,7 +90,7 @@ public class BaseAppStarterUi : IAppStarterUi
         }
         catch (Exception e)
         {
-            AppBuilder.AppGlobals.Logger.LogError($"{AppBuilder.AppGlobals.AppStartParameter.AppName} is closed due to error", e);
+            AppBuilder.AppGlobals.Logger?.LogError($"{AppBuilder.AppGlobals.AppStartParameter.AppName} is closed due to error", e);
             HandleException(e);
             Environment.Exit(0);
         }

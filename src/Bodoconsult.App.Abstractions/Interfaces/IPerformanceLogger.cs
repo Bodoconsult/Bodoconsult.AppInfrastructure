@@ -11,7 +11,7 @@ public interface IPerformanceLogger
     /// Get important counters as formatted string
     /// </summary>
     /// <returns>String with performance counter data</returns>
-    string GetCountersAsString();
+    string? GetCountersAsString();
 
     /// <summary>
     /// Start the logger
@@ -22,5 +22,4 @@ public interface IPerformanceLogger
     /// Stop the logger
     /// </summary>
     void StopLogger();
-
 }

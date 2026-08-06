@@ -24,7 +24,7 @@ public abstract class BaseBusinessTransactionRequestData: IBusinessTransactionRe
     /// Benchmark object (see output in XXX_Benchmark.csv)
     /// Make sure to create it, addStep, and dispose it 
     /// </summary>
-    public Bench Benchmark { get; set; }
+    public Bench? Benchmark { get; set; }
 
     /// <summary>
     /// Request metadata: client GUID
@@ -34,17 +34,17 @@ public abstract class BaseBusinessTransactionRequestData: IBusinessTransactionRe
     /// <summary>
     /// Request metadata: client name
     /// </summary>
-    public string MetaDataClientName { get; set; }
+    public string? MetaDataClientName { get; set; }
 
     /// <summary>
     /// Request metadata: IP address the request is coming from
     /// </summary>
-    public string MetaDataIpAddress { get; set; }
+    public string? MetaDataIpAddress { get; set; }
 
     /// <summary>
-    /// Request metadata: user name in cleartext
+    /// Request metadata: username in cleartext
     /// </summary>
-    public string MetaDataUserName { get; set; }
+    public string? MetaDataUserName { get; set; }
 
     /// <summary>
     /// Request metadata: User ID

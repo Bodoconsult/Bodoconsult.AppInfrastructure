@@ -23,7 +23,7 @@ public interface IBusinessTransactionRequestData
     /// Benchmark object (see output in XXX_Benchmark.csv)
     /// Make sure to create it, addStep, and dispose it 
     /// </summary>
-    Bench Benchmark { get; set; }
+    Bench? Benchmark { get; set; }
 
     /// <summary>
     /// Request metadata: client GUID
@@ -33,17 +33,17 @@ public interface IBusinessTransactionRequestData
     /// <summary>
     /// Request metadata: client name
     /// </summary>
-    public string MetaDataClientName { get; set; }
+    public string? MetaDataClientName { get; set; }
 
     /// <summary>
     /// Request metadata: IP address the request is coming from
     /// </summary>
-    public string MetaDataIpAddress { get; set; }
+    public string? MetaDataIpAddress { get; set; }
 
     /// <summary>
     /// Request metadata: user name in cleartext
     /// </summary>
-    public string MetaDataUserName { get; set; }
+    public string? MetaDataUserName { get; set; }
 
     /// <summary>
     /// Request metadata: User ID

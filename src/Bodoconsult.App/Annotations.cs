@@ -133,7 +133,7 @@ public sealed class StringFormatMethodAttribute : Attribute
         FormatParameterName = formatParameterName;
     }
 
-    [NotNull] public string FormatParameterName { get; }
+    [NotNull] public string? FormatParameterName { get; }
 }
 
 /// <summary>
@@ -173,7 +173,7 @@ public sealed class ValueProviderAttribute : Attribute
         Name = name;
     }
 
-    [NotNull] public string Name { get; }
+    [NotNull] public string? Name { get; }
 }
 
 /// <summary>
@@ -237,7 +237,7 @@ public sealed class NotifyPropertyChangedInvocatorAttribute : Attribute
         ParameterName = parameterName;
     }
 
-    [CanBeNull] public string ParameterName { get; }
+    [CanBeNull] public string? ParameterName { get; }
 }
 
 /// <summary>
@@ -296,7 +296,7 @@ public sealed class ContractAnnotationAttribute : Attribute
         ForceFullStates = forceFullStates;
     }
 
-    [NotNull] public string Contract { get; }
+    [NotNull] public string? Contract { get; }
 
     public bool ForceFullStates { get; }
 }
@@ -475,7 +475,7 @@ public sealed class PublicAPIAttribute : Attribute
         Comment = comment;
     }
 
-    [CanBeNull] public string Comment { get; }
+    [CanBeNull] public string? Comment { get; }
 }
 
 /// <summary>
@@ -521,7 +521,7 @@ public sealed class MustUseReturnValueAttribute : Attribute
         Justification = justification;
     }
 
-    [CanBeNull] public string Justification { get; }
+    [CanBeNull] public string? Justification { get; }
 }
 
 /// <summary>
@@ -558,7 +558,7 @@ public sealed class PathReferenceAttribute : Attribute
         BasePath = basePath;
     }
 
-    [CanBeNull] public string BasePath { get; }
+    [CanBeNull] public string? BasePath { get; }
 }
 
 /// <summary>
@@ -622,7 +622,7 @@ public sealed class MacroAttribute : Attribute
     /// Allows specifying a macro that will be executed for a <see cref="SourceTemplateAttribute">source template</see>
     /// parameter when the template is expanded.
     /// </summary>
-    [CanBeNull] public string Expression { get; set; }
+    [CanBeNull] public string? Expression { get; set; }
 
     /// <summary>
     /// Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
@@ -638,7 +638,7 @@ public sealed class MacroAttribute : Attribute
     /// Identifies the target parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
     /// <see cref="MacroAttribute"/> is applied on a template method.
     /// </summary>
-    [CanBeNull] public string Target { get; set; }
+    [CanBeNull] public string? Target { get; set; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -649,7 +649,7 @@ public sealed class AspMvcAreaMasterLocationFormatAttribute : Attribute
         Format = format;
     }
 
-    [NotNull] public string Format { get; }
+    [NotNull] public string? Format { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -660,7 +660,7 @@ public sealed class AspMvcAreaPartialViewLocationFormatAttribute : Attribute
         Format = format;
     }
 
-    [NotNull] public string Format { get; }
+    [NotNull] public string? Format { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -671,7 +671,7 @@ public sealed class AspMvcAreaViewLocationFormatAttribute : Attribute
         Format = format;
     }
 
-    [NotNull] public string Format { get; }
+    [NotNull] public string? Format { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -682,7 +682,7 @@ public sealed class AspMvcMasterLocationFormatAttribute : Attribute
         Format = format;
     }
 
-    [NotNull] public string Format { get; }
+    [NotNull] public string? Format { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -693,7 +693,7 @@ public sealed class AspMvcPartialViewLocationFormatAttribute : Attribute
         Format = format;
     }
 
-    [NotNull] public string Format { get; }
+    [NotNull] public string? Format { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -704,7 +704,7 @@ public sealed class AspMvcViewLocationFormatAttribute : Attribute
         Format = format;
     }
 
-    [NotNull] public string Format { get; }
+    [NotNull] public string? Format { get; }
 }
 
 /// <summary>
@@ -723,7 +723,7 @@ public sealed class AspMvcActionAttribute : Attribute
         AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
 }
 
 /// <summary>
@@ -741,7 +741,7 @@ public sealed class AspMvcAreaAttribute : Attribute
         AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
 }
 
 /// <summary>
@@ -760,7 +760,7 @@ public sealed class AspMvcControllerAttribute : Attribute
         AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
 }
 
 /// <summary>
@@ -863,7 +863,7 @@ public sealed class HtmlElementAttributesAttribute : Attribute
         Name = name;
     }
 
-    [CanBeNull] public string Name { get; }
+    [CanBeNull] public string? Name { get; }
 }
 
 [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
@@ -874,7 +874,7 @@ public sealed class HtmlAttributeValueAttribute : Attribute
         Name = name;
     }
 
-    [NotNull] public string Name { get; }
+    [NotNull] public string? Name { get; }
 }
 
 /// <summary>
@@ -1059,7 +1059,7 @@ public sealed class AspChildControlTypeAttribute : Attribute
         ControlType = controlType;
     }
 
-    [NotNull] public string TagName { get; }
+    [NotNull] public string? TagName { get; }
 
     [NotNull] public Type ControlType { get; }
 }
@@ -1081,7 +1081,7 @@ public sealed class AspRequiredAttributeAttribute : Attribute
         Attribute = attribute;
     }
 
-    [NotNull] public string Attribute { get; }
+    [NotNull] public string? Attribute { get; }
 }
 
 [AttributeUsage(AttributeTargets.Property)]
@@ -1103,7 +1103,7 @@ public sealed class RazorImportNamespaceAttribute : Attribute
         Name = name;
     }
 
-    [NotNull] public string Name { get; }
+    [NotNull] public string? Name { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -1115,9 +1115,9 @@ public sealed class RazorInjectionAttribute : Attribute
         FieldName = fieldName;
     }
 
-    [NotNull] public string Type { get; }
+    [NotNull] public string? Type { get; }
 
-    [NotNull] public string FieldName { get; }
+    [NotNull] public string? FieldName { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -1128,7 +1128,7 @@ public sealed class RazorDirectiveAttribute : Attribute
         Directive = directive;
     }
 
-    [NotNull] public string Directive { get; }
+    [NotNull] public string? Directive { get; }
 }
 
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -1144,8 +1144,8 @@ public sealed class RazorPageBaseTypeAttribute : Attribute
         PageName = pageName;
     }
 
-    [NotNull] public string BaseType { get; }
-    [CanBeNull] public string PageName { get; }
+    [NotNull] public string? BaseType { get; }
+    [CanBeNull] public string? PageName { get; }
 }
 
 [AttributeUsage(AttributeTargets.Method)]

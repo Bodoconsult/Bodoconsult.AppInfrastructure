@@ -26,7 +26,7 @@ public class AppConfigurationProvider : IAppConfigurationProvider
     /// <summary>
     /// Current configuration loaded from <see cref="IAppConfigurationProvider.ConfigFile"/>
     /// </summary>
-    public IConfigurationRoot Configuration { get; private set; }
+    public IConfigurationRoot? Configuration { get; private set; }
 
     /// <summary>
     /// Load <see cref="IAppConfigurationProvider.Configuration"/> from <see cref="IAppConfigurationProvider.ConfigFile"/>
@@ -61,14 +61,14 @@ public class AppConfigurationProvider : IAppConfigurationProvider
     /// </summary>
     public string ReadDefaultConnection()
     {
-        return Configuration?.GetSection("ConnectionStrings")["DefaultConnection"];
+        return Configuration?.GetSection("ConnectionStrings")["DefaultConnection"] ?? string.Empty;
     }
 
     /// <summary>
     /// Read the logging section
     /// </summary>
     /// <returns>Logging section</returns>
-    public IConfigurationSection ReadLoggingSection()
+    public IConfigurationSection? ReadLoggingSection()
     {
         return Configuration?.GetSection("Logging");
     }
@@ -77,7 +77,7 @@ public class AppConfigurationProvider : IAppConfigurationProvider
     /// Read the app start parameter section
     /// </summary>
     /// <returns>App start parameter section</returns>
-    public IConfigurationSection ReadAppStartParameterSection()
+    public IConfigurationSection? ReadAppStartParameterSection()
     {
         return Configuration?.GetSection("AppStartParameter");
     }
@@ -88,7 +88,7 @@ public class AppConfigurationProvider : IAppConfigurationProvider
     /// </summary>
     /// <param name="sectionName">Section name requested</param>
     /// <returns>Section</returns>
-    public IConfigurationSection ReadConfigurationSection(string sectionName)
+    public IConfigurationSection? ReadConfigurationSection(string sectionName)
     {
         return Configuration?.GetSection(sectionName);
     }

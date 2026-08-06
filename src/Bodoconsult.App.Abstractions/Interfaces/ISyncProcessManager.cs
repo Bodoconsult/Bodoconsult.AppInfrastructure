@@ -30,5 +30,5 @@ public interface ISyncProcessManager<TKey, T> : IDisposable where T: class
     /// </summary>
     /// <param name="processId">Key value of the rpocess to run sync</param>
     /// <returns>Sync running execution data or null</returns>
-    SyncProcessData<TKey, T> GetSyncProcessDataForProcess(TKey processId);
+    SyncProcessData<TKey, T>? GetSyncProcessDataForProcess(TKey processId);
 }

@@ -25,12 +25,12 @@ public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
     /// <summary>
     /// Current locale language as <see cref="PortableLanguage"/> instance
     /// </summary>
-    PortableLanguage Language { get; set; }
+    PortableLanguage? Language { get; set; }
         
     /// <summary>
     /// Current locale
     /// </summary>
-    string Locale { get; set; }
+    string? Locale { get; set; }
         
     /// <summary>
     /// Available languages found by the providers. 
@@ -117,7 +117,7 @@ public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
     /// </summary>
     /// <typeparam name="TEnum">Enum</typeparam>
     /// <returns>Dictionary with translated enum values</returns>
-    Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>();
+    Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>() where TEnum : notnull;
 
     /// <summary>
     /// Translate an enum to a list

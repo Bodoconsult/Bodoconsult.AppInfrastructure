@@ -99,7 +99,7 @@ public sealed class AppApmEventSource : EventSource, IAppEventSource
     /// </summary>
     /// <param name="name">Name of the requested instance</param>
     /// <returns><see cref="EventCounter"/> instance or null</returns>
-    public EventCounter GetMetricEventCounter(string name)
+    public EventCounter? GetMetricEventCounter(string name)
     {
         if (EventCounters.TryGetValue(name, out var counterInstance))
         {
@@ -114,7 +114,7 @@ public sealed class AppApmEventSource : EventSource, IAppEventSource
     /// </summary>
     /// <param name="name">Name of the requested instance</param>
     /// <returns><see cref="EventCounter"/> instance or null</returns>
-    public IncrementingEventCounter GetIncrementEventCounter(string name)
+    public IncrementingEventCounter? GetIncrementEventCounter(string name)
     {
         if (IncrementingEventCounters.TryGetValue(name, out var counterInstance))
         {

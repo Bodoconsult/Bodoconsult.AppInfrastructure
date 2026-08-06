@@ -13,7 +13,7 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     public SyncProcessData(TKey processId, int timeout)
     {
         ProcessId = processId;
-        TaskCompletionSource = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
+        TaskCompletionSource = new TaskCompletionSource<T?>(TaskCreationOptions.RunContinuationsAsynchronously);
 
         // Create the CancellationTokenSource to implement timeout for sync running
         var cts = new CancellationTokenSource(timeout + 100);
@@ -42,10 +42,10 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     /// Create a task to wait unitl order finished or timeout
     /// </summary>
     /// <returns>Task to wait for</returns>
-    public Task<T> CreateWaitingTask()
+    public Task<T?>? CreateWaitingTask()
     {
         // Now wait
-        return TaskCompletionSource.Task;
+        return TaskCompletionSource?.Task;
     }
 
     /// <summary>
@@ -65,17 +65,17 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     /// <summary>
     /// CancellationTokenSource used for running an order in a sync manner
     /// </summary>
-    public CancellationTokenSource CancellationTokenSource { get; private set; }
+    public CancellationTokenSource? CancellationTokenSource { get; private set; }
 
     /// <summary>
     /// TaskCompletionSource used for running an order in a sync manner
     /// </summary>
-    public TaskCompletionSource<T> TaskCompletionSource { get; private set; }
+    public TaskCompletionSource<T?>? TaskCompletionSource { get; private set; }
 
     /// <summary>
     /// Current BT request data connect to this process
     /// </summary>
-    public IBusinessTransactionRequestData BusinessTransactionRequestData { get; set; }
+    public IBusinessTransactionRequestData? BusinessTransactionRequestData { get; set; }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()

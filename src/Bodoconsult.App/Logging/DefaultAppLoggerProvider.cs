@@ -25,7 +25,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
     /// <summary>
     /// Current app configuration provider
     /// </summary>
-    public IAppConfigurationProvider AppConfigurationProvider { get; }
+    public IAppConfigurationProvider? AppConfigurationProvider { get; }
 
     /// <summary>
     /// Current logging config
@@ -35,7 +35,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
     /// <summary>
     /// The app default logger instance create by the provider
     /// </summary>
-    public IAppLoggerProxy DefaultLogger { get; private set; }
+    public IAppLoggerProxy? DefaultLogger { get; private set; }
 
 
     /// <summary>
@@ -45,7 +45,9 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
     {
         LoggingConfig.LogDataFactory = new LogDataFactory();
 
-        var config = AppConfigurationProvider.ReadLoggingSection();
+        var config = AppConfigurationProvider!.ReadLoggingSection();
+
+        ArgumentNullException.ThrowIfNull(config, "Config section is appsettings.json is missing");
 
         var kids = config.GetChildren().ToList();
 

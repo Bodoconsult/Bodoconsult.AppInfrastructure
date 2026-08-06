@@ -29,7 +29,7 @@ public class CounterDataCollectionService<T> : BaseDataCollectionService<T> wher
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="e">EventArgs</param>
-    protected override void OnTimedEvent(object sender, ElapsedEventArgs e)
+    protected override void OnTimedEvent(object? sender, ElapsedEventArgs? e)
     {
         Debug.Print("Collecting...");
         var cancellationTokenSource = new CancellationTokenSource(CollectionInterval - 20);

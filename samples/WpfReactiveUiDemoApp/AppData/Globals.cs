@@ -13,7 +13,6 @@ namespace WpfReactiveUiDemoApp.AppData;
 /// </summary>
 public class Globals : IAppGlobals
 {
-
     #region Singleton factory
 
     // Thread-safe implementation of singleton pattern
@@ -58,11 +57,6 @@ public class Globals : IAppGlobals
     /// App start parameter
     /// </summary>
     public IAppStartParameter AppStartParameter { get; set; } = new AppStartParameter();
-
-    /// <summary>
-    /// Current log data entry factory
-    /// </summary>
-    public ILogDataFactory? LogDataFactory { get; set; }
 
     /// <summary>
     /// Current logging config

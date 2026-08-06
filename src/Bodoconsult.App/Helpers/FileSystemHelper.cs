@@ -12,7 +12,6 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public static class FileSystemHelper
 {
-
     /// <summary>
     /// Checks if a string contains invalid chars and returns the first invalid char
     /// </summary>
@@ -40,7 +39,7 @@ public static class FileSystemHelper
     /// </summary>
     /// <param name="fullPath">Full path to the file</param>
     /// <returns>Plain file name</returns>
-    public static string GetFileNameWithoutExtension(string fullPath)
+    public static string GetFileNameWithoutExtension(string? fullPath)
     {
         if (string.IsNullOrEmpty(fullPath))
         {

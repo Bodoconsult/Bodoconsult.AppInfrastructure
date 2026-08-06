@@ -10,17 +10,23 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : class
 {
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _cancellationTokenSource = new();
+
+    /// <summary>
+    /// Contains the internal queue
+    /// </summary>
+    private Channel<T> _internalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(100)
+    {
+        SingleReader = true,
+        SingleWriter = false,
+        FullMode = BoundedChannelFullMode.Wait
+    });
 
     /// <summary>
     /// Thread priority
     /// </summary>
     public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.Normal;
 
-    /// <summary>
-    /// Contains the internal queue
-    /// </summary>
-    public Channel<T> InternalQueue;
 
     /// <summary>
     /// Capacity of the queue
@@ -30,7 +36,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    public ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; }
+    public ConsumerTaskDelegate<T> ConsumerTaskDelegate { get; set; } = _ => { };
 
     /// <summary>
     /// Is the queue started?
@@ -47,7 +53,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
         {
             return;
         }
-        InternalQueue.Writer.TryWrite(item);
+        _internalQueue.Writer.TryWrite(item);
     }
 
     /// <summary>
@@ -61,7 +67,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
             return;
         }
 
-        var writer = InternalQueue.Writer;
+        var writer = _internalQueue.Writer;
 
         foreach (var tItem in items)
         {
@@ -79,12 +85,16 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }
 
-        InternalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(Capacity)
+        _internalQueue.Writer.TryComplete();
+
+        _internalQueue = Channel.CreateBounded<T>(new BoundedChannelOptions(Capacity)
         {
             SingleReader = true,
             SingleWriter = false,
             FullMode = BoundedChannelFullMode.Wait
         });
+
+        _cancellationTokenSource.Dispose();
 
         _cancellationTokenSource = new CancellationTokenSource();
         Task.Factory.StartNew(RunInternal, TaskCreationOptions.LongRunning);
@@ -97,14 +107,9 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// </summary>
     private async Task<bool> RunInternal()
     {
-        if (InternalQueue == null)
-        {
-            return true;
-        }
-
         Thread.CurrentThread.Priority = ThreadPriority;
 
-        var reader = InternalQueue.Reader;
+        var reader = _internalQueue.Reader;
 
         while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
         {
@@ -123,13 +128,12 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     public void StopConsumer()
     {
         IsActivated = false;
-        _cancellationTokenSource?.Cancel(false);
-        InternalQueue?.Writer.TryComplete();
+        _cancellationTokenSource.Cancel(false);
+        _internalQueue.Writer.TryComplete();
 
         Task.Delay(200).Wait();
 
-        InternalQueue = null;
-        ConsumerTaskDelegate = null;
+        ConsumerTaskDelegate = _ => { };
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

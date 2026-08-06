@@ -10,7 +10,7 @@ public interface I2NetworkDevicesAppStartParameter : IAppStartParameter
     /// <summary>
     /// IP address of the network device 2
     /// </summary>
-    public string IpAddress2 { get; set; }
+    public string? IpAddress2 { get; set; }
 
     /// <summary>
     /// Port of the network device 2

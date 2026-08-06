@@ -81,7 +81,7 @@ public static class AsyncHelper
     /// <typeparam name="T"></typeparam>
     /// <param name="taskCompletionSource"><see cref="TaskCompletionSource&lt;T&gt;"/> to be handled by the consumer of the waiting task</param>
     /// <returns>Result of the waiting task</returns>
-    public static T CreateWaitingTask<T>(out TaskCompletionSource<T> taskCompletionSource)
+    public static T CreateWaitingTask<T>(out TaskCompletionSource<T>? taskCompletionSource)
     {
         // Now wait
         var result = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);

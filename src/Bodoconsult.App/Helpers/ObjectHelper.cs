@@ -31,7 +31,7 @@ public static class ObjectHelper
     /// <param name="original">original value in the database</param>
     /// <param name="current">current value in the entity</param>
     /// <returns></returns>
-    public static bool CheckIfValuesAreEqual(object original, object current)
+    public static bool CheckIfValuesAreEqual(object? original, object? current)
     {
 
         if (original == current)
@@ -75,7 +75,7 @@ public static class ObjectHelper
     /// <param name="a1">Byte array 1 to check</param>
     /// <param name="a2">Byte array 2 to check</param>
     /// <returns>true if the arrays are equal</returns>
-    public static bool ByteArrayCompare(IReadOnlyList<byte> a1, IReadOnlyList<byte> a2)
+    public static bool ByteArrayCompare(IReadOnlyList<byte>? a1, IReadOnlyList<byte>? a2)
     {
         if (a1 == null && a2 == null)
         {
@@ -114,7 +114,7 @@ public static class ObjectHelper
     /// </summary>
     /// <param name="source"></param>
     /// <param name="target"></param>
-    public static void MapProperties(object source, object target)
+    public static void MapProperties(object? source, object? target)
     {
 
         if (source == null)
@@ -138,10 +138,19 @@ public static class ObjectHelper
 
             var prop = propMap[i];
 
+            if (prop.SourceProperty == null)
+            {
+                continue;
+            }
+
             var sourceValue = prop.SourceProperty.GetValue(source, null);
 
-            prop.TargetProperty.SetValue(target, sourceValue, null);
+            if (prop.TargetProperty == null)
+            {
+                continue;
+            }
 
+            prop.TargetProperty.SetValue(target, sourceValue, null);
         }
     }
 
@@ -152,7 +161,7 @@ public static class ObjectHelper
     /// <param name="source"></param>
     /// <param name="target"></param>
     /// <returns>true if objects have the same properties values</returns>
-    public static bool CompareProperties(object source, object target)
+    public static bool CompareProperties(object? source, object? target)
     {
         if (source == null)
         {
@@ -178,6 +187,11 @@ public static class ObjectHelper
 
             //if (prop.SourceProperty.Name == "RowVersion") continue;
 
+            if (prop.SourceProperty == null || prop.TargetProperty == null)
+            {
+                continue;
+            }
+
             var sourceValue = prop.SourceProperty.GetValue(source, null);
 
             var targetValue = prop.TargetProperty.GetValue(target, null);
@@ -187,22 +201,18 @@ public static class ObjectHelper
                 continue;
             }
 
-
             if (sourceValue.ToString() != targetValue.ToString())
             {
 
                 return false;
             }
-
         }
-
-
 
         return true;
     }
 
 
-    internal static IList<PropertyMap> GetMatchingProperties(Type sourceType, Type targetType)
+    internal static IList<PropertyMap> GetMatchingProperties(Type? sourceType, Type? targetType)
     {
         if (sourceType == null)
         {
@@ -262,7 +272,7 @@ public static class ObjectHelper
     /// Fill an object with sample data
     /// </summary>
     /// <param name="data"></param>
-    public static void FillProperties(object data)
+    public static void FillProperties(object? data)
     {
         if (data == null)
         {
@@ -346,7 +356,7 @@ public static class ObjectHelper
     /// </summary>
     /// <param name="o">Current object</param>
     /// <returns>Properties of the object and their values as string</returns>
-    public static string GetObjectPropertiesAsString(object o)
+    public static string? GetObjectPropertiesAsString(object o)
     {
         var type = o.GetType();
 
@@ -363,7 +373,7 @@ public static class ObjectHelper
         var props = type.GetProperties();
 
         var str = new StringBuilder();
-        str.Append("{");
+        str.Append('{');
         foreach (var prop in props)
         {
             var v = prop.GetValue(o);
@@ -385,7 +395,6 @@ public static class ObjectHelper
             {
                 str.Append($"{prop.Name}:{v},");
             }
-
         }
 
         var result = str.ToString();
@@ -507,10 +516,7 @@ public static class ObjectHelper
 
 internal class PropertyMap
 {
+    public PropertyInfo? SourceProperty { get; set; }
 
-    public PropertyInfo SourceProperty { get; set; }
-
-    public PropertyInfo TargetProperty { get; set; }
-
+    public PropertyInfo? TargetProperty { get; set; }
 }
-

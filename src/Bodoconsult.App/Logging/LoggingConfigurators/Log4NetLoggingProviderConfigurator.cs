@@ -19,7 +19,7 @@ public class Log4NetLoggingProviderConfigurator : ILoggerProviderConfigurator
     /// <summary>
     /// The configuration section from appsettings.json or null if not existing
     /// </summary>
-    public IConfigurationSection Section { get; set; }
+    public IConfigurationSection? Section { get; set; }
 
     /// <summary>
     /// Add the DI container service used for the current logger provider

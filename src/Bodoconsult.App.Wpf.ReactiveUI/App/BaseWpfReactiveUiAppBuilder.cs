@@ -31,6 +31,7 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
     /// </summary>
     public override void RegisterDiServices()
     {
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
         DiContainerServiceProviderPackage.AddServices(AppGlobals.DiContainer);
 
         AppGlobals.DiContainer.AddSingleton<IAppBuilder>(this);
@@ -41,6 +42,7 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
     /// </summary>
     public override void StartApplication()
     {
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
         var dpr = new MicrosoftDependencyResolver(AppGlobals.DiContainer.ServiceCollection);
 
         var appB = dpr.CreateReactiveUIBuilder()

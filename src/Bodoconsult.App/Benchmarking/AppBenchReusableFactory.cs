@@ -43,7 +43,7 @@ public class AppBenchReusableFactory : IAppBenchReusableFactory
     /// <param name="key">Key to identify the nechmarked object in the CSV file or Benchmark Viewer</param>
     /// <param name="comment">Your comment if required</param>
     /// <param name="autoStart">Start automatically</param>
-    public BenchReusable CreateInstance(string key, string comment = null, bool autoStart = true)
+    public BenchReusable CreateInstance(string key, string? comment = null, bool autoStart = true)
     {
         return _benchReusableFactory.CreateInstance(_proxy, key, comment, autoStart);
     }

@@ -10,6 +10,5 @@ public class StringBusinessTransactionRequestData : BaseBusinessTransactionReque
     /// <summary>
     /// The string content provided by the request
     /// </summary>
-    public string Content { get; set; }
-
+    public string? Content { get; set; }
 }

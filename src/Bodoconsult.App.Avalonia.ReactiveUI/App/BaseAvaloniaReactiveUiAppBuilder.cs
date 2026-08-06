@@ -6,7 +6,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.AppStarter;
 using Bodoconsult.App.ReactiveUI.DependecyResolvers;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using ReactiveUI;
 using ReactiveUI.Avalonia;
 using ReactiveUI.Builder;
 using Splat;
@@ -33,6 +32,7 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
     /// </summary>
     public override void RegisterDiServices()
     {
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
         DiContainerServiceProviderPackage.AddServices(AppGlobals.DiContainer);
 
         AppGlobals.DiContainer.AddSingleton<IAppBuilder>(this);
@@ -43,6 +43,8 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
     /// </summary>
     public override void StartApplication()
     {
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
+
         //// Load ReactiveUI and Avalonia
         //AppGlobals.DiContainer.ServiceCollection.UseMicrosoftDependencyResolver();
 
@@ -53,7 +55,7 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
         //LoadViewLocation(x);
 
         //x.BuildApp();
-        
+
         //var provider = AppGlobals.DiContainer.BuildServiceProvider();
         //provider.UseMicrosoftDependencyResolver();
 
@@ -95,7 +97,7 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
         //var service2 = AppGlobals.DiContainer.Get<AvaloniaReactiveUiDemoAppMainWindowViewModel>();
 
 
-        var service = AppLocator.Current.GetService<IViewLocator>();
+        //var service = AppLocator.Current.GetService<IViewLocator>();
 
         // Logger
         AddLogger();

@@ -19,6 +19,7 @@ public class LoggingConfig
         Filters = new Dictionary<string, LogLevel>();
         MinimumLogLevel = LogLevel.Information;
         ConsoleConfigurationSettings = new SimpleConsoleFormatterOptions();
+        LogDataFactory = new LogDataFactory();
     }
 
     /// <summary>

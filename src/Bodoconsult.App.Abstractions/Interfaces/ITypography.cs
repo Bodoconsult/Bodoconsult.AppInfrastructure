@@ -197,7 +197,7 @@ public interface ITypography: ITypoPageStyle, ITypoMetaData
     /// <summary>
     /// Coordinates of the vertical lines of the typo grid
     /// </summary>
-    double[] VerticalLines { get; }
+    double[]? VerticalLines { get; }
 
     /// <summary>
     /// Styling for charts in the document

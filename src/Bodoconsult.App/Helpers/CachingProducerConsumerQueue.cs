@@ -13,7 +13,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
 {
     private readonly Lock _cacheLock = new();
     private readonly List<T> _cache = new(100);
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _cancellationTokenSource = new();
     private readonly WatchDog _watchDog;
 
     /// <summary>
@@ -54,12 +54,17 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// <summary>
     /// Contains the internal queue
     /// </summary>
-    public Channel<List<T>> InternalQueue;
+    public Channel<List<T>> InternalQueue { get; private set; } = Channel.CreateBounded<List<T>>(new BoundedChannelOptions(100)
+    {
+        SingleReader = true,
+        SingleWriter = false,
+        FullMode = BoundedChannelFullMode.Wait
+    });
 
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    public ConsumerTaskDelegate<List<T>> ConsumerTaskDelegate { get; set; }
+    public ConsumerTaskDelegate<List<T>> ConsumerTaskDelegate { get; set; } = _ => { };
 
     /// <summary>
     /// Is the queue started?
@@ -131,10 +136,9 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// </summary>
     public void StartConsumer()
     {
-        if (ConsumerTaskDelegate == null)
-        {
-            throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
-        }
+        _cancellationTokenSource.Dispose();
+
+        InternalQueue.Writer.TryComplete();
 
         InternalQueue = Channel.CreateBounded<List<T>>(new BoundedChannelOptions(CacheSize)
         {
@@ -161,11 +165,6 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// </summary>
     private async Task<bool> RunInternal(AutoResetEvent wait)
     {
-        if (InternalQueue == null)
-        {
-            return true;
-        }
-
         Thread.CurrentThread.Priority = ThreadPriority;
 
         wait.Set();
@@ -195,10 +194,9 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
 
         Task.Delay(200).Wait();
 
-        _cancellationTokenSource?.Cancel(false);
-        InternalQueue?.Writer.TryComplete();
-        InternalQueue = null;
-        ConsumerTaskDelegate = null;
+        _cancellationTokenSource.Cancel(false);
+        InternalQueue.Writer.TryComplete();
+        ConsumerTaskDelegate = _ => { };
 
         //// Now stop queue
         //InternalQueue?.CompleteAdding();
@@ -217,12 +215,6 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// </summary>
     public void Flush()
     {
-        // Clear the cache
-        if (InternalQueue == null)
-        {
-            return;
-        }
-
         List<T> data;
 
         lock (_cacheLock)

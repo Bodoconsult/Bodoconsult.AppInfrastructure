@@ -8,7 +8,7 @@ namespace Bodoconsult.App.Abstractions.SyncExecution;
 /// <summary>
 /// Current implementation of <see cref="ISyncProcessManager{TKey,T}"/> for processes identified by a Guid, a long or int value
 /// </summary>
-public class SyncProcessManager<TKey, T> : ISyncProcessManager<TKey, T> where T : class
+public class SyncProcessManager<TKey, T> : ISyncProcessManager<TKey, T> where T : class where TKey : notnull
 {
     /// <summary>
     /// The current execution list of sync running orders.
@@ -49,7 +49,7 @@ public class SyncProcessManager<TKey, T> : ISyncProcessManager<TKey, T> where T 
     /// </summary>
     /// <param name="processId">GUID of the rpocess to run sync</param>
     /// <returns>Sync running execution data or null</returns>
-    public SyncProcessData<TKey, T> GetSyncProcessDataForProcess(TKey processId)
+    public SyncProcessData<TKey, T>? GetSyncProcessDataForProcess(TKey processId)
     {
         var success = _syncExecutionQueue.TryRemove(processId, out var syncData);
         return !success ? null : syncData;

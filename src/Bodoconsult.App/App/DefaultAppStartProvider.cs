@@ -28,23 +28,28 @@ public class DefaultAppStartProvider : IAppStartProvider
     /// <summary>
     /// Current <see cref="IAppConfigurationProvider"/> instance to use
     /// </summary>
-    public IAppConfigurationProvider AppConfigurationProvider { get; private set; }
+    public IAppConfigurationProvider? AppConfigurationProvider { get; private set; }
 
     /// <summary>
     /// Current instance of <see cref="IDefaultAppLoggerProvider"/> to use
     /// </summary>
-    public IDefaultAppLoggerProvider DefaultAppLoggerProvider { get; set; }
+    public IDefaultAppLoggerProvider? DefaultAppLoggerProvider { get; set; }
 
     /// <summary>
     /// Current logger provider instances to use for logger creation
     /// </summary>
-    public IList<ILoggerProviderConfigurator> LoggerProviderConfigurators { get; set; }
+    public IList<ILoggerProviderConfigurator>? LoggerProviderConfigurators { get; set; }
 
     /// <summary>
     /// Load the default app configuration provider reading from appsettings.json
     /// </summary>
     public void LoadConfigurationProvider()
     {
+        if (string.IsNullOrEmpty(AppGlobals.AppStartParameter.ConfigFile))
+        {
+            throw new ArgumentNullException(nameof(AppGlobals.AppStartParameter.ConfigFile), "Config file name may not be null or empty");
+        }
+
         AppConfigurationProvider = new AppConfigurationProvider(AppGlobals.AppStartParameter.ConfigFile);
         AppConfigurationProvider.LoadConfigurationFromConfigFile();
 
@@ -61,7 +66,7 @@ public class DefaultAppStartProvider : IAppStartProvider
             throw new ArgumentNullException(nameof(AppConfigurationProvider));
         }
 
-        AppGlobals.AppStartParameter ??= new AppStartParameter();
+        //AppGlobals.AppStartParameter ??= new AppStartParameter();
 
         var asp = AppGlobals.AppStartParameter;
 
@@ -85,12 +90,12 @@ public class DefaultAppStartProvider : IAppStartProvider
         }
 
         // Read AppName
-        asp.AppName = ReadStringProperty(section, "AppName", asp.AppName);
-        asp.AppFolderName = ReadStringProperty(section, "AppFolderName", asp.AppFolderName) ?? "MyApp";
-        asp.IpAddress = ReadStringProperty(section, "IpAddress", asp.IpAddress);
+        asp.AppName = ReadStringProperty(section, "AppName", asp.AppName) ?? "MyApp";
+        asp.AppFolderName = ReadStringProperty(section, "AppFolderName", asp.AppFolderName ?? string.Empty) ?? "MyApp";
+        asp.IpAddress = ReadStringProperty(section, "IpAddress", asp.IpAddress ?? string.Empty);
         asp.Port = ReadIntProperty(section, "Port", asp.Port);
         asp.NumberOfBackupsToKeep = ReadIntProperty(section, "NumberOfBackupsToKeep", asp.NumberOfBackupsToKeep);
-        asp.BackupPath = ReadStringProperty(section, "BackupPath", asp.BackupPath);
+        asp.BackupPath = ReadStringProperty(section, "BackupPath", asp.BackupPath ?? string.Empty);
 
         switch (asp)
         {
@@ -115,7 +120,7 @@ public class DefaultAppStartProvider : IAppStartProvider
     /// <param name="propertyName">Property name</param>
     /// <param name="currentValue">Current value to keep if config section does not provide a value</param>
     /// <returns>String value</returns>
-    public static string ReadStringProperty(IConfigurationSection section, string propertyName, string currentValue)
+    public static string? ReadStringProperty(IConfigurationSection section, string propertyName, string? currentValue)
     {
         var calue = section[propertyName];
         return !string.IsNullOrEmpty(calue) ? calue : currentValue;
@@ -201,6 +206,9 @@ public class DefaultAppStartProvider : IAppStartProvider
     /// </summary>
     public void LoadDefaultAppLoggerProvider()
     {
+        ArgumentNullException.ThrowIfNull(AppConfigurationProvider);
+        ArgumentNullException.ThrowIfNull(AppGlobals.LoggingConfig);
+
         DefaultAppLoggerProvider = new DefaultAppLoggerProvider(AppConfigurationProvider, AppGlobals.LoggingConfig);
         DefaultAppLoggerProvider.LoadLoggingConfigFromConfiguration();
         DefaultAppLoggerProvider.LoadDefaultLogger();
@@ -211,10 +219,11 @@ public class DefaultAppStartProvider : IAppStartProvider
     /// </summary>
     public void SetValuesInAppGlobal()
     {
+        ArgumentNullException.ThrowIfNull(DefaultAppLoggerProvider);
+
         AppGlobals.Logger = DefaultAppLoggerProvider.DefaultLogger;
         AppGlobals.LoggingConfig = DefaultAppLoggerProvider.LoggingConfig;
-        AppGlobals.LogDataFactory = AppGlobals.LoggingConfig.LogDataFactory;
-        AppGlobals.AppStartParameter.DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), AppGlobals.AppStartParameter.AppFolderName);
+        AppGlobals.AppStartParameter.DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), AppGlobals.AppStartParameter.AppFolderName ?? "MyApp");
         AppGlobals.AppStartParameter.LogfilePath = AppGlobals.AppStartParameter.DataPath;
     }
 }

@@ -47,10 +47,14 @@ public class WpfReactiveUiDemoAppAppBuilder : BaseWpfReactiveUiAppBuilder
         var viewModel = AppGlobals.DiContainer.Get<WpfReactiveUiDemoAppMainWindowViewModel>();
         viewModel.HeaderBackColor = TypoColors.DarkBlue;
         viewModel.BodyBackColor = TypoColors.Beige;
-        viewModel.AppExe = AppGlobals.AppStartParameter.AppExe;
+        viewModel.AppExe = AppGlobals.AppStartParameter.AppExe ?? string.Empty;
 
         // Load the logo now
-        viewModel.LoadLogo(AppGlobals.AppStartParameter.LogoAssembly, AppGlobals.AppStartParameter.LogoRessourcePath);
+        if (!string.IsNullOrEmpty(AppGlobals.AppStartParameter.LogoRessourcePath))
+        {
+            viewModel.LoadLogo(AppGlobals.AppStartParameter.LogoAssembly,
+                AppGlobals.AppStartParameter.LogoRessourcePath);
+        }
 
         return viewModel;
     }

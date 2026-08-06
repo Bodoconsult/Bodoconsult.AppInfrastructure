@@ -43,7 +43,12 @@ public class FakeLogger : ILogger, IDisposable
     /// <summary>
     /// Delegate for faking the log event
     /// </summary>
-    public FakeLogDelegate FakeLogDelegate { get; set; }
+    public FakeLogDelegate FakeLogDelegate { get; set; } = DummyFakeLogDelegate;
+
+    private static void DummyFakeLogDelegate(string message)
+    {
+
+    }
 
     /// <summary>Writes a log entry.</summary>
     /// <param name="logLevel">Entry will be written on this level.</param>
@@ -52,7 +57,7 @@ public class FakeLogger : ILogger, IDisposable
     /// <param name="exception">The exception related to this entry.</param>
     /// <param name="formatter">Function to create a <see cref="System.String" /> message of the <paramref name="state" /> and <paramref name="exception" />.</param>
     /// <typeparam name="TState">The type of the object to be written.</typeparam>
-    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter)
     {
         if (!IsEnabled(logLevel))
         {
@@ -61,7 +66,7 @@ public class FakeLogger : ILogger, IDisposable
 
         var msg = $"{_categoryName}´: {logLevel}: {state} {exception?.Message}";
         Debug.Print(msg);
-        FakeLogDelegate?.Invoke(msg);
+        FakeLogDelegate.Invoke(msg);
     }
 
     /// <summary>
@@ -78,7 +83,7 @@ public class FakeLogger : ILogger, IDisposable
     /// <param name="state">The identifier for the scope.</param>
     /// <typeparam name="TState">The type of the state to begin scope for.</typeparam>
     /// <returns>An <see cref="System.IDisposable" /> that ends the logical operation scope on dispose.</returns>
-    public IDisposable BeginScope<TState>(TState state)
+    public IDisposable BeginScope<TState>(TState state) where TState : notnull
     {
         return this;
     }

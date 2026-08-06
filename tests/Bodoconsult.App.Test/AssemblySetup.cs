@@ -44,7 +44,8 @@ public static class AssemblySetup
         // Now load the globally needed settings
         builder.LoadGlobalSettings();
 
-        Globals.Instance.Logger.LogInformation("Starting tests...");
+        ArgumentNullException.ThrowIfNull(globals.Logger);
+        globals.Logger.LogInformation("Starting tests...");
 
     }
 }

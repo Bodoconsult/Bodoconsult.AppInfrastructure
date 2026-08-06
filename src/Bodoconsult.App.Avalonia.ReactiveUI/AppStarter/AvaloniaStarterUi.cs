@@ -121,12 +121,13 @@ public class AvaloniaStarterUi : BaseAppStarterUi
     public override void Wait()
     {
         ArgumentNullException.ThrowIfNull(Application.Current);
+        ArgumentNullException.ThrowIfNull(ConsoleService);
 
         ConsoleService.ConsoleHandle = ConsoleService.CsGetConsoleWindow();
         ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowHide);
 
         _viewModel.LoadAppBuilder(AppBuilder);
-        _viewModel.AppVersion = AppBuilder.AppGlobals.AppStartParameter.AppVersion;
+        _viewModel.AppVersion = AppBuilder.AppGlobals.AppStartParameter.AppVersion ?? "Unknown version";
 
         var window = (Window)_viewModel.CreateWindow();
 

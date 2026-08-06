@@ -14,7 +14,13 @@ namespace Bodoconsult.App;
     /// Base class for <see cref="IAppBuilder"/> implementations
     /// </summary>
     public class BaseAppBuilder : IAppBuilder
-{
+    {
+
+        /// <summary>
+        /// Curent app logger
+        /// </summary>
+        protected IAppLoggerProxy? Logger;
+
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -23,6 +29,12 @@ namespace Bodoconsult.App;
     {
         AppGlobals = appGlobals;
         AppGlobals.StatusMessageDelegate = StatusMessageDelegate;
+
+        if (AppGlobals.Logger == null)
+        {
+            return;
+        }
+        Logger = AppGlobals.Logger;
     }
 
     /// <summary>
@@ -40,22 +52,22 @@ namespace Bodoconsult.App;
     /// <summary>
     /// Current <see cref="IAppStarterUi"/> instance
     /// </summary>
-    public IAppStarter AppStarter { get; protected set; }
+    public IAppStarter? AppStarter { get; protected set; }
 
     /// <summary>
     /// Current app start provider
     /// </summary>
-    public IAppStartProvider AppStartProvider { get; protected set; }
+    public IAppStartProvider? AppStartProvider { get; protected set; }
 
     /// <summary>
     /// Package with all DI container services to load for uasge in the app
     /// </summary>
-    public IDiContainerServiceProviderPackage DiContainerServiceProviderPackage { get; protected set; }
+    public IDiContainerServiceProviderPackage? DiContainerServiceProviderPackage { get; protected set; }
 
     /// <summary>
     /// Current app server
     /// </summary>
-    public IApplicationService ApplicationServer { get; private set; }
+    public IApplicationService? ApplicationServer { get; private set; }
 
     /// <summary>
     /// Load basic settings
@@ -111,6 +123,7 @@ namespace Bodoconsult.App;
     /// </summary>
     public void LoadGlobalSettings()
     {
+        ArgumentNullException.ThrowIfNull(AppStartProvider);
         AppStartProvider.LoadDefaultAppLoggerProvider();
         AppStartProvider.SetValuesInAppGlobal();
     }
@@ -121,7 +134,7 @@ namespace Bodoconsult.App;
     /// <exception cref="AppStorageConnectionCheckException">Storage connection is not avialbale exception</exception>
     public void CheckStorageConnection()
     {
-        AppGlobals.Logger.LogWarning($"{AppGlobals.AppStartParameter.AppName} app {AppGlobals.AppStartParameter.AppVersion} starts...");
+        Logger?.LogWarning($"{AppGlobals.AppStartParameter.AppName} app {AppGlobals.AppStartParameter.AppVersion} starts...");
 
         var check = AppGlobals.AppStorageConnectionCheck;
 
@@ -135,7 +148,7 @@ namespace Bodoconsult.App;
             return;
         }
 
-        AppGlobals.Logger.LogError($"{AppGlobals.AppStartParameter.AppName} app {AppGlobals.AppStartParameter.AppVersion} start failed. Data storage not available: {check.HelpfulInformation}");
+        Logger?.LogError($"{AppGlobals.AppStartParameter.AppName} app {AppGlobals.AppStartParameter.AppVersion} start failed. Data storage not available: {check.HelpfulInformation}");
         throw new AppStorageConnectionCheckException(check.HelpfulInformation);
     }
 
@@ -152,6 +165,7 @@ namespace Bodoconsult.App;
     /// </summary>
     public virtual void RegisterDiServices()
     {
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
         DiContainerServiceProviderPackage.AddServices(AppGlobals.DiContainer);
     }
 
@@ -160,6 +174,7 @@ namespace Bodoconsult.App;
     /// </summary>
     public void FinalizeDiContainerSetup()
     {
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
         DiContainerServiceProviderPackage.LateBindObjects(AppGlobals.DiContainer);
     }
 
@@ -201,7 +216,7 @@ namespace Bodoconsult.App;
         ApplicationServer.LicenseMissingDelegate = TerminateIfLicenseMissing;
         ApplicationServer.StartApplication(cancellationToken);
 
-        AppGlobals.Logger.LogWarning($"{AppGlobals.AppStartParameter.AppName} app is started!");
+        Logger?.LogWarning($"{AppGlobals.AppStartParameter.AppName} app is started!");
     }
 
     /// <summary>
@@ -209,7 +224,9 @@ namespace Bodoconsult.App;
     /// </summary>
     public void SuspendApplication()
     {
-        AppGlobals.Logger.LogWarning($"{AppGlobals.AppStartParameter.AppName} app is going to suspend mode...");
+        Logger?.LogWarning($"{AppGlobals.AppStartParameter.AppName} app is going to suspend mode...");
+
+        ArgumentNullException.ThrowIfNull(ApplicationServer);
         ApplicationServer.SuspendApplication();
     }
 
@@ -227,14 +244,15 @@ namespace Bodoconsult.App;
 
         // Restart DI container
         AppGlobals.DiContainer.ClearAll();
+
+        ArgumentNullException.ThrowIfNull(DiContainerServiceProviderPackage);
         DiContainerServiceProviderPackage.AddServices(AppGlobals.DiContainer);
         DiContainerServiceProviderPackage.LateBindObjects(AppGlobals.DiContainer);
 
         AppGlobals.Logger = AppGlobals.DiContainer.Get<IAppLoggerProxy>();
         AppGlobals.Logger.LogInformation("Global and database services successfully registered!");
 
-        AppGlobals.Logger.LogInformation($"{AppGlobals.AppStartParameter.AppName} app restarts...");
-        AppGlobals.Logger.LogInformation(AppGlobals.AppStartParameter.AppVersion);
+        AppGlobals.Logger.LogInformation($"{AppGlobals.AppStartParameter.AppName} app {AppGlobals.AppStartParameter.AppVersion} restarts...");
 
         StartApplicationService(null);
     }
@@ -277,12 +295,13 @@ namespace Bodoconsult.App;
 
         var gms = AppGlobals.DiContainer.Get<IGeneralAppManagementManager>();
 
-        var fileName = Path.Combine(AppGlobals.AppStartParameter.DataPath, $"{AppGlobals.AppStartParameter.AppFolderName}_Crash.log");
+        var fileName = Path.Combine(AppGlobals.AppStartParameter.DataPath ?? string.Empty, $"{AppGlobals.AppStartParameter.AppFolderName}_Crash.log");
 
         var request = new EmptyBusinessTransactionRequestData();
         // ToDo: fill request with useful information
 
-        var logger = AppGlobals.DiContainer.Get<IAppLoggerProxy>();
+        //var logger = AppGlobals.DiContainer.Get<IAppLoggerProxy>();
+        var logger = Logger;
 
         try
         {
@@ -291,12 +310,7 @@ namespace Bodoconsult.App;
 
             File.AppendAllText(fileName, $"Crash at {DateTime.Now}: {unhandledException}{Environment.NewLine}");
 
-            var result = gms?.CreateLogDump(request);
-
-            if (result == null)
-            {
-                return;
-            }
+            var result = gms.CreateLogDump(request);
 
             logger?.LogWarning(fileName, $"CreateLogDump after crash: error code {result.ErrorCode}: {result.Message}");
         }
@@ -331,13 +345,13 @@ namespace Bodoconsult.App;
     {
         StopApplication();
 
-        AppStarter.TerminateAppWithMessage("App shutdown requested", AppGlobals.AppStartParameter.AppName);
+        AppStarter?.TerminateAppWithMessage("App shutdown requested", AppGlobals.AppStartParameter.AppName);
 
     }
 
     private void StatusMessageDelegate(string message)
     {
-        AppGlobals.Logger?.LogInformation(message);
+        Logger?.LogInformation(message);
     }
 
     /// <summary>
@@ -346,7 +360,7 @@ namespace Bodoconsult.App;
     /// <param name="message">Message to send to UI</param>
     protected void TerminateIfLicenseMissing(string message)
     {
-        AppGlobals.Logger?.LogError("License not found");
+        Logger?.LogError("License not found");
 
         AppStarter?.TerminateAppWithMessage(UiMessages.MsgLicenseNotFoundNowTerminate, AppGlobals.AppStartParameter.AppName);
     }

@@ -132,7 +132,7 @@ public class TypoColor: IEquatable<TypoColor>
     /// </summary>
     /// <param name="htmlColor">HTML color string with 7 chars length</param>
     /// <returns>Color or null</returns>
-    public static TypoColor FromHtml(string htmlColor)
+    public static TypoColor? FromHtml(string htmlColor)
     {
         var color = new TypoColor();
 
@@ -181,7 +181,7 @@ public class TypoColor: IEquatable<TypoColor>
     /// </summary>
     /// <param name="other">Other color</param>
     /// <returns></returns>
-    public bool Equals(TypoColor other)
+    public bool Equals(TypoColor? other)
     {
         if (other == null)
         {
@@ -194,7 +194,7 @@ public class TypoColor: IEquatable<TypoColor>
     /// <param name="obj">The object to compare with the current object.</param>
     /// <returns>
     /// <see langword="true" /> if the specified object  is equal to the current object; otherwise, <see langword="false" />.</returns>
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is null)
         {

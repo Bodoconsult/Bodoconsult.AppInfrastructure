@@ -43,7 +43,7 @@ public static class ResourceHelper
     /// </summary>
     /// <param name="resourceName">resource name = file name</param>
     /// <returns></returns>
-    public static string GetTextResource(string resourceName)
+    public static string? GetTextResource(string resourceName)
     {
         var ass = Assembly.GetCallingAssembly();
         return GetTextResource(ass, resourceName);
@@ -55,7 +55,7 @@ public static class ResourceHelper
     /// <param name="assembly">Assembly the resource to load from</param>
     /// <param name="resourceName">resource name = plain file name with extension and path</param>
     /// <returns></returns>
-    public static string GetTextResource(Assembly assembly, string resourceName)
+    public static string? GetTextResource(Assembly assembly, string resourceName)
     {
         var str = assembly.GetManifestResourceStream(resourceName);
 

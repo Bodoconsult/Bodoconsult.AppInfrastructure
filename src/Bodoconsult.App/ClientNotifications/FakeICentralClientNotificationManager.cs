@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Interfaces;
 
 namespace Bodoconsult.App.ClientNotifications;
@@ -12,10 +13,15 @@ public class FakeICentralClientNotificationManager : ICentralClientNotificationM
     /// <summary>
     /// Delegate for sending a notification to the client
     /// </summary>
-    public TransferToClientDelegate NotifyClient { get; set; }
+    public TransferToClientDelegate NotifyClient { get; set; } = DummyNotifyClient;
+
+    private static void DummyNotifyClient(object source, IClientNotification notification)
+    {
+        // Do nothing
+    }
 
     /// <summary>
-    /// Send a progress notification
+    /// Send progress notification
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="currentProgressType">Current progress type. Define your own types in an enum</param>

@@ -60,13 +60,13 @@ public interface IAppEventSource
     /// </summary>
     /// <param name="name">Name of the requested instance</param>
     /// <returns><see cref="EventCounter"/> instance or null</returns>
-    EventCounter GetMetricEventCounter(string name);
+    EventCounter? GetMetricEventCounter(string name);
 
     /// <summary>
     /// Get an <see cref="IncrementingEventCounters"/> instance by its name
     /// </summary>
     /// <param name="name">Name of the requested instance</param>
     /// <returns><see cref="EventCounter"/> instance or null</returns>
-    IncrementingEventCounter GetIncrementEventCounter(string name);
+    IncrementingEventCounter? GetIncrementEventCounter(string name);
 
 }

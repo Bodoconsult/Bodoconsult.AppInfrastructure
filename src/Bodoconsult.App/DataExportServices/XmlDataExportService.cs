@@ -16,8 +16,8 @@ public class XmlDataExportService<T> : BaseDataExportService<T> where T : class
     private readonly StringBuilder _output = new();
 
     private readonly MemoryStream _stream = new();
-    private XmlWriter _writer;
-    private XmlWriterSettings _settings;
+    private XmlWriter? _writer;
+    private readonly XmlWriterSettings _settings;
 
     /// <summary>
     /// Default ctor
@@ -49,8 +49,7 @@ public class XmlDataExportService<T> : BaseDataExportService<T> where T : class
             Encoding = Encoding,
             ConformanceLevel = ConformanceLevel.Auto
         };
-      
-
+        
         LoadBaseData();
     }
 

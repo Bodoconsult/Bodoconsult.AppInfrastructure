@@ -12,7 +12,7 @@ public class DefaultBusinessTransactionReply: IBusinessTransactionReply
     /// <summary>
     /// The current request data
     /// </summary>
-    public IBusinessTransactionRequestData RequestData { get; set; }
+    public IBusinessTransactionRequestData? RequestData { get; set; }
 
     /// <summary>
     /// Current error code. Default is 0 for no error happened
@@ -22,15 +22,15 @@ public class DefaultBusinessTransactionReply: IBusinessTransactionReply
     /// <summary>
     /// Current message provided by the business transaction
     /// </summary>
-    public string Message { get; set; }
+    public string? Message { get; set; }
 
     /// <summary>
     /// Current error message provided by the business transaction
     /// </summary>
-    public string ExceptionMessage { get; set; }
+    public string? ExceptionMessage { get; set; }
 
     /// <summary>
     /// The notification object to send via GRPC etc to the client
     /// </summary>
-    public object NotificationObjectToSend { get; set; }
+    public object? NotificationObjectToSend { get; set; }
 }

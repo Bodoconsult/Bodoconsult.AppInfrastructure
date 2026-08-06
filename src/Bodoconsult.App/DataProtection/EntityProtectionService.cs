@@ -33,7 +33,7 @@ public class EntityProtectionService : IEntityProtectionService
 
         var props = type.GetProperties();
 
-        string key = null;
+        string? key = null;
 
         foreach (var prop in props)
         {
@@ -67,7 +67,7 @@ public class EntityProtectionService : IEntityProtectionService
                 continue;
             }
 
-            value = _dataProtectionService.Protect($"{key}.{prop.Name}", value.ToString());
+            value = _dataProtectionService.Protect($"{key}.{prop.Name}", value.ToString() ?? string.Empty);
 
             prop.SetValue(entity, value);
         }
@@ -83,7 +83,7 @@ public class EntityProtectionService : IEntityProtectionService
 
         var props = type.GetProperties();
 
-        string key = null;
+        string? key = null;
 
         foreach (var prop in props)
         {
@@ -117,7 +117,7 @@ public class EntityProtectionService : IEntityProtectionService
                 continue;
             }
 
-            value = _dataProtectionService.Unprotect($"{key}.{prop.Name}", value.ToString());
+            value = _dataProtectionService.Unprotect($"{key}.{prop.Name}", value.ToString() ?? string.Empty);
 
             prop.SetValue(entity, value);
         }

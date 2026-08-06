@@ -127,22 +127,22 @@ public abstract class BasePageSettingsService : IPageSettingsService
     /// <summary>
     /// Font name to use for header
     /// </summary>
-    public string HeaderFontName { get; set; }
+    public string HeaderFontName { get; set; } = "Arial";
 
     /// <summary>
     /// Header font size
     /// </summary>
-    public double HeaderFontSize { get; set; }
+    public double HeaderFontSize { get; set; } = 8;
 
     /// <summary>
     /// Font name to use for footer
     /// </summary>
-    public string FooterFontName { get; set; }
+    public string FooterFontName { get; set; } = "Arial";
 
     /// <summary>
     /// Footer font size
     /// </summary>
-    public double FooterFontSize { get; set; }
+    public double FooterFontSize { get; set; } = 8;
 
     /// <summary>
     /// Text like page or Seite to write in front of the page number in the footer

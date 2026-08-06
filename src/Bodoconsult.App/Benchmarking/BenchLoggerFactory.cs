@@ -13,7 +13,7 @@ namespace Bodoconsult.App.Benchmarking;
 public class BenchLoggerFactory : IMonitorLoggerFactory
 {
 
-    private ILogger _logger;
+    private ILogger? _logger;
 
     /// <summary>
     /// Default ctor
@@ -60,7 +60,7 @@ public class BenchLoggerFactory : IMonitorLoggerFactory
     /// <summary>
     /// Current logging config: NOT used for the current implementation
     /// </summary>
-    public LoggingConfig LoggingConfig { get; set; }
+    public LoggingConfig? LoggingConfig { get; set; }
 
     /// <summary>
     /// Full file path of the log file

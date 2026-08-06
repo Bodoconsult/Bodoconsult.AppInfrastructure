@@ -73,6 +73,10 @@ public partial class CopyrightViewModel : ReactiveObject
     /// </summary>
     public void LoadLicenseInfo()
     {
+        if (string.IsNullOrEmpty(_appGlobals.AppStartParameter.AppPath))
+        {
+            return;
+        }
         var path = Path.Combine(_appGlobals.AppStartParameter.AppPath, "LICENSE.md");
         LoadLicenseInfo(path);
     }
@@ -96,6 +100,10 @@ public partial class CopyrightViewModel : ReactiveObject
     /// </summary>
     public void LoadToolInfo()
     {
+        if (string.IsNullOrEmpty(_appGlobals.AppStartParameter.AppPath))
+        {
+            return;
+        }
         var path = Path.Combine(_appGlobals.AppStartParameter.AppPath, "TOOLS.md");
         LoadToolInfo(path);
     }

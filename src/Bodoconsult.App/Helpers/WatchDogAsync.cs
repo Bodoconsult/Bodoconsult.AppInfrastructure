@@ -12,7 +12,7 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class WatchDogAsync : IWatchDogAsync
 {
-    private CancellationTokenSource _cancellationToken;
+    private CancellationTokenSource? _cancellationToken;
     private readonly ThreadPriority _threadPriority;
 
     /// <summary>
@@ -88,6 +88,8 @@ public class WatchDogAsync : IWatchDogAsync
     /// </summary>
     public async Task RunInternal(AutoResetEvent wait)
     {
+        ArgumentNullException.ThrowIfNull(_cancellationToken);
+
         Thread.CurrentThread.Priority = _threadPriority;
 
         wait.Set();

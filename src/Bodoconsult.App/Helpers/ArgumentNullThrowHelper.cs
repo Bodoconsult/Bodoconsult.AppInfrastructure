@@ -12,7 +12,7 @@ public static class ArgumentNullThrowHelper
     /// </summary>
     /// <param name="value"></param>
     /// <exception cref="ArgumentNullException">Thrown if value is null or empty</exception>
-    public static void ThrowIfNullOrEmpty(string value)
+    public static void ThrowIfNullOrEmpty(string? value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -25,7 +25,7 @@ public static class ArgumentNullThrowHelper
     /// </summary>
     /// <param name="obj">Object to check</param>
     /// <exception cref="ArgumentNullException">Thrown if object is null</exception>
-    public static void ThrowIfNull(object obj)
+    public static void ThrowIfNull(object? obj)
     {
         if (obj != null)
         {

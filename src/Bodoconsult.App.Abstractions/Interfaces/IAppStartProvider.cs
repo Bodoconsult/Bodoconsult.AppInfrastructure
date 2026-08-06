@@ -15,17 +15,17 @@ public interface IAppStartProvider
     /// <summary>
     /// Current <see cref="IAppConfigurationProvider"/> instance to use
     /// </summary>
-    IAppConfigurationProvider AppConfigurationProvider { get; }
+    IAppConfigurationProvider? AppConfigurationProvider { get; }
 
     /// <summary>
     /// Current instance of <see cref="IDefaultAppLoggerProvider"/> to use
     /// </summary>
-    IDefaultAppLoggerProvider DefaultAppLoggerProvider { get; set; }
+    IDefaultAppLoggerProvider? DefaultAppLoggerProvider { get; set; }
 
     /// <summary>
     /// Current logger provider instances to use for logger creation
     /// </summary>
-    public IList<ILoggerProviderConfigurator> LoggerProviderConfigurators { get; set; }
+    public IList<ILoggerProviderConfigurator>? LoggerProviderConfigurators { get; set; }
 
     /// <summary>
     /// Load the default app configuration provider reading from appsettings.json

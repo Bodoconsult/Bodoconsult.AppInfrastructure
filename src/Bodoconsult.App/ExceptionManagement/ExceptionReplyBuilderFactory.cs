@@ -11,7 +11,7 @@ namespace Bodoconsult.App.ExceptionManagement;
 public class ExceptionReplyBuilderFactory : IExceptionReplyBuilderFactory
 {
 
-    private IExceptionReplyBuilder _builder;
+    private IExceptionReplyBuilder? _builder;
 
     /// <summary>
     /// Create or get a <see cref="ExceptionReplyBuilder"/> instance. Implements a singleton internally.

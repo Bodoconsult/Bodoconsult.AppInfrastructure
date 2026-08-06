@@ -13,7 +13,7 @@ public class FakePerformanceLogger : IPerformanceLogger
     /// Get important counters as formatted string
     /// </summary>
     /// <returns>String with performance counter data</returns>
-    public string GetCountersAsString()
+    public string? GetCountersAsString()
     {
         return null;
     }

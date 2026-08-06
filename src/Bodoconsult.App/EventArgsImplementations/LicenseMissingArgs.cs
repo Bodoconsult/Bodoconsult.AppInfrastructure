@@ -10,6 +10,5 @@ public class LicenseMissingArgs : EventArgs
     /// <summary>
     /// Current error message
     /// </summary>
-    public string ErrorMessage { get; set; }
-
+    public string? ErrorMessage { get; set; }
 }

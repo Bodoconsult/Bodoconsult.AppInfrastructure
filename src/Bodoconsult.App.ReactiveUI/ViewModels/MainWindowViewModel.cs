@@ -346,7 +346,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
     /// </summary>
     /// <param name="assembly">Assembly to load the logo from</param>
     /// <param name="ressourcePath">Ressource path</param>
-    public void LoadLogo(Assembly assembly, string ressourcePath)
+    public void LoadLogo(Assembly? assembly, string ressourcePath)
     {
         //try
         //{
@@ -451,6 +451,11 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
         for (var i = 0; i < count; i++)
         {
             var logMsg = GeneralHelper.DequeueFromQueue(_listener.Messages);
+
+            if (logMsg == null)
+            {
+                continue;
+            }
 
             if (LogDataSource.Count > MaxNumberOfLogEntries)
             {

@@ -10,8 +10,7 @@ namespace Bodoconsult.App.Logging;
 /// </summary>
 public class FakeLoggerFactory : ILoggerFactory
 {
-
-    private ILogger _logger;
+    private ILogger? _logger;
 
     /// <summary>
     /// Default ctor
@@ -21,13 +20,10 @@ public class FakeLoggerFactory : ILoggerFactory
         FakeLogDelegate = LogMessage;
     }
 
-
-
     /// <summary>
     /// List for all logged messages
     /// </summary>
     public IList<string> LoggedMessages { get; } = new List<string>();
-
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
@@ -79,8 +75,6 @@ public class FakeLoggerFactory : ILoggerFactory
     /// Delegate for faking the log event
     /// </summary>
     public FakeLogDelegate FakeLogDelegate { get; set; }
-
-
 
     /// <summary>
     /// Fakes the writing of an log entry

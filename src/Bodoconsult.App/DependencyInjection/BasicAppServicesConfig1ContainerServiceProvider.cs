@@ -35,6 +35,9 @@ public class BasicAppServicesConfig1ContainerServiceProvider : IDiContainerServi
     {
         _appGlobals = appGlobals;
 
+        ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.AppExe);
+        ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DataPath);
+
         var fi = new FileInfo(_appGlobals.AppStartParameter.AppExe);
 
         _benchmarkFileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"{fi.Name}_Benchmark.csv");
@@ -47,7 +50,7 @@ public class BasicAppServicesConfig1ContainerServiceProvider : IDiContainerServi
     public void AddServices(DiContainer diContainer)
     {
         // Logging
-        diContainer.AddSingletonInstance(_appGlobals.LogDataFactory);
+        diContainer.AddSingletonInstance(_appGlobals.LoggingConfig.LogDataFactory);
         diContainer.AddSingleton<IAppLoggerProxyFactory, AppLoggerProxyFactory>();
 
         // Load an existing logger as central app logger
@@ -58,7 +61,7 @@ public class BasicAppServicesConfig1ContainerServiceProvider : IDiContainerServi
         // ToDo: Load fresh app logger
 
         // Benchmark
-        var benchProxy = AppBenchProxy.CreateAppBenchProxy(_benchmarkFileName, _appGlobals.LogDataFactory);
+        var benchProxy = AppBenchProxy.CreateAppBenchProxy(_benchmarkFileName, _appGlobals.LoggingConfig.LogDataFactory);
         diContainer.AddSingletonInstance(benchProxy);
 
         // General app management

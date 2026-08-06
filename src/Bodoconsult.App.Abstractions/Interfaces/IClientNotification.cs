@@ -10,6 +10,6 @@ public interface IClientNotification
     /// <summary>
     /// The notification object to send via GRPC etc to the client
     /// </summary>
-    object NotificationObjectToSend { get; set; }
+    object? NotificationObjectToSend { get; set; }
 
 }

@@ -46,11 +46,11 @@ public class ExceptionReplyBuilder : IExceptionReplyBuilder
         var success = ExceptionReplies.TryGetValue(eName, out var eData);
 
         // If no value found return default reply
-        if (!success)
+        if (!success || eData == null)
         {
             reply = new DefaultBusinessTransactionReply
             {
-                ErrorCode = errorCode == 0 ? DefaultErrorCode : errorCode, 
+                ErrorCode = errorCode == 0 ? DefaultErrorCode : errorCode,
                 ExceptionMessage = exception.StackTrace,
                 Message = $"Exception message: {exception.Message}"
             };

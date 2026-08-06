@@ -1,32 +1,37 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
-
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Collections.Concurrent;
+using Bodoconsult.App.Abstractions.Interfaces;
 
-namespace Bodoconsult.App.BufferPool;
+namespace Bodoconsult.App.Abstractions.BufferPool;
 
 /// <summary>
-/// Buffer pool is used to store reusable objects to reduce GC pressure
+/// Buffer pool is used to store resetable objects implementing <see cref="IResetable"/>to reduce GC pressure
 /// </summary>
 /// <typeparam name="T">Type of the object class to store</typeparam>
-public class BufferPool<T>
+public class BufferPoolResetable<T> where T : IResetable
 {
-    private Func<T> _factoryMethod;
+    private Func<T> _factoryMethod = DummyFactoryMethod;
     private readonly ConcurrentQueue<T> _queue = new();
 
     /// <summary>
     /// Default ctor. Use <see cref="LoadFactoryMethod"/> to load a custimized load method
     /// </summary>
-    public BufferPool()
+    public BufferPoolResetable()
     {
         // Do nothing
+    }
+
+    private static T DummyFactoryMethod()
+    {
+        throw new NotSupportedException("Load a factory method");
     }
 
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="factoryMethod">Factory method for object creation</param>
-    public BufferPool(Func<T> factoryMethod)
+    public BufferPoolResetable(Func<T> factoryMethod)
     {
         _factoryMethod = factoryMethod;
     }
@@ -44,6 +49,7 @@ public class BufferPool<T>
     /// The current length of the internal queue
     /// </summary>
     public int LengthOfQueue => _queue.Count;
+
 
     /// <summary>
     /// Pre-allocate a certain number of objects stored in the pool
@@ -73,7 +79,7 @@ public class BufferPool<T>
         }
 
         buffer = _factoryMethod();
-        return buffer ?? default;
+        return buffer;
     }
 
     /// <summary>
@@ -82,9 +88,11 @@ public class BufferPool<T>
     /// <param name="buffer">Reusable object to store in the pool</param>
     public void Enqueue(T buffer)
     {
+        buffer.Reset();
         _queue.Enqueue(buffer);
         // Debug.Print($"LogPool ENQUEUE{_queue.Count}");
     }
+
 
     /// <summary>
     /// Clear the buffer pool to avoid blocking memory

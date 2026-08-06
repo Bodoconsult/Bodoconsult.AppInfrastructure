@@ -58,21 +58,21 @@ public static class BodoDataProtectionProvider
     /// system. See <see cref="IDataProtectionBuilder"/> for more information.</param>
     /// <param name="certificate">The <see cref="X509Certificate2"/> to be used for encryption.</param>
     public static IDataProtectionProvider Create(
-        DirectoryInfo keyDirectory,
+        DirectoryInfo? keyDirectory,
         Action<IDataProtectionBuilder> setupAction,
         X509Certificate2 certificate)
     {
-        ArgumentNullThrowHelper.ThrowIfNull(keyDirectory);
-        ArgumentNullThrowHelper.ThrowIfNull(setupAction);
-        ArgumentNullThrowHelper.ThrowIfNull(certificate);
+        ArgumentNullException.ThrowIfNull(keyDirectory);
+        ArgumentNullException.ThrowIfNull(setupAction);
+        ArgumentNullException.ThrowIfNull(certificate);
 
         return CreateProvider(keyDirectory, setupAction, certificate);
     }
 
     internal static IDataProtectionProvider CreateProvider(
-        DirectoryInfo keyDirectory,
+        DirectoryInfo? keyDirectory,
         Action<IDataProtectionBuilder> setupAction,
-        X509Certificate2 certificate)
+        X509Certificate2? certificate)
     {
         // build the service collection
         var serviceCollection = new ServiceCollection();

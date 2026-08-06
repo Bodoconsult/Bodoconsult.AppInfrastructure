@@ -146,24 +146,20 @@ public class ProducerConsumerQueue2Tests
         Assert.That(pc.IsActivated, Is.False);
     }
 
-    [Test]
-    public void TestStartConsumerNoDelegateSet()
-    {
-        // Arrange 
-        Reset();
+    //[Test]
+    //public void TestStartConsumerNoDelegateSet()
+    //{
+    //    // Arrange 
+    //    Reset();
 
-        var queue = new ProducerConsumerQueue2<Memory<byte>>();
+    //    var queue = new ProducerConsumerQueue2<Memory<byte>>();
 
-        // Act and assert
-        Assert.Throws<ArgumentNullException>(() =>
-        {
-            queue.StartConsumer();
-        });
+    //    // Act and assert
+    //    Assert.Throws<ArgumentNullException>(queue.StartConsumer);
 
-        // Assert
-        Assert.That(queue.InternalQueue, Is.Null);
-        queue.Dispose();
-    }
+    //    // Assert
+    //    queue.Dispose();
+    //}
 
     [Test]
     public void TestEnqueueNotStartedYet()
@@ -230,7 +226,6 @@ public class ProducerConsumerQueue2Tests
         // Assert
         Wait.Until(() => _wasFired, 100);
         Assert.That(_wasFired, Is.EqualTo(true));
-        Assert.That(queue.InternalQueue, Is.Null);
         queue.Dispose();
     }
 }

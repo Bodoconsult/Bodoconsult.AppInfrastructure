@@ -78,7 +78,7 @@ public static class UiMessages
     /// </summary>
     /// <param name="e">Current exception</param>
     /// <returns>A <see cref="LicenseMissingException"/> contained in the exception</returns>
-    public static LicenseMissingException ContainsLicenseMissingException(Exception e)
+    public static LicenseMissingException? ContainsLicenseMissingException(Exception e)
     {
         while (true)
         {
@@ -89,6 +89,10 @@ public static class UiMessages
                 case LicenseMissingException ex:
                     return ex;
                 default:
+                    if (e.InnerException == null)
+                    {
+                        break;
+                    }
                     e = e.InnerException;
                     break;
             }

@@ -18,7 +18,7 @@ public class FakePerformanceLoggerManager : IPerformanceLoggerManager
     /// <summary>
     /// Current status message delegate to be called from the <see cref="IPerformanceLoggerManager.Log"/> method
     /// </summary>
-    public StatusMessageDelegate StatusMessageDelegate { get; set; }
+    public StatusMessageDelegate StatusMessageDelegate { get; set; } = _ => { };
 
     /// <summary>
     /// Start the performance logging

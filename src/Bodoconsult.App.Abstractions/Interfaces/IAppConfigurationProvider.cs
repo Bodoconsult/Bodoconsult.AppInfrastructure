@@ -17,7 +17,7 @@ public interface IAppConfigurationProvider
     /// <summary>
     /// Current configuration loaded from <see cref="ConfigFile"/>
     /// </summary>
-    IConfigurationRoot Configuration { get; }
+    IConfigurationRoot? Configuration { get; }
 
     /// <summary>
     /// Load <see cref="Configuration"/> from <see cref="ConfigFile"/>
@@ -34,18 +34,18 @@ public interface IAppConfigurationProvider
     /// Read the logging section
     /// </summary>
     /// <returns>Logging section</returns>
-    IConfigurationSection ReadLoggingSection();
+    IConfigurationSection? ReadLoggingSection();
 
     /// <summary>
     /// Read the app start parameter section
     /// </summary>
     /// <returns>App start parameter section</returns>
-    IConfigurationSection ReadAppStartParameterSection();
+    IConfigurationSection? ReadAppStartParameterSection();
 
     /// <summary>
     /// Read a section by its name
     /// </summary>
     /// <param name="sectionName">Section name requested</param>
     /// <returns>Section</returns>
-    IConfigurationSection ReadConfigurationSection(string sectionName);
+    IConfigurationSection? ReadConfigurationSection(string sectionName);
 }

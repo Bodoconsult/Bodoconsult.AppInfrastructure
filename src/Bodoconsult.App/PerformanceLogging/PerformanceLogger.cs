@@ -24,7 +24,7 @@ public class PerformanceLogger : IPerformanceLogger
 
     private readonly DiagnosticsClient _diagnosticsClient;
 
-    private EventPipeSession _session;
+    private EventPipeSession? _session;
 
     private readonly CancellationTokenSource _cancellationTokenSource = new ();
 

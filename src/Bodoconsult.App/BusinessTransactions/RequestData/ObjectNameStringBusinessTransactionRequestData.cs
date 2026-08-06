@@ -11,11 +11,11 @@ public class ObjectNameStringBusinessTransactionRequestData : BaseBusinessTransa
     /// <summary>
     /// The object name provided by the request
     /// </summary>
-    public string ObjectName { get; set; }
+    public string? ObjectName { get; set; }
 
     /// <summary>
     /// The string value provided by the request
     /// </summary>
-    public string Value { get; set; }
+    public string? Value { get; set; }
 
 }

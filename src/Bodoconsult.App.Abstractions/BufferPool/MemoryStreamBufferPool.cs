@@ -1,50 +1,21 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Collections.Concurrent;
-using Bodoconsult.App.Abstractions.Interfaces;
 
-namespace Bodoconsult.App.BufferPool;
+namespace Bodoconsult.App.Abstractions.BufferPool;
 
 /// <summary>
-/// Buffer pool is used to store resetable objects implementing <see cref="IResetable"/>to reduce GC pressure
+/// Buffer pool is used to store reusable <see cref="MemoryStream"/>> instances to reduce GC pressure
 /// </summary>
-/// <typeparam name="T">Type of the object class to store</typeparam>
-public class BufferPoolResetable<T> where T : IResetable
+public class MemoryStreamBufferPool
 {
-    private Func<T> _factoryMethod;
-    private readonly ConcurrentQueue<T> _queue = new();
-
-    /// <summary>
-    /// Default ctor. Use <see cref="LoadFactoryMethod"/> to load a custimized load method
-    /// </summary>
-    public BufferPoolResetable()
-    {
-        // Do nothing
-    }
-
-    /// <summary>
-    /// Default ctor
-    /// </summary>
-    /// <param name="factoryMethod">Factory method for object creation</param>
-    public BufferPoolResetable(Func<T> factoryMethod)
-    {
-        _factoryMethod = factoryMethod;
-    }
-
-    /// <summary>
-    /// Load the factory method
-    /// </summary>
-    /// <param name="factoryMethod">Factory method</param>
-    public void LoadFactoryMethod(Func<T> factoryMethod)
-    {
-        _factoryMethod = factoryMethod;
-    }
+    private readonly Func<MemoryStream> _factoryMethod = () => new MemoryStream();
+    private readonly ConcurrentQueue<MemoryStream> _queue = new();
 
     /// <summary>
     /// The current length of the internal queue
     /// </summary>
     public int LengthOfQueue => _queue.Count;
-
 
     /// <summary>
     /// Pre-allocate a certain number of objects stored in the pool
@@ -62,7 +33,7 @@ public class BufferPoolResetable<T> where T : IResetable
     /// Dequeue an object to use from buffer pool
     /// </summary>
     /// <returns>Instance of type T or null if an error happend</returns>
-    public T Dequeue()
+    public MemoryStream Dequeue()
     {
         // Debug.Print($"LogPool DEQUEUE{_queue.Count}");
 
@@ -74,20 +45,20 @@ public class BufferPoolResetable<T> where T : IResetable
         }
 
         buffer = _factoryMethod();
-        return buffer ?? default;
+        return buffer;
     }
 
     /// <summary>
     /// Queue a used object back to the buffer pool
     /// </summary>
     /// <param name="buffer">Reusable object to store in the pool</param>
-    public void Enqueue(T buffer)
+    public void Enqueue(MemoryStream buffer)
     {
-        buffer.Reset();
+        buffer.Position = 0;
+        buffer.SetLength(0);
         _queue.Enqueue(buffer);
         // Debug.Print($"LogPool ENQUEUE{_queue.Count}");
     }
-
 
     /// <summary>
     /// Clear the buffer pool to avoid blocking memory

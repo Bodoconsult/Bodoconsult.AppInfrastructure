@@ -18,7 +18,7 @@ public interface IDataProtectionManager: IDisposable
     /// <summary>
     /// Values to protect
     /// </summary>
-    List<KeyValuePair<string, string>> Values { get; }
+    List<KeyValuePair<string, string?>> Values { get; }
 
     /// <summary>
     /// Available keys
@@ -60,7 +60,7 @@ public interface IDataProtectionManager: IDisposable
     /// Unprotect a secret by its key
     /// </summary>
     /// <param name="key">Key the secret was stored with</param>
-    string Unprotect(string key);
+    string? Unprotect(string key);
 
     /// <summary>
     /// Save the values to storage

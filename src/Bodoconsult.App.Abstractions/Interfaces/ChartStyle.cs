@@ -210,12 +210,12 @@ public class ChartStyle: ICloneable
     /// <summary>
     /// Numberformat used to format values of YAxis
     /// </summary>
-    public string YAxisNumberformat { get; set; }
+    public string YAxisNumberformat { get; set; } = "0,000";
 
     /// <summary>
     /// Numberformat used to format values of XAxis
     /// </summary>
-    public string XAxisNumberformat { get; set; }
+    public string XAxisNumberformat { get; set; } = "0,000";
 
     /// <summary>
     /// Radius in pixels for the border corners. If no rounded corners requested for the chart, set BorderCornerRadius=0

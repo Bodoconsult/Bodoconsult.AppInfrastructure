@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Benchmarking;
+using Bodoconsult.App.Abstractions.BufferPool;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.BufferPool;
 
 namespace Bodoconsult.App.Benchmarking;
 
@@ -28,7 +28,7 @@ public class BenchReusableFactory
     /// <param name="key">Key to identify the nechmarked object in the CSV file or Benchmark Viewer</param>
     /// <param name="comment">Your comment if required</param>
     /// <param name="autoStart">Start automatically</param>
-    public BenchReusable CreateInstance(IAppBenchProxy proxy, string key, string comment = null, bool autoStart = true)
+    public BenchReusable CreateInstance(IAppBenchProxy proxy, string key, string? comment = null, bool autoStart = true)
     {
         var result = _pool.Dequeue();
         result.Initialize(proxy, key, comment, autoStart);

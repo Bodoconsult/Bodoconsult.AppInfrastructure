@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.BufferPool;
+using Bodoconsult.App.Abstractions.BufferPool;
 
 namespace Bodoconsult.App.Test.BufferPool;
 

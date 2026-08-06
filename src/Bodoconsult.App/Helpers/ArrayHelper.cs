@@ -57,6 +57,24 @@ public static class ArrayHelper
     }
 
     /// <summary>
+    /// Create a string from a byte array
+    /// </summary>
+    /// <param name="ba">Byte array</param>
+    /// <param name="prefix">Prefix to add to the string</param>
+    /// <returns>String with prefix and attached byte array</returns>
+    public static string ByteArrayToString(Memory<byte> ba, string? prefix = null)
+    {
+        var value = new StringBuilder();
+        value.Append(prefix);
+
+        foreach (var b in ba.Span)
+        {
+            value.Append($"[{b:X2}]");
+        }
+        return value.ToString();
+    }
+
+    /// <summary>
     /// Get a string from a byte array
     /// </summary>
     /// <param name="data">Byte array as <see cref="ReadOnlySequence{T}"/></param>
@@ -126,30 +144,30 @@ public static class ArrayHelper
         return value.ToString();
     }
 
-    ///// <summary>
-    ///// Get a string from a byte array
-    ///// </summary>
-    ///// <param name="data">Byte array</param>
-    ///// <returns>Byte array as string</returns>
-    //public static string GetStringFromArray(ReadOnlySequence<byte> data)
-    //{
-    //    var value = new StringBuilder();
-    //    byte b;
+    /// <summary>
+    /// Get a string from a byte array
+    /// </summary>
+    /// <param name="data">Byte array</param>
+    /// <returns>Byte array as string</returns>
+    public static string GetStringFromArray(ReadOnlySequence<byte> data)
+    {
+        var value = new StringBuilder();
+        byte b;
 
-    //    for (var i = 0; i < data.Length; i++)
-    //    {
-    //        b = data.Slice(i, 1).FirstSpan[0];
-    //        if (b <= 33 || b >= 127)
-    //        {
-    //            value.Append($"[{b:X2}]");
-    //        }
-    //        else
-    //        {
-    //            value.Append(Convert.ToChar(b));
-    //        }
-    //    }
-    //    return value.ToString();
-    //}
+        for (var i = 0; i < data.Length; i++)
+        {
+            b = data.Slice(i, 1).FirstSpan[0];
+            if (b <= 33 || b >= 127)
+            {
+                value.Append($"[{b:X2}]");
+            }
+            else
+            {
+                value.Append(Convert.ToChar(b));
+            }
+        }
+        return value.ToString();
+    }
 
     /// <summary>
     /// Get a string from a byte array
@@ -306,11 +324,18 @@ public static class ArrayHelper
     /// Get a string from a byte array in C# style (for copying it to unit tests)
     /// </summary>
     /// <param name="data">Byte array as readonly span</param>
+    /// <param name="showClearText">Show the array as clear text too</param>
     /// <returns>Byte array as string</returns>
-    public static string GetStringFromArrayCsharpStyle(ref ReadOnlySequence<byte> data)
+    public static string GetStringFromArrayCsharpStyle(ref ReadOnlySequence<byte> data, bool showClearText = true)
     {
 
         var result = new StringBuilder();
+
+        // Show the array as clear text
+        if (showClearText)
+        {
+            result.Append(GetStringFromArray(data));
+        }
 
         result.Append("{ ");
 
@@ -325,7 +350,6 @@ public static class ArrayHelper
         return s.EndsWith(", ", StringComparison.OrdinalIgnoreCase) ?
             $"{s[..^2]} }}" :
             $"{s} }}";
-
     }
 
     /// <summary>

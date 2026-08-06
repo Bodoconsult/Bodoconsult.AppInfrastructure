@@ -13,7 +13,7 @@ public class ClientMessagingBusinessDelegate : IClientMessagingBusinessDelegate
 {
     private readonly ConcurrentQueue<IClientNotification> _notifications = new();
 
-    private IWatchDog _watchDog;
+    private IWatchDog? _watchDog;
 
     /// <summary>
     /// Default ctor
@@ -66,7 +66,7 @@ public class ClientMessagingBusinessDelegate : IClientMessagingBusinessDelegate
     public void Runner()
     {
 
-        if (_notifications.Count == 0)
+        if (_notifications.IsEmpty)
         {
             return;
         }
@@ -74,15 +74,15 @@ public class ClientMessagingBusinessDelegate : IClientMessagingBusinessDelegate
         // Do NOT move inside the loop due to performance and gc issues
         // ReSharper disable once TooWideLocalVariableScope
         // ReSharper disable once InlineOutVariableDeclaration
-        IClientNotification notification;
+        IClientNotification? notification;
 
-        while (_notifications.Count > 0)
+        while (!_notifications.IsEmpty)
         {
 
             // Get the next notification from the queue
             var success = _notifications.TryDequeue(out notification);
 
-            if (!success)
+            if (!success || notification == null)
             {
                 Thread.Sleep(5);
                 continue;
@@ -94,9 +94,7 @@ public class ClientMessagingBusinessDelegate : IClientMessagingBusinessDelegate
 
             // Send the notification to all registered clients
             ClientManager.DoNotifyAllClients(notification);
-
         }
-
     }
 
     /// <summary>
@@ -113,6 +111,6 @@ public class ClientMessagingBusinessDelegate : IClientMessagingBusinessDelegate
     /// </summary>
     public void StopClientMessaging()
     {
-        _watchDog.StopWatchDog();
+        _watchDog?.StopWatchDog();
     }
 }

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Interfaces;
 
 namespace Bodoconsult.App.ClientNotifications;
@@ -14,12 +15,17 @@ public abstract class CentralClientNotificationManagerBase : ICentralClientNotif
     /// <summary>
     /// Delegate for sending a notification to the client
     /// </summary>
-    public TransferToClientDelegate NotifyClient { get; set; }
+    public TransferToClientDelegate NotifyClient { get; set; } = DummyNotifyClient;
+
+    private static void DummyNotifyClient(object source, IClientNotification notification)
+    {
+        // Do nothing
+    }
 
     #endregion
 
     /// <summary>
-    /// Send a progress notification
+    /// Send progress notification
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="currentProgressType">Current progress type. Define your own types in an enum</param>
@@ -34,7 +40,7 @@ public abstract class CentralClientNotificationManagerBase : ICentralClientNotif
             Progress = percentage
         };
 
-        NotifyClient?.Invoke(sender, notification);
+        NotifyClient.Invoke(sender, notification);
     }
 
     /// <summary>
@@ -49,6 +55,6 @@ public abstract class CentralClientNotificationManagerBase : ICentralClientNotif
             Exception = e
         };
 
-        NotifyClient?.Invoke(sender, notification);
+        NotifyClient.Invoke(sender, notification);
     }
 }

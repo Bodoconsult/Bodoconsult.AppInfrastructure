@@ -60,11 +60,6 @@ public class Globals : IAppGlobals
     public IAppStartParameter AppStartParameter { get; set; } = new AppStartParameter();
 
     /// <summary>
-    /// Current log data entry factory
-    /// </summary>
-    public ILogDataFactory? LogDataFactory { get; set; }
-
-    /// <summary>
     /// Current logging config
     /// </summary>
     public LoggingConfig LoggingConfig { get; set; } = new();

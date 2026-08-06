@@ -20,6 +20,6 @@ public interface IClientMessagingService
     /// </summary>
     /// <param name="notification">Current notification to send</param>
     /// <returns>Object to transfer to the client on transport level</returns>
-    object Convert(IClientNotification notification);
+    object? Convert(IClientNotification notification);
 
 }

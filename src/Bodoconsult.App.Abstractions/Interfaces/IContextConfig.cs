@@ -10,7 +10,7 @@ public interface IContextConfig
     /// <summary>
     /// Current connection string
     /// </summary>
-    string ConnectionString { get; set; }
+    string? ConnectionString { get; set; }
 
     /// <summary>
     /// Turn off migrations. Default: false.

@@ -23,12 +23,12 @@ public class TwoNetworkDevicesAppStartParameter : I2NetworkDevicesAppStartParame
     /// <summary>
     /// String with the current app version
     /// </summary>
-    public string AppVersion { get; set; }
+    public string? AppVersion { get; set; }
 
     /// <summary>
     /// Current software version
     /// </summary>
-    public Version SoftwareRevision { get; set; }
+    public Version? SoftwareRevision { get; set; }
 
     /// <summary>
     /// Should the logging of performance counters to logfile be activated
@@ -38,22 +38,22 @@ public class TwoNetworkDevicesAppStartParameter : I2NetworkDevicesAppStartParame
     /// <summary>
     /// Application path
     /// </summary>
-    public string AppPath { get; set; }
+    public string? AppPath { get; set; }
 
     /// <summary>
     /// App executable file name
     /// </summary>
-    public string AppExe { get; set; }
+    public string? AppExe { get; set; }
 
     /// <summary>
     /// Full path to the current config file
     /// </summary>
-    public string ConfigFile { get; set; }
+    public string? ConfigFile { get; set; }
 
     /// <summary>
     /// Default conenction string
     /// </summary>
-    public string DefaultConnectionString { get; set; }
+    public string? DefaultConnectionString { get; set; }
 
     /// <summary>
     /// Load a fake license
@@ -63,27 +63,27 @@ public class TwoNetworkDevicesAppStartParameter : I2NetworkDevicesAppStartParame
     /// <summary>
     /// The software team
     /// </summary>
-    public string SoftwareTeam { get; set; }
+    public string? SoftwareTeam { get; set; }
 
     /// <summary>
     /// Ressource path for the app logo (NO file system path!!!)
     /// </summary>
-    public string LogoRessourcePath { get; set; }
+    public string? LogoRessourcePath { get; set; }
 
     /// <summary>
     /// Assembly to load the logo from
     /// </summary>
-    public Assembly LogoAssembly { get; set; }
+    public Assembly? LogoAssembly { get; set; }
 
     /// <summary>
     /// The folder name of the app in C:\ProgramData\
     /// </summary>
-    public string AppFolderName { get; set; }
+    public string? AppFolderName { get; set; }
 
     /// <summary>
     /// IP address of the network device 1 or null if no device is connected via IP
     /// </summary>
-    public string IpAddress { get; set; }
+    public string? IpAddress { get; set; }
 
     /// <summary>
     /// Port the app is listening on
@@ -94,22 +94,22 @@ public class TwoNetworkDevicesAppStartParameter : I2NetworkDevicesAppStartParame
     /// <summary>
     /// Base path to a folder in C:\ProgramData\ where the app stores data created by the app like backups, migrations logs and normal log files: C:\ProgramData\<see cref="IAppStartParameter.AppFolderName"/>
     /// </summary>
-    public string DataPath { get; set; }
+    public string? DataPath { get; set; }
 
     /// <summary>
     /// Folder to store log files. Normally a subfolder of the folder <see cref="DataPath"/> 
     /// </summary>
-    public string LogfilePath { get; set; }
+    public string? LogfilePath { get; set; }
 
     /// <summary>
     /// Folder to store migration log files and SQL scripts in. Normally a subfolder of the folder <see cref="DataPath"/> 
     /// </summary>
-    public string MigrationLogfilePath { get; set; }
+    public string? MigrationLogfilePath { get; set; }
 
     /// <summary>
     /// Folder to store backups in. Normally a subfolder of the folder <see cref="DataPath"/>
     /// </summary>
-    public string BackupPath { get; set; }
+    public string? BackupPath { get; set; }
 
     /// <summary>
     /// Number of old backups to keep
@@ -119,7 +119,7 @@ public class TwoNetworkDevicesAppStartParameter : I2NetworkDevicesAppStartParame
     /// <summary>
     /// IP address of the network device 2
     /// </summary>
-    public string IpAddress2 { get; set; }
+    public string? IpAddress2 { get; set; }
 
     /// <summary>
     /// Port of the network device 2

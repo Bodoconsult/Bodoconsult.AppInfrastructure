@@ -10,6 +10,6 @@ public class ObjectBusinessTransactionReply : DefaultBusinessTransactionReply
     /// <summary>
     /// Object to transport with the reply
     /// </summary>
-    public object Object { get; set; }
+    public object? Object { get; set; }
 
 }

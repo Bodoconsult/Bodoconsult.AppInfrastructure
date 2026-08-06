@@ -28,7 +28,7 @@ internal class ByteArrayDataExportServiceTests
         };
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]
@@ -44,7 +44,7 @@ internal class ByteArrayDataExportServiceTests
         };
 
         // Assert
-        Assert.That(service.CurrentFilePath, Is.Null);
+        Assert.That(service.CurrentFilePath, Is.EqualTo(string.Empty));
     }
 
     [Test]

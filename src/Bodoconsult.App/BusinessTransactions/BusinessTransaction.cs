@@ -18,7 +18,7 @@ public class BusinessTransaction
     /// <summary>
     /// Name of the transaction
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Error code the transaction should return. Default: 0 means no error 
@@ -28,12 +28,12 @@ public class BusinessTransaction
     /// <summary>
     /// The error message the transaction should return
     /// </summary>
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
     /// <summary>
     /// The business logic method that should be called for the current transaction
     /// </summary>
-    public RunBusinessTransactionDelegate RunBusinessTransactionDelegate { get; set; }
+    public RunBusinessTransactionDelegate? RunBusinessTransactionDelegate { get; set; }
 
     /// <summary>
     /// Do not add an event counter for this transaction

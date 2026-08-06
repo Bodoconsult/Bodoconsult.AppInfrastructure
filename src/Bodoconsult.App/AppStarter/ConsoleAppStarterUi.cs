@@ -13,17 +13,17 @@ namespace Bodoconsult.App.AppStarter;
 public class ConsoleAppStarterUi : BaseAppStarterUi
 {
 
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource? _cancellationTokenSource;
 
     /// <summary>
     /// Message shown during console is waiting
     /// </summary>
-    public string MsgConsoleWait { get; set; }
+    public string MsgConsoleWait { get; set; } = string.Empty;
 
     /// <summary>
     /// Message "how to shitdon server app"
     /// </summary>
-    public string MsgHowToShutdownServer { get; set; }
+    public string MsgHowToShutdownServer { get; set; } = string.Empty;
 
     /// <summary>
     /// Default ctor
@@ -50,7 +50,7 @@ public class ConsoleAppStarterUi : BaseAppStarterUi
         {
             var msg = MsgConsoleWait;
 
-            AppBuilder.AppGlobals.Logger.LogInformation(msg);
+            AppBuilder.AppGlobals.Logger?.LogInformation(msg);
             Debug.Print(msg);
             Debug.Print(MsgHowToShutdownServer);
 
@@ -75,7 +75,7 @@ public class ConsoleAppStarterUi : BaseAppStarterUi
     /// <param name="appTitle">App title to set</param>
     public override void TerminateAppWithMessage(string message, string appTitle)
     {
-        _cancellationTokenSource.Cancel();
+        _cancellationTokenSource?.Cancel();
 
         Debug.Print(message);
         Console.WriteLine(message);
@@ -89,10 +89,10 @@ public class ConsoleAppStarterUi : BaseAppStarterUi
     /// <param name="e"></param>
     public override void HandleException(Exception e)
     {
-        if (e == null)
-        {
-            return;
-        }
+        //if (e == null)
+        //{
+        //    return;
+        //}
 
         try
         {

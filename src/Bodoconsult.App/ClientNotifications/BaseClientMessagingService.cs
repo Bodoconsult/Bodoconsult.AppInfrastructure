@@ -20,12 +20,12 @@ public abstract class BaseClientMessagingService : IClientMessagingService
     /// </summary>
     /// <param name="notification">Current notification to send</param>
     /// <returns>Object to transfer to the client on transport level</returns>
-    public object Convert(IClientNotification notification)
+    public object? Convert(IClientNotification notification)
     {
         var notiType = notification.GetType().Name;
 
         var success = ConversionRules.TryGetValue(notiType, out var del);
 
-        return !success ? null : del(notification);
+        return !success || del == null ? null : del.Invoke(notification);
     }
 }
