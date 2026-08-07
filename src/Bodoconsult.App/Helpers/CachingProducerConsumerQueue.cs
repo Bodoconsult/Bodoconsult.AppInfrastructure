@@ -15,6 +15,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     private readonly List<T> _cache = new(100);
     private CancellationTokenSource _cancellationTokenSource = new();
     private readonly WatchDog _watchDog;
+    private Task? _task;
 
     /// <summary>
     /// Default ctor
@@ -85,6 +86,14 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
         lock (_cacheLock)
         {
             _cache.Add(item);
+            var count = _cache.Count;
+            if (count <= CacheSize)
+            {
+                return;
+            }
+
+            InternalQueue.Writer.TryWrite(_cache.ToList());
+            _cache.Clear();
         }
     }
 
@@ -92,42 +101,24 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
     /// Enqueue a list of items to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">Items to add to the queue</param>
-    public void Enqueue(List<T> items)
+    public void Enqueue(IEnumerable<T> items)
     {
         if (!IsActivated)
         {
             return;
         }
 
-        if (items.Count < CacheSize)
+        lock (_cacheLock)
         {
-            lock (_cacheLock)
+            _cache.AddRange(items);
+            var count = _cache.Count;
+            if (count <= CacheSize)
             {
-                _cache.AddRange(items);
+                return;
             }
-        }
-        else
-        {
-            var list = new List<T>(CacheSize);
-            for (var i = 0; i < items.Count; i += CacheSize)
-            {
-                list = i + CacheSize >= items.Count ?
-                    items.GetRange(i, items.Count - i) :
-                    items.GetRange(i, CacheSize);
 
-                if (list.Count <= 0)
-                {
-                    continue;
-                }
-
-                lock (_cacheLock)
-                {
-                    _cache.AddRange(list);
-                }
-
-                list.Clear();
-            }
-            list.Clear();
+            InternalQueue.Writer.TryWrite(_cache.ToList());
+            _cache.Clear();
         }
     }
 
@@ -150,7 +141,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
 
         var wait = new AutoResetEvent(false);
 
-        Task.Factory.StartNew(async () =>
+        _task = Task.Factory.StartNew(async () =>
         {
            _ =  await RunInternal(wait);
         }, TaskCreationOptions.LongRunning);
@@ -171,12 +162,17 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
 
         var reader = InternalQueue.Reader;
 
-        while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
+        //while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
+        //{
+        //    while (reader.TryRead(out var item))
+        //    {
+        //        ConsumerTaskDelegate.Invoke(item);
+        //    }
+        //}
+
+        await foreach (var item in reader.ReadAllAsync(_cancellationTokenSource.Token))
         {
-            while (reader.TryRead(out var item))
-            {
-                ConsumerTaskDelegate.Invoke(item);
-            }
+            ConsumerTaskDelegate.Invoke(item);
         }
 
         return true;
@@ -192,22 +188,15 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
         // Flush the cache
         Flush();
 
-        Task.Delay(200).Wait();
+        InternalQueue.Writer.TryComplete();
+
+        InternalQueue.Reader.Completion.Wait(60000);
+
+        _task?.Wait(60000);
 
         _cancellationTokenSource.Cancel(false);
-        InternalQueue.Writer.TryComplete();
+
         ConsumerTaskDelegate = _ => { };
-
-        //// Now stop queue
-        //InternalQueue?.CompleteAdding();
-
-        ////Thread.Sleep(50);
-        //Wait.Until(IsCompleted);
-        //_cancellationTokenSource?.Cancel(false);
-
-        //InternalQueue?.Dispose();
-        //InternalQueue = null;
-        //ConsumerTaskDelegate = null;
     }
 
     /// <summary>

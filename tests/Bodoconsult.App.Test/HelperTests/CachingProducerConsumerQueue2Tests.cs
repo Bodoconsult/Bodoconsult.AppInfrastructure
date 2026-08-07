@@ -116,9 +116,9 @@ public class CachingProducerConsumerQueue2Tests
 
         // Assert
         Wait.Until(() => _counter > 0);
-        Assert.That(_counter, Is.EqualTo(1));
-        Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received[0].Count, Is.EqualTo(count));
+        Assert.That(_counter, Is.EqualTo(count/pc.CacheSize));
+        Assert.That(_received.Count, Is.EqualTo(count / pc.CacheSize));
+        Assert.That(_received[0].Count, Is.GreaterThanOrEqualTo(pc.CacheSize));
         Assert.That(pc.IsActivated, Is.False);
     }
 
@@ -137,6 +137,7 @@ public class CachingProducerConsumerQueue2Tests
         // Act  
         pc.Enqueue([_data]);
         pc.StopConsumer();
+
 
         // Assert
         Wait.Until(() => _counter > 0);

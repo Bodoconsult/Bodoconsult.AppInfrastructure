@@ -148,7 +148,6 @@ public class AppLoggerProxy : IAppLoggerProxy
                 logData.Message = null;
                 logData.SourceMethod = string.Empty;
             }
-            
         }
     }
 
@@ -1158,7 +1157,6 @@ public class AppLoggerProxy : IAppLoggerProxy
         AddToQueue(log);
     }
 
-
     /// <summary>Formats and writes a warning log message.</summary>
     /// <param name="message">Format string of the log message in message template format. Example: <code>"User {User} logged in from {Address}"</code></param>
     /// <param name="memberName">Calling method name (filled automatically by compiler)</param>
@@ -1391,16 +1389,17 @@ public class AppLoggerProxy : IAppLoggerProxy
         AddToQueue(log);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AddToQueue(LogData log)
     {
-        try
-        {
-            _logMessages.Enqueue(log);
-        }
-        catch //(Exception e)
-        {
-            log.Reset();
-        }
+        //try
+        //{
+        _logMessages.Enqueue(log);
+        //}
+        //catch //(Exception e)
+        //{
+        //    log.Reset();
+        //}
     }
 
     /// <summary>Formats and writes an error log message.</summary>
@@ -1848,10 +1847,9 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// </summary>
     public void StartLogging()
     {
-        //if (_logMessages != null)
-        //{
-            StopLogging();
-        //}
+        StopLogging();
+
+        _logMessages.Dispose();
 
         _logMessages = new ProducerConsumerQueue<LogData>
         {
@@ -1865,10 +1863,6 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// </summary>
     public void StopLogging()
     {
-        //if (_logMessages == null)
-        //{
-        //    return;
-        //}
         _logMessages.StopConsumer();
     }
 

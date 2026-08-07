@@ -16,7 +16,7 @@ internal class BusinessTransactionManagerTests
     private readonly IAppLoggerProxy _logger = TestHelper.GetFakeAppLoggerProxy();
 
     [Test]
-    public void TestCtor()
+    public void Ctor_ValidDefaultSetup_PropsSetCorrectly()
     {
         // Arrange 
         var aes = TestHelper.CreateAppEventSourceFactory();
@@ -32,7 +32,7 @@ internal class BusinessTransactionManagerTests
 
 
     [Test]
-    public void TestAddProvider()
+    public void AddProvider_ValidProvider_ProviderLoaded()
     {
         // Arrange 
         var aes = TestHelper.CreateAppEventSourceFactory();
@@ -47,11 +47,10 @@ internal class BusinessTransactionManagerTests
 
         // Assert
         Assert.That(m.CreateBusinessTransactionDelegates.Count, Is.EqualTo(p.CreateBusinessTransactionDelegates.Count));
-
     }
 
     [Test]
-    public void TestCheckForBusinessTransactionSuccess()
+    public void CheckForBusinessTransaction_ValidTransaction_Success()
     {
         // Arrange 
         var aes = TestHelper.CreateAppEventSourceFactory();
@@ -73,7 +72,7 @@ internal class BusinessTransactionManagerTests
     }
 
     [Test]
-    public void TestCheckForBusinessTransactionRepeatedSuccess()
+    public void CheckForBusinessTransaction_ValidTransactionRepeated_Success()
     {
         // Arrange 
         var aes = TestHelper.CreateAppEventSourceFactory();
@@ -96,7 +95,7 @@ internal class BusinessTransactionManagerTests
     }
 
     [Test]
-    public void TestCheckForBusinessTransactionNoSuccess()
+    public void CheckForBusinessTransaction_NoTransactionLoaded_NoSuccess()
     {
         // Arrange 
         var aes = TestHelper.CreateAppEventSourceFactory();
@@ -112,11 +111,10 @@ internal class BusinessTransactionManagerTests
         {
             var t = m.CheckForBusinessTransaction(transactionId);
         });
-
     }
 
     [Test]
-    public void TestRunBusinessTransactionSuccess()
+    public void RunBusinessTransaction_ValidBt_Success()
     {
         // Arrange 
         var aes = TestHelper.CreateAppEventSourceFactory();

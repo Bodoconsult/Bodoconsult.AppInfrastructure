@@ -11,11 +11,11 @@ public interface IMemoryDataExportService : IDataExportService<byte[]>
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data"></param>
-    void Add(Memory<byte> data);
+    void Add(ReadOnlyMemory<byte> data);
 
     /// <summary>
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data">List with Memory&lt;byte&gt; elements</param>
-    void AddRange(IEnumerable<Memory<byte>> data);
+    void AddRange(IEnumerable<ReadOnlyMemory<byte>> data);
 }

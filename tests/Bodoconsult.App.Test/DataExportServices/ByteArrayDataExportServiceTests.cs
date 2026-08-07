@@ -63,10 +63,10 @@ internal class ByteArrayDataExportServiceTests
         Assert.That(string.IsNullOrEmpty(result), Is.False);
     }
 
-    [TestCase(10, TestName = "Add_ValidDefaultSetup10_FileWritten")]
-    [TestCase(1000, TestName= "Add_ValidDefaultSetup1000_FileWritten")]
-    [TestCase(1000000, TestName = "Add_ValidDefaultSetup1000000_FileWritten")]
-    public void Add_ValidDefaultSetup_FileWritten(int count)
+    [TestCase(10, 100,TestName = "Add_ValidDefaultSetup10_FileWritten")]
+    [TestCase(1000, 100, TestName= "Add_ValidDefaultSetup1000_FileWritten")]
+    [TestCase(1000000, 1000, TestName = "Add_ValidDefaultSetup1000000_FileWritten")]
+    public void Add_ValidDefaultSetup_FileWritten(int count, int cacheSize)
     {
         // Arrange 
         const string text = "Blubb\r\n";
@@ -75,7 +75,8 @@ internal class ByteArrayDataExportServiceTests
 
         var service = new ByteArrayDataExportService
         {
-            FileExtension = "bin"
+            FileExtension = "bin",
+            CacheSize = cacheSize
         };
         service.Start();
 

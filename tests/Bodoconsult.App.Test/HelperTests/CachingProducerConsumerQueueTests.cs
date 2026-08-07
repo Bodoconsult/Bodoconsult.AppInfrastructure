@@ -120,9 +120,9 @@ public class CachingProducerConsumerQueueTests
 
         // Assert
         Wait.Until(() => _counter >= 1);
-        Assert.That(_counter, Is.EqualTo(1));
-        Assert.That(_received.Count, Is.EqualTo(1));
-        Assert.That(_received[0].Count, Is.EqualTo(count));
+        Assert.That(_counter, Is.EqualTo(count / pc.CacheSize));
+        Assert.That(_received.Count, Is.EqualTo(count / pc.CacheSize));
+        Assert.That(_received[0].Count, Is.GreaterThanOrEqualTo(pc.CacheSize));
         //Assert.That(_received.Contains(_data), Is.True);
 
 

@@ -24,7 +24,7 @@ public class ByteArrayDataExportService : BaseDataExportService<byte[]>, IMemory
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data"></param>
-    public void Add(Memory<byte> data)
+    public void Add(ReadOnlyMemory<byte> data)
     {
         lock (IsStartedLock)
         {
@@ -34,15 +34,14 @@ public class ByteArrayDataExportService : BaseDataExportService<byte[]>, IMemory
             }
         }
 
-        var rm = data;
-        CachingQueue.Enqueue(rm);
+        CachingQueue.Enqueue(data);
     }
 
     /// <summary>
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data">List with Memory&lt;byte&gt; elements</param>
-    public void AddRange(IEnumerable<Memory<byte>> data)
+    public void AddRange(IEnumerable<ReadOnlyMemory<byte>> data)
     {
         lock (IsStartedLock)
         {
@@ -52,9 +51,11 @@ public class ByteArrayDataExportService : BaseDataExportService<byte[]>, IMemory
             }
         }
 
-        foreach (var rm in data)
-        {
-            CachingQueue.Enqueue(rm);
-        }
+        //foreach (var rm in data)
+        //{
+        //    CachingQueue.Enqueue(rm);
+        //}
+
+        CachingQueue.Enqueue(data);
     }
 }

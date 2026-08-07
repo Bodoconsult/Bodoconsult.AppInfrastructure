@@ -47,9 +47,8 @@ namespace Bodoconsult.App.Logging;
 /// </summary>
 public class Log4NetLogger : ILogger
 {
-    ////private readonly string _name;
-    ////private readonly XmlElement _xmlElement;
-    private ILog? _log;
+
+    private readonly ILog _log;
 
     #region Ctors
 
@@ -66,7 +65,7 @@ public class Log4NetLogger : ILogger
 
         var fileName = Path.Combine(dir, "logfile.log");
 
-        InitLoggerFromCode(fileName);
+        _log = InitLoggerFromCode(fileName);
     }
 
     /// <summary>
@@ -75,10 +74,133 @@ public class Log4NetLogger : ILogger
     /// <param name="fileName">Full file path to the log file</param>
     public Log4NetLogger(string fileName)
     {
-        InitLoggerFromCode(fileName);
+        _log = InitLoggerFromCode(fileName);
     }
 
-    private void InitLoggerFromCode(string fileName)
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="configFileName"></param>
+
+    public Log4NetLogger(string name, string configFileName)
+    {
+        var s = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(s);
+
+        var dir = new FileInfo(s).DirectoryName;
+        ArgumentNullException.ThrowIfNull(dir);
+
+        var filePath = Path.Combine(dir, configFileName);
+
+        var xmlElement = ParseLog4NetConfigFile(filePath);
+
+        _log = InitLoggerFromXml(name, xmlElement);
+    }
+
+    /// <summary>
+    /// Ctor to provide XML content to configure the Log4Net logger
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="xmlElement"></param>
+    public Log4NetLogger(string name, XmlElement xmlElement)
+    {
+        _log = InitLoggerFromXml(name, xmlElement);
+    }
+
+    /// <summary>
+    /// Ctor to provide XML content to configure the Log4Net logger
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="xmlElement"></param>
+    /// <param name="repoName">Repository name</param>
+    public Log4NetLogger(string name, XmlElement xmlElement, string repoName)
+    {
+        _log = InitLoggerFromXml(name, xmlElement, repoName);
+    }
+
+    #endregion
+
+    /// <summary>Begins a logical operation scope.</summary>
+    /// <param name="state">The identifier for the scope.</param>
+    /// <typeparam name="TState">The type of the state to begin scope for.</typeparam>
+    /// <returns>An <see cref="T:System.IDisposable" /> that ends the logical operation scope on dispose.</returns>
+    public IDisposable? BeginScope<TState>(TState state) where TState : notnull
+    {
+        return null;
+    }
+
+    /// <summary>
+    /// Is logging enabled for a certain log level
+    /// </summary>
+    /// <param name="logLevel">Log level</param>
+    /// <returns>True if logging is enabled for the requested log level else false</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Log level not existing</exception>
+    public bool IsEnabled(LogLevel logLevel)
+    {
+        return logLevel switch
+        {
+            LogLevel.Critical => _log.IsFatalEnabled,
+            LogLevel.Debug or LogLevel.Trace => _log.IsDebugEnabled,
+            LogLevel.Error => _log.IsErrorEnabled,
+            LogLevel.Information => _log.IsInfoEnabled,
+            LogLevel.Warning => _log.IsWarnEnabled,
+            _ => throw new ArgumentOutOfRangeException(nameof(logLevel))
+        };
+    }
+
+    /// <summary>Writes a log entry.</summary>
+    /// <param name="logLevel">Entry will be written on this level.</param>
+    /// <param name="eventId">Id of the event.</param>
+    /// <param name="state">The entry to be written. Can be also an object.</param>
+    /// <param name="exception">The exception related to this entry.</param>
+    /// <param name="formatter">Function to create a <see cref="T:System.String" /> message of the <paramref name="state" /> and <paramref name="exception" />.</param>
+    /// <typeparam name="TState">The type of the object to be written.</typeparam>
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
+        Exception? exception, Func<TState, Exception?, string> formatter)
+    {
+        if (!IsEnabled(logLevel))
+        {
+            return;
+        }
+
+        ArgumentNullException.ThrowIfNull(formatter);
+
+        var message = formatter(state, exception);
+
+        if (string.IsNullOrEmpty(message) && exception == null)
+        {
+            return;
+        }
+
+        switch (logLevel)
+        {
+            case LogLevel.Critical:
+                _log.Fatal(message);
+                break;
+            case LogLevel.Debug:
+            case LogLevel.Trace:
+                _log.Debug(message);
+                break;
+            case LogLevel.Error:
+                _log.Error(message);
+                break;
+            case LogLevel.Information:
+                _log.Info(message);
+                break;
+            case LogLevel.Warning:
+                _log.Warn(message);
+                break;
+            default:
+                _log.Warn($"Encountered unknown log level {logLevel}, writing out as Info. {message}: {exception}");
+                break;
+        }
+    }
+
+    #region Static methods
+
+
+    private static ILog InitLoggerFromCode(string fileName)
     {
         var fi = new FileInfo(fileName);
 
@@ -111,7 +233,7 @@ public class Log4NetLogger : ILogger
         {
             // Do nothing: may throw on Android due not supported mutex
         }
-            
+
         var repositoryName = $"{plainFileName}Repository";
         var loggerName = $"{plainFileName} Logger";
         try
@@ -130,55 +252,10 @@ public class Log4NetLogger : ILogger
             Debug.Print(e.Message);
             //logger.LogError("Error when initializing monitor logger: {0}",e);
         }
-        _log = LogManager.GetLogger(repositoryName, loggerName);
-
+        return LogManager.GetLogger(repositoryName, loggerName);
     }
 
-    /// <summary>
-    /// Default ctor
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="configFileName"></param>
-
-    public Log4NetLogger(string name, string configFileName)
-    {
-        var s = Environment.ProcessPath;
-        ArgumentNullException.ThrowIfNull(s);
-        
-        var dir = new FileInfo(s).DirectoryName;
-        ArgumentNullException.ThrowIfNull(dir);
-
-        var filePath = Path.Combine(dir, configFileName);
-
-        var xmlElement = ParseLog4NetConfigFile(filePath);
-
-        InitLoggerFromXml(name, xmlElement);
-    }
-
-    /// <summary>
-    /// Ctor to provide XML content to configure the Log4Net logger
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="xmlElement"></param>
-    public Log4NetLogger(string name, XmlElement xmlElement)
-    {
-        InitLoggerFromXml(name, xmlElement);
-        //_log.Fatal("log4net init successful");
-    }
-
-    /// <summary>
-    /// Ctor to provide XML content to configure the Log4Net logger
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="xmlElement"></param>
-    /// <param name="repoName">Repository name</param>
-    public Log4NetLogger(string name, XmlElement xmlElement, string repoName)
-    {
-        InitLoggerFromXml(name, xmlElement, repoName);
-        //_log.Fatal("log4net init successful");
-    }
-
-    private void InitLoggerFromXml(string name, XmlElement? xmlElement, string? repoName = null)
+    private static ILog InitLoggerFromXml(string name, XmlElement? xmlElement, string? repoName = null)
     {
         ArgumentNullException.ThrowIfNull(xmlElement);
 
@@ -189,33 +266,27 @@ public class Log4NetLogger : ILogger
             loggerRepository = LogManager.CreateRepository(Assembly.GetCallingAssembly(), typeof(Hierarchy));
             XmlConfigurator.Configure(loggerRepository, xmlElement);
 
-            _log = LogManager.GetLogger(loggerRepository.Name, name);
+            return LogManager.GetLogger(loggerRepository.Name, name);
         }
-        else
+
+        var repositoryName = repoName;
+        try
         {
-            var repositoryName = repoName;
-            var loggerName = repoName;
-            try
-            {
-                var repos = LoggerManager.GetAllRepositories();
+            var repos = LoggerManager.GetAllRepositories();
 
-                if (repos.All(x => x.Name != repositoryName))
-                {
-                    loggerRepository = LoggerManager.CreateRepository(repositoryName);
-                    XmlConfigurator.Configure(loggerRepository, xmlElement);
-                }
-            }
-            catch (Exception e)
+            if (repos.All(x => x.Name != repositoryName))
             {
-                Debug.Print(e.Message);
-                //logger.LogError("Error when initializing monitor logger: {0}",e);
+                loggerRepository = LoggerManager.CreateRepository(repositoryName);
+                XmlConfigurator.Configure(loggerRepository, xmlElement);
             }
-            _log = LogManager.GetLogger(repositoryName, loggerName);
         }
+        catch (Exception e)
+        {
+            Debug.Print(e.Message);
+            //logger.LogError("Error when initializing monitor logger: {0}",e);
+        }
+        return LogManager.GetLogger(repositoryName, repoName);
     }
-
-    #endregion 
-
 
     /// <summary>
     /// Parse a Log4Net config file
@@ -249,83 +320,5 @@ public class Log4NetLogger : ILogger
         return node;
     }
 
-
-    /// <summary>Begins a logical operation scope.</summary>
-    /// <param name="state">The identifier for the scope.</param>
-    /// <typeparam name="TState">The type of the state to begin scope for.</typeparam>
-    /// <returns>An <see cref="T:System.IDisposable" /> that ends the logical operation scope on dispose.</returns>
-    public IDisposable? BeginScope<TState>(TState state) where TState : notnull
-    {
-        return null;
-    }
-
-    /// <summary>
-    /// Is logging enabled for a certain log level
-    /// </summary>
-    /// <param name="logLevel">Log level</param>
-    /// <returns>True if logging is enabled for the requested log level else false</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Log level not existing</exception>
-    public bool IsEnabled(LogLevel logLevel)
-    {
-        ArgumentNullException.ThrowIfNull(_log);
-        return logLevel switch
-        {
-            LogLevel.Critical => _log.IsFatalEnabled,
-            LogLevel.Debug or LogLevel.Trace => _log.IsDebugEnabled,
-            LogLevel.Error => _log.IsErrorEnabled,
-            LogLevel.Information => _log.IsInfoEnabled,
-            LogLevel.Warning => _log.IsWarnEnabled,
-            _ => throw new ArgumentOutOfRangeException(nameof(logLevel))
-        };
-    }
-
-    /// <summary>Writes a log entry.</summary>
-    /// <param name="logLevel">Entry will be written on this level.</param>
-    /// <param name="eventId">Id of the event.</param>
-    /// <param name="state">The entry to be written. Can be also an object.</param>
-    /// <param name="exception">The exception related to this entry.</param>
-    /// <param name="formatter">Function to create a <see cref="T:System.String" /> message of the <paramref name="state" /> and <paramref name="exception" />.</param>
-    /// <typeparam name="TState">The type of the object to be written.</typeparam>
-    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
-        Exception? exception, Func<TState, Exception?, string> formatter)
-    {
-        if (!IsEnabled(logLevel))
-        {
-            return;
-        }
-
-        ArgumentNullException.ThrowIfNull(formatter);
-        ArgumentNullException.ThrowIfNull(_log);
-
-        var message = formatter(state, exception);
-
-        if (string.IsNullOrEmpty(message) && exception == null)
-        {
-            return;
-        }
-
-        switch (logLevel)
-        {
-            case LogLevel.Critical:
-                _log.Fatal(message);
-                break;
-            case LogLevel.Debug:
-            case LogLevel.Trace:
-                _log.Debug(message);
-                break;
-            case LogLevel.Error:
-                _log.Error(message);
-                break;
-            case LogLevel.Information:
-                _log.Info(message);
-                break;
-            case LogLevel.Warning:
-                _log.Warn(message);
-                break;
-            default:
-                _log.Warn($"Encountered unknown log level {logLevel}, writing out as Info.");
-                _log.Info(message, exception);
-                break;
-        }
-    }
+    #endregion
 }

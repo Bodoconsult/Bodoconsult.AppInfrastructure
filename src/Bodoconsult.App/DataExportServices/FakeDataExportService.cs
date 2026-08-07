@@ -185,7 +185,7 @@ public class FakeDataExportService : IMemoryDataExportService
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data"></param>
-    public void Add(Memory<byte> data)
+    public void Add(ReadOnlyMemory<byte> data)
     {
         WasLogged = true;
 
@@ -203,7 +203,7 @@ public class FakeDataExportService : IMemoryDataExportService
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data">List with Memory&lt;byte&gt; elements</param>
-    public void AddRange(IEnumerable<Memory<byte>> data)
+    public void AddRange(IEnumerable<ReadOnlyMemory<byte>> data)
     {
         WasLogged = true;
 

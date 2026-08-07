@@ -33,13 +33,12 @@ internal class DiContainerTests
         // Arrange
         var diContainer = new DiContainer();
 
-        Assert.That(diContainer.ServiceCollection.Count, Is.EqualTo(0));
+        Assert.That(diContainer.ServiceCollection.Count, Is.Zero);
 
         // Now add the services provided by a MS builder class
         var builder = diContainer.ServiceCollection.AddDataProtection()
                 .SetApplicationName("TestApp")
-                .PersistKeysToFileSystem(new DirectoryInfo(TestHelper.TempPath))
-            ;
+                .PersistKeysToFileSystem(new DirectoryInfo(TestHelper.TempPath));
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
@@ -59,8 +58,13 @@ internal class DiContainerTests
         Assert.That(diContainer.ServiceProvider, Is.Not.Null);
 
         // Try to use an instance
-        var dpm = diContainer.Get<IDataProtectionManagerFactory>();
-        Assert.That(dpm, Is.Not.Null);
+        var dpm1 = diContainer.Get<IDataProtectionManagerFactory>();
+        Assert.That(dpm1, Is.Not.Null);
+
+        var dpm2 = diContainer.Get<IDataProtectionManagerFactory>();
+        Assert.That(dpm2, Is.Not.Null);
+
+        Assert.That(dpm1, Is.SameAs(dpm2));
     }
 
 
