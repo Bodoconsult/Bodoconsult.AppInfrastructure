@@ -50,7 +50,7 @@ public class CsvFileLocalesProvider : BaseResourceProvider
 
         var dir = new DirectoryInfo(_resourceFolder);
 
-        foreach (var locale in dir.GetFiles().Where(x => x.Name.EndsWith(".csv", StringComparison.InvariantCultureIgnoreCase)))
+        foreach (var locale in dir.GetFiles().Where(x => x.Name.EndsWith(".csv", StringComparison.OrdinalIgnoreCase)))
         {
             var key = locale.Name.Replace(locale.Extension, string.Empty);
 

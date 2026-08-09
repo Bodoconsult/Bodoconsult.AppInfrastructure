@@ -48,8 +48,8 @@ public class CsvEmbeddedResourceLocalesProvider : BaseResourceProvider
     {
         var len = _resourceFolder.Length;
 
-        var localeResources = _assembly.GetManifestResourceNames().Where(x => x.StartsWith(_resourceFolder, StringComparison.InvariantCultureIgnoreCase) &&
-                                                                              x.EndsWith(".csv", StringComparison.InvariantCultureIgnoreCase)).OrderBy(x => x);
+        var localeResources = _assembly.GetManifestResourceNames().Where(x => x.StartsWith(_resourceFolder, StringComparison.OrdinalIgnoreCase) &&
+                                                                              x.EndsWith(".csv", StringComparison.OrdinalIgnoreCase)).OrderBy(x => x);
 
         foreach (var locales in localeResources)
         {

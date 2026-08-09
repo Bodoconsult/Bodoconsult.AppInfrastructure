@@ -63,44 +63,44 @@ public static class StructuredTextExtensions
                 continue;
             }
 
-            if (row.ToLowerInvariant().StartsWith("h1 ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.ToLowerInvariant().StartsWith("h1 ", StringComparison.OrdinalIgnoreCase))
             {
                 master.AddHeader1(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLowerInvariant().StartsWith("h2 ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.ToLowerInvariant().StartsWith("h2 ", StringComparison.OrdinalIgnoreCase))
             {
                 master.AddHeader2(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLowerInvariant().StartsWith("h3 ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.ToLowerInvariant().StartsWith("h3 ", StringComparison.OrdinalIgnoreCase))
             {
                 master.AddHeader3(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLowerInvariant().StartsWith("h4 ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.ToLowerInvariant().StartsWith("h4 ", StringComparison.OrdinalIgnoreCase))
             {
                 master.AddHeader4(row[3..].Trim());
                 continue;
             }
 
 
-            if (row.ToLowerInvariant().StartsWith("code ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.ToLowerInvariant().StartsWith("code ", StringComparison.OrdinalIgnoreCase))
             {
                 master.AddCode(GetText(row[5..], dir));
                 continue;
             }
 
-            if (row.ToLowerInvariant().StartsWith("li ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.ToLowerInvariant().StartsWith("li ", StringComparison.OrdinalIgnoreCase))
             {
                 master.AddListItem(row[3..].Trim());
                 continue;
             }
 
-            if (row.ToLowerInvariant().StartsWith("dl ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.ToLowerInvariant().StartsWith("dl ", StringComparison.OrdinalIgnoreCase))
             {
                 string c1;
                 string c2;

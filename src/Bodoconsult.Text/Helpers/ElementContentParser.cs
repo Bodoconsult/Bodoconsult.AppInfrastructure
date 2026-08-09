@@ -43,11 +43,11 @@ public static class ElementContentParser
             .Replace("</Hyperlink>", "??eh", StringComparison.CurrentCultureIgnoreCase)
             
             // Escape the string now
-            .Replace("<", "&lt;", StringComparison.InvariantCultureIgnoreCase)
-            .Replace(">", "&gt;", StringComparison.InvariantCultureIgnoreCase)
-            .Replace("\"", "&quot;", StringComparison.InvariantCultureIgnoreCase)
-            .Replace("'", "&apos;", StringComparison.InvariantCultureIgnoreCase)
-            //.Replace("&", "&amp;", StringComparison.InvariantCultureIgnoreCase)
+            .Replace("<", "&lt;", StringComparison.OrdinalIgnoreCase)
+            .Replace(">", "&gt;", StringComparison.OrdinalIgnoreCase)
+            .Replace("\"", "&quot;", StringComparison.OrdinalIgnoreCase)
+            .Replace("'", "&apos;", StringComparison.OrdinalIgnoreCase)
+            //.Replace("&", "&amp;", StringComparison.OrdinalIgnoreCase)
 
             // Now restore tags
             .Replace("??eb??", "</Bold>", StringComparison.CurrentCultureIgnoreCase)
@@ -75,8 +75,8 @@ public static class ElementContentParser
 
         content = ClearContent(content);
 
-        var i = content.IndexOf("<", StringComparison.InvariantCultureIgnoreCase);
-        var j = content.IndexOf(">", StringComparison.InvariantCultureIgnoreCase);
+        var i = content.IndexOf("<", StringComparison.OrdinalIgnoreCase);
+        var j = content.IndexOf(">", StringComparison.OrdinalIgnoreCase);
 
         if (i < 0 || j < 0)
         {
@@ -108,8 +108,8 @@ public static class ElementContentParser
         }
 
         // Check end
-        var a = content.LastIndexOf("<", StringComparison.InvariantCultureIgnoreCase);
-        var e = content.LastIndexOf(">", StringComparison.InvariantCultureIgnoreCase);
+        var a = content.LastIndexOf("<", StringComparison.OrdinalIgnoreCase);
+        var e = content.LastIndexOf(">", StringComparison.OrdinalIgnoreCase);
 
         if (i == a || j == e)
         {

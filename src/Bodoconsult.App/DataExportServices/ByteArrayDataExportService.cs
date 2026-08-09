@@ -51,11 +51,6 @@ public class ByteArrayDataExportService : BaseDataExportService<byte[]>, IMemory
             }
         }
 
-        //foreach (var rm in data)
-        //{
-        //    CachingQueue.Enqueue(rm);
-        //}
-
         CachingQueue.Enqueue(data);
     }
 }

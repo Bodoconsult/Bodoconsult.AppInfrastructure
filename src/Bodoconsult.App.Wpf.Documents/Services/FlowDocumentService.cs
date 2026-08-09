@@ -471,12 +471,12 @@ public class FlowDocumentService
             .Replace("</H2>", "??Block??").Replace("</H1>", "??Block??").Replace("</P>", "??Block??");
 
 
-        var imageIndex = content.IndexOf("<Image", StringComparison.InvariantCultureIgnoreCase);
+        var imageIndex = content.IndexOf("<Image", StringComparison.OrdinalIgnoreCase);
 
         while (imageIndex > 0)
         {
 
-            var endIndex = content.IndexOf("/>", imageIndex, StringComparison.InvariantCultureIgnoreCase);
+            var endIndex = content.IndexOf("/>", imageIndex, StringComparison.OrdinalIgnoreCase);
 
             var leftPart = content[..endIndex];
             var rightPart = content.Substring(endIndex + 2, content.Length - endIndex - 2);
@@ -484,7 +484,7 @@ public class FlowDocumentService
             content = $"{leftPart}??Block??{rightPart}";
 
 
-            imageIndex = content.IndexOf("<Image", imageIndex + 10, StringComparison.InvariantCultureIgnoreCase);
+            imageIndex = content.IndexOf("<Image", imageIndex + 10, StringComparison.OrdinalIgnoreCase);
         }
 
 
@@ -624,13 +624,13 @@ public class FlowDocumentService
     {
         var tagLength = tag.Length + 1;
 
-        var sourceBeginIndex = block1.IndexOf(tag, StringComparison.InvariantCultureIgnoreCase);
+        var sourceBeginIndex = block1.IndexOf(tag, StringComparison.OrdinalIgnoreCase);
         if (sourceBeginIndex == -1)
         {
             return null;
         }
 
-        var sourceEndIndex = block1.IndexOf("\"", sourceBeginIndex + tagLength, StringComparison.InvariantCultureIgnoreCase);
+        var sourceEndIndex = block1.IndexOf("\"", sourceBeginIndex + tagLength, StringComparison.OrdinalIgnoreCase);
         var source = block1.Substring(sourceBeginIndex + tagLength, sourceEndIndex - sourceBeginIndex - tagLength);
 
         return source;
@@ -669,13 +669,13 @@ public class FlowDocumentService
 
         Dispatcher.Invoke(() =>
         {
-            if (content.StartsWith("Resx:", StringComparison.InvariantCultureIgnoreCase))
+            if (content.StartsWith("Resx:", StringComparison.OrdinalIgnoreCase))
             {
-                content = FindLanguageResource(content.Replace(ResxTag, string.Empty, StringComparison.InvariantCultureIgnoreCase));
+                content = FindLanguageResource(content.Replace(ResxTag, string.Empty, StringComparison.OrdinalIgnoreCase));
             }
-            if (content.StartsWith("I18n:", StringComparison.InvariantCultureIgnoreCase))
+            if (content.StartsWith("I18n:", StringComparison.OrdinalIgnoreCase))
             {
-                content = FindLanguageResource(content.Replace(II18N.I18NTag, string.Empty, StringComparison.InvariantCultureIgnoreCase));
+                content = FindLanguageResource(content.Replace(II18N.I18NTag, string.Empty, StringComparison.OrdinalIgnoreCase));
             }
             else
             {
@@ -721,19 +721,19 @@ public class FlowDocumentService
                 if (containsImages)
                 {
 
-                    var i = content.IndexOf("<image", StringComparison.InvariantCultureIgnoreCase);
+                    var i = content.IndexOf("<image", StringComparison.OrdinalIgnoreCase);
 
                     while (i > 0)
                     {
                         var leftPart = content[..i];
 
-                        var endIndex = content.IndexOf("/>", i + 1, StringComparison.InvariantCultureIgnoreCase);
+                        var endIndex = content.IndexOf("/>", i + 1, StringComparison.OrdinalIgnoreCase);
 
                         var rightPart = content.Substring(endIndex + 2, content.Length - endIndex - 2);
 
 
-                        var sourceBeginIndex = content.IndexOf("src=", i, StringComparison.InvariantCultureIgnoreCase);
-                        var sourceEndIndex = content.IndexOf("\"", sourceBeginIndex + 5, StringComparison.InvariantCultureIgnoreCase);
+                        var sourceBeginIndex = content.IndexOf("src=", i, StringComparison.OrdinalIgnoreCase);
+                        var sourceEndIndex = content.IndexOf("\"", sourceBeginIndex + 5, StringComparison.OrdinalIgnoreCase);
 
                         var source = content.Substring(sourceBeginIndex + 5, sourceEndIndex - sourceBeginIndex - 5);
 
@@ -741,7 +741,7 @@ public class FlowDocumentService
 
                         if (!File.Exists(source))
                         {
-                            i = content.IndexOf("<image", i + 5, StringComparison.InvariantCultureIgnoreCase);
+                            i = content.IndexOf("<image", i + 5, StringComparison.OrdinalIgnoreCase);
                             continue;
                         }
                         var image = string.Format(TypographySettingsService.ImageTemplate, source, null, TypographySettingsService.MaxImageHeight, TypographySettingsService.MaxImageWidth);
@@ -750,7 +750,7 @@ public class FlowDocumentService
                                   + image
                                   + rightPart;
 
-                        i = content.IndexOf("<image", i + image.Length, StringComparison.InvariantCultureIgnoreCase);
+                        i = content.IndexOf("<image", i + image.Length, StringComparison.OrdinalIgnoreCase);
                     }
                 }
             }
@@ -1082,7 +1082,7 @@ public class FlowDocumentService
             return path;
         }
 
-        var s = path.Replace("@Path", _currentDir, StringComparison.InvariantCultureIgnoreCase);
+        var s = path.Replace("@Path", _currentDir, StringComparison.OrdinalIgnoreCase);
         return s;
     }
 

@@ -38,7 +38,7 @@ public static class ValidationHelper
             }
 
             var m = members.ToString();
-            if (m.EndsWith(";", StringComparison.InvariantCultureIgnoreCase))
+            if (m.EndsWith(";", StringComparison.OrdinalIgnoreCase))
             {
                 m = m[..(members.Length - 1)];
             }

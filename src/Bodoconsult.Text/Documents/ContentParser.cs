@@ -54,8 +54,8 @@
 //            return;
 //        }
 
-//        var i = _content.IndexOf("<", StringComparison.InvariantCultureIgnoreCase);
-//        var j = _content.IndexOf(">", StringComparison.InvariantCultureIgnoreCase);
+//        var i = _content.IndexOf("<", StringComparison.OrdinalIgnoreCase);
+//        var j = _content.IndexOf(">", StringComparison.OrdinalIgnoreCase);
 
 //        if (i < 0 || j < 0)
 //        {
@@ -76,8 +76,8 @@
 //        }
 
 //        // Check end
-//        var a = _content.LastIndexOf("<", StringComparison.InvariantCultureIgnoreCase);
-//        var e = _content.LastIndexOf(">", StringComparison.InvariantCultureIgnoreCase);
+//        var a = _content.LastIndexOf("<", StringComparison.OrdinalIgnoreCase);
+//        var e = _content.LastIndexOf(">", StringComparison.OrdinalIgnoreCase);
 
 //        if (i == a || j == e)
 //        {

@@ -71,11 +71,11 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
             Debug.Print(lEesource.Key.ToString());
 
             var key = lEesource.Key.ToString().Split(',')[0]
-                .Replace($"{_resourceFolder}/", string.Empty, StringComparison.InvariantCultureIgnoreCase).Replace(".baml", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+                .Replace($"{_resourceFolder}/", string.Empty, StringComparison.OrdinalIgnoreCase).Replace(".baml", string.Empty, StringComparison.OrdinalIgnoreCase);
 
             Debug.Print(key);
 
-            if (!key.StartsWith("culture.", StringComparison.InvariantCultureIgnoreCase))
+            if (!key.StartsWith("culture.", StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }

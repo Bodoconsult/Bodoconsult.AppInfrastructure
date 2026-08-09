@@ -40,7 +40,7 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
         var dir = new DirectoryInfo(_resourceFolder);
 
         foreach (var locale in dir.GetFiles()
-                     .Where(x => x.Name.EndsWith(".axaml", StringComparison.InvariantCultureIgnoreCase)))
+                     .Where(x => x.Name.EndsWith(".axaml", StringComparison.OrdinalIgnoreCase)))
         {
             var key = locale.Name.Replace(locale.Extension, string.Empty).Replace("Culture.", string.Empty);
 

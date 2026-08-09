@@ -103,7 +103,7 @@ public class CachingProducerConsumerQueue<T> : ICachingProducerConsumerQueue<T> 
         _cancellationTokenSource.Dispose();
 
         InternalQueue.Writer.TryComplete();
-
+        
         InternalQueue = Channel.CreateBounded<T[]>(new BoundedChannelOptions(CacheSize)
         {
             SingleReader = true,

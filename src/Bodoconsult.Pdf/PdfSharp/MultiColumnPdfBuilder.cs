@@ -836,7 +836,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
                 if (text.Content.Contains(ITypography.PageFieldIndicator))
                 {
                     text.Content = text.Content.Replace(ITypography.PageFieldIndicator, pageNumber.ToString(),
-                        StringComparison.InvariantCultureIgnoreCase);
+                        StringComparison.OrdinalIgnoreCase);
                 }
             }
         }

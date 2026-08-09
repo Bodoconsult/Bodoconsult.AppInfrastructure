@@ -361,10 +361,10 @@ public static class ArrayHelper
     public static byte[] GetBytes(string arrayString)
     {
         var s = arrayString
-            .Replace(" ", string.Empty, StringComparison.InvariantCultureIgnoreCase)
-            .Replace("{", string.Empty, StringComparison.InvariantCultureIgnoreCase)
-            .Replace("}", string.Empty, StringComparison.InvariantCultureIgnoreCase)
-            .Replace("0x", ",", StringComparison.InvariantCultureIgnoreCase)
+            .Replace(" ", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("{", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("}", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("0x", ",", StringComparison.OrdinalIgnoreCase)
             .Split([','], StringSplitOptions.RemoveEmptyEntries);
 
         var ar = new byte[s.Length];
@@ -398,10 +398,10 @@ public static class ArrayHelper
     public static byte[] GetBytes(string arrayString, char delimiter)
     {
         var s = arrayString
-            .Replace(" ", string.Empty, StringComparison.InvariantCultureIgnoreCase)
-            .Replace("{", string.Empty, StringComparison.InvariantCultureIgnoreCase)
-            .Replace("}", string.Empty, StringComparison.InvariantCultureIgnoreCase)
-            .Replace("0x", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+            .Replace(" ", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("{", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("}", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("0x", string.Empty, StringComparison.OrdinalIgnoreCase)
             .Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
 
         var ar = new byte[s.Length];

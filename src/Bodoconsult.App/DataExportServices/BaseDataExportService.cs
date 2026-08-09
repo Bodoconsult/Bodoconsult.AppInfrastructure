@@ -20,6 +20,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     private readonly Lock _currentFileSizeLock = new();
     private readonly List<ReadOnlyMemory<byte>> _cache = [];
     private byte _flushCounter;
+    private readonly Func<T, ReadOnlyMemory<byte>> _toMemoryFunc;
 
     private AutoResetEvent? _closeEvent;
 
@@ -56,6 +57,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         _storingQueue.ConsumerTaskDelegate = AddCacheToStoring;
 
         _storeDataBufferPool.Allocate(100);
+        _toMemoryFunc = ToMemory;
     }
 
     /// <summary>
@@ -69,6 +71,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         _storingQueue.ConsumerTaskDelegate = AddCacheToStoring;
 
         _storeDataBufferPool.Allocate(100);
+        _toMemoryFunc = ToMemory;
     }
 
     /// <summary>
@@ -315,7 +318,6 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         CachingQueue.Enqueue(rm);
     }
 
-
     /// <summary>
     /// Add a list of items to store in the export file
     /// </summary>
@@ -330,9 +332,13 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             }
         }
 
-        var mem = data.Select(ToMemory).ToList();
+        // ReSharper disable once ConvertClosureToMethodGroup
+        var mem = data.Select(_toMemoryFunc).ToList();
         CachingQueue.Enqueue(mem);
     }
+
+
+    
 
     /// <summary>
     /// Converts an object of type T into a ReadOnlyMemory&lt;byte&gt; instance

@@ -32,7 +32,7 @@ public static class AppLoggerExtensions
                 // Add filters from config
                 foreach (var filter in loggingConfig.Filters)
                 {
-                    var key = string.Equals(filter.Key, "DEFAULT", StringComparison.InvariantCultureIgnoreCase) ? null : filter.Key;
+                    var key = string.Equals(filter.Key, "DEFAULT", StringComparison.OrdinalIgnoreCase) ? null : filter.Key;
                     builder.AddFilter(key, filter.Value);
                 }
 
@@ -64,7 +64,7 @@ public static class AppLoggerExtensions
                 // Add filters from config
                 foreach (var filter in loggingConfig.Filters)
                 {
-                    var key = string.Equals(filter.Key, "DEFAULT", StringComparison.InvariantCultureIgnoreCase) ? null : filter.Key;
+                    var key = string.Equals(filter.Key, "DEFAULT", StringComparison.OrdinalIgnoreCase) ? null : filter.Key;
                     builder.AddFilter(key, filter.Value);
                 }
 

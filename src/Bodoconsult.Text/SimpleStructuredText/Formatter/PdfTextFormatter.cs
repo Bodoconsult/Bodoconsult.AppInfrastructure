@@ -181,7 +181,7 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
             dt.ReadXml(stream);
         }
 
-        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.InvariantCultureIgnoreCase) ?
+        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.OrdinalIgnoreCase) ?
             dt.ToPdfTableWithCssInfo(Bodoconsult.Pdf.Extensions.DataTableExtensions.BodoconsultCssColors) :
             dt.ToPdfTable();
 

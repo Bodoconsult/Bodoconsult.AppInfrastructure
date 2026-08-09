@@ -134,9 +134,9 @@ public partial class CopyrightViewModel : ReactiveObject
         {
             string msg;
             string fill;
-            if (row.StartsWith("# ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.StartsWith("# ", StringComparison.OrdinalIgnoreCase))
             {
-                msg = $"***** {row.Replace("# ", string.Empty, StringComparison.InvariantCultureIgnoreCase)} *****";
+                msg = $"***** {row.Replace("# ", string.Empty, StringComparison.OrdinalIgnoreCase)} *****";
                 fill = new string('*', msg.Length);
                 result.Add("\n");
 
@@ -150,9 +150,9 @@ public partial class CopyrightViewModel : ReactiveObject
                 continue;
             }
 
-            if (row.StartsWith("## ", StringComparison.InvariantCultureIgnoreCase))
+            if (row.StartsWith("## ", StringComparison.OrdinalIgnoreCase))
             {
-                msg = $"*** {row.Replace("## ", string.Empty, StringComparison.InvariantCultureIgnoreCase)} ***";
+                msg = $"*** {row.Replace("## ", string.Empty, StringComparison.OrdinalIgnoreCase)} ***";
                 fill = new string('*', msg.Length);
                 result.Add("\n");
                 result.Add(fill);

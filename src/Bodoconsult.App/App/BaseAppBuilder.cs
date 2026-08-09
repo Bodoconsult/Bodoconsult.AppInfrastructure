@@ -80,7 +80,7 @@ namespace Bodoconsult.App;
         var versionInfo = FileVersionInfo.GetVersionInfo(s);
 
         var executable = new FileInfo(s);
-        var assemName = executable.Name.Replace(executable.Extension, string.Empty, StringComparison.InvariantCultureIgnoreCase);
+        var assemName = executable.Name.Replace(executable.Extension, string.Empty, StringComparison.OrdinalIgnoreCase);
 
         var param = AppGlobals.AppStartParameter;
         param.SoftwareRevision = new Version(versionInfo.FileMajorPart, versionInfo.FileMinorPart, versionInfo.FileBuildPart);

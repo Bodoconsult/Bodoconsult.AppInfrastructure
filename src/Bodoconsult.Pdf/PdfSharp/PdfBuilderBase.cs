@@ -1472,7 +1472,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     [Obsolete("Do not use it. Prefer using AddTable method with <see cref=\"PdfTable\"/> parameter instead")]
     public void AddTable(DataTable dt, string heading, string headingStyleName, string additionalInfos, string additionalInfosStyleName, double width = 0, string tableStyle = "NormalTable")
     {
-        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.InvariantCultureIgnoreCase) ?
+        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.OrdinalIgnoreCase) ?
             dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors) :
             dt.ToPdfTable();
 
@@ -1892,7 +1892,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="tableStyle">Style to use for the table</param>
     protected void CreateTable(DataTable dt, int schleife, TextFrame frame, double borderWidth = 0.5, string tableStyle = "NormalTable")
     {
-        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.InvariantCultureIgnoreCase) ?
+        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.OrdinalIgnoreCase) ?
             dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors) :
             dt.ToPdfTable();
 
@@ -2425,7 +2425,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         html = html.Replace("&nbsp;", " ").Replace("<br />", "\r\n").Replace("<br/>", "\r\n").Replace("\r\n\r\n", "\r\n");
 
-        var startTag = html.IndexOf("<", StringComparison.InvariantCultureIgnoreCase);
+        var startTag = html.IndexOf("<", StringComparison.OrdinalIgnoreCase);
 
 
         while (startTag > -1 && startTag < html.Length - 1)
@@ -2442,8 +2442,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
                 case "h4":
                 case "h5":
 
-                    var endTag = html.IndexOf("<", startTag + 2, StringComparison.InvariantCultureIgnoreCase);
-                    var endTagStartTag = html.IndexOf(">", startTag + 1, StringComparison.InvariantCultureIgnoreCase);
+                    var endTag = html.IndexOf("<", startTag + 2, StringComparison.OrdinalIgnoreCase);
+                    var endTagStartTag = html.IndexOf(">", startTag + 1, StringComparison.OrdinalIgnoreCase);
 
                     var content = html.Substring(endTagStartTag + 1, endTag - endTagStartTag - 1);
 
@@ -2476,7 +2476,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
                     //    break;
             }
 
-            startTag = html.IndexOf("<", startTag + 1, StringComparison.InvariantCultureIgnoreCase);
+            startTag = html.IndexOf("<", startTag + 1, StringComparison.OrdinalIgnoreCase);
         }
     }
 

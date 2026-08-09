@@ -40,7 +40,7 @@ public class WpfFileLocalesProvider : BaseResourceProvider
         var dir = new DirectoryInfo(_resourceFolder);
 
         foreach (var locale in dir.GetFiles()
-                     .Where(x => x.Name.EndsWith(".xaml", StringComparison.InvariantCultureIgnoreCase)))
+                     .Where(x => x.Name.EndsWith(".xaml", StringComparison.OrdinalIgnoreCase)))
         {
             var key = locale.Name.Replace(locale.Extension, string.Empty).Replace("Culture.", string.Empty);
 

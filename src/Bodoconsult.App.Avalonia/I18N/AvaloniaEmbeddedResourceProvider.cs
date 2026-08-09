@@ -68,7 +68,7 @@
 
 //            var key = lEesource.Key.ToString().Split(',')[0]
 //                .ToLowerInvariant()
-//                .Replace($"{_resourceFolder}/", string.Empty, StringComparison.InvariantCultureIgnoreCase).Replace(".axaml", string.Empty);
+//                .Replace($"{_resourceFolder}/", string.Empty, StringComparison.OrdinalIgnoreCase).Replace(".axaml", string.Empty);
 
 //            if (!key.StartsWith("culture."))
 //            {

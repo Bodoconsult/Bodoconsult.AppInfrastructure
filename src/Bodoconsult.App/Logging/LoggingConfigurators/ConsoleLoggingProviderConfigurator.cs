@@ -35,7 +35,7 @@ public class ConsoleLoggingProviderConfigurator : ILoggerProviderConfigurator
         if (oValue is { Value: not null })
         {
             ConsoleConfigurationSettings.ColorBehavior =
-                !oValue.Value.Equals("FALSE", StringComparison.InvariantCultureIgnoreCase)
+                !oValue.Value.Equals("FALSE", StringComparison.OrdinalIgnoreCase)
                     ? LoggerColorBehavior.Enabled
                     : LoggerColorBehavior.Disabled;
         }
