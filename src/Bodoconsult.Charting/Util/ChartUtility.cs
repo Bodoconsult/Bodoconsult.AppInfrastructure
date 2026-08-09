@@ -170,7 +170,7 @@ public class ChartUtility
 
 
             double label;
-            if (data == null)
+            if (data is null)
             {
                 label = index;
             }

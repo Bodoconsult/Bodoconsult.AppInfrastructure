@@ -21,7 +21,7 @@
 //    ///// <returns><see cref="WpfUiRegion"/> created and registered to region manager</returns>
 //    //public static WpfUiRegion CreateWpfUiRegion(this IRegionManager? regionManager, RoutedViewHost routedViewHost)
 //    //{
-//    //    if (regionManager == null)
+//    //    if (regionManager is null)
 //    //    {
 //    //        throw new ArgumentNullException(nameof(regionManager));
 //    //    }
@@ -40,7 +40,7 @@
 //    /// <exception cref="ArgumentNullException"></exception>
 //    public static IUiWindow CreateUiWindow<T, TViewmodel>(this IRegionManager? regionManager, IUiWindow uiWindow)
 //    {
-//        if (regionManager == null)
+//        if (regionManager is null)
 //        {
 //            throw new ArgumentNullException(nameof(regionManager));
 //        }

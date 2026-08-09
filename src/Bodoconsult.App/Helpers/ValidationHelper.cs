@@ -56,7 +56,7 @@ public static class ValidationHelper
     /// <returns>Message string</returns>
     public static string? FormatValidationErrors(ICollection<ValidationResult>? validationResult)
     {
-        if (validationResult == null)
+        if (validationResult is null)
         {
             return null;
         }

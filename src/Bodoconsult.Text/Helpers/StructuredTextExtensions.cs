@@ -24,7 +24,7 @@ public static class StructuredTextExtensions
 
         var odir = new FileInfo(plainTextFileName).Directory;
 
-        if (odir == null || !odir.Exists)
+        if (odir is null || !odir.Exists)
         {
             throw new Exception($"Folder for file {plainTextFileName} not valid!");
         }

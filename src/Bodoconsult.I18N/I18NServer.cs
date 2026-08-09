@@ -99,7 +99,7 @@ public class I18NServer : II18NServer
     public void AddProvider(ILocalesProvider provider)
     {
 
-        if (provider == null)
+        if (provider is null)
         {
             throw new I18NException(ErrorMessages.ProviderNull);
         }
@@ -127,7 +127,7 @@ public class I18NServer : II18NServer
     public II18NServer AddProvider2(ILocalesProvider provider)
     {
 
-        if (provider == null)
+        if (provider is null)
         {
             throw new I18NException(ErrorMessages.ProviderNull);
         }

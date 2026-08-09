@@ -80,7 +80,7 @@ public class ServerStreamingServerChannel
 
             while (true)
             {
-                if (_asyncServerStreamingCall == null)
+                if (_asyncServerStreamingCall is null)
                 {
                     Debug.Print("Waiting for server stream");
                     await Task.Delay(50);

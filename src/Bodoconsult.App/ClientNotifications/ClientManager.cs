@@ -31,7 +31,7 @@ public class ClientManager : IClientManager
     private void ConsumerTaskDelegate(IClientNotification notification)
     {
         // Check if there are missing objects to send
-        if (notification.NotificationObjectToSend == null)
+        if (notification.NotificationObjectToSend is null)
         {
             // Create the transport level object and store it in the notification
             var message = ClientMessagingService.Convert(notification);

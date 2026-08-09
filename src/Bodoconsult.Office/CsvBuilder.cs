@@ -56,7 +56,7 @@ public class CsvBuilder
     public void Export()
     {
 
-        if (Data == null)
+        if (Data is null)
         {
             throw new ArgumentNullException(nameof(Data));
         }

@@ -20,7 +20,7 @@ public class DateTimeConverter : BaseConverter, IValueConverter
     /// <returns>A converted value. If the method returns <see langword="null" />, the valid null value is used.</returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value == null)
+        if (value is null)
         {
             return string.Empty;
         }
@@ -36,7 +36,7 @@ public class DateTimeConverter : BaseConverter, IValueConverter
     /// <returns>A converted value. If the method returns <see langword="null" />, the valid null value is used.</returns>
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value == null || value.Equals(string.Empty))
+        if (value is null || value.Equals(string.Empty))
         {
             return DateTime.MinValue;
         }

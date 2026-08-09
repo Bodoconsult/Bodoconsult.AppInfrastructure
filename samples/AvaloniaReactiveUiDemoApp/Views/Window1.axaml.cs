@@ -25,7 +25,7 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
         {
             ObservableExtensions.Subscribe(this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
             {
-                if (x == null)
+                if (x is null)
                 {
                     return;
                 }
@@ -37,7 +37,7 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
 
     public void RegisterAllRouterBindings(Window1ViewModel viewModel, MultipleDisposable disposables)
     {
-        //if (viewModel == null)
+        //if (viewModel is null)
         //{
         //    return;
         //}
@@ -51,12 +51,12 @@ public partial class Window1 : ReactiveWindow<Window1ViewModel>, IUiWindow
         viewModel.Region1 = window.FindRegion(DocumentRegion.Name);
         viewModel.Region2 = window.FindRegion(MenuRegion.Name);
 
-        if (viewModel.Region1 == null)
+        if (viewModel.Region1 is null)
         {
             ArgumentNullException.ThrowIfNull(viewModel.Region1);
         }
 
-        if (viewModel.Region2 == null)
+        if (viewModel.Region2 is null)
         {
             ArgumentNullException.ThrowIfNull(viewModel.Region2);
         }

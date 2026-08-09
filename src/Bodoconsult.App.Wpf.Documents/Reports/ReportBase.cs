@@ -90,8 +90,8 @@ public class ReportBase : IDisposable
 
         FlowDocumentService.AddSection();
 
-        if (FlowDocumentService.TypographySettingsService.DrawHeaderDelegate == null &&
-            FlowDocumentService.TypographySettingsService.DrawFooterDelegate == null)
+        if (FlowDocumentService.TypographySettingsService.DrawHeaderDelegate is null &&
+            FlowDocumentService.TypographySettingsService.DrawFooterDelegate is null)
         {
             FlowDocumentService.AddDefaultFooterAndHeader();
         }
@@ -147,7 +147,7 @@ public class ReportBase : IDisposable
     protected void OnSendStatus(string message)
     {
         var x = StatusMessage;
-        if (x == null) return;
+        if (x is null) return;
         x(message);
     }
 

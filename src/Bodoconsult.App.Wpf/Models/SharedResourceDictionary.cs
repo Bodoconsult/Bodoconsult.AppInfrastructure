@@ -32,7 +32,7 @@ public class SharedResourceDictionary : ResourceDictionary
         get => IsInDesignMode ? base.Source : _sourceUri;
         set
         {
-            if (value == null)
+            if (value is null)
             {
                 return;
             }

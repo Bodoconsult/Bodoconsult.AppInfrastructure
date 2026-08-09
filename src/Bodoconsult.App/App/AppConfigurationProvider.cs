@@ -41,7 +41,7 @@ public class AppConfigurationProvider : IAppConfigurationProvider
         //#endif
 
         var configFilePath = new FileInfo(ConfigFile).DirectoryName;
-        if (configFilePath == null)
+        if (configFilePath is null)
         {
             throw new ArgumentNullException(nameof(configFilePath));
         }

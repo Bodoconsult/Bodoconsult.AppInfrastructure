@@ -11,7 +11,7 @@ public class CachingProducerConsumerQueue2Tests
     private readonly Memory<byte> _data2 = new byte[] { 0x0, 0x1 }.AsMemory();
     private readonly Memory<byte> _data3 = new byte[] { 0x0, 0x1 }.AsMemory();
     private int _counter;
-    private readonly List<List<Memory<byte>>> _received = [];
+    private readonly List<Memory<byte>[]> _received = [];
     private bool _wasFired;
 
     private void Reset()
@@ -21,7 +21,7 @@ public class CachingProducerConsumerQueue2Tests
         _wasFired = false;
     }
 
-    private void ConsumerTaskDelegate(List<Memory<byte>> value)
+    private void ConsumerTaskDelegate(Memory<byte>[] value)
     {
         _counter++;
         _received.Add(value);

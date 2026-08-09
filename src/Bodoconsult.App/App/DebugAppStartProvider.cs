@@ -50,7 +50,7 @@
 //        /// </summary>
 //        public void LoadAppStartParameter()
 //        {
-//            if (AppConfigurationProvider == null)
+//            if (AppConfigurationProvider is null)
 //            {
 //                throw new ArgumentNullException(nameof(AppConfigurationProvider));
 //            }
@@ -67,7 +67,7 @@
 //        /// </summary>
 //        public void LoadAppStartParameter(IAppStartParameter appStartParameter)
 //        {
-//            if (AppConfigurationProvider == null)
+//            if (AppConfigurationProvider is null)
 //            {
 //                throw new ArgumentNullException(nameof(AppConfigurationProvider));
 //            }

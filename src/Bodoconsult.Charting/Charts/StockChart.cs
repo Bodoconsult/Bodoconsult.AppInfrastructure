@@ -95,7 +95,7 @@ public class StockChart<T> : BaseChart<T> where T: IChartItemData
         {
             var item = _data.FirstOrDefault(x => Math.Abs(x.XValue - position) < 0.0000000000000001);
 
-            return item == null ? string.Empty : item.Label;
+            return item is null ? string.Empty : item.Label;
         }
     }
 

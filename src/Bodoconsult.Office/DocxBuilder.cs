@@ -169,7 +169,7 @@ public class DocxBuilder : IDisposable
             }
         }
 
-        if (MemoryStream == null)
+        if (MemoryStream is null)
         {
             Docx.Save();
             return;
@@ -837,7 +837,7 @@ public class DocxBuilder : IDisposable
     /// <param name="pPr">Paragraph properties</param>
     private static void CreateBorders(ITypoParagraphStyle typoStyle, ParagraphProperties pPr)
     {
-        if (typoStyle.TypoBorderBrush == null)
+        if (typoStyle.TypoBorderBrush is null)
         {
             return;
         }
@@ -1008,7 +1008,7 @@ public class DocxBuilder : IDisposable
         Docx?.Dispose();
 
         // And now the stream if available
-        if (MemoryStream == null)
+        if (MemoryStream is null)
         {
             return;
         }
@@ -1309,7 +1309,7 @@ public class DocxBuilder : IDisposable
             if (p != null)
             {
                 var pPr = p.ParagraphProperties;
-                if (pPr == null)
+                if (pPr is null)
                 {
                     pPr = new ParagraphProperties();
                     p.Append(pPr);

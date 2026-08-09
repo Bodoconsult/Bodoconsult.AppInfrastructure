@@ -165,7 +165,7 @@ public static class DataTableExtensions
 
     private static string GetValue(object dataCell, Type type, CultureInfo cultureInfo)
     {
-        if (dataCell == null)
+        if (dataCell is null)
         {
             return String.Empty;
         }

@@ -351,14 +351,14 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
         //try
         //{
 
-        if (assembly == null)
+        if (assembly is null)
         {
             return;
         }
 
         var logoStream = assembly.GetManifestResourceStream(ressourcePath);
 
-        if (logoStream == null)
+        if (logoStream is null)
         {
             return;
         }
@@ -426,7 +426,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
     public void CheckLogs()
     {
 
-        if (_listener == null)
+        if (_listener is null)
         {
             return;
         }
@@ -452,7 +452,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
         {
             var logMsg = GeneralHelper.DequeueFromQueue(_listener.Messages);
 
-            if (logMsg == null)
+            if (logMsg is null)
             {
                 continue;
             }
@@ -487,7 +487,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
         get => _logEventLevel;
         set
         {
-            if (value == _logEventLevel || _listener == null)
+            if (value == _logEventLevel || _listener is null)
             {
                 return;
             }
@@ -592,7 +592,7 @@ public partial class MainWindowViewModel : ReactiveObject, IRxMainWindowViewMode
     /// </summary>
     public void BuildIt()
     {
-        if (MenuBuilder == null)
+        if (MenuBuilder is null)
         {
             return;
         }

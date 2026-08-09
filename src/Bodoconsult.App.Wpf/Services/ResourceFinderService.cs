@@ -51,7 +51,7 @@ public static class ResourceFinderService
 
             SharedResourceDictionary rd;
 
-            if (cache == null)
+            if (cache is null)
             {
                 rd = new SharedResourceDictionary
                 {
@@ -96,7 +96,7 @@ public static class ResourceFinderService
 
             SharedResourceDictionary rd;
 
-            if (cache == null)
+            if (cache is null)
             {
                 rd = new SharedResourceDictionary
                 {
@@ -146,7 +146,7 @@ public static class ResourceFinderService
 
             SharedResourceDictionary rd;
 
-            if (cache == null)
+            if (cache is null)
             {
                 rd = new SharedResourceDictionary
                 {
@@ -192,7 +192,7 @@ public static class ResourceFinderService
 
             SharedResourceDictionary rd;
 
-            if (cache == null)
+            if (cache is null)
             {
                 rd = new SharedResourceDictionary
                 {

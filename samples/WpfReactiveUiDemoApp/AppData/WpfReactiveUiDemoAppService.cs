@@ -79,7 +79,7 @@ public class WpfReactiveUiDemoAppService : IApplicationService
         //    i++;
         //}
 
-        //if (RequestApplicationStopDelegate == null)
+        //if (RequestApplicationStopDelegate is null)
         //{
         //    return;
         //}

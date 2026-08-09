@@ -30,7 +30,7 @@ namespace Bodoconsult.App;
         AppGlobals = appGlobals;
         AppGlobals.StatusMessageDelegate = StatusMessageDelegate;
 
-        if (AppGlobals.Logger == null)
+        if (AppGlobals.Logger is null)
         {
             return;
         }
@@ -138,7 +138,7 @@ namespace Bodoconsult.App;
 
         var check = AppGlobals.AppStorageConnectionCheck;
 
-        if (check == null)
+        if (check is null)
         {
             return;
         }
@@ -235,7 +235,7 @@ namespace Bodoconsult.App;
     /// </summary>
     public void RestartApplication()
     {
-        if (AppGlobals.Logger == null)
+        if (AppGlobals.Logger is null)
         {
             throw new ArgumentException("Logger is null");
         }

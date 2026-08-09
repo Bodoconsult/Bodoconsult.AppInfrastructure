@@ -77,7 +77,7 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
         
         var bitmapStream = assembly.GetManifestResourceStream(ressourcePath);
 
-        if (bitmapStream == null)
+        if (bitmapStream is null)
         {
             return;
         }

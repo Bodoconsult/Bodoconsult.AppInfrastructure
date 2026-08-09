@@ -386,7 +386,7 @@ public class TableService
                 currentRow.Cells.Add(cell);
 
                 var run = paragraph.Inlines.FirstInline as Run;
-                if (run == null || string.IsNullOrEmpty(run.Text))
+                if (run is null || string.IsNullOrEmpty(run.Text))
                 {
                     continue;
                 }

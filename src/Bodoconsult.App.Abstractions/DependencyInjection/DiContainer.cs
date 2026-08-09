@@ -64,7 +64,7 @@ public class DiContainer
         try
         {
             var t = ServiceProvider.GetService(typeof(T));
-            return t == null ? throw new ArgumentNullException(): (T)t;
+            return t is null ? throw new ArgumentNullException(): (T)t;
         }
         catch (Exception e)
         {
@@ -174,7 +174,7 @@ public class DiContainer
             }
 
             var o = ServiceProvider.GetService(type);
-            if (o == null)
+            if (o is null)
             {
                 continue;
             }

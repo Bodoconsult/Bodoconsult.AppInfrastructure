@@ -110,7 +110,7 @@ public class PdfChart
 
         if (_chart.SeriesCollection.Count > 1)
         {
-            if (_chart.SeriesCollection[0] == null || _chart.SeriesCollection[1]==null)
+            if (_chart.SeriesCollection[0] is null || _chart.SeriesCollection[1]==null)
             {
                 throw new ArgumentException("Two data series are required.");
             }
@@ -131,7 +131,7 @@ public class PdfChart
         }
         else
         {
-            if (_chart.SeriesCollection[0] == null)
+            if (_chart.SeriesCollection[0] is null)
             {
                 throw new ArgumentException("At least the data of one series are required.");
             }

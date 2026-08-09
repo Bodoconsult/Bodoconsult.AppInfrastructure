@@ -86,14 +86,14 @@ public class DocumentationHandler : IHtmlCreator
 
         var sf = st.GetFrame(1);
 
-        if (sf == null)
+        if (sf is null)
         {
             return string.Empty;
         }
 
         var m = sf.GetMethod();
 
-        if (m == null)
+        if (m is null)
         {
             return string.Empty;
         }
@@ -103,7 +103,7 @@ public class DocumentationHandler : IHtmlCreator
 
         var testClass = TestClasses.FirstOrDefault(x => x.Name == className);
 
-        if (testClass == null)
+        if (testClass is null)
         {
             testClass = new DocuTestClass(this, type);
 
@@ -114,7 +114,7 @@ public class DocumentationHandler : IHtmlCreator
 
         var testMethod = testClass.TestMethods.FirstOrDefault(x => x.Name == method);
 
-        if (testMethod == null)
+        if (testMethod is null)
         {
             testMethod = new DocuTestClassMethod
             {
@@ -152,14 +152,14 @@ public class DocumentationHandler : IHtmlCreator
         var st = new StackTrace();
         var sf = st.GetFrame(1);
 
-        if (sf == null)
+        if (sf is null)
         {
             return string.Empty;
         }
 
         var m = sf.GetMethod();
 
-        if (m == null)
+        if (m is null)
         {
             return string.Empty;
         }
@@ -169,7 +169,7 @@ public class DocumentationHandler : IHtmlCreator
 
         var testClass = TestClasses.FirstOrDefault(x => x.Name == className);
 
-        if (testClass == null)
+        if (testClass is null)
         {
             testClass = new DocuTestClass(this, type);
 
@@ -180,7 +180,7 @@ public class DocumentationHandler : IHtmlCreator
 
         var testMethod = testClass.TestMethods.FirstOrDefault(x => x.Name == method);
 
-        if (testMethod == null)
+        if (testMethod is null)
         {
             testMethod = new DocuTestClassMethod
             {
@@ -264,7 +264,7 @@ public class DocumentationHandler : IHtmlCreator
 
         var testClass = TestClasses.FirstOrDefault(x => x.Name == className);
 
-        if (testClass == null)
+        if (testClass is null)
         {
             testClass = new DocuTestClass(this, type);
 

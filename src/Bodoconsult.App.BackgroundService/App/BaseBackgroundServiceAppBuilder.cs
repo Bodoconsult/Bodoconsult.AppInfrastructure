@@ -34,7 +34,7 @@ public class BaseBackgroundServiceAppBuilder : BaseAppBuilder
     /// <param name="configureAction">Configure action expecting a <see cref="HostApplicationBuilder"/> instance</param>
     public void ConfigureHostBuilder(Action<HostApplicationBuilder> configureAction)
     {
-        if (configureAction == null)
+        if (configureAction is null)
         {
             return;
         }

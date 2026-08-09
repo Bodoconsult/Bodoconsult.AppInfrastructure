@@ -103,7 +103,7 @@ public static class StringExtensions
     /// <returns>Truncated string</returns>
     public static string? LimitToLength(this string? value, int length)
     {
-        if (value == null)
+        if (value is null)
         {
             return null;
         }

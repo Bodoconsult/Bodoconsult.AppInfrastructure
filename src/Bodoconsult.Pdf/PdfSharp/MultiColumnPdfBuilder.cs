@@ -371,7 +371,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             }
             else
             {
-                if (gfx == null)
+                if (gfx is null)
                 {
                     throw new ArgumentNullException(nameof(gfx));
                 }
@@ -803,7 +803,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
     private void CheckPageNumbersForSection(Section section)
     {
-        if (section == null)
+        if (section is null)
         {
             return;
         }

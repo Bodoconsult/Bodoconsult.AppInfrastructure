@@ -29,7 +29,7 @@ public static class ResourceHelper
     {
         var str = assembly.GetManifestResourceStream(resourceName);
 
-        if (str == null) return [];
+        if (str is null) return [];
 
         var data = new byte[str.Length];
 
@@ -59,7 +59,7 @@ public static class ResourceHelper
     {
         var str = assembly.GetManifestResourceStream(resourceName);
 
-        if (str == null)
+        if (str is null)
         {
             return null;
         }

@@ -45,7 +45,7 @@ public class TestHelper
 
         var str = Ass.GetManifestResourceStream(resourceName);
 
-        if (str == null) return null;
+        if (str is null) return null;
 
         string s;
 

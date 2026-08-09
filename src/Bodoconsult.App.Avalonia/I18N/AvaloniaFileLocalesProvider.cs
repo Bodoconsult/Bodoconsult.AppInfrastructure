@@ -77,7 +77,7 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
         
         foreach (var key in rd.Keys)
         {
-            //if (key == null)
+            //if (key is null)
             //{
             //    continue;
             //}
@@ -90,7 +90,7 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
 
             var value = rd[key];
 
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }
@@ -105,7 +105,7 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
         //    key.
 
         //    //key.
-        //    ////if (key == null)
+        //    ////if (key is null)
         //    ////{
         //    ////    continue;
         //    ////}
@@ -118,7 +118,7 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
 
         //    //var value = rd[key];
 
-        //    //if (value == null)
+        //    //if (value is null)
         //    //{
         //    //    continue;
         //    //}

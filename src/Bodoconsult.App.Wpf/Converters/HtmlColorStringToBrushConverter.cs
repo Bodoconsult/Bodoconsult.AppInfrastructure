@@ -27,7 +27,7 @@ public class HtmlColorStringToBrushConverter : IValueConverter
 
         var o = ColorConverter.ConvertFromString(colorString);
 
-        if (o == null)
+        if (o is null)
         {
             throw new ArgumentNullException(nameof(o));
         }

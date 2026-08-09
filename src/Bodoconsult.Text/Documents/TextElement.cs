@@ -81,7 +81,7 @@ public abstract class TextElement : DocumentElement
         {
             var value = p.GetValue(this);
 
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }
@@ -143,7 +143,7 @@ public abstract class TextElement : DocumentElement
         {
             var value = (IEnumerable)p.GetValue(this);
 
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }

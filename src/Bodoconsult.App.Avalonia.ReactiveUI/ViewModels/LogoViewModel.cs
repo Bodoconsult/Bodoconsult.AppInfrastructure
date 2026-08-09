@@ -68,14 +68,14 @@ public partial class LogoViewModel : ReactiveObject, ILogoViewModel
             return;
         }
 
-        if (_appGlobals.AppStartParameter.LogoAssembly == null)
+        if (_appGlobals.AppStartParameter.LogoAssembly is null)
         {
             return;
         }
 
         var logoStream = _appGlobals.AppStartParameter.LogoAssembly.GetManifestResourceStream(_appGlobals.AppStartParameter.LogoRessourcePath);
 
-        if (logoStream == null)
+        if (logoStream is null)
         {
             return;
         }

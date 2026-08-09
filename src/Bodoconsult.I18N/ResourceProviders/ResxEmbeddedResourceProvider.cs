@@ -59,7 +59,7 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
             {
                 var rs = rm.GetResourceSet(culture, true, false);
 
-                if (rs == null)
+                if (rs is null)
                 {
                     continue;
                 }
@@ -104,7 +104,7 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
             }
         }
 
-        if (result == null)
+        if (result is null)
         {
             return translations;
         }

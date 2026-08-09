@@ -77,7 +77,7 @@ public class UnZipHandler : IDisposable
 
         var entry = _archive.Entries.FirstOrDefault(x => x.FullName == filePath);
 
-        if (entry == null)
+        if (entry is null)
         {
             throw new Exception($"File {filePath} not found in ZIP file!");
         }
@@ -106,7 +106,7 @@ public class UnZipHandler : IDisposable
     {
         var entry = _archive.Entries.FirstOrDefault(x => x.FullName == filePath);
 
-        if (entry == null)
+        if (entry is null)
         {
             throw new Exception($"File {filePath} not found in ZIP file!");
         }

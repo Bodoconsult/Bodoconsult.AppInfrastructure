@@ -266,7 +266,7 @@ public class TestDocuHelperHtml : TestDocuHelperBase
 
         using (var stream = assembly.GetManifestResourceStream(resourceName))
         {
-            if (stream == null) return null;
+            if (stream is null) return null;
 
             using (var reader = new StreamReader(stream))
             {
@@ -290,7 +290,7 @@ public class TestDocuHelperHtml : TestDocuHelperBase
 
         using (var stream = assembly.GetManifestResourceStream(resourceName))
         {
-            if (stream == null) return null;
+            if (stream is null) return null;
 
             using (var reader = new StreamReader(stream))
             {

@@ -168,7 +168,7 @@ public class Log4NetLogger : ILogger
 
         var message = formatter(state, exception);
 
-        if (string.IsNullOrEmpty(message) && exception == null)
+        if (string.IsNullOrEmpty(message) && exception is null)
         {
             return;
         }
@@ -261,7 +261,7 @@ public class Log4NetLogger : ILogger
 
         ILoggerRepository loggerRepository;
 
-        if (repoName == null)
+        if (repoName is null)
         {
             loggerRepository = LogManager.CreateRepository(Assembly.GetCallingAssembly(), typeof(Hierarchy));
             XmlConfigurator.Configure(loggerRepository, xmlElement);
@@ -311,7 +311,7 @@ public class Log4NetLogger : ILogger
 
         node = log4NetConfig["configuration"];
 
-        if (node == null)
+        if (node is null)
         {
             return null;
         }

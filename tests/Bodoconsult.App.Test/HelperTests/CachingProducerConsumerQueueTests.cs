@@ -9,7 +9,7 @@ public class CachingProducerConsumerQueueTests
 {
 
     private int _counter;
-    private readonly List<List<string>> _received = [];
+    private readonly List<string[]> _received = [];
     private bool _wasFired;
 
     private void Reset()
@@ -19,7 +19,7 @@ public class CachingProducerConsumerQueueTests
         _wasFired = false;
     }
 
-    private void ConsumerTaskDelegate(List<string> value)
+    private void ConsumerTaskDelegate(string[] value)
     {
         _counter++;
         _received.Add(value);

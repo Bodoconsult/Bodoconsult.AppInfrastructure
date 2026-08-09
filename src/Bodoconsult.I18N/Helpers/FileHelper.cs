@@ -33,7 +33,7 @@
 //    {
 //        var str = assembly.GetManifestResourceStream(resourceName);
 
-//        if (str == null)
+//        if (str is null)
 //        {
 //            return null;
 //        }

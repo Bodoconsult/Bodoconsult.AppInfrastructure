@@ -24,7 +24,8 @@ public static class ImageHelper
 
         for (var j = 0; j < encoders.Length; ++j)
         {
-            if (encoders[j].MimeType.ToLower() == mimeType.ToLower())
+            //if (encoders[j].MimeType.ToLower() == mimeType.ToLower())
+            if (string.Equals(encoders[j].MimeType, mimeType, StringComparison.InvariantCultureIgnoreCase))
             {
                 return encoders[j];
             }

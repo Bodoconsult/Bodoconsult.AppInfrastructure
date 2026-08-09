@@ -182,7 +182,7 @@ public class TestHelperDebugWindow : TestHelperBase
     /// <param name="data"></param>
     public override void PrintTable(string[,] data)
     {
-        if (data == null)
+        if (data is null)
         {
             throw new ArgumentNullException(nameof(data));
         }

@@ -55,7 +55,7 @@ public static class PdfDocumentRendererHelper
     /// <param name="pdfStyle">PDF style</param>
     public static void RenderParagraphStyle(ParagraphStyleBase style, Style pdfStyle)
     {
-        if (pdfStyle == null)
+        if (pdfStyle is null)
         {
             return;
         }

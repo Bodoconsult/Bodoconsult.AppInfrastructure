@@ -86,7 +86,7 @@ public abstract class RegionManagerBase : IRegionManager
     ///// <param name="viewModel">Viewmodel</param>
     //public void Navigate<T>(string regionName, T viewModel) where T : class, IRoutableViewModel
     //{
-    //    if (viewModel == null)
+    //    if (viewModel is null)
     //    {
     //        throw new ArgumentNullException(nameof(viewModel));
     //    }
@@ -195,14 +195,14 @@ public abstract class RegionManagerBase : IRegionManager
 
         // Find the factory for the window type
         var wwd = InternalWindows.FirstOrDefault(x => x.WindowType == windowType);
-        if (wwd.WindowType == null)
+        if (wwd.WindowType is null)
         {
             throw new ArgumentException($"Window {windowType.Name} has no window definition registered");
         }
 
         IUiWindow? uiWindow;
 
-        if (wwd.Factory == null)
+        if (wwd.Factory is null)
         {
             // Try to use existing instance
             if (!Windows.TryGetValue(windowType.Name, out uiWindow))

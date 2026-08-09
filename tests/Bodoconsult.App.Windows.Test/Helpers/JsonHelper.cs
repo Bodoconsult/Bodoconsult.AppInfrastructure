@@ -67,7 +67,7 @@ public class JsonHelper
         var ass = Assembly.GetExecutingAssembly();
         var str = ass.GetManifestResourceStream(resourceName);
 
-        if (str == null) return default(T);
+        if (str is null) return default(T);
 
         using (var file = new StreamReader(str))
         {

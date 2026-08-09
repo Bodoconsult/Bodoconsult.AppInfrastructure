@@ -37,7 +37,7 @@ public static class FileIcon
     public static Image GetIcon(string filepath)
     {
         // if specified file path != null and string length > 0 
-        if (filepath == null || string.IsNullOrEmpty(filepath))
+        if (filepath is null || string.IsNullOrEmpty(filepath))
         {
             return null;
         }
@@ -100,7 +100,7 @@ public static class FileIcon
     {
 
         var extension = Path.GetExtension(filepath);
-        if (extension == null)
+        if (extension is null)
         {
             return;
         }
@@ -109,7 +109,7 @@ public static class FileIcon
 
         var value = regKey?.GetValue("");
 
-        if (value == null)
+        if (value is null)
         {
             return;
         }
@@ -118,7 +118,7 @@ public static class FileIcon
 
         var subRegKey = Registry.ClassesRoot.OpenSubKey($@"{className}\DefaultIcon");
 
-        if (subRegKey == null)
+        if (subRegKey is null)
         {
             return;
         }
@@ -126,7 +126,7 @@ public static class FileIcon
         value = subRegKey.GetValue("");
 
         var server = value?.ToString();
-        if (server == null)
+        if (server is null)
         {
             return;
         }

@@ -81,7 +81,7 @@ public class ConsoleWpfApp1Service : IApplicationService
             i++;
         }
 
-        if (RequestApplicationStopDelegate == null)
+        if (RequestApplicationStopDelegate is null)
         {
             return;
         }

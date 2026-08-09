@@ -107,7 +107,7 @@ public class AppLoggerProxy : IAppLoggerProxy
             sb.Append(string.Empty);
             FormatArgs(logData.Args, sb);
 
-            if (logData.Exception == null)
+            if (logData.Exception is null)
             {
                 _logger.Log(logData.LogLevel,
                     logData.EventId,
@@ -1898,7 +1898,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     //{
     //    var lMethod = pStackMethod.GetMethod();
 
-    //    if (lMethod == null)
+    //    if (lMethod is null)
     //    {
     //        return true;
     //    }
@@ -1915,7 +1915,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     ///// </summary>
     //private static string MethodCallLog(StackFrame pMethodCall)
     //{
-    //    if (pMethodCall == null)
+    //    if (pMethodCall is null)
     //    {
     //        return string.Empty;
     //    }
@@ -1924,7 +1924,7 @@ public class AppLoggerProxy : IAppLoggerProxy
 
     //    var lMethod = pMethodCall.GetMethod();
 
-    //    if (lMethod == null)
+    //    if (lMethod is null)
     //    {
     //        return string.Empty;
     //    }
@@ -2016,7 +2016,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     //  string message,
     //  params object[] args)
     //{
-    //    //if (logger == null)
+    //    //if (logger is null)
     //    //    throw new ArgumentNullException(nameof(logger));
     //    //logger.Log<FormattedLogValues>(logLevel, eventId, new FormattedLogValues(message, args), exception, LoggerExtensions._messageFormatter);
     //}
@@ -2032,7 +2032,7 @@ public class AppLoggerProxy : IAppLoggerProxy
     /// <returns>JSON formatted string</returns>
     public static string FormatArgs(object[]? args, StringBuilder s)
     {
-        if (args == null || args.Length == 0)
+        if (args is null || args.Length == 0)
         {
             return string.Empty;
         }

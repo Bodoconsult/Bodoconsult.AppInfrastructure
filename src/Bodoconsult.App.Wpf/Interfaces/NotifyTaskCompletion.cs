@@ -35,7 +35,7 @@ public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
             // Do nothing
         }
         var propertyChanged = PropertyChanged;
-        if (propertyChanged == null)
+        if (propertyChanged is null)
         {
             return;
         }

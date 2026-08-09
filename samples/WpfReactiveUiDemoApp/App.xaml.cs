@@ -63,7 +63,7 @@ public partial class App : Application
         // Now load the globally needed settings
         builder.LoadGlobalSettings();
 
-        if (Globals.Instance.Logger == null)
+        if (Globals.Instance.Logger is null)
         {
             throw new ArgumentNullException(nameof(Globals.Instance.Logger));
         }

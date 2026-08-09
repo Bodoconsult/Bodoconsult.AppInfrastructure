@@ -61,7 +61,7 @@ public class DefaultAppStartProvider : IAppStartProvider
     /// </summary>
     public void LoadAppStartParameter()
     {
-        if (AppConfigurationProvider == null)
+        if (AppConfigurationProvider is null)
         {
             throw new ArgumentNullException(nameof(AppConfigurationProvider));
         }
@@ -84,7 +84,7 @@ public class DefaultAppStartProvider : IAppStartProvider
         }
 
         var section = AppConfigurationProvider.ReadAppStartParameterSection();
-        if (section == null)
+        if (section is null)
         {
             return;
         }

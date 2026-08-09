@@ -172,7 +172,7 @@ public class BidirectionalStreamingServerChannel
         {
             while (true)
             {
-                if (_asyncDuplexStreamingCall == null)
+                if (_asyncDuplexStreamingCall is null)
                 {
                     Debug.Print("Waiting for server stream");
                     await Task.Delay(50);

@@ -52,7 +52,7 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
         appB.ConfigureViewLocator(LoadViewLocation);
         var h = appB.BuildApp();
 
-        if (dpr.ServiceProvider == null)
+        if (dpr.ServiceProvider is null)
         {
             throw new ArgumentNullException(nameof(dpr.ServiceProvider));
         }

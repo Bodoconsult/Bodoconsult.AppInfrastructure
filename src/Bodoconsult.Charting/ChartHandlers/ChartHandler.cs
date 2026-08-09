@@ -178,7 +178,7 @@ public class ChartHandler : IChartHandler
             }
         }
 
-        if (ChartData.DataSource == null || ChartData.DataSource.Count == 0)
+        if (ChartData.DataSource is null || ChartData.DataSource.Count == 0)
         {
             const string msg = "No data available! Keine Daten verfügbar!";
 
@@ -214,7 +214,7 @@ public class ChartHandler : IChartHandler
 
         AdjustChartDataToRequestedSize();
 
-        if (ChartData.DataSource == null)
+        if (ChartData.DataSource is null)
         {
             throw new Exception("ChartHandler.Export: DataSource is empty");
         }

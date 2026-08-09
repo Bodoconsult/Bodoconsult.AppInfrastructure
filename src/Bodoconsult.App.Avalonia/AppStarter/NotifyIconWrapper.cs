@@ -36,7 +36,7 @@
 //            (d, e) =>
 //            {
 //                var notifyIcon = ((NotifyIconWrapper)d)._notifyIcon;
-//                if (notifyIcon == null)
+//                if (notifyIcon is null)
 //                {
 //                    return;
 //                }
@@ -48,7 +48,7 @@
 //            (d, e) =>
 //            {
 //                var wr = (NotifyIconWrapper)d;
-//                if (wr == null)
+//                if (wr is null)
 //                {
 //                    return;
 //                }
@@ -60,7 +60,7 @@
 //            (d, e) =>
 //            {
 //                var wr = (NotifyIconWrapper)d;
-//                if (wr == null)
+//                if (wr is null)
 //                {
 //                    return;
 //                }

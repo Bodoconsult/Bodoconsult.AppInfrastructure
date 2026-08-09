@@ -13,7 +13,7 @@ internal static class Win32Utility
     public static unsafe int GetUniStringLengthWithoutTerminator (IntPtr str)
     {
         var ptr = (char*) str;
-        if (ptr == null)
+        if (ptr is null)
             return 0;
 
         var start = ptr;

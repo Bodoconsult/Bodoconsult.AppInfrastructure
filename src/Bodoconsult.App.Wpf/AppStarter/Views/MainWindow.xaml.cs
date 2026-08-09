@@ -41,7 +41,7 @@ public partial class MainWindow : Window
 
     private void ResizeWindow()
     {
-        if (MainWindowViewModel == null)
+        if (MainWindowViewModel is null)
         {
             return;
         }

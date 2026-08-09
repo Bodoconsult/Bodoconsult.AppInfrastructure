@@ -94,7 +94,7 @@ public class GrpcServerAppAppBuilder : BaseGrpcBackgroundServiceAppBuilder
     public override void RegisterProtoServices()
     {
 
-        if (GrpcServer == null)
+        if (GrpcServer is null)
         {
             throw new ArgumentNullException(nameof(GrpcServer));
         }

@@ -20,7 +20,7 @@ public interface ICachingProducerConsumerQueue<T> where T : class
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    ConsumerTaskDelegate<List<T>> ConsumerTaskDelegate { get; set; }
+    ConsumerTaskDelegate<T[]> ConsumerTaskDelegate { get; set; }
 
     /// <summary>
     /// Is the queue started?

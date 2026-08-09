@@ -393,7 +393,7 @@ public class LdmlCalculator
                 _ => null
             };
 
-            if (tocItem == null)
+            if (tocItem is null)
             {
                 continue;
             }
@@ -519,7 +519,7 @@ public class LdmlCalculator
         var section = Document.TofSection;
 
         // No section found: leave here
-        if (section == null)
+        if (section is null)
         {
             return;
         }
@@ -546,7 +546,7 @@ public class LdmlCalculator
         var section = Document.TotSection;
 
         // No section found: leave here
-        if (section == null)
+        if (section is null)
         {
             return;
         }
@@ -573,7 +573,7 @@ public class LdmlCalculator
         var section = Document.ToeSection;
 
         // No section found: leave here
-        if (section == null)
+        if (section is null)
         {
             return;
         }
@@ -600,7 +600,7 @@ public class LdmlCalculator
         var section = Document.TocSection;
 
         // No section found: leave here
-        if (section == null)
+        if (section is null)
         {
             return;
         }

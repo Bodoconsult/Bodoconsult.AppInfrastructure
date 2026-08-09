@@ -98,7 +98,7 @@ public static class MiniDump
     {
         var fsToDump = File.Exists(fileToDump) ? File.Open( fileToDump, FileMode.Append ) : File.Create( fileToDump );
 
-        if (fsToDump.SafeFileHandle == null)
+        if (fsToDump.SafeFileHandle is null)
         {
             return;
         }

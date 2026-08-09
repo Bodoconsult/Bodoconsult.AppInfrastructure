@@ -71,7 +71,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
         foreach (var configurator in LoggingConfig.LoggerProviderConfigurators)
         {
             var section = kids.FirstOrDefault(item => item.Key == configurator.SectionNameAppSettingsJson);
-            if (section == null)
+            if (section is null)
             {
                 return;
             }
@@ -84,7 +84,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
     {
         var section = kids.FirstOrDefault(item => item.Key == "LogLevel");
 
-        if (section == null)
+        if (section is null)
         {
             return;
         }
@@ -106,7 +106,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
         // Add minimum log level from config
         var minLevel = kids.FirstOrDefault(x => x.Key == "MinimumLogLevel");
 
-        if (minLevel == null)
+        if (minLevel is null)
         {
             return;
         }

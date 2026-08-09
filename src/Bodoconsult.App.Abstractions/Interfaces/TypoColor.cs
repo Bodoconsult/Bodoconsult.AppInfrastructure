@@ -183,7 +183,7 @@ public class TypoColor: IEquatable<TypoColor>
     /// <returns></returns>
     public bool Equals(TypoColor? other)
     {
-        if (other == null)
+        if (other is null)
         {
             return false;
         }

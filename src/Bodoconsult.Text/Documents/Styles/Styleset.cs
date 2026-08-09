@@ -116,7 +116,7 @@ public class Styleset : Block
                                            x.B == color.B &&
                                            x.A == color.A);
 
-        if (c == null)
+        if (c is null)
         {
             return 0;
         }

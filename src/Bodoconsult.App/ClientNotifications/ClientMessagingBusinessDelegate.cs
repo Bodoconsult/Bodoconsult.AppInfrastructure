@@ -82,7 +82,7 @@ public class ClientMessagingBusinessDelegate : IClientMessagingBusinessDelegate
             // Get the next notification from the queue
             var success = _notifications.TryDequeue(out notification);
 
-            if (!success || notification == null)
+            if (!success || notification is null)
             {
                 Thread.Sleep(5);
                 continue;

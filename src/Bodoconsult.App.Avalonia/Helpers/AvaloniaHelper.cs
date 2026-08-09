@@ -249,7 +249,7 @@ public static class AvaloniaHelper
 
     //        Trace.WriteLine($"{string.Empty.PadLeft(level)}{typeName}: {name}");
 
-    //        if (parent == null) return;
+    //        if (parent is null) return;
 
     //        for (var i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
     //        {
@@ -280,7 +280,7 @@ public static class AvaloniaHelper
 
     //        Trace.WriteLine(string.Empty.PadLeft(level) + $"{typeName}: {name}".PadLeft(level));
 
-    //        if (doParent == null) return;
+    //        if (doParent is null) return;
 
     //        foreach (var child in LogicalTreeHelper.GetChildren(doParent))
     //        {
@@ -559,7 +559,7 @@ public static class AvaloniaHelper
     //        DependencyObject parentObject = GetParentObject(child);
 
     //        //we've reached the end of the tree
-    //        if (parentObject == null)
+    //        if (parentObject is null)
     //        {
     //            return null;
     //        }
@@ -588,7 +588,7 @@ public static class AvaloniaHelper
     //    /// null.</returns>
     //    public static DependencyObject GetParentObject(this DependencyObject child)
     //    {
-    //        if (child == null) return null;
+    //        if (child is null) return null;
 
     //        //handle content elements separately
     //        ContentElement contentElement = child as ContentElement;

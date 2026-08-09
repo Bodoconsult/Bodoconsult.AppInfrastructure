@@ -46,7 +46,7 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     /// <summary>
     /// List of all menu items. Must contain at least one element without parent menu item
     /// </summary>
-    public List<IUiMenuItem> TopLevelMenuItems => MenuItems.Where(x => x.Parent == null).ToList();
+    public List<IUiMenuItem> TopLevelMenuItems => MenuItems.Where(x => x.Parent is null).ToList();
 
     /// <summary>
     /// Add a menu item to the menu items if the name is not null or string.Empty. For top-level menu items it is checked if the name is unique for the top-level menu items
@@ -61,7 +61,7 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
             ArgumentNullException.ThrowIfNull(item.Name, "item.Name must not be null or string.Empty");
         }
 
-        if (item.Parent == null)
+        if (item.Parent is null)
         {
             if (TopLevelMenuItems.Any(x => x.Name == item.Name))
             {
@@ -94,7 +94,7 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
             BuildMenuItem(item, null);
         }
 
-        if (MenuBuiltDelegate == null)
+        if (MenuBuiltDelegate is null)
         {
             return;
         }

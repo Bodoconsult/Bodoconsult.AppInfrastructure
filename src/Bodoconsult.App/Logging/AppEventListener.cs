@@ -47,7 +47,7 @@ public class AppEventListener : EventListener, IAppEventListener
         {
             _eventLevel = value;
 
-            if (_eventSource == null)
+            if (_eventSource is null)
             {
                 return;
             }
@@ -66,7 +66,7 @@ public class AppEventListener : EventListener, IAppEventListener
     /// <param name="eventSource">The event source.</param>
     protected override void OnEventSourceCreated(EventSource eventSource)
     {
-        if (eventSource == null)
+        if (eventSource is null)
         {
             throw new ArgumentNullException(nameof(eventSource));
         }
@@ -88,7 +88,7 @@ public class AppEventListener : EventListener, IAppEventListener
     protected override void OnEventWritten(EventWrittenEventArgs eventData)
     {
 
-        if (eventData == null)
+        if (eventData is null)
         {
             throw new ArgumentNullException(nameof(eventData));
         }
@@ -131,7 +131,7 @@ public class AppEventListener : EventListener, IAppEventListener
 
         const int skipElementsNumber = 4;
 
-        if (eventDataPayload == null || eventDataPayload.Count < skipElementsNumber)
+        if (eventDataPayload is null || eventDataPayload.Count < skipElementsNumber)
         {
             return string.Empty;
         }
@@ -140,7 +140,7 @@ public class AppEventListener : EventListener, IAppEventListener
         {
             var o = eventDataPayload[i];
 
-            if (o == null)
+            if (o is null)
             {
                 continue;
             }
@@ -178,7 +178,7 @@ public class AppEventListener : EventListener, IAppEventListener
         //var args = new Dictionary<string, string>() { { "FilterSpecs", "App*:Information;*" } };
         // Set the default level (verbosity) to Error, and only ask for the formatted messages in this case.
 
-        if (_eventSource == null)
+        if (_eventSource is null)
         {
             return;
         }

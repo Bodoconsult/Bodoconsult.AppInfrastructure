@@ -31,7 +31,7 @@ public class GeneralAppManagementService : IGeneralAppManagementService
         // Create log dump now
         var path = _appGlobals.AppStartParameter.DataPath;
 
-        if (path == null)
+        if (path is null)
         {
             return;
         }
@@ -50,7 +50,7 @@ public class GeneralAppManagementService : IGeneralAppManagementService
     {
         var path = _appGlobals.AppStartParameter.DataPath;
 
-        if (path == null)
+        if (path is null)
         {
             return;
         }
@@ -67,7 +67,7 @@ public class GeneralAppManagementService : IGeneralAppManagementService
     {
         var path = _appGlobals.AppStartParameter.DataPath;
 
-        if (path == null)
+        if (path is null)
         {
             return;
         }

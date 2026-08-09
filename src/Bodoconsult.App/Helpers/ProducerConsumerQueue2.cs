@@ -70,7 +70,7 @@ public class ProducerConsumerQueue2<T> : IProducerConsumerQueue2<T> where T : st
     /// </summary>
     public void StartConsumer()
     {
-        if (ConsumerTaskDelegate == null)
+        if (ConsumerTaskDelegate is null)
         {
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }

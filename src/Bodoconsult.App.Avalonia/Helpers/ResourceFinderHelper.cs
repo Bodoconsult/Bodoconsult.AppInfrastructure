@@ -146,7 +146,7 @@
 
 //        SharedResourceDictionary rd;
 
-//        if (cache == null)
+//        if (cache is null)
 //        {
 //            rd = new SharedResourceDictionary
 //            {

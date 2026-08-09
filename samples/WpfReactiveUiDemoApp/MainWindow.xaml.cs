@@ -28,7 +28,7 @@ public partial class MainWindow : IUiWindow
         {
             //SubscribeExtensions.Subscribe(this.WhenAnyValue(x => x.ViewModel).ObserveOn(RxSchedulers.MainThreadScheduler),  x =>
             //{
-            //    if (x == null)
+            //    if (x is null)
             //    {
             //        return;
             //    }

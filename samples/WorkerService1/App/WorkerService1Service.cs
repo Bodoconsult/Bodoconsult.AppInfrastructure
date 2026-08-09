@@ -101,7 +101,7 @@ public class WorkerService1Service : IApplicationService
 
         Debug.Print("Stop requested...");
 
-        if (RequestApplicationStopDelegate == null)
+        if (RequestApplicationStopDelegate is null)
         {
             return;
         }

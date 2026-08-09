@@ -105,7 +105,7 @@ public static class InlineConverterMethods
     {
         var o = ColorConverter.ConvertFromString(htmlColor);
 
-        if (o == null)
+        if (o is null)
         {
             throw new ArgumentNullException(nameof(o));
         }

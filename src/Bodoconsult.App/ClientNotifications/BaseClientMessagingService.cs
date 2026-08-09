@@ -26,6 +26,6 @@ public abstract class BaseClientMessagingService : IClientMessagingService
 
         var success = ConversionRules.TryGetValue(notiType, out var del);
 
-        return !success || del == null ? null : del.Invoke(notification);
+        return !success || del is null ? null : del.Invoke(notification);
     }
 }

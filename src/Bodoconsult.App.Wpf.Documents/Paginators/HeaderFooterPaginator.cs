@@ -113,7 +113,7 @@ public class HeaderFooterPaginator : DocumentPaginator
 
         // Find table header
         ContainerVisual newTable;
-        if (_currentTableHeader == null)
+        if (_currentTableHeader is null)
         {
             _currentTable = null;
             _currentTableHeader = null;
@@ -223,7 +223,7 @@ public class HeaderFooterPaginator : DocumentPaginator
 
             element = VisualTreeHelper.GetParent(element);
 
-            if (element == null)
+            if (element is null)
             {
                 return false;
             }
@@ -239,7 +239,7 @@ public class HeaderFooterPaginator : DocumentPaginator
         {
             tableVisual = (ContainerVisual)VisualTreeHelper.GetParent(element);
 
-            if (tableVisual == null)
+            if (tableVisual is null)
             {
                 return false;
             }

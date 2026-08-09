@@ -122,7 +122,7 @@
 //    /// </summary>
 //    public void RestartApplication()
 //    {
-//        if (AppGlobals.Logger == null)
+//        if (AppGlobals.Logger is null)
 //        {
 //            throw new ArgumentException("Logger is null");
 //        }

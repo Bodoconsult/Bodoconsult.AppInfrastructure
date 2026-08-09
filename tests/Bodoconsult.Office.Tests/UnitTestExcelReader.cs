@@ -18,7 +18,7 @@
 //        public void TestReadExcelFile()
 //        {
 //            var dir = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.Parent.Parent;
-//            if (dir == null) return;
+//            if (dir is null) return;
 
 //            var fileName = Path.Combine(dir.FullName, "TestData\\TestDataExcelReader.xlsx");
 

@@ -114,7 +114,7 @@ public class AvaloniaRegionManager : RegionManagerBase
         {
             var regionContainer = childs.FirstOrDefault(x => x.Name == regionName);
 
-            if (regionContainer == null)
+            if (regionContainer is null)
             {
                 throw new ArgumentNullException(nameof(regionName), regionName);
             }

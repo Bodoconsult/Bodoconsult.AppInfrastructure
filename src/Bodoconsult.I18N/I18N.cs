@@ -222,7 +222,7 @@ public class I18N : II18N
     public void AddProvider(ILocalesProvider provider)
     {
 
-        if (provider == null)
+        if (provider is null)
         {
             throw new I18NException(ErrorMessages.ProviderNull);
         }
@@ -255,7 +255,7 @@ public class I18N : II18N
 
     //public II18N AddLocaleReader(ILocaleReader reader, string extension)
     //{
-    //    if(reader == null)
+    //    if(reader is null)
     //        throw new I18NException(ErrorMessages.ReaderNull);
 
     //    if(string.IsNullOrEmpty(extension))
@@ -288,7 +288,7 @@ public class I18N : II18N
     ///// <param name="hostAssembly">The assembly that hosts the locale text files</param>
     //public II18N Init(Assembly hostAssembly)
     //{
-    //    if (_readers.FirstOrDefault(x => x.Item1 is TextKvpReader && x.Item2 == ".txt") == null)
+    //    if (_readers.FirstOrDefault(x => x.Item1 is TextKvpReader && x.Item2 == ".txt") is null)
     //    {
     //        _readers.Insert(0, new Tuple<ILocaleReader, string>(new TextKvpReader(), ".txt"));
     //    }
@@ -302,7 +302,7 @@ public class I18N : II18N
 
     //    _providers.Clear(); // temporal until other providers are implemented
 
-    //    if (_providers.FirstOrDefault(x => x is EmbeddedResourceProvider) == null)
+    //    if (_providers.FirstOrDefault(x => x is EmbeddedResourceProvider) is null)
     //    {
     //        var resourcesFolder = _resourcesFolder ?? "Locales";
     //        var defaultProvider = new EmbeddedResourceProvider(hostAssembly, resourcesFolder, knownFileExtensions)

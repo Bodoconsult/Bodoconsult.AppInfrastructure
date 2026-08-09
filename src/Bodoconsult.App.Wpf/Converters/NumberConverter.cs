@@ -21,7 +21,7 @@ public class NumberConverter : BaseConverter, IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
 
-        var format = parameter == null ? "N2" : (string)parameter;
+        var format = parameter is null ? "N2" : (string)parameter;
 
         //var fraction = double.Parse(value.ToString());
         //return fraction.ToString("N2");

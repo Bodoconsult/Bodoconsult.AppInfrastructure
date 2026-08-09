@@ -48,7 +48,7 @@ public class EntityProtectionService : IEntityProtectionService
             break;
         }
 
-        if (key == null)
+        if (key is null)
         {
             throw new ArgumentException("Key value of entity may not be null or empty");
         }
@@ -62,7 +62,7 @@ public class EntityProtectionService : IEntityProtectionService
             }
 
             var value = prop.GetValue(entity);
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }
@@ -98,7 +98,7 @@ public class EntityProtectionService : IEntityProtectionService
             break;
         }
 
-        if (key == null)
+        if (key is null)
         {
             throw new ArgumentException("Key value of entity may not be null or empty");
         }
@@ -112,7 +112,7 @@ public class EntityProtectionService : IEntityProtectionService
             }
 
             var value = prop.GetValue(entity);
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }

@@ -265,7 +265,7 @@
 //        {
 //            var window = System.Windows.Application.Current.Windows.Cast<Window>().SingleOrDefault(x => x.IsActive);
 
-//            if (window == null) return;
+//            if (window is null) return;
 
 //            window.Title = string.Format("{0}: {1}", AppTitle, message);
 //        }
@@ -277,7 +277,7 @@
 
 //        //   window.
 
-//        //    if (window == null) return;
+//        //    if (window is null) return;
 
 //        //    window.Title = string.Format("{0}: {1}", AppTitle, message);
 //        //} 

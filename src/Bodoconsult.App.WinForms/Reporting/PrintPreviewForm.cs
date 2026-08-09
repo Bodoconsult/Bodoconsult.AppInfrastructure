@@ -36,7 +36,7 @@ public sealed partial class PrintPreviewForm : Form
 
         InitializeComponent();
 
-        if (translateDelegate == null)
+        if (translateDelegate is null)
         {
             Text = "Print preview";
             buttonPrint.Text = "Print";

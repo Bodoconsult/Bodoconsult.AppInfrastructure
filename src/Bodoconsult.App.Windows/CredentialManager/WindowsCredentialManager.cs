@@ -45,7 +45,7 @@ public class WindowsCredentialManager : ICredentialManager
                 throw new Win32Exception();
             }
 
-            if (handle == null)
+            if (handle is null)
             {
                 throw new Win32Exception();
             }
@@ -140,7 +140,7 @@ public class WindowsCredentialManager : ICredentialManager
         var password = wCredential.Password;
 
         credentialW.UserName = wCredential.UserName;
-        credentialW.Blob = password == null
+        credentialW.Blob = password is null
             ? null
             : new RawStringSecureBlob(password);
     }
@@ -179,7 +179,7 @@ public class WindowsCredentialManager : ICredentialManager
                 freeObjects.Add(value);
             }
 
-            if (ptr == null)
+            if (ptr is null)
             {
                 continue;
             }
@@ -196,7 +196,7 @@ public class WindowsCredentialManager : ICredentialManager
         var result = new List<CredentialAttribute>();
 
         var ptr = (CredentialAttributew*)attributes;
-        if (ptr == null)
+        if (ptr is null)
         {
             return result;
         }

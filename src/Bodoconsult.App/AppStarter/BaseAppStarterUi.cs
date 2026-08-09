@@ -57,7 +57,7 @@ public class BaseAppStarterUi : IAppStarterUi
             //            StringComparison.Ordinal)
             //    select process).FirstOrDefault();
 
-            //if (runningProcess == null)
+            //if (runningProcess is null)
             //{
             //    return false;
             //}

@@ -111,7 +111,7 @@ public class MainWindowViewModel : IMainWindowViewModel
         {
             var assembly = Assembly.GetEntryAssembly();
 
-            if (assembly == null)
+            if (assembly is null)
             {
                 return;
             }
@@ -144,7 +144,7 @@ public class MainWindowViewModel : IMainWindowViewModel
     public void CheckLogs()
     {
 
-        if (_listener == null)
+        if (_listener is null)
         {
             return;
         }
@@ -214,7 +214,7 @@ public class MainWindowViewModel : IMainWindowViewModel
         get => _logEventLevel;
         set
         {
-            if (value == _logEventLevel || _listener == null)
+            if (value == _logEventLevel || _listener is null)
             {
                 return;
             }

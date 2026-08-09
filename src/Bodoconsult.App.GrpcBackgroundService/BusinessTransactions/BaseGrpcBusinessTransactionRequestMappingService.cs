@@ -349,7 +349,7 @@ public class BaseGrpcBusinessTransactionRequestMappingService : IGrpcBusinessTra
     {
 
         // Request data is required always!
-        if (request?.RequestData == null)
+        if (request?.RequestData is null)
         {
             return null;
         }
@@ -370,7 +370,7 @@ public class BaseGrpcBusinessTransactionRequestMappingService : IGrpcBusinessTra
                 // Create the internal request
                 var internalRequest = kvp.Value.Invoke(request);
 
-                if (internalRequest == null)
+                if (internalRequest is null)
                 {
                     s.Append($" mapping for request data {kvp.Key} returns null");
                     AppLogger.LogInformation(s.ToString());
@@ -444,7 +444,7 @@ public class BaseGrpcBusinessTransactionRequestMappingService : IGrpcBusinessTra
     public virtual void GetMetaDataFromRequestHeader(ServerCallContext context, IBusinessTransactionRequestData requestMetaData)
     {
 
-        if (context == null)
+        if (context is null)
         {
             return;
         }

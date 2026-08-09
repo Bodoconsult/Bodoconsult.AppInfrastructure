@@ -20,7 +20,7 @@ public static class IUiWindowExtensions
     {
 
         ArgumentNullException.ThrowIfNull(window.RegionManager);
-        //if (window.RegionManager == null)
+        //if (window.RegionManager is null)
         //{
         //    throw new ArgumentNullException(nameof(window.RegionManager));
         //}

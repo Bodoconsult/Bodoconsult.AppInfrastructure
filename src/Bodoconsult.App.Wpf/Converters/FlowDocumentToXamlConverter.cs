@@ -44,7 +44,7 @@ public class FlowDocumentToXamlConverter : BaseConverter, IValueConverter
         /* See http://stackoverflow.com/questions/897505/getting-a-flowdocument-from-a-xaml-template-file */
 
         var flowDocument = new FlowDocument();
-        if (value == null)
+        if (value is null)
         {
             return flowDocument;
         }
@@ -65,7 +65,7 @@ public class FlowDocumentToXamlConverter : BaseConverter, IValueConverter
          * indent the XAML in a text box, see http://www.knowdotnet.com/articles/indentxml.html */
 
         // Exit if FlowDocument is null
-        if (value == null)
+        if (value is null)
         {
             return string.Empty;
         }

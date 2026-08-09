@@ -27,7 +27,7 @@ public class BaseDocumentRenderer : IDocumentRenderer
         Styleset = (Styleset)document.ChildBlocks.FirstOrDefault(x => x.GetType() == typeof(Styleset));
 
         // No styleset: apply default styleset
-        if (Styleset == null)
+        if (Styleset is null)
         {
             Styleset = StylesetHelper.CreateDefaultStyleset();
             document.AddBlock(Styleset);
@@ -51,7 +51,7 @@ public class BaseDocumentRenderer : IDocumentRenderer
         Styleset = (Styleset)document.ChildBlocks.FirstOrDefault(x => x.GetType() == typeof(Styleset));
 
         // No styleset: apply default styleset
-        if (Styleset == null)
+        if (Styleset is null)
         {
             Styleset = StylesetHelper.CreateDefaultStyleset();
             document.AddBlock(Styleset);
@@ -105,7 +105,7 @@ public class BaseDocumentRenderer : IDocumentRenderer
     /// <returns>Checked content string</returns>
     public string CheckContent(string content)
     {
-        if (CurrentI18NInstance == null)
+        if (CurrentI18NInstance is null)
         {
             return content;
         }

@@ -373,7 +373,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -402,7 +402,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -430,7 +430,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -453,7 +453,7 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             return;
         }
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -478,7 +478,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -524,7 +524,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -551,7 +551,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -575,7 +575,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -603,7 +603,7 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
-        if (_typeSheetLate == null)
+        if (_typeSheetLate is null)
         {
             return;
         }
@@ -620,7 +620,7 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             // Hintergrundfarbe einstellen
             var objInteriorLate = _typeRangeLate.InvokeMember("Interior", BindingFlags.GetProperty, null, _objRangeLate, null);
-            if (objInteriorLate == null)
+            if (objInteriorLate is null)
             {
                 return;
             }
@@ -642,7 +642,7 @@ public class XlsxLateBindingBuilder: IDisposable
 
         // Schrifteinstellungen
         var objFontLate = _typeRangeLate.InvokeMember("Font", BindingFlags.GetProperty, null, _objRangeLate, null);
-        if (objFontLate == null)
+        if (objFontLate is null)
         {
             return;
         }

@@ -60,7 +60,7 @@ public static class I18NStringExtensions
     {
         var fieldInfo = value.GetType().GetRuntimeField(value.ToString());
 
-        if (fieldInfo == null)
+        if (fieldInfo is null)
         {
             return value.ToString();
         }

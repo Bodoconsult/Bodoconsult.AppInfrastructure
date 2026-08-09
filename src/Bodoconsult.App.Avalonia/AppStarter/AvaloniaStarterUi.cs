@@ -188,7 +188,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
     {
         try
         {
-            if (e == null)
+            if (e is null)
             {
                 return;
             }

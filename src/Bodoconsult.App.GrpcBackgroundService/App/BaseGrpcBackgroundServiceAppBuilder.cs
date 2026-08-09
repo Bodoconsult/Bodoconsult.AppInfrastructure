@@ -62,7 +62,7 @@ public class BaseGrpcBackgroundServiceAppBuilder : BaseAppBuilder
     /// <param name="configureAction">Configure action expecting a <see cref="HostApplicationBuilder"/> instance</param>
     public void ConfigureHostBuilder(Action<WebApplicationBuilder> configureAction)
     {
-        if (configureAction == null)
+        if (configureAction is null)
         {
             return;
         }

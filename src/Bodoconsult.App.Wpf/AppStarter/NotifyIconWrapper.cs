@@ -69,7 +69,7 @@ public class NotifyIconWrapper : FrameworkElement, IDisposable
             (d, e) =>
             {
                 var notifyIcon = ((NotifyIconWrapper)d)._notifyIcon;
-                if (notifyIcon == null)
+                if (notifyIcon is null)
                 {
                     return;
                 }
@@ -84,7 +84,7 @@ public class NotifyIconWrapper : FrameworkElement, IDisposable
             (d, e) =>
             {
                 var wr = (NotifyIconWrapper)d;
-                if (wr == null)
+                if (wr is null)
                 {
                     return;
                 }
@@ -99,7 +99,7 @@ public class NotifyIconWrapper : FrameworkElement, IDisposable
             (d, e) =>
             {
                 var wr = (NotifyIconWrapper)d;
-                if (wr == null)
+                if (wr is null)
                 {
                     return;
                 }

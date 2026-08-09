@@ -298,14 +298,14 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
         //try
         //{
 
-        if (assembly == null)
+        if (assembly is null)
         {
             return;
         }
 
         var logoStream = assembly.GetManifestResourceStream(ressourcePath);
 
-        if (logoStream == null)
+        if (logoStream is null)
         {
             return;
         }
@@ -362,7 +362,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     public void CheckLogs()
     {
 
-        if (_listener == null)
+        if (_listener is null)
         {
             return;
         }
@@ -436,7 +436,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
         get => _logEventLevel;
         set
         {
-            if (value == _logEventLevel || _listener == null)
+            if (value == _logEventLevel || _listener is null)
             {
                 return;
             }

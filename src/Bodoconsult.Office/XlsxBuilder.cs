@@ -173,7 +173,7 @@ public class XlsxBuilder
 
             //_wb = SpreadsheetDocument.Open(fileName, true, os);
 
-            //_wp = _wb.WorkbookPart == null ? _wb.WorkbookPart : _wb.AddWorkbookPart();
+            //_wp = _wb.WorkbookPart is null ? _wb.WorkbookPart : _wb.AddWorkbookPart();
 
 
         }
@@ -481,7 +481,7 @@ public class XlsxBuilder
             _range = row.Elements<Cell>().FirstOrDefault(item => item.CellReference.Value == cellAddress);
 
             // Check if the cell exists, create if necessary
-            if (_range == null)
+            if (_range is null)
             {
                 if (_cacheColumnId > 0 && rowIndex == _cacheRowId && colIndex == _cacheColumnId + 1)
                 {
@@ -1183,7 +1183,7 @@ public class XlsxBuilder
 
             var column = _columns.Elements<Column>().FirstOrDefault(x => x.Min == col1);
 
-            if (column == null)
+            if (column is null)
             {
                 throw new ArgumentNullException(nameof(column));
             }

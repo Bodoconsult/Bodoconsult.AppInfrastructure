@@ -223,7 +223,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         _storingQueue.StopConsumer();
 
         // Now finalize the last filestream
-        if (_currentFileStream == null)
+        if (_currentFileStream is null)
         {
             return;
         }
@@ -375,7 +375,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
         //Debug.Print($"DataExportService: Waiting {_cache.Count} Storing {_storingQueue.InternalQueue.Count}");
 
-        if (_currentFileStream == null || _currentFileSize >= MaxFileSize)
+        if (_currentFileStream is null || _currentFileSize >= MaxFileSize)
         {
             if (_currentFileStream != null)
             {
@@ -425,7 +425,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
     private void CheckCancellation()
     {
-        if (_closeEvent == null || _cache.Count == 0)
+        if (_closeEvent is null || _cache.Count == 0)
         {
             return;
         }
@@ -439,7 +439,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     /// Add data to the internal cache waiting for storing
     /// </summary>
     /// <param name="data">Current data to be stored</param>
-    private void AddDataToCache(List<ReadOnlyMemory<byte>> data)
+    private void AddDataToCache(ReadOnlyMemory<byte>[] data)
     {
         lock (_cacheLock)
         {
@@ -448,7 +448,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
             {
                 RowCounter = 0;
             }
-            RowCounter2 += (ulong)data.Count;
+            RowCounter2 += (ulong)data.LongLength;
         }
 
         // cache size is reached. Is a new file required?

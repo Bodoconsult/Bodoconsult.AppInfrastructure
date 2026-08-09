@@ -54,14 +54,14 @@
 
 //        var lResourceSet = lResourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
 
-//        if (lResourceSet == null)
+//        if (lResourceSet is null)
 //        {
 //            return;
 //        }
 
 //        foreach (DictionaryEntry lEesource in lResourceSet)
 //        {
-//            if (lEesource.ToString() == null)
+//            if (lEesource.ToString() is null)
 //            {
 //                continue;
 //            }
@@ -104,12 +104,12 @@
 
 //        foreach (var key in rd.Keys)
 //        {
-//            //if (key == null)
+//            //if (key is null)
 //            //{
 //            //    continue;
 //            //}
 //            var value = rd[key];
-//            if (value == null)
+//            if (value is null)
 //            {
 //                continue;
 //            }

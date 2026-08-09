@@ -77,7 +77,7 @@ public class WpfFileLocalesProvider : BaseResourceProvider
 
         foreach (var key in rd.Keys)
         {
-            if (key == null)
+            if (key is null)
             {
                 continue;
             }
@@ -90,7 +90,7 @@ public class WpfFileLocalesProvider : BaseResourceProvider
 
             var value = rd[key];
 
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }

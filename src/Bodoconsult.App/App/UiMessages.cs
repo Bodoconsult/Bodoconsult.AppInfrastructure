@@ -89,7 +89,7 @@ public static class UiMessages
                 case LicenseMissingException ex:
                     return ex;
                 default:
-                    if (e.InnerException == null)
+                    if (e.InnerException is null)
                     {
                         break;
                     }

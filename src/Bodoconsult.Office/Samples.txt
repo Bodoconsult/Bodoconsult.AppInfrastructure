@@ -37,7 +37,7 @@ public void addSlides()
 
 private void AddNewSlide(PresentationPart parent)
 {
-    if (_slideTemplate == null) return;
+    if (_slideTemplate is null) return;
 
     var newSlidePart = parent.AddNewPart<SlidePart>("newSlide" + _slideId);
 
@@ -149,12 +149,12 @@ public static void InsertNewSlide(string presentationFile, int position, string 
 public static void InsertNewSlide(PresentationDocument presentationDocument, int position, string slideTitle)
         {
  
-            if (presentationDocument == null)
+            if (presentationDocument is null)
             {
                 throw new ArgumentNullException("presentationDocument");
             }
  
-            if (slideTitle == null)
+            if (slideTitle is null)
             {
                 throw new ArgumentNullException("slideTitle");
             }
@@ -162,7 +162,7 @@ public static void InsertNewSlide(PresentationDocument presentationDocument, int
             PresentationPart presentationPart = presentationDocument.PresentationPart;
  
             // Verify that the presentation is not empty.
-            if (presentationPart == null)
+            if (presentationPart is null)
             {
                 throw new InvalidOperationException("The presentation document is empty.");
             }

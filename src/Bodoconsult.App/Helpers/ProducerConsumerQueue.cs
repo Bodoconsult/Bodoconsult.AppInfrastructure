@@ -80,7 +80,7 @@ public class ProducerConsumerQueue<T> : IProducerConsumerQueue<T> where T : clas
     /// </summary>
     public void StartConsumer()
     {
-        if (ConsumerTaskDelegate == null)
+        if (ConsumerTaskDelegate is null)
         {
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }

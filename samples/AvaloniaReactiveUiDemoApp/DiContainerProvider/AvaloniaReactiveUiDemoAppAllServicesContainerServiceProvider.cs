@@ -74,7 +74,7 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
 
         var exe = Environment.ProcessPath;
 
-        if (exe == null)
+        if (exe is null)
         {
             return;
         }

@@ -31,7 +31,7 @@ public class WpfRegionManager : RegionManagerBase
 
         var wwd = InternalWindows.FirstOrDefault(x => x.WindowType == type);
 
-        if (wwd.WindowType == null)
+        if (wwd.WindowType is null)
         {
             throw new ArgumentNullException(nameof(wwd), $"No window definition found for {type.Name}");
         }

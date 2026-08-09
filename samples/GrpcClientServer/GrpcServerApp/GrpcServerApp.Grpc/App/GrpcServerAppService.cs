@@ -101,7 +101,7 @@ public class GrpcServerAppService : IApplicationService
 
 
 
-        //if (RequestApplicationStopDelegate == null)
+        //if (RequestApplicationStopDelegate is null)
         //{
         //    return;
         //}

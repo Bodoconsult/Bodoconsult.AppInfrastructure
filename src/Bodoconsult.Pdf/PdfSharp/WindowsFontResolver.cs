@@ -29,7 +29,7 @@ public class WindowsFontResolver : IFontResolver
         var localMachineKey = Registry.LocalMachine;
         var localMachineKeySub = localMachineKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", false);
 
-        if (localMachineKeySub == null)
+        if (localMachineKeySub is null)
         {
             localMachineKey.Close();
             return;
@@ -41,7 +41,7 @@ public class WindowsFontResolver : IFontResolver
         {
             var value = localMachineKeySub.GetValue(name);
 
-            if (value == null)
+            if (value is null)
             {
                 continue;
             }
@@ -54,8 +54,8 @@ public class WindowsFontResolver : IFontResolver
             }
 
 
-            if (myvalue[^4..].ToUpper() != ".TTF" ||
-                myvalue.Substring(1, 2).ToUpper() == @":")
+            if (!string.Equals( myvalue[^4..], ".TTF", StringComparison.InvariantCultureIgnoreCase) ||
+                string.Equals(myvalue.Substring(1, 2),  @":", StringComparison.InvariantCultureIgnoreCase))
             {
                 continue;
             }

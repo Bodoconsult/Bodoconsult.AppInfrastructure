@@ -145,7 +145,7 @@ public class DocuTestClass : IHtmlCreator
 
         var testMethod = TestMethods.FirstOrDefault(x => x.Name == method);
 
-        if (testMethod == null)
+        if (testMethod is null)
         {
             testMethod = new DocuTestClassMethod
             {

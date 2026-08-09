@@ -249,7 +249,7 @@ public static class WpfHelper
 
         Trace.WriteLine($"{string.Empty.PadLeft(level)}{typeName}: {name}");
 
-        //if (parent == null) return;
+        //if (parent is null) return;
 
         for (var i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
         {
@@ -280,7 +280,7 @@ public static class WpfHelper
 
         Trace.WriteLine(string.Empty.PadLeft(level) + $"{typeName}: {name}".PadLeft(level));
 
-        if (doParent == null) return;
+        if (doParent is null) return;
 
         foreach (var child in LogicalTreeHelper.GetChildren(doParent))
         {
@@ -587,7 +587,7 @@ public static class WpfHelper
     /// <param name="depObj">Object to search in</param>
     public static void FindLogicalChildrenInternal<T>(List<T> result, DependencyObject depObj) where T : DependencyObject
     {
-        if (depObj == null)
+        if (depObj is null)
         {
             return;
         }
@@ -631,7 +631,7 @@ public static class WpfHelper
     /// <param name="depObj">Object to search in</param>
     public static void FindVisualChildrenInternal<T>(List<T> result, DependencyObject depObj) where T : DependencyObject
     {
-        if (depObj == null)
+        if (depObj is null)
         {
             return;
         }

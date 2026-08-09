@@ -3,7 +3,7 @@
 // https://deniskyashif.com/2020/01/07/csharp-channels-part-3/
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using System.Diagnostics;
+using System.Collections.Concurrent;
 using System.Threading.Channels;
 
 namespace Bodoconsult.App.Helpers;
@@ -13,36 +13,11 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T> where T : struct
 {
-    private readonly Lock _cacheLock = new();
-    private readonly List<T> _cache = new(100);
+    private readonly ConcurrentQueue<T> _cache = new();
+
     private CancellationTokenSource _cancellationTokenSource = new();
-    private readonly WatchDog _watchDog;
+
     private Task? _task;
-
-    /// <summary>
-    /// Default ctor
-    /// </summary>
-    public CachingProducerConsumerQueue2()
-    {
-        _watchDog = new WatchDog(Runner, 20);
-        _watchDog.StartWatchDog();
-    }
-
-    private void Runner()
-    {
-        int count;
-        lock (_cacheLock)
-        {
-            count = _cache.Count;
-        }
-
-        Debug.Print($"Runner {count}");
-
-        if (count >= CacheSize)
-        {
-            Flush();
-        }
-    }
 
     /// <summary>
     /// Cache size
@@ -57,7 +32,7 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// <summary>
     /// Contains the internal queue
     /// </summary>
-    public Channel<List<T>> InternalQueue { get; private set; } = Channel.CreateBounded<List<T>>(new BoundedChannelOptions(100)
+    public Channel<T[]> InternalQueue { get; private set; } = Channel.CreateBounded<T[]>(new BoundedChannelOptions(100)
     {
         SingleReader = true,
         SingleWriter = false,
@@ -67,7 +42,7 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// <summary>
     /// The delegate to consume each item added to the queue
     /// </summary>
-    public ConsumerTaskDelegate<List<T>> ConsumerTaskDelegate { get; set; } = _ => { };
+    public ConsumerTaskDelegate<T[]> ConsumerTaskDelegate { get; set; } = _ => { };
 
     /// <summary>
     /// Is the queue started?
@@ -85,18 +60,15 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
             return;
         }
 
-        lock (_cacheLock)
-        {
-            _cache.Add(item);
-            var count = _cache.Count;
-            if (count <= CacheSize)
-            {
-                return;
-            }
+        _cache.Enqueue(item);
 
-            InternalQueue.Writer.TryWrite(_cache.ToList());
-            _cache.Clear();
+        var count = _cache.Count;
+        if (count <= CacheSize)
+        {
+            return;
         }
+
+        Flush();
     }
 
     /// <summary>
@@ -110,18 +82,18 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
             return;
         }
 
-        lock (_cacheLock)
+        foreach (var item in items)
         {
-            _cache.AddRange(items);
-            var count = _cache.Count;
-            if (count <= CacheSize)
-            {
-                return;
-            }
-
-            InternalQueue.Writer.TryWrite(_cache.ToList());
-            _cache.Clear();
+            _cache.Enqueue(item);
         }
+
+        var count = _cache.Count;
+        if (count <= CacheSize)
+        {
+            return;
+        }
+
+        Flush();
     }
 
     /// <summary>
@@ -129,14 +101,11 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// </summary>
     public void StartConsumer()
     {
-        if (ConsumerTaskDelegate == null)
-        {
-            throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
-        }
+        _cancellationTokenSource.Dispose();
 
         InternalQueue.Writer.TryComplete();
 
-        InternalQueue = Channel.CreateBounded<List<T>>(new BoundedChannelOptions(CacheSize)
+        InternalQueue = Channel.CreateBounded<T[]>(new BoundedChannelOptions(CacheSize)
         {
             SingleReader = true,
             SingleWriter = false,
@@ -162,17 +131,10 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     private async Task<bool> RunInternal(AutoResetEvent wait)
     {
         Thread.CurrentThread.Priority = ThreadPriority;
+
         wait.Set();
 
         var reader = InternalQueue.Reader;
-
-        //while (await reader.WaitToReadAsync(_cancellationTokenSource.Token))
-        //{
-        //    while (reader.TryRead(out var item))
-        //    {
-        //        ConsumerTaskDelegate.Invoke(item);
-        //    }
-        //}
 
         await foreach (var item in reader.ReadAllAsync(_cancellationTokenSource.Token))
         {
@@ -192,6 +154,8 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
         // Flush the cache
         Flush();
 
+        Task.Delay(200).Wait();
+
         InternalQueue.Writer.TryComplete();
 
         InternalQueue.Reader.Completion.Wait(60000);
@@ -203,38 +167,24 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
         ConsumerTaskDelegate = _ => { };
     }
 
-
-
     /// <summary>
     /// Flush the cache to <see cref="ICachingProducerConsumerQueue{T}.ConsumerTaskDelegate"/>
     /// </summary>
     public void Flush()
     {
-        // Clear the cache
-        List<T> data;
-
-        lock (_cacheLock)
-        {
-            data = new List<T>(_cache.Count);
-            data.AddRange(_cache);
-            _cache.Clear();
-        }
-
-        if (data.Count == 0)
+        if (_cache.IsEmpty)
         {
             return;
         }
 
-        InternalQueue.Writer.TryWrite(data);
+        InternalQueue.Writer.TryWrite(_cache.ToArray());
+        _cache.Clear();
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
     {
         StopConsumer();
-
-        _watchDog.StopWatchDog();
-
         IsActivated = false;
     }
 }

@@ -73,7 +73,7 @@ public class ProducerConsumerQueueAsync<T> : IProducerConsumerQueueAsync<T> wher
     /// </summary>
     public void StartConsumer()
     {
-        if (ConsumerTaskDelegate == null)
+        if (ConsumerTaskDelegate is null)
         {
             throw new ArgumentNullException(nameof(ConsumerTaskDelegate));
         }

@@ -106,7 +106,7 @@ public class WpfStarterUi : BaseAppStarterUi
 
         var window = (Window)_viewModel.CreateWindow();
 
-        //if (window == null)
+        //if (window is null)
         //{
         //    return;
         //}
@@ -137,7 +137,7 @@ public class WpfStarterUi : BaseAppStarterUi
     /// <param name="e"></param>
     public override void HandleException(Exception e)
     {
-        //if (e == null)
+        //if (e is null)
         //{
         //    return;
         //}

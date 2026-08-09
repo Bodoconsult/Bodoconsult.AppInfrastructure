@@ -445,7 +445,7 @@ public static class ArrayHelper
     }
 
     /// <summary>
-    /// Decompress an byte array
+    /// Decompress a byte array
     /// </summary>
     /// <param name="data">Compressed byte data</param>
     /// <returns>Decompressed byte data</returns>

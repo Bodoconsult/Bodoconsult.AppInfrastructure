@@ -22,7 +22,7 @@
 //    /// <exception cref="ArgumentNullException"></exception>
 //    public ChangePasswordData(TranslateDelegate translateDelegate)
 //    {
-//        if (translateDelegate == null)
+//        if (translateDelegate is null)
 //        {
 //            throw new ArgumentNullException(nameof(translateDelegate));
 //        }

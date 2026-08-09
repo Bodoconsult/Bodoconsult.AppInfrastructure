@@ -171,7 +171,7 @@ public class AppBenchProxy : IAppBenchProxy
     public static string FormatArgs(object[] args)
     {
 
-        if (args == null || args.Length == 0)
+        if (args is null || args.Length == 0)
         {
             return string.Empty;
         }

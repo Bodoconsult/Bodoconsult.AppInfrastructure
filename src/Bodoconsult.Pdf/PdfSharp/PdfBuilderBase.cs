@@ -372,7 +372,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <returns>Added style</returns>
     public Style AddStyle(Style style)
     {
-        if (style == null)
+        if (style is null)
         {
             return null;
         }
@@ -402,7 +402,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="pageNumberFormat">Page number format</param>
     public void CreateContentSection(bool isRestartPageNumberingRequired = false, PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
-        //if (_content == null)
+        //if (_content is null)
         //{
         Content = Document.AddSection();
         Content.PageSetup = StyleSet.PageSetup.Clone();
@@ -1058,7 +1058,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         var md = StyleSet.DocumentMetaData;
 
-        if (section == null || string.IsNullOrEmpty(md.FooterTemplate))
+        if (section is null || string.IsNullOrEmpty(md.FooterTemplate))
         {
             return;
         }
@@ -1217,7 +1217,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         var md = StyleSet.DocumentMetaData;
 
-        if (section == null || string.IsNullOrEmpty(md.HeaderTemplate))
+        if (section is null || string.IsNullOrEmpty(md.HeaderTemplate))
         {
             return;
         }
@@ -1269,7 +1269,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         var style = Document.Styles[dt.TableStyleName];
 
         ArgumentNullException.ThrowIfNull(style);
-        
+
         // Add a heading
         if (!string.IsNullOrEmpty(dt.Heading))
         {
@@ -1472,8 +1472,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
     [Obsolete("Do not use it. Prefer using AddTable method with <see cref=\"PdfTable\"/> parameter instead")]
     public void AddTable(DataTable dt, string heading, string headingStyleName, string additionalInfos, string additionalInfosStyleName, double width = 0, string tableStyle = "NormalTable")
     {
-        var pdfTable = dt.Columns[0].ColumnName.ToLowerInvariant() == "cssstyle" ? 
-            dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors) : 
+        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.InvariantCultureIgnoreCase) ?
+            dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors) :
             dt.ToPdfTable();
 
         pdfTable.Heading = heading;
@@ -1500,7 +1500,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         //}
 
         //var style = Document.Styles[tableStyle];
-        //if (style == null)
+        //if (style is null)
         //{
         //    throw new ArgumentNullException(nameof(style));
         //}
@@ -1729,7 +1729,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="additionalInfos"></param>
     /// <param name="additionalInfosStyleName"></param>
     /// <param name="width"></param>
-    
+
     public void AddTableFrame(DataTable dt, string heading, string headingStyleName, string additionalInfos = null, string additionalInfosStyleName = null, double width = 0)
     {
 
@@ -1892,7 +1892,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="tableStyle">Style to use for the table</param>
     protected void CreateTable(DataTable dt, int schleife, TextFrame frame, double borderWidth = 0.5, string tableStyle = "NormalTable")
     {
-        var pdfTable = dt.Columns[0].ColumnName.ToLowerInvariant() == "cssstyle" ?
+        var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.InvariantCultureIgnoreCase) ?
             dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors) :
             dt.ToPdfTable();
 
@@ -1902,7 +1902,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         frame.Width = Unit.FromCentimeter(widthTable);
 
         //var style = Document.Styles[tableStyle];
-        //if (style == null)
+        //if (style is null)
         //{
         //    throw new ArgumentNullException(nameof(style));
         //}
@@ -2383,7 +2383,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
                 var f = field;
                 var info = fieldInfo.FirstOrDefault(x => x.Name == f.Name);
 
-                if (info == null) continue;
+                if (info is null) continue;
 
                 string value;
 

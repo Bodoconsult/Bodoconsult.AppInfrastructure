@@ -311,7 +311,7 @@ public class TestDocuHelperHandler : ITestDocuHelperHandler
             var temp = field.GetValue(data); // Get value
 
             result[count, 0] = name;
-            result[count, 1] = temp == null ? "null" : temp.ToString();
+            result[count, 1] = temp is null ? "null" : temp.ToString();
             result[count, 2] = "Field";
 
             if (field.DeclaringType != type)
@@ -331,7 +331,7 @@ public class TestDocuHelperHandler : ITestDocuHelperHandler
 
             if (prop.PropertyType != typeof(string) && prop.PropertyType.GetInterfaces().Contains(typeof(IEnumerable)))
             {
-                if (temp == null)
+                if (temp is null)
                 {
                     result[count, 1] = "null";
                 }
@@ -354,7 +354,7 @@ public class TestDocuHelperHandler : ITestDocuHelperHandler
             }
             else
             {
-                result[count, 1] = temp == null ? "null" : temp.ToString();
+                result[count, 1] = temp is null ? "null" : temp.ToString();
             }
 
             result[count, 0] = name;

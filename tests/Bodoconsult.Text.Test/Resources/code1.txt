@@ -21,7 +21,7 @@ public class FileHelper
 \t\tvar ass = Assembly.GetExecutingAssembly();
 \t\tvar str = ass.GetManifestResourceStream(resourceName);
 
-\t\tif (str == null) return null;
+\t\tif (str is null) return null;
 
 \t\tstring s;
 

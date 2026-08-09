@@ -225,12 +225,12 @@ public class MetaDataHandler
 
         var xml = docu?.Documentation;
 
-        if (xml == null) return;
+        if (xml is null) return;
 
         var xPath = string.Format("doc/members/member[attribute::name='{1}{0}']", type.FullName + item.FullName, prefix);
 
         var node = xml.SelectSingleNode(xPath);
-        if (node == null)
+        if (node is null)
         {
             Debug.Print(prefix + type.FullName + item.FullName);
 
@@ -238,11 +238,11 @@ public class MetaDataHandler
             //xPath = string.Format("doc/members/member[attribute::name='{1}{0}']", item.BaseTypeFullName, prefix);
             //node = _xml.SelectSingleNode(xPath);
 
-            //if (node == null)
+            //if (node is null)
             //{
             //    xPath = string.Format("doc/members/member[attribute::name='{1}{0}']", item.BaseTypeFullName2, prefix);
             //    node = _xml.SelectSingleNode(xPath);
-            //    if (node == null) return;
+            //    if (node is null) return;
             //}
         }
 

@@ -28,7 +28,7 @@ public class PdfCreator : PdfBuilderBase
 
         // Get the predefined style Normal.
         var style = Document.Styles["Normal"];
-        if (style == null)
+        if (style is null)
         {
             throw new ArgumentException("No style Normal found in styleset");
         }
@@ -53,7 +53,7 @@ public class PdfCreator : PdfBuilderBase
 
         // Get the predefined style Normal.
         var style = Document.Styles["Normal"];
-        if (style == null)
+        if (style is null)
         {
             throw new ArgumentException("No style Normal found in styleset");
         }
@@ -137,7 +137,7 @@ public class PdfCreator : PdfBuilderBase
         paragraph.Style = styleName;
         Content.Add(paragraph);
 
-        if ( Toc == null || !styleName.ToLowerInvariant().StartsWith("heading"))
+        if ( Toc is null || !styleName.ToLowerInvariant().StartsWith("heading"))
         {
             return paragraph;
         }

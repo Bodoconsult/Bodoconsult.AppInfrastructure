@@ -46,7 +46,7 @@ public class ExceptionReplyBuilder : IExceptionReplyBuilder
         var success = ExceptionReplies.TryGetValue(eName, out var eData);
 
         // If no value found return default reply
-        if (!success || eData == null)
+        if (!success || eData is null)
         {
             reply = new DefaultBusinessTransactionReply
             {
@@ -73,7 +73,7 @@ public class ExceptionReplyBuilder : IExceptionReplyBuilder
     {
         var result = $"{e.Message} ";
 
-        if (e.InnerException == null)
+        if (e.InnerException is null)
         {
             return result;
         }

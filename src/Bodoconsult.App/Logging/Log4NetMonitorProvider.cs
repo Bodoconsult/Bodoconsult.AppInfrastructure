@@ -129,7 +129,7 @@ public class Log4NetMonitorProvider : ILoggerProvider
 
         var log4NetNode = xml.LastChild;
 
-        if (log4NetNode == null)
+        if (log4NetNode is null)
         {
             return null;
         }

@@ -39,9 +39,9 @@ public static class ObjectHelper
             return true;
         }
 
-        if (original == null)
+        if (original is null)
         {
-            return current == null;
+            return current is null;
         }
 
         if (original.Equals(current))
@@ -49,7 +49,7 @@ public static class ObjectHelper
             return true;
         }
 
-        if (current == null)
+        if (current is null)
         {
             return false;
         }
@@ -77,17 +77,17 @@ public static class ObjectHelper
     /// <returns>true if the arrays are equal</returns>
     public static bool ByteArrayCompare(IReadOnlyList<byte>? a1, IReadOnlyList<byte>? a2)
     {
-        if (a1 == null && a2 == null)
+        if (a1 is null && a2 is null)
         {
             return true;
         }
 
-        if (a1 == null)
+        if (a1 is null)
         {
             return false;
         }
 
-        if (a2 == null)
+        if (a2 is null)
         {
             return false;
         }
@@ -117,12 +117,12 @@ public static class ObjectHelper
     public static void MapProperties(object? source, object? target)
     {
 
-        if (source == null)
+        if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
 
-        if (target == null)
+        if (target is null)
         {
             throw new ArgumentNullException(nameof(target));
         }
@@ -138,14 +138,14 @@ public static class ObjectHelper
 
             var prop = propMap[i];
 
-            if (prop.SourceProperty == null)
+            if (prop.SourceProperty is null)
             {
                 continue;
             }
 
             var sourceValue = prop.SourceProperty.GetValue(source, null);
 
-            if (prop.TargetProperty == null)
+            if (prop.TargetProperty is null)
             {
                 continue;
             }
@@ -163,12 +163,12 @@ public static class ObjectHelper
     /// <returns>true if objects have the same properties values</returns>
     public static bool CompareProperties(object? source, object? target)
     {
-        if (source == null)
+        if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
 
-        if (target == null)
+        if (target is null)
         {
             throw new ArgumentNullException(nameof(target));
         }
@@ -187,7 +187,7 @@ public static class ObjectHelper
 
             //if (prop.SourceProperty.Name == "RowVersion") continue;
 
-            if (prop.SourceProperty == null || prop.TargetProperty == null)
+            if (prop.SourceProperty is null || prop.TargetProperty is null)
             {
                 continue;
             }
@@ -196,7 +196,7 @@ public static class ObjectHelper
 
             var targetValue = prop.TargetProperty.GetValue(target, null);
 
-            if (sourceValue == null || targetValue == null)
+            if (sourceValue is null || targetValue is null)
             {
                 continue;
             }
@@ -214,12 +214,12 @@ public static class ObjectHelper
 
     internal static IList<PropertyMap> GetMatchingProperties(Type? sourceType, Type? targetType)
     {
-        if (sourceType == null)
+        if (sourceType is null)
         {
             throw new ArgumentNullException(nameof(sourceType));
         }
 
-        if (targetType == null)
+        if (targetType is null)
         {
             throw new ArgumentNullException(nameof(targetType));
         }
@@ -274,7 +274,7 @@ public static class ObjectHelper
     /// <param name="data"></param>
     public static void FillProperties(object? data)
     {
-        if (data == null)
+        if (data is null)
         {
             return;
         }
@@ -378,7 +378,7 @@ public static class ObjectHelper
         {
             var v = prop.GetValue(o);
 
-            if (v == null)
+            if (v is null)
             {
                 continue;
             }
@@ -433,7 +433,7 @@ public static class ObjectHelper
         {
             var v = prop.GetValue(o);
 
-            if (v == null)
+            if (v is null)
             {
                 continue;
             }

@@ -105,7 +105,7 @@ public static class InlineConverterMethods
     //{
     //    var o = ColorToHexConverter.ParseHexString(htmlColor, AlphaComponentPosition.Leading);
 
-    //    if (o == null)
+    //    if (o is null)
     //    {
     //        throw new ArgumentNullException(nameof(o));
     //    }

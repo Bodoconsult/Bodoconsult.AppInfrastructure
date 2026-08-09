@@ -206,7 +206,7 @@ public class DataProtectionManager : IDataProtectionManager
             return null;
         }
 
-        if (kvp.Value == null)
+        if (kvp.Value is null)
         {
             return null;
         }

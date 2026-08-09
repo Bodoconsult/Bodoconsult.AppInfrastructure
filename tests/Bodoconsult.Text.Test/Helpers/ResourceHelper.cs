@@ -21,7 +21,7 @@ public class ResourceHelper
         var ass = Assembly.GetExecutingAssembly();
         var str = ass.GetManifestResourceStream(resourceName);
 
-        if (str == null) return null;
+        if (str is null) return null;
 
         string s;
 

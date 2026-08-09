@@ -247,7 +247,7 @@ public class StructuredText : IStructuredText
             return;
         }
 
-        if (data.Length == 1 && data[0] == null)
+        if (data.Length == 1 && data[0] is null)
         {
             return;
         }
@@ -521,7 +521,7 @@ public class StructuredText : IStructuredText
     /// <param name="data">data for the table content</param>
     public void AddTable(string title, DataTable data)
     {
-        if (data == null)
+        if (data is null)
         {
             return;
         }

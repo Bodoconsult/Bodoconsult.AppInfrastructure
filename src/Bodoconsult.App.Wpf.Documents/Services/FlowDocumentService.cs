@@ -602,7 +602,7 @@ public class FlowDocumentService
 
             var newDoc = XamlReader.Parse(newcontent) as FlowDocument;
 
-            if (newDoc == null)
+            if (newDoc is null)
             {
                 return;
             }

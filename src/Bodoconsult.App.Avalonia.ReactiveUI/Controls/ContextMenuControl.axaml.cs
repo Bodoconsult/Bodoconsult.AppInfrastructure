@@ -34,7 +34,7 @@ public partial class ContextMenuControl : UserControl
         {
             LocalMenu.Items.Clear();
 
-            if (_viewModel.MenuItems == null)
+            if (_viewModel.MenuItems is null)
             {
                 return;
             }

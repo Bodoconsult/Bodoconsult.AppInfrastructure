@@ -68,7 +68,7 @@ public class LdmlReader
 
         var root = xmlDoc.Descendants().FirstOrDefault();
 
-        if (root == null)
+        if (root is null)
         {
             return;
         }
@@ -89,7 +89,7 @@ public class LdmlReader
 
         //Debug.Print($"Bodoconsult.Text.Documents.{elementName}");
 
-        if (type == null)
+        if (type is null)
         {
             HandleObjectTypes(elementName, node, parent);
             return null;
@@ -124,7 +124,7 @@ public class LdmlReader
         var pis = DocumentReflectionHelper.GetPropertiesForBlocks(parent.GetType());
         var pi = pis.FirstOrDefault(x => x.Name == elementName);
 
-        if (pi == null)
+        if (pi is null)
         {
             return;
         }
@@ -305,7 +305,7 @@ public class LdmlReader
 
         var attr = attributes.FirstOrDefault(x => x.Name == prop.Name);
 
-        if (attr == null)
+        if (attr is null)
         {
             return;
         }

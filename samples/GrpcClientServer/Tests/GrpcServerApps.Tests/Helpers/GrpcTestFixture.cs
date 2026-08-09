@@ -33,7 +33,7 @@ public class GrpcTestFixture<TStartup> : IDisposable where TStartup : class
 
     private void EnsureServer()
     {
-        if (_host == null)
+        if (_host is null)
         {
             var builder = new HostBuilder()
                 .ConfigureServices(services =>

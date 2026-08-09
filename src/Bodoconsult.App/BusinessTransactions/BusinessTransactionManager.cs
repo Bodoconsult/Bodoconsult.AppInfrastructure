@@ -88,7 +88,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
 
         CreateBusinessTransactionDelegates.TryGetValue(transactionId, out var td);
 
-        if (td == null)
+        if (td is null)
         {
             throw new ArgumentException($"Checking for business transaction: No definition delegate for BT {transactionId}");
         }
@@ -97,7 +97,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
         t = td.Invoke();
 
 
-        if (t.RunBusinessTransactionDelegate == null)
+        if (t.RunBusinessTransactionDelegate is null)
         {
             throw new ArgumentException($"Checking for business transaction: BT {transactionId} does not have an runner method");
         }
@@ -142,7 +142,7 @@ public class BusinessTransactionManager : IBusinessTransactionManager
             };
         }
 
-        //if (transaction == null)
+        //if (transaction is null)
         //{
         //    msg = $"BT {transactionId} NOT found";
         //    _logger.LogError(msg);

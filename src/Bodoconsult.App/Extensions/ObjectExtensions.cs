@@ -16,7 +16,7 @@ public static class ObjectExtensions
     public static object? Convert(this object? value, Type t)
     {
         var underlyingType = Nullable.GetUnderlyingType(t);
-        if (underlyingType != null && value == null)
+        if (underlyingType != null && value is null)
         {
             return null;
         }

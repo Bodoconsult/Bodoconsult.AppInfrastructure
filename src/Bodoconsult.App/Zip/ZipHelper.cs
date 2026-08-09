@@ -17,7 +17,7 @@ public static class ZipHelper
     /// <param name="filter">Filter expression like *.log or null</param>
     public static void CreateZipArchive(string zipPath, string folderPath, string? filter = null)
     {
-        if (zipPath == null)
+        if (zipPath is null)
         {
             throw new ArgumentNullException(nameof(zipPath));
         }
@@ -31,7 +31,7 @@ public static class ZipHelper
         using var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update);
         var dir = new DirectoryInfo(folderPath);
 
-        var files = filter == null ? dir.GetFiles() : dir.GetFiles().Where(s => filter.Contains($"*{s.Extension}"));
+        var files = filter is null ? dir.GetFiles() : dir.GetFiles().Where(s => filter.Contains($"*{s.Extension}"));
 
         foreach (var file in files)
         {

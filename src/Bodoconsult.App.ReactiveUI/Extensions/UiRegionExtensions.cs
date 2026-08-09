@@ -19,7 +19,7 @@ public static class UiRegionExtensions
     /// <param name="viewModel">Current viewmodel</param>
     public static void Navigate<T>(this UiRegion region, T viewModel) where T : class, IRoutableViewModel
     {
-        if (region.UiWindow.RegionManager == null)
+        if (region.UiWindow.RegionManager is null)
         {
             throw new ArgumentNullException(nameof(region.UiWindow.RegionManager));
         }

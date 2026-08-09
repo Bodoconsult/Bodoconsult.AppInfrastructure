@@ -81,7 +81,7 @@ public class ConsoleApp1Service : IApplicationService
             i++;
         }
 
-        if (RequestApplicationStopDelegate == null)
+        if (RequestApplicationStopDelegate is null)
         {
             return;
         }
