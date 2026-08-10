@@ -18,12 +18,12 @@ public interface IDataProtectionManager: IDisposable
     /// <summary>
     /// Values to protect
     /// </summary>
-    List<KeyValuePair<string, string?>> Values { get; }
+    IReadOnlyList<KeyValuePair<string, string?>> Values { get; }
 
     /// <summary>
     /// Available keys
     /// </summary>
-    List<string> Keys { get; }
+    IReadOnlyList<string> Keys { get; }
 
     /// <summary>
     /// Current instance of <see cref="IDataProtectionService"/> to use

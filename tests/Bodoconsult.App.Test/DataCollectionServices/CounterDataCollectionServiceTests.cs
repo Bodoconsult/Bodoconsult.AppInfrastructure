@@ -38,6 +38,8 @@ internal class CounterDataCollectionServiceTests
         }
     }
 
+
+
     [Test]
     public void AddList_DefaultSetupInactive_NoDataCollected()
     {
@@ -163,11 +165,12 @@ internal class CounterDataCollectionServiceTests
         }
     }
 
-    private void ForwardCollectDataDelegate(List<TestData> data)
-    {
-        _numberOfDataForwarded += data.Count;
-    }
+    
 
+    private void ForwardCollectDataDelegate(IReadOnlyList<TestData> data)
+    {
+        _numberOfDataForwarded += data.ToArray().Length;
+    }
 
     private void ReceiveMessages(CounterDataCollectionService<TestData> dcs)
     {

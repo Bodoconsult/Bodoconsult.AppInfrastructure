@@ -31,7 +31,7 @@ public static class AvaloniaReactiveUiHelper
     /// <param name="window">Current visual</param>
     public static void AllDescendantsOfType<T>(List<T> result, Window window) where T : class
     {
-        var children = window.GetLogicalDescendants().ToList();
+        var children = window.GetLogicalDescendants().ToArray();
         var childrenCount = children.LongCount();
 
         for (var i = 0; i < childrenCount; i++)

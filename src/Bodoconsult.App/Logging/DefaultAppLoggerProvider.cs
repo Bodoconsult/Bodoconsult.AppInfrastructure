@@ -49,7 +49,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
 
         ArgumentNullException.ThrowIfNull(config, "Config section is appsettings.json is missing");
 
-        var kids = config.GetChildren().ToList();
+        var kids = config.GetChildren().ToArray();
 
         AddMinimumLogLevel(kids);
 
@@ -66,7 +66,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
         DefaultLogger = AppLoggerExtensions.GetDefaultAppLoggerProxy(LoggingConfig);
     }
 
-    private void AddLoggerProviders(List<IConfigurationSection> kids)
+    private void AddLoggerProviders(IReadOnlyList<IConfigurationSection> kids)
     {
         foreach (var configurator in LoggingConfig.LoggerProviderConfigurators)
         {
@@ -80,7 +80,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
         }
     }
 
-    private void AddFilters(List<IConfigurationSection> kids)
+    private void AddFilters(IReadOnlyList<IConfigurationSection> kids)
     {
         var section = kids.FirstOrDefault(item => item.Key == "LogLevel");
 
@@ -101,7 +101,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
         }
     }
 
-    private void AddMinimumLogLevel(List<IConfigurationSection> kids)
+    private void AddMinimumLogLevel(IReadOnlyList<IConfigurationSection> kids)
     {
         // Add minimum log level from config
         var minLevel = kids.FirstOrDefault(x => x.Key == "MinimumLogLevel");

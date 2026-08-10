@@ -212,7 +212,7 @@ public static class ObjectHelper
     }
 
 
-    internal static IList<PropertyMap> GetMatchingProperties(Type? sourceType, Type? targetType)
+    internal static IReadOnlyList<PropertyMap> GetMatchingProperties(Type? sourceType, Type? targetType)
     {
         if (sourceType is null)
         {
@@ -261,7 +261,7 @@ public static class ObjectHelper
 
                               TargetProperty = t
 
-                          }).ToList();
+                          }).ToArray();
 
         return properties;
 

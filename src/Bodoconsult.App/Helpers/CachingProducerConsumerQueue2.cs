@@ -75,7 +75,7 @@ public class CachingProducerConsumerQueue2<T> : ICachingProducerConsumerQueue2<T
     /// Enqueue a list of items to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">Items to add to the queue</param>
-    public void Enqueue(IEnumerable<T> items)
+    public void Enqueue(IReadOnlyList<T> items)
     {
         if (!IsActivated)
         {

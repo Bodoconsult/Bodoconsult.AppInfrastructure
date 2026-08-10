@@ -41,7 +41,7 @@ public class ByteArrayDataExportService : BaseDataExportService<byte[]>, IMemory
     /// Add an item to store in the export file
     /// </summary>
     /// <param name="data">List with Memory&lt;byte&gt; elements</param>
-    public void AddRange(IEnumerable<ReadOnlyMemory<byte>> data)
+    public void AddRange(IReadOnlyList<ReadOnlyMemory<byte>> data)
     {
         lock (IsStartedLock)
         {

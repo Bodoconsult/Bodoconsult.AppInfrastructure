@@ -439,13 +439,13 @@ public class MainWindowViewModel : ObservableRecipient, IMainWindowViewModel
                 IsHyphenationEnabled = true
             };
 
-            var data = _logData.ToList();
+            var data = _logData.ToArray();
 
             var isActive = false;
 
 
 
-            for (var index = data.Count - 1; index >= 0; index--)
+            for (var index = data.Length - 1; index >= 0; index--)
             {
                 var message = data[index];
                 var myParagraph = new Paragraph

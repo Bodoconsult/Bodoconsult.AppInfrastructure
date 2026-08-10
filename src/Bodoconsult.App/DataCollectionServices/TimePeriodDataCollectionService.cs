@@ -51,7 +51,7 @@ public class TimePeriodDataCollectionService<T> : BaseDataCollectionService<T> w
 
         Debug.Print("Collecting stopped");
 
-        var data = Data.ToList();
+        var data = Data.ToArray();
         Data.Clear();
 
         Queue.Enqueue(data);

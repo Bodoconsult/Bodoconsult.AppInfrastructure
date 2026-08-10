@@ -7,7 +7,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// </summary>
 /// <typeparam name="T">Type of data to collect</typeparam>
 /// <param name="data">Collected data</param>
-public delegate void ForwardCollectDataDelegate<T>(List < T > data) where T : class;
+public delegate void ForwardCollectDataDelegate<in T>(IReadOnlyList<T> data) where T : class;
 
 /// <summary>
 /// Interface for data collection services. A data collection service is a service collection data if activated from a data stream in time intervals for a certain time period.

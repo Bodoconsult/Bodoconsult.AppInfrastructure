@@ -155,7 +155,7 @@ public class I18NClient : II18NClient
         _translations.Clear();
 
         // Get the translations from each provider 
-        foreach (var localesProvider in I18NServer.Providers.ToList())
+        foreach (var localesProvider in I18NServer.Providers.ToArray())
         {
 
             // Check if locale or a relative locale exists for the provider

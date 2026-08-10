@@ -48,7 +48,7 @@ public class I18NEmbeddedResourceLocalesProvider : BaseResourceProvider
         var len = _resourceFolder.Length;
 
         var localeResources = _assembly.GetManifestResourceNames().Where(x => x.StartsWith(_resourceFolder, StringComparison.OrdinalIgnoreCase) &&
-                                                                              x.EndsWith(".txt", StringComparison.OrdinalIgnoreCase)).OrderBy(x=> x).ToList();
+                                                                              x.EndsWith(".txt", StringComparison.OrdinalIgnoreCase)).OrderBy(x=> x).ToArray();
 
         foreach (var locales in localeResources)
         {

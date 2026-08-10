@@ -15,10 +15,10 @@ public static class DataTableExtensions
     /// </summary>
     /// <param name="datatable">data table to convert</param>
     /// <returns>List with <see cref="DataRow"/> objects</returns>
-    public static IList<DataRow> ToGenericList(this DataTable datatable)
+    public static IReadOnlyList<DataRow> ToGenericList(this DataTable datatable)
     {
         return (from row in datatable.AsEnumerable()
-            select row).ToList();
+            select row).ToArray();
     }
 
 }

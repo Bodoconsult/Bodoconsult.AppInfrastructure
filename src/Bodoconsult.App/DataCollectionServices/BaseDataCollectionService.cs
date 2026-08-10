@@ -20,7 +20,7 @@ public abstract class BaseDataCollectionService<T> : IDataCollectionService<T> w
     /// <summary>
     /// The internal queue
     /// </summary>
-    protected readonly ProducerConsumerQueue<List<T>> Queue = new();
+    protected readonly ProducerConsumerQueue<T[]> Queue = new();
 
     /// <summary>
     /// Do not use directly
@@ -31,7 +31,7 @@ public abstract class BaseDataCollectionService<T> : IDataCollectionService<T> w
     /// The internal delegate to handle data in the queue
     /// </summary>
     /// <param name="data">Data in the queue</param>
-    protected void ConsumerTaskDelegate(List<T> data)
+    protected void ConsumerTaskDelegate(T[] data)
     {
         ForwardCollectDataDelegate.Invoke(data);
     }

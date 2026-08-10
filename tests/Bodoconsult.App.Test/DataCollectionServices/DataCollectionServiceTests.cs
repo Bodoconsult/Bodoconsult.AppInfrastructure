@@ -160,7 +160,7 @@ internal class TimePeriodDataCollectionServiceTests
         }
     }
 
-    private void ForwardCollectDataDelegate(List<TestData> data)
+    private void ForwardCollectDataDelegate(IReadOnlyList<TestData> data)
     {
         _numberOfDataForwarded += data.Count;
     }

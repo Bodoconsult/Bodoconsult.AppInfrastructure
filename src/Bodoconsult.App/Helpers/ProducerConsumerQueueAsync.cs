@@ -58,7 +58,7 @@ public class ProducerConsumerQueueAsync<T> : IProducerConsumerQueueAsync<T> wher
     /// Enqueue a list of itema to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">List of items to add to the queue</param>
-    public void Enqueue(IEnumerable<T> items)
+    public void Enqueue(IReadOnlyList<T> items)
     {
         var writer = _internalQueue.Writer;
 

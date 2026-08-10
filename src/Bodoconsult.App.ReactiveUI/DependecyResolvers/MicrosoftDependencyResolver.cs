@@ -351,7 +351,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
 
             var sds = _serviceCollection.Where(s => !s.IsKeyedService && s.ServiceType == serviceType);
 
-            foreach (var sd in sds.ToList())
+            foreach (var sd in sds.ToArray())
             {
                 _ = _serviceCollection.Remove(sd);
             }
@@ -396,7 +396,7 @@ public class MicrosoftDependencyResolver : IDependencyResolver, IAsyncDisposable
 
             var sds = _serviceCollection.Where(sd => MatchesKeyedContract(serviceType, contract, sd));
 
-            foreach (var sd in sds.ToList())
+            foreach (var sd in sds.ToArray())
             {
                 _ = _serviceCollection.Remove(sd);
             }

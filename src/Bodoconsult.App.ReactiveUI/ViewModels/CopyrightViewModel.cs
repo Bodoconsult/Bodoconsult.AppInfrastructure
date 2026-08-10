@@ -164,7 +164,7 @@ public partial class CopyrightViewModel : ReactiveObject
             result.Add(row);
         }
 
-        foreach (var row in result.ToList())
+        foreach (var row in result.ToArray())
         {
             if (row == "\n")
             {

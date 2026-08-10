@@ -245,12 +245,12 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
     private void StoreCacheToStoringQueue(FileState fileState)
     {
-        List<ReadOnlyMemory<byte>> data;
+        IReadOnlyList<ReadOnlyMemory<byte>> data;
 
         // Keep the lock as short as possible
         lock (_cacheLock)
         {
-            data = _cache.ToList();
+            data = _cache.ToArray();
             _cache.Clear();
         }
 
@@ -333,7 +333,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         }
 
         // ReSharper disable once ConvertClosureToMethodGroup
-        var mem = data.Select(_toMemoryFunc).ToList();
+        var mem = data.Select(_toMemoryFunc).ToArray();
         CachingQueue.Enqueue(mem);
     }
 

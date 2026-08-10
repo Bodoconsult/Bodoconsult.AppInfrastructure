@@ -48,10 +48,10 @@ public class CounterDataCollectionService<T> : BaseDataCollectionService<T> wher
         IsActive = false;
 
         Debug.Print("Collecting stopped");
-        var data = Data.ToList();
+        var data = Data.ToArray();
         Data.Clear();
 
-        if (data.Count == 0)
+        if (data.Length == 0)
         {
             return;
         }

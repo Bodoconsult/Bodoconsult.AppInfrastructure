@@ -607,7 +607,7 @@ public class FlowDocumentService
                 return;
             }
 
-            foreach (var block in newDoc.Blocks.ToList())
+            foreach (var block in newDoc.Blocks.ToArray())
             {
                 if (block is Paragraph paragraph)
                 {

@@ -43,7 +43,7 @@ public static class ObjectHelper
     /// <param name="source">Source object</param>
     /// <param name="target">Target object</param>
     /// <returns>List with properties existing in both objects</returns>
-    public static IList<PropertyMap> GetMatchingProperties(Type source, Type target)
+    public static IReadOnlyList<PropertyMap> GetMatchingProperties(Type source, Type target)
 
     {
 
@@ -73,7 +73,7 @@ public static class ObjectHelper
                               SourceProperty = s,
                               TargetProperty = t
 
-                          }).ToList();
+                          }).ToArray();
 
         return properties;
 

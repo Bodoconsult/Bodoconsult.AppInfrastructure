@@ -51,12 +51,12 @@ public class DataProtectionManager : IDataProtectionManager
     /// <summary>
     /// Current values to protect
     /// </summary>
-    public List<KeyValuePair<string, string?>> Values => _values.ToList();
+    public IReadOnlyList<KeyValuePair<string, string?>> Values => _values.ToArray();
 
     /// <summary>
     /// Available keys
     /// </summary>
-    public List<string> Keys => _values.Select(x=> x.Key).ToList();
+    public IReadOnlyList<string> Keys => _values.Select(x=> x.Key).ToArray();
 
     /// <summary>
     /// Current instance of <see cref="IDataProtectionService"/> to use

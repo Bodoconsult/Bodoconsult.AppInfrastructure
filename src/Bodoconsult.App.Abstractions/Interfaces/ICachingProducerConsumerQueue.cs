@@ -37,7 +37,7 @@ public interface ICachingProducerConsumerQueue<T> where T : class
     /// Enqueue a list of items to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">Items to add to the queue</param>
-    void Enqueue(IEnumerable<T> items);
+    void Enqueue(IReadOnlyList<T> items);
 
     /// <summary>
     /// Start the consumer thread

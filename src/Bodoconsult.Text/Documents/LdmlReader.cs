@@ -174,7 +174,7 @@ public class LdmlReader
     private void GetPropertyAsBlockElement(DocumentElement parent, XElement node, PropertyInfo pi)
     {
         // Check child nodes
-        var childs = node.Nodes().ToList();
+        var childs = node.Nodes().ToArray();
 
         foreach (var childNode in childs)
         {
@@ -199,7 +199,7 @@ public class LdmlReader
         LoadProperties(textElement, node);
 
         // Check child nodes
-        var childs = node.Nodes().ToList();
+        var childs = node.Nodes().ToArray();
 
         switch (textElement)
         {

@@ -39,7 +39,7 @@ public interface IProducerConsumerQueueAsync2<T> : IDisposable where T : struct
     /// Enqueue a list of itema to the internal queue for processing as soon as possible
     /// </summary>
     /// <param name="items">List of items to add to the queue</param>
-    void Enqueue(IEnumerable<T> items);
+    void Enqueue(IReadOnlyList<T> items);
 
     /// <summary>
     /// Start the consumer thread
