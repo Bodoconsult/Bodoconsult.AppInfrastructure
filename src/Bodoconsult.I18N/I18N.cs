@@ -99,9 +99,14 @@ public class I18N : II18N
     /// </summary>
     public PortableLanguage Language
     {
-        get => Languages?.FirstOrDefault(x => x.Locale.Equals(Locale));
+        get => Languages.FirstOrDefault(x => x.Locale.Equals(Locale));
         set
         {
+            if (Language == null || value == null)
+            {
+                return;
+            }
+
             if (Language.Locale == value.Locale)
             {
                 Log($"{value.DisplayName} is the current language. No actions will be taken");
@@ -141,12 +146,18 @@ public class I18N : II18N
     /// <summary>
     /// A list of supported languages
     /// </summary>
-    public List<PortableLanguage> Languages => _locales?.Select(x => new PortableLanguage
+    public List<PortableLanguage> Languages
     {
-        Locale = x,
-        DisplayName = TranslateOrNull(x) ?? new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
-    })
-        .ToList();
+        get
+        {
+            return _locales.Select(x => new PortableLanguage
+                {
+                    Locale = x,
+                    DisplayName = TranslateOrNull(x) //?? new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
+                })
+                .ToList();
+        }
+    }
 
 
     #region Fluent API
@@ -459,10 +470,17 @@ public class I18N : II18N
     /// Get a translation from a key, formatting the string with the given params, if any. 
     /// It will return null when the translation is not found
     /// </summary>
-    public string TranslateOrNull(string key, params object[] args) =>
-        _translations.ContainsKey(key)
-            ? (args.Length == 0 ? _translations[key] : string.Format(_translations[key], args))
-            : null;
+    public string TranslateOrNull(string key, params object[] args)
+    {
+        var success = _translations.TryGetValue(key, out var result);
+
+        if (success)
+        {
+            return args.Length == 0 ? result : string.Format(_translations[key], args);
+        }
+
+        return string.Empty;
+    }
 
     /// <summary>
     /// Convert Enum Type values to a Dictionary&lt;TEnum, string&gt; where the key is the Enum value and the string is the translated value.
@@ -543,7 +561,7 @@ public class I18N : II18N
 
         var matchingLocale = _locales.FirstOrDefault(x => x.Equals(currentCulture.Name)) ?? _locales.FirstOrDefault(x => x.Equals(currentCulture.TwoLetterISOLanguageName));
 
-        return matchingLocale;
+        return matchingLocale ?? string.Empty;
 
         // ISO 639-1 two-letter code. i.e: "es"
         // || x.Key.Equals(threeLetterIsoName) // ISO 639-2 three-letter code. i.e: "spa"

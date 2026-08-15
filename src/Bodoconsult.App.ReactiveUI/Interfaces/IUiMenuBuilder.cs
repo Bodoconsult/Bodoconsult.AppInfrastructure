@@ -29,12 +29,12 @@ public interface IUiMenuBuilder
     /// <summary>
     /// Readonly list of all menu items. Must contain at least one element without parent menu item
     /// </summary>
-    List<IUiMenuItem> MenuItems { get; }
+    IReadOnlyList<IUiMenuItem> MenuItems { get; }
 
     /// <summary>
     /// List of all menu items. Must contain at least one element without parent menu item
     /// </summary>
-    List<IUiMenuItem> TopLevelMenuItems { get; }
+    IReadOnlyList<IUiMenuItem> TopLevelMenuItems { get; }
 
     /// <summary>
     /// Add a menu item

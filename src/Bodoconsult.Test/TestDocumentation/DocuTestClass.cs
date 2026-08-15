@@ -92,7 +92,7 @@ public class DocuTestClass : IHtmlCreator
 
         var data = TestMethods.Where(x => x.TestPriority != TestPriority.Ignore &&
                                           x.TestPriority != TestPriority.IgnoreIfError &&
-                                          x.Success == false).OrderBy(x => x.Name).ToList();
+                                          x.Success == false).OrderBy(x => x.Name).ToArray();
 
         if (data.Any())
         {
@@ -110,7 +110,7 @@ public class DocuTestClass : IHtmlCreator
         // Successful tests
         result.Append("<h3>Successful tests</h3>\r\n");
         data = TestMethods.Where(x => x.TestPriority != TestPriority.Ignore &&
-                                      x.Success).OrderBy(x => x.Name).ToList();
+                                      x.Success).OrderBy(x => x.Name).ToArray();
 
         if (data.Any())
         {

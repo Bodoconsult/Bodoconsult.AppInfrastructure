@@ -143,8 +143,8 @@ public class LdmlReader
 
     private void GetListPropertyAsBlockElements(DocumentElement parent, PropertyInfo pi, XElement node)
     {
-        var genType = pi.PropertyType.GenericTypeArguments[0];
-        Debug.Print(genType.Name);
+        //var genType = pi.PropertyType.GenericTypeArguments[0];
+        //Debug.Print(genType.Name);
 
         var list = pi.GetValue(parent);
 
@@ -289,7 +289,7 @@ public class LdmlReader
             return;
         }
 
-        var attributes = node.Attributes().ToList();
+        var attributes = node.Attributes().ToArray();
 
         var pis = DocumentReflectionHelper.GetPropertiesForAttributes(element.GetType());
 
@@ -299,7 +299,7 @@ public class LdmlReader
         }
     }
 
-    private void LoadProperty(IDocumentElement element, PropertyInfo prop, List<XAttribute> attributes)
+    private void LoadProperty(IDocumentElement element, PropertyInfo prop, XAttribute[] attributes)
     {
         var propType = prop.PropertyType;
 

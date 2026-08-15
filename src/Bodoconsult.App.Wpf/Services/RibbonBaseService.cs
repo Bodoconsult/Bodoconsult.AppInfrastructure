@@ -191,9 +191,9 @@ public class RibbonBaseService : IRibbonService
         var items = _items
             .Where(x => x.Value.TabName == ApplicationMenuName)
             .OrderBy(x => x.Key)
-            .Select(x => x.Value).ToList();
+            .Select(x => x.Value).ToArray();
 
-        if (items.Count == 0)
+        if (items.Length == 0)
         {
             return;
         }
@@ -205,7 +205,7 @@ public class RibbonBaseService : IRibbonService
         foreach (var item in _items
                      .Where(x => x.Value.TabName == ApplicationMenuName)
                      .OrderBy(x => x.Key)
-                     .Select(x => x.Value))
+                     .Select(x => x.Value).ToArray())
         {
             var button = GetApplicationMenuItem(item);
             appMenu.Items.Add(button);
@@ -223,9 +223,9 @@ public class RibbonBaseService : IRibbonService
         var items = _items
             .Where(x => x.Value.TabName == QuickAccessName)
             .OrderBy(x => x.Key)
-            .Select(x => x.Value).ToList();
+            .Select(x => x.Value).ToArray();
 
-        if (items.Count == 0)
+        if (items.Length == 0)
         {
             return;
         }

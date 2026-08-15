@@ -74,7 +74,7 @@ public class StackedBarChart<T> : BaseChart<T> where T : IChartItemData
             PlottBar(barData, d, countCol);
         }
 
-        _existingsTicks.AddRange(_labels.Keys.OrderBy(x => x).ToList());
+        _existingsTicks.AddRange(_labels.Keys.OrderBy(x => x).ToArray());
 
         var bars = Chart.Add.Bars(barData);
         //bars.ValueLabelStyle.Bold = true;

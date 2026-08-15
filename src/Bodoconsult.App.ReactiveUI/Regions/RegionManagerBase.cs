@@ -25,12 +25,12 @@ public abstract class RegionManagerBase : IRegionManager
     /// <summary>
     /// Readonly list of all registered viewmodel-view-bindings
     /// </summary>
-    public List<KeyValuePair<Type, Type>> ViewModelBindings => InternalViewModelBindings.ToList();
+    public IReadOnlyList<KeyValuePair<Type, Type>> ViewModelBindings => InternalViewModelBindings.ToArray();
 
     /// <summary>
     /// Readonly list of all registered window type definitions
     /// </summary>
-    public List<UiWindowDefinition> WindowDefinitions => InternalWindows.ToList();
+    public IReadOnlyList<UiWindowDefinition> WindowDefinitions => InternalWindows.ToArray();
 
     /// <summary>
     /// Current UI regions loaded
@@ -146,7 +146,7 @@ public abstract class RegionManagerBase : IRegionManager
     /// <param name="uiWindow"></param>
     public void Dispose(IUiWindow uiWindow)
     {
-        var regionsToDelete = Regions.Where(x => x.Value.UiWindow == uiWindow).ToList();
+        var regionsToDelete = Regions.Where(x => x.Value.UiWindow == uiWindow).ToArray();
 
         foreach (var region in regionsToDelete)
         {
@@ -156,7 +156,7 @@ public abstract class RegionManagerBase : IRegionManager
             }
         }
 
-        var instance = Windows.ToList().FirstOrDefault(x => x.Value == uiWindow);
+        var instance = Windows.ToArray().FirstOrDefault(x => x.Value == uiWindow);
 
         if (Windows.ContainsValue(uiWindow) && !Windows.Remove(instance.Key))
         {

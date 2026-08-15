@@ -105,7 +105,7 @@ public class WpfRegionManager : RegionManagerBase
             throw new ArgumentException($"window must be of type Window but was {window.GetType().Name}");
         }
 
-        var childs = WpfHelper.FindLogicalChildren<RoutedViewHost>(w).ToList();
+        var childs = WpfHelper.FindLogicalChildren<RoutedViewHost>(w).ToArray();
 
         ArgumentNullException.ThrowIfNull(childs, $"No region childs defined for {w.GetType().Name}");
 

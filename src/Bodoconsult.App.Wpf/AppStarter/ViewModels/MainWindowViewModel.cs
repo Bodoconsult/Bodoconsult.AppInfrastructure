@@ -443,8 +443,6 @@ public class MainWindowViewModel : ObservableRecipient, IMainWindowViewModel
 
             var isActive = false;
 
-
-
             for (var index = data.Length - 1; index >= 0; index--)
             {
                 var message = data[index];

@@ -10,6 +10,7 @@ namespace Bodoconsult.App.Test.SyncExecution;
 public class IntSyncProcessManagerTests
 {
     private readonly AppBenchProxy _benchLogger = TestHelper.GetFakeAppBenchProxy();
+    private readonly Func<DummyClass> _func = () => new DummyClass();
 
     [OneTimeTearDown]
     public void Cleanup()
@@ -21,9 +22,9 @@ public class IntSyncProcessManagerTests
     public void AddSyncProcess_ValidOrder_ProcessIsAddedToSyncQueue()
     {
         // Arrange 
-        var op = new SyncProcessManager<int, DummyClass>();
+        var op = new SyncProcessManager<int, DummyClass>(_func);
 
-        var processId = 99;
+        const int processId = 99;
 
         // Act 
         var result = op.AddSyncProcess(processId, 1000);
@@ -43,9 +44,10 @@ public class IntSyncProcessManagerTests
     public void GetSyncProcessDataForProcess_ValidOrder_ReturnsData()
     {
         // Arrange 
-        var op = new SyncProcessManager<int, DummyClass>();
+        var op = new 
+            SyncProcessManager<int, DummyClass>(_func);
 
-        var processId = 98;
+        const int processId = 98;
 
         var dummyData = op.AddSyncProcess(processId, 1000);
 
@@ -69,9 +71,9 @@ public class IntSyncProcessManagerTests
     public void RemoveSyncProces_ValidOrder_ProcessIsRemovedFromSyncQueue()
     {
         // Arrange 
-        var op = new SyncProcessManager<int, DummyClass>();
+        var op = new SyncProcessManager<int, DummyClass>(_func);
 
-        var processId = 97;
+        const int processId = 97;
 
         var result = op.AddSyncProcess(processId, 1000);
 
@@ -95,7 +97,7 @@ public class IntSyncProcessManagerTests
     //public void GetSyncProcessDataForProcess_ValidOrder_ReturnsData()
     //{
     //    // Arrange 
-    //    var op = new SyncProcessManager<int, DummyClass>();
+    //    var op = new SyncProcessManager<int, DummyClass>(_func);
 
     //    var processId = 98;
 

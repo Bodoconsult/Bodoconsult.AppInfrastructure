@@ -10,7 +10,10 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
     /// <summary>
     /// Default ctor
     /// </summary>
-    public SyncProcessData(TKey processId, int timeout)
+    /// <param name="processId">Current process ID</param>
+    /// <param name="timeout">Timeout in ms</param>
+    /// <param name="factoryMethod">Factory method for result used if timeout is reached</param>
+    public SyncProcessData(TKey processId, int timeout, Func<T> factoryMethod)
     {
         ProcessId = processId;
         TaskCompletionSource = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -31,8 +34,7 @@ public class SyncProcessData<TKey, T> : IDisposable where T: class
                 return;
             }
 
-            //TaskCompletionSource?.SetResult(null);
-
+            TaskCompletionSource?.SetResult(factoryMethod.Invoke());
         });
 
         CancellationTokenSource = cts;

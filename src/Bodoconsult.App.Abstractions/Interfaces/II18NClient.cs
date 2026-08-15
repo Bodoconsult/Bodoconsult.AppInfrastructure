@@ -34,7 +34,7 @@ public interface II18NClient: INotifyPropertyChanged, IDisposable
     /// <summary>
     /// Available languages found by the providers. 
     /// </summary>
-    List<PortableLanguage> Languages { get; }
+    IReadOnlyList<PortableLanguage> Languages { get; }
 
     /// <summary>
     /// Set a logger action
@@ -90,12 +90,12 @@ public interface II18NClient: INotifyPropertyChanged, IDisposable
     /// </summary>
     /// <typeparam name="TEnum">Enum</typeparam>
     /// <returns>List with translated enum values</returns>
-    List<string> TranslateEnumToList<TEnum>();
+    IReadOnlyList<string> TranslateEnumToList<TEnum>();
 
     /// <summary>
     /// Translate an enum to a list of <see cref="Tuple"/>>
     /// </summary>
     /// <typeparam name="TEnum">Enum</typeparam>
     /// <returns>List with translated enum values as<see cref="Tuple"/> instances</returns>
-    List<Tuple<TEnum, string>> TranslateEnumToTupleList<TEnum>();
+    IReadOnlyList<Tuple<TEnum, string>> TranslateEnumToTupleList<TEnum>();
 }

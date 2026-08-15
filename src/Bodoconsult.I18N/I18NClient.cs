@@ -16,7 +16,7 @@ namespace Bodoconsult.I18N;
 public class I18NClient : II18NClient
 {
     private readonly Dictionary<string, string> _translations = new();
-    private readonly List<string> _locales = [];
+    private readonly IList<string> _locales;
     private bool _throwWhenKeyNotFound;
     private Action<string> _logger;
     private string _locale;
@@ -31,7 +31,7 @@ public class I18NClient : II18NClient
     public I18NClient(II18NServer i18NServer)
     {
         I18NServer = i18NServer;
-        _locales = I18NServer.Locales;
+        _locales = I18NServer.Locales.ToList();
     }
 
     // PropertyChanged
@@ -83,12 +83,12 @@ public class I18NClient : II18NClient
     /// <summary>
     /// A list of supported languages
     /// </summary>
-    public List<PortableLanguage> Languages => _locales?.Select(x => new PortableLanguage
+    public IReadOnlyList<PortableLanguage> Languages => _locales?.Select(x => new PortableLanguage
         {
             Locale = x,
             DisplayName = TranslateOrNull(x) ?? new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
         })
-        .ToList();
+        .ToArray();
 
     /// <summary>
     /// Use the indexer to translate keys. If you need string formatting, use <code>Translate()</code> instead
@@ -278,7 +278,7 @@ public class I18NClient : II18NClient
     /// <summary>
     /// Convert Enum Type values to a List of translated strings
     /// </summary>
-    public List<string> TranslateEnumToList<TEnum>()
+    public IReadOnlyList<string> TranslateEnumToList<TEnum>()
     {
         var type = typeof(TEnum);
 
@@ -286,7 +286,7 @@ public class I18NClient : II18NClient
                 select Enum.GetName(type, value)
                 into name
                 select Translate($"{type.Name}.{name}"))
-            .ToList();
+            .ToArray();
     }
 
     /// <summary>
@@ -294,7 +294,7 @@ public class I18NClient : II18NClient
     /// </summary>
     /// <typeparam name="TEnum"></typeparam>
     /// <returns></returns>
-    public List<Tuple<TEnum, string>> TranslateEnumToTupleList<TEnum>()
+    public IReadOnlyList<Tuple<TEnum, string>> TranslateEnumToTupleList<TEnum>()
     {
         var type = typeof(TEnum);
         var list = new List<Tuple<TEnum, string>>();

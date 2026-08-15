@@ -15,7 +15,7 @@ public interface II18NServer : II18NBase, IDisposable
     /// <summary>
     /// Current loaded locales
     /// </summary>
-    List<string> Locales { get; }
+    IReadOnlyList<string> Locales { get; }
 
     /// <summary>
     /// Symbol to show that translation was not found

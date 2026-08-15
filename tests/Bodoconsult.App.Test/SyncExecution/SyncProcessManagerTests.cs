@@ -10,6 +10,7 @@ namespace Bodoconsult.App.Test.SyncExecution;
 internal class GuidSyncProcessManagerTests
 {
     private readonly AppBenchProxy _benchLogger = TestHelper.GetFakeAppBenchProxy();
+    private readonly Func<DummyClass> _func = () => new DummyClass();
 
     [OneTimeTearDown]
     public void Cleanup()
@@ -21,7 +22,7 @@ internal class GuidSyncProcessManagerTests
     public void AddSyncProcess_ValidOrder_ProcessIsAddedToSyncQueue()
     {
         // Arrange 
-        var op = new SyncProcessManager<Guid, DummyClass>();
+        var op = new SyncProcessManager<Guid, DummyClass>(_func);
 
         var processId = Guid.NewGuid();
 
@@ -43,7 +44,7 @@ internal class GuidSyncProcessManagerTests
     public void GetSyncProcessDataForProcess_ValidOrder_ReturnsData()
     {
         // Arrange 
-        var op = new SyncProcessManager<Guid, DummyClass>();
+        var op = new SyncProcessManager<Guid, DummyClass>(_func);
 
         var processId = Guid.NewGuid();
 
@@ -69,7 +70,7 @@ internal class GuidSyncProcessManagerTests
     public void RemoveSyncProces_ValidOrder_ProcessIsRemovedFromSyncQueue()
     {
         // Arrange 
-        var op = new SyncProcessManager<Guid, DummyClass>();
+        var op = new SyncProcessManager<Guid, DummyClass>(_func);
 
         var processId = Guid.NewGuid();
 

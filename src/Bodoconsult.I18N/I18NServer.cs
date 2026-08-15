@@ -30,7 +30,7 @@ public class I18NServer : II18NServer
     /// <summary>
     /// Current loaded locales
     /// </summary>
-    public List<string> Locales => _locales.ToList();
+    public IReadOnlyList<string> Locales => _locales.ToList();
 
     /// <summary>
     /// Set a logger action

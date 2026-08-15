@@ -41,12 +41,12 @@ public abstract class UiMenuBuilderBase : IUiMenuBuilder
     /// <summary>
     /// Readonly list of all menu items. Must contain at least one element without parent menu item
     /// </summary>
-    public List<IUiMenuItem> MenuItems => _menuItems.ToList();
+    public IReadOnlyList<IUiMenuItem> MenuItems => _menuItems.ToArray();
 
     /// <summary>
     /// List of all menu items. Must contain at least one element without parent menu item
     /// </summary>
-    public List<IUiMenuItem> TopLevelMenuItems => MenuItems.Where(x => x.Parent is null).ToList();
+    public IReadOnlyList<IUiMenuItem> TopLevelMenuItems => _menuItems.Where(x => x.Parent is null).ToArray();
 
     /// <summary>
     /// Add a menu item to the menu items if the name is not null or string.Empty. For top-level menu items it is checked if the name is unique for the top-level menu items

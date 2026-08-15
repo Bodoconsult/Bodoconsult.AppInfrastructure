@@ -2334,7 +2334,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         var myObjectType = typeof(T);
 
-        var fieldInfo = myObjectType.GetProperties().ToList();
+        var fieldInfo = myObjectType.GetProperties().ToArray();
 
         // Header
 
@@ -2403,7 +2403,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
                 column++;
             }
         }
-
     }
 
     /// <summary>

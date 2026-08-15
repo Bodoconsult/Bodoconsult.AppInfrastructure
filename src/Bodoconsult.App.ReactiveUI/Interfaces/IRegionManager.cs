@@ -13,12 +13,12 @@ public interface IRegionManager
     /// <summary>
     /// Readonly list of all viewmodel-view-bindings
     /// </summary>
-    List<KeyValuePair<Type, Type>> ViewModelBindings { get; }
+    IReadOnlyList<KeyValuePair<Type, Type>> ViewModelBindings { get; }
 
     /// <summary>
     /// Readonly list of all registered window type definitions
     /// </summary>
-    List<UiWindowDefinition> WindowDefinitions { get; }
+    IReadOnlyList<UiWindowDefinition> WindowDefinitions { get; }
 
     /// <summary>
     /// Current UI regions loaded

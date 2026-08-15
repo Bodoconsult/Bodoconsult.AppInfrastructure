@@ -220,16 +220,24 @@ public class PdfChart
     {
         if (LegendLength > 15) LegendLength = 15;
 
-        var rows = dataTable.EnumerateRows().Where(r => r.ItemArray[columnId].ToString() != "Gesamt").ToList();
+        var rows = dataTable.EnumerateRows().Where(r => r.ItemArray[columnId]?.ToString() != "Gesamt").ToArray();
 
-        _xDimension = rows.Count;
+        _xDimension = rows.Length;
 
         var x = new string[_xDimension];
 
-        for (var index = 0; index < rows.Count; index++)
+        for (var index = 0; index < _xDimension; index++)
         {
             var row = rows[index];
-            x[index] = row[columnId].ToString()[..LegendLength];
+
+            var s = row[columnId].ToString();
+
+            if (string.IsNullOrEmpty(s))
+            {
+                continue;
+            }
+
+            x[index] = s[..LegendLength];
         }
 
         //var query = from mycolumn in dataTable.AsEnumerable()
@@ -242,8 +250,5 @@ public class PdfChart
 
         var xseries = _chart.XValues.AddXSeries();
         xseries.Add(x);
-
-
     }
-
 }

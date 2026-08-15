@@ -10,12 +10,23 @@ namespace Bodoconsult.App.Abstractions.SyncExecution;
 /// </summary>
 public class SyncProcessManager<TKey, T> : ISyncProcessManager<TKey, T> where T : class where TKey : notnull
 {
+    private readonly Func<T> _factoryMethod;
+
     /// <summary>
     /// The current execution list of sync running orders.
     /// Do not access SyncExecutionQueue directly.
     /// Always take a "copy" of the list with i.e. _syncExecutionQueue.Select or _syncExecutionQueue.ToList to avoid multithreading iusses
     /// </summary>
     private readonly ConcurrentDictionary<TKey, SyncProcessData<TKey, T>> _syncExecutionQueue = new();
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="factoryMethod">Factory method for result used if timeout is reached</param>
+    public SyncProcessManager(Func<T> factoryMethod)
+    {
+        _factoryMethod = factoryMethod;
+    }
 
     /// <summary>
     /// Is queue with the sync running orders empty
@@ -27,9 +38,10 @@ public class SyncProcessManager<TKey, T> : ISyncProcessManager<TKey, T> where T 
     /// </summary>
     /// <param name="processId">GUID of the rpocess to run sync</param>
     /// <param name="timeout">Timeout in ms</param>
+    
     public SyncProcessData<TKey, T> AddSyncProcess(TKey processId, int timeout)
     {
-        var syncData = new SyncProcessData<TKey, T>(processId, timeout);
+        var syncData = new SyncProcessData<TKey, T>(processId, timeout, _factoryMethod);
         
         _syncExecutionQueue.TryAdd(processId, syncData);
         return syncData;

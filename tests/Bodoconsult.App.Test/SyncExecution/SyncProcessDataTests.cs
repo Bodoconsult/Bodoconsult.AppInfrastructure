@@ -8,6 +8,8 @@ namespace Bodoconsult.App.Test.SyncExecution;
 [TestFixture]
 internal class SyncProcessDataTests
 {
+    private readonly Func<DummyClass> _func = () => new DummyClass();
+
     [Test]
     public void Ctor_ValidSetup_PropSetCorrectly()
     {
@@ -15,7 +17,7 @@ internal class SyncProcessDataTests
         var processId = Guid.NewGuid();
 
         // Act 
-        var result = new SyncProcessData<Guid, DummyClass>(processId, 1000);
+        var result = new SyncProcessData<Guid, DummyClass>(processId, 1000, _func);
 
         // Assert
         using (Assert.EnterMultipleScope())
@@ -34,13 +36,13 @@ internal class SyncProcessDataTests
         const int timeout = 1000;
         var processId = Guid.NewGuid();
 
-        var spd = new SyncProcessData<Guid, DummyClass>(processId, timeout);
+        var spd = new SyncProcessData<Guid, DummyClass>(processId, timeout,_func);
 
         var sw = new Stopwatch();
         sw.Start();
 
         // Act 
-        spd.CreateWaitingTask().Wait();
+        spd.CreateWaitingTask().GetAwaiter().GetResult();
 
         sw.Stop();
 
@@ -59,13 +61,13 @@ internal class SyncProcessDataTests
         const int timeout = 2000;
         var processId = Guid.NewGuid();
 
-        var spd = new SyncProcessData<Guid, DummyClass>(processId, timeout);
+        var spd = new SyncProcessData<Guid, DummyClass>(processId, timeout, _func);
 
         var sw = new Stopwatch();
         sw.Start();
 
         // Act 
-        spd.CreateWaitingTask().Wait();
+        spd.CreateWaitingTask().GetAwaiter().GetResult();
 
         sw.Stop();
 
@@ -84,13 +86,13 @@ internal class SyncProcessDataTests
         const int timeout = 5000;
         var processId = Guid.NewGuid();
 
-        var spd = new SyncProcessData<Guid, DummyClass>(processId, timeout);
+        var spd = new SyncProcessData<Guid, DummyClass>(processId, timeout, _func);
 
         var sw = new Stopwatch();
         sw.Start();
 
         // Act 
-        spd.CreateWaitingTask().Wait();
+        spd.CreateWaitingTask().GetAwaiter().GetResult();
 
         sw.Stop();
 
