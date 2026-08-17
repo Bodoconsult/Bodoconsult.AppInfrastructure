@@ -16,7 +16,7 @@ public partial class MainWindow : Window
     /// <summary>
     /// View model
     /// </summary>
-    public IMainWindowViewModel MainWindowViewModel { get; private set; }
+    public IMainWindowViewModel? MainWindowViewModel { get; private set; }
 
     /// <summary>
     /// Default ctor
@@ -42,6 +42,7 @@ public partial class MainWindow : Window
 
     private void ResizeWindow()
     {
+        ArgumentNullException.ThrowIfNull(MainWindowViewModel);
         MainWindowViewModel.Width = Width;
         MainWindowViewModel.Height = Header.Height;
     }
@@ -60,6 +61,8 @@ public partial class MainWindow : Window
 
     private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
     {
+        ArgumentNullException.ThrowIfNull(MainWindowViewModel);
+
         // Check if STRG+C is pressed: if no break here else shutdown
         if (e.Key != Key.C && e.KeyModifiers == KeyModifiers.Control)
         {

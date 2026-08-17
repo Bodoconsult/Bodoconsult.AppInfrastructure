@@ -4,7 +4,7 @@
 		<OutputType>Library</OutputType>
 		<Platforms>AnyCPU</Platforms>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>disable</Nullable>
+		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>
 		<AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>

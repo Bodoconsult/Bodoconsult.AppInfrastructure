@@ -55,12 +55,17 @@ public static class UiMessages
     public static string MsgServerProcessId => "App main process ID: ";
 
     /// <summary>
-    /// Handles an exception an returns a string to use in UI
+    /// Handles an exception and returns a string to use in UI
     /// </summary>
     /// <param name="e">Raised exception</param>
     /// <returns>String with information for the raised exception</returns>
-    public static string HandleException(Exception e)
+    public static string HandleException(Exception? e)
     {
+        if (e is null)
+        {
+            return string.Empty;
+        }
+
         // RL: Check for licence exception here too: it may be the inner exception
         var ex = ContainsLicenseMissingException(e);
         if (ex != null)

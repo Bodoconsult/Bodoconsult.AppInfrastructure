@@ -27,26 +27,26 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     private bool _showInTaskbar;
     private WindowState _windowState;
 
-    private DispatcherTimer _dispatcherTimer;
+    private DispatcherTimer? _dispatcherTimer;
 
     private const int MaxNumberOfLogEntries = 100;
 
-    private readonly IAppEventListener _listener;
+    private readonly IAppEventListener? _listener;
 
     private readonly List<string> _logData = [];
 
     private EventLevel _logEventLevel;
     private double _width = 100;
     private double _height = 100;
-    private IAppBuilder _appBuilder;
-    private string _msgConsoleWait;
-    private string _msgHowToShutdownServer;
+    private IAppBuilder? _appBuilder;
+    private string? _msgConsoleWait;
+    private string? _msgHowToShutdownServer;
     private string _msgExit = "Exit the app?";
-    private Bitmap _logo;
+    private Bitmap? _logo;
     private Color _headerBackColor = Colors.Coral;
-    private string _msgServerIsListeningOnPort;
-    private string _msgServerProcessId;
-    private string _appExe;
+    private string? _msgServerIsListeningOnPort;
+    private string? _msgServerProcessId;
+    private string? _appExe;
     private bool _minimizeToTray;
 
     //private readonly SolidColorBrush _brush = new(Colors.LightSteelBlue);
@@ -54,15 +54,15 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     //private readonly Thickness _margin = new(0, 0, 0, 0);
     //private readonly Thickness _padding = new(0, 10, 0, 10);
     private Color _bodyBackColor = Colors.LightGray;
-    private string _showOrHideText;
-    private object _exitText;
+    private string? _showOrHideText;
+    private object? _exitText;
 
     /// <summary>
     /// Ctor providing an <see cref="AppEventListener"/> instance
     /// </summary>
     /// <param name="listener">Current EventSource listener: neede to bring logging entries to UI</param>
     /// <param name="translationService">Translation service</param>
-    public MainWindowViewModel(IAppEventListener listener, II18N translationService)
+    public MainWindowViewModel(IAppEventListener? listener, II18N? translationService)
     {
         TranslationService = translationService;
         _listener = listener;
@@ -76,7 +76,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// II18N instance to use with MVVM / WPF / Xamarin / Avalonia
     /// </summary>
     /// <returns>Translated string</returns>
-    public II18N TranslationService { get; }
+    public II18N? TranslationService { get; }
 
     /// <summary>
     /// Menu text for open menu in system tray bar
@@ -155,7 +155,11 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     public IAppBuilder AppBuilder
     {
-        get => _appBuilder;
+        get
+        {
+            ArgumentNullException.ThrowIfNull(_appBuilder);
+            return _appBuilder;
+        }
         private set => SetProperty(ref _appBuilder, value);
     }
 
@@ -164,7 +168,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     public string MsgConsoleWait
     {
-        get => _msgConsoleWait;
+        get => _msgConsoleWait ?? string.Empty;
         set => SetProperty(ref _msgConsoleWait, value);
     }
 
@@ -173,7 +177,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     public string MsgHowToShutdownServer
     {
-        get => _msgHowToShutdownServer;
+        get => _msgHowToShutdownServer ?? string.Empty;
         set => SetProperty(ref _msgHowToShutdownServer, value);
     }
 
@@ -182,7 +186,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     public string MsgServerIsListeningOnPort
     {
-        get => _msgServerIsListeningOnPort;
+        get => _msgServerIsListeningOnPort ?? string.Empty;
         set => SetProperty(ref _msgServerIsListeningOnPort, value);
     }
 
@@ -191,7 +195,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     public string MsgServerProcessId
     {
-        get => _msgServerProcessId;
+        get => _msgServerProcessId ?? string.Empty;
         set => SetProperty(ref _msgServerProcessId, value);
     }
 
@@ -224,9 +228,9 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// <summary>
     /// Application exe file name
     /// </summary>
-    public string AppExe
+    public string? AppExe
     {
-        get => _appExe;
+        get => _appExe ?? string.Empty;
         //set
         //{
         //    if (value == _appExe)
@@ -261,7 +265,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// <summary>
     /// Current app version
     /// </summary>
-    public string AppVersion
+    public string? AppVersion
     {
         get => AppBuilder.AppGlobals.AppStartParameter.AppVersion;
         set
@@ -293,12 +297,12 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     /// <param name="assembly">Assembly to load the logo from</param>
     /// <param name="ressourcePath">Ressource path</param>
-    public void LoadLogo(Assembly assembly, string ressourcePath)
+    public void LoadLogo(Assembly? assembly, string? ressourcePath)
     {
         //try
         //{
 
-        if (assembly is null)
+        if (assembly is null || string.IsNullOrEmpty(ressourcePath))
         {
             return;
         }
@@ -388,7 +392,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
         {
             var logMsg = GeneralHelper.DequeueFromQueue(_listener.Messages);
 
-            if (_logData.Count > MaxNumberOfLogEntries)
+            if (_logData.Count > MaxNumberOfLogEntries || logMsg is null)
             {
                 continue;
             }
@@ -449,7 +453,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// <summary>
     /// The logo to use for the user interface
     /// </summary>
-    public Bitmap Logo
+    public Bitmap? Logo
     {
         get => _logo;
         private set
@@ -494,7 +498,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     public string ShowOrHideText
     {
-        get => _showOrHideText;
+        get => _showOrHideText ?? string.Empty;
         private set
         {
             if (value == _showOrHideText) return;
@@ -508,7 +512,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     /// </summary>
     public object ExitText
     {
-        get => _exitText;
+        get => _exitText ?? string.Empty;
         private set
         {
             if (Equals(value, _exitText))
@@ -545,9 +549,9 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
         _dispatcherTimer.Start();
     }
 
-    private void dispatcherTimer_Tick(object sender, EventArgs e)
+    private void dispatcherTimer_Tick(object? sender, EventArgs? e)
     {
-        _dispatcherTimer.Stop();
+        _dispatcherTimer?.Stop();
 
         try
         {
@@ -562,6 +566,6 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
         //LogWindow.SelectionStart = LogWindow.Text.Length;
         //LogWindow.SelectionLength = 0;
 
-        _dispatcherTimer.Start();
+        _dispatcherTimer?.Start();
     }
 }

@@ -25,7 +25,7 @@ public class VisualExportData
     /// <summary>
     /// Visual to export as file
     /// </summary>
-    public Visual Visual { get; set; }
+    public Visual? Visual { get; set; }
 
     /// <summary>
     /// Image format for the chart export
@@ -35,7 +35,7 @@ public class VisualExportData
     /// <summary>
     /// path to save the exported chart
     /// </summary>
-    public string Path { get; set; }
+    public string? Path { get; set; }
 
     /// <summary>
     /// Width in pixels of the exported chart. Default: 1024px

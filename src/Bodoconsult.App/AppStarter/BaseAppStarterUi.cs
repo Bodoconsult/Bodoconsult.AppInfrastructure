@@ -118,7 +118,7 @@ public class BaseAppStarterUi : IAppStarterUi
     /// Central handling for exceptions
     /// </summary>
     /// <param name="e"></param>
-    public virtual void HandleException(Exception e)
+    public virtual void HandleException(Exception? e)
     {
         throw new NotSupportedException();
     }

@@ -16,17 +16,17 @@ namespace Bodoconsult.App.Avalonia.AppStarter;
 public class ConsoleAvaloniaAppStarterUi : BaseAppStarterUi
 {
 
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource? _cancellationTokenSource;
 
     /// <summary>
     /// Message shown during console is waiting
     /// </summary>
-    public string MsgConsoleWait { get; set; }
+    public string? MsgConsoleWait { get; set; }
 
     /// <summary>
     /// Message "how to shitdon server app"
     /// </summary>
-    public string MsgHowToShutdownServer { get; set; }
+    public string? MsgHowToShutdownServer { get; set; }
 
     /// <summary>
     /// Default ctor starting the WPF dispatcher
@@ -34,6 +34,8 @@ public class ConsoleAvaloniaAppStarterUi : BaseAppStarterUi
     public ConsoleAvaloniaAppStarterUi(IAppBuilder appStarterProcessHandler) : base(appStarterProcessHandler)
     {
         ConsoleService = OperatingSystem.IsWindows() ? new WinConsoleService() : ConsoleService;
+
+        ArgumentNullException.ThrowIfNull(ConsoleService);
 
         // App is a WPF app, therefore the console is normally hidden.
         // We access the hidden console here and make it visible 
@@ -53,9 +55,11 @@ public class ConsoleAvaloniaAppStarterUi : BaseAppStarterUi
     {
         try
         {
-            var msg = MsgConsoleWait;
+            ArgumentNullException.ThrowIfNull(AppBuilder);
 
-            AppBuilder.AppGlobals.Logger.LogInformation(msg);
+            var msg = MsgConsoleWait ?? string.Empty;
+
+            AppBuilder.AppGlobals.Logger?.LogInformation(msg);
             Debug.Print(msg);
             Debug.Print(MsgHowToShutdownServer);
 
@@ -80,7 +84,7 @@ public class ConsoleAvaloniaAppStarterUi : BaseAppStarterUi
     /// <param name="appTitle">App title to set</param>
     public override void TerminateAppWithMessage(string message, string appTitle)
     {
-        _cancellationTokenSource.Cancel();
+        _cancellationTokenSource?.Cancel();
 
         Debug.Print(message);
         Console.WriteLine(message);
@@ -94,7 +98,7 @@ public class ConsoleAvaloniaAppStarterUi : BaseAppStarterUi
     /// Central handling for exceptions
     /// </summary>
     /// <param name="e"></param>
-    public override void HandleException(Exception e)
+    public override void HandleException(Exception? e)
     {
         if (e is null)
         {

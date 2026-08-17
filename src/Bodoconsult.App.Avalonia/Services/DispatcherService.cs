@@ -18,7 +18,7 @@ public static class DispatcherService
     /// <summary>
     /// Contains the current WPF application
     /// </summary>
-    public static Application CurrentApplication { get; set; }
+    public static Application? CurrentApplication { get; set; }
 
     /// <summary>
     /// Dispose the dispatcher to close the application finally (only needed in NON-WPF-Applications)
@@ -85,9 +85,7 @@ public static class DispatcherService
     /// <summary>
     /// Keeps paths to temporary files to be deleted on shutdown of the application
     /// </summary>
-    public static IList<string> TempFiles { get; set; }
-
-
+    public static IList<string> TempFiles { get; set; } = new List<string>();
 
     /// <summary>
     /// Application.DoEvents for WPF

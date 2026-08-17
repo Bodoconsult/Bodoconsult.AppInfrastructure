@@ -17,9 +17,9 @@ public class ColorToBrushConverter : IValueConverter
     /// <param name="parameter">The converter parameter to use.</param>
     /// <param name="culture">The culture to use in the converter.</param>
     /// <returns>A converted value. If the method returns <see langword="null" />, the valid null value is used.</returns>
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        var brush = value is null ? null : new SolidColorBrush((Color)value);
+        var brush = value is null ? new SolidColorBrush(Colors.Black) : new SolidColorBrush((Color)value);
         return brush;
     }
 
@@ -29,8 +29,13 @@ public class ColorToBrushConverter : IValueConverter
     /// <param name="parameter">The converter parameter to use.</param>
     /// <param name="culture">The culture to use in the converter.</param>
     /// <returns>A converted value. If the method returns <see langword="null" />, the valid null value is used.</returns>
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        return (value as SolidColorBrush)?.Color;
+        if (value is null)
+        {
+            return Colors.Black;
+        }
+
+        return (value as SolidColorBrush)?.Color ?? Colors.Black;
     }
 }

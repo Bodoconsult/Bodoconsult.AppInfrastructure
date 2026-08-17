@@ -23,7 +23,7 @@ public class BaseAvaloniaAppBuilder: BaseAppBuilder
     /// <summary>
     /// The current view model for the form
     /// </summary>
-    public IMainWindowViewModel MainWindowViewModel { get; set; }
+    public IMainWindowViewModel? MainWindowViewModel { get; set; }
 
     /// <summary>
     /// Start the application

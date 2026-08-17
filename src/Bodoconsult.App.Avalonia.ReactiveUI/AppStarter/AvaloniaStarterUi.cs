@@ -189,7 +189,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
     /// Central handling for exceptions
     /// </summary>
     /// <param name="e"></param>
-    public override async void HandleException(Exception e)
+    public override async void HandleException(Exception? e)
     {
         try
         {

@@ -21,7 +21,7 @@ public interface IMainWindowViewModel
     /// II18N instance to use with MVVM / WPF / Xamarin / Avalonia
     /// </summary>
     /// <returns>Translated string</returns>
-    II18N TranslationService { get; }
+    II18N? TranslationService { get; }
 
     /// <summary>
     /// Menu text for open menu in system tray bar
@@ -106,12 +106,12 @@ public interface IMainWindowViewModel
     /// <summary>
     /// Application exe file name
     /// </summary>
-    string AppExe { get; set; }
+    string? AppExe { get; set; }
 
     /// <summary>
     /// Current app version
     /// </summary>
-    string AppVersion { get; set; }
+    string? AppVersion { get; set; }
 
     /// <summary>
     /// Clear text name of the app with version to show in windows and message boxes
@@ -139,7 +139,7 @@ public interface IMainWindowViewModel
     /// </summary>
     /// <param name="assembly">Assembly to load the logo from</param>
     /// <param name="ressourcePath">Ressource path</param>
-    void LoadLogo(Assembly assembly, string ressourcePath);
+    void LoadLogo(Assembly? assembly, string ressourcePath);
 
     /// <summary>
     /// Shutdown for app
@@ -159,7 +159,7 @@ public interface IMainWindowViewModel
     /// <summary>
     /// The logo to use for the user interface
     /// </summary>
-    public Bitmap Logo { get; }
+    public Bitmap? Logo { get; }
 
     /// <summary>
     /// Background color of the header line

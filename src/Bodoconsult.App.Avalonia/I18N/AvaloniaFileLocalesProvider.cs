@@ -21,7 +21,7 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
     {
         if (string.IsNullOrEmpty(resourceFolder))
         {
-            return;
+            ArgumentNullException.ThrowIfNull(resourceFolder);
         }
 
         _resourceFolder = resourceFolder;
@@ -65,16 +65,20 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var path);
 
-        if (!success)
+        if (!success || path is null)
         {
             return translations;
         }
 
         var xaml = File.ReadAllText(path);
 
+        if (string.IsNullOrEmpty(xaml))
+        {
+            return translations;
+        }
+
         var rd = AvaloniaRuntimeXamlLoader.Parse<ResourceDictionary>(xaml);
 
-        
         foreach (var key in rd.Keys)
         {
             //if (key is null)
@@ -95,36 +99,8 @@ public class AvaloniaFileLocalesProvider : BaseResourceProvider
                 continue;
             }
 
-            translations.Add(key1, value.ToString());
+            translations.Add(key1, value.ToString() ?? string.Empty);
         }
-
-
-        //foreach (var key in rd.MergedDictionaries)
-        //{
-
-        //    key.
-
-        //    //key.
-        //    ////if (key is null)
-        //    ////{
-        //    ////    continue;
-        //    ////}
-
-        //    //var key1 = key.ToString();
-        //    //if (string.IsNullOrEmpty(key1))
-        //    //{
-        //    //    continue;
-        //    //}
-
-        //    //var value = rd[key];
-
-        //    //if (value is null)
-        //    //{
-        //    //    continue;
-        //    //}
-
-        //    //translations.Add(key1, value.ToString());
-        //}
 
         return translations;
     }

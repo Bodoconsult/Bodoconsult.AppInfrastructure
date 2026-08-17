@@ -17,9 +17,9 @@ public class PercentageConverter : BaseConverter, IValueConverter
     /// <param name="parameter">The converter parameter to use.</param>
     /// <param name="culture">The culture to use in the converter.</param>
     /// <returns>A converted value. If the method returns <see langword="null" />, the valid null value is used.</returns>
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        var fraction = double.Parse(value.ToString());
+        var fraction = double.Parse(value?.ToString() ?? "0");
         return fraction.ToString("P2");
     }
 
@@ -30,10 +30,10 @@ public class PercentageConverter : BaseConverter, IValueConverter
     /// <param name="parameter">The converter parameter to use.</param>
     /// <param name="culture">The culture to use in the converter.</param>
     /// <returns>A converted value. If the method returns <see langword="null" />, the valid null value is used.</returns>
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         //Trim any trailing percentage symbol that the user MAY have included
-        var valueWithoutPercentage = value.ToString().TrimEnd(' ', '%');
+        var valueWithoutPercentage = value?.ToString()?.TrimEnd(' ', '%') ?? "0";
         return double.Parse(valueWithoutPercentage) / 100;
     }
 }

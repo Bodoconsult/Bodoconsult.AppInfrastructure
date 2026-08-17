@@ -28,5 +28,5 @@ public interface IAppStarter : IDisposable
     /// Handle an exception raised
     /// </summary>
     /// <param name="ex">Exception raised</param>
-    void HandleException(Exception ex);
+    void HandleException(Exception? ex);
 }

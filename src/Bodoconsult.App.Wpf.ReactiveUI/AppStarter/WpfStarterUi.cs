@@ -135,7 +135,7 @@ public class WpfStarterUi : BaseAppStarterUi
     /// Central handling for exceptions
     /// </summary>
     /// <param name="e"></param>
-    public override void HandleException(Exception e)
+    public override void HandleException(Exception? e)
     {
         //if (e is null)
         //{

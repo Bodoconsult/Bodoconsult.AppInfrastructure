@@ -23,7 +23,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
 {
     private readonly AppEventListener _listener;
 
-    private IMainWindowViewModel _viewModel;
+    private IMainWindowViewModel? _viewModel;
 
     /// <summary>
     /// Default ctor
@@ -56,7 +56,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
     /// <summary>
     /// Ctor for using a customized form as main form of the application. The <see cref="IMainWindowViewModel"/> implementation based on <see cref="MainWindowViewModel"/> has to override CreateForm() method
     /// </summary>
-    public AvaloniaStarterUi(IAppBuilder appBuilder, IMainWindowViewModel viewModel) : base(appBuilder)
+    public AvaloniaStarterUi(IAppBuilder appBuilder, IMainWindowViewModel? viewModel) : base(appBuilder)
     {
 
         if (OperatingSystem.IsWindows())
@@ -116,7 +116,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
     /// </summary>
     public override void Wait()
     {
-
+        ArgumentNullException.ThrowIfNull(ConsoleService);
         ConsoleService.ConsoleHandle = ConsoleService.CsGetConsoleWindow();
         ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowShow);
 
@@ -126,7 +126,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
 
         var window = _viewModel.CreateWindow();
 
-        if (Application.Current.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
+        if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
         {
             return;
         }
@@ -170,7 +170,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
                 //MessageBox.Show($"{exception.Message} {exception.StackTrace}", AppBuilder.AppGlobals.AppStartParameter.AppName);
             }
 
-            _viewModel.ShutDown();
+            _viewModel?.ShutDown();
             Environment.Exit(0);
         }
         catch (Exception exception)
@@ -184,7 +184,7 @@ public class AvaloniaStarterUi : BaseAppStarterUi
     /// Central handling for exceptions
     /// </summary>
     /// <param name="e"></param>
-    public override async void HandleException(Exception e)
+    public override async void HandleException(Exception? e)
     {
         try
         {
