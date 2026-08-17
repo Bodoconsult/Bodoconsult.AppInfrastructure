@@ -245,6 +245,7 @@ public class BaseGrpcBusinessTransactionReplyMappingServiceTests
     {
         // Arrange 
         var rms = new BaseGrpcBusinessTransactionReplyMappingService(_logger);
+        var value = string.Empty;
 
         var internalReply = new StringListBusinessTransactionReply
         {
@@ -253,7 +254,7 @@ public class BaseGrpcBusinessTransactionReplyMappingServiceTests
             ExceptionMessage = "ExceptionMessage",
         };
 
-        //internalReply.Content.Add(null);
+        internalReply.Content.Add(value);
 
         // Act  
         var result = rms.MapInternalReplyToGrpc(internalReply);
@@ -268,7 +269,7 @@ public class BaseGrpcBusinessTransactionReplyMappingServiceTests
 
         Assert.That(success, Is.EqualTo(true));
         Assert.That(o.ObjectNames.Count, Is.EqualTo(1));
-        Assert.That(o.ObjectNames[0], Is.EqualTo(string.Empty));
+        Assert.That(o.ObjectNames[0], Is.EqualTo(value));
     }
 
     [Test]

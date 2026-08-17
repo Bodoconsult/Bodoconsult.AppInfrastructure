@@ -86,7 +86,7 @@ public class WindowsFontResolver : IFontResolver
 
         if (!fonts.Any())
         {
-            return new FontResolverInfo("ARIAL");
+            return new FontResolverInfo("Aptos");
         }
 
 
@@ -127,7 +127,7 @@ public class WindowsFontResolver : IFontResolver
 
         key = $"{name}";
         success = InstalledFonts.TryGetValue(key, out _);
-        return success ? new FontResolverInfo(key) : new FontResolverInfo("ARIAL");
+        return success ? new FontResolverInfo(key) : new FontResolverInfo("Aptos");
     }
 
     /// <summary>

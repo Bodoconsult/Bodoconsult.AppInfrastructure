@@ -22,7 +22,7 @@ public static class OpenGraphHelper
     /// </summary>
     public static ImageWriterData Header { get; set; } = new()
     {
-        FontName = "Arial",
+        FontName = "Aptos",
         FontSize = 16,
         X = 20,
         Y = 580,
@@ -37,7 +37,7 @@ public static class OpenGraphHelper
     /// </summary>
     public static ImageWriterData Body { get; set; } = new()
     {
-        FontName = "Arial",
+        FontName = "Aptos",
         FontSize = 10,
         X = 20,
         Y = 660,

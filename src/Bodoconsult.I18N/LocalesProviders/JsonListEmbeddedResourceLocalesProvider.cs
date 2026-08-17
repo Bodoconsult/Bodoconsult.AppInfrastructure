@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text.Json;
 using Bodoconsult.App.Abstractions.Helpers;
 
@@ -33,14 +30,11 @@ public class JsonListEmbeddedResourceLocalesProvider : BaseResourceProvider
         if (!_resourceFolder.EndsWith(".")) _resourceFolder += ".";
     }
 
-
     /// <summary>
     /// Register all available resource items
     /// </summary>
     public override void RegisterLocaleItems()
     {
-
-
         var len = _resourceFolder.Length;
 
         var localeResources = _assembly.GetManifestResourceNames().Where(x => x.StartsWith(_resourceFolder, StringComparison.OrdinalIgnoreCase) &&
@@ -71,17 +65,32 @@ public class JsonListEmbeddedResourceLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success) return translations;
+        if (!success || result is null)
+        {
+            return translations;
+        }
 
         var json = ResourceHelper.GetTextResource(_assembly, result);
 
-        var content = JsonSerializer.Deserialize<List<JsonKvp>>(json)
-            .ToDictionary(x => x.Key.Trim(), x => x.Value.Trim().UnescapeLineBreaks());
+        if (string.IsNullOrEmpty(json))
+        {
+            return translations;
+        }
+
+        var content = JsonSerializer.Deserialize<List<JsonKvp>>(json)?.Where(x=>x.Key is not null)
+            .ToDictionary(x => x.Key!.Trim(), x => x.Value?.Trim().UnescapeLineBreaks() ?? string.Empty);
+
+        if (content is null)
+        {
+            return translations;
+        }
 
         foreach (var kvp in content)
         {
-
-            if (translations.Any(x => x.Key == kvp.Key)) continue;
+            if (translations.Any(x => x.Key == kvp.Key))
+            {
+                continue;
+            }
 
             translations.Add(kvp.Key, kvp.Value);
         }
@@ -95,8 +104,4 @@ public class JsonListEmbeddedResourceLocalesProvider : BaseResourceProvider
     {
         return $"{GetType().Name}({_resourceFolder})";
     }
-
-
-
-
 }

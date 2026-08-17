@@ -63,7 +63,7 @@ public class TypographyBaseTests
     [Test]
     public void ExportImport_Elegant_Successful()
     {
-        var t = new ElegantTypographyPageHeader("Cambria", "Calibri", "Calibri")
+        var t = new ElegantTypographyPageHeader("Cambria", "Aptos", "Aptos")
         {
             MarginLeftFactor = 1,
             MarginRightFactor = 1,
@@ -124,7 +124,7 @@ public class TypographyBaseTests
     [Test]
     public void ExportImport_Compact_Successful()
     {
-        var t = new CompactTypographyPageHeader("Cambria", "Calibri", "Calibri")
+        var t = new CompactTypographyPageHeader("Cambria", "Aptos", "Aptos")
         {
             MarginLeftFactor = 1,
             MarginRightFactor = 1,
@@ -191,7 +191,7 @@ public class TypographyBaseTests
     public void CalculateVerticalLines_CompactTypographyPageHeader_LinesCalculated()
     {
         // Arrange
-        var typo = new CompactTypographyPageHeader("Cambria", "Calibri", "Calibri")
+        var typo = new CompactTypographyPageHeader("Cambria", "Aptos", "Aptos")
         {
             MarginLeftFactor = 1,
             MarginRightFactor = 1,

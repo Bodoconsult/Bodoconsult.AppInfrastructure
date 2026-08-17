@@ -1,10 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text.Json;
 
 namespace Bodoconsult.I18N.LocalesProviders;
@@ -16,9 +12,6 @@ namespace Bodoconsult.I18N.LocalesProviders;
 /// 
 public class JsonListFileLocalesProvider : BaseResourceProvider
 {
-
-    //private readonly Assembly _assembly;
-
     private readonly string _resourceFolder;
 
     /// <summary>
@@ -29,7 +22,7 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
     {
         if (string.IsNullOrEmpty(resourceFolder))
         {
-            return;
+            ArgumentNullException.ThrowIfNull(resourceFolder);
         }
 
         _resourceFolder = resourceFolder;
@@ -40,7 +33,10 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
     /// </summary>
     public override void RegisterLocaleItems()
     {
-        if (string.IsNullOrEmpty(_resourceFolder)) return;
+        if (string.IsNullOrEmpty(_resourceFolder))
+        {
+            return;
+        }
 
         var dir = new DirectoryInfo(_resourceFolder);
 
@@ -53,7 +49,6 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
             LocaleItems.Add(kvp);
         }
     }
-
 
     /// <summary>
     /// Load key value pairs for string translations in a translation dictionary.
@@ -69,15 +64,25 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success)
+        if (!success || result is null)
         {
             return translations;
         }
 
         var json = File.ReadAllText(result);
 
-        var content = JsonSerializer.Deserialize<List<JsonKvp>>(json)
-            .ToDictionary(x => x.Key.Trim(), x => x.Value.Trim().UnescapeLineBreaks());
+        if (string.IsNullOrEmpty( json))
+        {
+            return translations;
+        }
+
+        var content = JsonSerializer.Deserialize<List<JsonKvp>>(json)?.Where(x => x.Key is not null)
+            .ToDictionary(x => x.Key!.Trim(), x => x.Value?.Trim().UnescapeLineBreaks() ?? string.Empty);
+
+        if (content is null)
+        {
+            return translations;
+        }
 
         foreach (var kvp in content)
         {
@@ -92,6 +97,7 @@ public class JsonListFileLocalesProvider : BaseResourceProvider
 
         return translations;
     }
+
     /// <summary>
     /// 
     /// </summary>

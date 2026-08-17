@@ -140,9 +140,9 @@ public class XlsxLateBindingBuilder: IDisposable
     public int FontSize { get; set; } = 9;
 
     /// <summary>
-    /// Font name. Default = Arial
+    /// Font name. Default = Aptos
     /// </summary>
-    public string FontName { get; set; } = "Arial";
+    public string FontName { get; set; } = "Aptos";
 
     /// <summary>
     /// Numberformat for cells. Default: #,##0.00
@@ -803,7 +803,7 @@ public class XlsxLateBindingBuilder: IDisposable
     public void SetToDefault()
     {
         FontSize = 9;
-        FontName = "Arial";
+        FontName = "Aptos";
         NumberFormat = "#,##0.00";
         DateFormat = "m/d/yyyy";
         Border = BorderStyle.None;

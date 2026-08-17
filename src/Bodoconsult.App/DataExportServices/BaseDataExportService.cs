@@ -42,6 +42,11 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     protected readonly Lock IsStartedLock = new();
 
     /// <summary>
+    /// Is the stream flushable
+    /// </summary>
+    protected bool IsFlushable = true;
+
+    /// <summary>
     /// The caching queue to add the data to for writing it to the file
     /// </summary>
     protected readonly CachingProducerConsumerQueue2<ReadOnlyMemory<byte>> CachingQueue = new();
@@ -209,7 +214,10 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
 
         FlushCache();
 
-        _currentFileStream?.Flush(true);
+        if (IsFlushable && _currentFileStream is not null)
+        {
+            _currentFileStream.Flush(true);
+        }
 
         _closeEvent = new AutoResetEvent(false);
         _closeEvent.WaitOne(10000);
@@ -338,7 +346,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
     }
 
 
-    
+
 
     /// <summary>
     /// Converts an object of type T into a ReadOnlyMemory&lt;byte&gt; instance
@@ -413,7 +421,7 @@ public abstract class BaseDataExportService<T> : IDataExportService<T> where T :
         // Debug.Print($"Count: {data.Count}");
         data.Position = 0;
         await data.CopyToAsync(_currentFileStream);
-        
+
 
         _flushCounter++;
         if (_flushCounter == FlushInterval)

@@ -24,12 +24,12 @@ public interface II18NClient: INotifyPropertyChanged, IDisposable
     /// <summary>
     /// Current locale language as <see cref="PortableLanguage"/> instance
     /// </summary>
-    PortableLanguage Language { get; set; }
+    PortableLanguage? Language { get; set; }
 
     /// <summary>
     /// Current locale
     /// </summary>
-    string Locale { get; set; }
+    string? Locale { get; set; }
 
     /// <summary>
     /// Available languages found by the providers. 
@@ -76,7 +76,7 @@ public interface II18NClient: INotifyPropertyChanged, IDisposable
     /// <param name="key">Key to translate</param>
     /// <param name="args">Optinal args</param>
     /// <returns>Translated key as string or null</returns>
-    string TranslateOrNull(string key, params object[] args);
+    string? TranslateOrNull(string key, params object[] args);
 
     /// <summary>
     /// Translate an enum to a dictionary

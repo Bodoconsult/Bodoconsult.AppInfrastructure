@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text.Json;
 using Bodoconsult.App.Abstractions.Helpers;
 
@@ -71,12 +68,27 @@ public class JsonKvpEmbeddedResourceLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success) return translations;
+        if (!success || result is null)
+        {
+            return translations;
+        }
 
         var json = ResourceHelper.GetTextResource(_assembly, result);
 
-        var content = JsonSerializer.Deserialize<Dictionary<string, string>>(json)
+        if (string.IsNullOrEmpty(json))
+        {
+            return translations;
+        }
+
+        ArgumentNullException.ThrowIfNull(json);
+
+        var content = JsonSerializer.Deserialize<Dictionary<string, string>>(json)?
             .ToDictionary(x => x.Key.Trim(), x => x.Value.Trim().UnescapeLineBreaks());
+
+        if (content is null)
+        {
+            return translations;
+        }
 
         foreach (var kvp in content)
         {

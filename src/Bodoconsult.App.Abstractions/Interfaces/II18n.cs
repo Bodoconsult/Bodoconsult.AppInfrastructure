@@ -20,7 +20,7 @@ public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
     /// </summary>
     /// <param name="key">String key to translate</param>
     /// <returns>Translated string</returns>
-    string this[string key] { get; }
+    string? this[string key] { get; }
         
     /// <summary>
     /// Current locale language as <see cref="PortableLanguage"/> instance
@@ -35,7 +35,7 @@ public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
     /// <summary>
     /// Available languages found by the providers. 
     /// </summary>
-    List<PortableLanguage> Languages { get; }
+    IReadOnlyList<PortableLanguage> Languages { get; }
 
     /// <summary>
     /// Set the not-found-symbol
@@ -94,7 +94,7 @@ public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
     /// </summary>
     /// <param name="key">Key to translate</param>
     /// <returns>Translated key as string</returns>
-    string Translate(string key);
+    string? Translate(string key);
 
     /// <summary>
     /// Translate the given key. If key is not existing an empty string is returned
@@ -102,7 +102,7 @@ public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
     /// <param name="key">Key to translate</param>
     /// <param name="args">Optional args</param>
     /// <returns>Translated key as string</returns>
-    string Translate(string key, params object[] args);
+    string? Translate(string key, params object[] args);
 
     /// <summary>
     /// Translate the given key. If key is not existing null is returned
@@ -110,7 +110,7 @@ public interface II18N : II18NBase, INotifyPropertyChanged, IDisposable
     /// <param name="key">Key to translate</param>
     /// <param name="args">Optinal args</param>
     /// <returns>Translated key as string or null</returns>
-    string TranslateOrNull(string key, params object[] args);
+    string? TranslateOrNull(string key, params object[] args);
 
     /// <summary>
     /// Translate an enum to a dictionary

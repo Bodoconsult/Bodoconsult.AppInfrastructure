@@ -387,15 +387,15 @@ public partial class XlsxDocument
         majorFont1.Append(supplementalFont30);
 
         var minorFont1 = new A.MinorFont();
-        var latinFont2 = new A.LatinFont { Typeface = "Calibri" };
+        var latinFont2 = new A.LatinFont { Typeface = "Aptos" };
         var eastAsianFont2 = new A.EastAsianFont { Typeface = string.Empty };
         var complexScriptFont2 = new A.ComplexScriptFont { Typeface = string.Empty };
         var supplementalFont31 = new A.SupplementalFont { Script = "Jpan", Typeface = "ＭＳ Ｐゴシック" };
         var supplementalFont32 = new A.SupplementalFont { Script = "Hang", Typeface = "맑은 고딕" };
         var supplementalFont33 = new A.SupplementalFont { Script = "Hans", Typeface = "宋体" };
         var supplementalFont34 = new A.SupplementalFont { Script = "Hant", Typeface = "新細明體" };
-        var supplementalFont35 = new A.SupplementalFont { Script = "Arab", Typeface = "Arial" };
-        var supplementalFont36 = new A.SupplementalFont { Script = "Hebr", Typeface = "Arial" };
+        var supplementalFont35 = new A.SupplementalFont { Script = "Arab", Typeface = "Aptos" };
+        var supplementalFont36 = new A.SupplementalFont { Script = "Hebr", Typeface = "Aptos" };
         var supplementalFont37 = new A.SupplementalFont { Script = "Thai", Typeface = "Tahoma" };
         var supplementalFont38 = new A.SupplementalFont { Script = "Ethi", Typeface = "Nyala" };
         var supplementalFont39 = new A.SupplementalFont { Script = "Beng", Typeface = "Vrinda" };
@@ -417,7 +417,7 @@ public partial class XlsxDocument
         var supplementalFont55 = new A.SupplementalFont { Script = "Laoo", Typeface = "DokChampa" };
         var supplementalFont56 = new A.SupplementalFont { Script = "Sinh", Typeface = "Iskoola Pota" };
         var supplementalFont57 = new A.SupplementalFont { Script = "Mong", Typeface = "Mongolian Baiti" };
-        var supplementalFont58 = new A.SupplementalFont { Script = "Viet", Typeface = "Arial" };
+        var supplementalFont58 = new A.SupplementalFont { Script = "Viet", Typeface = "Aptos" };
         var supplementalFont59 = new A.SupplementalFont { Script = "Uigh", Typeface = "Microsoft Uighur" };
         var supplementalFont60 = new A.SupplementalFont { Script = "Geor", Typeface = "Sylfaen" };
 

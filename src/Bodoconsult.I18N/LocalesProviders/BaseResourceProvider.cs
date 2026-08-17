@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-using System.Collections.Generic;
 using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.I18N.LocalesProviders;
@@ -15,7 +13,7 @@ public class BaseResourceProvider : ILocalesProvider
     /// <summary>
     /// Current logger action
     /// </summary>
-    public Action<string> Logger { get; private set; }
+    public Action<string>? Logger { get; private set; }
 
     /// <summary>
     /// All available resource items

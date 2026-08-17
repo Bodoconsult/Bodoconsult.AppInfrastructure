@@ -20,7 +20,7 @@ public class Styleset : Block
     /// <summary>
     ///  Default font name
     /// </summary>
-    public static string DefaultFontName { get; set; } = "Calibri";
+    public static string DefaultFontName { get; set; } = "Aptos";
 
     /// <summary>
     ///  Default font name

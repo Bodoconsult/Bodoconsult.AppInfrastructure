@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
@@ -15,15 +14,8 @@ namespace Bodoconsult.I18N.ResourceProviders;
 /// </summary>
 public class ResxEmbeddedResourceProvider : BaseResourceProvider
 {
-
-    // var resourceManager = new ResourceManager("FULLY.QUALIFIED.NAMESPACE.NO.EXTENSION", Assembly.GetExecutingAssembly());
-    // var translatedString = resourceManager.GetString("NAME_OF_THE_STRING_IN_RESX_FILE");
-
-
     private readonly Assembly _assembly;
-
     private readonly string _resourcePath;
-
     private readonly Dictionary<string, ResourceSet> _cultures = new();
 
     /// <summary>
@@ -100,7 +92,7 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
 
             if (!success)
             {
-                // ToDo: 4digits
+                return translations;
             }
         }
 
@@ -113,22 +105,14 @@ public class ResxEmbeddedResourceProvider : BaseResourceProvider
         {
             var key = entry.Key.ToString() ?? "";
             var translation = result.GetString(entry.Key.ToString() ?? "");
+
+            if (translation is null)
+            {
+                continue;
+            }
             translations.Add(key, translation);
         }
 
         return translations;
-
-        //var content = FileHelper.GetTextResource(_assembly, result);
-
-        //var lines = content.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
-
-        //foreach (var line in lines)
-        //{
-        //    var s = line.Split('=');
-
-        //    var p = new KeyValuePair<string, string>(s[0].Trim().ToUpperInvariant(), s[1].Trim());
-
-        //    translations.Add(p);
-        //}
     }
 }

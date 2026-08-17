@@ -14,11 +14,11 @@ public class JsonKvp
     /// Key
     /// </summary>
     [JsonPropertyName("key")]
-    public string Key { get; set; }
+    public string? Key { get; set; }
 
     /// <summary>
     /// Value
     /// </summary>
     [JsonPropertyName("value")]
-    public string Value { get; set; }
+    public string? Value { get; set; }
 }

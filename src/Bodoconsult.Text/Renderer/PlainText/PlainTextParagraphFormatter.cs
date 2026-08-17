@@ -273,64 +273,71 @@ public class PlainTextParagraphFormatter
     /// <returns>Justified line</returns>
     public static string FillLine(string line, int missinglength, int widthInChars)
     {
-        if (line.Length < 0.8 * widthInChars)
+        try
         {
-            return line;
-        }
-
-        var length = line.Length + missinglength;
-
-        var bytes = Encoding.UTF8.GetBytes(line);
-
-        var array = new Memory<byte>(new byte[length]);
-
-        for (var i = 0; i < array.Length; i++)
-        {
-            array.Slice(i, 1).Span[0] = 0x20;
-        }
-
-        var numberOfBlanks = line.SpaceCount();
-
-        var blanksPerUnit = (int)Math.Ceiling(missinglength / (double)numberOfBlanks);
-
-        var pos = length - 1;
-        for (var i = bytes.Length - 1; i >= 0; i--)
-        {
-            var value = bytes[i];
-
-            //Debug.Print($"{i}  {pos} {value}  {missinglength}");
-
-            array.Slice(pos, 1).Span[0] = value;
-
-            // Blank
-            if (value == 0x20)
+            if (line.Length < 0.8 * widthInChars)
             {
-                if (missinglength > 0 && missinglength < blanksPerUnit)
+                return line;
+            }
+
+            var length = line.Length + missinglength;
+
+            var bytes = Encoding.UTF8.GetBytes(line);
+
+            var array = new Memory<byte>(new byte[length]);
+
+            for (var i = 0; i < array.Length; i++)
+            {
+                array.Slice(i, 1).Span[0] = 0x20;
+            }
+
+            var numberOfBlanks = line.SpaceCount();
+
+            var blanksPerUnit = (int)Math.Ceiling(missinglength / (double)numberOfBlanks);
+
+            var pos = length - 1;
+            for (var i = bytes.Length - 1; i >= 0; i--)
+            {
+                var value = bytes[i];
+
+                //Debug.Print($"{i}  {pos} {value}  {missinglength}");
+
+                array.Slice(pos, 1).Span[0] = value;
+
+                // Blank
+                if (value == 0x20)
                 {
-                    missinglength = 0;
+                    if (missinglength > 0 && missinglength < blanksPerUnit)
+                    {
+                        missinglength = 0;
+                    }
+                    else if (missinglength >= blanksPerUnit)
+                    {
+                        missinglength -= blanksPerUnit;
+                        pos -= blanksPerUnit + 1;
+                    }
+                    else
+                    {
+                        pos--;
+                    }
                 }
-                else if (missinglength >= blanksPerUnit)
-                {
-                    missinglength -= blanksPerUnit;
-                    pos -= blanksPerUnit + 1;
-                }
-                else
+                else // Other char
                 {
                     pos--;
                 }
-            }
-            else // Other char
-            {
-                pos--;
+
+                if (pos < 0)
+                {
+                    break;
+                }
             }
 
-            if (pos < 0)
-            {
-                break;
-            }
+            return Encoding.UTF8.GetString(array.ToArray());
         }
-
-        return Encoding.UTF8.GetString(array.ToArray());
+        catch //(Exception e)
+        {
+            return string.Empty;
+        }
     }
 
     private void GetLines()

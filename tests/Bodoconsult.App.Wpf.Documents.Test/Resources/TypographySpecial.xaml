@@ -3,7 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <FontFamily x:Key="PrimaryFontFamily">Times New Roman</FontFamily>
-    <FontFamily x:Key="SecondaryFontFamily">Arial Black</FontFamily>
+    <FontFamily x:Key="SecondaryFontFamily">Aptos Black</FontFamily>
 
     <FontWeight x:Key="NormalFontWeight">Normal</FontWeight>
     <FontWeight x:Key="BoldFontWeight">Bold</FontWeight>

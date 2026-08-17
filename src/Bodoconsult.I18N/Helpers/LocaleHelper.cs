@@ -1,8 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Bodoconsult.I18N.Helpers;
 
 /// <summary>
@@ -16,7 +13,7 @@ public static class LocaleHelper
     /// <param name="resourceItems"></param>
     /// <param name="requestedLanguage"></param>
     /// <returns>Language code if a fitting laguage code is existing else null.</returns>
-    public static string CheckLocale(IDictionary<string, string> resourceItems, string requestedLanguage)
+    public static string? CheckLocale(IDictionary<string, string> resourceItems, string requestedLanguage)
     {
         // Check if language exists
         var success = resourceItems.Keys.Contains(requestedLanguage);
@@ -37,6 +34,8 @@ public static class LocaleHelper
         shortLanguage += "-";
 
         var item = resourceItems.FirstOrDefault(x => x.Key.StartsWith(shortLanguage));
+
+        // ReSharper disable once UsageOfDefaultStructEquality
         return item.Equals(default(KeyValuePair<string, string>)) ? null : item.Key;
     }
 
@@ -46,7 +45,7 @@ public static class LocaleHelper
     /// <param name="localeItems"></param>
     /// <param name="requestedLanguage"></param>
     /// <returns>Language code if a fitting laguage code is existing else null.</returns>
-    public static string CheckLocale(IList<string> localeItems, string requestedLanguage)
+    public static string? CheckLocale(IList<string> localeItems, string requestedLanguage)
     {
         // Check if language exists
         var success = localeItems.Contains(requestedLanguage);

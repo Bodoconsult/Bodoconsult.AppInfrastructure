@@ -1,9 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.I18N;
@@ -14,13 +11,13 @@ namespace Bodoconsult.I18N;
 public class I18NServer : II18NServer
 {
     private readonly List<string> _locales = [];
-    private Action<string> _logger;
+    private Action<string>? _logger;
     private string _notFoundSymbol = "?";
 
     /// <summary>
     /// Fallback locale to use
     /// </summary>
-    public string FallBackLocale { get; set; } 
+    public string FallBackLocale { get; set; } = "en";
 
     /// <summary>
     /// All loaded providers
@@ -218,7 +215,7 @@ public class I18NServer : II18NServer
     /// Get the default locale
     /// </summary>
     /// <returns>Default local as string</returns>
-    public string GetDefaultLocale()
+    public string? GetDefaultLocale()
     {
         var currentCulture = CultureInfo.CurrentCulture;
 
@@ -248,7 +245,7 @@ public class I18NServer : II18NServer
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
     {
-        _locales?.Clear();
+        _locales.Clear();
         Log("Server disposed");
         _logger = null;
     }

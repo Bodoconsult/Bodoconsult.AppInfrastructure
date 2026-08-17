@@ -1,9 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Bodoconsult.App.Abstractions.Helpers;
 
@@ -80,14 +77,22 @@ public class I18NEmbeddedResourceLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success) return translations;
+        if (!success || result is null)
+        {
+            return translations;
+        }
 
         var content = ResourceHelper.GetTextResource(_assembly, result);
 
+        if (content is null)
+        {
+            return translations;
+        }
+
         var lines = content.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
-        string key = null;
-        string value = null;
+        string? key = null;
+        string? value = null;
 
         foreach (var line in lines)
         {
@@ -104,7 +109,9 @@ public class I18NEmbeddedResourceLocalesProvider : BaseResourceProvider
             }
 
             if (isEmpty || isComment)
+            {
                 continue;
+            }
 
             if (isKeyValuePair)
             {
@@ -127,7 +134,9 @@ public class I18NEmbeddedResourceLocalesProvider : BaseResourceProvider
         }
 
         if (key != null && value != null)
+        {
             translations.Add(key, value);
+        }
 
         return translations;
     }

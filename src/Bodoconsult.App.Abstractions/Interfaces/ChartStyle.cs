@@ -136,7 +136,7 @@ public class ChartStyle: ICloneable
     /// <summary>
     /// Font name used for all text labels in a chart except the title
     /// </summary>
-    public string FontName { get; set; } = "Calibri";
+    public string FontName { get; set; } = "Aptos";
 
 
     /// <summary>

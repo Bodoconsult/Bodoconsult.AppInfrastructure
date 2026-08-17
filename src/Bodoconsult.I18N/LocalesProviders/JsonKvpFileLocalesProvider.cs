@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace Bodoconsult.I18N.LocalesProviders;
 
@@ -27,7 +23,7 @@ public class JsonKvpFileLocalesProvider : BaseResourceProvider
     {
         if (string.IsNullOrEmpty(resourceFolder))
         {
-            return;
+            ArgumentNullException.ThrowIfNull(resourceFolder);
         }
 
         _resourceFolder = resourceFolder;
@@ -71,15 +67,25 @@ public class JsonKvpFileLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success)
+        if (!success || result is null)
         {
             return translations;
         }
 
         var json = File.ReadAllText(result);
 
-        var content = JsonSerializer.Deserialize<Dictionary<string, string>>(json)
+        if (string.IsNullOrEmpty(json))
+        {
+            return translations;
+        }
+
+        var content = JsonSerializer.Deserialize<Dictionary<string, string>>(json)?
             .ToDictionary(x => x.Key.Trim(), x => x.Value.Trim().UnescapeLineBreaks());
+
+        if (content is null)
+        {
+            return translations;
+        }
 
         foreach (var kvp in content)
         {

@@ -109,7 +109,7 @@ public class FlowDocumentServiceTests
         typoService.LoadCompactDefaults();
         typoService.Typography.FontName = "Times New Roman";
         typoService.Typography.HeadingFontName = "Times New Roman";
-        typoService.Typography.TitleFontName = "Arial Black";
+        typoService.Typography.TitleFontName = "Aptos Black";
 
         // Act
         var fds = GetFlowDocumentServiceWithCompactTypography(typoService);
@@ -274,7 +274,7 @@ public class FlowDocumentServiceTests
     private FlowDocumentService GetFlowDocumentServiceWithTypography()
     {
 
-        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Arial Black");
+        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Aptos Black");
 
         var typoService = new TypographySettingsService(typo)
         {
@@ -299,7 +299,7 @@ public class FlowDocumentServiceTests
         TypographySettingsService typoService)
     {
 
-        var typo = new CompactTypographyPageHeader("Times New Roman", "Times New Roman", "Arial Black");
+        var typo = new CompactTypographyPageHeader("Times New Roman", "Times New Roman", "Aptos Black");
 
         typoService.LoadTypography(typo);
         typoService.MaxImageHeight = 300;
@@ -383,7 +383,7 @@ public class FlowDocumentServiceTests
         // Act
 
         // Define a typography
-        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Arial Black");
+        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Aptos Black");
             
         // Get the typo service needed
         var typoService = new TypographySettingsService(typo)

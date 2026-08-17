@@ -610,7 +610,7 @@ internal class DocxBuilderTests
         var style = new DemoStyle
         {
             TypoFontColor = TypoColors.Cyan,
-            FontName = "Arial Black",
+            FontName = "Aptos Black",
             FontSize = 20,
             Bold = true,
             Italic = true,
@@ -990,7 +990,7 @@ internal class DocxBuilderTests
         var style = new DemoStyle
         {
             TypoFontColor = TypoColors.Cyan,
-            FontName = "Arial Black",
+            FontName = "Aptos Black",
             FontSize = 20,
             Bold = true,
             Italic = true,

@@ -247,12 +247,12 @@ public class PdfBuilderTests
         var width = ps.PageWidth.Point - ps.TopMargin.Point - ps.BottomMargin.Point;
 
         var style = styleSet.Normal;
-        style.Font.Name = "Arial Narrow";
+        style.Font.Name = "Aptos Narrow";
         style.Font.Size = 9;
 
         // Spezielles Format für Tabellenbasis (nicht ändern!)
         style = styleSet.NormalTable;
-        style.Font.Name = "Arial Narrow";
+        style.Font.Name = "Aptos Narrow";
         style.Font.Size = 8;
         style.ParagraphFormat.SpaceBefore = 0;
         style.ParagraphFormat.SpaceAfter = 0;
@@ -260,7 +260,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Heading1;
-        style.Font.Name = "Arial Black";
+        style.Font.Name = "Aptos Black";
         style.Font.Size = 12;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.PageBreakBefore = true;
@@ -271,7 +271,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Title;
-        style.Font.Name = "Arial Black";
+        style.Font.Name = "Aptos Black";
         style.Font.Size = 16;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 9;
@@ -279,7 +279,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.NoHeading1;
-        style.Font.Name = "Arial Black";
+        style.Font.Name = "Aptos Black";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 2;
@@ -291,7 +291,7 @@ public class PdfBuilderTests
 
 
         style = styleSet.ChartTitle;
-        style.Font.Name = "Arial Narrow";
+        style.Font.Name = "Aptos Narrow";
         style.Font.Size = 10;
         style.Font.Bold = true;
         style.Font.Color = Colors.Black;
@@ -300,12 +300,12 @@ public class PdfBuilderTests
         style.ParagraphFormat.SpaceAfter = 3;
 
         style = styleSet.ChartYLabel;
-        style.Font.Name = "Arial Narrow";
+        style.Font.Name = "Aptos Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
 
         style = styleSet.Toc1;
-        style.Font.Name = "Arial";
+        style.Font.Name = "Aptos";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceBefore = 3;
@@ -319,7 +319,7 @@ public class PdfBuilderTests
 
 
         style = styleSet.TocHeading;
-        style.Font.Name = "Arial Black";
+        style.Font.Name = "Aptos Black";
         style.Font.Size = 12;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 3;
@@ -328,7 +328,7 @@ public class PdfBuilderTests
 
         // Kopfzeile
         style = styleSet.Header;
-        style.Font.Name = "Arial Narrow";
+        style.Font.Name = "Aptos Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.Alignment = ParagraphAlignment.Right;
@@ -339,7 +339,7 @@ public class PdfBuilderTests
 
 
         style = styleSet.Details;
-        style.Font.Name = "Arial Narrow";
+        style.Font.Name = "Aptos Narrow";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 6;
@@ -349,7 +349,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Footer;
-        style.Font.Name = "Arial Narrow";
+        style.Font.Name = "Aptos Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.Alignment = ParagraphAlignment.Left;

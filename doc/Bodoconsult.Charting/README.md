@@ -113,7 +113,7 @@ public static class GlobalValues
     /// <returns></returns>
     public static ITypography DefaultTypography()
     {
-        var typography = new ElegantTypographyPageHeader("Calibri", "Calibri", "Calibri")
+        var typography = new ElegantTypographyPageHeader("Aptos", "Aptos", "Aptos")
         {
             ChartStyle =
             {

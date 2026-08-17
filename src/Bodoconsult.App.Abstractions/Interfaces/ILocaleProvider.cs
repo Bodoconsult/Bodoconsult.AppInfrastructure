@@ -10,7 +10,7 @@ public interface ILocalesProvider
     /// <summary>
     /// Current logger action
     /// </summary>
-    Action<string> Logger { get; }
+    Action<string>? Logger { get; }
 
     /// <summary>
     /// Set a logger action to enable logging

@@ -1,11 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 namespace Bodoconsult.I18N.LocalesProviders;
 
 /// <summary>
@@ -16,9 +11,6 @@ namespace Bodoconsult.I18N.LocalesProviders;
 /// 
 public class I18NFileLocalesProvider : BaseResourceProvider
 {
-
-    //private readonly Assembly _assembly;
-
     private readonly string _resourceFolder;
 
 
@@ -30,7 +22,7 @@ public class I18NFileLocalesProvider : BaseResourceProvider
     {
         if (string.IsNullOrEmpty(resourceFolder))
         {
-            return;
+            ArgumentNullException.ThrowIfNull(resourceFolder);
         }
 
         _resourceFolder = resourceFolder;
@@ -43,7 +35,10 @@ public class I18NFileLocalesProvider : BaseResourceProvider
     public override void RegisterLocaleItems()
     {
 
-        if (string.IsNullOrEmpty(_resourceFolder)) return;
+        if (string.IsNullOrEmpty(_resourceFolder))
+        {
+            return;
+        }
 
         var dir = new DirectoryInfo(_resourceFolder);
 
@@ -71,14 +66,17 @@ public class I18NFileLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success) return translations;
+        if (!success || result is null)
+        {
+            return translations;
+        }
 
         var content = File.ReadAllText(result);
 
         var lines = content.Split('\r', '\n');
 
-        string key = null;
-        string value = null;
+        string? key = null;
+        string? value = null;
 
         foreach (var line in lines)
         {
@@ -95,7 +93,9 @@ public class I18NFileLocalesProvider : BaseResourceProvider
             }
 
             if (isEmpty || isComment)
+            {
                 continue;
+            }
 
             if (isKeyValuePair)
             {
@@ -118,7 +118,9 @@ public class I18NFileLocalesProvider : BaseResourceProvider
         }
 
         if (key != null && value != null)
+        {
             translations.Add(key, value);
+        }
 
         return translations;
     }

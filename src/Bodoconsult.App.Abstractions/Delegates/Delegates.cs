@@ -48,7 +48,7 @@ public delegate string ReadStringDelegate(string message);
 /// </summary>
 /// <param name="key">The key of the string to translate</param>
 /// <returns>Translated string</returns>
-public delegate string TranslateDelegate(string key);
+public delegate string? TranslateDelegate(string key);
 
 /// <summary>
 /// Translate a string given by a key value
@@ -56,4 +56,4 @@ public delegate string TranslateDelegate(string key);
 /// <param name="key">The key of the string to translate</param>
 /// <param name="args">Optional args</param>
 /// <returns>Translated string</returns>
-public delegate string TranslateWithParamsDelegate(string key, params object[] args);
+public delegate string? TranslateWithParamsDelegate(string key, params object[] args);

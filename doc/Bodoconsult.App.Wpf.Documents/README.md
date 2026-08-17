@@ -40,7 +40,7 @@ public void SaveAsPdf_Demo_FileIsCreated()
     // Act
 
     // Define a typography
-    var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Arial Black");
+    var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Aptos Black");
     
     // Get the typo service needed
     var typoService = new TypographySettingsService(typo)
@@ -127,7 +127,7 @@ public void TestReportBase_Demo_FileCreated()
     var fileName = Path.Combine(_tempPath, "TestReportBase_Demo.pdf");
 
     // Define a typography
-    var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Arial Black");
+    var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Aptos Black");
 
     // Get the typo service needed
     var typoService = new TypographySettingsService(typo)

@@ -1,11 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 namespace Bodoconsult.I18N.LocalesProviders;
 
 /// <summary>
@@ -21,7 +16,7 @@ public class CsvFileLocalesProvider : BaseResourceProvider
 
     //private readonly Assembly _assembly;
 
-    private readonly string _resourceFolder;
+    private readonly string? _resourceFolder;
 
     /// <summary>
     /// Default ctor
@@ -31,7 +26,7 @@ public class CsvFileLocalesProvider : BaseResourceProvider
     {
         if (string.IsNullOrEmpty(resourceFolder))
         {
-            return;
+            ArgumentNullException.ThrowIfNull(resourceFolder);
         }
 
         _resourceFolder = resourceFolder;
@@ -75,7 +70,7 @@ public class CsvFileLocalesProvider : BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language, out var result);
 
-        if (!success)
+        if (!success || result is null)
         {
             return translations;
         }
@@ -84,8 +79,8 @@ public class CsvFileLocalesProvider : BaseResourceProvider
 
         var lines = content.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
-        string key = null;
-        string value = null;
+        string? key = null;
+        string? value = null;
 
         foreach (var line in lines)
         {

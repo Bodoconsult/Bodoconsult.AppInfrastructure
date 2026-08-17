@@ -3,7 +3,7 @@
 	<Styleset Name="Default">
 		<DocumentStyle PaperFormatName="DIN A4" PageWidth="21" PageHeight="29,4" MarginLeft="3" MarginTop="2" MarginRight="2" MarginBottom="2" Name="Document" />
 		<SectionStyle PageWidth="NaN" PageHeight="NaN" MarginLeft="NaN" MarginTop="NaN" MarginRight="NaN" MarginBottom="NaN" Name="Section" />
-		<ParagraphStyle FontName="Calibri" FontSize="12" Bold="False" Italic="False" TextAlignment="Right" Name="Paragraph" />
+		<ParagraphStyle FontName="Aptos" FontSize="12" Bold="False" Italic="False" TextAlignment="Right" Name="Paragraph" />
 	</Styleset>
 	<DocumentMetaData Authors="Robert Leisner" Company="Bodoconsult GmbH" CompanyWebsite="http://www.bodoconsult.de" TocHeading="Table of content" TofHeading="Table of figures" ToeHeading="Table of equations" PageName="Page" IsTocRequired="False" IsFiguresTableRequired="False" IsEquationsTableRequired="False" />
 	<Section IncludeInToc="False" PageBreakBefore="False" Name="Body">

@@ -24,6 +24,8 @@ public class XmlDataExportService<T> : BaseDataExportService<T> where T : class
     /// </summary>
     public XmlDataExportService()
     {
+        IsFlushable = false;
+
         _settings = new()
         {
             OmitXmlDeclaration = true,

@@ -1737,7 +1737,10 @@ public class FlowDocumentService
 
                     //if (PageFooter != null) definition.Header += PageHeader;
 
-                    rsm.SaveAsXaml(new HeaderFooterPaginator(Document, TypographySettingsService, Dispatcher, PageNumberFormatEnum.Decimal));
+                    var pn = new HeaderFooterPaginator(Document, TypographySettingsService, Dispatcher,
+                        PageNumberFormatEnum.Decimal);
+
+                    rsm.SaveAsXaml(pn);
 
                     //rsm.SaveAsXaml(((IDocumentPaginatorSource) Document).DocumentPaginator);
                     rsm.Commit();

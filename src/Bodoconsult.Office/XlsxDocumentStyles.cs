@@ -398,7 +398,7 @@ public partial class XlsxDocument
         var font = new Font();
         var fontSize1 = new FontSize { Val = 11D };
         var color1 = new Color { Theme = 1U };
-        var fontName1 = new FontName { Val = "Calibri" };
+        var fontName1 = new FontName { Val = "Aptos" };
         var fontFamilyNumbering1 = new FontFamilyNumbering { Val = 2 };
         var fontScheme1 = new FontScheme { Val = FontSchemeValues.Minor };
 
@@ -422,7 +422,7 @@ public partial class XlsxDocument
         var font = new Font();
         var fontSize1 = new FontSize { Val = 15D };
         var color1 = new Color { Theme = 1U };
-        var fontName1 = new FontName { Val = "Calibri" };
+        var fontName1 = new FontName { Val = "Aptos" };
         var fontFamilyNumbering1 = new FontFamilyNumbering { Val = 2 };
         var fontScheme1 = new FontScheme { Val = FontSchemeValues.Minor };
         var bold1 = new Bold();
@@ -447,7 +447,7 @@ public partial class XlsxDocument
         var font = new Font();
         var fontSize1 = new FontSize { Val = 11D };
         var color1 = new Color { Theme = 1U };
-        var fontName1 = new FontName { Val = "Calibri" };
+        var fontName1 = new FontName { Val = "Aptos" };
         var fontFamilyNumbering1 = new FontFamilyNumbering { Val = 2 };
         var fontScheme1 = new FontScheme { Val = FontSchemeValues.Minor };
         var bold1 = new Bold();
@@ -472,7 +472,7 @@ public partial class XlsxDocument
         var font = new Font();
         var fontSize1 = new FontSize { Val = 13D };
         var color1 = new Color { Theme = 1U };
-        var fontName1 = new FontName { Val = "Calibri" };
+        var fontName1 = new FontName { Val = "Aptos" };
         var fontFamilyNumbering1 = new FontFamilyNumbering { Val = 2 };
         var fontScheme1 = new FontScheme { Val = FontSchemeValues.Minor };
         var bold1 = new Bold();

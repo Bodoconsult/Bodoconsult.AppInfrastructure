@@ -29,9 +29,9 @@
 //            ImageTemplate = "<Figure CanDelayPlacement=\"false\" HorizontalAnchor=\"ColumnCenter\"><BlockUIContainer><Image Source=\"{0}\" MaxHeight=\"{2}\" MaxWidth=\"{3}\"/></BlockUIContainer>{1}</Figure>";
 //            CurrentLanguage = "de";
 
-//            HeaderFontName = "Calibri";
+//            HeaderFontName = "Aptos";
 //            HeaderFontSize = 10.0;
-//            FooterFontName = "Calibri";
+//            FooterFontName = "Aptos";
 //            FooterFontSize = 10.0;
 //            LogoWidth = 113;
 //        }

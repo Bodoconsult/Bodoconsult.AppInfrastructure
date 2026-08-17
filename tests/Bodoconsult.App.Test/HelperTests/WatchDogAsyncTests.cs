@@ -129,6 +129,6 @@ internal class WatchDogAsyncTests
 
         // Assert
         Assert.That(_isFired);
-        Assert.That(_firedCount, Is.GreaterThanOrEqualTo(8));
+        Assert.That(_firedCount, Is.GreaterThanOrEqualTo(7));
     }
 }

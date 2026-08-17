@@ -1,11 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.Helpers;
 
@@ -28,7 +25,7 @@ public class I18N : II18N
     public static bool IsDummyRequested { get; set; }
 
     // Thread-safe implementation of singleton pattern
-    private static Lazy<II18N> _instance;
+    private static Lazy<II18N>? _instance;
 
     /// <summary>
     /// Reset the static instance <see cref="Current"/>
@@ -72,8 +69,8 @@ public class I18N : II18N
     private readonly List<string> _locales = [];
     private bool _throwWhenKeyNotFound;
     private string _notFoundSymbol = "?";
-    private string _fallbackLocale;
-    private Action<string> _logger;
+    private string _fallbackLocale = "en";
+    private Action<string>? _logger;
 
     private void NotifyPropertyChanged(string info) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
@@ -86,7 +83,7 @@ public class I18N : II18N
 
     // PropertyChanged
     /// <summary>Occurs when a property value changes.</summary>
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
 
     /// <summary>
@@ -97,12 +94,12 @@ public class I18N : II18N
     /// <summary>
     /// The current loaded Language, if any
     /// </summary>
-    public PortableLanguage Language
+    public PortableLanguage? Language
     {
         get => Languages.FirstOrDefault(x => x.Locale.Equals(Locale));
         set
         {
-            if (Language == null || value == null)
+            if (Language is null || value is null)
             {
                 return;
             }
@@ -120,12 +117,12 @@ public class I18N : II18N
         }
     }
 
-    private string _locale;
+    private string? _locale;
 
     /// <summary>
     /// The current loaded locale name (can be two letter ISO-code or a culture name like "es-ES")
     /// </summary>
-    public string Locale
+    public string? Locale
     {
         get => _locale;
         set
@@ -135,6 +132,8 @@ public class I18N : II18N
                 Log($"{value} is the current locale. No actions will be taken");
                 return;
             }
+
+            ArgumentNullException.ThrowIfNull(value);
 
             LoadLocale(value);
 
@@ -146,16 +145,27 @@ public class I18N : II18N
     /// <summary>
     /// A list of supported languages
     /// </summary>
-    public List<PortableLanguage> Languages
+    public IReadOnlyList<PortableLanguage> Languages
     {
         get
         {
-            return _locales.Select(x => new PortableLanguage
-                {
-                    Locale = x,
-                    DisplayName = TranslateOrNull(x) //?? new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
-                })
-                .ToList();
+            if (_locales.Count==0)
+            {
+                return [];
+            }
+
+            var locales = _locales.Select(x => new PortableLanguage
+            {
+                Locale = x,
+                DisplayName = new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
+            }).ToArray();
+            return locales;
+            //return _locales.Select(x => new PortableLanguage
+            //    {
+            //        Locale = x,
+            //        DisplayName = TranslateOrNull(x) //?? new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
+            //    })
+            //    .ToList();
         }
     }
 
@@ -211,7 +221,7 @@ public class I18N : II18N
     public void Reset()
     {
         _locales.Clear();
-        _translations?.Clear();
+        _translations.Clear();
         Providers.Clear();
     }
 
@@ -361,7 +371,7 @@ public class I18N : II18N
 
     private void LoadLocale(string locale)
     {
-        locale = LocaleHelper.CheckLocale(_locales, locale);
+        locale = LocaleHelper.CheckLocale(_locales, locale) ?? "en";
 
         if (!_locales.Contains(locale))
         {
@@ -414,7 +424,6 @@ public class I18N : II18N
 
         // Update bindings to indexer (useful for MVVM)
         NotifyPropertyChanged("Item[]");
-
     }
 
 
@@ -470,7 +479,7 @@ public class I18N : II18N
     /// Get a translation from a key, formatting the string with the given params, if any. 
     /// It will return null when the translation is not found
     /// </summary>
-    public string TranslateOrNull(string key, params object[] args)
+    public string? TranslateOrNull(string key, params object[] args)
     {
         var success = _translations.TryGetValue(key, out var result);
 
@@ -479,13 +488,13 @@ public class I18N : II18N
             return args.Length == 0 ? result : string.Format(_translations[key], args);
         }
 
-        return string.Empty;
+        return null;
     }
 
     /// <summary>
     /// Convert Enum Type values to a Dictionary&lt;TEnum, string&gt; where the key is the Enum value and the string is the translated value.
     /// </summary>
-    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>()
+    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>() where TEnum : notnull 
     {
         var type = typeof(TEnum);
         var dic = new Dictionary<TEnum, string>();
@@ -600,8 +609,8 @@ public class I18N : II18N
             PropertyChanged = null;
         }
 
-        _translations?.Clear();
-        _locales?.Clear();
+        _translations.Clear();
+        _locales.Clear();
         _locale = null;
 
         _instance = null;

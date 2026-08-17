@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using Bodoconsult.App.Abstractions.Interfaces;
 
@@ -16,7 +14,7 @@ public class I18NMock : II18N
     #region Singleton factory
 
     // Thread-safe implementation of singleton pattern
-    private static Lazy<I18NMock> _instance;
+    private static Lazy<I18NMock>? _instance;
 
     /// <summary>
     /// Get a singleton instance of I18N
@@ -47,11 +45,11 @@ public class I18NMock : II18N
     private I18NMock()
     { }
 
-    private void NotifyPropertyChanged(string info) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
+    //private void NotifyPropertyChanged(string info) =>
+    //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
 
     /// <summary>Occurs when a property value changes.</summary>
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose() { }
@@ -66,17 +64,17 @@ public class I18NMock : II18N
     /// <summary>
     /// Current locale language as <see cref="PortableLanguage"/> instance
     /// </summary>
-    public PortableLanguage Language { get; set; }
+    public PortableLanguage? Language { get; set; }
 
     /// <summary>
     /// Current locale
     /// </summary>
-    public string Locale { get; set; }
+    public string? Locale { get; set; }
 
     /// <summary>
     /// Available languages found by the providers. 
     /// </summary>
-    public List<PortableLanguage> Languages { get; set; }
+    public IReadOnlyList<PortableLanguage> Languages { get; set; } = [];
 
     /// <summary>
     /// Set the not-found-symbol
@@ -183,7 +181,7 @@ public class I18NMock : II18N
     /// </summary>
     /// <typeparam name="TEnum">Enum</typeparam>
     /// <returns>Dictionary with translated enum values</returns>
-    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>() => throw new NotImplementedException();
+    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>() where TEnum : notnull => throw new NotImplementedException();
 
     /// <summary>
     /// Translate an enum to a list

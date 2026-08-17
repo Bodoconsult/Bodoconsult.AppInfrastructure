@@ -17,13 +17,13 @@ internal class CultureTests : BaseTests
         var provider = new I18NEmbeddedResourceLocalesProvider(TestHelper.CurrentAssembly,
             "Bodoconsult.I18N.Test.Samples.Locales");
 
-
         I18N.Current.AddProvider(provider);
 
         var languages = I18N.Current.Languages;
         var language = languages.FirstOrDefault(x => x.Locale.Equals(locale));
 
-        Assert.That( language?.DisplayName, Is.EqualTo(displayName));
+        Assert.That(language, Is.Not.Null);
+        Assert.That( language.DisplayName, Is.EqualTo(displayName));
     }
 
     //[TestCase("es-MX")]

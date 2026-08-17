@@ -134,7 +134,7 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
             //sb.Append($@"{{\sp{{\sn gtextSize}}{{\sv 9437184}} }}");
             sb.Append($@"{{\sp{{\sn gtextSize}}{{\sv {MeasurementHelper.GetTwipsFromPt(wStyle.FontSize)}}}}}");
             sb.Append($@"{{\sp{{\sn gtextFont}}{{\sv {wStyle.FontName}}}}}");
-            //sb.Append($@"{{\sp{{\sn gtextFont}}{{\sv Calibri}} }");
+            //sb.Append($@"{{\sp{{\sn gtextFont}}{{\sv Aptos}} }");
             sb.Append(@"{\sp{\sn gtextFReverseRows}{\sv 0}}");
             sb.Append(@"{\sp{\sn fGtext}{\sv 1}}");
             sb.Append(@"{\sp{\sn gtextFNormalize}{\sv 0}}");

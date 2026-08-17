@@ -113,9 +113,9 @@ public class DocxBuilder : IDisposable
     public SectionProperties CurrentSection { get; private set; }
 
     /// <summary>
-    /// The style to use for the watermark. Default: font-family:\"Calibri\";font-size:medium
+    /// The style to use for the watermark. Default: font-family:\"Aptos\";font-size:medium
     /// </summary>
-    public string WatermarkStyle { get; set; } = "font-family:\"Calibri\";font-size:medium";
+    public string WatermarkStyle { get; set; } = "font-family:\"Aptos\";font-size:medium";
 
     /// <summary>
     /// Fill color for a watermark. Default: TypoColors.LightGray

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
 using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.I18N.DependencyInjection;

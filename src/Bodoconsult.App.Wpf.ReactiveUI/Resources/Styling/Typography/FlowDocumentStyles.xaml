@@ -3,7 +3,7 @@
                                xmlns:models="clr-namespace:Bodoconsult.App.Wpf.Models;assembly=Bodoconsult.App.Wpf">
 
     <Style x:Key="Standard">
-        <Setter Property="TextBlock.FontFamily" Value="Arial" />
+        <Setter Property="TextBlock.FontFamily" Value="Aptos" />
         <Setter Property="TextBlock.FontSize" Value="11" />
         <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
     </Style>
@@ -19,7 +19,7 @@
 
 
     <Style x:Key="Headline1" BasedOn="{StaticResource Standard}">
-        <Setter Property="TextBlock.FontFamily" Value="Arial Black" />
+        <Setter Property="TextBlock.FontFamily" Value="Aptos Black" />
         <Setter Property="TextBlock.FontWeight" Value="Bold" />
         <Setter Property="TextBlock.FontSize" Value="16" />
         <Setter Property="TextBlock.Margin" Value="10" />
@@ -27,7 +27,7 @@
     </Style>
 
     <Style x:Key="Headline2" BasedOn="{StaticResource Standard}">
-        <Setter Property="TextBlock.FontFamily" Value="Arial Black" />
+        <Setter Property="TextBlock.FontFamily" Value="Aptos Black" />
         <Setter Property="TextBlock.FontWeight" Value="Bold" />
         <Setter Property="TextBlock.FontSize" Value="14" />
         <Setter Property="TextBlock.Margin" Value="0 15 0 5" />
@@ -35,7 +35,7 @@
     </Style>
 
     <Style x:Key="Headline3" BasedOn="{StaticResource Standard}">
-        <Setter Property="TextBlock.FontFamily" Value="Arial Black" />
+        <Setter Property="TextBlock.FontFamily" Value="Aptos Black" />
         <Setter Property="TextBlock.FontWeight" Value="Bold" />
         <Setter Property="TextBlock.FontSize" Value="16" />
         <Setter Property="TextBlock.Margin" Value="0 10 0 5" />
@@ -44,7 +44,7 @@
 
 
     <Style x:Key="Headline4" BasedOn="{StaticResource Standard}">
-        <Setter Property="TextBlock.FontFamily" Value="Arial Black" />
+        <Setter Property="TextBlock.FontFamily" Value="Aptos Black" />
         <Setter Property="TextBlock.FontWeight" Value="Bold" />
         <Setter Property="TextBlock.FontSize" Value="16" />
         <Setter Property="TextBlock.Margin" Value="0 5 0 3" />

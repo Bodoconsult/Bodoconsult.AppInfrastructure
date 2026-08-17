@@ -62,8 +62,8 @@ public class DummyI18N : II18N
     /// <summary>
     /// Available languages found by the providers. 
     /// </summary>
-    public List<PortableLanguage> Languages { get; } = [];
-
+    public IReadOnlyList<PortableLanguage> Languages { get; } = [];
+    
     /// <summary>
     /// Set the not-found-symbol
     /// </summary>

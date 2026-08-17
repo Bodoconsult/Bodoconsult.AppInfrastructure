@@ -127,7 +127,7 @@ public abstract class BasePageSettingsService : IPageSettingsService
     /// <summary>
     /// Font name to use for header
     /// </summary>
-    public string HeaderFontName { get; set; } = "Arial";
+    public string HeaderFontName { get; set; } = "Aptos";
 
     /// <summary>
     /// Header font size
@@ -137,7 +137,7 @@ public abstract class BasePageSettingsService : IPageSettingsService
     /// <summary>
     /// Font name to use for footer
     /// </summary>
-    public string FooterFontName { get; set; } = "Arial";
+    public string FooterFontName { get; set; } = "Aptos";
 
     /// <summary>
     /// Footer font size

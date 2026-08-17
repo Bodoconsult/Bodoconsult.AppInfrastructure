@@ -224,7 +224,7 @@ public class ReportBaseTests
     {
         //Arrange
 
-        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Arial Black");
+        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Aptos Black");
 
         var typoService = new TypographySettingsService(typo)
         {
@@ -284,7 +284,7 @@ public class ReportBaseTests
         var fileName = Path.Combine(_tempPath, "TestReportBase_Demo.pdf");
 
         // Define a typography
-        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Arial Black");
+        var typo = new ElegantTypographyPageHeader("Times New Roman", "Times New Roman", "Aptos Black");
 
         // Get the typo service needed
         var typoService = new TypographySettingsService(typo)

@@ -10,11 +10,11 @@ namespace Bodoconsult.App.Abstractions.Typography;
 public class CompactTypographyPageHeader : TypographyBase
 {
     /// <summary>
-    /// Default ctor. Sets font names to Calibri
+    /// Default ctor. Sets font names to Aptos
     /// </summary>
     public CompactTypographyPageHeader()
     {
-        BaseConstructor("Calibri", "Calibri", "Calibri");
+        BaseConstructor("Aptos", "Aptos", "Aptos");
     }
 
     /// <summary>

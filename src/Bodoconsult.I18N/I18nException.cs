@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System;
-
 namespace Bodoconsult.I18N;
 
 /// <summary>
@@ -15,6 +13,6 @@ public class I18NException : Exception
     /// </summary>
     /// <param name="message">Message</param>
     /// <param name="innerException">Inner exception</param>
-    public I18NException(string message, Exception innerException = null) : base(message, innerException)
+    public I18NException(string message, Exception? innerException = null) : base(message, innerException)
     { }
 }

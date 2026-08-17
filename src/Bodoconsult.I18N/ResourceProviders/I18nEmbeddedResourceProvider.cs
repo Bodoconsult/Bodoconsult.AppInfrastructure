@@ -1,8 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Bodoconsult.App.Abstractions.Helpers;
 using Bodoconsult.I18N.LocalesProviders;
@@ -10,7 +7,7 @@ using Bodoconsult.I18N.LocalesProviders;
 namespace Bodoconsult.I18N.ResourceProviders;
 
 /// <summary>
-/// Loads localization resources from embedded resource in a assemblies folder.
+/// Loads localization resources from embedded resource in an assemblies folder.
 /// This folder should contain only I18N formatted resources.
 /// I18N formatted means UTF8 encode text files with the name schema {lanuage code}.txt. Samples: en.txt, de.txt, es.txt, de-DE.txt, en-Us.txt, ...
 /// </summary>
@@ -73,12 +70,17 @@ public class I18NEmbeddedResourceProvider: BaseResourceProvider
         // Check if language exists
         var success = LocaleItems.TryGetValue(language.ToUpperInvariant(), out var result);
 
-        if (!success)
+        if (!success || result is null)
         {
-            // ToDo: 4digits
+            return translations;
         }
 
         var content = ResourceHelper.GetTextResource(_assembly, result);
+
+        if (content is null)
+        {
+            return translations;
+        }
 
         var lines = content.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 

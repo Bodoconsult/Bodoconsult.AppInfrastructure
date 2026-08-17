@@ -3,7 +3,7 @@
 
     <!--<services:TypographySettingsService x:Key="SettingsService"/>-->
     
-    <!--<FontFamily x:Key="PrimaryFontFamily">Calibri</FontFamily>
+    <!--<FontFamily x:Key="PrimaryFontFamily">Aptos</FontFamily>
     <FontFamily x:Key="SecondaryFontFamily">Cambria</FontFamily>-->
 
     <FontWeight x:Key="NormalFontWeight">Normal</FontWeight>
@@ -11,10 +11,10 @@
 
     <!--96/72 = 1.333-->
 
-    <!--{Binding Path=FontFamily, FallbackValue=Arial}-->
+    <!--{Binding Path=FontFamily, FallbackValue=Aptos}-->
     
     <Style x:Key="Standard">
-        <Setter Property="Paragraph.FontFamily" Value="{Binding Path=PrimaryFontFamily, FallbackValue=Calibri}" />
+        <Setter Property="Paragraph.FontFamily" Value="{Binding Path=PrimaryFontFamily, FallbackValue=Aptos}" />
         <Setter Property="Paragraph.FontSize" Value="{Binding Path=RegularFontSize, FallbackValue=14}" />
         <Setter Property="Paragraph.Margin" Value="{Binding Path=RegularThickness }" />
         <Setter Property="Paragraph.IsHyphenationEnabled" Value="true" />
@@ -134,7 +134,7 @@
     </Style>
 
     <Style x:Key="Title" TargetType="{x:Type Paragraph}" BasedOn="{StaticResource Standard}">
-        <Setter Property="FontFamily" Value="{Binding Path=ThirdFontFamily, FallbackValue=Calibri}" />
+        <Setter Property="FontFamily" Value="{Binding Path=ThirdFontFamily, FallbackValue=Aptos}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="{Binding Path=TitleFontSize, FallbackValue=30}" />
         <Setter Property="Margin" Value="{Binding Path=TitleThickness }" />
@@ -144,7 +144,7 @@
     </Style>
 
     <Style x:Key="Title2" TargetType="{x:Type Paragraph}" BasedOn="{StaticResource Standard}">
-        <Setter Property="FontFamily" Value="{Binding Path=ThirdFontFamily, FallbackValue=Calibri}" />
+        <Setter Property="FontFamily" Value="{Binding Path=ThirdFontFamily, FallbackValue=Aptos}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="{Binding Path=Title2FontSize, FallbackValue=22}" />
         <Setter Property="Margin" Value="{Binding Path=Title2Thickness }" />
@@ -154,7 +154,7 @@
     </Style>
 
     <Style x:Key="Headline1" TargetType="{x:Type Paragraph}" BasedOn="{StaticResource Standard}">
-        <Setter Property="FontFamily" Value="{Binding Path=SecondaryFontFamily, FallbackValue=Calibri}" />
+        <Setter Property="FontFamily" Value="{Binding Path=SecondaryFontFamily, FallbackValue=Aptos}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="{Binding Path=Heading1FontSize, FallbackValue=22}" />
         <Setter Property="Margin" Value="{Binding Path=Heading1Thickness }" />
@@ -171,7 +171,7 @@
     </Style>
 
     <Style x:Key="Headline2" TargetType="{x:Type Paragraph}" BasedOn="{StaticResource Standard}">
-        <Setter Property="FontFamily" Value="{Binding Path=SecondaryFontFamily, FallbackValue=Calibri}" />
+        <Setter Property="FontFamily" Value="{Binding Path=SecondaryFontFamily, FallbackValue=Aptos}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="{Binding Path=Heading2FontSize, FallbackValue=22}" />
         <Setter Property="Margin" Value="{Binding Path=Heading2Thickness }" />
@@ -183,7 +183,7 @@
     </Style>
 
     <Style x:Key="Headline3" TargetType="{x:Type Paragraph}" BasedOn="{StaticResource Standard}">
-        <Setter Property="FontFamily" Value="{Binding Path=SecondaryFontFamily, FallbackValue=Calibri}" />
+        <Setter Property="FontFamily" Value="{Binding Path=SecondaryFontFamily, FallbackValue=Aptos}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="{Binding Path=Heading3FontSize, FallbackValue=22}" />
         <Setter Property="Margin" Value="{Binding Path=Heading3Thickness }" />

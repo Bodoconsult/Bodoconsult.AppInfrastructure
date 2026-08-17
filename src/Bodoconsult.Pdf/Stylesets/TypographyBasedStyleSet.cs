@@ -177,7 +177,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Narrow",
+                Name = "Aptos Narrow",
                 Size = _typography.SmallFontSize,
                 Color = Colors.Black
             },
@@ -284,7 +284,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Narrow",
+                Name = "Aptos Narrow",
                 Size = DefaultFontSize- 2,
                 Color = Colors.Black
             },
@@ -428,7 +428,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Narrow",
+                Name = "Aptos Narrow",
                 Size = DefaultFontSize,
                 Color = Colors.Black
             },
@@ -450,7 +450,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Narrow",
+                Name = "Aptos Narrow",
                 Size = _typography.SmallFontSize,
                 Color = Colors.Black
             },
@@ -763,7 +763,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size =  DefaultFontSize,
                 Color = Colors.Black
             },
@@ -819,7 +819,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Narrow",
+                Name = "Aptos Narrow",
                 Size = DefaultFontSize - 2,
                 Color = Colors.Black
             }
@@ -836,7 +836,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Narrow",
+                Name = "Aptos Narrow",
                 Size =  DefaultFontSize,
                 Bold = true,
                 Color = Colors.Red
@@ -860,7 +860,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size =  DefaultFontSize,
                 Color = Colors.Black
             },
@@ -883,7 +883,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size = DefaultFontSize+5,
                 Color = Colors.Black
             },
@@ -906,7 +906,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size = DefaultFontSize+7,
                 Color = Colors.Black
             },
@@ -929,7 +929,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size = DefaultFontSize+7,
                 Color = Colors.Black
             },
@@ -952,7 +952,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size = DefaultFontSize+7,
                 Color = Colors.Black
             },
@@ -1053,7 +1053,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size = DefaultFontSize+5,
                 Color = Colors.Black
             },
@@ -1080,7 +1080,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Black",
+                Name = "Aptos Black",
                 Size = DefaultFontSize+7,
                 Color = Colors.Black
             },
@@ -1108,7 +1108,7 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         {
             Font =
             {
-                Name = "Arial Narrow",
+                Name = "Aptos Narrow",
                 Size = DefaultFontSize-2
             },
             ParagraphFormat =

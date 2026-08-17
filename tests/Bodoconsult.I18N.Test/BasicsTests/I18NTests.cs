@@ -14,7 +14,7 @@ namespace Bodoconsult.I18N.Test.BasicsTests;
 internal class I18NTests : BaseTests
 {
     [Test]
-    public void TestAddProvider()
+    public void AddProvider_ValidProvider_LanguagesLoaded()
     {
 
         // Arrange
@@ -32,7 +32,7 @@ internal class I18NTests : BaseTests
 
 
     [Test]
-    public void TestAddMultipleProvider()
+    public void AddMultiple_TwoProviders_LanguagesLoaded()
     {
         // **** Load all resources from one or more sources ****
         // Add provider 1

@@ -25,7 +25,7 @@ public class TypographySettingsService: BasePageSettingsService
     /// </summary>
     public TypographySettingsService()
     {
-        Typography = new CompactTypographyPageHeader("Calibri", "Calibri", "Calibri");
+        Typography = new CompactTypographyPageHeader("Aptos", "Aptos", "Aptos");
         LoadTypography();
     }
 
@@ -452,7 +452,7 @@ public class TypographySettingsService: BasePageSettingsService
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            Typography = new ElegantTypographyPageHeader("Calibri", "Calibri", "Calibri");
+            Typography = new ElegantTypographyPageHeader("Aptos", "Aptos", "Aptos");
             LoadTypography();
         });
 
@@ -466,7 +466,7 @@ public class TypographySettingsService: BasePageSettingsService
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            Typography = new CompactTypographyPageHeader("Calibri", "Calibri", "Calibri");
+            Typography = new CompactTypographyPageHeader("Aptos", "Aptos", "Aptos");
             LoadTypography();
         });
 

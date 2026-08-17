@@ -2,11 +2,8 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.I18N.Helpers;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 
 namespace Bodoconsult.I18N;
 
@@ -18,8 +15,8 @@ public class I18NClient : II18NClient
     private readonly Dictionary<string, string> _translations = new();
     private readonly IList<string> _locales;
     private bool _throwWhenKeyNotFound;
-    private Action<string> _logger;
-    private string _locale;
+    private Action<string>? _logger;
+    private string? _locale;
 
 
     private void NotifyPropertyChanged(string info) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
@@ -36,12 +33,12 @@ public class I18NClient : II18NClient
 
     // PropertyChanged
     /// <summary>Occurs when a property value changes.</summary>
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     /// <summary>
     /// The current loaded locale name (can be two letter ISO-code or a culture name like "es-ES")
     /// </summary>
-    public string Locale
+    public string? Locale
     {
         get => _locale;
         set
@@ -51,6 +48,8 @@ public class I18NClient : II18NClient
                 Log($"{value} is the current locale. No actions will be taken");
                 return;
             }
+
+            ArgumentNullException.ThrowIfNull(value);
 
             LoadLocale(value);
 
@@ -62,12 +61,14 @@ public class I18NClient : II18NClient
     /// <summary>
     /// The current loaded Language, if any
     /// </summary>
-    public PortableLanguage Language
+    public PortableLanguage? Language
     {
-        get => Languages?.FirstOrDefault(x => x.Locale.Equals(Locale));
+        get => Languages.FirstOrDefault(x => x.Locale.Equals(Locale));
         set
         {
-            if (Language.Locale == value.Locale)
+            ArgumentNullException.ThrowIfNull(value);
+
+            if (Language?.Locale == value.Locale)
             {
                 Log($"{value.DisplayName} is the current language. No actions will be taken");
                 return;
@@ -83,12 +84,23 @@ public class I18NClient : II18NClient
     /// <summary>
     /// A list of supported languages
     /// </summary>
-    public IReadOnlyList<PortableLanguage> Languages => _locales?.Select(x => new PortableLanguage
+    public IReadOnlyList<PortableLanguage> Languages
+    {
+        get
         {
-            Locale = x,
-            DisplayName = TranslateOrNull(x) ?? new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
-        })
-        .ToArray();
+            if (_locales.Count  == 0)
+            {
+                return [];
+            }
+
+            var locales = _locales.Select(x => new PortableLanguage
+            {
+                Locale = x,
+                DisplayName = new CultureInfo(x).NativeName.CapitalizeFirstCharacter()
+            }).ToArray();
+            return locales;
+        }
+    }
 
     /// <summary>
     /// Use the indexer to translate keys. If you need string formatting, use <code>Translate()</code> instead
@@ -145,7 +157,7 @@ public class I18NClient : II18NClient
 
     private void LoadLocale(string locale)
     {
-        locale = LocaleHelper.CheckLocale(_locales, locale);
+        locale = LocaleHelper.CheckLocale(_locales, locale) ?? string.Empty;
 
         if (!_locales.Contains(locale))
         {
@@ -253,15 +265,22 @@ public class I18NClient : II18NClient
     /// Get a translation from a key, formatting the string with the given params, if any. 
     /// It will return null when the translation is not found
     /// </summary>
-    public string TranslateOrNull(string key, params object[] args) =>
-        _translations.ContainsKey(key)
-            ? (args.Length == 0 ? _translations[key] : string.Format(_translations[key], args))
-            : null;
+    public string? TranslateOrNull(string key, params object[] args)
+    {
+        var success = _translations.TryGetValue(key, out var result);
+
+        if (!success)
+        {
+            return null;
+        }
+
+        return args.Length == 0 ? result : string.Format(_translations[key], args);
+    }
 
     /// <summary>
     /// Convert Enum Type values to a Dictionary&lt;TEnum, string&gt; where the key is the Enum value and the string is the translated value.
     /// </summary>
-    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>()
+    public Dictionary<TEnum, string> TranslateEnumToDictionary<TEnum>() where TEnum : notnull
     {
         var type = typeof(TEnum);
         var dic = new Dictionary<TEnum, string>();
@@ -317,7 +336,7 @@ public class I18NClient : II18NClient
     /// Get the default locale
     /// </summary>
     /// <returns>Default local as string</returns>
-    public string GetDefaultLocale()
+    public string? GetDefaultLocale()
     {
         var currentCulture = CultureInfo.CurrentCulture;
 
@@ -366,8 +385,8 @@ public class I18NClient : II18NClient
             PropertyChanged = null;
         }
 
-        _translations?.Clear();
-        _locales?.Clear();
+        _translations.Clear();
+        _locales.Clear();
         _locale = null;
 
         Log("Client disposed");
