@@ -11,8 +11,6 @@ namespace Bodoconsult.Pdf.Test;
 [SupportedOSPlatform("windows")]
 public class WindowsFontResolverTests
 {
-
-
     [Test]
     public void Ctor_Default_InstalledFontsLoaded()
     {
@@ -31,12 +29,12 @@ public class WindowsFontResolverTests
     }
 
     [Test]
-    public void ResolveTypeface_Aptos_IsInstalled()
+    public void ResolveTypeface_Arial_IsInstalled()
     {
         // Arrange 
         var r = new WindowsFontResolver();
 
-        const string fontFamily = "Aptos";
+        const string fontFamily = "Arial";
 
         // Act  
         var result = r.ResolveTypeface(fontFamily, false, false);
@@ -46,12 +44,12 @@ public class WindowsFontResolverTests
     }
 
     [Test]
-    public void ResolveTypeface_AptosBold_IsInstalled()
+    public void ResolveTypeface_ArialBold_IsInstalled()
     {
         // Arrange 
         var r = new WindowsFontResolver();
 
-        const string fontFamily = "Aptos";
+        const string fontFamily = "Arial";
 
         // Act  
         var result = r.ResolveTypeface(fontFamily, true, false);
@@ -61,12 +59,12 @@ public class WindowsFontResolverTests
     }
 
     [Test]
-    public void ResolveTypeface_AptosItalic_IsInstalled()
+    public void ResolveTypeface_ArialItalic_IsInstalled()
     {
         // Arrange 
         var r = new WindowsFontResolver();
 
-        const string fontFamily = "Aptos";
+        const string fontFamily = "Arial";
 
         // Act  
         var result = r.ResolveTypeface(fontFamily, false, true);
@@ -76,12 +74,12 @@ public class WindowsFontResolverTests
     }
 
     [Test]
-    public void ResolveTypeface_AptosBoldItalic_IsInstalled()
+    public void ResolveTypeface_ArialBoldItalic_IsInstalled()
     {
         // Arrange 
         var r = new WindowsFontResolver();
 
-        const string fontFamily = "Aptos";
+        const string fontFamily = "Arial";
 
         // Act  
         var result = r.ResolveTypeface(fontFamily, true, true);
@@ -106,12 +104,12 @@ public class WindowsFontResolverTests
     }
 
     [Test]
-    public void GetFont_AptosBoldItalic_FileLoaded()
+    public void GetFont_ArialBoldItalic_FileLoaded()
     {
         // Arrange 
         var r = new WindowsFontResolver();
 
-        const string fontFamily = "Aptos";
+        const string fontFamily = "Arial";
 
         var fontInfo = r.ResolveTypeface(fontFamily, true, true);
 
