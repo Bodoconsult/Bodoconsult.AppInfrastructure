@@ -33,6 +33,8 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
 
     public ReactiveCommand<RxVoid, RxVoid> GoToWindow1Instance2Command { get; set; }
 
+    public ReactiveCommand<RxVoid, RxVoid> GoToImageControlCommand { get; set; }
+
 
     /// <summary>
     /// Default ctor
@@ -50,6 +52,7 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         GoToWindow1Command = ReactiveCommand.CreateFromTask(GoToWindow1, null, AvaloniaScheduler.Instance);
         GoToFirstViewCommand = ReactiveCommand.CreateFromTask(GoToFirstView, null, AvaloniaScheduler.Instance);
         GoToWindow1Instance2Command = ReactiveCommand.CreateFromTask(GoToWindow1Instance2, null, AvaloniaScheduler.Instance);
+        GoToImageControlCommand = ReactiveCommand.CreateFromTask(GoToImageControl, null, AvaloniaScheduler.Instance);
     }
 
     /// <summary>
@@ -96,6 +99,13 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         };
 
         groupItem.AddChild(command1);
+
+        var command6 = new CommandUiMenuItem("Go to image control")
+        {
+            CommandDefinition = new UiCommandDefinition(GoToImageControl, null)
+        };
+
+        groupItem.AddChild(command6);
 
         var command2 = new CommandUiMenuItem("Go to new window")
         {
@@ -161,6 +171,17 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     public Task<RxVoid> GoToFirstView()
     {
         Region1?.Navigate(new FirstViewModel(Region1));
+        return Task.FromResult(RxVoid.Default);
+    }
+
+    public Task<RxVoid> GoToImageControl()
+    {
+        var vm = _appGlobals.DiContainer.Get<ImageViewModel>();
+
+        var fileName = Path.Combine(_appGlobals.AppStartParameter.AppPath ?? "", "logo.jpg");
+        vm.LoadBitmapFromFile(fileName);
+
+        Region1?.Navigate(vm);
         return Task.FromResult(RxVoid.Default);
     }
 

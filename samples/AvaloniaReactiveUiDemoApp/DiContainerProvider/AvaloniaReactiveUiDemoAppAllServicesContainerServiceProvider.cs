@@ -39,6 +39,7 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
 
         // View models
         diContainer.AddSingleton<LogoViewModel, LogoViewModel>();
+        diContainer.AddSingleton<ImageViewModel, ImageViewModel>();
         diContainer.AddTransient<AvaloniaReactiveUiDemoAppMainWindowViewModel, AvaloniaReactiveUiDemoAppMainWindowViewModel>();
         diContainer.AddTransient<FirstViewModel, FirstViewModel>();
         diContainer.AddTransient<CopyrightViewModel, CopyrightViewModel>();
