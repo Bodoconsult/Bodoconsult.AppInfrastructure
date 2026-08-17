@@ -121,7 +121,6 @@ public abstract class RegionManagerBase : IRegionManager
         }
     }
 
-
     /// <summary>
     /// Register a window instance
     /// </summary>

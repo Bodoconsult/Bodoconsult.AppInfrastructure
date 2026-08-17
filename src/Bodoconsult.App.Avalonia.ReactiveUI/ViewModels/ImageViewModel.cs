@@ -1,13 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reflection;
 using Avalonia.Media.Imaging;
+using Avalonia.Threading;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using SkiaSharp;
+using System.Reflection;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 
@@ -55,11 +57,12 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
             return;
         }
 
-        var bitmapStream = new MemoryStream(File.ReadAllBytes(filename));
-        bitmapStream.Position = 0;
-        Bitmap = new Bitmap(bitmapStream);
-
-        Title = "ImageTitle";
+        Dispatcher.UIThread.Post(() =>
+        {
+            var bitmapStream = new MemoryStream(File.ReadAllBytes(filename));
+            bitmapStream.Position = 0;
+            Bitmap = new Bitmap(bitmapStream);
+        });
     }
 
     /// <summary>
@@ -68,9 +71,12 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
     /// <param name="bitmap">Bitmap array to load</param>
     public void LoadBitmap(Memory<byte> bitmap)
     {
-        var bitmapStream = new MemoryStream(bitmap.ToArray());
-        bitmapStream.Position = 0;
-        Bitmap = new Bitmap(bitmapStream);
+        Dispatcher.UIThread.Post(() =>
+        {
+            var bitmapStream = new MemoryStream(bitmap.ToArray());
+            bitmapStream.Position = 0;
+            Bitmap = new Bitmap(bitmapStream);
+        });
     }
 
     /// <summary>
@@ -82,16 +88,19 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
         {
             return;
         }
-        
-        var bitmapStream = assembly.GetManifestResourceStream(ressourcePath);
 
-        if (bitmapStream is null)
+        Dispatcher.UIThread.Post(() =>
         {
-            return;
-        }
+            var bitmapStream = assembly.GetManifestResourceStream(ressourcePath);
 
-        bitmapStream.Position = 0;
-        Bitmap = new Bitmap(bitmapStream);
+            if (bitmapStream is null)
+            {
+                return;
+            }
+
+            bitmapStream.Position = 0;
+            Bitmap = new Bitmap(bitmapStream);
+        });
     }
 
     /// <summary>

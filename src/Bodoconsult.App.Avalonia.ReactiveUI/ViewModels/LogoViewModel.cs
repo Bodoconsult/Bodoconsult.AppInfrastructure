@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Avalonia.Media.Imaging;
+using Avalonia.Threading;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Interfaces;
@@ -73,15 +74,23 @@ public partial class LogoViewModel : ReactiveObject, ILogoViewModel
             return;
         }
 
-        var logoStream = _appGlobals.AppStartParameter.LogoAssembly.GetManifestResourceStream(_appGlobals.AppStartParameter.LogoRessourcePath);
 
-        if (logoStream is null)
+        Dispatcher.UIThread.Post(() =>
         {
-            return;
-        }
+            var logoStream =
+                _appGlobals.AppStartParameter.LogoAssembly.GetManifestResourceStream(_appGlobals.AppStartParameter
+                    .LogoRessourcePath);
 
-        logoStream.Position = 0;
-        Logo = new Bitmap(logoStream);
+            if (logoStream is null)
+            {
+                return;
+            }
+
+            logoStream.Position = 0;
+
+
+            Logo = new Bitmap(logoStream);
+        });
     }
 
     /// <summary>
@@ -94,9 +103,12 @@ public partial class LogoViewModel : ReactiveObject, ILogoViewModel
             return;
         }
 
-        var logoStream = new MemoryStream(File.ReadAllBytes(filename));
-        logoStream.Position = 0;
-        Logo = new Bitmap(logoStream);
+        Dispatcher.UIThread.Post(() =>
+        {
+            var logoStream = new MemoryStream(File.ReadAllBytes(filename));
+            logoStream.Position = 0;
+            Logo = new Bitmap(logoStream);
+        });
     }
 
     /// <summary>
