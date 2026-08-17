@@ -40,6 +40,12 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
     public partial Bitmap? Bitmap { get; set; }
 
     /// <summary>
+    /// Title to show for the image
+    /// </summary>
+    [Reactive]
+    public partial string Title { get; set; }
+
+    /// <summary>
     /// Load bitmap from file
     /// </summary>
     public void LoadBitmapFromFile(string filename)
@@ -52,6 +58,8 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
         var bitmapStream = new MemoryStream(File.ReadAllBytes(filename));
         bitmapStream.Position = 0;
         Bitmap = new Bitmap(bitmapStream);
+
+        Title = "ImageTitle";
     }
 
     /// <summary>

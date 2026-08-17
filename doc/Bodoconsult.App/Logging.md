@@ -116,3 +116,48 @@ var logger = new AppLoggerProxy(new FakeLoggerFactory(), Globals.LogDataFactory)
 
 _log.LogWarning("Hallo");	
 ```
+
+# Monitor loggers
+
+A monitor logger is a logger for a special purpose like logging a device communication separately from the general app logger. The destination folder of a monitor logger file is defined by AppStartParameter.DataPath property defined in AppGlobals class.
+
+The following test creates a logfile 999999.log:
+
+``` csharp
+[Test]
+public void CreateInstance_DeviceName_FactoryCreated()
+{
+    // Arrange 
+    const string deviceName = "999999";
+
+    var factory = new MonitorLoggerFactoryFactory(Globals.Instance);
+
+    // Act  
+    var logger = factory.CreateInstance(deviceName);
+
+    // Assert
+    Assert.That(logger, Is.Not.Null);
+    Assert.That(logger.FileName, Is.Not.Null);
+}
+```
+
+The following test creates a logfile Client_127.0.0.1.log:
+
+``` csharp
+[Test]
+public void CreateInstance_TypeAndIP_FactoryCreated()
+{
+    // Arrange 
+    const string deviceName = "Client";
+    const string ip = "127.0.0.1";
+
+    var factory = new MonitorLoggerFactoryFactory(Globals.Instance);
+
+    // Act  
+    var logger = factory.CreateInstance(deviceName, ip);
+
+    // Assert
+    Assert.That(logger, Is.Not.Null);
+    Assert.That(logger.FileName, Is.Not.Null);
+}
+```

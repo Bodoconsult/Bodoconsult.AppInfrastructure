@@ -42,6 +42,10 @@ Release notes for Bodoconsult.App
 
 -   Uses Bodoconsult.App.Abstractions 1.0.9
 
+-   Changed to nullable project type
+
+-   Performance tuning for many classes like AppLoggerProxy
+
 -   MonitorLoggerFactory added for creating special purpose loggers (in addition to the default app logging). Intended to write logs for a device, a database connection or other topics requiring separate logging
 
 -   Added IDataExportService<T>/DataExportServiceBase<T> for long running data exports to string or binary files
@@ -51,5 +55,8 @@ Release notes for Bodoconsult.App
 -   Added MemoryStreamBufferPool for reusing instances of MemoryStream class
 
 -   Improved monitor logging supporting additional log targets as defined in appsettings.json file (but log to other file as defined by the monitor logger)
+
+-   Added IDataCollectionService<T>/CounterDataCollectionService<T>/TimePeriodDataCollectionService<T> to collect data from an object stream time interval based by timeperiod or counter
+
 
 

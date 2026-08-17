@@ -1,0 +1,14 @@
+<avalonia:ReactiveUserControl     x:TypeArguments="viewModels:ImageViewModel"
+                                    x:Class="Bodoconsult.App.Avalonia.ReactiveUI.Controls.ImageControl"
+                              xmlns="https://github.com/avaloniaui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:avalonia="http://reactiveui.net"
+                                    xmlns:viewModels="clr-namespace:Bodoconsult.App.Avalonia.ReactiveUI.ViewModels"
+                                    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450">
+	<StackPanel Background="White" VerticalAlignment="Center">
+        <Image Source="{Binding Path=Bitmap}" Margin="100, 100, 100, 0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500" Stretch="Uniform"></Image>
+		<TextBlock Text="{Binding Path=Title}" Margin="0, 50, 0, 100" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+    </StackPanel>
+</avalonia:ReactiveUserControl >

@@ -123,6 +123,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Controls\ImageControl.axaml.cs">
+		  <DependentUpon>ImageControl.axaml</DependentUpon>
+		</Compile>
 		<Compile Update="Views\CopyrightWindow.axaml.cs">
 			<DependentUpon>CopyrightWindow.axaml</DependentUpon>
 		</Compile>

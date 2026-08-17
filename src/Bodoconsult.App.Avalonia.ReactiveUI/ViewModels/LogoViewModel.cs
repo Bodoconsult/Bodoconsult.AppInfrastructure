@@ -47,7 +47,7 @@ public partial class LogoViewModel : ReactiveObject, ILogoViewModel
     public IScreen HostScreen { get; private set; } = new DummyScreen();
 
     /// <summary>
-    /// Menu text for open menu in system tray bar
+    /// App title to show with the logo
     /// </summary>
     [Reactive]
     public partial string AppTitle { get; set; }
