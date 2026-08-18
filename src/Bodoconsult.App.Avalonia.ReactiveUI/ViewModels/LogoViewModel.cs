@@ -74,7 +74,6 @@ public partial class LogoViewModel : ReactiveObject, ILogoViewModel
             return;
         }
 
-
         Dispatcher.UIThread.Post(() =>
         {
             var logoStream =

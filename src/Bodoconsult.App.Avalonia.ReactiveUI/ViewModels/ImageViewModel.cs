@@ -8,7 +8,6 @@ using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using SkiaSharp;
 using System.Reflection;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
@@ -57,9 +56,16 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
             return;
         }
 
+        var bytes = File.ReadAllBytes(filename);
+
+        if (bytes.Length == 0)
+        {
+            return;
+        }
+
         Dispatcher.UIThread.Post(() =>
         {
-            var bitmapStream = new MemoryStream(File.ReadAllBytes(filename));
+            var bitmapStream = new MemoryStream(bytes);
             bitmapStream.Position = 0;
             Bitmap = new Bitmap(bitmapStream);
         });
@@ -71,6 +77,11 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
     /// <param name="bitmap">Bitmap array to load</param>
     public void LoadBitmap(Memory<byte> bitmap)
     {
+        if (bitmap.Length == 0)
+        {
+            return;
+        }
+
         Dispatcher.UIThread.Post(() =>
         {
             var bitmapStream = new MemoryStream(bitmap.ToArray());

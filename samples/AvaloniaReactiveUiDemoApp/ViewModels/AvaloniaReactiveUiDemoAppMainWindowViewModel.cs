@@ -178,7 +178,7 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     {
         var vm = _appGlobals.DiContainer.Get<ImageViewModel>();
 
-        var fileName = Path.Combine(_appGlobals.AppStartParameter.AppPath ?? "", "logo.jpg");
+        var fileName = Path.Combine(_appGlobals.AppStartParameter.AppPath ?? "", "fft.jpg");
         vm.LoadBitmapFromFile(fileName);
 
         Region1?.Navigate(vm);
