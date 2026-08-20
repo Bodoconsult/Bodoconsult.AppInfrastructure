@@ -341,6 +341,46 @@ public class BitmapService : IBitmapService
         DrawText(text, x, y, font, color, alignment);
     }
 
+    /// <summary>
+    /// Draw a square on the canvas
+    /// </summary>
+    /// <param name="squareSize">Square size</param>
+    /// <param name="color">Color to use for square</param>
+    /// <param name="startX">Start x-coordinate</param>
+    /// <param name="startY">Start y-coordinate</param>
+    /// <exception cref="ArgumentException">Thrown if startX or startY or squareSize are lower or equal to 0</exception>
+    public void DrawSquareOnImage(int squareSize, SKColor color, int startX, int startY)
+    {
+        if (squareSize <= 0 || startX <= 0 || startY <= 0)
+        {
+            throw new ArgumentException("Square size and coordinates must be greater than zero.");
+        }
+
+        using var paint = new SKPaint();
+        paint.Color = color;
+        var square = new SKRect(startX, startY, startX + squareSize, startY + squareSize);
+        CurrentCanvas.DrawRect(square, paint);
+    }
+
+    /// <summary>
+    /// Draw a square on the canvas
+    /// </summary>
+    /// <param name="squareSize">Square size</param>
+    /// <param name="paint">Paint to use for square</param>
+    /// <param name="startX">Start x-coordinate</param>
+    /// <param name="startY">Start y-coordinate</param>
+    /// <exception cref="ArgumentException">Thrown if startX or startY or squareSize are lower or equal to 0</exception>
+    public void DrawSquareOnImage(int squareSize, SKPaint paint, int startX, int startY)
+    {
+        if (squareSize <= 0 || startX <= 0 || startY <= 0)
+        {
+            throw new ArgumentException("Square size and coordinates must be greater than zero.");
+        }
+
+        var square = new SKRect(startX, startY, startX + squareSize, startY + squareSize);
+        CurrentCanvas.DrawRect(square, paint);
+    }
+
     #region Resize image
 
     /// <summary>

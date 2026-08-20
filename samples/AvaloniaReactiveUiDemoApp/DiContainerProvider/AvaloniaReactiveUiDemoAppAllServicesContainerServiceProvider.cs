@@ -4,7 +4,9 @@ using AvaloniaReactiveUiDemoApp.AppData;
 using AvaloniaReactiveUiDemoApp.ViewModels;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Avalonia.ReactiveUI.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Regions;
+using Bodoconsult.App.Avalonia.ReactiveUI.Services;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 using Bodoconsult.App.Logging;
 using Bodoconsult.App.ReactiveUI.Interfaces;
@@ -29,6 +31,8 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         diContainer.AddSingleton<IAppEventListener, AppEventListener>();
 
         // Load all other services required for the app now
+        diContainer.AddSingleton<IUiFileDialogService, FileDialogService>();
+        diContainer.AddSingleton<IAvaloniaUiClipboardService, AvaloniaClipboardService>();
 
         // Regions manager with all window types loaded with regions
         var rm = new AvaloniaRegionManager();
@@ -82,7 +86,7 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
 
         var fi = new FileInfo(exe);
 
-        var fileName = Path.Combine( fi.DirectoryName ?? "", "logo.jpg");
+        var fileName = Path.Combine(fi.DirectoryName ?? "", "logo.jpg");
 
         vm.LoadLogoFromFile(fileName);
     }

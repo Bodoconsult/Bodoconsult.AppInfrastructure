@@ -2,6 +2,8 @@
 
 using Avalonia.Media.Imaging;
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using ReactiveUI;
+using ReactiveUI.Primitives;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Interfaces;
 
@@ -16,6 +18,16 @@ public interface IImageViewModel : IUiRegionViewModel
     Bitmap? Bitmap { get; set; }
 
     /// <summary>
+    /// Title to show for the image
+    /// </summary>
+    string Title { get; set; }
+
+    /// <summary>
+    /// Save as bitmap command
+    /// </summary>
+    ReactiveCommand<RxVoid, RxVoid> SaveAsBitmapCommand { get; }
+
+    /// <summary>
     /// Load bitmap from file
     /// </summary>
     /// <param name="filename">Local filename to load the file from</param>
@@ -26,4 +38,27 @@ public interface IImageViewModel : IUiRegionViewModel
     /// </summary>
     /// <param name="bitmap">Bitmap array to load</param>
     public void LoadBitmap(Memory<byte> bitmap);
+
+    /// <summary>
+    /// Save the bitmap as JPEG file
+    /// </summary>
+    /// <param name="fileName">Full filename to save the bitmap in</param>
+    /// <param name="quality">Quality 0 - 100</param>
+    void SaveAsJpeg(string fileName, byte quality);
+
+    /// <summary>
+    /// Save the bitmap as PNG file
+    /// </summary>
+    /// <param name="fileName">Full filename to save the bitmap in</param>
+    void SaveAsPng(string fileName);
+
+    /// <summary>
+    /// Task starting saving as bitmap
+    /// </summary>
+    Task<RxVoid> SaveAsBitmapCommandTask();
+
+    /// <summary>
+    /// Save the image to clipboard
+    /// </summary>
+    Task<RxVoid> SaveToClipboardCommandTask();
 }

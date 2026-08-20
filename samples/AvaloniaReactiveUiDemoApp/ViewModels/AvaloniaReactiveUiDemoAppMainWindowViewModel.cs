@@ -3,6 +3,8 @@
 using Avalonia.Controls;
 using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Avalonia.ReactiveUI.Interfaces;
+using Bodoconsult.App.Avalonia.ReactiveUI.Services;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 using Bodoconsult.App.Avalonia.ReactiveUI.Views;
 using Bodoconsult.App.ReactiveUI.Extensions;
@@ -24,6 +26,9 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
 {
     private readonly IAppGlobals _appGlobals;
     private readonly Interaction<string, bool> _confirm;
+    private readonly IUiFileDialogService _fileDialogService;
+
+    private readonly IAvaloniaUiClipboardService _clipboardService;
 
     public Interaction<string, bool> Confirm => _confirm;
 
@@ -43,11 +48,15 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
     /// <param name="translationService">Translation service</param>
     /// <param name="regionManager">Region manager</param>
     /// <param name="appGlobals">Current app globals</param>
+    /// <param name="fileDialogService">Current file dialog service</param>
+    /// <param name="clipboardService">Current clipboard service</param>
     public AvaloniaReactiveUiDemoAppMainWindowViewModel(IAppEventListener listener, II18N translationService,
-        IRegionManager regionManager, IAppGlobals appGlobals) : base(listener, translationService, regionManager)
+        IRegionManager regionManager, IAppGlobals appGlobals, IUiFileDialogService fileDialogService, IAvaloniaUiClipboardService clipboardService) : base(listener, translationService, regionManager)
     {
         _appGlobals = appGlobals;
         _confirm = new Interaction<string, bool>();
+        _fileDialogService = fileDialogService;
+        _clipboardService = clipboardService;
 
         GoToWindow1Command = ReactiveCommand.CreateFromTask(GoToWindow1, null, AvaloniaScheduler.Instance);
         GoToFirstViewCommand = ReactiveCommand.CreateFromTask(GoToFirstView, null, AvaloniaScheduler.Instance);
@@ -80,6 +89,9 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
             ViewModel = this,
             IsVisible = true,
         };
+
+        ((FileDialogService)_fileDialogService).LoadTopLevel(w);
+        ((AvaloniaClipboardService)_clipboardService).LoadClipboard(w);
 
         WindowState = UiWindowState.Maximized;
         return w;
