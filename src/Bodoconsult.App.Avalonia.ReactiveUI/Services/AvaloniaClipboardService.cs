@@ -10,21 +10,21 @@ namespace Bodoconsult.App.Avalonia.ReactiveUI.Services;
 /// <summary>
 /// Clipboard service based on Avalonia
 /// </summary>
-public class AvaloniaClipboardService: IAvaloniaUiClipboardService
+public class ClipboardService: IAvaloniaUiClipboardService
 {
     private IClipboard? _clipboard;
 
     /// <summary>
     /// Default ctor
     /// </summary>
-    public AvaloniaClipboardService()
+    public ClipboardService()
     { }
 
     /// <summary>
     /// Ctor providing a <see cref="TopLevel"/> instance
     /// </summary>
     /// <param name="topLevel"><see cref="TopLevel"/> instance to use</param>
-    public AvaloniaClipboardService(TopLevel topLevel)
+    public ClipboardService(TopLevel topLevel)
     {
         _clipboard = topLevel.Clipboard;
     }

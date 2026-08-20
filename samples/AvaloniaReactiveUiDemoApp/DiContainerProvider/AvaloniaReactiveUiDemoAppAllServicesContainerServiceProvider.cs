@@ -32,7 +32,7 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
 
         // Load all other services required for the app now
         diContainer.AddSingleton<IUiFileDialogService, FileDialogService>();
-        diContainer.AddSingleton<IAvaloniaUiClipboardService, AvaloniaClipboardService>();
+        diContainer.AddSingleton<IAvaloniaUiClipboardService, ClipboardService>();
 
         // Regions manager with all window types loaded with regions
         var rm = new AvaloniaRegionManager();

@@ -45,7 +45,7 @@ internal class ImageViewModelTests
         //_window.Show();
 
         _dialogService = new FileDialogService(_window);
-        _clipboardService = new AvaloniaClipboardService(_window);
+        _clipboardService = new ClipboardService(_window);
     }
 
     [TearDown]

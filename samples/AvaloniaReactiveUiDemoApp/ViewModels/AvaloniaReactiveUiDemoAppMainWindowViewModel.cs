@@ -91,7 +91,7 @@ public partial class AvaloniaReactiveUiDemoAppMainWindowViewModel : MainWindowVi
         };
 
         ((FileDialogService)_fileDialogService).LoadTopLevel(w);
-        ((AvaloniaClipboardService)_clipboardService).LoadClipboard(w);
+        ((ClipboardService)_clipboardService).LoadClipboard(w);
 
         WindowState = UiWindowState.Maximized;
         return w;
