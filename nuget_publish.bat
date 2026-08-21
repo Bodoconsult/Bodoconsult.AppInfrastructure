@@ -1,4 +1,4 @@
-set version=1.0.8
+set version=1.0.9
 dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.snupkg --source https://api.nuget.org/v3/index.json
 

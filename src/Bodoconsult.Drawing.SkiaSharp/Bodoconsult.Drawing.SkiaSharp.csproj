@@ -17,11 +17,21 @@
 		<Description>Base services for bitmap handling</Description>
 		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 
+		<!-- PDB Configuration -->
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<EmbedAllSources>false</EmbedAllSources>
+
+		<!-- Allow PDBs in the main package -->
+		<!--
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+		<!-- Generate symbols package (.snupkg) -->
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<DebugType>embedded</DebugType>
+		<!-- Modern symbols package format -->
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="..\..\LICENSE.md" Link="LICENSE.md" />
