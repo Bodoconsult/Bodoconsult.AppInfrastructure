@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Avalonia.Input.Platform;
 using Avalonia.Media.Imaging;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;
@@ -21,6 +22,16 @@ public interface IImageViewModel : IUiRegionViewModel
     /// Title to show for the image
     /// </summary>
     string Title { get; set; }
+
+    /// <summary>
+    /// Button text for the SaveAsBitmap button
+    /// </summary>
+    string SaveAsBitmapText { get; set; }
+
+    /// <summary>
+    /// Button text for the SaveToClipboard button
+    /// </summary>
+    string SaveToClipboardText { get; set; }
 
     /// <summary>
     /// Save as bitmap command

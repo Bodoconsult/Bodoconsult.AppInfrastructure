@@ -36,6 +36,8 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
         SaveAsBitmapCommand = ReactiveCommand.CreateFromTask(SaveAsBitmapCommandTask);
         SaveToClipboardCommand = ReactiveCommand.CreateFromTask(SaveToClipboardCommandTask);
         Title =  string.Empty;
+        SaveAsBitmapText = "Save image as JPEG or PNG file";
+        SaveToClipboardText = "Save image to clipboard";
     }
 
     /// <summary>
@@ -65,7 +67,19 @@ public partial class ImageViewModel : ReactiveObject, IImageViewModel
     /// Title to show for the image
     /// </summary>
     [Reactive]
-    public partial string Title { get; set; } 
+    public partial string Title { get; set; }
+
+    /// <summary>
+    /// Button text for the SaveAsBitmap button
+    /// </summary>
+    [Reactive]
+    public partial string SaveAsBitmapText { get; set; }
+
+    /// <summary>
+    /// Button text for the SaveToClipboard button
+    /// </summary>
+    [Reactive]
+    public partial string SaveToClipboardText { get; set; }
 
     /// <summary>
     /// Save as bitmap command
