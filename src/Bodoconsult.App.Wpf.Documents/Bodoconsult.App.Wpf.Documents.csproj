@@ -13,15 +13,11 @@
 		<Deterministic>False</Deterministic>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageId>Bodoconsult.App.Wpf.Documents</PackageId>
 		<PackageTags>App;WPF;FlowDocument;PDF;XPS</PackageTags>
 		<Description>Tools to create reports based on WPF FlowDocument class</Description>
 		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
-		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 

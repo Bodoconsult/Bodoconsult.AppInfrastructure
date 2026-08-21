@@ -6,16 +6,11 @@
 		<Deterministic>False</Deterministic>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
 		<PackageId>Bodoconsult.Text</PackageId>
 		<PackageTags>Output structured text HTML plain text ascii</PackageTags>
 		<Description>Simple class for collecting structured text in an app and export it to HTML or an ASCII plain text file. Use library to create simple reports from apps or from unit testing i.e. for auditors or as documentation.</Description>
 		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
-		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 

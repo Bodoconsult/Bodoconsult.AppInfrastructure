@@ -8,15 +8,11 @@
 		<Nullable>enable</Nullable>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageId>Bodoconsult.I18N</PackageId>
 		<PackageTags>App;I18N;</PackageTags>
 		<Description>I18N supporting resources from multiple assemblies and other sources</Description>
 		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
-		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 

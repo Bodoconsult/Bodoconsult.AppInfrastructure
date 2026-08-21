@@ -6,16 +6,12 @@
 		<Nullable>disable</Nullable>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageId>Bodoconsult.App.BackgroundService</PackageId>
 		<PackageTags>Layered app basic tools for Windows background services</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Package providing basic functionality like logging, application performance measuring etc. for layered apps in a background service scenario</Description>
 		<PackageReleaseNotes>Enhancements, new features snd bugfixes</PackageReleaseNotes>
-		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 

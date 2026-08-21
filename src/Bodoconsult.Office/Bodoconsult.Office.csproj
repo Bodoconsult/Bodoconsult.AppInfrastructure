@@ -1,57 +1,47 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+	<PropertyGroup>
 
-	  <TargetFramework>net9.0</TargetFramework>
-	  <ImplicitUsings>enable</ImplicitUsings>
-	  <Nullable>disable</Nullable>
-	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-	  <Deterministic>False</Deterministic>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
 
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <PackageOutputPath>..\..\packages\</PackageOutputPath>
-	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <RepositoryType>git</RepositoryType>
-	  <PackageTags>OpenXml Excel xlsx database DataTable</PackageTags>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <Description>Library to export database data like System.Data.DataTable as xlsx Excel files</Description>
-	  <PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
-	  <PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
-	  <NeutralLanguage>en</NeutralLanguage>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>OpenXml Excel xlsx database DataTable</PackageTags>
+		<Description>Library to export database data like System.Data.DataTable as xlsx Excel files</Description>
+		<PackageReleaseNotes>Enhancements, new features and bugfixes</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <NeutralLanguage>en</NeutralLanguage>
-	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 
-	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<!-- PDB Configuration -->
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<EmbedAllSources>false</EmbedAllSources>
 
-	  <!-- PDB Configuration -->
-	  <DebugType>portable</DebugType>
-	  <DebugSymbols>true</DebugSymbols>
-	  <EmbedAllSources>false</EmbedAllSources>
-
-	  <!-- Allow PDBs in the main package -->
-	  <!--
+		<!-- Allow PDBs in the main package -->
+		<!--
 		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
 
-	  <!-- Generate symbols package (.snupkg) -->
-	  <IncludeSymbols>true</IncludeSymbols>
-	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	  <!-- Modern symbols package format -->
-  </PropertyGroup>
+		<!-- Generate symbols package (.snupkg) -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<!-- Modern symbols package format -->
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="ExcelDocument.cs" />
-    <Compile Remove="ExcelDocumentStyles.cs" />
-    <Compile Remove="ExcelOpenXml.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="ExcelDocument.cs" />
+		<Compile Remove="ExcelDocumentStyles.cs" />
+		<Compile Remove="ExcelOpenXml.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DocumentFormat.OpenXml" Version="3.5.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="DocumentFormat.OpenXml" Version="3.5.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\..\LICENSE.md" Link="LICENSE.md">
@@ -61,7 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+		<ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>
