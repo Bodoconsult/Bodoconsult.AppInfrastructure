@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/LICENSE.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/LICENSE.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -87,10 +87,10 @@
 <p>Bodoconsult.App.WinForms,</p>
 </blockquote>
 <blockquote>
-<p>Bodoconsult.App.Wpf,</p>
+<p>Bodoconsult.App.Avalonia,</p>
 </blockquote>
 <blockquote>
-<p>Bodoconsult.App.Wpf.Documents,</p>
+<p>Bodoconsult.App.Avalonia.Documents,</p>
 </blockquote>
 <blockquote>
 <p>Bodoconsult.App.BackgroundService,</p>
@@ -157,6 +157,9 @@ SOFTWARE.
 <p><a href="#referenced-libraries-for-avaloniaconsoleapp1">AvaloniaConsoleApp1</a></p>
 </blockquote>
 <blockquote>
+<p><a href="#referenced-libraries-for-avaloniareactiveuidemoapp">AvaloniaReactiveUiDemoApp</a></p>
+</blockquote>
+<blockquote>
 <p><a href="#referenced-libraries-for-consoleapp1">ConsoleApp1</a></p>
 </blockquote>
 <blockquote>
@@ -175,10 +178,22 @@ SOFTWARE.
 <p><a href="#referenced-libraries-for-grpcserverappstests">GrpcServerApps.Tests</a></p>
 </blockquote>
 <blockquote>
+<p><a href="#referenced-libraries-for-testavaloniaapplication1">TestAvaloniaApplication1</a></p>
+</blockquote>
+<blockquote>
 <p><a href="#referenced-libraries-for-workerservice1">WorkerService1</a></p>
 </blockquote>
 <blockquote>
+<p><a href="#referenced-libraries-for-wpfreactivedemoapp">WpfReactiveDemoApp</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#referenced-libraries-for-wpfreactiveuidemoapp">WpfReactiveUiDemoApp</a></p>
+</blockquote>
+<blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappabstractions">Bodoconsult.App.Abstractions</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#referenced-libraries-for-bodoconsultappavaloniareactiveui">Bodoconsult.App.Avalonia.ReactiveUI</a></p>
 </blockquote>
 <blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappavalonia">Bodoconsult.App.Avalonia</a></p>
@@ -190,6 +205,9 @@ SOFTWARE.
 <p><a href="#referenced-libraries-for-bodoconsultappgrpcbackgroundservice">Bodoconsult.App.GrpcBackgroundService</a></p>
 </blockquote>
 <blockquote>
+<p><a href="#referenced-libraries-for-bodoconsultappreactiveui">Bodoconsult.App.ReactiveUI</a></p>
+</blockquote>
+<blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappwindows">Bodoconsult.App.Windows</a></p>
 </blockquote>
 <blockquote>
@@ -197,6 +215,9 @@ SOFTWARE.
 </blockquote>
 <blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappwpfdocuments">Bodoconsult.App.Wpf.Documents</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#referenced-libraries-for-bodoconsultappwpfreactiveui">Bodoconsult.App.Wpf.ReactiveUI</a></p>
 </blockquote>
 <blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappwpf">Bodoconsult.App.Wpf</a></p>
@@ -226,7 +247,10 @@ SOFTWARE.
 <p><a href="#referenced-libraries-for-bodoconsultpdf">Bodoconsult.Pdf</a></p>
 </blockquote>
 <blockquote>
-<p><a href="#referenced-libraries-for-bodoconsulttextpdf">Bodoconsult.Text.Pdf</a></p>
+<p><a href="#referenced-libraries-for-bodoconsultappavaloniareactiveuitest">Bodoconsult.App.Avalonia.ReactiveUI.Test</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#referenced-libraries-for-bodoconsultappreactiveuitests">Bodoconsult.App.ReactiveUI.Tests</a></p>
 </blockquote>
 <blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappavaloniatest">Bodoconsult.App.Avalonia.Test</a></p>
@@ -239,6 +263,9 @@ SOFTWARE.
 </blockquote>
 <blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappwpfdocumentstest">Bodoconsult.App.Wpf.Documents.Test</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#referenced-libraries-for-bodoconsultappwpfreactiveuitest">Bodoconsult.App.Wpf.ReactiveUI.Test</a></p>
 </blockquote>
 <blockquote>
 <p><a href="#referenced-libraries-for-bodoconsultappwpftest">Bodoconsult.App.Wpf.Test</a></p>
@@ -275,31 +302,37 @@ SOFTWARE.
 </blockquote>
 <h1 id="referenced-libraries-for-avaloniaapp1">Referenced libraries for AvaloniaApp1</h1>
 <h2 id="nuget-package-library-avalonia-by-avalonia-team">Nuget package library Avalonia by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-communitytoolkitmvvm-by-microsoft">Nuget package library CommunityToolkit.Mvvm by Microsoft</h2>
+<p>Copyright: (c) .NET Foundation and Contributors. All rights reserved.</p>
 <p>This package includes a .NET MVVM library with helpers such as:
 - ObservableObject: a base class for objects implementing the INotifyPropertyChanged interface.
 - ObservableRecipient: a base class for observable objects with support for the IMessenger service.
@@ -314,31 +347,37 @@ SOFTWARE.
 <p>Project-Url: <a href="https://github.com/CommunityToolkit/dotnet">https://github.com/CommunityToolkit/dotnet</a></p>
 <h1 id="referenced-libraries-for-avaloniaconsoleapp1">Referenced libraries for AvaloniaConsoleApp1</h1>
 <h2 id="nuget-package-library-avalonia-by-avalonia-team-1">Nuget package library Avalonia by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team-1">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team-1">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team-1">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team-1">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-communitytoolkitmvvm-by-microsoft-1">Nuget package library CommunityToolkit.Mvvm by Microsoft</h2>
+<p>Copyright: (c) .NET Foundation and Contributors. All rights reserved.</p>
 <p>This package includes a .NET MVVM library with helpers such as:
 - ObservableObject: a base class for objects implementing the INotifyPropertyChanged interface.
 - ObservableRecipient: a base class for observable objects with support for the IMessenger service.
@@ -351,8 +390,58 @@ SOFTWARE.
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/CommunityToolkit/dotnet">https://github.com/CommunityToolkit/dotnet</a></p>
+<h1 id="referenced-libraries-for-avaloniareactiveuidemoapp">Referenced libraries for AvaloniaReactiveUiDemoApp</h1>
+<h2 id="nuget-package-library-avalonia-by-avalonia-team-2">Nuget package library Avalonia by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team-2">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team-2">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team-2">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team-2">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-reactivemarblesobservableeventssourcegenerator-by-glenn-watson">Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson</h2>
+<p>Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc</p>
+<p>Allows to get an observables for property changed events.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactivemarbles/ObservableEvents">https://github.com/reactivemarbles/ObservableEvents</a></p>
+<h2 id="nuget-package-library-reactiveuiavalonia-by-reactiveui-and-avalonia-teams--and-contributors">Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors</h2>
+<p>Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Avalonia</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
+<h2 id="nuget-package-library-reactiveuisourcegenerators-by-net-foundation-and-contributors">Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui.sourcegenerators">https://github.com/reactiveui/reactiveui.sourcegenerators</a></p>
 <h1 id="referenced-libraries-for-consoleapp1">Referenced libraries for ConsoleApp1</h1>
 <h2 id="nuget-package-library-systemtextjson-by-microsoft">Nuget package library System.Text.Json by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.</p>
 <p>The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</p>
 <p>License: MIT</p>
@@ -360,6 +449,7 @@ SOFTWARE.
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-consolewpfapp1">Referenced libraries for ConsoleWpfApp1</h1>
 <h2 id="nuget-package-library-systemtextjson-by-microsoft-1">Nuget package library System.Text.Json by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.</p>
 <p>The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</p>
 <p>License: MIT</p>
@@ -367,60 +457,77 @@ SOFTWARE.
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-grpcserverappgrpccommon">Referenced libraries for GrpcServerApp.Grpc.Common</h1>
 <h2 id="nuget-package-library-grpcaspnetcore-by-the-grpc-authors">Nuget package library Grpc.AspNetCore by The gRPC Authors</h2>
+<p>Copyright: Copyright 2019 The gRPC Authors</p>
 <p>gRPC meta-package for ASP.NET Core</p>
 <p>License: Apache-2.0</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/grpc/grpc-dotnet.git">https://github.com/grpc/grpc-dotnet.git</a></p>
 <h1 id="referenced-libraries-for-grpcserverappgrpc">Referenced libraries for GrpcServerApp.Grpc</h1>
 <h2 id="nuget-package-library-grpcaspnetcore-by-the-grpc-authors-1">Nuget package library Grpc.AspNetCore by The gRPC Authors</h2>
+<p>Copyright: Copyright 2019 The gRPC Authors</p>
 <p>gRPC meta-package for ASP.NET Core</p>
 <p>License: Apache-2.0</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/grpc/grpc-dotnet.git">https://github.com/grpc/grpc-dotnet.git</a></p>
 <h1 id="referenced-libraries-for-grpcserverapp">Referenced libraries for GrpcServerApp</h1>
 <h2 id="nuget-package-library-grpcaspnetcore-by-the-grpc-authors-2">Nuget package library Grpc.AspNetCore by The gRPC Authors</h2>
+<p>Copyright: Copyright 2019 The gRPC Authors</p>
 <p>gRPC meta-package for ASP.NET Core</p>
 <p>License: Apache-2.0</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/grpc/grpc-dotnet.git">https://github.com/grpc/grpc-dotnet.git</a></p>
 <h2 id="nuget-package-library-microsoftextensionshosting-by-microsoft">Nuget package library Microsoft.Extensions.Hosting by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Hosting and startup infrastructures for applications.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
+<h2 id="nuget-package-library-microsoftextensionshostingwindowsservices-by-microsoft">Nuget package library Microsoft.Extensions.Hosting.WindowsServices by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>.NET hosting infrastructure for Windows Services.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-grpcserverappstests">Referenced libraries for GrpcServerApps.Tests</h1>
 <h2 id="nuget-package-library-coverletcollector-by-tonerdo">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
 <p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-googleprotobuf-by-google-inc">Nuget package library Google.Protobuf by Google Inc.</h2>
+<p>Copyright: Copyright 2015, Google Inc.</p>
 <p>C# runtime library for Protocol Buffers - Google's data interchange format.</p>
 <p>License: BSD-3-Clause</p>
 <p>License-Url: <a href="https://licenses.nuget.org/BSD-3-Clause">https://licenses.nuget.org/BSD-3-Clause</a></p>
 <p>Project-Url: <a href="https://github.com/protocolbuffers/protobuf.git">https://github.com/protocolbuffers/protobuf.git</a></p>
 <h2 id="nuget-package-library-grpcnetclient-by-the-grpc-authors">Nuget package library Grpc.Net.Client by The gRPC Authors</h2>
+<p>Copyright: Copyright 2019 The gRPC Authors</p>
 <p>.NET client for gRPC</p>
 <p>License: Apache-2.0</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/grpc/grpc-dotnet.git">https://github.com/grpc/grpc-dotnet.git</a></p>
 <h2 id="nuget-package-library-grpctools-by-the-grpc-authors">Nuget package library Grpc.Tools by The gRPC Authors</h2>
+<p>Copyright: Copyright 2018 The gRPC Authors</p>
 <p>gRPC and Protocol Buffer compiler for C# projects</p>
 <p>License: Apache-2.0</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/grpc/grpc.git">https://github.com/grpc/grpc.git</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoretesthost-by-microsoft">Nuget package library Microsoft.AspNetCore.TestHost by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>ASP.NET Core web server for writing and running tests.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -438,6 +545,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -445,80 +553,217 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
+<h1 id="referenced-libraries-for-testavaloniaapplication1">Referenced libraries for TestAvaloniaApplication1</h1>
+<h2 id="nuget-package-library-avalonia-by-avalonia-team-3">Nuget package library Avalonia by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team-3">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team-3">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team-3">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team-3">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-reactiveuiavalonia-by-reactiveui-and-avalonia-teams--and-contributors-1">Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors</h2>
+<p>Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Avalonia</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
 <h1 id="referenced-libraries-for-workerservice1">Referenced libraries for WorkerService1</h1>
 <h2 id="nuget-package-library-microsoftextensionshosting-by-microsoft-1">Nuget package library Microsoft.Extensions.Hosting by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Hosting and startup infrastructures for applications.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
+<h2 id="nuget-package-library-microsoftextensionshostingwindowsservices-by-microsoft-1">Nuget package library Microsoft.Extensions.Hosting.WindowsServices by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>.NET hosting infrastructure for Windows Services.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
+<h1 id="referenced-libraries-for-wpfreactivedemoapp">Referenced libraries for WpfReactiveDemoApp</h1>
+<h2 id="nuget-package-library-reactivemarblesobservableeventssourcegenerator-by-glenn-watson-1">Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson</h2>
+<p>Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc</p>
+<p>Allows to get an observables for property changed events.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactivemarbles/ObservableEvents">https://github.com/reactivemarbles/ObservableEvents</a></p>
+<h2 id="nuget-package-library-reactiveuisourcegenerators-by-net-foundation-and-contributors-1">Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui.sourcegenerators">https://github.com/reactiveui/reactiveui.sourcegenerators</a></p>
+<h2 id="nuget-package-library-reactiveuiwpf-by-net-foundation-and-contributors">Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Windows Presentation Foundation (WPF)</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
+<h1 id="referenced-libraries-for-wpfreactiveuidemoapp">Referenced libraries for WpfReactiveUiDemoApp</h1>
+<h2 id="nuget-package-library-mahappsmetro-by-jan-karger--dennis-daume--brendan-forster--paul-jenkins--jake-ginnivan--alex-mitchell">Nuget package library MahApps.Metro by Jan Karger,  Dennis Daume,  Brendan Forster,  Paul Jenkins,  Jake Ginnivan,  Alex Mitchell</h2>
+<p>Copyright: Copyright © 2025 .NET Foundation and Contributors. All rights reserved.</p>
+<p>The goal of MahApps.Metro is to allow devs to quickly and easily cobble together a 'Modern' UI for their WPF apps (&gt;= .Net 4.5), with minimal effort.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/MahApps/MahApps.Metro.git">https://github.com/MahApps/MahApps.Metro.git</a></p>
+<h2 id="nuget-package-library-mahappsmetroiconpacks-by-jan-karger">Nuget package library MahApps.Metro.IconPacks by Jan Karger</h2>
+<p>Copyright: Copyright © 2016 - 2025 MahApps.Metro</p>
+<p>IconPacks for stylish awesome WPF and UWP applications.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/MahApps/MahApps.Metro.IconPacks.git">https://github.com/MahApps/MahApps.Metro.IconPacks.git</a></p>
+<h2 id="nuget-package-library-reactivemarblesobservableeventssourcegenerator-by-glenn-watson-2">Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson</h2>
+<p>Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc</p>
+<p>Allows to get an observables for property changed events.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactivemarbles/ObservableEvents">https://github.com/reactivemarbles/ObservableEvents</a></p>
+<h2 id="nuget-package-library-reactiveuisourcegenerators-by-net-foundation-and-contributors-2">Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui.sourcegenerators">https://github.com/reactiveui/reactiveui.sourcegenerators</a></p>
+<h2 id="nuget-package-library-reactiveuiwpf-by-net-foundation-and-contributors-1">Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Windows Presentation Foundation (WPF)</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
 <h1 id="referenced-libraries-for-bodoconsultappabstractions">Referenced libraries for Bodoconsult.App.Abstractions</h1>
 <h2 id="systemwindowsmedia-by-microsoft">System.Windows.Media by Microsoft</h2>
 <p>System.Windows.Media is part of the WPF environment by Microsoft and is released as open source under the MIT license</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://github.com/dotnet/wpf/blob/main/LICENSE.TXT">https://github.com/dotnet/wpf/blob/main/LICENSE.TXT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/wpf">https://github.com/dotnet/wpf</a></p>
+<h2 id="how-to-convert-between-roman-and-arabic-numerals-in-c-by-andrew-comeau">How to Convert Between Roman and Arabic Numerals in C# by Andrew Comeau</h2>
+<p>Article describing how to convert between Roman and Arabic Numerals.</p>
+<p>License: unknown</p>
+<p>License-Url:</p>
+<p>Project-Url: <a href="https://www.andrewcomeau.com/programming/convert-roman-arabic-numerals-csharp/">How to Convert Between Roman and Arabic Numerals in C#</a></p>
 <h2 id="nuget-package-library-microsoftextensionsconfigurationjson-by-microsoft">Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>JSON configuration provider implementation for Microsoft.Extensions.Configuration. This package enables you to read your application's settings from a JSON file. You can use JsonConfigurationExtensions.AddJsonFile extension method on IConfigurationBuilder to add the JSON configuration provider to the configuration builder.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsdependencyinjection-by-microsoft">Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
+<h2 id="nuget-package-library-microsoftextensionshosting-by-microsoft-2">Nuget package library Microsoft.Extensions.Hosting by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>Hosting and startup infrastructures for applications.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionslogging-by-microsoft">Nuget package library Microsoft.Extensions.Logging by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Logging infrastructure default implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsloggingconsole-by-microsoft">Nuget package library Microsoft.Extensions.Logging.Console by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Console logger provider implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsloggingdebug-by-microsoft">Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Debug output logger provider implementation for Microsoft.Extensions.Logging. This logger logs messages to a debugger monitor by writing messages with System.Diagnostics.Debug.WriteLine().</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsloggingeventsource-by-microsoft">Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>EventSource/EventListener logger provider implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
+<h1 id="referenced-libraries-for-bodoconsultappavaloniareactiveui">Referenced libraries for Bodoconsult.App.Avalonia.ReactiveUI</h1>
+<h2 id="nuget-package-library-reactivemarblesobservableeventssourcegenerator-by-glenn-watson-3">Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson</h2>
+<p>Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc</p>
+<p>Allows to get an observables for property changed events.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactivemarbles/ObservableEvents">https://github.com/reactivemarbles/ObservableEvents</a></p>
+<h2 id="nuget-package-library-reactiveuiavalonia-by-reactiveui-and-avalonia-teams--and-contributors-2">Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors</h2>
+<p>Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Avalonia</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
+<h2 id="nuget-package-library-reactiveuisourcegenerators-by-net-foundation-and-contributors-3">Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui.sourcegenerators">https://github.com/reactiveui/reactiveui.sourcegenerators</a></p>
 <h1 id="referenced-libraries-for-bodoconsultappavalonia">Referenced libraries for Bodoconsult.App.Avalonia</h1>
-<h2 id="nuget-package-library-avalonia-by-avalonia-team-2">Nuget package library Avalonia by Avalonia Team</h2>
+<h2 id="nuget-package-library-avalonia-by-avalonia-team-4">Nuget package library Avalonia by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team-2">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
+<h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team-4">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team-2">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
+<h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team-4">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team-2">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
+<h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team-4">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-avaloniamarkupxamlloader-by-avalonia-team">Nuget package library Avalonia.Markup.Xaml.Loader by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team-2">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
+<h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team-4">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
 <p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
 <h2 id="nuget-package-library-communitytoolkitmvvm-by-microsoft-2">Nuget package library CommunityToolkit.Mvvm by Microsoft</h2>
+<p>Copyright: (c) .NET Foundation and Contributors. All rights reserved.</p>
 <p>This package includes a .NET MVVM library with helpers such as:
 - ObservableObject: a base class for objects implementing the INotifyPropertyChanged interface.
 - ObservableRecipient: a base class for observable objects with support for the IMessenger service.
@@ -532,11 +777,13 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/CommunityToolkit/dotnet">https://github.com/CommunityToolkit/dotnet</a></p>
 <h2 id="nuget-package-library-messageboxavalonia-by-lary">Nuget package library MessageBox.Avalonia by Lary</h2>
+<p>Copyright:</p>
 <p>Messagebox for AvaloniaUI</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: messagebox.avalonia</p>
 <h2 id="nuget-package-library-systemdatadatasetextensions-by-microsoft">Nuget package library System.Data.DataSetExtensions by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation.  All rights reserved.</p>
 <p>Provides extensions to form LINQ expressions and method queries against DataTable objects.</p>
 <p>Commonly Used Types:
 System.Data.DataRowComparer
@@ -553,22 +800,44 @@ When using NuGet 3.x this package requires at least version 3.4.</p>
 <p>License-Url: <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT">https://github.com/dotnet/corefx/blob/master/LICENSE.TXT</a></p>
 <p>Project-Url:</p>
 <h1 id="referenced-libraries-for-bodoconsultappbackgroundservice">Referenced libraries for Bodoconsult.App.BackgroundService</h1>
-<h2 id="nuget-package-library-microsoftextensionshosting-by-microsoft-2">Nuget package library Microsoft.Extensions.Hosting by Microsoft</h2>
+<h2 id="nuget-package-library-microsoftextensionshosting-by-microsoft-3">Nuget package library Microsoft.Extensions.Hosting by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Hosting and startup infrastructures for applications.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-bodoconsultappgrpcbackgroundservice">Referenced libraries for Bodoconsult.App.GrpcBackgroundService</h1>
 <h2 id="nuget-package-library-grpcaspnetcore-by-the-grpc-authors-3">Nuget package library Grpc.AspNetCore by The gRPC Authors</h2>
+<p>Copyright: Copyright 2019 The gRPC Authors</p>
 <p>gRPC meta-package for ASP.NET Core</p>
 <p>License: Apache-2.0</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/grpc/grpc-dotnet.git">https://github.com/grpc/grpc-dotnet.git</a></p>
-<h2 id="nuget-package-library-microsoftextensionshosting-by-microsoft-3">Nuget package library Microsoft.Extensions.Hosting by Microsoft</h2>
+<h2 id="nuget-package-library-microsoftextensionshosting-by-microsoft-4">Nuget package library Microsoft.Extensions.Hosting by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Hosting and startup infrastructures for applications.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
+<h1 id="referenced-libraries-for-bodoconsultappreactiveui">Referenced libraries for Bodoconsult.App.ReactiveUI</h1>
+<h2 id="nuget-package-library-reactivemarblesobservableeventssourcegenerator-by-glenn-watson-4">Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson</h2>
+<p>Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc</p>
+<p>Allows to get an observables for property changed events.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactivemarbles/ObservableEvents">https://github.com/reactivemarbles/ObservableEvents</a></p>
+<h2 id="nuget-package-library-reactiveui-by-net-foundation-and-contributors">Nuget package library ReactiveUI by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the base package with the base platform implementations</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
+<h2 id="nuget-package-library-reactiveuisourcegenerators-by-net-foundation-and-contributors-4">Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui.sourcegenerators">https://github.com/reactiveui/reactiveui.sourcegenerators</a></p>
 <h1 id="referenced-libraries-for-bodoconsultappwindows">Referenced libraries for Bodoconsult.App.Windows</h1>
 <h2 id="windowscredentialmanager-by-widauer-patrick">WindowsCredentialManager by Widauer Patrick</h2>
 <p>License-Url: <a href="https://github.com/a-ctor/WindowsCredentialManager?tab=MIT-1-ov-file#readme">https://github.com/a-ctor/WindowsCredentialManager?tab=MIT-1-ov-file#readme</a></p>
@@ -579,11 +848,13 @@ When using NuGet 3.x this package requires at least version 3.4.</p>
 <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 <h2 id="nuget-package-library-microsoftextensionsloggingeventlog-by-microsoft">Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Windows Event Log logger provider implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsofttoolkituwpnotifications-by-microsofttoolkit-dotnetfoundation">Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation</h2>
+<p>Copyright: (c) .NET Foundation and Contributors.  All rights reserved.</p>
 <p>The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.</p>
 <pre><code>  Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
 
@@ -593,6 +864,7 @@ When using NuGet 3.x this package requires at least version 3.4.</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit.git">https://github.com/CommunityToolkit/WindowsCommunityToolkit.git</a></p>
 <h2 id="nuget-package-library-microsoftwin32registry-by-microsoft">Nuget package library Microsoft.Win32.Registry by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides support for accessing and modifying the Windows Registry.</p>
 <p>Commonly Used Types:
 Microsoft.Win32.RegistryKey
@@ -605,6 +877,7 @@ Microsoft.Win32.RegistryView</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: git://github.com/dotnet/runtime</p>
 <h2 id="nuget-package-library-systemdrawingcommon-by-microsoft">Nuget package library System.Drawing.Common by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides access to GDI+ graphics functionality.</p>
 <pre><code>  Commonly Used Types:
   System.Drawing.Bitmap
@@ -620,6 +893,7 @@ Microsoft.Win32.RegistryView</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/winforms">https://github.com/dotnet/winforms</a></p>
 <h2 id="nuget-package-library-systemsecuritycryptographyprotecteddata-by-microsoft">Nuget package library System.Security.Cryptography.ProtectedData by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides access to Windows Data Protection Api.</p>
 <p>Commonly Used Types:
 System.Security.Cryptography.DataProtectionScope
@@ -629,24 +903,28 @@ System.Security.Cryptography.ProtectedData</p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-bodoconsultappwinforms">Referenced libraries for Bodoconsult.App.WinForms</h1>
 <h2 id="nuget-package-library-microsoftaspnetcoredataprotection-by-microsoft">Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>ASP.NET Core logic to protect and unprotect data, similar to DPAPI.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoredataprotectionextensions-by-microsoft">Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Additional APIs for ASP.NET Core data protection.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoretesthost-by-microsoft-1">Nuget package library Microsoft.AspNetCore.TestHost by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>ASP.NET Core web server for writing and running tests.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsofttoolkituwpnotifications-by-microsofttoolkit-dotnetfoundation-1">Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation</h2>
+<p>Copyright: (c) .NET Foundation and Contributors.  All rights reserved.</p>
 <p>The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.</p>
 <pre><code>  Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
 
@@ -656,6 +934,7 @@ System.Security.Cryptography.ProtectedData</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit.git">https://github.com/CommunityToolkit/WindowsCommunityToolkit.git</a></p>
 <h2 id="nuget-package-library-systemdrawingcommon-by-microsoft-1">Nuget package library System.Drawing.Common by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides access to GDI+ graphics functionality.</p>
 <pre><code>  Commonly Used Types:
   System.Drawing.Bitmap
@@ -671,6 +950,7 @@ System.Security.Cryptography.ProtectedData</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/winforms">https://github.com/dotnet/winforms</a></p>
 <h2 id="nuget-package-library-systemtextjson-by-microsoft-2">Nuget package library System.Text.Json by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.</p>
 <p>The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</p>
 <p>License: MIT</p>
@@ -678,22 +958,26 @@ System.Security.Cryptography.ProtectedData</p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-bodoconsultappwpfdocuments">Referenced libraries for Bodoconsult.App.Wpf.Documents</h1>
 <h2 id="nuget-package-library-fody-by-the-fody-team">Nuget package library Fody by The Fody Team</h2>
+<p>Copyright: Copyright (c) The Fody Team and contributors</p>
 <p>Extensible tool for weaving .net assemblies.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/Fody/Fody.git">https://github.com/Fody/Fody.git</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoretesthost-by-microsoft-2">Nuget package library Microsoft.AspNetCore.TestHost by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>ASP.NET Core web server for writing and running tests.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-propertychangedfody-by-simon-cropp">Nuget package library PropertyChanged.Fody by Simon Cropp</h2>
+<p>Copyright:</p>
 <p>Add property notification to all classes that implement INotifyPropertyChanged.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url:</p>
 <h2 id="nuget-package-library-systemdatadatasetextensions-by-microsoft-1">Nuget package library System.Data.DataSetExtensions by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation.  All rights reserved.</p>
 <p>Provides extensions to form LINQ expressions and method queries against DataTable objects.</p>
 <p>Commonly Used Types:
 System.Data.DataRowComparer
@@ -710,11 +994,147 @@ When using NuGet 3.x this package requires at least version 3.4.</p>
 <p>License-Url: <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT">https://github.com/dotnet/corefx/blob/master/LICENSE.TXT</a></p>
 <p>Project-Url:</p>
 <h2 id="nuget-package-library-xpstopdf-by-thomas-hoevel--nathan-jones--xpstopdf">Nuget package library XpsToPdf by Thomas Hoevel,  Nathan Jones,  XpsToPdf</h2>
+<p>Copyright: 2005-2018 empira Software GmbH, 2016 Nathan Jones, 2020 XpsToPdf Community</p>
 <p>A single package to convert XPS to PDF.
 Since you can convert WPF object to XPS easily, here the last piece to free easy reporting.</p>
 <p>License: LICENSE.md</p>
 <p>License-Url: <a href="https://www.nuget.org/packages/XpsToPdf/1.0.6/License">https://www.nuget.org/packages/XpsToPdf/1.0.6/License</a></p>
 <p>Project-Url: <a href="https://github.com/XpsToPdf/XpsToPdf">https://github.com/XpsToPdf/XpsToPdf</a></p>
+<h1 id="referenced-libraries-for-bodoconsultappwpfreactiveui">Referenced libraries for Bodoconsult.App.Wpf.ReactiveUI</h1>
+<h1 id="entypo-fonts-by-daniel-bruce">Entypo fonts by Daniel Bruce</h1>
+<p>Project uri: <a href="http://www.entypo.com/">http://www.entypo.com/</a></p>
+<p>License uri: <a href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a></p>
+<p>Entypo is created by Daniel Bruce and released under the Creative Commons, Share Alike/Attribution license.</p>
+<h1 id="license-for-icons">License for icons</h1>
+<p>Bodoconsult.App.Wpf.Unity uses some ModernUIIcons.com icons. Therefore here the license info for ModernUIIcons.com:</p>
+<p>Project uri: <a href="http://templarian.com/">http://templarian.com/</a></p>
+<p>License uri: <a href="http://creativecommons.org/licenses/by-nd/3.0/">http://creativecommons.org/licenses/by-nd/3.0/</a></p>
+<p>Please carefully understand the license and download the latest icons at ModernUIIcons.com.</p>
+<h2 id="understand-your-rights">Understand Your Rights</h2>
+<p>No Attribution and No Derived Works
+<a href="http://creativecommons.org/licenses/by-nd/3.0/">http://creativecommons.org/licenses/by-nd/3.0/</a> *</p>
+<ul>
+<li>If your project is open source include this license file in the source.</li>
+<li>Nothing is needed in the front facing project (UNLESS you
+are using any of the icons listed below in the attribution section).</li>
+<li>Commercial use is not only allowed but encouraged. If it is an icon
+in the attribution list below, you still need to attribute those!</li>
+<li>Do not distribute the entire package (I've allowed this dozens of
+times for open source projects, but email me first).</li>
+</ul>
+<h2 id="creator">Creator</h2>
+<ul>
+<li>Austin Andrews (@templarian)</li>
+</ul>
+<h2 id="contributor">Contributor**</h2>
+<ul>
+<li>Jay Zawrotny (@JayZawrotny)
+<ul>
+<li>A Bunch</li>
+</ul>
+</li>
+<li>Oren Nachman
+<ul>
+<li>appbar.chevron.down</li>
+<li>appbar.chevron.up</li>
+<li>appbar.chevron.left</li>
+<li>appbar.chevron.right</li>
+</ul>
+</li>
+</ul>
+<h2 id="derived-works">Derived Works</h2>
+<ul>
+<li>Alex Peattie
+<ul>
+<li>Social: <a href="http://www.alexpeattie.com/projects/justvector_icons/">http://www.alexpeattie.com/projects/justvector_icons/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="attribution">Attribution***</h2>
+<ul>
+<li>Kris Vandermotten (@kvandermotten)
+<ul>
+<li>appbar.medical.pulse</li>
+</ul>
+</li>
+<li>Constantin Kichinsky (@kichinsky)
+<ul>
+<li>appbar.currency.rubles</li>
+<li>appbar.currency.grivna</li>
+</ul>
+</li>
+<li>Massimo Savazzi (@msavazzi)
+<ul>
+<li>List of missing exported icons</li>
+</ul>
+</li>
+<li>Proletkult Graphik, from The Noun Project
+<ul>
+<li>appbar.draw.pen (inspired)</li>
+</ul>
+</li>
+<li>Olivier Guin, from The Noun Project
+<ul>
+<li>appbar.draw.marker</li>
+</ul>
+</li>
+<li>Gibran Bisio, from The Noun Project
+<ul>
+<li>appbar.draw.bucket
+Andrew Forrester, from The Noun Project</li>
+<li>appbar.fingerprint</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>The license is for attribution, but this is not required.
+** Developers and designers that emailed Templarian the source .design icons to be added into the package. PNGs also accepted, but may take longer to be added.
+*** Icons I've copied so closely you want to attribute them and are also under the CC license.</li>
+</ul>
+<p>Contact</p>
+<ul>
+<li><a href="http://templarian.com/">http://templarian.com/</a></li>
+<li>admin[@]templarian[.]com</li>
+</ul>
+<ul>
+<li>Does not apply to copyrighted logos</li>
+</ul>
+<ul>
+<li>Skype</li>
+<li>Facebook</li>
+<li>Twitter</li>
+<li>etc...</li>
+</ul>
+<h2 id="nuget-package-library-mahappsmetro-by-jan-karger--dennis-daume--brendan-forster--paul-jenkins--jake-ginnivan--alex-mitchell-1">Nuget package library MahApps.Metro by Jan Karger,  Dennis Daume,  Brendan Forster,  Paul Jenkins,  Jake Ginnivan,  Alex Mitchell</h2>
+<p>Copyright: Copyright © 2025 .NET Foundation and Contributors. All rights reserved.</p>
+<p>The goal of MahApps.Metro is to allow devs to quickly and easily cobble together a 'Modern' UI for their WPF apps (&gt;= .Net 4.5), with minimal effort.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/MahApps/MahApps.Metro.git">https://github.com/MahApps/MahApps.Metro.git</a></p>
+<h2 id="nuget-package-library-mahappsmetroiconpacks-by-jan-karger-1">Nuget package library MahApps.Metro.IconPacks by Jan Karger</h2>
+<p>Copyright: Copyright © 2016 - 2025 MahApps.Metro</p>
+<p>IconPacks for stylish awesome WPF and UWP applications.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/MahApps/MahApps.Metro.IconPacks.git">https://github.com/MahApps/MahApps.Metro.IconPacks.git</a></p>
+<h2 id="nuget-package-library-reactivemarblesobservableeventssourcegenerator-by-glenn-watson-5">Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson</h2>
+<p>Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc</p>
+<p>Allows to get an observables for property changed events.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactivemarbles/ObservableEvents">https://github.com/reactivemarbles/ObservableEvents</a></p>
+<h2 id="nuget-package-library-reactiveuisourcegenerators-by-net-foundation-and-contributors-5">Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui.sourcegenerators">https://github.com/reactiveui/reactiveui.sourcegenerators</a></p>
+<h2 id="nuget-package-library-reactiveuiwpf-by-net-foundation-and-contributors-2">Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Windows Presentation Foundation (WPF)</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
 <h1 id="referenced-libraries-for-bodoconsultappwpf">Referenced libraries for Bodoconsult.App.Wpf</h1>
 <h2 id="systemtrayappwpf-sample-by-kazuhiro-fujieda">SystemTrayApp.WPF sample by Kazuhiro Fujieda</h2>
 <p>License-Url: <a href="https://github.com/fujieda/SystemTrayApp.WPF/">https://github.com/fujieda/SystemTrayApp.WPF/</a></p>
@@ -730,6 +1150,7 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.</p>
 <h2 id="nuget-package-library-communitytoolkitmvvm-by-microsoft-3">Nuget package library CommunityToolkit.Mvvm by Microsoft</h2>
+<p>Copyright: (c) .NET Foundation and Contributors. All rights reserved.</p>
 <p>This package includes a .NET MVVM library with helpers such as:
 - ObservableObject: a base class for objects implementing the INotifyPropertyChanged interface.
 - ObservableRecipient: a base class for observable objects with support for the IMessenger service.
@@ -743,16 +1164,19 @@ PERFORMANCE OF THIS SOFTWARE.</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/CommunityToolkit/dotnet">https://github.com/CommunityToolkit/dotnet</a></p>
 <h2 id="nuget-package-library-microsoft-windowsapicodepack-core-by-rpastric-contre-dahall">Nuget package library Microsoft-WindowsAPICodePack-Core by rpastric, contre, dahall</h2>
+<p>Copyright: Copyright © 2020</p>
 <p>The Core code for the WindowsAPICodePack. This is an updated version containing all available bug fixes for this code as of 2020-01-04.</p>
 <p>License:</p>
 <p>License-Url: <a href="https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE">https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE</a></p>
 <p>Project-Url: <a href="https://github.com/contre/Windows-API-Code-Pack-1.1">https://github.com/contre/Windows-API-Code-Pack-1.1</a></p>
 <h2 id="nuget-package-library-microsoft-windowsapicodepack-shell-by-rpastric-contre-dahall">Nuget package library Microsoft-WindowsAPICodePack-Shell by rpastric, contre, dahall</h2>
+<p>Copyright: Copyright © 2020</p>
 <p>The Shell code for the WindowsAPICodePack. This is an updated version containing all available bug fixes for this code as of 2020-01-04.</p>
 <p>License:</p>
 <p>License-Url: <a href="https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE">https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE</a></p>
 <p>Project-Url: <a href="https://github.com/contre/Windows-API-Code-Pack-1.1">https://github.com/contre/Windows-API-Code-Pack-1.1</a></p>
 <h2 id="nuget-package-library-microsofttoolkituwpnotifications-by-microsofttoolkit-dotnetfoundation-2">Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation</h2>
+<p>Copyright: (c) .NET Foundation and Contributors.  All rights reserved.</p>
 <p>The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.</p>
 <pre><code>  Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
 
@@ -762,11 +1186,13 @@ PERFORMANCE OF THIS SOFTWARE.</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit.git">https://github.com/CommunityToolkit/WindowsCommunityToolkit.git</a></p>
 <h2 id="nuget-package-library-microsoftxamlbehaviorswpf-by-microsoft">Nuget package library Microsoft.Xaml.Behaviors.Wpf by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Easily add interactivity to your apps using XAML Behaviors for WPF. Behaviors encapsulate reusable functionalities for elements that can be easily added to your XAML without the need for more imperative code.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/XamlBehaviorsWpf">https://github.com/microsoft/XamlBehaviorsWpf</a></p>
 <h2 id="nuget-package-library-systemdatadatasetextensions-by-microsoft-2">Nuget package library System.Data.DataSetExtensions by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation.  All rights reserved.</p>
 <p>Provides extensions to form LINQ expressions and method queries against DataTable objects.</p>
 <p>Commonly Used Types:
 System.Data.DataRowComparer
@@ -783,6 +1209,7 @@ When using NuGet 3.x this package requires at least version 3.4.</p>
 <p>License-Url: <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT">https://github.com/dotnet/corefx/blob/master/LICENSE.TXT</a></p>
 <p>Project-Url:</p>
 <h2 id="nuget-package-library-systemdrawingcommon-by-microsoft-2">Nuget package library System.Drawing.Common by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides access to GDI+ graphics functionality.</p>
 <pre><code>  Commonly Used Types:
   System.Drawing.Bitmap
@@ -799,6 +1226,7 @@ When using NuGet 3.x this package requires at least version 3.4.</p>
 <p>Project-Url: <a href="https://github.com/dotnet/winforms">https://github.com/dotnet/winforms</a></p>
 <h1 id="referenced-libraries-for-bodoconsultapp">Referenced libraries for Bodoconsult.App</h1>
 <h2 id="nuget-package-library-log4net-by-the-apache-software-foundation">Nuget package library log4net by The Apache Software Foundation</h2>
+<p>Copyright: Copyright © 2004 - 2026 The Apache Software Foundation</p>
 <p>log4net is a tool to help the programmer output log statements to a variety of output targets.
 In case of problems with an application, it is helpful to enable logging so that the problem
 can be located. With log4net it is possible to enable logging at runtime without modifying the
@@ -814,23 +1242,27 @@ at arbitrary granularity.</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/apache/logging-log4net">https://github.com/apache/logging-log4net</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoredataprotection-by-microsoft-1">Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>ASP.NET Core logic to protect and unprotect data, similar to DPAPI.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoredataprotectionextensions-by-microsoft-1">Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Additional APIs for ASP.NET Core data protection.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftdiagnosticsnetcoreclient-by-microsoft">Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>.NET Core Diagnostics Client Library</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/diagnostics">https://github.com/dotnet/diagnostics</a></p>
 <h2 id="nuget-package-library-microsoftdiagnosticstracingtraceevent-by-microsoft">Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Event Tracing for Windows (ETW) is a powerful logging mechanism built into the Windows OS and is used extensively in Windows.
 You can also log ETW events yourself code using the System.Diagnostics.Tracing.EventSource class.</p>
 <pre><code>  The TraceEvent library conains the classes needed to control ETW providers (including .NET EventSources) 
@@ -847,36 +1279,43 @@ You can also log ETW events yourself code using the System.Diagnostics.Tracing.E
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url:</p>
 <h2 id="nuget-package-library-microsoftextensionsconfigurationjson-by-microsoft-1">Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>JSON configuration provider implementation for Microsoft.Extensions.Configuration. This package enables you to read your application's settings from a JSON file. You can use JsonConfigurationExtensions.AddJsonFile extension method on IConfigurationBuilder to add the JSON configuration provider to the configuration builder.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsdependencyinjection-by-microsoft-1">Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionslogging-by-microsoft-1">Nuget package library Microsoft.Extensions.Logging by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Logging infrastructure default implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsloggingconsole-by-microsoft-1">Nuget package library Microsoft.Extensions.Logging.Console by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Console logger provider implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsloggingdebug-by-microsoft-1">Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Debug output logger provider implementation for Microsoft.Extensions.Logging. This logger logs messages to a debugger monitor by writing messages with System.Diagnostics.Debug.WriteLine().</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionsloggingeventsource-by-microsoft-1">Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>EventSource/EventListener logger provider implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftwin32primitives-by-microsoft">Nuget package library Microsoft.Win32.Primitives by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation.  All rights reserved.</p>
 <p>Provides common types for Win32-based libraries.</p>
 <p>Commonly Used Types:
 System.ComponentModel.Win32Exception</p>
@@ -885,11 +1324,13 @@ System.ComponentModel.Win32Exception</p>
 <p>License-Url: <a href="http://go.microsoft.com/fwlink/?LinkId=329770">http://go.microsoft.com/fwlink/?LinkId=329770</a></p>
 <p>Project-Url:</p>
 <h2 id="nuget-package-library-microsoftwindowscswin32-by-microsoft">Nuget package library Microsoft.Windows.CsWin32 by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Microsoft Windows SDK Win32 API Source Generator</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/CsWin32.git">https://github.com/microsoft/CsWin32.git</a></p>
 <h2 id="nuget-package-library-systemtextjson-by-microsoft-3">Nuget package library System.Text.Json by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.</p>
 <p>The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</p>
 <p>License: MIT</p>
@@ -897,12 +1338,14 @@ System.ComponentModel.Win32Exception</p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-bodoconsultchartingbase">Referenced libraries for Bodoconsult.Charting.Base</h1>
 <h2 id="nuget-package-library-scottplot-by-scott-harden">Nuget package library ScottPlot by Scott Harden</h2>
+<p>Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC</p>
 <p>ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/ScottPlot/ScottPlot.git">https://github.com/ScottPlot/ScottPlot.git</a></p>
 <h1 id="referenced-libraries-for-bodoconsultcharting">Referenced libraries for Bodoconsult.Charting</h1>
 <h2 id="nuget-package-library-scottplot-by-scott-harden-1">Nuget package library ScottPlot by Scott Harden</h2>
+<p>Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC</p>
 <p>ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
@@ -916,6 +1359,7 @@ System.ComponentModel.Win32Exception</p>
 <p>Adjusting contrast: <a href="https://stackoverflow.com/questions/76831547/apply-contrast-to-images-using-c-sharp-and-skiasharp">https://stackoverflow.com/questions/76831547/apply-contrast-to-images-using-c-sharp-and-skiasharp</a></p>
 <p>Bitonal conversion: <a href="https://medium.com/@robert.cichielo/dithering-color-images-with-skiasharp-69de53207f8d">https://medium.com/@robert.cichielo/dithering-color-images-with-skiasharp-69de53207f8d</a></p>
 <h2 id="nuget-package-library-scottplot-by-scott-harden-2">Nuget package library ScottPlot by Scott Harden</h2>
+<p>Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC</p>
 <p>ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
@@ -929,6 +1373,7 @@ System.ComponentModel.Win32Exception</p>
 <p>Adjusting contrast: <a href="https://stackoverflow.com/questions/76831547/apply-contrast-to-images-using-c-sharp-and-skiasharp">https://stackoverflow.com/questions/76831547/apply-contrast-to-images-using-c-sharp-and-skiasharp</a></p>
 <p>Bitonal conversion: <a href="https://medium.com/@robert.cichielo/dithering-color-images-with-skiasharp-69de53207f8d">https://medium.com/@robert.cichielo/dithering-color-images-with-skiasharp-69de53207f8d</a></p>
 <h2 id="nuget-package-library-systemdrawingcommon-by-microsoft-3">Nuget package library System.Drawing.Common by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Provides access to GDI+ graphics functionality.</p>
 <pre><code>  Commonly Used Types:
   System.Drawing.Bitmap
@@ -965,12 +1410,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 <h2 id="nuget-package-library-microsoftextensionsdependencyinjection-by-microsoft-2">Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h1 id="referenced-libraries-for-bodoconsultoffice">Referenced libraries for Bodoconsult.Office</h1>
 <h2 id="nuget-package-library-documentformatopenxml-by-microsoft">Nuget package library DocumentFormat.OpenXml by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The Open XML SDK provides tools for working with Office Word, Excel, and PowerPoint documents. It supports scenarios such as:</p>
 <ul>
 <li>High-performance generation of word-processing documents, spreadsheets, and presentations.</li>
@@ -986,68 +1433,74 @@ SOFTWARE.</p>
 <p>Project-Url: <a href="https://github.com/dotnet/Open-XML-SDK">https://github.com/dotnet/Open-XML-SDK</a></p>
 <h1 id="referenced-libraries-for-bodoconsultpdf">Referenced libraries for Bodoconsult.Pdf</h1>
 <h2 id="nuget-package-library-pdfsharp-migradoc-by-pdfsharp-team">Nuget package library PDFsharp-MigraDoc by PDFsharp Team</h2>
+<p>Copyright: © 2025 empira</p>
 <p>MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
 This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
 See <a href="https://docs.pdfsharp.net">https://docs.pdfsharp.net</a> for details.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/empira/PDFsharp">https://github.com/empira/PDFsharp</a></p>
-<h1 id="referenced-libraries-for-bodoconsulttextpdf">Referenced libraries for Bodoconsult.Text.Pdf</h1>
-<h2 id="nuget-package-library-pdfsharp-migradoc-by-pdfsharp-team-1">Nuget package library PDFsharp-MigraDoc by PDFsharp Team</h2>
-<p>MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
-This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
-See <a href="https://docs.pdfsharp.net">https://docs.pdfsharp.net</a> for details.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/empira/PDFsharp">https://github.com/empira/PDFsharp</a></p>
-<h1 id="referenced-libraries-for-bodoconsultappavaloniatest">Referenced libraries for Bodoconsult.App.Avalonia.Test</h1>
-<h2 id="nuget-package-library-avalonia-by-avalonia-team-3">Nuget package library Avalonia by Avalonia Team</h2>
-<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team-3">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
-<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team-3">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
-<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team-3">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
-<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
-<h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team-3">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
-<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h1 id="referenced-libraries-for-bodoconsultappavaloniareactiveuitest">Referenced libraries for Bodoconsult.App.Avalonia.ReactiveUI.Test</h1>
 <h2 id="nuget-package-library-coverletcollector-by-tonerdo-1">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
 <p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
-<h2 id="nuget-package-library-messageboxavalonia-by-lary-1">Nuget package library MessageBox.Avalonia by Lary</h2>
-<p>Messagebox for AvaloniaUI</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: messagebox.avalonia</p>
-<h2 id="nuget-package-library-microsoftaspnetcoretesthost-by-microsoft-3">Nuget package library Microsoft.AspNetCore.TestHost by Microsoft</h2>
-<p>ASP.NET Core web server for writing and running tests.</p>
-<p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-1">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-1">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
+<p>NUnit is a unit-testing framework for all .NET languages.
+It can run on macOS, Linux and Windows operating systems.
+NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.</p>
+<pre><code>        The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+        If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+        Supported platforms:
+        - .NET Framework 4.6.2+
+        - .NET 6.0+
+        - .NET 8.0+
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
+<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-1">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
+<pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
+  For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
+<h2 id="nuget-package-library-reactiveuiavalonia-by-reactiveui-and-avalonia-teams--and-contributors-3">Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors</h2>
+<p>Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Avalonia</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
+<h1 id="referenced-libraries-for-bodoconsultappreactiveuitests">Referenced libraries for Bodoconsult.App.ReactiveUI.Tests</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-2">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
+<h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-2">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>The MSbuild targets and properties for building .NET test projects.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
+<h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-2">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1065,12 +1518,128 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunitanalyzers-by-nunit">Nuget package library NUnit.Analyzers by NUnit</h2>
+<p>Copyright: Copyright (c) 2018-2025 NUnit project</p>
 <p>This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.</p>
 <p>Version 3.0 and upwards works in Visual Studio 2019 (version 16.3) or newer and also enables supression of compiler errors such as errors arising from nullable reference types. For Visual Studio 2017 one must use versions below 3.0 - note that these versions are no longer updated, so version 2.10.0 is the last version that works in Visual Studio 2017.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit.analyzers">https://github.com/nunit/nunit.analyzers</a></p>
-<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-1">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-2">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
+<pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
+  For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
+<h2 id="nuget-package-library-reactivemarblesobservableeventssourcegenerator-by-glenn-watson-6">Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson</h2>
+<p>Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc</p>
+<p>Allows to get an observables for property changed events.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactivemarbles/ObservableEvents">https://github.com/reactivemarbles/ObservableEvents</a></p>
+<h2 id="nuget-package-library-reactiveuiavalonia-by-reactiveui-and-avalonia-teams--and-contributors-4">Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors</h2>
+<p>Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors</p>
+<p>Contains the ReactiveUI platform specific extensions for Avalonia</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
+<h2 id="nuget-package-library-reactiveuisourcegenerators-by-net-foundation-and-contributors-6">Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the Source Generators package for ReactiveUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui.sourcegenerators">https://github.com/reactiveui/reactiveui.sourcegenerators</a></p>
+<h2 id="nuget-package-library-reactiveuitesting-by-net-foundation-and-contributors">Nuget package library ReactiveUI.Testing by .NET Foundation and Contributors</h2>
+<p>Copyright: Copyright (c) .NET Foundation and Contributors</p>
+<p>Provides extensions for testing ReactiveUI based applications</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/reactiveui/reactiveui">https://github.com/reactiveui/reactiveui</a></p>
+<h1 id="referenced-libraries-for-bodoconsultappavaloniatest">Referenced libraries for Bodoconsult.App.Avalonia.Test</h1>
+<h2 id="nuget-package-library-avalonia-by-avalonia-team-5">Nuget package library Avalonia by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniadesktop-by-avalonia-team-5">Nuget package library Avalonia.Desktop by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniadiagnostics-by-avalonia-team-5">Nuget package library Avalonia.Diagnostics by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniafontsinter-by-avalonia-team-5">Nuget package library Avalonia.Fonts.Inter by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-avaloniathemesfluent-by-avalonia-team-5">Nuget package library Avalonia.Themes.Fluent by Avalonia Team</h2>
+<p>Copyright: Copyright 2013-2026 © The AvaloniaUI Project</p>
+<p>Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/AvaloniaUI/Avalonia/">https://github.com/AvaloniaUI/Avalonia/</a></p>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-3">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
+<h2 id="nuget-package-library-messageboxavalonia-by-lary-1">Nuget package library MessageBox.Avalonia by Lary</h2>
+<p>Copyright:</p>
+<p>Messagebox for AvaloniaUI</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: messagebox.avalonia</p>
+<h2 id="nuget-package-library-microsoftaspnetcoretesthost-by-microsoft-3">Nuget package library Microsoft.AspNetCore.TestHost by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>ASP.NET Core web server for writing and running tests.</p>
+<p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
+<h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-3">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>The MSbuild targets and properties for building .NET test projects.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
+<h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-3">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
+<p>NUnit is a unit-testing framework for all .NET languages.
+It can run on macOS, Linux and Windows operating systems.
+NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.</p>
+<pre><code>        The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+        If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+        Supported platforms:
+        - .NET Framework 4.6.2+
+        - .NET 6.0+
+        - .NET 8.0+
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
+<h2 id="nuget-package-library-nunitanalyzers-by-nunit-1">Nuget package library NUnit.Analyzers by NUnit</h2>
+<p>Copyright: Copyright (c) 2018-2025 NUnit project</p>
+<p>This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.</p>
+<p>Version 3.0 and upwards works in Visual Studio 2019 (version 16.3) or newer and also enables supression of compiler errors such as errors arising from nullable reference types. For Visual Studio 2017 one must use versions below 3.0 - note that these versions are no longer updated, so version 2.10.0 is the last version that works in Visual Studio 2017.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit.analyzers">https://github.com/nunit/nunit.analyzers</a></p>
+<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-3">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1079,6 +1648,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
 <h2 id="nuget-package-library-systemdatadatasetextensions-by-microsoft-3">Nuget package library System.Data.DataSetExtensions by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation.  All rights reserved.</p>
 <p>Provides extensions to form LINQ expressions and method queries against DataTable objects.</p>
 <p>Commonly Used Types:
 System.Data.DataRowComparer
@@ -1095,12 +1665,14 @@ When using NuGet 3.x this package requires at least version 3.4.</p>
 <p>License-Url: <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT">https://github.com/dotnet/corefx/blob/master/LICENSE.TXT</a></p>
 <p>Project-Url:</p>
 <h1 id="referenced-libraries-for-bodoconsultapptest">Referenced libraries for Bodoconsult.App.Test</h1>
-<h2 id="nuget-package-library-coverletcollector-by-tonerdo-2">Nuget package library coverlet.collector by tonerdo</h2>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-4">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
 <p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-log4net-by-the-apache-software-foundation-1">Nuget package library log4net by The Apache Software Foundation</h2>
+<p>Copyright: Copyright © 2004 - 2026 The Apache Software Foundation</p>
 <p>log4net is a tool to help the programmer output log statements to a variety of output targets.
 In case of problems with an application, it is helpful to enable logging so that the problem
 can be located. With log4net it is possible to enable logging at runtime without modifying the
@@ -1116,112 +1688,46 @@ at arbitrary granularity.</p>
 <p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
 <p>Project-Url: <a href="https://github.com/apache/logging-log4net">https://github.com/apache/logging-log4net</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoredataprotection-by-microsoft-2">Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>ASP.NET Core logic to protect and unprotect data, similar to DPAPI.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoredataprotectionextensions-by-microsoft-2">Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Additional APIs for ASP.NET Core data protection.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftaspnetcoretesthost-by-microsoft-4">Nuget package library Microsoft.AspNetCore.TestHost by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>ASP.NET Core web server for writing and running tests.</p>
 <p>This package was built from the source code at <a href="https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc">https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc</a></p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/aspnetcore">https://github.com/dotnet/aspnetcore</a></p>
 <h2 id="nuget-package-library-microsoftextensionsdependencyinjection-by-microsoft-3">Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
 <h2 id="nuget-package-library-microsoftextensionslogging-by-microsoft-2">Nuget package library Microsoft.Extensions.Logging by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>Logging infrastructure default implementation for Microsoft.Extensions.Logging.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
-<h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-2">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
-<p>The MSbuild targets and properties for building .NET test projects.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
-<h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-2">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
-<p>NUnit is a unit-testing framework for all .NET languages.
-It can run on macOS, Linux and Windows operating systems.
-NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
-It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.</p>
-<pre><code>        The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
-
-        If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
-
-        Supported platforms:
-        - .NET Framework 4.6.2+
-        - .NET 6.0+
-        - .NET 8.0+
-</code></pre>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
-<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-2">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
-<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
-<pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
-  For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
-</code></pre>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h2 id="nuget-package-library-systemtextjson-by-microsoft-4">Nuget package library System.Text.Json by Microsoft</h2>
-<p>Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.</p>
-<p>The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
-<h1 id="referenced-libraries-for-bodoconsultappwindowstest">Referenced libraries for Bodoconsult.App.Windows.Test</h1>
-<h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-3">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
-<p>The MSbuild targets and properties for building .NET test projects.</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
-<h2 id="nuget-package-library-newtonsoftjson-by-james-newton-king">Nuget package library Newtonsoft.Json by James Newton-King</h2>
-<p>Json.NET is a popular high-performance JSON framework for .NET</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/JamesNK/Newtonsoft.Json">https://github.com/JamesNK/Newtonsoft.Json</a></p>
-<h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-3">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
-<p>NUnit is a unit-testing framework for all .NET languages.
-It can run on macOS, Linux and Windows operating systems.
-NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
-It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.</p>
-<pre><code>        The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
-
-        If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
-
-        Supported platforms:
-        - .NET Framework 4.6.2+
-        - .NET 6.0+
-        - .NET 8.0+
-</code></pre>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
-<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-3">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
-<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
-<pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
-  For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
-</code></pre>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsultappwpfdocumentstest">Referenced libraries for Bodoconsult.App.Wpf.Documents.Test</h1>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-4">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-4">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1239,6 +1745,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-4">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1246,13 +1753,34 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsultappwpftest">Referenced libraries for Bodoconsult.App.Wpf.Test</h1>
+<h2 id="nuget-package-library-systemtextjson-by-microsoft-4">Nuget package library System.Text.Json by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.</p>
+<p>The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/dotnet/runtime">https://github.com/dotnet/runtime</a></p>
+<h1 id="referenced-libraries-for-bodoconsultappwindowstest">Referenced libraries for Bodoconsult.App.Windows.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-5">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-5">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
+<h2 id="nuget-package-library-newtonsoftjson-by-james-newton-king">Nuget package library Newtonsoft.Json by James Newton-King</h2>
+<p>Copyright: Copyright © James Newton-King 2008</p>
+<p>Json.NET is a popular high-performance JSON framework for .NET</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/JamesNK/Newtonsoft.Json">https://github.com/JamesNK/Newtonsoft.Json</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-5">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1270,6 +1798,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-5">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1277,25 +1806,21 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsultappgrpcbackgroundservicetest">Referenced libraries for Bodoconsult.App.GrpcBackgroundService.Test</h1>
-<h2 id="nuget-package-library-coverletcollector-by-tonerdo-3">Nuget package library coverlet.collector by tonerdo</h2>
+<h1 id="referenced-libraries-for-bodoconsultappwpfdocumentstest">Referenced libraries for Bodoconsult.App.Wpf.Documents.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-6">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
 <p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
-<h2 id="nuget-package-library-grpccoretesting-by-the-grpc-authors">Nuget package library Grpc.Core.Testing by The gRPC Authors</h2>
-<p>Miscellaneous code for testing Grpc.Core</p>
-<p>Note that the Grpc.Core implementation of gRPC for C# is in maintenance mode and will be replaced by grpc-dotnet in the future.
-See <a href="https://grpc.io/blog/grpc-csharp-future/">https://grpc.io/blog/grpc-csharp-future/</a> for details.</p>
-<p>License: Apache-2.0</p>
-<p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
-<p>Project-Url: <a href="https://github.com/grpc/grpc.git">https://github.com/grpc/grpc.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-6">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-6">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1313,6 +1838,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-6">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1320,18 +1846,21 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsultchartingtest">Referenced libraries for Bodoconsult.Charting.Test</h1>
+<h1 id="referenced-libraries-for-bodoconsultappwpfreactiveuitest">Referenced libraries for Bodoconsult.App.Wpf.ReactiveUI.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-7">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-7">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
-<h2 id="nuget-package-library-newtonsoftjson-by-james-newton-king-1">Nuget package library Newtonsoft.Json by James Newton-King</h2>
-<p>Json.NET is a popular high-performance JSON framework for .NET</p>
-<p>License: MIT</p>
-<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/JamesNK/Newtonsoft.Json">https://github.com/JamesNK/Newtonsoft.Json</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-7">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1349,25 +1878,29 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-7">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
-<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.</p>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
 </code></pre>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h2 id="nuget-package-library-scottplot-by-scott-harden-3">Nuget package library ScottPlot by Scott Harden</h2>
-<p>ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.</p>
+<h1 id="referenced-libraries-for-bodoconsultappwpftest">Referenced libraries for Bodoconsult.App.Wpf.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-8">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/ScottPlot/ScottPlot.git">https://github.com/ScottPlot/ScottPlot.git</a></p>
-<h1 id="referenced-libraries-for-bodoconsultdrawingtest">Referenced libraries for Bodoconsult.Drawing.Test</h1>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-8">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-8">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1385,35 +1918,37 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-8">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
-<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.</p>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
 </code></pre>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h2 id="nuget-package-library-systemdrawingcommon-by-microsoft-4">Nuget package library System.Drawing.Common by Microsoft</h2>
-<p>Provides access to GDI+ graphics functionality.</p>
-<pre><code>  Commonly Used Types:
-  System.Drawing.Bitmap
-  System.Drawing.BitmapData
-  System.Drawing.Brush
-  System.Drawing.Font
-  System.Drawing.Graphics
-  System.Drawing.Icon
-
-  Since .NET 7, non-Windows platforms are not supported, even with the runtime configuration switch. See https://aka.ms/systemdrawingnonwindows for more information.
-</code></pre>
+<h1 id="referenced-libraries-for-bodoconsultappgrpcbackgroundservicetest">Referenced libraries for Bodoconsult.App.GrpcBackgroundService.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-9">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/dotnet/winforms">https://github.com/dotnet/winforms</a></p>
-<h1 id="referenced-libraries-for-bodoconsulti18ntest">Referenced libraries for Bodoconsult.I18N.Test</h1>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
+<h2 id="nuget-package-library-grpccoretesting-by-the-grpc-authors">Nuget package library Grpc.Core.Testing by The gRPC Authors</h2>
+<p>Copyright: Copyright 2017 The gRPC Authors</p>
+<p>Miscellaneous code for testing Grpc.Core</p>
+<p>Note that the Grpc.Core implementation of gRPC for C# is in maintenance mode and will be replaced by grpc-dotnet in the future.
+See <a href="https://grpc.io/blog/grpc-csharp-future/">https://grpc.io/blog/grpc-csharp-future/</a> for details.</p>
+<p>License: Apache-2.0</p>
+<p>License-Url: <a href="https://licenses.nuget.org/Apache-2.0">https://licenses.nuget.org/Apache-2.0</a></p>
+<p>Project-Url: <a href="https://github.com/grpc/grpc.git">https://github.com/grpc/grpc.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-9">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-9">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1431,6 +1966,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-9">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1438,13 +1974,27 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsultofficetests">Referenced libraries for Bodoconsult.Office.Tests</h1>
+<h1 id="referenced-libraries-for-bodoconsultchartingtest">Referenced libraries for Bodoconsult.Charting.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-10">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-10">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
+<h2 id="nuget-package-library-newtonsoftjson-by-james-newton-king-1">Nuget package library Newtonsoft.Json by James Newton-King</h2>
+<p>Copyright: Copyright © James Newton-King 2008</p>
+<p>Json.NET is a popular high-performance JSON framework for .NET</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/JamesNK/Newtonsoft.Json">https://github.com/JamesNK/Newtonsoft.Json</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-10">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1462,20 +2012,35 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-10">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
-<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.</p>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
 </code></pre>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsultpdftest">Referenced libraries for Bodoconsult.Pdf.Test</h1>
+<h2 id="nuget-package-library-scottplot-by-scott-harden-3">Nuget package library ScottPlot by Scott Harden</h2>
+<p>Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC</p>
+<p>ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/ScottPlot/ScottPlot.git">https://github.com/ScottPlot/ScottPlot.git</a></p>
+<h1 id="referenced-libraries-for-bodoconsultdrawingtest">Referenced libraries for Bodoconsult.Drawing.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-11">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-11">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-11">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1493,6 +2058,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-11">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1500,20 +2066,37 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h2 id="nuget-package-library-pdfsharp-migradoc-by-pdfsharp-team-2">Nuget package library PDFsharp-MigraDoc by PDFsharp Team</h2>
-<p>MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
-This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
-See <a href="https://docs.pdfsharp.net">https://docs.pdfsharp.net</a> for details.</p>
+<h2 id="nuget-package-library-systemdrawingcommon-by-microsoft-4">Nuget package library System.Drawing.Common by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>Provides access to GDI+ graphics functionality.</p>
+<pre><code>  Commonly Used Types:
+  System.Drawing.Bitmap
+  System.Drawing.BitmapData
+  System.Drawing.Brush
+  System.Drawing.Font
+  System.Drawing.Graphics
+  System.Drawing.Icon
+
+  Since .NET 7, non-Windows platforms are not supported, even with the runtime configuration switch. See https://aka.ms/systemdrawingnonwindows for more information.
+</code></pre>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/empira/PDFsharp">https://github.com/empira/PDFsharp</a></p>
-<h1 id="referenced-libraries-for-bodoconsulttesttest">Referenced libraries for Bodoconsult.Test.Test</h1>
+<p>Project-Url: <a href="https://github.com/dotnet/winforms">https://github.com/dotnet/winforms</a></p>
+<h1 id="referenced-libraries-for-bodoconsulti18ntest">Referenced libraries for Bodoconsult.I18N.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-12">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-12">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-12">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1531,6 +2114,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-12">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1538,13 +2122,21 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsulttextpdftest">Referenced libraries for Bodoconsult.Text.Pdf.Test</h1>
+<h1 id="referenced-libraries-for-bodoconsultofficetests">Referenced libraries for Bodoconsult.Office.Tests</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-13">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-13">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-13">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1562,6 +2154,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-13">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1569,20 +2162,21 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h2 id="nuget-package-library-pdfsharp-migradoc-by-pdfsharp-team-3">Nuget package library PDFsharp-MigraDoc by PDFsharp Team</h2>
-<p>MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
-This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
-See <a href="https://docs.pdfsharp.net">https://docs.pdfsharp.net</a> for details.</p>
+<h1 id="referenced-libraries-for-bodoconsultpdftest">Referenced libraries for Bodoconsult.Pdf.Test</h1>
+<h2 id="nuget-package-library-coverletcollector-by-tonerdo-14">Nuget package library coverlet.collector by tonerdo</h2>
+<p>Copyright: (c) 2018 Toni Solarin-Sodara</p>
+<p>Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
-<p>Project-Url: <a href="https://github.com/empira/PDFsharp">https://github.com/empira/PDFsharp</a></p>
-<h1 id="referenced-libraries-for-bodoconsulttexttest">Referenced libraries for Bodoconsult.Text.Test</h1>
+<p>Project-Url: <a href="https://github.com/coverlet-coverage/coverlet.git">https://github.com/coverlet-coverage/coverlet.git</a></p>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-14">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-14">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1600,6 +2194,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-14">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1607,13 +2202,23 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
-<h1 id="referenced-libraries-for-bodoconsulttypographytest">Referenced libraries for Bodoconsult.Typography.Test</h1>
+<h2 id="nuget-package-library-pdfsharp-migradoc-by-pdfsharp-team-1">Nuget package library PDFsharp-MigraDoc by PDFsharp Team</h2>
+<p>Copyright: © 2025 empira</p>
+<p>MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
+This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
+See <a href="https://docs.pdfsharp.net">https://docs.pdfsharp.net</a> for details.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/empira/PDFsharp">https://github.com/empira/PDFsharp</a></p>
+<h1 id="referenced-libraries-for-bodoconsulttesttest">Referenced libraries for Bodoconsult.Test.Test</h1>
 <h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-15">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
 <p>The MSbuild targets and properties for building .NET test projects.</p>
 <p>License: MIT</p>
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
 <h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-15">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
 <p>NUnit is a unit-testing framework for all .NET languages.
 It can run on macOS, Linux and Windows operating systems.
 NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
@@ -1631,6 +2236,117 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 <p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
 <p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
 <h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-15">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
+<pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
+  For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
+<h1 id="referenced-libraries-for-bodoconsulttextpdftest">Referenced libraries for Bodoconsult.Text.Pdf.Test</h1>
+<h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-16">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>The MSbuild targets and properties for building .NET test projects.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
+<h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-16">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
+<p>NUnit is a unit-testing framework for all .NET languages.
+It can run on macOS, Linux and Windows operating systems.
+NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.</p>
+<pre><code>        The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+        If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+        Supported platforms:
+        - .NET Framework 4.6.2+
+        - .NET 6.0+
+        - .NET 8.0+
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
+<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-16">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
+<pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
+  For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
+<h2 id="nuget-package-library-pdfsharp-migradoc-by-pdfsharp-team-2">Nuget package library PDFsharp-MigraDoc by PDFsharp Team</h2>
+<p>Copyright: © 2025 empira</p>
+<p>MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
+This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
+See <a href="https://docs.pdfsharp.net">https://docs.pdfsharp.net</a> for details.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/empira/PDFsharp">https://github.com/empira/PDFsharp</a></p>
+<h1 id="referenced-libraries-for-bodoconsulttexttest">Referenced libraries for Bodoconsult.Text.Test</h1>
+<h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-17">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>The MSbuild targets and properties for building .NET test projects.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
+<h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-17">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
+<p>NUnit is a unit-testing framework for all .NET languages.
+It can run on macOS, Linux and Windows operating systems.
+NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.</p>
+<pre><code>        The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+        If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+        Supported platforms:
+        - .NET Framework 4.6.2+
+        - .NET 6.0+
+        - .NET 8.0+
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
+<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-17">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
+<p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
+<pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
+  For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit3-vs-adapter">https://github.com/nunit/nunit3-vs-adapter</a></p>
+<h1 id="referenced-libraries-for-bodoconsulttypographytest">Referenced libraries for Bodoconsult.Typography.Test</h1>
+<h2 id="nuget-package-library-microsoftnettestsdk-by-microsoft-18">Nuget package library Microsoft.NET.Test.Sdk by Microsoft</h2>
+<p>Copyright: © Microsoft Corporation. All rights reserved.</p>
+<p>The MSbuild targets and properties for building .NET test projects.</p>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/microsoft/vstest">https://github.com/microsoft/vstest</a></p>
+<h2 id="nuget-package-library-nunit-by-charlie-poole--rob-prouse-18">Nuget package library NUnit by Charlie Poole,  Rob Prouse</h2>
+<p>Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.</p>
+<p>NUnit is a unit-testing framework for all .NET languages.
+It can run on macOS, Linux and Windows operating systems.
+NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.</p>
+<pre><code>        The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+        If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+        Supported platforms:
+        - .NET Framework 4.6.2+
+        - .NET 6.0+
+        - .NET 8.0+
+</code></pre>
+<p>License: MIT</p>
+<p>License-Url: <a href="https://licenses.nuget.org/MIT">https://licenses.nuget.org/MIT</a></p>
+<p>Project-Url: <a href="https://github.com/nunit/nunit">https://github.com/nunit/nunit</a></p>
+<h2 id="nuget-package-library-nunit3testadapter-by-charlie-poole--terje-sandstrom-18">Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom</h2>
+<p>Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom</p>
 <p>The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.</p>
 <pre><code>  Note that this package ONLY contains the adapter, not the NUnit framework.
   For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -1642,7 +2358,7 @@ It is a non-opinionated, broad and deep framework with multiple different ways t
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/LICENSE.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/LICENSE.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

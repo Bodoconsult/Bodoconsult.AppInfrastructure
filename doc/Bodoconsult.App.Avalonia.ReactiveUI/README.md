@@ -11,11 +11,24 @@ Bodoconsult.App.ReactiveUi is a base library with basic functionality for multil
 
 -   View model base class MainWindowViewModel for app main window
 
-See sample app AvaloniaReactiveUiDemoApp for a simple introduction how to work with menus and region based navigation.
+Bodoconsult.App.Avalonia.ReactiveUI is implementing features of Bodoconsult.App.ReactiveUI based on Avalonia
+
 
 ## What does the library
 
 Bodoconsult.App.Avalonia is a library with basic functionality for multilayered monolithic Avalonia based applications. 
+
+-   Navigation supporting regions in window instances.
+
+-   OS independent definition of menus and context menus
+
+-   View model base class MainWindowViewModel for app main window
+
+-   Access to clipboard via IUiClipboardService / ClipboardService
+
+-   Access to filepicker dialogs via IUiFileDialogService / FileDialogService
+
+See sample app AvaloniaReactiveUiDemoApp for a simple introduction how to work with menus and region based navigation and other features of Bodoconsult.App.Avalonia.ReactiveUI.
 
 ## How to use the library
 

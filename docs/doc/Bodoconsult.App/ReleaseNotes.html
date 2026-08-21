@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/doc/Bodoconsult.App/ReleaseNotes.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.App/ReleaseNotes.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -124,6 +124,10 @@
 <ul>
 <li><p>Uses Bodoconsult.App.Abstractions 1.0.9</p>
 </li>
+<li><p>Changed to nullable project type</p>
+</li>
+<li><p>Performance tuning for many classes like AppLoggerProxy</p>
+</li>
 <li><p>MonitorLoggerFactory added for creating special purpose loggers (in addition to the default app logging). Intended to write logs for a device, a database connection or other topics requiring separate logging</p>
 </li>
 <li><p>Added IDataExportService<t>/DataExportServiceBase<t> for long running data exports to string or binary files</t></t></p>
@@ -132,12 +136,16 @@
 </li>
 <li><p>Added MemoryStreamBufferPool for reusing instances of MemoryStream class</p>
 </li>
+<li><p>Improved monitor logging supporting additional log targets as defined in appsettings.json file (but log to other file as defined by the monitor logger)</p>
+</li>
+<li><p>Added IDataCollectionService<t>/CounterDataCollectionService<t>/TimePeriodDataCollectionService<t> to collect data from an object stream time interval based by timeperiod or counter</t></t></t></p>
+</li>
 </ul>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/ReactiveUI/doc/Bodoconsult.App/ReleaseNotes.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.App/ReleaseNotes.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

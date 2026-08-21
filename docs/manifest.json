@@ -104,6 +104,62 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.BufferPool-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.BufferPool-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.BufferPool.BufferPool<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.BufferPool.BufferPool-1.yml\" sourcestartlinenumber=\"1\">Buffer pool is used to store reusable objects to reduce GC pressure</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.BufferPoolResetable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.BufferPoolResetable-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.BufferPool.BufferPoolResetable<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.BufferPool.BufferPoolResetable-1.yml\" sourcestartlinenumber=\"1\">Buffer pool is used to store resetable objects implementing <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IResetable\" data-throw-if-not-resolved=\"false\"></xref>to reduce GC pressure</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.MemoryStreamBufferPool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.MemoryStreamBufferPool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.BufferPool.MemoryStreamBufferPool",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.BufferPool.MemoryStreamBufferPool.yml\" sourcestartlinenumber=\"1\">Buffer pool is used to store reusable <xref href=\"System.IO.MemoryStream\" data-throw-if-not-resolved=\"false\"></xref>&gt; instances to reduce GC pressure</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.BufferPool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.BufferPool",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.DataProtection.DataProtectionKeyAttribute.yml",
       "output": {
         ".html": {
@@ -342,6 +398,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Extensions.ByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Extensions.ByteExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Extensions.ByteExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Extensions.ByteExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for Memory&lt;byte&gt; instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Extensions.IntExtensions.yml",
       "output": {
         ".html": {
@@ -353,6 +423,48 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Extensions.IntExtensions",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Extensions.IntExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for integer values</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Extensions.LambdaExpressionHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Extensions.LambdaExpressionHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Extensions.LambdaExpressionHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Extensions.LambdaExpressionHelper.yml\" sourcestartlinenumber=\"1\">Helper class for lamdba expressions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Extensions.MemoryExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Extensions.MemoryExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Extensions.MemoryExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Extensions.MemoryExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for Memory&lt;byte&gt; instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Extensions.ReadOnlySequenceExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Extensions.ReadOnlySequenceExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Extensions.ReadOnlySequenceExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Extensions.ReadOnlySequenceExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for ReadOnlySequence&lt;byte&gt; instances</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -384,6 +496,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Helpers.ArgumentExceptionHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Helpers.ArgumentExceptionHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Helpers.ArgumentExceptionHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Helpers.ArgumentExceptionHelper.yml\" sourcestartlinenumber=\"1\">Provides helper methods for argument validation.\nThese methods serve as polyfills for ArgumentNullException.ThrowIfNull and related methods\nthat are only available in newer .NET versions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.yml",
       "output": {
         ".html": {
@@ -395,6 +521,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Helpers.MeasurementHelper",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Helpers.MeasurementHelper.yml\" sourcestartlinenumber=\"1\">Helepr class for measurement conversions using diverse units like cm, Twips, inch etc.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Helpers.ResourceHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Helpers.ResourceHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Helpers.ResourceHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Helpers.ResourceHelper.yml\" sourcestartlinenumber=\"1\">Helper class to read text or SQL resources</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -468,6 +608,48 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegate2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegate2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegate2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegate2-1.yml\" sourcestartlinenumber=\"1\">A delegate for consumer task used in <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync-1.yml\" sourcestartlinenumber=\"1\">A delegate for consumer task used in <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ConsumerTaskDelegateAsync2-1.yml\" sourcestartlinenumber=\"1\">A delegate for consumer task used in <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.CredentialType.yml",
       "output": {
         ".html": {
@@ -482,6 +664,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.DummyI18N.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.DummyI18N.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.DummyI18N",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.DummyI18N.yml\" sourcestartlinenumber=\"1\">Dummy implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.II18N\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ForwardCollectDataDelegate-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ForwardCollectDataDelegate-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ForwardCollectDataDelegate<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ForwardCollectDataDelegate-1.yml\" sourcestartlinenumber=\"1\">Delegate to forward collected data from an <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService%601\" data-throw-if-not-resolved=\"false\"></xref> implementation after collection time has passed</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.GradientStyle.yml",
       "output": {
         ".html": {
@@ -493,6 +703,34 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.GradientStyle",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.GradientStyle.yml\" sourcestartlinenumber=\"1\">Specifies a gradient style to be used for a chart element.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.I2NetworkDevicesAppStartParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.I2NetworkDevicesAppStartParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.I2NetworkDevicesAppStartParameter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.I2NetworkDevicesAppStartParameter.yml\" sourcestartlinenumber=\"1\">App start parameters with connection to two network devices</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.I3NetworkDevicesAppStartParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.I3NetworkDevicesAppStartParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.I3NetworkDevicesAppStartParameter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.I3NetworkDevicesAppStartParameter.yml\" sourcestartlinenumber=\"1\">App start parameters with connection to three network devices</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -776,6 +1014,62 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionReply.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionReply.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionReply",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionReply.yml\" sourcestartlinenumber=\"1\">Basic content of a business transaction reply</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionRequestData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionRequestData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionRequestData",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionRequestData.yml\" sourcestartlinenumber=\"1\">Interface for defining minimum requirements for business transaction request data</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue-1.yml\" sourcestartlinenumber=\"1\">Implements a thread-safe generic producer consumer based pattern cachin data using threads: Use it for classes</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue2-1.yml\" sourcestartlinenumber=\"1\">Implements a thread-safe generic producer consumer based pattern cachin data using threads: Use it for structs</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IClient.yml",
       "output": {
         ".html": {
@@ -927,6 +1221,34 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.ICredentials",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ICredentials.yml\" sourcestartlinenumber=\"1\">Interface for credentials used by <xref href=\"Bodoconsult.App.Abstractions.Interfaces.ICredentialManager\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService-1.yml\" sourcestartlinenumber=\"1\">Interface for data collection services. A data collection service is a service collection data if activated from a data stream in time intervals for a certain time period.\nA data stream is not a real stream implementing a C# stream type.\nIt is more a steam of data coming in from an external source in distinct messages.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IDataExportService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IDataExportService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IDataExportService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IDataExportService-1.yml\" sourcestartlinenumber=\"1\">Interface for generic data export services</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1238,6 +1560,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IMemoryDataExportService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IMemoryDataExportService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IMemoryDataExportService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IMemoryDataExportService.yml\" sourcestartlinenumber=\"1\">Memory based data export services</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactory.yml",
       "output": {
         ".html": {
@@ -1249,6 +1585,48 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactory",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactory.yml\" sourcestartlinenumber=\"1\">Interface to separate monitor loggers from an app logger</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactoryFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactoryFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactoryFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactoryFactory.yml\" sourcestartlinenumber=\"1\">Interface to create <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IMonitorLoggerFactory\" data-throw-if-not-resolved=\"false\"></xref> factories</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.INetworkCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.INetworkCommandBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.INetworkCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.INetworkCommandBuilder.yml\" sourcestartlinenumber=\"1\">Interface for building a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.NetworkCommand\" data-throw-if-not-resolved=\"false\"></xref> instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.INetworkCommandParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.INetworkCommandParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.INetworkCommandParser",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.INetworkCommandParser.yml\" sourcestartlinenumber=\"1\">Interface for parsing a command string to a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.NetworkCommand\" data-throw-if-not-resolved=\"false\"></xref> instance</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1290,7 +1668,49 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue<T>",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue-1.yml\" sourcestartlinenumber=\"1\">Implements a thread-safe generic producer consumer based pattern using threads</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue-1.yml\" sourcestartlinenumber=\"1\">Implements a thread-safe generic producer consumer based pattern using threads: Use it for classes</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue2-1.yml\" sourcestartlinenumber=\"1\">Implements a thread-safe generic producer consumer based pattern using threads. Use it for structs</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync-1.yml\" sourcestartlinenumber=\"1\">Implements a thread-safe generic producer consumer based pattern using threads: Use it for classes</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync2-1.yml\" sourcestartlinenumber=\"1\">Implements a thread-safe generic producer consumer based pattern using threads. Use it for structs</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1333,6 +1753,34 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.IServiceRequiresAppSettingsUpdate",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IServiceRequiresAppSettingsUpdate.yml\" sourcestartlinenumber=\"1\">Interface for a service classes which are dependent on app settings\nand must be updated when app settings are changed</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IStringToFileService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IStringToFileService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IStringToFileService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IStringToFileService.yml\" sourcestartlinenumber=\"1\">Interface for services to save strings as complete file. This class is intended to save in-memory-configurations as JSON or XML to file after changes.\nWriting to file happens in a single threaded manner.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ISyncProcessManager-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.ISyncProcessManager-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.ISyncProcessManager<TKey, T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.ISyncProcessManager-2.yml\" sourcestartlinenumber=\"1\">Interface for implementing the management of sync running non-blocking processes. As long as the process IDs are unique instance can be singleton</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1430,7 +1878,35 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.IWatchDog",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IWatchDog.yml\" sourcestartlinenumber=\"1\">Interface for watchdog implementations</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IWatchDog.yml\" sourcestartlinenumber=\"1\">Interface for watchdog implementations. A watchdog meant here is an interval based polling mechanism.\nA timer is fired always at the fixed time interval. This may lead to multiple <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDog.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instances running if the\nruntime of each of thisinstances is longer than the timer interval. A watchdog runs a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDog.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instance and\nafterwards it waits for the <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDog.DelayUntilNextRunnerFired\" data-throw-if-not-resolved=\"false\"></xref> interval before running the next instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync.yml\" sourcestartlinenumber=\"1\">Interface for watchdog implementations. A watchdog meant here is an interval based polling mechanism.\nA timer is fired always at the fixed time interval. This may lead to multiple <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instances running if the\nruntime of each of thisinstances is longer than the timer interval. A watchdog runs a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instance and\nafterwards it waits for the <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync.DelayUntilNextRunnerFired\" data-throw-if-not-resolved=\"false\"></xref> interval before running the next instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IntSyncProcessData-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.IntSyncProcessData-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.IntSyncProcessData<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.IntSyncProcessData-1.yml\" sourcestartlinenumber=\"1\">Helper class for running process identified by an int value in a sync manner</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1476,6 +1952,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.LogDataFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.LogDataFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.LogDataFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.LogDataFactory.yml\" sourcestartlinenumber=\"1\">Factory for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.LogData\" data-throw-if-not-resolved=\"false\"></xref> instances with integrated buffer pool to reduce GC pressure</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.LoggingConfig.yml",
       "output": {
         ".html": {
@@ -1487,6 +1977,48 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.LoggingConfig",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.LoggingConfig.yml\" sourcestartlinenumber=\"1\">Stores logging configuration</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.LongSyncProcessData-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.LongSyncProcessData-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.LongSyncProcessData<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.LongSyncProcessData-1.yml\" sourcestartlinenumber=\"1\">Helper class for running process identified by a long value in a sync manner</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.NetworkCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.NetworkCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.NetworkCommand",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.NetworkCommand.yml\" sourcestartlinenumber=\"1\">Data structure for sending or receiving commands from the network</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.NetworkCommandParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.NetworkCommandParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.NetworkCommandParameter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.NetworkCommandParameter.yml\" sourcestartlinenumber=\"1\">Network command parameter</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1529,6 +2061,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.PortableLanguage",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.PortableLanguage.yml\" sourcestartlinenumber=\"1\">Portable language</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.SyncProcessData-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.SyncProcessData-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.SyncProcessData<TKey, T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.SyncProcessData-2.yml\" sourcestartlinenumber=\"1\">Helper class for running process identified by a key value in a sync manner</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1686,6 +2232,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.WatchDogRunnerDelegateAsync.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.WatchDogRunnerDelegateAsync.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.WatchDogRunnerDelegateAsync",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.WatchDogRunnerDelegateAsync.yml\" sourcestartlinenumber=\"1\">Delegate fired by <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.yml",
       "output": {
         ".html": {
@@ -1696,6 +2256,34 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.SyncExecution.SyncProcessManager-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.SyncExecution.SyncProcessManager-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.SyncExecution.SyncProcessManager<TKey, T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.SyncExecution.SyncProcessManager-2.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.ISyncProcessManager%602\" data-throw-if-not-resolved=\"false\"></xref> for processes identified by a Guid, a long or int value</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.SyncExecution.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.SyncExecution.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.SyncExecution",
       "Summary": null
     },
     {
@@ -2554,6 +3142,104 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.BaseConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.BaseConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Delegates.Converters.BaseConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Delegates.Converters.BaseConverter.yml\" sourcestartlinenumber=\"1\">Base class for converters to make it useable as markup extension\nUse derived converters like shown the sample below.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.ColorToBrushConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.ColorToBrushConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Delegates.Converters.ColorToBrushConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Delegates.Converters.ColorToBrushConverter.yml\" sourcestartlinenumber=\"1\">Convert a color to a solid brush</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeConverter.yml\" sourcestartlinenumber=\"1\">Converter for DateTime values to UI string\nUses CurrentCulture (settings from system control) instead of CurrentUICulture</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeUiConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeUiConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeUiConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Delegates.Converters.DateTimeUiConverter.yml\" sourcestartlinenumber=\"1\">Converter for DateTime values to UI string\nUses CurrentUICulture with the user interfaces settings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.NumberConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.NumberConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Delegates.Converters.NumberConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Delegates.Converters.NumberConverter.yml\" sourcestartlinenumber=\"1\">Convert numbers for data binding: Format N2 (#,##0.00)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.PercentageConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.PercentageConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Delegates.Converters.PercentageConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Delegates.Converters.PercentageConverter.yml\" sourcestartlinenumber=\"1\">Convert percentages (format P2) for data binding</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Delegates.Converters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Delegates.Converters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Avalonia.Delegates.SendStatusMessageDelegate.yml",
       "output": {
         ".html": {
@@ -2578,6 +3264,48 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Avalonia.Delegates",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Extensions.ColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Extensions.ColorExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Extensions.ColorExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Extensions.ColorExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Avalonia.Media.Color\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Extensions.TypoColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Extensions.TypoColorExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Extensions.TypoColorExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Extensions.TypoColorExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.TypoColor\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Extensions",
       "Summary": null
     },
     {
@@ -2621,6 +3349,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Avalonia.Helpers.AvaloniaStandardDialogHelper",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Helpers.AvaloniaStandardDialogHelper.yml\" sourcestartlinenumber=\"1\">Helper class for OS standard dialogs for WPF</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Helpers.DialogHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Helpers.DialogHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Helpers.DialogHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Helpers.DialogHelper.yml\" sourcestartlinenumber=\"1\">Helper class for dialogs</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2722,6 +3464,636 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.App.BaseAvaloniaReactiveUiAppBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.App.BaseAvaloniaReactiveUiAppBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.App.BaseAvaloniaReactiveUiAppBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.App.BaseAvaloniaReactiveUiAppBuilder.yml\" sourcestartlinenumber=\"1\">Base class for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppBuilder\" data-throw-if-not-resolved=\"false\"></xref> implementations running a background service but not using GRPC</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.App.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.App",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.AppStarter.AvaloniaStarterUi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.AppStarter.AvaloniaStarterUi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.AppStarter.AvaloniaStarterUi",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.AppStarter.AvaloniaStarterUi.yml\" sourcestartlinenumber=\"1\">Implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppStarterUi\" data-throw-if-not-resolved=\"false\"></xref> for WinForms app</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.AppStarter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.AppStarter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.AppStarter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.ContextMenuControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.ContextMenuControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Controls.ContextMenuControl",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.ContextMenuControl.yml\" sourcestartlinenumber=\"1\">Context menu control</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.ImageControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.ImageControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Controls.ImageControl",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.ImageControl.yml\" sourcestartlinenumber=\"1\">Logo cobtrol code behind</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.LogoControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.LogoControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Controls.LogoControl",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.LogoControl.yml\" sourcestartlinenumber=\"1\">Logo cobtrol code behind</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.MenuControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.MenuControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Controls.MenuControl",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.MenuControl.yml\" sourcestartlinenumber=\"1\">Menu control</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Controls.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Controls",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.InlineConverterMethods.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.InlineConverterMethods.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Converters.InlineConverterMethods",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.InlineConverterMethods.yml\" sourcestartlinenumber=\"1\">Static class for predefined inline converter methods for ReactiveUI bindings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.UiWindowStateToWindowStateConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.UiWindowStateToWindowStateConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Converters.UiWindowStateToWindowStateConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.UiWindowStateToWindowStateConverter.yml\" sourcestartlinenumber=\"1\">Converts an UIWindowState to a WindowState and back</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Converters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Converters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginChangePasswordDataDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginChangePasswordDataDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginChangePasswordDataDelegate",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginChangePasswordDataDelegate.yml\" sourcestartlinenumber=\"1\">Delegate used to change the password of the user</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginCheckLoginDataDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginCheckLoginDataDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginCheckLoginDataDelegate",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.LoginCheckLoginDataDelegate.yml\" sourcestartlinenumber=\"1\">Delegate used to verify the given credentials</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.NavigateGoBackDelegate-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.NavigateGoBackDelegate-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Delegates.NavigateGoBackDelegate<TRegion, TEvent, TInputData>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.NavigateGoBackDelegate-3.yml\" sourcestartlinenumber=\"1\">Navigation go-back delegate</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Delegates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Delegates",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Extensions.AvaloniaUiExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Extensions.AvaloniaUiExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Extensions.AvaloniaUiExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Extensions.AvaloniaUiExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Helper.AvaloniaReactiveUiHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Helper.AvaloniaReactiveUiHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Helper.AvaloniaReactiveUiHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Helper.AvaloniaReactiveUiHelper.yml\" sourcestartlinenumber=\"1\">Helper class for Avalonia issues tied to ReactiveUi</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Helper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Helper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Helper",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.I18N.AvaloniaLocalesProviderPackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.I18N.AvaloniaLocalesProviderPackage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.I18N.AvaloniaLocalesProviderPackage",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.I18N.AvaloniaLocalesProviderPackage.yml\" sourcestartlinenumber=\"1\">Load language ressources from Bodoconsult.App.Avalonia.ReactiveUI</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.I18N.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.I18N.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.I18N",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IAvaloniaUiClipboardService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IAvaloniaUiClipboardService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IAvaloniaUiClipboardService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IAvaloniaUiClipboardService.yml\" sourcestartlinenumber=\"1\">Enhancements for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiClipboardService\" data-throw-if-not-resolved=\"false\"></xref> for Avalonia</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IImageViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IImageViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IImageViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.IImageViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel interface for start screen with logo and app title</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.ILogoViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.ILogoViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.ILogoViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.ILogoViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel interface for start screen with logo and app title</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Menus.AvaloniaUiMenuBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Menus.AvaloniaUiMenuBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Menus.AvaloniaUiMenuBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Menus.AvaloniaUiMenuBuilder.yml\" sourcestartlinenumber=\"1\"><xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuBuilder\" data-throw-if-not-resolved=\"false\"></xref> implementation for Avalonia menus using default <xref href=\"Avalonia.Controls.Menu\" data-throw-if-not-resolved=\"false\"></xref> as base control</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Menus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Menus.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Menus",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Models.DataContainer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Models.DataContainer-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Models.DataContainer<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Models.DataContainer-1.yml\" sourcestartlinenumber=\"1\">Helper class for transporting data and a title to views</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaRegionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaRegionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaRegionManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaRegionManager.yml\" sourcestartlinenumber=\"1\">Avalonia implementation of <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaUiRegion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaUiRegion.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaUiRegion",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.AvaloniaUiRegion.yml\" sourcestartlinenumber=\"1\"><xref href=\"Bodoconsult.App.ReactiveUI.Regions.UiRegion\" data-throw-if-not-resolved=\"false\"></xref> implementation for Avalonia</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Regions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Regions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.AvaloniaUiStorageFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.AvaloniaUiStorageFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Services.AvaloniaUiStorageFile",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Services.AvaloniaUiStorageFile.yml\" sourcestartlinenumber=\"1\"><xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiStorageFile\" data-throw-if-not-resolved=\"false\"></xref> implementation for Avalonia</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.ClipboardService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.ClipboardService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Services.ClipboardService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Services.ClipboardService.yml\" sourcestartlinenumber=\"1\">Clipboard service based on Avalonia</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.FileDialogService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.FileDialogService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Services.FileDialogService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Services.FileDialogService.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiFileDialogService\" data-throw-if-not-resolved=\"false\"></xref> for Avalonia</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Services.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ContextMenuControlViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ContextMenuControlViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ContextMenuControlViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ContextMenuControlViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for ContextMenuControl</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ImageViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ImageViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ImageViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.ImageViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for an image</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.LogoViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.LogoViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.LogoViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.LogoViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for a logo</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.MenuControlViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.MenuControlViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.MenuControlViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.MenuControlViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for MenuControl</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.ViewModels.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.ViewModels",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Views.CopyrightWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Views.CopyrightWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Views.CopyrightWindow",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Views.CopyrightWindow.yml\" sourcestartlinenumber=\"1\">Copyright window</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Views.InfoDialogViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Views.InfoDialogViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Views.InfoDialogViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ReactiveUI.Views.InfoDialogViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for a info dialog</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Views.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ReactiveUI.Views.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ReactiveUI.Views",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Avalonia.Services.DispatcherService.yml",
       "output": {
         ".html": {
@@ -2746,6 +4118,62 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Avalonia.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ViewModels.InfoDialogViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ViewModels.InfoDialogViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ViewModels.InfoDialogViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.ViewModels.InfoDialogViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for a info dialog</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.ViewModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.ViewModels.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.ViewModels",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Views.InfoDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Views.InfoDialog.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Views.InfoDialog",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Avalonia.Views.InfoDialog.yml\" sourcestartlinenumber=\"1\">Info dialog</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Avalonia.Views.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Avalonia.Views.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Avalonia.Views",
       "Summary": null
     },
     {
@@ -3002,6 +4430,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.BusinessTransactions.FakeBusinessTransactionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.BusinessTransactions.FakeBusinessTransactionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.BusinessTransactions.FakeBusinessTransactionManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.BusinessTransactions.FakeBusinessTransactionManager.yml\" sourcestartlinenumber=\"1\">A fake implementation for testing BT based business logic</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.BusinessTransactions.Replies.BoolBusinessTransactionReply.yml",
       "output": {
         ".html": {
@@ -3055,6 +4497,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.BusinessTransactions.Replies.DefaultBusinessTransactionReply",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.BusinessTransactions.Replies.DefaultBusinessTransactionReply.yml\" sourcestartlinenumber=\"1\">Default business transaction reply</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.BusinessTransactions.Replies.DoNotSendBusinessTransactionReply.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.BusinessTransactions.Replies.DoNotSendBusinessTransactionReply.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.BusinessTransactions.Replies.DoNotSendBusinessTransactionReply",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.BusinessTransactions.Replies.DoNotSendBusinessTransactionReply.yml\" sourcestartlinenumber=\"1\">A reply not send to the consumer of the reply</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3222,7 +4678,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.BusinessTransactions.RequestData.BaseBusinessTransactionRequestData",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.BusinessTransactions.RequestData.BaseBusinessTransactionRequestData.yml\" sourcestartlinenumber=\"1\">Base class for <xref href=\"Bodoconsult.App.Interfaces.IBusinessTransactionRequestData\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.BusinessTransactions.RequestData.BaseBusinessTransactionRequestData.yml\" sourcestartlinenumber=\"1\">Base class for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IBusinessTransactionRequestData\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3362,7 +4818,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.BusinessTransactions.RequestData.ObjectNameListBusinessTransactionRequestData",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.BusinessTransactions.RequestData.ObjectNameListBusinessTransactionRequestData.yml\" sourcestartlinenumber=\"1\">The request data for an business transaction request asking list of data for a certain object name</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.BusinessTransactions.RequestData.ObjectNameListBusinessTransactionRequestData.yml\" sourcestartlinenumber=\"1\">The request data for a business transaction request asking list of data for a certain object name</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3548,6 +5004,48 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ClientNotifications.BaseClientMessagingService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ClientNotifications.BaseClientMessagingService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ClientNotifications.BaseClientMessagingService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ClientNotifications.BaseClientMessagingService.yml\" sourcestartlinenumber=\"1\">Base class for<xref href=\"Bodoconsult.App.Abstractions.Interfaces.IClientMessagingService\" data-throw-if-not-resolved=\"false\"></xref> instances converting internal notifications to transport layer messages</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ClientNotifications.BaseClientNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ClientNotifications.BaseClientNotification.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ClientNotifications.BaseClientNotification",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ClientNotifications.BaseClientNotification.yml\" sourcestartlinenumber=\"1\">Base class for client notifications based on <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IClientNotification\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ClientNotifications.CentralClientNotificationManagerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ClientNotifications.CentralClientNotificationManagerBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ClientNotifications.CentralClientNotificationManagerBase",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ClientNotifications.CentralClientNotificationManagerBase.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.App.Interfaces.ICentralClientNotificationManager\" data-throw-if-not-resolved=\"false\"></xref> for central event notification handling</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.ClientNotifications.ClientManager.yml",
       "output": {
         ".html": {
@@ -3590,6 +5088,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ClientNotifications.ExceptionNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ClientNotifications.ExceptionNotification.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ClientNotifications.ExceptionNotification",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ClientNotifications.ExceptionNotification.yml\" sourcestartlinenumber=\"1\">Notification data for [exception has been thrown] event</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.ClientNotifications.FakeClientNotificationLicenseManager.yml",
       "output": {
         ".html": {
@@ -3604,6 +5116,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ClientNotifications.FakeICentralClientNotificationManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ClientNotifications.FakeICentralClientNotificationManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ClientNotifications.FakeICentralClientNotificationManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ClientNotifications.FakeICentralClientNotificationManager.yml\" sourcestartlinenumber=\"1\">Fake implementation of <xref href=\"Bodoconsult.App.Interfaces.ICentralClientNotificationManager\" data-throw-if-not-resolved=\"false\"></xref> doing nothing</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.ClientNotifications.FakeLoginData.yml",
       "output": {
         ".html": {
@@ -3615,6 +5141,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.ClientNotifications.FakeLoginData",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.ClientNotifications.FakeLoginData.yml\" sourcestartlinenumber=\"1\">Fake implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IClientLoginData\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ClientNotifications.ProgressNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ClientNotifications.ProgressNotification.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ClientNotifications.ProgressNotification",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ClientNotifications.ProgressNotification.yml\" sourcestartlinenumber=\"1\">Notification data for [progress changed] event</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3671,6 +5211,160 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.ContractAnnotationAttribute",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.ContractAnnotationAttribute.yml\" sourcestartlinenumber=\"1\">Describes dependency between method input and output.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataCollectionServices.BaseDataCollectionService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataCollectionServices.BaseDataCollectionService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataCollectionServices.BaseDataCollectionService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataCollectionServices.BaseDataCollectionService-1.yml\" sourcestartlinenumber=\"1\">Base class for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService%601\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataCollectionServices.CounterDataCollectionService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataCollectionServices.CounterDataCollectionService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataCollectionServices.CounterDataCollectionService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataCollectionServices.CounterDataCollectionService-1.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService%601\" data-throw-if-not-resolved=\"false\"></xref> using a counter <xref href=\"Bodoconsult.App.DataCollectionServices.CounterDataCollectionService%601.CollectionCounter\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataCollectionServices.TimePeriodDataCollectionService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataCollectionServices.TimePeriodDataCollectionService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataCollectionServices.TimePeriodDataCollectionService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataCollectionServices.TimePeriodDataCollectionService-1.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IDataCollectionService%601\" data-throw-if-not-resolved=\"false\"></xref> using a time period <xref href=\"Bodoconsult.App.DataCollectionServices.TimePeriodDataCollectionService%601.CollectionTime\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataCollectionServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataCollectionServices.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataCollectionServices",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataExportServices.BaseDataExportService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataExportServices.BaseDataExportService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataExportServices.BaseDataExportService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataExportServices.BaseDataExportService-1.yml\" sourcestartlinenumber=\"1\">Base class for data export services</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataExportServices.ByteArrayDataExportService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataExportServices.ByteArrayDataExportService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataExportServices.ByteArrayDataExportService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataExportServices.ByteArrayDataExportService.yml\" sourcestartlinenumber=\"1\">Data export service for byte arrays</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataExportServices.FakeDataExportService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataExportServices.FakeDataExportService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataExportServices.FakeDataExportService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataExportServices.FakeDataExportService.yml\" sourcestartlinenumber=\"1\">Fake implementation of IDataExportService&lt;byte[]&gt;</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataExportServices.JsonDataExportService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataExportServices.JsonDataExportService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataExportServices.JsonDataExportService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataExportServices.JsonDataExportService-1.yml\" sourcestartlinenumber=\"1\">Data export service for JSON</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataExportServices.StringDataExportService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataExportServices.StringDataExportService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataExportServices.StringDataExportService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataExportServices.StringDataExportService.yml\" sourcestartlinenumber=\"1\">Data export service for UTF8 strings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataExportServices.XmlDataExportService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataExportServices.XmlDataExportService-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataExportServices.XmlDataExportService<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataExportServices.XmlDataExportService-1.yml\" sourcestartlinenumber=\"1\">Data export service using XML as export format. XML creation is slowly compared to other formats like JSON. So pay attention to performance if you use this service</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataExportServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataExportServices.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataExportServices",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3894,7 +5588,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.DependencyInjection.BasicAppServicesConfig1ContainerServiceProvider",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DependencyInjection.BasicAppServicesConfig1ContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">Loads basic DI services configuration 1 used my most apps to DI container. Intended mainly for production\nThe following services are loaded:\n- IAppLoggerProxy as central logger instance\n- IAppLoggerProxyFactory for logging for creating specialized logfiles\n- IAppBenchProxy for benchmarking\n- IGeneralAppManagementManager for general app management</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DependencyInjection.BasicAppServicesConfig1ContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">Loads basic DI services configuration 1 used my most apps to DI container. Intended mainly for production\nThe following services are loaded:\n- IAppLoggerProxy as central logger instance\n- IAppLoggerProxyFactory for logging for creating specialized logfiles\n- IAppBenchProxy for benchmarking\n- IGeneralAppManagementManager for general app management\n- IAppDateService for app date management</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3908,7 +5602,21 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.DependencyInjection.BasicAppServicesConfig2ContainerServiceProvider",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DependencyInjection.BasicAppServicesConfig2ContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">Loads basic DI services configuration 2 used my most apps to DI container. Intended mainly for production\nThe following services are loaded:\n- IAppLoggerProxy as central logger instance\n- IAppLoggerProxyFactory for logging for creating specialized logfiles\n- IAppBenchProxy for benchmarking\n- IGeneralAppManagementManager for general app management\n- IAppEventListener for app event listening</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DependencyInjection.BasicAppServicesConfig2ContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">Loads basic DI services configuration 2 used my most apps to DI container. Intended mainly for production\nThe following services are loaded:\n- IAppLoggerProxy as central logger instance\n- IAppLoggerProxyFactory for logging for creating specialized logfiles\n- IAppBenchProxy for benchmarking\n- IGeneralAppManagementManager for general app management\n- IAppDateService for app date management\n- IAppEventListener for app event listening\n- IAppEventSourceFactory for APM</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DependencyInjection.BusinessTransactionManagerDiContainerServiceProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DependencyInjection.BusinessTransactionManagerDiContainerServiceProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DependencyInjection.BusinessTransactionManagerDiContainerServiceProvider",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DependencyInjection.BusinessTransactionManagerDiContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">Loads all business transaction specific services to DI container. Intended mainly for production</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3965,6 +5673,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.DependencyInjection",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DummyAppGlobals.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DummyAppGlobals.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DummyAppGlobals",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DummyAppGlobals.yml\" sourcestartlinenumber=\"1\">Dummy app global values</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5312,6 +7034,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.CachingProducerConsumerQueue-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.CachingProducerConsumerQueue-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.CachingProducerConsumerQueue<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.CachingProducerConsumerQueue-1.yml\" sourcestartlinenumber=\"1\">Thread-safe implementation for a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports one or many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.CachingProducerConsumerQueue2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.CachingProducerConsumerQueue2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.CachingProducerConsumerQueue2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.CachingProducerConsumerQueue2-1.yml\" sourcestartlinenumber=\"1\">Thread-safe implementation for a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.ICachingProducerConsumerQueue2%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports one or many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Helpers.ConsoleHelper.yml",
       "output": {
         ".html": {
@@ -5368,6 +7118,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.LambdaExpressionHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.LambdaExpressionHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.LambdaExpressionHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.LambdaExpressionHelper.yml\" sourcestartlinenumber=\"1\">Helper class for lamdba expressions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.MathHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.MathHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.MathHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.MathHelper.yml\" sourcestartlinenumber=\"1\">Helper class for mathematic issues</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Helpers.ObjectHelper.yml",
       "output": {
         ".html": {
@@ -5396,6 +7174,48 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.ProducerConsumerQueue2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.ProducerConsumerQueue2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.ProducerConsumerQueue2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.ProducerConsumerQueue2-1.yml\" sourcestartlinenumber=\"1\">Thread-safe implementation for a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueue%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports one or many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.ProducerConsumerQueueAsync-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.ProducerConsumerQueueAsync-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.ProducerConsumerQueueAsync<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.ProducerConsumerQueueAsync-1.yml\" sourcestartlinenumber=\"1\">Thread-safe implementation for a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports one or many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.ProducerConsumerQueueAsync2-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.ProducerConsumerQueueAsync2-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.ProducerConsumerQueueAsync2<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.ProducerConsumerQueueAsync2-1.yml\" sourcestartlinenumber=\"1\">Thread-safe implementation for a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IProducerConsumerQueueAsync2%601\" data-throw-if-not-resolved=\"false\"></xref>. Supports one or many producers but only one consumer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Helpers.ResourceHelper.yml",
       "output": {
         ".html": {
@@ -5407,6 +7227,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Helpers.ResourceHelper",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.ResourceHelper.yml\" sourcestartlinenumber=\"1\">Helper class to read text or SQL resources</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.ValidationHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.ValidationHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.ValidationHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.ValidationHelper.yml\" sourcestartlinenumber=\"1\">Helper class for validation of entities</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5434,7 +7268,21 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.App.Helpers.WatchDog",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.WatchDog.yml\" sourcestartlinenumber=\"1\">Default implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDog\" data-throw-if-not-resolved=\"false\"></xref>. A watchdog meant here is a interval based polling mechanism</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.WatchDog.yml\" sourcestartlinenumber=\"1\">Default implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDog\" data-throw-if-not-resolved=\"false\"></xref>. A watchdog meant here is an interval based polling mechanism.\nA timer is fired always at the fixed time interval. This may lead to multiple <xref href=\"Bodoconsult.App.Helpers.WatchDog.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instances running if the\nruntime of each of thisinstances is longer than the timer interval. A watchdog runs a <xref href=\"Bodoconsult.App.Helpers.WatchDog.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instance and\nafterwards it waits for the <xref href=\"Bodoconsult.App.Helpers.WatchDog.DelayUntilNextRunnerFired\" data-throw-if-not-resolved=\"false\"></xref> interval before running the next instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Helpers.WatchDogAsync.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Helpers.WatchDogAsync.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Helpers.WatchDogAsync",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Helpers.WatchDogAsync.yml\" sourcestartlinenumber=\"1\">Default implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync\" data-throw-if-not-resolved=\"false\"></xref>. A watchdog meant here is an interval based polling mechanism\nA timer is fired always at the fixed time interval. This may lead to multiple <xref href=\"Bodoconsult.App.Helpers.WatchDogAsync.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instances running if the\nruntime of each of thisinstances is longer than the timer interval. A watchdog runs a <xref href=\"Bodoconsult.App.Helpers.WatchDogAsync.WatchDogRunnerDelegate\" data-throw-if-not-resolved=\"false\"></xref> instance and\nafterwards it waits for the <xref href=\"Bodoconsult.App.Helpers.WatchDogAsync.DelayUntilNextRunnerFired\" data-throw-if-not-resolved=\"false\"></xref> interval before running the next instance</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5648,6 +7496,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Interfaces.ICentralClientNotificationManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Interfaces.ICentralClientNotificationManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Interfaces.ICentralClientNotificationManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Interfaces.ICentralClientNotificationManager.yml\" sourcestartlinenumber=\"1\">Interface for central event message handling for client notifications</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Interfaces.IErrorCodeSetProvider.yml",
       "output": {
         ".html": {
@@ -5743,6 +7605,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Interfaces.IGeneralAppManagementService",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Interfaces.IGeneralAppManagementService.yml\" sourcestartlinenumber=\"1\">Interface for general app features like database backup</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Interfaces.TransferToClientDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Interfaces.TransferToClientDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Interfaces.TransferToClientDelegate",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Interfaces.TransferToClientDelegate.yml\" sourcestartlinenumber=\"1\">A delegate use to transfer data to the client</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5914,6 +7790,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Logging.DummyAppEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Logging.DummyAppEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Logging.DummyAppEventListener",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Logging.DummyAppEventListener.yml\" sourcestartlinenumber=\"1\">Dummy implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppEventListener\" data-throw-if-not-resolved=\"false\"></xref> doing nothing</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Logging.FakeLogDelegate.yml",
       "output": {
         ".html": {
@@ -5995,6 +7885,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Logging.Log4NetLoggerFactory",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Logging.Log4NetLoggerFactory.yml\" sourcestartlinenumber=\"1\">Simple logger factory for Log4Net (loads settings from app.config)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Logging.Log4NetMonitorProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Logging.Log4NetMonitorProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Logging.Log4NetMonitorProvider",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Logging.Log4NetMonitorProvider.yml\" sourcestartlinenumber=\"1\">Implementation of <xref href=\"Microsoft.Extensions.Logging.ILoggerProvider\" data-throw-if-not-resolved=\"false\"></xref> for Log4Net</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6107,6 +8011,34 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Logging.LoggingEventArgs",
       "Summary": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Logging.MonitorLoggerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Logging.MonitorLoggerFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Logging.MonitorLoggerFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Logging.MonitorLoggerFactory.yml\" sourcestartlinenumber=\"1\">Server logger factory for tower bound monitor logging</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Logging.MonitorLoggerFactoryFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Logging.MonitorLoggerFactoryFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Logging.MonitorLoggerFactoryFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Logging.MonitorLoggerFactoryFactory.yml\" sourcestartlinenumber=\"1\">Faktory for monitor logger factories</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6488,6 +8420,692 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Delegates.MenuBuiltDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Delegates.MenuBuiltDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Delegates.MenuBuiltDelegate",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Delegates.MenuBuiltDelegate.yml\" sourcestartlinenumber=\"1\">Menu is ready built delegate</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Delegates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Delegates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Delegates",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.DependecyResolvers.MicrosoftDependencyResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.DependecyResolvers.MicrosoftDependencyResolver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.DependecyResolvers.MicrosoftDependencyResolver",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.DependecyResolvers.MicrosoftDependencyResolver.yml\" sourcestartlinenumber=\"1\">Microsoft DI implementation for <xref href=\"Splat.IDependencyResolver\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.DependecyResolvers.NullServiceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.DependecyResolvers.NullServiceType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.DependecyResolvers.NullServiceType",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.DependecyResolvers.NullServiceType.yml\" sourcestartlinenumber=\"1\">Represents a placeholder service type for null service registrations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.DependecyResolvers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.DependecyResolvers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.DependecyResolvers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Extensions.IUiWindowExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Extensions.IUiWindowExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Extensions.IUiWindowExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Extensions.IUiWindowExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiWindow\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Extensions.UiRegionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Extensions.UiRegionExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Extensions.UiRegionExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Extensions.UiRegionExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.DummyRegionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.DummyRegionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.DummyRegionManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.DummyRegionManager.yml\" sourcestartlinenumber=\"1\">Dummy implementation of <xref href=\"Bodoconsult.App.ReactiveUI.Regions.RegionManagerBase\" data-throw-if-not-resolved=\"false\"></xref> for testing</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.DummyScreen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.DummyScreen.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.DummyScreen",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.DummyScreen.yml\" sourcestartlinenumber=\"1\">Dummy implementation of <xref href=\"ReactiveUI.IScreen\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IReactiveUiAppGlobals.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IReactiveUiAppGlobals.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IReactiveUiAppGlobals",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IReactiveUiAppGlobals.yml\" sourcestartlinenumber=\"1\"><xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppGlobals\" data-throw-if-not-resolved=\"false\"></xref> with enhancements for ReactiveUI usage</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager.yml\" sourcestartlinenumber=\"1\">Interface for region managers to handle navigation to different regions in a window</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IRxMainWindowViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IRxMainWindowViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IRxMainWindowViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IRxMainWindowViewModel.yml\" sourcestartlinenumber=\"1\">Interface for view models for the main app window using ReactiveUi</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiClipboardService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiClipboardService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiClipboardService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiClipboardService.yml\" sourcestartlinenumber=\"1\">Interface for creating clipboard related services</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiCommandDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiCommandDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiCommandDefinition",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiCommandDefinition.yml\" sourcestartlinenumber=\"1\">Basic definitions to be used to create UI commands</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiFileDialogService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiFileDialogService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiFileDialogService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiFileDialogService.yml\" sourcestartlinenumber=\"1\">Interface for file dialog services</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuBuilder.yml\" sourcestartlinenumber=\"1\">Interface for menu builder implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuItem.yml\" sourcestartlinenumber=\"1\">Interface for platform independent menu item</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuWindow",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuWindow.yml\" sourcestartlinenumber=\"1\">Defines a viewmodel for a window with a menu</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiRegionViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiRegionViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiRegionViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiRegionViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for region based navigation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiStorageFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiStorageFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiStorageFile",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiStorageFile.yml\" sourcestartlinenumber=\"1\">Represents a file in the storgae system</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiWindow",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiWindow.yml\" sourcestartlinenumber=\"1\">Interface for ReactiveUI based windows providing regions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiWindowViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IUiWindowViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IUiWindowViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IUiWindowViewModel.yml\" sourcestartlinenumber=\"1\">Basic features for navigatable windows with regions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IViewLocationProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.IViewLocationProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.IViewLocationProvider",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.IViewLocationProvider.yml\" sourcestartlinenumber=\"1\">Provider delivering viewmodel-view-mappings for the given DefaultViewLocator</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.ReservedNames.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.ReservedNames.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.ReservedNames",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.ReservedNames.yml\" sourcestartlinenumber=\"1\">Reserved names with special meaning for menu structures on diverse platforms</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.UiWindowDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.UiWindowDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces.UiWindowDefinition",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Interfaces.UiWindowDefinition.yml\" sourcestartlinenumber=\"1\">UI window definition. Contains window related properties like the type of the window, the regions in the window and a factory method for the window</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.CommandUiMenuItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.CommandUiMenuItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Menus.CommandUiMenuItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Menus.CommandUiMenuItem.yml\" sourcestartlinenumber=\"1\">A menu item executing a command. Will be transformed to a command button etc. later</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.GroupUiMenuItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.GroupUiMenuItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Menus.GroupUiMenuItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Menus.GroupUiMenuItem.yml\" sourcestartlinenumber=\"1\">A menu group item. Will be transformed to a submenu or a ribbon tab etc. later</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.SeparatorUiMenuItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.SeparatorUiMenuItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Menus.SeparatorUiMenuItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Menus.SeparatorUiMenuItem.yml\" sourcestartlinenumber=\"1\">A separator item</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.UiMenuBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.UiMenuBuilderBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Menus.UiMenuBuilderBase",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Menus.UiMenuBuilderBase.yml\" sourcestartlinenumber=\"1\">Base implementation for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuBuilder\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.UiMenuItemBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.UiMenuItemBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Menus.UiMenuItemBase",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Menus.UiMenuItemBase.yml\" sourcestartlinenumber=\"1\">Base class for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuItem\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Menus.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Menus",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Regions.RegionManagerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Regions.RegionManagerBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Regions.RegionManagerBase",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Regions.RegionManagerBase.yml\" sourcestartlinenumber=\"1\">Current <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager\" data-throw-if-not-resolved=\"false\"></xref> base implementation to handle navigation to different regions in a window</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Regions.UiRegion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Regions.UiRegion.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Regions.UiRegion",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Regions.UiRegion.yml\" sourcestartlinenumber=\"1\">Region of the UI</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Regions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Regions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Regions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.PredefinedUiFilePickerOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.PredefinedUiFilePickerOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui.PredefinedUiFilePickerOptions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Ui.PredefinedUiFilePickerOptions.yml\" sourcestartlinenumber=\"1\">Predefined file picker options</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiCommandDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiCommandDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui.UiCommandDefinition",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Ui.UiCommandDefinition.yml\" sourcestartlinenumber=\"1\">Basic implementation of <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiCommandDefinition\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerFileType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerFileType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui.UiFilePickerFileType",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerFileType.yml\" sourcestartlinenumber=\"1\">Represents a name mapped to the associated file types (extensions).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerOpenOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerOpenOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui.UiFilePickerOpenOptions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerOpenOptions.yml\" sourcestartlinenumber=\"1\">Options class for open a file picker method.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerSaveOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerSaveOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui.UiFilePickerSaveOptions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Ui.UiFilePickerSaveOptions.yml\" sourcestartlinenumber=\"1\">Options for file picker for saving a file</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiPickerOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiPickerOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui.UiPickerOptions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Ui.UiPickerOptions.yml\" sourcestartlinenumber=\"1\">Common options for file picker methods.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiWindowState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.UiWindowState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui.UiWindowState",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.Ui.UiWindowState.yml\" sourcestartlinenumber=\"1\">Specifies whether a window is minimized, maximized, or restored. Used by the <xref href=\"System.Windows.Window.WindowState\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.Ui.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.Ui",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.CopyrightViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.CopyrightViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.ViewModels.CopyrightViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.ViewModels.CopyrightViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for a copyright dialog</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.DummyCopyrightViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.DummyCopyrightViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.ViewModels.DummyCopyrightViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.ViewModels.DummyCopyrightViewModel.yml\" sourcestartlinenumber=\"1\">Dummy for copyright viewmodel</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.DummyMainWindowViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.DummyMainWindowViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.ViewModels.DummyMainWindowViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.ViewModels.DummyMainWindowViewModel.yml\" sourcestartlinenumber=\"1\">Dummy main view model for design time</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.MainWindowViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.MainWindowViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.ViewModels.MainWindowViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ReactiveUI.ViewModels.MainWindowViewModel.yml\" sourcestartlinenumber=\"1\">ViewModel for MainWindow window</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ReactiveUI.ViewModels.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ReactiveUI.ViewModels",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.RegexPatternAttribute.yml",
       "output": {
         ".html": {
@@ -6530,6 +9148,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.StringToFileServices.StringToFileService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.StringToFileServices.StringToFileService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.StringToFileServices.StringToFileService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.StringToFileServices.StringToFileService.yml\" sourcestartlinenumber=\"1\">Service to save strings as complete file. This class is intended to save in-memory-configurations as JSON or XML to file after changes.\nWriting to file happens in a single threaded manner.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.StringToFileServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.StringToFileServices.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.StringToFileServices",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.TerminatesProgramAttribute.yml",
       "output": {
         ".html": {
@@ -6541,6 +9187,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.TerminatesProgramAttribute",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.TerminatesProgramAttribute.yml\" sourcestartlinenumber=\"1\">Indicates that the marked method unconditionally terminates control flow execution.\nFor example, it could unconditionally throw exception.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.ThreeNetworkDevicesAppStartParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.ThreeNetworkDevicesAppStartParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.ThreeNetworkDevicesAppStartParameter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.ThreeNetworkDevicesAppStartParameter.yml\" sourcestartlinenumber=\"1\">Base iplementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppStartParameter\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6569,6 +9229,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Toast",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.TwoNetworkDevicesAppStartParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.TwoNetworkDevicesAppStartParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.TwoNetworkDevicesAppStartParameter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.TwoNetworkDevicesAppStartParameter.yml\" sourcestartlinenumber=\"1\">Base iplementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppStartParameter\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7510,6 +10184,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Converters.HtmlColorStringToBrushConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Converters.HtmlColorStringToBrushConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Converters.HtmlColorStringToBrushConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Converters.HtmlColorStringToBrushConverter.yml\" sourcestartlinenumber=\"1\">Convert an HTML color string like #FFFFFF to a solid brush with this color</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Wpf.Converters.NullImageConverter.yml",
       "output": {
         ".html": {
@@ -7549,6 +10237,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Wpf.Converters.PercentageConverter",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Converters.PercentageConverter.yml\" sourcestartlinenumber=\"1\">Convert percentages (format P2) for data binding</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Converters.TypoColorToBrushConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Converters.TypoColorToBrushConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Converters.TypoColorToBrushConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Converters.TypoColorToBrushConverter.yml\" sourcestartlinenumber=\"1\">Convert a <xref href=\"Bodoconsult.App.Abstractions.Interfaces.TypoColor\" data-throw-if-not-resolved=\"false\"></xref>&gt; to a solid brush</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9470,6 +12172,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Documents.Renderer.Styles.WatermarkStyleWpfTextRendererElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Documents.Renderer.Styles.WatermarkStyleWpfTextRendererElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Documents.Renderer.Styles.WatermarkStyleWpfTextRendererElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Documents.Renderer.Styles.WatermarkStyleWpfTextRendererElement.yml\" sourcestartlinenumber=\"1\">WPF rendering element for <xref href=\"Bodoconsult.Text.Documents.WatermarkStyle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Wpf.Documents.Renderer.Styles.WpfPageStyleTextRendererElementBase.yml",
       "output": {
         ".html": {
@@ -9960,6 +12676,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Extensions.ColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Extensions.ColorExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Extensions.ColorExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Extensions.ColorExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"System.Windows.Media.Color\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Wpf.Extensions.ColumnDefinitionExtended.yml",
       "output": {
         ".html": {
@@ -9985,6 +12715,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Wpf.Extensions.RowDefinitionExtended",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Extensions.RowDefinitionExtended.yml\" sourcestartlinenumber=\"1\">Extended row definition regarding visibility</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Extensions.TypoColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Extensions.TypoColorExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Extensions.TypoColorExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Extensions.TypoColorExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.TypoColor\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10114,6 +12858,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Interfaces.IRibbonService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Interfaces.IRibbonService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Interfaces.IRibbonService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Interfaces.IRibbonService.yml\" sourcestartlinenumber=\"1\">Interface for a service creating a ribbon</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Wpf.Interfaces.NotifyTaskCompletion-1.yml",
       "output": {
         ".html": {
@@ -10125,6 +12883,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Wpf.Interfaces.NotifyTaskCompletion<TResult>",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Interfaces.NotifyTaskCompletion-1.yml\" sourcestartlinenumber=\"1\">Class for binding to asnyc calls results in XAML</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Interfaces.RibbonItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Interfaces.RibbonItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Interfaces.RibbonItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Interfaces.RibbonItem.yml\" sourcestartlinenumber=\"1\">Implements an simple ribbon button</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10184,6 +12956,468 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.App.BaseWpfReactiveUiAppBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.App.BaseWpfReactiveUiAppBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.App.BaseWpfReactiveUiAppBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.App.BaseWpfReactiveUiAppBuilder.yml\" sourcestartlinenumber=\"1\">Base class for <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppBuilder\" data-throw-if-not-resolved=\"false\"></xref> implementations running a background service but not using GRPC</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.App.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.App",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.AppStarter.WpfStarterUi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.AppStarter.WpfStarterUi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.AppStarter.WpfStarterUi",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.AppStarter.WpfStarterUi.yml\" sourcestartlinenumber=\"1\">Implementation of <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IAppStarterUi\" data-throw-if-not-resolved=\"false\"></xref> for WinForms app</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.AppStarter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.AppStarter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.AppStarter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Controls.ContextMenuControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Controls.ContextMenuControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Controls.ContextMenuControl",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Controls.ContextMenuControl.yml\" sourcestartlinenumber=\"1\">WPF default menu user control</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Controls.MenuControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Controls.MenuControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Controls.MenuControl",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Controls.MenuControl.yml\" sourcestartlinenumber=\"1\">WPF default menu user control</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Controls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Controls.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Controls",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.InlineConverterMethods.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.InlineConverterMethods.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Converters.InlineConverterMethods",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Converters.InlineConverterMethods.yml\" sourcestartlinenumber=\"1\">Static class for predefined inline converter methods for ReactiveUI bindings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.ListStringToFlowDocumentConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.ListStringToFlowDocumentConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Converters.ListStringToFlowDocumentConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Converters.ListStringToFlowDocumentConverter.yml\" sourcestartlinenumber=\"1\">Converts an IList&lt;string&gt; to a <xref href=\"System.Windows.Documents.FlowDocument\" data-throw-if-not-resolved=\"false\"></xref>. One-way-converter!</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.UiWindowStateToWindowStateConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.UiWindowStateToWindowStateConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Converters.UiWindowStateToWindowStateConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Converters.UiWindowStateToWindowStateConverter.yml\" sourcestartlinenumber=\"1\">Converts an UIWindowState to a WindowState and back</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Converters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Converters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginChangePasswordDataDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginChangePasswordDataDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginChangePasswordDataDelegate",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginChangePasswordDataDelegate.yml\" sourcestartlinenumber=\"1\">Delegate used to change the password of the user</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginCheckLoginDataDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginCheckLoginDataDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginCheckLoginDataDelegate",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.LoginCheckLoginDataDelegate.yml\" sourcestartlinenumber=\"1\">Delegate used to verify the given credentials</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.NavigateGoBackDelegate-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.NavigateGoBackDelegate-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Delegates.NavigateGoBackDelegate<TRegion, TEvent, TInputData>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.NavigateGoBackDelegate-3.yml\" sourcestartlinenumber=\"1\">Navigation go-back delegate</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Delegates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Delegates",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.UiWindowStateExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.UiWindowStateExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Extensions.UiWindowStateExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.UiWindowStateExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.WindowStateExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.WindowStateExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Extensions.WindowStateExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.WindowStateExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Helper.ResourceFinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Helper.ResourceFinder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Helper.ResourceFinder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Helper.ResourceFinder.yml\" sourcestartlinenumber=\"1\">Delivers resources from Bodoconsult.Wpf.Base LookAndFeel.xaml</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Helper.WpfBaseResourceExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Helper.WpfBaseResourceExtension.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Helper.WpfBaseResourceExtension",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Helper.WpfBaseResourceExtension.yml\" sourcestartlinenumber=\"1\">Get styles from Bodoconsult.Wpf.Base assembly</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Helper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Helper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Helper",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.I18N.WpfLocalesProviderPackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.I18N.WpfLocalesProviderPackage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.I18N.WpfLocalesProviderPackage",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.I18N.WpfLocalesProviderPackage.yml\" sourcestartlinenumber=\"1\">Load language ressources from Bodoconsult.App.Wpf.ReactiveUI</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.I18N.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.I18N.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.I18N",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Menus.WpfUiMenuBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Menus.WpfUiMenuBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Menus.WpfUiMenuBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Menus.WpfUiMenuBuilder.yml\" sourcestartlinenumber=\"1\"><xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IUiMenuBuilder\" data-throw-if-not-resolved=\"false\"></xref> implementation for WPF menus using default <xref href=\"System.Windows.Controls.Menu\" data-throw-if-not-resolved=\"false\"></xref> as base control</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Menus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Menus.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Menus",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Models.DataContainer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Models.DataContainer-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Models.DataContainer<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Models.DataContainer-1.yml\" sourcestartlinenumber=\"1\">Helper class for transporting data and a title to views</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfRegionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfRegionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfRegionManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfRegionManager.yml\" sourcestartlinenumber=\"1\">WPF implementation of <xref href=\"Bodoconsult.App.ReactiveUI.Interfaces.IRegionManager\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfUiRegion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfUiRegion.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfUiRegion",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.Regions.WpfUiRegion.yml\" sourcestartlinenumber=\"1\"><xref href=\"Bodoconsult.App.ReactiveUI.Regions.UiRegion\" data-throw-if-not-resolved=\"false\"></xref> implementation for WPF</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Regions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.Regions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.Regions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.ContextMenuControlViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.ContextMenuControlViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.ViewModels.ContextMenuControlViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.ContextMenuControlViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for ContextMenuControl</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.MenuControlViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.MenuControlViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.ViewModels.MenuControlViewModel",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.MenuControlViewModel.yml\" sourcestartlinenumber=\"1\">Viewmodel for MenuControl</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.ReactiveUI.ViewModels.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.ReactiveUI.ViewModels",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Wpf.Services.DispatcherService.yml",
       "output": {
         ".html": {
@@ -10195,6 +13429,34 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Wpf.Services.DispatcherService",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Services.DispatcherService.yml\" sourcestartlinenumber=\"1\">Service class to start and quit an WPF application if there is no one started already\nFor usage of WPF features in non-WPF application</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Services.ResourceFinderService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Services.ResourceFinderService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Services.ResourceFinderService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Services.ResourceFinderService.yml\" sourcestartlinenumber=\"1\">Load resources in a cache and search resourekeys</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Wpf.Services.RibbonBaseService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Wpf.Services.RibbonBaseService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Wpf.Services.RibbonBaseService",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Wpf.Services.RibbonBaseService.yml\" sourcestartlinenumber=\"1\">Base implementation of <xref href=\"Bodoconsult.App.Wpf.Interfaces.IRibbonService\" data-throw-if-not-resolved=\"false\"></xref> to create a ribbon</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11192,6 +14454,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"1\">DI container service provider for loading a dummy I18N instance. The following interfaces and delegates are loaded in the DI container:</p>\n<ul sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"2\">\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"2\">II18N</li>\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"3\">TranslateDelegate</li>\n<li sourcefile=\"api/Bodoconsult.I18N.DependencyInjection.DummyI18NDiContainerServiceProvider.yml\" sourcestartlinenumber=\"4\">TranslateWithParamsDelegate</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.I18N.DependencyInjection.I18NClientServerDiContainerServiceProvider.yml",
       "output": {
         ".html": {
@@ -11552,7 +14828,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.I18N.ResourceProviders.I18NEmbeddedResourceProvider",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.ResourceProviders.I18NEmbeddedResourceProvider.yml\" sourcestartlinenumber=\"1\">Loads localization resources from embedded resource in a assemblies folder.\nThis folder should contain only I18N formatted resources.\nI18N formatted means UTF8 encode text files with the name schema {lanuage code}.txt. Samples: en.txt, de.txt, es.txt, de-DE.txt, en-Us.txt, ...</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.I18N.ResourceProviders.I18NEmbeddedResourceProvider.yml\" sourcestartlinenumber=\"1\">Loads localization resources from embedded resource in an assemblies folder.\nThis folder should contain only I18N formatted resources.\nI18N formatted means UTF8 encode text files with the name schema {lanuage code}.txt. Samples: en.txt, de.txt, es.txt, de-DE.txt, en-Us.txt, ...</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19130,6 +22406,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Text.Renderer.Docx.Styles.WatermarkStyleDocxTextRendererElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Text.Renderer.Docx.Styles.WatermarkStyleDocxTextRendererElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Text.Renderer.Docx.Styles.WatermarkStyleDocxTextRendererElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Text.Renderer.Docx.Styles.WatermarkStyleDocxTextRendererElement.yml\" sourcestartlinenumber=\"1\">Docx rendering element for <xref href=\"Bodoconsult.Text.Documents.WatermarkStyle\" data-throw-if-not-resolved=\"false\"></xref> instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Text.Renderer.Docx.Styles.yml",
       "output": {
         ".html": {
@@ -26347,90 +29637,590 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic.md",
+      "source_relative_path": "licenses/lic.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic.html"
+          "relative_path": "licenses/lic.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.App.Abstractions.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.App.Abstractions.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.App.Abstractions.html"
+          "relative_path": "licenses/lic_Bodoconsult.App.Abstractions.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.App.Windows.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.App.Windows.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.App.Windows.html"
+          "relative_path": "licenses/lic_Bodoconsult.App.Windows.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.App.Wpf.ReactiveUI.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.App.Wpf.ReactiveUI.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.App.Wpf.ReactiveUI.html"
+          "relative_path": "licenses/lic_Bodoconsult.App.Wpf.ReactiveUI.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.App.Wpf.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.App.Wpf.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.App.Wpf.html"
+          "relative_path": "licenses/lic_Bodoconsult.App.Wpf.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.Drawing.SkiaSharp.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.Drawing.SkiaSharp.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.Drawing.SkiaSharp.html"
+          "relative_path": "licenses/lic_Bodoconsult.Drawing.SkiaSharp.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.Drawing.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.Drawing.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.Drawing.html"
+          "relative_path": "licenses/lic_Bodoconsult.Drawing.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.I18N.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.I18N.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.I18N.html"
+          "relative_path": "licenses/lic_Bodoconsult.I18N.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "licences/lic_Bodoconsult.Text.md",
+      "source_relative_path": "licenses/lic_Bodoconsult.Text.md",
       "output": {
         ".html": {
-          "relative_path": "licences/lic_Bodoconsult.Text.html"
+          "relative_path": "licenses/lic_Bodoconsult.Text.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_AvaloniaApp1.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_AvaloniaApp1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_AvaloniaConsoleApp1.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_AvaloniaConsoleApp1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_AvaloniaReactiveUiDemoApp.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_AvaloniaReactiveUiDemoApp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Abstractions.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Abstractions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.BackgroundService.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.BackgroundService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Tests.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Tests.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.WinForms.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.WinForms.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Windows.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Windows.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Windows.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Windows.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Wpf.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.Wpf.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Charting.Base.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Charting.Base.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Charting.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Charting.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Charting.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Charting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Drawing.SkiaSharp.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Drawing.SkiaSharp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Drawing.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Drawing.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Drawing.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Drawing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.I18N.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.I18N.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.I18N.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.I18N.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Office.Tests.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Office.Tests.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Office.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Office.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Pdf.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Pdf.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Pdf.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Pdf.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Test.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Test.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Text.Pdf.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Text.Pdf.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Text.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Text.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Typography.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Typography.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_ConsoleApp1.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_ConsoleApp1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_ConsoleWpfApp1.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_ConsoleWpfApp1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_GrpcServerApp.Grpc.Common.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_GrpcServerApp.Grpc.Common.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_GrpcServerApp.Grpc.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_GrpcServerApp.Grpc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_GrpcServerApp.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_GrpcServerApp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_GrpcServerApps.Tests.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_GrpcServerApps.Tests.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_TestAvaloniaApplication1.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_TestAvaloniaApplication1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_WorkerService1.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_WorkerService1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_WpfReactiveDemoApp.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_WpfReactiveDemoApp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_WpfReactiveUiDemoApp.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_WpfReactiveUiDemoApp.html"
         }
       },
       "version": ""
