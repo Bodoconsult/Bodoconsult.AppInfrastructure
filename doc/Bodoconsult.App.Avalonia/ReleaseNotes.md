@@ -11,3 +11,11 @@ Release notes for Bodoconsult.App.Avalonia
 # 1.0.9
 
 -   Uses version 1.09 of Bodoconsult.App.Abstractions, Bodoconsult.App and Bodoconsult.App.Avalonia
+
+# 1.0.10
+
+-   Uses Bodoconsult.App.Abstractions 1.0.10
+
+-   Better PDB handling
+
+-   Migration to nullable project

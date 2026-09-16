@@ -1,0 +1,13 @@
+﻿<p><img src="{0}" width="180" /></p>
+<p>Bodoconsult EDV-Dienstleistungen GmbH<br />
+Ostring 45a, 85591 Vaterstetten<br />
+Amtsgericht München, HRB 126545<br />
+Geschäftsführer: Robert Leisner</p>
+
+<p>tel. 0049 (0)8106 4173<br />
+mail. info@bodoconsult.de<br />
+web. www.bodoconsult.de</p>
+
+<p class="little">Vertraulichkeitshinweis - Diese Nachricht und jeder übermittelte Anhang beinhaltet vertrauliche Informationen und ist nur für die Personen oder das Unternehmen bestimmt, an welche sie tatsächlich gerichtet ist. Sollten Sie nicht der Bestimmungsempfänger sein, weisen wir Sie darauf hin, dass die Verbreitung, das (auch teilweise) Kopieren sowie der Gebrauch der empfangenen E-Mail und der darin enthaltenen Informationen gesetzlich verboten ist und gegebenenfalls Schadensersatzpflichten auslösen kann. Sollten Sie diese Nachricht aufgrund eines Übermittlungsfehlers erhalten haben, bitten wir Sie, den Sender unverzüglich hiervon in Kenntnis zu setzen.</p>
+
+<p class="little">Confidentiality note - This message (including any attachments) contains confidential information intended for a specific individual or entity as the intended recipient. If you are not the intended recipient, you are hereby notified that any distribution, any copying of this message in part or in whole, or any taking of action based on it, is strictly prohibited by law an may cause liability. In case you have received this message due to an error in transmission, we ask you to notify the sender immediately.</p>

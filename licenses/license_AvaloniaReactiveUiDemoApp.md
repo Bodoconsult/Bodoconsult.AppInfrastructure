@@ -24,18 +24,6 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
@@ -60,23 +48,35 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+## Nuget package library AvaloniaUI.DiagnosticsSupport by AvaloniaUI OÜ
 
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+Copyright: Copyright 2019-2026 © AvaloniaUI OÜ
 
-Allows to get an observables for property changed events.
+The Diagnostics Support package is responsible for establishing a connection bridge between the user app and AvaloniaUI Developer Tools process.
 
-License: MIT
+License: 
 
-License-Url: https://licenses.nuget.org/MIT
+License-Url: 
 
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
+Project-Url: 
 
 ## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
 
 Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors
 
 Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/ReactiveUI.Avalonia
+
+## Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
+
+Copyright: Copyright (c) .NET Foundation and Contributors
+
+Observable change-set projections of ReactiveUI navigation stacks and collections, for animating and tracking add/remove/move operations.
 
 License: MIT
 

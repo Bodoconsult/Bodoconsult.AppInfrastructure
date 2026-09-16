@@ -24,18 +24,6 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project

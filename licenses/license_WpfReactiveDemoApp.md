@@ -1,16 +1,16 @@
 # Referenced libraries for WpfReactiveDemoApp
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+## Nuget package library ReactiveUI.Extensions by ReactiveUI Association Inc
 
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+Copyright: Copyright (c) ReactiveUI Association Inc 2026
 
-Allows to get an observables for property changed events.
+High-value Reactive Extensions (Rx) operators and async-native observable primitives for building reactive .NET applications. Includes operators that complement System.Reactive and a fully async IObservableAsync pipeline.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
+Project-Url: https://github.com/reactiveui/Extensions
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 

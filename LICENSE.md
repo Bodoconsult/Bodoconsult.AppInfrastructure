@@ -38,6 +38,12 @@ The MIT License (https://licenses.nuget.org/MIT) applies for
 
 >   Bodoconsult.Office,
 
+>   Bodoconsult.Web.Ftp,
+
+>   Bodoconsult.Web.Html,
+
+>   Bodoconsult.Web.Mail,
+
 Here the license text:
 
 ``` 
@@ -63,6 +69,10 @@ SOFTWARE.
 ``` 
 
 # Referenced libraries by projects / packages
+
+>	[BodoWebMailer.Business](#referenced-libraries-for-bodowebmailerbusiness)
+
+>	[BodoWebMailer](#referenced-libraries-for-bodowebmailer)
 
 >	[AvaloniaApp1](#referenced-libraries-for-avaloniaapp1)
 
@@ -128,6 +138,10 @@ SOFTWARE.
 
 >	[Bodoconsult.Pdf](#referenced-libraries-for-bodoconsultpdf)
 
+>	[Bodoconsult.Web.Ftp](#referenced-libraries-for-bodoconsultwebftp)
+
+>	[Bodoconsult.Web.Mail](#referenced-libraries-for-bodoconsultwebmail)
+
 >	[Bodoconsult.App.Avalonia.ReactiveUI.Test](#referenced-libraries-for-bodoconsultappavaloniareactiveuitest)
 
 >	[Bodoconsult.App.ReactiveUI.Tests](#referenced-libraries-for-bodoconsultappreactiveuitests)
@@ -164,6 +178,114 @@ SOFTWARE.
 
 >	[Bodoconsult.Typography.Test](#referenced-libraries-for-bodoconsulttypographytest)
 
+>	[Bodoconsult.Web.Ftp.Test](#referenced-libraries-for-bodoconsultwebftptest)
+
+>	[Bodoconsult.Web.Html.Test](#referenced-libraries-for-bodoconsultwebhtmltest)
+
+>	[Bodoconsult.Web.Mail.Test](#referenced-libraries-for-bodoconsultwebmailtest)
+
+>	[BodoWebMailer.Test](#referenced-libraries-for-bodowebmailertest)
+
+# Referenced libraries for BodoWebMailer.Business
+
+## Nuget package library Bodoconsult.Database by Robert Leisner
+
+Copyright: Bodoconsult EDV-Dienstleistungen GmbH
+
+Simple .NET database layer based on System.Data intended for mainly read-only data access i.e. for reporting purposes
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/RobertLeisner/Bodoconsult.Database
+
+## Nuget package library Bodoconsult.Database.SqlClient by Robert Leisner
+
+Copyright: Bodoconsult EDV-Dienstleistungen GmbH
+
+Simple .NET database layer for Microsoft(r) SqlServer(r) or LocalDb based on Microsoft.Data.SqlClient intended for mainly read-only data access i.e. for reporting purposes
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/RobertLeisner/Bodoconsult.Database
+
+## Nuget package library log4net by The Apache Software Foundation
+
+Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
+
+log4net is a tool to help the programmer output log statements to a variety of output targets.
+In case of problems with an application, it is helpful to enable logging so that the problem
+can be located. With log4net it is possible to enable logging at runtime without modifying the
+application binary. The log4net package is designed so that log statements can remain in
+shipped code without incurring a high performance cost. It follows that the speed of logging
+(or rather not logging) is crucial.
+
+At the same time, log output can be so voluminous that it quickly becomes overwhelming.
+One of the distinctive features of log4net is the notion of hierarchical loggers.
+Using these loggers it is possible to selectively control which log statements are output
+at arbitrary granularity.
+
+log4net is designed with two distinct goals in mind: speed and flexibility
+
+License: Apache-2.0
+
+License-Url: https://licenses.nuget.org/Apache-2.0
+
+Project-Url: https://github.com/apache/logging-log4net
+
+## Nuget package library Microsoft.Windows.Compatibility by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+This Windows Compatibility Pack provides access to APIs that were previously available only for .NET Framework. It can be used from both .NET as well as .NET Standard.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/windowsdesktop
+
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
+# Referenced libraries for BodoWebMailer
+
+## Nuget package library log4net by The Apache Software Foundation
+
+Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
+
+log4net is a tool to help the programmer output log statements to a variety of output targets.
+In case of problems with an application, it is helpful to enable logging so that the problem
+can be located. With log4net it is possible to enable logging at runtime without modifying the
+application binary. The log4net package is designed so that log statements can remain in
+shipped code without incurring a high performance cost. It follows that the speed of logging
+(or rather not logging) is crucial.
+
+At the same time, log output can be so voluminous that it quickly becomes overwhelming.
+One of the distinctive features of log4net is the notion of hierarchical loggers.
+Using these loggers it is possible to selectively control which log statements are output
+at arbitrary granularity.
+
+log4net is designed with two distinct goals in mind: speed and flexibility
+
+License: Apache-2.0
+
+License-Url: https://licenses.nuget.org/Apache-2.0
+
+Project-Url: https://github.com/apache/logging-log4net
+
 # Referenced libraries for AvaloniaApp1
 
 ## Nuget package library Avalonia by Avalonia Team
@@ -179,18 +301,6 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library Avalonia.Desktop by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
@@ -225,6 +335,18 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library AvaloniaUI.DiagnosticsSupport by AvaloniaUI OÜ
+
+Copyright: Copyright 2019-2026 © AvaloniaUI OÜ
+
+The Diagnostics Support package is responsible for establishing a connection bridge between the user app and AvaloniaUI Developer Tools process.
+
+License: 
+
+License-Url: 
+
+Project-Url: 
 
 ## Nuget package library CommunityToolkit.Mvvm by Microsoft
 
@@ -272,18 +394,6 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
@@ -307,6 +417,18 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library AvaloniaUI.DiagnosticsSupport by AvaloniaUI OÜ
+
+Copyright: Copyright 2019-2026 © AvaloniaUI OÜ
+
+The Diagnostics Support package is responsible for establishing a connection bridge between the user app and AvaloniaUI Developer Tools process.
+
+License: 
+
+License-Url: 
+
+Project-Url: 
 
 ## Nuget package library CommunityToolkit.Mvvm by Microsoft
 
@@ -354,18 +476,6 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
@@ -390,23 +500,35 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+## Nuget package library AvaloniaUI.DiagnosticsSupport by AvaloniaUI OÜ
 
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+Copyright: Copyright 2019-2026 © AvaloniaUI OÜ
 
-Allows to get an observables for property changed events.
+The Diagnostics Support package is responsible for establishing a connection bridge between the user app and AvaloniaUI Developer Tools process.
 
-License: MIT
+License: 
 
-License-Url: https://licenses.nuget.org/MIT
+License-Url: 
 
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
+Project-Url: 
 
 ## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
 
 Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors
 
 Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/ReactiveUI.Avalonia
+
+## Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
+
+Copyright: Copyright (c) .NET Foundation and Contributors
+
+Observable change-set projections of ReactiveUI navigation stacks and collections, for animating and tracking add/remove/move operations.
 
 License: MIT
 
@@ -626,9 +748,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -665,18 +787,6 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
@@ -701,6 +811,18 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
+## Nuget package library AvaloniaUI.DiagnosticsSupport by AvaloniaUI OÜ
+
+Copyright: Copyright 2019-2026 © AvaloniaUI OÜ
+
+The Diagnostics Support package is responsible for establishing a connection bridge between the user app and AvaloniaUI Developer Tools process.
+
+License: 
+
+License-Url: 
+
+Project-Url: 
+
 ## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
 
 Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors
@@ -711,7 +833,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactiveui/reactiveui
+Project-Url: https://github.com/reactiveui/ReactiveUI.Avalonia
 
 # Referenced libraries for WorkerService1
 
@@ -741,17 +863,17 @@ Project-Url: https://github.com/dotnet/runtime
 
 # Referenced libraries for WpfReactiveDemoApp
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+## Nuget package library ReactiveUI.Extensions by ReactiveUI Association Inc
 
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+Copyright: Copyright (c) ReactiveUI Association Inc 2026
 
-Allows to get an observables for property changed events.
+High-value Reactive Extensions (Rx) operators and async-native observable primitives for building reactive .NET applications. Includes operators that complement System.Reactive and a fully async IObservableAsync pipeline.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
+Project-Url: https://github.com/reactiveui/Extensions
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
@@ -803,17 +925,17 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/MahApps/MahApps.Metro.IconPacks.git
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+## Nuget package library ReactiveUI.Extensions by ReactiveUI Association Inc
 
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+Copyright: Copyright (c) ReactiveUI Association Inc 2026
 
-Allows to get an observables for property changed events.
+High-value Reactive Extensions (Rx) operators and async-native observable primitives for building reactive .NET applications. Includes operators that complement System.Reactive and a fully async IObservableAsync pipeline.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
+Project-Url: https://github.com/reactiveui/Extensions
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
@@ -947,23 +1069,23 @@ Project-Url: https://github.com/dotnet/runtime
 
 # Referenced libraries for Bodoconsult.App.Avalonia.ReactiveUI
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
-
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
-
-Allows to get an observables for property changed events.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
-
 ## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
 
 Copyright: Copyright (c) 2019-2026 ReactiveUI and Avalonia Teams, and Contributors
 
 Contains the ReactiveUI platform specific extensions for Avalonia
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/ReactiveUI.Avalonia
+
+## Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
+
+Copyright: Copyright (c) .NET Foundation and Contributors
+
+Observable change-set projections of ReactiveUI navigation stacks and collections, for animating and tracking add/remove/move operations.
 
 License: MIT
 
@@ -983,6 +1105,59 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
 
+## Nuget package library System.Security.Cryptography.Xml by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Provides classes to support the creation and validation of XML digital signatures. The classes in this namespace implement the World Wide Web Consortium Recommendation, "XML-Signature Syntax and Processing", described at http://www.w3.org/TR/xmldsig-core/.
+
+Commonly Used Types:
+System.Security.Cryptography.Xml.CipherData
+System.Security.Cryptography.Xml.CipherReference
+System.Security.Cryptography.Xml.DataObject
+System.Security.Cryptography.Xml.DataReference
+System.Security.Cryptography.Xml.DSAKeyValue
+System.Security.Cryptography.Xml.EncryptedData
+System.Security.Cryptography.Xml.EncryptedKey
+System.Security.Cryptography.Xml.EncryptedReference
+System.Security.Cryptography.Xml.EncryptedType
+System.Security.Cryptography.Xml.EncryptedXml
+System.Security.Cryptography.Xml.EncryptionMethod
+System.Security.Cryptography.Xml.EncryptionProperty
+System.Security.Cryptography.Xml.EncryptionPropertyCollection
+System.Security.Cryptography.Xml.KeyInfo
+System.Security.Cryptography.Xml.KeyInfoClause
+System.Security.Cryptography.Xml.KeyInfoEncryptedKey
+System.Security.Cryptography.Xml.KeyInfoName
+System.Security.Cryptography.Xml.KeyInfoNode
+System.Security.Cryptography.Xml.KeyInfoRetrievalMethod
+System.Security.Cryptography.Xml.KeyInfoX509Data
+System.Security.Cryptography.Xml.KeyReference
+System.Security.Cryptography.Xml.Reference
+System.Security.Cryptography.Xml.ReferenceList
+System.Security.Cryptography.Xml.RSAKeyValue
+System.Security.Cryptography.Xml.Signature
+System.Security.Cryptography.Xml.SignedInfo
+System.Security.Cryptography.Xml.SignedXml
+System.Security.Cryptography.Xml.Transform
+System.Security.Cryptography.Xml.TransformChain
+System.Security.Cryptography.Xml.XmlDecryptionTransform
+System.Security.Cryptography.Xml.XmlDsigBase64Transform
+System.Security.Cryptography.Xml.XmlDsigC14NTransform
+System.Security.Cryptography.Xml.XmlDsigC14NWithCommentsTransform
+System.Security.Cryptography.Xml.XmlDsigEnvelopedSignatureTransform
+System.Security.Cryptography.Xml.XmlDsigExcC14NTransform
+System.Security.Cryptography.Xml.XmlDsigExcC14NWithCommentsTransform
+System.Security.Cryptography.Xml.XmlDsigXPathTransform
+System.Security.Cryptography.Xml.XmlDsigXsltTransform
+System.Security.Cryptography.Xml.XmlLicenseTransform
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
 # Referenced libraries for Bodoconsult.App.Avalonia
 
 ## Nuget package library Avalonia by Avalonia Team
@@ -998,18 +1173,6 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library Avalonia.Desktop by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
@@ -1156,23 +1319,23 @@ Project-Url: https://github.com/dotnet/runtime
 
 # Referenced libraries for Bodoconsult.App.ReactiveUI
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
-
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
-
-Allows to get an observables for property changed events.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
-
 ## Nuget package library ReactiveUI by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors
 
 A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. This is the base package with the base platform implementations
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/reactiveui
+
+## Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
+
+Copyright: Copyright (c) .NET Foundation and Contributors
+
+Observable change-set projections of ReactiveUI navigation stacks and collections, for animating and tracking add/remove/move operations.
 
 License: MIT
 
@@ -1295,7 +1458,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 # Referenced libraries for Bodoconsult.App.WinForms
 
@@ -1574,17 +1737,17 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/MahApps/MahApps.Metro.IconPacks.git
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+## Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
 
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+Copyright: Copyright (c) .NET Foundation and Contributors
 
-Allows to get an observables for property changed events.
+Observable change-set projections of ReactiveUI navigation stacks and collections, for animating and tracking add/remove/move operations.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
+Project-Url: https://github.com/reactiveui/reactiveui
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
@@ -2113,11 +2276,23 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/Open-XML-SDK
 
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
 # Referenced libraries for Bodoconsult.Pdf
 
 ## Nuget package library PDFsharp-MigraDoc by PDFsharp Team
 
-Copyright: © 2025 empira
+Copyright: © 2026 empira
 
 MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
 This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
@@ -2129,7 +2304,135 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/empira/PDFsharp
 
+# Referenced libraries for Bodoconsult.Web.Ftp
+
+## Nuget package library Microsoft.Graph by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Microsoft Graph Client Library allows you to call Office 365, Azure AD and other Microsoft services through a single unified developer experience.
+
+License: LICENSE.txt
+
+License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.6.0/License
+
+Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
+
+## Nuget package library SSH.NET by Renci
+
+Copyright: Copyright © Renci 2010-2026
+
+SSH.NET is a Secure Shell (SSH) library for .NET, optimized for parallelism.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/sshnet/SSH.NET
+
+# Referenced libraries for Bodoconsult.Web.Mail
+
+## Nuget package library MailKit by Jeffrey Stedfast
+
+Copyright: .NET Foundation and Contributors
+
+MailKit is an Open Source cross-platform .NET mail-client library that is based on MimeKit and optimized for mobile devices.
+
+Features include:
+* HTTP, Socks4, Socks4a and Socks5 proxy support.
+* SASL Authentication via ANONYMOUS, CRAM-MD5, DIGEST-MD5, LOGIN, NTLM, OAUTHBEARER, PLAIN, SCRAM-SHA-1, SCRAM-SHA-256, SCRAM-SHA-512 and XOAUTH2.
+* A fully-cancellable SmtpClient with support for STARTTLS, 8BITMIME, BINARYMIME, ENHANCEDSTATUSCODES, SIZE, DSN, PIPELINING and SMTPUTF8.
+* A fully-cancellable Pop3Client with support for STLS, UIDL, APOP, PIPELINING, UTF8, and LANG.
+* A fully-cancellable ImapClient with support for ACL, QUOTA, LITERAL+, IDLE, NAMESPACE, ID, CHILDREN, LOGINDISABLED, STARTTLS, MULTIAPPEND, UNSELECT, UIDPLUS, CONDSTORE, ESEARCH, SASL-IR, COMPRESS, WITHIN, ENABLE, QRESYNC, SORT, THREAD, ANNOTATE, LIST-EXTENDED, ESORT, METADATA / METADATA-SERVER, NOTIFY, FILTERS, LIST-STATUS, SORT=DISPLAY, SPECIAL-USE / CREATE-SPECIAL-USE, SEARCH=FUZZY, MOVE, UTF8=ACCEPT / UTF8=ONLY, LITERAL-, APPENDLIMIT, STATUS=SIZE, OBJECTID, REPLACE, SAVEDATE, XLIST, and X-GM-EXT1.
+* Client-side sorting and threading of messages (the Ordinal Subject and the Jamie Zawinski threading algorithms are supported).
+* Asynchronous versions of all methods that hit the network.
+* S/MIME, OpenPGP, DKIM and ARC support via MimeKit.
+* Microsoft TNEF support via MimeKit.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/jstedfast/MailKit
+
+## Nuget package library Microsoft.Extensions.Http by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The HttpClient factory is a pattern for configuring and retrieving named HttpClients in a composable way. The HttpClient factory provides extensibility to plug in DelegatingHandlers that address cross-cutting concerns such as service location, load balancing, and reliability. The default HttpClient factory provides built-in diagnostics and logging and manages the lifetimes of connections in a performant way.
+
+Commonly Used Types:
+System.Net.Http.IHttpClientFactory
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/runtime
+
+## Nuget package library Microsoft.Graph by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Microsoft Graph Client Library allows you to call Office 365, Azure AD and other Microsoft services through a single unified developer experience.
+
+License: LICENSE.txt
+
+License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.6.0/License
+
+Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
+
+## Nuget package library Microsoft.Identity.Web.GraphServiceClient by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+This package enables ASP.NET Core web apps and web APIs to use the Microsoft identity platform (formerly Azure AD v2.0).
+      This package is specifically used for web applications, which sign-in users and call Microsoft Graph, and for protected web APIs
+      that call Microsoft Graph. Works specifically with MS Graph SDK v5 and above. For MS Graph SDK v4 support, please use Microsoft.Identity.Web.MicrosoftGraph.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AzureAD/microsoft-identity-web
+
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
 # Referenced libraries for Bodoconsult.App.Avalonia.ReactiveUI.Test
+
+## Nuget package library Avalonia.Headless.NUnit by Avalonia Team
+
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library Avalonia.Themes.Fluent by Avalonia Team
+
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
 ## Nuget package library coverlet.collector by tonerdo
 
@@ -2181,9 +2484,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2204,7 +2507,76 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactiveui/reactiveui
+Project-Url: https://github.com/reactiveui/ReactiveUI.Avalonia
+
+## Nuget package library System.Security.Cryptography.ProtectedData by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Provides access to Windows Data Protection Api.
+
+Commonly Used Types:
+System.Security.Cryptography.DataProtectionScope
+System.Security.Cryptography.ProtectedData
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+## Nuget package library System.Security.Cryptography.Xml by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Provides classes to support the creation and validation of XML digital signatures. The classes in this namespace implement the World Wide Web Consortium Recommendation, "XML-Signature Syntax and Processing", described at http://www.w3.org/TR/xmldsig-core/.
+
+Commonly Used Types:
+System.Security.Cryptography.Xml.CipherData
+System.Security.Cryptography.Xml.CipherReference
+System.Security.Cryptography.Xml.DataObject
+System.Security.Cryptography.Xml.DataReference
+System.Security.Cryptography.Xml.DSAKeyValue
+System.Security.Cryptography.Xml.EncryptedData
+System.Security.Cryptography.Xml.EncryptedKey
+System.Security.Cryptography.Xml.EncryptedReference
+System.Security.Cryptography.Xml.EncryptedType
+System.Security.Cryptography.Xml.EncryptedXml
+System.Security.Cryptography.Xml.EncryptionMethod
+System.Security.Cryptography.Xml.EncryptionProperty
+System.Security.Cryptography.Xml.EncryptionPropertyCollection
+System.Security.Cryptography.Xml.KeyInfo
+System.Security.Cryptography.Xml.KeyInfoClause
+System.Security.Cryptography.Xml.KeyInfoEncryptedKey
+System.Security.Cryptography.Xml.KeyInfoName
+System.Security.Cryptography.Xml.KeyInfoNode
+System.Security.Cryptography.Xml.KeyInfoRetrievalMethod
+System.Security.Cryptography.Xml.KeyInfoX509Data
+System.Security.Cryptography.Xml.KeyReference
+System.Security.Cryptography.Xml.Reference
+System.Security.Cryptography.Xml.ReferenceList
+System.Security.Cryptography.Xml.RSAKeyValue
+System.Security.Cryptography.Xml.Signature
+System.Security.Cryptography.Xml.SignedInfo
+System.Security.Cryptography.Xml.SignedXml
+System.Security.Cryptography.Xml.Transform
+System.Security.Cryptography.Xml.TransformChain
+System.Security.Cryptography.Xml.XmlDecryptionTransform
+System.Security.Cryptography.Xml.XmlDsigBase64Transform
+System.Security.Cryptography.Xml.XmlDsigC14NTransform
+System.Security.Cryptography.Xml.XmlDsigC14NWithCommentsTransform
+System.Security.Cryptography.Xml.XmlDsigEnvelopedSignatureTransform
+System.Security.Cryptography.Xml.XmlDsigExcC14NTransform
+System.Security.Cryptography.Xml.XmlDsigExcC14NWithCommentsTransform
+System.Security.Cryptography.Xml.XmlDsigXPathTransform
+System.Security.Cryptography.Xml.XmlDsigXsltTransform
+System.Security.Cryptography.Xml.XmlLicenseTransform
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
 
 # Referenced libraries for Bodoconsult.App.ReactiveUI.Tests
 
@@ -2258,7 +2630,7 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit.Analyzers by NUnit
 
-Copyright: Copyright (c) 2018-2025 NUnit project
+Copyright: Copyright (c) 2018-2026 NUnit project
 
 This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
 
@@ -2272,9 +2644,9 @@ Project-Url: https://github.com/nunit/nunit.analyzers
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2284,18 +2656,6 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
-
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
-
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
-
-Allows to get an observables for property changed events.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
 
 ## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
 
@@ -2307,7 +2667,19 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactiveui/reactiveui
+Project-Url: https://github.com/reactiveui/ReactiveUI.Avalonia
+
+## Nuget package library ReactiveUI.Extensions by ReactiveUI Association Inc
+
+Copyright: Copyright (c) ReactiveUI Association Inc 2026
+
+High-value Reactive Extensions (Rx) operators and async-native observable primitives for building reactive .NET applications. Includes operators that complement System.Reactive and a fully async IObservableAsync pipeline.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/Extensions
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
@@ -2359,18 +2731,6 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
@@ -2394,6 +2754,18 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library AvaloniaUI.DiagnosticsSupport by AvaloniaUI OÜ
+
+Copyright: Copyright 2019-2026 © AvaloniaUI OÜ
+
+The Diagnostics Support package is responsible for establishing a connection bridge between the user app and AvaloniaUI Developer Tools process.
+
+License: 
+
+License-Url: 
+
+Project-Url: 
 
 ## Nuget package library coverlet.collector by tonerdo
 
@@ -2471,7 +2843,7 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit.Analyzers by NUnit
 
-Copyright: Copyright (c) 2018-2025 NUnit project
+Copyright: Copyright (c) 2018-2026 NUnit project
 
 This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
 
@@ -2485,9 +2857,9 @@ Project-Url: https://github.com/nunit/nunit.analyzers
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2639,6 +3011,18 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/microsoft/vstest
 
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
 ## Nuget package library NUnit by Charlie Poole,  Rob Prouse
 
 Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
@@ -2665,9 +3049,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2756,9 +3140,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2821,9 +3205,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2886,9 +3270,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -2951,9 +3335,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3031,9 +3415,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3108,9 +3492,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3185,9 +3569,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3272,9 +3656,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3337,9 +3721,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3402,9 +3786,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3417,7 +3801,7 @@ Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 ## Nuget package library PDFsharp-MigraDoc by PDFsharp Team
 
-Copyright: © 2025 empira
+Copyright: © 2026 empira
 
 MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
 This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
@@ -3469,9 +3853,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3589,9 +3973,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -3645,6 +4029,278 @@ Project-Url: https://github.com/nunit/nunit
 Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
 
 The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+# Referenced libraries for Bodoconsult.Web.Ftp.Test
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 6.0+
+            - .NET 8.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+# Referenced libraries for Bodoconsult.Web.Html.Test
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 6.0+
+            - .NET 8.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+# Referenced libraries for Bodoconsult.Web.Mail.Test
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 6.0+
+            - .NET 8.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+# Referenced libraries for BodoWebMailer.Test
+
+## Nuget package library log4net by The Apache Software Foundation
+
+Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
+
+log4net is a tool to help the programmer output log statements to a variety of output targets.
+In case of problems with an application, it is helpful to enable logging so that the problem
+can be located. With log4net it is possible to enable logging at runtime without modifying the
+application binary. The log4net package is designed so that log statements can remain in
+shipped code without incurring a high performance cost. It follows that the speed of logging
+(or rather not logging) is crucial.
+
+At the same time, log output can be so voluminous that it quickly becomes overwhelming.
+One of the distinctive features of log4net is the notion of hierarchical loggers.
+Using these loggers it is possible to selectively control which log statements are output
+at arbitrary granularity.
+
+log4net is designed with two distinct goals in mind: speed and flexibility
+
+License: Apache-2.0
+
+License-Url: https://licenses.nuget.org/Apache-2.0
+
+Project-Url: https://github.com/apache/logging-log4net
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+
+Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 6.0+
+            - .NET 8.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)

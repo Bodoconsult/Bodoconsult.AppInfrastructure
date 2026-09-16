@@ -59,4 +59,9 @@ Release notes for Bodoconsult.App
 -   Added IDataCollectionService<T>/CounterDataCollectionService<T>/TimePeriodDataCollectionService<T> to collect data from an object stream time interval based by timeperiod or counter
 
 
+# 1.0.10
+
+-   Uses Bodoconsult.App.Abstractions 1.0.10
+
+-   Better PDB handling
 

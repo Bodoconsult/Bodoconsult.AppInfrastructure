@@ -50,9 +50,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)

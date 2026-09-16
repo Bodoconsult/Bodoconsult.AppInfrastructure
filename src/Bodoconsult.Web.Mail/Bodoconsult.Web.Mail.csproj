@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
+
+		<PackageId>Bodoconsult.Web.Mail</PackageId>
+		<PackageTags>SMTP Office365 Graph mail send</PackageTags>
+		<PackageReleaseNotes>Updated dependencies and added README.md</PackageReleaseNotes>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Bodoconsult.Web.Mail library is intended for apps which have to send (but not to receive) mails via SMTP or Office 365 (via Graph) like console apps</Description>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+		<!-- PDB Configuration -->
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<EmbedAllSources>false</EmbedAllSources>
+
+		<!-- Allow PDBs in the main package -->
+		<!--
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+		<!-- Generate symbols package (.snupkg) -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<!-- Modern symbols package format -->
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="nuget.txt" />
+	  <None Remove="OpenSourceMetaData.json" />
+	  <None Remove="Templates\Bodoconsult.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MailKit" Version="4.17.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.19" />
+		<PackageReference Include="Microsoft.Graph" Version="6.6.0" />
+		<PackageReference Include="Microsoft.Identity.Web.GraphServiceClient" Version="4.14.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Content Include="..\..\LICENSE.md" Link="LICENSE.md" />
+		<Content Include="Templates\Bodoconsult.txt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Templates\HtmlMail.txt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\..\doc\Bodoconsult.Web.Mail\README.md" Link="README.md" Pack="true" PackagePath="\">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+	  <ProjectReference Include="..\Bodoconsult.App\Bodoconsult.App.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -24,18 +24,6 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Diagnostics by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
 ## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
@@ -59,6 +47,18 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+## Nuget package library AvaloniaUI.DiagnosticsSupport by AvaloniaUI OÜ
+
+Copyright: Copyright 2019-2026 © AvaloniaUI OÜ
+
+The Diagnostics Support package is responsible for establishing a connection bridge between the user app and AvaloniaUI Developer Tools process.
+
+License: 
+
+License-Url: 
+
+Project-Url: 
 
 ## Nuget package library coverlet.collector by tonerdo
 
@@ -136,7 +136,7 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit.Analyzers by NUnit
 
-Copyright: Copyright (c) 2018-2025 NUnit project
+Copyright: Copyright (c) 2018-2026 NUnit project
 
 This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
 
@@ -150,9 +150,9 @@ Project-Url: https://github.com/nunit/nunit.analyzers
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)

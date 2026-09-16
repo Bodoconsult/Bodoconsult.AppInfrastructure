@@ -50,7 +50,7 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit.Analyzers by NUnit
 
-Copyright: Copyright (c) 2018-2025 NUnit project
+Copyright: Copyright (c) 2018-2026 NUnit project
 
 This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
 
@@ -64,9 +64,9 @@ Project-Url: https://github.com/nunit/nunit.analyzers
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -76,18 +76,6 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
-
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
-
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
-
-Allows to get an observables for property changed events.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
 
 ## Nuget package library ReactiveUI.Avalonia by ReactiveUI and Avalonia Teams,  and Contributors
 
@@ -99,7 +87,19 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactiveui/reactiveui
+Project-Url: https://github.com/reactiveui/ReactiveUI.Avalonia
+
+## Nuget package library ReactiveUI.Extensions by ReactiveUI Association Inc
+
+Copyright: Copyright (c) ReactiveUI Association Inc 2026
+
+High-value Reactive Extensions (Rx) operators and async-native observable primitives for building reactive .NET applications. Includes operators that complement System.Reactive and a fully async IObservableAsync pipeline.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/reactiveui/Extensions
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 

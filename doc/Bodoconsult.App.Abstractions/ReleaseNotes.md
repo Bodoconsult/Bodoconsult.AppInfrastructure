@@ -28,3 +28,9 @@ Release notes for Bodoconsult.App.Abstractions
 -   Added properties BackgroundImagePath and WatermarkText to ITypoMetaData
 
 -   Added extension methods for Memory<byte> and ReadOnlySequence<Byte> in classes MemoryExtensions and ReadOnlySequenceExtensions
+
+# 1.0.10
+
+-   Uses Bodoconsult.App.Abstractions 1.0.9
+
+-   Better PDB handling

@@ -32,8 +32,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-// ReSharper disable once CheckNamespace
-namespace Bodoconsult.Core.Windows.System;
+namespace Bodoconsult.App.Windows.System;
 
 #nullable enable
 #nullable disable warnings

@@ -101,17 +101,17 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/MahApps/MahApps.Metro.IconPacks.git
 
-## Nuget package library ReactiveMarbles.ObservableEvents.SourceGenerator by Glenn Watson
+## Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
 
-Copyright: Copyright (c) 2011-2023 ReactiveUI Association Inc
+Copyright: Copyright (c) .NET Foundation and Contributors
 
-Allows to get an observables for property changed events.
+Observable change-set projections of ReactiveUI navigation stacks and collections, for animating and tracking add/remove/move operations.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/reactivemarbles/ObservableEvents
+Project-Url: https://github.com/reactiveui/reactiveui
 
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 

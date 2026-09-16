@@ -115,7 +115,7 @@ public abstract class SectionBaseRtfTextRendererElement : RtfTextRendererElement
 
         var md = renderer.Document.DocumentMetaData;
         var sb = new StringBuilder();
-        //string s;
+        string s;
 
         var isHeader = false;
 

@@ -9778,6 +9778,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Windows.System.Clipboard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Windows.System.Clipboard.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Windows.System.Clipboard",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Windows.System.Clipboard.yml\" sourcestartlinenumber=\"1\">Helper class for clipboard handling</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Windows.System.FileIcon.yml",
       "output": {
         ".html": {
@@ -28607,6 +28621,762 @@
       "Summary": null
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Ftp.Interfaces.IRemoteServerHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Ftp.Interfaces.IRemoteServerHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Ftp.Interfaces.IRemoteServerHandler",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Ftp.Interfaces.IRemoteServerHandler.yml\" sourcestartlinenumber=\"1\">Interface for remote server file handler</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Ftp.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Ftp.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Ftp.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Ftp.Models.SftpFileItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Ftp.Models.SftpFileItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Ftp.Models.SftpFileItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Ftp.Models.SftpFileItem.yml\" sourcestartlinenumber=\"1\">Represents a file or directory on the STFP server</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Ftp.Models.SshCredentials.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Ftp.Models.SshCredentials.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Ftp.Models.SshCredentials",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Ftp.Models.SshCredentials.yml\" sourcestartlinenumber=\"1\">Credentials for SFTP login</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Ftp.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Ftp.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Ftp.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Ftp.RemoteServerHandler.SshHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Ftp.RemoteServerHandler.SshHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Ftp.RemoteServerHandler.SshHandler",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Ftp.RemoteServerHandler.SshHandler.yml\" sourcestartlinenumber=\"1\">Handles SSH access to FTP server</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Ftp.RemoteServerHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Ftp.RemoteServerHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Ftp.RemoteServerHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Extensions.MarkdownExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Extensions.MarkdownExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Extensions.MarkdownExtensions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.Extensions.MarkdownExtensions.yml\" sourcestartlinenumber=\"1\">Helper class for markdown extensions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Helpers.HtmlHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Helpers.HtmlHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Helpers.HtmlHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.Helpers.HtmlHelper.yml\" sourcestartlinenumber=\"1\">Provides helper functions for creation of HTML code</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Helpers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Helpers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Html.DataTableExport.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Html.DataTableExport.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Html.DataTableExport",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.Html.DataTableExport.yml\" sourcestartlinenumber=\"1\">Export a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref> instance to HTML</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Html.TableFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Html.TableFormatter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Html.TableFormatter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.Html.TableFormatter.yml\" sourcestartlinenumber=\"1\">Format a table</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Html.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Html.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Html",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.BaseElement-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.BaseElement-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.BaseElement<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.BaseElement-1.yml\" sourcestartlinenumber=\"1\">Base class for HTML elements</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.IElement-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.IElement-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.IElement<T>",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.IElement-1.yml\" sourcestartlinenumber=\"1\">Interface for HTML element implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.IStylesheet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.IStylesheet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.IStylesheet",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.IStylesheet.yml\" sourcestartlinenumber=\"1\">Interface for simple HTML stylesheets</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.ITableCell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.ITableCell.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.ITableCell",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.ITableCell.yml\" sourcestartlinenumber=\"1\">Interface for HTML table cells</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.RootElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.RootElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.RootElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.RootElement.yml\" sourcestartlinenumber=\"1\">Root element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.Stylesheet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.Stylesheet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.Stylesheet",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.Stylesheet.yml\" sourcestartlinenumber=\"1\">Basic implementation for <xref href=\"Bodoconsult.Web.Html.HtmlTables.IStylesheet\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.Table.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.Table.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.Table",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.Table.yml\" sourcestartlinenumber=\"1\">Table HTMl element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.TableCell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.TableCell.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.TableCell",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.TableCell.yml\" sourcestartlinenumber=\"1\">Table cell HTML element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.TableHeaderCell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.TableHeaderCell.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.TableHeaderCell",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.TableHeaderCell.yml\" sourcestartlinenumber=\"1\">Table cell HTML element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.TableRow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.TableRow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables.TableRow",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.HtmlTables.TableRow.yml\" sourcestartlinenumber=\"1\">Table row HTML element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.HtmlTables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.HtmlTables.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.HtmlTables",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Markdown.MarkdownBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Markdown.MarkdownBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Markdown.MarkdownBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Html.Markdown.MarkdownBuilder.yml\" sourcestartlinenumber=\"1\">Build a markdown file</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Html.Markdown.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Html.Markdown.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Html.Markdown",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Converters.HtmlToMailConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Converters.HtmlToMailConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Converters.HtmlToMailConverter",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Converters.HtmlToMailConverter.yml\" sourcestartlinenumber=\"1\">Converts an HTML page to a body of an email</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Converters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Converters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Helpers.JsonHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Helpers.JsonHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Helpers.JsonHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Helpers.JsonHelper.yml\" sourcestartlinenumber=\"1\">Helper class to handle JSON strings and files</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Helpers.MimeTypeHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Helpers.MimeTypeHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Helpers.MimeTypeHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Helpers.MimeTypeHelper.yml\" sourcestartlinenumber=\"1\">Helper class for MIME types</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Helpers.PasswordHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Helpers.PasswordHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Helpers.PasswordHandler",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Helpers.PasswordHandler.yml\" sourcestartlinenumber=\"1\">Encrypts und decrypts passwords for console application start parameters</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Helpers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Helpers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMailAccount.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMailAccount.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Interfaces.IMailAccount",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Interfaces.IMailAccount.yml\" sourcestartlinenumber=\"1\">Basic interface for mail accounts</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMailer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMailer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Interfaces.IMailer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Interfaces.IMailer.yml\" sourcestartlinenumber=\"1\">Interface for mailer implementations sending the mails via SMTP, ...</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMailerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMailerFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Interfaces.IMailerFactory",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Interfaces.IMailerFactory.yml\" sourcestartlinenumber=\"1\">Interface for mailer factory implementations sending the mails via SMTP, ...</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMassMailHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Interfaces.IMassMailHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Interfaces.IMassMailHandler",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Interfaces.IMassMailHandler.yml\" sourcestartlinenumber=\"1\">Interface for mass mailing handlers sending an email to multiple receivers</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Mailers.BaseMailer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Mailers.BaseMailer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Mailers.BaseMailer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Mailers.BaseMailer.yml\" sourcestartlinenumber=\"1\">Base class for mailer instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Mailers.FakeMailer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Mailers.FakeMailer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Mailers.FakeMailer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Mailers.FakeMailer.yml\" sourcestartlinenumber=\"1\">Fake sending a mail</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Mailers.MassMailHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Mailers.MassMailHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Mailers.MassMailHandler",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Mailers.MassMailHandler.yml\" sourcestartlinenumber=\"1\">Mass mail handler to create an HTML based mass email</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Mailers.O365Mailer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Mailers.O365Mailer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Mailers.O365Mailer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Mailers.O365Mailer.yml\" sourcestartlinenumber=\"1\">Implementation of an Office 365 Graph based mailer</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Mailers.SmtpMailer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Mailers.SmtpMailer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Mailers.SmtpMailer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Mailers.SmtpMailer.yml\" sourcestartlinenumber=\"1\">Send an email via SMTP unsecured or via SSL secured</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Mailers.TokenProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Mailers.TokenProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Mailers.TokenProvider",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Mailers.TokenProvider.yml\" sourcestartlinenumber=\"1\">Current token provider</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Mailers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Mailers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Mailers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.ExcelFileConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.ExcelFileConfig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.ExcelFileConfig",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.ExcelFileConfig.yml\" sourcestartlinenumber=\"1\">Contains config data for Excel import</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.ImageMetaData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.ImageMetaData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.ImageMetaData",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.ImageMetaData.yml\" sourcestartlinenumber=\"1\">meta data for an image file in a HTML document</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.MailItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.MailItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.MailItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.MailItem.yml\" sourcestartlinenumber=\"1\">Represents data for an email to send</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.MailReceiver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.MailReceiver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.MailReceiver",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.MailReceiver.yml\" sourcestartlinenumber=\"1\">Class with mail receiver data</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.MassMailItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.MassMailItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.MassMailItem",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.MassMailItem.yml\" sourcestartlinenumber=\"1\">Mass mail item</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.O365MailAccount.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.O365MailAccount.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.O365MailAccount",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.O365MailAccount.yml\" sourcestartlinenumber=\"1\">Represents an Office 365 app account used for mailing</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.PwdKeys.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.PwdKeys.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.PwdKeys",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.PwdKeys.yml\" sourcestartlinenumber=\"1\">Pwd keys infrastructure</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.SmtpMailAccount.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.SmtpMailAccount.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models.SmtpMailAccount",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Web.Mail.Models.SmtpMailAccount.yml\" sourcestartlinenumber=\"1\">Contains mail config for sending via SMTP</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Web.Mail.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Web.Mail.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Web.Mail.Models",
+      "Summary": null
+    },
+    {
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
@@ -28615,6 +29385,36 @@
         },
         ".json": {
           "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "apps/BodoWebMailer/Db_Install/SQLServer_Install.md",
+      "output": {
+        ".html": {
+          "relative_path": "apps/BodoWebMailer/Db_Install/SQLServer_Install.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/BodoWebMailer/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoWebMailer/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/BodoWebMailer/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoWebMailer/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -29424,6 +30224,66 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Ftp/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Ftp/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Ftp/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Ftp/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Html/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Html/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Html/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Html/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Mail/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Mail/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Mail/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Mail/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/getting-started.md",
       "output": {
         ".html": {
@@ -29751,6 +30611,36 @@
       "output": {
         ".html": {
           "relative_path": "licenses/license_AvaloniaReactiveUiDemoApp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoWebMailer.Business.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoWebMailer.Business.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoWebMailer.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoWebMailer.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoWebMailer.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoWebMailer.html"
         }
       },
       "version": ""
@@ -30121,6 +31011,56 @@
       "output": {
         ".html": {
           "relative_path": "licenses/license_Bodoconsult.Typography.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Web.Ftp.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Web.Ftp.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Web.Ftp.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Web.Ftp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Web.Html.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Web.Html.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Web.Mail.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Web.Mail.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Web.Mail.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Web.Mail.html"
         }
       },
       "version": ""

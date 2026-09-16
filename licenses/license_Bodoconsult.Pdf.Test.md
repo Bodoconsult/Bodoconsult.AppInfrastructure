@@ -50,9 +50,9 @@ Project-Url: https://github.com/nunit/nunit
 
 ## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
 
-Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2025 Terje Sandstrom
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
 
-The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net core 3.1, .net 5 or higher.
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
 
       Note that this package ONLY contains the adapter, not the NUnit framework.
       For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
@@ -65,7 +65,7 @@ Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 ## Nuget package library PDFsharp-MigraDoc by PDFsharp Team
 
-Copyright: © 2025 empira
+Copyright: © 2026 empira
 
 MigraDoc is a .NET library that allows developers to create documents such as PDF and RTF using a high-level object model. It provides an intuitive API that simplifies the creation of documents, including text formatting, tables, images, and more. MigraDoc is widely used for generating reports, invoices, and other types of documents in various applications.
 This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.

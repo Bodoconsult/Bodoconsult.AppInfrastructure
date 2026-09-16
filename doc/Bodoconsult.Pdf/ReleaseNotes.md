@@ -14,3 +14,9 @@ Release notes for Bodoconsult.Pdf
 -	Using Bodoconsult.App.Abstractions 1.0.9
 
 -   Added background image handling and watermarking to PdfBuilder and PdfCreator classes
+
+# 1.0.10
+
+-   Uses Bodoconsult.App.Abstractions 1.0.10
+
+-   Better PDB handling

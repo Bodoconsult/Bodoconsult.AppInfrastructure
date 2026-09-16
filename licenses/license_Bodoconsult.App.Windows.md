@@ -101,5 +101,5 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 

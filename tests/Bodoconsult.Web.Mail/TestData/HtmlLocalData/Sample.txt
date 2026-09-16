@@ -1,0 +1,22 @@
+﻿<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Testmail</title>
+	<style type="text/css">
+
+	</style>
+</head>
+	<body>
+		<p>Testabsatz mit tollem Text.</p>
+
+		<img src="logo.jpg" width="450" height="75" />
+
+		<p>Testabsatz mit noch tollerem Text!</p>
+
+		<img src="logo.jpg" width="45" height="8"/>
+
+		<p>Testabsatz mit noch viel tollerem Text!</p>
+
+	</body>
+</html>

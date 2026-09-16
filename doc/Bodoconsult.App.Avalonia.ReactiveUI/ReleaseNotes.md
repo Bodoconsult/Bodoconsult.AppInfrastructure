@@ -19,3 +19,13 @@ Release notes for Bodoconsult.App.Avalonia.ReactiveUI
 -   Added FileDialogService for implementing file picker dialogs based on Avalonia
 
 -   Added ClipboardService for implementing clipboard services based on Avalonia
+
+# 1.0.10
+
+-   Uses Bodoconsult.App.Abstractions 1.0.10
+
+-   Better PDB handling
+
+-   Migration to nullable project
+
+-   Add ImageControl to show images in an Avalonia control with features like saving as bitmap or copying to clipboard

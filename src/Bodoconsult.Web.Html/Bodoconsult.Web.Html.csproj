@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>false</Deterministic>
+
+		<Authors>Robert Leisner, Johanna Wolf</Authors>
+
+		<PackageId>Bodoconsult.Web.Html</PackageId>
+		<PackageTags>HTML DataTable System.Data markup tags</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Bodoconsult.Web.Html library contains tools for HTML markup creation like formatting DataTables as HTML etc.</Description>
+		<PackageReleaseNotes>Test migration to .NET 8 and added README.MD</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+		<!-- PDB Configuration -->
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<EmbedAllSources>false</EmbedAllSources>
+
+		<!-- Allow PDBs in the main package -->
+		<!--
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+		<!-- Generate symbols package (.snupkg) -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<!-- Modern symbols package format -->
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="nuget.txt" />
+	  <None Remove="OpenSourceMetaData.json" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Content Include="..\..\LICENSE.md" Link="LICENSE.md" />
+		<Content Include="..\..\doc\Bodoconsult.Web.Html\README.md" Link="README.md" Pack="true" PackagePath="\">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

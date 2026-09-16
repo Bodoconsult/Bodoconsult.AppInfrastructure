@@ -19,3 +19,9 @@ Release notes for Bodoconsult.Office
 -   Adding background image added to DocxBuilder (ITypoMetaData.BackgroundImagePath)
 
 -   Adding watermark added to DocxBuilder ((ITypoMetaData.WatermarkText)
+
+# 1.0.10
+
+-   Uses Bodoconsult.App.Abstractions 1.0.10
+
+-   Better PDB handling

@@ -17,3 +17,13 @@ Release notes for Bodoconsult.App.ReactiveUi
 -   Added IUiFileDialogService for implementing file picker dialogs
 
 -   Added IUiClipboardService for implementing clipboard services
+
+# 1.0.10
+
+-   Uses Bodoconsult.App.Abstractions 1.0.10
+
+-   Better PDB handling
+
+-   Migration to nullable project
+
+-   Added ImageControlViewModel
