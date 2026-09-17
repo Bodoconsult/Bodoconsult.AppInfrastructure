@@ -9,7 +9,7 @@ using Bodoconsult.App.DependencyInjection;
 namespace BodoFileTransfer.DiContainerProvider;
 
 /// <summary>
-/// Load all the complete package of BodoFileTransfer services based on GRPC to DI container. Intended mainly for production
+/// Load all the complete package of BodoFileTransfer services to DI container. Intended mainly for production
 /// </summary>
 [SupportedOSPlatform("windows10.0.17763.0")]
 public class BodoFileTransferAllServicesDiContainerServiceProviderPackage : BaseDiContainerServiceProviderPackage

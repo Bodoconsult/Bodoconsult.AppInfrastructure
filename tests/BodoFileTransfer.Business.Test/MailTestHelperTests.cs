@@ -1,7 +1,9 @@
-using BodoFileTransferCore.Business.Test.Helper;
+// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using BodoFileTransfer.Business.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 internal class MailTestHelperTests
 {

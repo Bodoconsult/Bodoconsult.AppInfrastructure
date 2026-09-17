@@ -1,13 +1,15 @@
-﻿using BodoFileTransferCore.Business.App;
-using BodoFileTransferCore.Business.DataHandling;
-using BodoFileTransferCore.Business.Logging;
-using BodoFileTransferCore.Business.Test.Helper;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using BodoFileTransfer.Business.DataHandling;
+using BodoFileTransfer.Business.FolderHandling;
+using BodoFileTransfer.Business.Test.App;
+using BodoFileTransfer.Business.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 [TestFixture]
-public class UnitTestFolderHandler
+public class FolderHandlerTests
 {
     [Test]
     public void TestProcessAccounts()
@@ -17,11 +19,9 @@ public class UnitTestFolderHandler
 
         TestHelper.GetDummyDataHandler();
 
-        var d = new DataHandler(GlobalValues.CurrentAppSettings);
+        var d = new DataHandler(Globals.Instance);
 
-        var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
-
-        var fh = new FolderHandler(d, config, logger);
+        var fh = new FolderHandler(d, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessAccounts();
@@ -39,11 +39,9 @@ public class UnitTestFolderHandler
 
         TestHelper.GetDummyDataHandler();
 
-        var d = new DataHandler(GlobalValues.CurrentAppSettings);
+        var d = new DataHandler(Globals.Instance);
 
-        var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
-
-        var fh = new FolderHandler(d, config, logger);
+        var fh = new FolderHandler(d, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessAccounts();

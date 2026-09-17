@@ -10,7 +10,7 @@ using TextElement = System.Windows.Documents.TextElement;
 namespace Bodoconsult.App.Wpf.Documents.Renderer.Inlines;
 
 /// <summary>
-/// Render a <see cref="Value"/> element
+/// Render a <see cref="Bodoconsult.Text.Documents.Value"/> element
 /// </summary>
 public class ValueWpfTextRendererElement : InlineWpfTextRendererElementBase
 {

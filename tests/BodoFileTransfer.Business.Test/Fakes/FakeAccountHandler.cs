@@ -1,14 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
-using BodoFileTransferCore.Business.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using BodoFileTransferCore.Business.Enums;
-using BodoFileTransferCore.Business.Model;
+using BodoFileTransfer.Business.Enums;
+using BodoFileTransfer.Business.Interfaces;
+using BodoFileTransfer.Business.Model;
 
-namespace BodoFileTransferCore.Business.Test.Fakes;
+namespace BodoFileTransfer.Business.Test.Fakes;
 
 internal class FakeAccountHandler: IAccountHandler
 {

@@ -1,16 +1,17 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Linq;
-using BodoFileTransferCore.Business.Interfaces;
-using BodoFileTransferCore.Business.Model;
-using BodoFileTransferCore.Business.Services;
-using BodoFileTransferCore.Business.Test.Helper;
+using BodoFileTransfer.Business.Interfaces;
+using BodoFileTransfer.Business.Model;
+using BodoFileTransfer.Business.Services;
+using BodoFileTransfer.Business.Test.App;
+using BodoFileTransfer.Business.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 [TestFixture]
-public class UnitTestSmtpMailService
+public class SmtpMailServiceTests
 {
     private IDataHandler _dataHandler;
 
@@ -40,7 +41,7 @@ public class UnitTestSmtpMailService
 
         _dataHandler = dummyHandler;
 
-        _accountHandler = new AccountHandler(AccountId, _dataHandler, config);
+        _accountHandler = new AccountHandling.AccountHandler(AccountId, _dataHandler, config, Globals.Instance);
 
 
         _mailservice = new SmtpMailService(_accountHandler);

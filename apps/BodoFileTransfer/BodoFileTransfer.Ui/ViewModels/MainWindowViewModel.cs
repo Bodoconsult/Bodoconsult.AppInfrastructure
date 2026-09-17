@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using BodoFileTransfer.Business.Interfaces;
 using BodoFileTransfer.Business.Model;
 
-namespace BodoFileTransferCore.Ui.ViewModels;
+namespace BodoFileTransfer.Ui.ViewModels;
 
 /// <summary>
 /// Current MainWindow viewmodel implementation

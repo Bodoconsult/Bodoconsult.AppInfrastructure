@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using BodoFileTransfer.Business.Model;
 
-namespace BodoFileTransferCore.Ui.ViewModels;
+namespace BodoFileTransfer.Ui.ViewModels;
 
 /// <summary>
 /// Interface for MainWindow viewmodel implementations

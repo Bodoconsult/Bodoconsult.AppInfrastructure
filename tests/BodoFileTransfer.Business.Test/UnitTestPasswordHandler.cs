@@ -1,11 +1,11 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using NUnit.Framework;
 using System.Diagnostics;
 using Bodoconsult.Web.Mail.Helpers;
+using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 public class UnitTestPasswordHandler
 {

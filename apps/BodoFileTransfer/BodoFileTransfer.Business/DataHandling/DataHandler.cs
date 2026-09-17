@@ -28,11 +28,11 @@ public class DataHandler : IDataHandler
 
     private readonly string _connectionString;
 
-    private IList<Account> _allAccounts;
+    private List<Account> _allAccounts;
 
-    private IList<O365Account> _allO365Accounts;
+    private List<O365Account> _allO365Accounts;
 
-    private IList<O365SenderAccount> _allO365SenderAccounts;
+    private List<O365SenderAccount> _allO365SenderAccounts;
 
     public DataHandler(IAppGlobals appGlobals)
     {
@@ -53,7 +53,7 @@ public class DataHandler : IDataHandler
             return _allAccounts;
         }
 
-        _allAccounts = new List<Account>();
+        _allAccounts = [];
 
         var dt = _db.GetDataTable("EXEC [dbo].[spInbox_GetAllInboxes]");
         foreach (DataRow r in dt.Rows)

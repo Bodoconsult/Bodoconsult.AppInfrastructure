@@ -1,17 +1,18 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BodoFileTransferCore.Business.Enums;
-using BodoFileTransferCore.Business.Interfaces;
-using BodoFileTransferCore.Business.Logging;
-using BodoFileTransferCore.Business.Model;
-using BodoFileTransferCore.Business.Test.Helper;
+using Bodoconsult.App.Logging;
+using BodoFileTransfer.Business.Enums;
+using BodoFileTransfer.Business.FolderHandling;
+using BodoFileTransfer.Business.Interfaces;
+using BodoFileTransfer.Business.Model;
+using BodoFileTransfer.Business.Test.App;
+using BodoFileTransfer.Business.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 /// <summary>
 /// Base test class for <see cref="IDataHandler"/> tests
@@ -115,9 +116,7 @@ public abstract class BaseTestDataHandler
 
         var config = TestHelper.GetDefaultConfig();
 
-        var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
-
-        var fh = new FolderHandler(DataHandler, config, logger);
+        var fh = new FolderHandler(DataHandler, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessImapAccounts();
@@ -137,7 +136,7 @@ public abstract class BaseTestDataHandler
 
         var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
 
-        var fh = new FolderHandler(DataHandler, config, logger);
+        var fh = new FolderHandler(DataHandler, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessImapAccounts();

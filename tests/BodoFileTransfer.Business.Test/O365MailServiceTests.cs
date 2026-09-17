@@ -1,20 +1,18 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.IO;
-using BodoFileTransferCore.Business.Interfaces;
-using BodoFileTransferCore.Business.Model;
-using BodoFileTransferCore.Business.Services;
-using BodoFileTransferCore.Business.Test.Fakes;
-using BodoFileTransferCore.Business.Test.Helper;
+using BodoFileTransfer.Business.Model;
+using BodoFileTransfer.Business.Services;
+using BodoFileTransfer.Business.Test.App;
+using BodoFileTransfer.Business.Test.Fakes;
+using BodoFileTransfer.Business.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 [TestFixture]
-internal class UnitTestO365MailService
+internal class O365MailServiceTests
 {
-
-
     [Test]
     public void TestSendMail()
     {
@@ -28,7 +26,7 @@ internal class UnitTestO365MailService
 
         accountHandler.AccountMailData = md;
 
-        var o = new O365MailService(accountHandler);
+        var o = new O365MailService(accountHandler, Globals.Instance);
 
         const string to = "robert.leisner@bodoconsult.de";
         const string subject = "Test";
@@ -40,7 +38,5 @@ internal class UnitTestO365MailService
         {
             o.SendMail(to, subject, body, fileName, false, null);
         });
-
     }
-
 }

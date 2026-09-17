@@ -41,7 +41,6 @@ public class BodoFileTransferProductionDiContainerServiceProviderPackageFactory 
     /// <returns>Singleton instance of <see cref="IDiContainerServiceProviderPackage"/></returns>
     public IDiContainerServiceProviderPackage CreateInstance()
     {
-            
         return new BodoFileTransferAllServicesDiContainerServiceProviderPackage(AppGlobals, StatusMessageDelegate, LicenseMissingDelegate);
     }
 }

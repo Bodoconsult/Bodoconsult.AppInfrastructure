@@ -167,6 +167,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFileTransfer.Ui", "apps
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFileTransfer", "apps\BodoFileTransfer\BodoFileTransfer\BodoFileTransfer.csproj", "{EF3995BB-55D8-EDB4-8B24-2E1FBD4A3E34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFileTransfer.Business.Test", "tests\BodoFileTransfer.Business.Test\BodoFileTransfer.Business.Test.csproj", "{71026495-C223-F891-EBF8-1728A61BF9CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -445,6 +447,10 @@ Global
 		{EF3995BB-55D8-EDB4-8B24-2E1FBD4A3E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF3995BB-55D8-EDB4-8B24-2E1FBD4A3E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF3995BB-55D8-EDB4-8B24-2E1FBD4A3E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71026495-C223-F891-EBF8-1728A61BF9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71026495-C223-F891-EBF8-1728A61BF9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71026495-C223-F891-EBF8-1728A61BF9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71026495-C223-F891-EBF8-1728A61BF9CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -523,6 +529,7 @@ Global
 		{A39CAF5A-C45E-6B5D-E8CC-D2B2B09B8A73} = {3DF0EB8A-0104-4727-A570-1694D42656DB}
 		{7BBB5DCA-8C6C-7288-4B00-9615D3E1487D} = {3DF0EB8A-0104-4727-A570-1694D42656DB}
 		{EF3995BB-55D8-EDB4-8B24-2E1FBD4A3E34} = {3DF0EB8A-0104-4727-A570-1694D42656DB}
+		{71026495-C223-F891-EBF8-1728A61BF9CD} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEB92BC2-1DB4-4057-8D49-2E995AA1F80B}

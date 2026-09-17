@@ -1,11 +1,15 @@
-﻿using BodoFileTransferCore.Business.Logging;
-using BodoFileTransferCore.Business.Test.Helper;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using Bodoconsult.App.Logging;
+using BodoFileTransfer.Business.FolderHandling;
+using BodoFileTransfer.Business.Test.App;
+using BodoFileTransfer.Business.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 [TestFixture]
-public class UnitTestFolderHandlerDummy
+public class FolderHandlerDummyTests
 {
     [Test]
     public void TestProcessAccounts()
@@ -17,7 +21,7 @@ public class UnitTestFolderHandlerDummy
 
         var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
 
-        var fh = new FolderHandler(d, config, logger);
+        var fh = new FolderHandler(d, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessAccounts();
@@ -26,7 +30,6 @@ public class UnitTestFolderHandlerDummy
         // Assert
         Assert.That(result, Is.False);
     }
-
 
     [Test]
     public void TestProcessImapAccounts()
@@ -38,7 +41,7 @@ public class UnitTestFolderHandlerDummy
 
         var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
 
-        var fh = new FolderHandler(d, config, logger);
+        var fh = new FolderHandler(d, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessImapAccounts();
@@ -47,8 +50,6 @@ public class UnitTestFolderHandlerDummy
         // Assert
         Assert.That(result, Is.False);
     }
-
-
 
     [Test]
     public void TestCompleteWorkFlow()
@@ -60,19 +61,16 @@ public class UnitTestFolderHandlerDummy
 
         var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
 
-        var fh = new FolderHandler(d, config, logger);
+        var fh = new FolderHandler(d, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessImapAccounts();
         var result1 = fh.ProcessAccounts();
 
-
-
         // Assert
         Assert.That(result, Is.False);
         Assert.That(result1, Is.False);
     }
-
 
     [Test]
     public void TestSendSmtpMails()
@@ -84,7 +82,7 @@ public class UnitTestFolderHandlerDummy
 
         var logger = AppLoggerExtensions.GetFakeAppLoggerProxy();
 
-        var fh = new FolderHandler(d, config, logger);
+        var fh = new FolderHandler(d, config, Globals.Instance);
 
         var result = fh.ProcessImapAccounts();
         var result1 = fh.ProcessAccounts();

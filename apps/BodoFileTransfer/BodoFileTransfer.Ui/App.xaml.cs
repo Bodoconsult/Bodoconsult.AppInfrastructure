@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using log4net;
 
-namespace BodoFileTransferCore.Ui;
+namespace BodoFileTransfer.Ui;
 
 /// <summary>
 /// Interaction logic for App.xaml

@@ -14,4 +14,4 @@ Create a fresh database BodoWebMailer on the SqlServer (Express) you want to use
 
 # Create the required database entities
 
-You can find the following SQL commands in the file SQLSever_Install.sql in the folder DB_Install. Run the SQL in your database BodoWebMailer i.e. from SSMS to create the required entities in the database.
+You can find the following SQL commands in the file SQLServer_Install.sql in the folder DB_Install. Run the SQL in your database BodoWebMailer i.e. from SSMS to create the required entities in the database.

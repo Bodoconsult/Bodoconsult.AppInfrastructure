@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,13 +8,12 @@ using System.Reflection;
 using System.Text;
 using Bodoconsult.Web.Mail.Helpers;
 using Bodoconsult.Web.Mail.Models;
-using BodoFileTransferCore.Business.App;
-using BodoFileTransferCore.Business.DataHandling;
-using BodoFileTransferCore.Business.Helpers;
-using BodoFileTransferCore.Business.Interfaces;
-using BodoFileTransferCore.Business.Model;
+using BodoFileTransfer.Business.DataHandling;
+using BodoFileTransfer.Business.Interfaces;
+using BodoFileTransfer.Business.Model;
+using BodoFileTransfer.Business.Test.App;
 
-namespace BodoFileTransferCore.Business.Test.Helper;
+namespace BodoFileTransfer.Business.Test.Helper;
 
 internal class TestHelper
 {
@@ -58,7 +56,7 @@ internal class TestHelper
 
     public static DummyDataHandler GetDummyDataHandler()
     {
-        var d = new DummyDataHandler(GlobalValues.CurrentAppSettings.ErrorMailer);
+        var d = new DummyDataHandler(Globals.Instance.AppStartParameter.ErrorMailAddress);
         var a = CreateDummyAccount(d.Accounts, "M55048");
         CreateDummyAccount(d.Accounts, "M55021");
 
@@ -165,7 +163,7 @@ internal class TestHelper
 
     public static FolderHandlerConfig GetDefaultConfig()
     {
-        return new(GlobalValues.CurrentAppSettings)
+        return new(Globals.Instance)
         {
             NumberSchema = "000000",
             SignatureFileExtensions = ".ads;.cms",

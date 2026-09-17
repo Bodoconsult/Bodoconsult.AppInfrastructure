@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using BodoFileTransferCore.Ui.ViewModels;
+using BodoFileTransfer.Ui.ViewModels;
 
-namespace BodoFileTransferCore.Ui;
+namespace BodoFileTransfer.Ui;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

@@ -1,13 +1,17 @@
-﻿using System.Linq;
-using BodoFileTransferCore.Business.Interfaces;
-using BodoFileTransferCore.Business.Model;
-using BodoFileTransferCore.Business.Test.Helper;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using System.Linq;
+using BodoFileTransfer.Business.AccountHandling;
+using BodoFileTransfer.Business.Interfaces;
+using BodoFileTransfer.Business.Model;
+using BodoFileTransfer.Business.Test.App;
+using BodoFileTransfer.Business.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransferCore.Business.Test;
+namespace BodoFileTransfer.Business.Test;
 
 [TestFixture]
-public class UnitTestAccountManagementHandler
+public class AccountManagementHandlerTests
 {
     private IDataHandler _dataHandler;
 
@@ -35,7 +39,7 @@ public class UnitTestAccountManagementHandler
 
         _dataHandler = dummyHandler;
 
-        _accountManagementHandler = new AccountManagementHandler(_dataHandler, config);
+        _accountManagementHandler = new AccountManagementHandler(_dataHandler, config, Globals.Instance);
 
 
     }

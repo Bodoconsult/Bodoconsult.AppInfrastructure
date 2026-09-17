@@ -75,12 +75,12 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ReactiveUI.Avalonia" Version="12.1.0" />
+		<PackageReference Include="ReactiveUI.Avalonia" Version="12.1.2" />
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
 		<!--<PackageReference Include="ReactiveUI.Primitives" Version="*" PrivateAssets="all" />-->
 		<PackageReference Include="ReactiveUI.Routing" Version="*" />
 		<!--<PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="*" PrivateAssets="all" />-->
-		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.12" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
