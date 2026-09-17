@@ -41,15 +41,7 @@ public static class FileSystemHelper
     /// <returns>Plain file name</returns>
     public static string GetFileNameWithoutExtension(string? fullPath)
     {
-        if (string.IsNullOrEmpty(fullPath))
-        {
-            return string.Empty;
-        }
-
-        var indexOfSlash = fullPath.LastIndexOf("\\", StringComparison.Ordinal);
-        var indexOfPoint = fullPath.LastIndexOf(".", StringComparison.Ordinal);
-        var fileName = fullPath.Substring(indexOfSlash + 1, indexOfPoint - 1 - indexOfSlash);
-        return fileName;
+        return string.IsNullOrEmpty(fullPath) ? string.Empty : Path.GetFileNameWithoutExtension(fullPath);
     }
 
     /// <summary>

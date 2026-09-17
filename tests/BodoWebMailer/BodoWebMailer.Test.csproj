@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\apps\BodoWebMailer.Business\BodoWebMailer.Business.csproj" />
-    <ProjectReference Include="..\..\apps\BodoWebMailer\BodoWebMailer.csproj" />
+    <ProjectReference Include="..\..\apps\BodoWebMailer\BodoWebMailer.Business\BodoWebMailer.Business.csproj" />
+    <ProjectReference Include="..\..\apps\BodoWebMailer\BodoWebMailer\BodoWebMailer.csproj" />
   </ItemGroup>
 
 </Project>

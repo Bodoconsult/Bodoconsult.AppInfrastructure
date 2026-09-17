@@ -2,8 +2,6 @@
 
 using Avalonia.Platform.Storage;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using SkiaSharp;
-using System.Reflection.Metadata;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Services;
 

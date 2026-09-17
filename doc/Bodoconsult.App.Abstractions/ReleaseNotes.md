@@ -34,3 +34,7 @@ Release notes for Bodoconsult.App.Abstractions
 -   Uses Bodoconsult.App.Abstractions 1.0.9
 
 -   Better PDB handling
+
+-   Added Args property to IAppStartParameter to store command line args
+
+-   Added ErrorMailAddress property to IAppStartParameter to email address for sending mail to in case of exceptions

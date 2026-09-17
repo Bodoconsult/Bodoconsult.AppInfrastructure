@@ -3,7 +3,6 @@
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Logging;
 using Microsoft.Extensions.Configuration;
 
 namespace Bodoconsult.App.Test.App;

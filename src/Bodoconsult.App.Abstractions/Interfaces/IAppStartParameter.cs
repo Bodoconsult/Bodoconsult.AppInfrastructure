@@ -48,6 +48,11 @@ public interface IAppStartParameter
     string? AppExe { get; set; }
 
     /// <summary>
+    /// Command line args the app was started with
+    /// </summary>
+    string[]? Args { get; set; }
+
+    /// <summary>
     /// Full path to the current config file
     /// </summary>
     string? ConfigFile { get; set; }
@@ -116,4 +121,9 @@ public interface IAppStartParameter
     /// Number of old backups to keep
     /// </summary>
     int NumberOfBackupsToKeep { get; set; }
+
+    /// <summary>
+    /// Email address to send info mail to in case of exceptions and errors
+    /// </summary>
+    public string? ErrorMailAddress { get; set; }
 }

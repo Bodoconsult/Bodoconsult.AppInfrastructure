@@ -47,6 +47,11 @@ public class AppStartParameter: IAppStartParameter
     public string? AppExe { get; set; }
 
     /// <summary>
+    /// Command line args the app was started with
+    /// </summary>
+    public string[]? Args { get; set; }
+
+    /// <summary>
     /// Full path to the current config file
     /// </summary>
     public string? ConfigFile { get; set; }
@@ -91,7 +96,6 @@ public class AppStartParameter: IAppStartParameter
     /// </summary>
     public int Port { get; set; }
 
-
     /// <summary>
     /// Base path to a folder in C:\ProgramData\ where the app stores data created by the app like backups, migrations logs and normal log files: C:\ProgramData\<see cref="IAppStartParameter.AppFolderName"/>
     /// </summary>
@@ -116,4 +120,9 @@ public class AppStartParameter: IAppStartParameter
     /// Number of old backups to keep
     /// </summary>
     public int NumberOfBackupsToKeep { get; set; } = 30;
+
+    /// <summary>
+    /// Email address to send info to in case of exceptions and errors
+    /// </summary>
+    public string? ErrorMailAddress { get; set; }
 }

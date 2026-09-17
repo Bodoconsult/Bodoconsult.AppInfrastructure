@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Avalonia.Input.Platform;
 using Avalonia.Media.Imaging;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using ReactiveUI;

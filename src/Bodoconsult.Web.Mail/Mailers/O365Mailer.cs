@@ -9,13 +9,10 @@ using Microsoft.Graph;
 using Microsoft.Graph.Models;
 using Microsoft.Graph.Users.Item.SendMail;
 using Microsoft.Kiota.Abstractions.Authentication;
-using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Net.WebRequestMethods;
 using Attachment = Microsoft.Graph.Models.Attachment;
 
 namespace Bodoconsult.Web.Mail.Mailers;

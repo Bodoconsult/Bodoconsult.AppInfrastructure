@@ -96,6 +96,7 @@ public class DefaultAppStartProvider : IAppStartProvider
         asp.Port = ReadIntProperty(section, "Port", asp.Port);
         asp.NumberOfBackupsToKeep = ReadIntProperty(section, "NumberOfBackupsToKeep", asp.NumberOfBackupsToKeep);
         asp.BackupPath = ReadStringProperty(section, "BackupPath", asp.BackupPath ?? string.Empty);
+        asp.ErrorMailAddress = ReadStringProperty(section, "ErrorMailAddress", asp.ErrorMailAddress) ?? string.Empty;
 
         switch (asp)
         {

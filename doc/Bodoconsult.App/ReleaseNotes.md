@@ -65,3 +65,7 @@ Release notes for Bodoconsult.App
 
 -   Better PDB handling
 
+-   Added Args property to IAppStartParameter to store command line args
+
+-   Added ErrorMailAddress property to AppStartParameter to email address for sending mail to in case of exceptions
+

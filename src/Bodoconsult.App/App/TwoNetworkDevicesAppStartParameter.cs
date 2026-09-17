@@ -46,6 +46,11 @@ public class TwoNetworkDevicesAppStartParameter : I2NetworkDevicesAppStartParame
     public string? AppExe { get; set; }
 
     /// <summary>
+    /// Command line args the app was started with
+    /// </summary>
+    public string[]? Args { get; set; }
+
+    /// <summary>
     /// Full path to the current config file
     /// </summary>
     public string? ConfigFile { get; set; }
@@ -115,6 +120,11 @@ public class TwoNetworkDevicesAppStartParameter : I2NetworkDevicesAppStartParame
     /// Number of old backups to keep
     /// </summary>
     public int NumberOfBackupsToKeep { get; set; } = 30;
+
+    /// <summary>
+    /// Email address to send info mail to in case of exceptions and errors
+    /// </summary>
+    public string? ErrorMailAddress { get; set; }
 
     /// <summary>
     /// IP address of the network device 2

@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0-windows10.0.17763</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Bodoconsult.Database" Version="1.0.0" />
+		<PackageReference Include="Bodoconsult.Database.SqlClient" Version="1.0.0" />
+		<PackageReference Include="log4net" Version="3.3.2" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.19" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.Web.Html\Bodoconsult.Web.Html.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.Web.Mail\Bodoconsult.Web.Mail.csproj" />
+	</ItemGroup>
+
+</Project>

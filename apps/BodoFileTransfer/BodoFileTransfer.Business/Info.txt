@@ -1,0 +1,3 @@
+﻿update [dbo].[t_ImapMail]
+set [IM_UserName]='Y', [IM_Password]='', [IM_Name]='Bodoconsult Rechnungen'
+where IM_ID=1

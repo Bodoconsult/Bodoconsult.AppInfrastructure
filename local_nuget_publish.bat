@@ -1,4 +1,4 @@
-set version=1.0.9
+set version=1.0.10
 
 dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
@@ -23,5 +23,11 @@ dotnet nuget push packages\Bodoconsult.App.BackgroundService.%version%.snupkg --
 
 dotnet nuget push packages\Bodoconsult.I18N.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.I18N.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.Web.Html.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Web.Html.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.Web.Mail.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Web.Mail.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
 
 pause

@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading;
 using Avalonia.Controls;
 using Avalonia.Headless.NUnit;
-using Avalonia.Metadata;
 using Bodoconsult.App.Avalonia.ReactiveUI.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Services;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
