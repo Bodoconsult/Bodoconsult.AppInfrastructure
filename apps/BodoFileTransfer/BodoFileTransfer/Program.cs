@@ -72,6 +72,7 @@ internal class Program
         builder.FinalizeDiContainerSetup();
 
         // Now finally start the app and wait
+        // See BodoFileTransferService.StartApplication() for the relevante parts of app start
         builder.StartApplication();
 
         Environment.Exit(0);

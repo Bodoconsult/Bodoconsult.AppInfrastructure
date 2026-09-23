@@ -7,12 +7,14 @@ using Bodoconsult.Web.Mail.Interfaces;
 using Bodoconsult.Web.Mail.Models;
 using Microsoft.Graph;
 using Microsoft.Graph.Models;
+using Microsoft.Graph.Models.Security;
 using Microsoft.Graph.Users.Item.SendMail;
 using Microsoft.Kiota.Abstractions.Authentication;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Attachment = Microsoft.Graph.Models.Attachment;
 
 namespace Bodoconsult.Web.Mail.Mailers;
@@ -24,7 +26,7 @@ public class O365Mailer: BaseMailer
 {
     // Even if this is a console application here, a daemon application is a confidential client application
     private GraphServiceClient _app;
-    private O365MailAccount _mailAccount;
+    private IO365MailAccount _mailAccount;
     private readonly string _htmlMailTemplate;
 
     /// <summary>
@@ -365,9 +367,9 @@ public class O365Mailer: BaseMailer
     {
         CurrentMailAccount = mailAccount;
 
-        if (mailAccount is not O365MailAccount o365)
+        if (mailAccount is not IO365MailAccount o365)
         {
-            throw new ArgumentException("mailAccount is not O365MailAccount");
+            throw new ArgumentException("mailAccount is not IO365MailAccount");
         }
 
         _mailAccount = o365;
@@ -384,5 +386,52 @@ public class O365Mailer: BaseMailer
         {
             Message = message,
         }).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Get messages with attachments
+    /// </summary>
+    /// <param name="filter">Filter to apply</param>
+    /// <param name="accountName">Account name to get the mails from</param>
+    /// <returns>List with mail messages</returns>
+    public async Task<List<Message>> GetMessagesWithAttachments(string filter, string accountName)
+    {
+        var result = new List<Message>();
+
+        var messages = await _app.Users[accountName]
+
+            // Only messages from Inbox folder
+            .MailFolders["Inbox"]
+            .Messages
+            .GetAsync((requestConfiguration) =>
+            {
+                requestConfiguration.QueryParameters.Filter = filter;
+                requestConfiguration.QueryParameters.Expand = ["attachments"];
+                requestConfiguration.QueryParameters.Top = 100;
+                requestConfiguration.QueryParameters.Orderby = ["ReceivedDateTime DESC"];
+                requestConfiguration.QueryParameters.Select = ["From", "ReceivedDateTime", "Subject", "HasAttachments", "Attachments"];
+            });
+
+        while (messages?.Value != null)
+        {
+            result.AddRange(messages.Value);
+
+            // If OdataNextLink has a value, there is another page
+            if (!string.IsNullOrEmpty(messages.OdataNextLink))
+            {
+                // Pass the OdataNextLink to the WithUrl method
+                // to request the next page
+                messages = await _app.Me.Messages
+                    .WithUrl(messages.OdataNextLink)
+                    .GetAsync();
+            }
+            else
+            {
+                // No more results, exit loop
+                break;
+            }
+        }
+
+        return result;
     }
 }

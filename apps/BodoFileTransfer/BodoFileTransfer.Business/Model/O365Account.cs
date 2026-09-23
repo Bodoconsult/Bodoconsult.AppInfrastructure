@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.Web.Mail.Interfaces;
 using BodoFileTransfer.Business.Interfaces;
 
 namespace BodoFileTransfer.Business.Model;
@@ -8,13 +9,15 @@ namespace BodoFileTransfer.Business.Model;
 /// Represents an Office 365 mail account
 /// </summary>
 /// <remarks>The Office 365 app account requires Azure app permission Mail.Read</remarks>
-public class O365Account : BaseMailAccount
+public class O365Account : BaseMailAccount, IO365MailAccount
 {
-
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="dataHandler">Current data handler instance</param>
     public O365Account(IDataHandler dataHandler)
     {
         DataHandler = dataHandler;
-
     }
 
     /// <summary>
@@ -47,4 +50,8 @@ public class O365Account : BaseMailAccount
     /// </summary>
     public string Scope { get; set; }
 
+    /// <summary>
+    /// Mail address to use for sending 
+    /// </summary>
+    public string MailAddressSender { get; set; }
 }

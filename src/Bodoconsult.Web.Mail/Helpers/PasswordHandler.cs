@@ -15,7 +15,6 @@ namespace Bodoconsult.Web.Mail.Helpers;
 /// </summary>
 public class PasswordHandler
 {
-
     /// <summary>
     /// Key 1 used for symmetric data encryption 
     /// </summary>
@@ -34,14 +33,12 @@ public class PasswordHandler
     /// <summary>
     /// Salt
     /// </summary>
-    public static byte[] Salt { get; set; } = [0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76
-    ];
+    public static byte[] Salt { get; set; } = [0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76];
 
     /// <summary>
     /// Number of iterations
     /// </summary>
     public static int Iterations { get; set; } = 255;
-
 
     /// <summary>
     /// Encrypt as string with 
@@ -59,10 +56,14 @@ public class PasswordHandler
         }
 
         return EncryptInternal(originalString, Key1);
-
-
     }
 
+    /// <summary>
+    /// Encrypt as string with 
+    /// </summary>
+    /// <param name="originalString">Original string</param>
+    /// <param name="key">Key to use for encryption</param>
+    /// <returns>Encrypted string</returns>
     private static string EncryptInternal(string originalString, string key)
     {
         var clearBytes = Encoding.Unicode.GetBytes(originalString);
@@ -79,7 +80,6 @@ public class PasswordHandler
         }
         return Convert.ToBase64String(ms.ToArray());
     }
-
 
     /// <summary>
     /// Encrypt as string with 
@@ -98,7 +98,6 @@ public class PasswordHandler
         return EncryptInternal(originalString, Key2);
     }
 
-
     /// <summary>
     /// Encrypt as string with 
     /// </summary>
@@ -115,8 +114,6 @@ public class PasswordHandler
         }
         return EncryptInternal(originalString, Key3);
     }
-
-
 
     /// <summary>
     /// Decrypt as string
@@ -138,7 +135,6 @@ public class PasswordHandler
         return string.IsNullOrEmpty(cryptedString) ? null : DecryptInternal(cryptedString, Key2);
     }
 
-
     /// <summary>
     /// Decrypt as string
     /// </summary>
@@ -149,10 +145,15 @@ public class PasswordHandler
         return string.IsNullOrEmpty(cryptedString) ? null : DecryptInternal(cryptedString, Key3);
     }
 
-
-    private static string DecryptInternal(string cipherText, string key)
+    /// <summary>
+    /// Decrypt as string
+    /// </summary>
+    /// <param name="cryptedString">Crypted string</param>
+    /// <param name="key">Key to use for decryption</param>
+    /// <returns>Original string</returns>
+    private static string DecryptInternal(string cryptedString, string key)
     {
-        var cipherBytes = Convert.FromBase64String(cipherText.Replace(" ", "+"));
+        var cipherBytes = Convert.FromBase64String(cryptedString.Replace(" ", "+"));
         
         using var encryptor = Aes.Create();
         
@@ -165,11 +166,10 @@ public class PasswordHandler
             cs.Write(cipherBytes, 0, cipherBytes.Length);
             cs.Close();
         }
-        cipherText = Encoding.Unicode.GetString(ms.ToArray());
+        cryptedString = Encoding.Unicode.GetString(ms.ToArray());
 
-        return cipherText;
+        return cryptedString;
     }
-
 
     /// <summary>
     /// Compare two hash values a and b: if a equals b return true else false
@@ -192,6 +192,7 @@ public class PasswordHandler
         var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.SHA256);
         return pbkdf2.GetBytes(outputBytes);
     }
+
     /// <summary>
     /// 
     /// </summary>
@@ -202,7 +203,6 @@ public class PasswordHandler
     /// <returns>Base64 encoded string</returns>
     public static string CreateHash(string value, string salt, int hashBytes, int pbkdf2Iterations)
     {
-
         var saltBytes = Convert.FromBase64String(salt);
 
         // Hash the value and encode the parameters
@@ -225,8 +225,6 @@ public class PasswordHandler
         rng.GetBytes(salt);
         return Convert.ToBase64String(salt);
     }
-
-
 
     /// <summary>
     /// Hashes a value and compares with another hashed value
@@ -251,7 +249,6 @@ public class PasswordHandler
             return false;
         }
     }
-
 
     /// <summary>
     /// Read a password from console

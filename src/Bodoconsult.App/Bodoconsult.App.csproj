@@ -86,19 +86,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EditorConfigFiles Remove="C:\Daten\Projekte\Tools\Bodoconsult.AppInfrastructure\src\Bodoconsult.App\.editorconfig" />
-	</ItemGroup>
-
 </Project>

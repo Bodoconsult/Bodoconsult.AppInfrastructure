@@ -14,7 +14,7 @@ public class PasswordHandlerTests
     [Test]
     public void Decrypt_ValidPassword_PasswordDecrypted()
     {
-        const string password = "Blubb";
+        const string password = "rechnung@bodoconsult.de";
 
         var encryptedPassword = PasswordHandler.Encrypt(password);
 

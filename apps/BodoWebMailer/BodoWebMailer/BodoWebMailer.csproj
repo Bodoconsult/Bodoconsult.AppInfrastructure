@@ -20,9 +20,6 @@
 		<Content Include="log4net.config">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="..\..\..\doc\Bodoconsult.Web.Mail\README.md" Link="README.md" Pack="true" PackagePath="\">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -34,6 +31,15 @@
 		<ProjectReference Include="..\..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
 		<ProjectReference Include="..\..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
 		<ProjectReference Include="..\BodoWebMailer.Business\BodoWebMailer.Business.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\..\..\LICENSE.md" Link="LICENSE.md">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\..\..\doc\BodoWebMailer\README.md" Link="README.md">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 </Project>

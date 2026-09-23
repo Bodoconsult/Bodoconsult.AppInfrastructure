@@ -1,21 +1,18 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System.Diagnostics;
 using Bodoconsult.Web.Mail.Helpers;
 using NUnit.Framework;
 
 namespace BodoFileTransfer.Business.Test;
 
-public class UnitTestPasswordHandler
+public class PasswordHandlerTests
 {
-
-
     [Test]
     public void TestEncrypt()
     {
         // Arrange 
-        var s = "TestBahnhof123";
+        var s = "blubb";
 
         // Act  
         var result1 = PasswordHandler.Encrypt(s);

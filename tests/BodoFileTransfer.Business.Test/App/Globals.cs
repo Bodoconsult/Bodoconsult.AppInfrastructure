@@ -16,7 +16,6 @@ namespace BodoFileTransfer.Business.Test.App;
 /// </summary>
 public class Globals : IAppGlobals
 {
-
     #region Singleton factory
 
     // Thread-safe implementation of singleton pattern
@@ -40,7 +39,6 @@ public class Globals : IAppGlobals
                 Console.WriteLine(e);
                 throw;
             }
-
         }
     }
 

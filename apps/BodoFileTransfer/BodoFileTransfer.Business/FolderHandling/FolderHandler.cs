@@ -115,7 +115,7 @@ public class FolderHandler : IFolderHandler
         account.FileExtensionFilter = exts;
         account.SignatureFileExtensions = Config.SignatureFileExtensions;
 
-        var oh = new O365Handler(account);
+        var oh = new O365MailHandler(account, _appLogger);
         oh.Login();
         oh.GetAllEmailAttachments();
     }

@@ -8,7 +8,7 @@ namespace Bodoconsult.Web.Mail.Models;
 /// Represents an Office 365 app account used for mailing
 /// </summary>
 /// <remarks>The Office 365 app account requires Azure app permission Mail.Send</remarks>
-public class O365MailAccount : IMailAccount
+public class O365MailAccount : IO365MailAccount
 {
     /// <summary>
     /// Current O365 instance
