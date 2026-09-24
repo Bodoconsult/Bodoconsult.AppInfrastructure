@@ -31,7 +31,6 @@ internal class DataProtectionServiceTests
         var path = Globals.Instance.AppStartParameter.DataPath;
         var instance = DataProtectionService.CreateInstance(path, AppName);
 
-
         // Act  
         var result = instance.Protect(Key, Secret);
 

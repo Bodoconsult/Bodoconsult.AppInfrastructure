@@ -5,6 +5,7 @@ using Bodoconsult.Web.Mail.Helpers;
 using Bodoconsult.Web.Mail.Test.App;
 using NUnit.Framework;
 using System;
+using Bodoconsult.App.Helpers;
 
 namespace Bodoconsult.Web.Mail.Test;
 

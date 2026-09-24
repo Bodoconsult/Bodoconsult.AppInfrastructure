@@ -5,7 +5,7 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// <summary>
 /// Interface for entity protection service protecting properties of an entity marked with [DataProtectionSecretAtrribute].
 /// At one property of the entity has to be marked with [DataProtectionSecretAttribute]. 
-/// Unprotecting works only on the same machine theprotecting was done
+/// Unprotecting works only on the same machine the protecting was done
 /// </summary>
 public interface IEntityProtectionService
 {

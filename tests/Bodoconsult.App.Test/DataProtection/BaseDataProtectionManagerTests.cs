@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Test.App;
+using Bodoconsult.App.Test.TestData;
+using System.Diagnostics;
 
 namespace Bodoconsult.App.Test.DataProtection;
 
@@ -13,6 +14,7 @@ namespace Bodoconsult.App.Test.DataProtection;
 /// </summary>
 internal abstract class BaseDataProtectionManagerTests
 {
+    private readonly string _path = Globals.Instance.AppStartParameter.DataPath ?? Path.GetTempPath();
 
     protected const string Key = "MyKey";
     protected const string Key2 = "MyKey2";
@@ -39,10 +41,9 @@ internal abstract class BaseDataProtectionManagerTests
     public void Ctor_ValidSetup_PropsSetCorrectly()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
+        var instance = DataProtectionService.CreateInstance(_path, AppName);
 
-        var filePath = Path.Combine(path, $"appData.{Extension}");
+        var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
@@ -61,10 +62,9 @@ internal abstract class BaseDataProtectionManagerTests
     public void Protect_ValidSetup_SecretStoredCorrectly()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
+        var instance = DataProtectionService.CreateInstance(_path, AppName);
 
-        var filePath = Path.Combine(path, $"appData.{Extension}");
+        var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
@@ -85,10 +85,9 @@ internal abstract class BaseDataProtectionManagerTests
     public void Protect_ValidSetupSecretUpdated_SecretStoredCorrectly()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
+        var instance = DataProtectionService.CreateInstance(_path, AppName);
 
-        var filePath = Path.Combine(path, $"appData.{Extension}");
+        var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
@@ -111,10 +110,9 @@ internal abstract class BaseDataProtectionManagerTests
     public void Unprotect_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
+        var instance = DataProtectionService.CreateInstance(_path, AppName);
 
-        var filePath = Path.Combine(path, $"appData.{Extension}");
+        var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
@@ -136,10 +134,9 @@ internal abstract class BaseDataProtectionManagerTests
     public void LoadValues_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
+        var instance = DataProtectionService.CreateInstance(_path, AppName);
 
-        var filePath = Path.Combine(path, $"appData.{Extension}");
+        var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
@@ -169,20 +166,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void AddKey_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
-
-        var filePath = Path.Combine(path, $"appData.{Extension}");
-        if (File.Exists(filePath))
-        {
-            File.Delete(filePath);
-        }
-
-        var dpm = new DataProtectionManager(instance, FileProtectionService, filePath);
-
-        dpm.AddKey(Key);
-        dpm.AddKey(Key3);
-        dpm.AddKey(Key2);
+        CreateDataProtectionManager(out var dpm);
 
         // Act
         var result = dpm.Keys.Count;
@@ -196,24 +180,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void SaveValues_OnlyAddKey_FileNotSaved()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
-
-        var filePath = Path.Combine(path, $"appData.{Extension}");
-        if (File.Exists(filePath))
-        {
-            File.Delete(filePath);
-        }
-
-        Assert.That(File.Exists(filePath), Is.False);
-
-        var dpm = new DataProtectionManager(instance, FileProtectionService, filePath);
-
-        Assert.That(File.Exists(filePath), Is.False);
-
-        dpm.AddKey(Key);
-        dpm.AddKey(Key3);
-        dpm.AddKey(Key2);
+        var filePath = CreateDataProtectionManager(out var dpm);
 
         Assert.That(File.Exists(filePath), Is.False);
 
@@ -236,21 +203,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void AskForInitialLoadValues_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var path = Globals.Instance.AppStartParameter.DataPath;
-        var instance = DataProtectionService.CreateInstance(path, AppName);
-
-        var filePath = Path.Combine(path, $"appData.{Extension}");
-        if (File.Exists(filePath))
-        {
-            File.Delete(filePath);
-        }
-
-        var dpm = new DataProtectionManager(instance, FileProtectionService, filePath);
-        dpm.ReadStringDelegate = ReadStringDelegate;
-
-        dpm.AddKey(Key);
-        dpm.AddKey(Key3);
-        dpm.AddKey(Key2);
+        var filePath = CreateDataProtectionManager(out var dpm);
 
         // Act
         dpm.AskForInitialLoadValues();
@@ -258,5 +211,145 @@ internal abstract class BaseDataProtectionManagerTests
         // Assert
         Wait.Until(() => File.Exists(filePath));
         Assert.That(File.Exists(filePath), Is.True);
+    }
+
+    [Test]
+    public void Protect_EntityMultipleSecrets_PropsWithDataProtectionSecretAttributeProtected()
+    {
+        // Arrange 
+        const string secret = "Secret";
+        const string secret2 = "Secret2";
+        const string name = "BlubbEps1";
+
+        var entity = new EntityWithSecrets
+        {
+            Name = name,
+            Secret = secret,
+            Secret2 = secret2
+        };
+
+        CreateDataProtectionManager(out var dpm);
+
+        // Act  
+        dpm.Protect(entity);
+
+        // Assert
+        Assert.That(entity.Name, Is.EqualTo(name));
+        Assert.That(entity.Secret, Is.Not.EqualTo(secret));
+        Assert.That(entity.Secret2, Is.Not.EqualTo(secret2));
+        Assert.That(entity.Secret, Is.Not.EqualTo(entity.Secret2));
+    }
+
+    [Test]
+    public void Unprotect_EntityMultipleSecrets_PropsWithDataProtectionSecretAttributeProtected()
+    {
+        // Arrange 
+        const string secret = "Secret";
+        const string secret2 = "Secret2";
+        const string name = "BlubbEps2";
+
+        var entity = new EntityWithSecrets
+        {
+            Name = name,
+            Secret = secret,
+            Secret2 = secret2
+        };
+
+        CreateDataProtectionManager(out var dpm);
+
+        dpm.Protect(entity);
+
+        Assert.That(entity.Name, Is.EqualTo(name));
+        Assert.That(entity.Secret, Is.Not.EqualTo(secret));
+        Assert.That(entity.Secret2, Is.Not.EqualTo(secret2));
+        Assert.That(entity.Secret, Is.Not.EqualTo(entity.Secret2));
+
+        // Act  
+        dpm.Unprotect(entity);
+
+        // Assert
+        Assert.That(entity.Name, Is.EqualTo(name));
+        Assert.That(entity.Secret, Is.EqualTo(secret));
+        Assert.That(entity.Secret2, Is.EqualTo(secret2));
+
+    }
+
+    [Test]
+    public void Protect_EntityMultipleSecretsWithUid_PropsWithDataProtectionSecretAttributeProtected()
+    {
+        // Arrange 
+        const string secret = "Secret";
+        const string secret2 = "Secret2";
+        var uid = Guid.NewGuid();
+
+        var entity = new EntityWithUidWithSecrets
+        {
+            Uid = uid,
+            Secret = secret,
+            Secret2 = secret2
+        };
+
+        CreateDataProtectionManager(out var dpm);
+
+        // Act  
+        dpm.Protect(entity);
+
+        // Assert
+        Assert.That(entity.Uid, Is.EqualTo(uid));
+        Assert.That(entity.Secret, Is.Not.EqualTo(secret));
+        Assert.That(entity.Secret2, Is.Not.EqualTo(secret2));
+        Assert.That(entity.Secret, Is.Not.EqualTo(entity.Secret2));
+    }
+
+    [Test]
+    public void Unprotect_EntityMultipleSecretsWithUid_PropsWithDataProtectionSecretAttributeProtected()
+    {
+        // Arrange 
+        const string secret = "Secret";
+        const string secret2 = "Secret2";
+        var uid = Guid.NewGuid();
+
+        var entity = new EntityWithUidWithSecrets
+        {
+            Uid = uid,
+            Secret = secret,
+            Secret2 = secret2
+        };
+
+        CreateDataProtectionManager(out var dpm);
+
+        dpm.Protect(entity);
+
+        Assert.That(entity.Uid, Is.EqualTo(uid));
+        Assert.That(entity.Secret, Is.Not.EqualTo(secret));
+        Assert.That(entity.Secret2, Is.Not.EqualTo(secret2));
+        Assert.That(entity.Secret, Is.Not.EqualTo(entity.Secret2));
+
+        // Act  
+        dpm.Unprotect(entity);
+
+        // Assert
+        Assert.That(entity.Uid, Is.EqualTo(uid));
+        Assert.That(entity.Secret, Is.EqualTo(secret));
+        Assert.That(entity.Secret2, Is.EqualTo(secret2));
+    }
+
+    private string CreateDataProtectionManager(out DataProtectionManager dpm)
+    {
+        var instance = DataProtectionService.CreateInstance(_path, AppName);
+
+        var filePath = Path.Combine(_path, $"appData.{Extension}");
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+        }
+
+        dpm = new DataProtectionManager(instance, FileProtectionService, filePath);
+        dpm.ReadStringDelegate = ReadStringDelegate;
+
+        dpm.AddKey(Key);
+        dpm.AddKey(Key3);
+        dpm.AddKey(Key2);
+        return filePath;
     }
 }

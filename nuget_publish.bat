@@ -5,6 +5,9 @@ dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.snupkg --sourc
 dotnet nuget push packages\Bodoconsult.App.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.%version%.snupkg --source https://api.nuget.org/v3/index.json
 
+dotnet nuget push packages\Bodoconsult.App.DataProtection.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.App.DataProtection.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
 dotnet nuget push packages\Bodoconsult.App.ReactiveUi.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.ReactiveUi.%version%.snupkg --source https://api.nuget.org/v3/index.json
 

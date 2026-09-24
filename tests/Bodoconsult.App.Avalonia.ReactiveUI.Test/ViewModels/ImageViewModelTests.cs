@@ -9,8 +9,8 @@ using Bodoconsult.App.Avalonia.ReactiveUI.Services;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.ReactiveUI.Interfaces;
-using Bodoconsult.App.ReactiveUI.Tests.App;
-using Bodoconsult.App.ReactiveUI.Tests.Helpers;
+using Bodoconsult.App.ReactiveUI.Test.App;
+using Bodoconsult.App.ReactiveUI.Test.Helpers;
 using NUnit.Framework;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Test.ViewModels;

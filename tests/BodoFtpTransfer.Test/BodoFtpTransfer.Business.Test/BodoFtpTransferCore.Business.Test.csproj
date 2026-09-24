@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>False</Deterministic>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BodoFtpTransfer.sqlite" />
+    <None Remove="Resources\Database.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="BodoFtpTransfer.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Database.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bodoconsult.Core.Database.Sqlite" Version="1.0.5" />
+    <PackageReference Include="log4net" Version="2.0.17" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BodoFtpTransferCore.Business\BodoFtpTransferCore.Business.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net9.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageOutputPath>..\..\packages\</PackageOutputPath>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageId>Bodoconsult.App.DataProtection</PackageId>
+	  <PackageTags>Data protection features based on ASPNetCore for console apps, WinForms apps, WPF apps, Avalonia apps etc.</PackageTags>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Description>Package provides features to stored data for apps in an secure mannor</Description>
+	  <PackageReleaseNotes>First release/PackageReleaseNotes</PackageReleaseNotes>
+	  <PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
+	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+
+	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+	  <!-- PDB Configuration -->
+	  <DebugType>portable</DebugType>
+	  <DebugSymbols>true</DebugSymbols>
+	  <EmbedAllSources>false</EmbedAllSources>
+
+	  <!-- Allow PDBs in the main package -->
+	  <!--
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+	  <!-- Generate symbols package (.snupkg) -->
+	  <IncludeSymbols>true</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	  <!-- Modern symbols package format -->
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="log4net" Version="3.4.0" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="10.0.12" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.Extensions" Version="10.0.12" />
+		<PackageReference Include="System.Text.Json" Version="10.0.12" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE.md" Link="LICENSE.md">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\doc\Bodoconsult.App.DataProtection\README.md" Link="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Interfaces\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+	  <ProjectReference Include="..\Bodoconsult.App\Bodoconsult.App.csproj" />
+	</ItemGroup>
+</Project>

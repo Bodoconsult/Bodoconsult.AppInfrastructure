@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.ReactiveUI.Tests.Helpers;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using NUnit.Framework;
 using System.Threading;
+using Bodoconsult.App.ReactiveUI.Test.Helpers;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Test.Menus;
 

@@ -4,7 +4,7 @@ using System.Threading;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.Menus;
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
-using Bodoconsult.App.ReactiveUI.Tests.Helpers;
+using Bodoconsult.App.ReactiveUI.Test.Helpers;
 using NUnit.Framework;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Test.ViewModels;

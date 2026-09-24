@@ -69,3 +69,6 @@ Release notes for Bodoconsult.App
 
 -   Added ErrorMailAddress property to AppStartParameter to email address for sending mail to in case of exceptions
 
+-   Migration of all ASPNetCore based features from Bodoconsult.App to Bodoconsult.App.DataProtection
+
+-   Removed unused dependencies

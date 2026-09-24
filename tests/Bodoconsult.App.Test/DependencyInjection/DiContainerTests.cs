@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
+using Bodoconsult.App.DataProtection.FileProtection;
 using Bodoconsult.App.Test.Helpers;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;

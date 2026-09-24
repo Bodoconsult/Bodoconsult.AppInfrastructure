@@ -47,6 +47,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Bodoconsult.App.DataProtection\Bodoconsult.App.DataProtection.csproj" />
     <ProjectReference Include="..\..\src\Bodoconsult.App.WinForms\Bodoconsult.App.WinForms.csproj" />
     <ProjectReference Include="..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
   </ItemGroup>

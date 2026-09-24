@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.SqlClient;
 using Bodoconsult.Web.Html.Html;

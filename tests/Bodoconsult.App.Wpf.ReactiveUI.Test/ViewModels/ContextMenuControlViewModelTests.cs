@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.ReactiveUI.Tests.Helpers;
+using Bodoconsult.App.ReactiveUI.Test.Helpers;
 using Bodoconsult.App.Wpf.ReactiveUI.Menus;
 using Bodoconsult.App.Wpf.ReactiveUI.ViewModels;
 using NUnit.Framework;

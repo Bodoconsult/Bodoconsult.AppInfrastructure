@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Avalonia.ReactiveUI.ViewModels;
-using Bodoconsult.App.ReactiveUI.Tests.App;
-using Bodoconsult.App.ReactiveUI.Tests.Helpers;
 using NUnit.Framework;
 using System.Threading;
 using Avalonia.Headless.NUnit;
+using Bodoconsult.App.ReactiveUI.Test.App;
+using Bodoconsult.App.ReactiveUI.Test.Helpers;
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Test.ViewModels;
 

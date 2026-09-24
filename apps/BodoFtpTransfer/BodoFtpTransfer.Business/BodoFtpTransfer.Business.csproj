@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>False</Deterministic>
+    <AssemblyName>BodoFtpTransfer.Business</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Database.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Database.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bodoconsult.Database.Sqlite" Version="1.0.0" />
+    <PackageReference Include="log4net" Version="3.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Bodoconsult.Web.Ftp\Bodoconsult.Web.Ftp.csproj" />
+  </ItemGroup>
+
+</Project>

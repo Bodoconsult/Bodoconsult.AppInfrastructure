@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Bodoconsult.App.Helpers;
 using Attachment = Microsoft.Graph.Models.Attachment;
 
 namespace Bodoconsult.Web.Mail.Mailers;

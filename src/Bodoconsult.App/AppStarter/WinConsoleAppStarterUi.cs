@@ -81,7 +81,6 @@ public class WinConsoleAppStarterUi : BaseAppStarterUi
         Debug.Print(message);
         Console.WriteLine(message);
         AsyncHelper.Delay(5000);
-
     }
 
     /// <summary>

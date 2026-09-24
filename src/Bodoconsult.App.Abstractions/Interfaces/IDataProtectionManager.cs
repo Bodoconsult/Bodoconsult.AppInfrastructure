@@ -46,7 +46,7 @@ public interface IDataProtectionManager: IDisposable
     /// </summary>
     /// <param name="key">Unique key to use for the secret</param>
     /// <param name="secret">Secret to store</param>
-    void Protect(string key, string secret);
+    string? Protect(string key, string secret);
 
     /// <summary>
     /// Protect a secret
@@ -54,7 +54,7 @@ public interface IDataProtectionManager: IDisposable
     /// <param name="key">Unique key to use for the secret</param>
     /// <param name="secret">Secret to store</param>
     /// <param name="doNotSave">Do NOT save the values to file</param>
-    void Protect(string key, string secret, bool doNotSave);
+    string? Protect(string key, string secret, bool doNotSave);
 
     /// <summary>
     /// Unprotect a secret by its key
@@ -76,5 +76,25 @@ public interface IDataProtectionManager: IDisposable
     /// Load the values the first time from console, UI, etc.. Overrides existing secrets file.
     /// </summary>
     void AskForInitialLoadValues();
-    
+
+    /// <summary>
+    /// Protect a secret
+    /// </summary>
+    /// <param name="entity">Entity to protect</param>
+    /// <param name="doNotSave">Do NOT save the values to file</param>
+    void Protect(object entity, bool doNotSave);
+
+    /// <summary>
+    /// Protect properties of an entity
+    /// </summary>
+    /// <param name="entity">Entity to protect</param>
+    /// <remarks> At one property of the entity has to be marked with [DataProtectionSecretAttribute]</remarks>
+    void Protect(object entity);
+
+    /// <summary>
+    /// Unprotect properties of an entity
+    /// </summary>
+    /// <param name="entity">Entity to unprotect</param>
+    /// <remarks> At one property of the entity has to be marked with [DataProtectionSecretAttribute]</remarks>
+    void Unprotect(object entity);
 }

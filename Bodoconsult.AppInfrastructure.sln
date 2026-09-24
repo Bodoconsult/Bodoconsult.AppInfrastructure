@@ -115,7 +115,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A618615F-0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.Office", "src\Bodoconsult.Office\Bodoconsult.Office.csproj", "{6E7FD060-524A-45F1-089F-1533C0B6C3C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.Office.Tests", "tests\Bodoconsult.Office.Tests\Bodoconsult.Office.Tests.csproj", "{43FFFBDD-D8F5-1DA0-1373-4EE1B640388F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.Office.Test", "tests\Bodoconsult.Office.Test\Bodoconsult.Office.Test.csproj", "{43FFFBDD-D8F5-1DA0-1373-4EE1B640388F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.Wpf.ReactiveUI.Test", "tests\Bodoconsult.App.Wpf.ReactiveUI.Test\Bodoconsult.App.Wpf.ReactiveUI.Test.csproj", "{791227CD-9CD4-4322-9055-6586062FAF59}"
 EndProject
@@ -127,7 +127,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.Wpf.Reactiv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.ReactiveUI", "src\Bodoconsult.App.ReactiveUI\Bodoconsult.App.ReactiveUI.csproj", "{90685FAF-F47D-4FF1-8A5A-993E50BA9EF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.ReactiveUI.Tests", "tests\Bodoconsult.App.Avalonia.ReactiveUI.Tests\Bodoconsult.App.ReactiveUI.Tests.csproj", "{3CD798CA-020F-4AE7-A718-CCF366D88FE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.ReactiveUI.Test", "tests\Bodoconsult.App.ReactiveUI.Test\Bodoconsult.App.ReactiveUI.Test.csproj", "{3CD798CA-020F-4AE7-A718-CCF366D88FE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.Avalonia.ReactiveUI", "src\Bodoconsult.App.Avalonia.ReactiveUI\Bodoconsult.App.Avalonia.ReactiveUI.csproj", "{3715B64C-9514-716F-CDAC-02F748484E0D}"
 EndProject
@@ -149,7 +149,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoWebMailer.Business", "a
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoWebMailer", "apps\BodoWebMailer\BodoWebMailer\BodoWebMailer.csproj", "{E1D5E376-6DB3-0BE0-2FBE-046897EB2BB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoWebMailer.Test", "tests\BodoWebMailer\BodoWebMailer.Test.csproj", "{87272ADE-438B-30DF-99CC-C2EB527D90A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoWebMailer.Test", "tests\BodoWebMailer.Test\BodoWebMailer.Test.csproj", "{87272ADE-438B-30DF-99CC-C2EB527D90A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.Web.Ftp.Test", "tests\Bodoconsult.Web.Ftp\Bodoconsult.Web.Ftp.Test.csproj", "{076EC00D-AE4B-7AE5-4FC6-E94A73AF32FE}"
 EndProject
@@ -167,7 +167,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFileTransfer.Ui", "apps
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFileTransfer", "apps\BodoFileTransfer\BodoFileTransfer\BodoFileTransfer.csproj", "{EF3995BB-55D8-EDB4-8B24-2E1FBD4A3E34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFileTransfer.Business.Test", "tests\BodoFileTransfer.Business.Test\BodoFileTransfer.Business.Test.csproj", "{71026495-C223-F891-EBF8-1728A61BF9CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFileTransfer.Test", "tests\BodoFileTransfer.Test\BodoFileTransfer.Test.csproj", "{71026495-C223-F891-EBF8-1728A61BF9CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BodoFtpTransfer", "BodoFtpTransfer", "{0C19CB65-6723-48C3-8732-50E2D53D5A04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFtpTransfer", "apps\BodoFtpTransfer\BodoFtpTransfer\BodoFtpTransfer.csproj", "{C36E38E4-4107-AEB9-99DD-0373D11B714F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoFtpTransfer.Business", "apps\BodoFtpTransfer\BodoFtpTransfer.Business\BodoFtpTransfer.Business.csproj", "{AB279309-056E-3055-17C0-4D2F636F2076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.App.DataProtection", "src\Bodoconsult.App.DataProtection\Bodoconsult.App.DataProtection.csproj", "{55798C7D-05CF-459F-963F-87360C5164DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -451,6 +459,18 @@ Global
 		{71026495-C223-F891-EBF8-1728A61BF9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71026495-C223-F891-EBF8-1728A61BF9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71026495-C223-F891-EBF8-1728A61BF9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C36E38E4-4107-AEB9-99DD-0373D11B714F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C36E38E4-4107-AEB9-99DD-0373D11B714F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C36E38E4-4107-AEB9-99DD-0373D11B714F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C36E38E4-4107-AEB9-99DD-0373D11B714F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB279309-056E-3055-17C0-4D2F636F2076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB279309-056E-3055-17C0-4D2F636F2076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB279309-056E-3055-17C0-4D2F636F2076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB279309-056E-3055-17C0-4D2F636F2076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55798C7D-05CF-459F-963F-87360C5164DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55798C7D-05CF-459F-963F-87360C5164DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55798C7D-05CF-459F-963F-87360C5164DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55798C7D-05CF-459F-963F-87360C5164DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -530,6 +550,10 @@ Global
 		{7BBB5DCA-8C6C-7288-4B00-9615D3E1487D} = {3DF0EB8A-0104-4727-A570-1694D42656DB}
 		{EF3995BB-55D8-EDB4-8B24-2E1FBD4A3E34} = {3DF0EB8A-0104-4727-A570-1694D42656DB}
 		{71026495-C223-F891-EBF8-1728A61BF9CD} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
+		{0C19CB65-6723-48C3-8732-50E2D53D5A04} = {2B85779D-C01E-461E-94C1-4DB94C25BAB2}
+		{C36E38E4-4107-AEB9-99DD-0373D11B714F} = {0C19CB65-6723-48C3-8732-50E2D53D5A04}
+		{AB279309-056E-3055-17C0-4D2F636F2076} = {0C19CB65-6723-48C3-8732-50E2D53D5A04}
+		{55798C7D-05CF-459F-963F-87360C5164DC} = {68310C5A-62F2-40F4-A5C6-0314FDAC28E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEB92BC2-1DB4-4057-8D49-2E995AA1F80B}
