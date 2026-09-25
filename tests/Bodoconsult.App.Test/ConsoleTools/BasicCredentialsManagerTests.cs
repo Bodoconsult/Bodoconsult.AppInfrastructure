@@ -143,7 +143,78 @@ internal class BasicCredentialsManagerTests
         Assert.That(m1.Credentials.Url, Is.EqualTo(s2));
         Assert.That(m1.Credentials.Username, Is.EqualTo(s3));
 
+        CheckFile(m.FilePath);
+    }
+
+    [Test]
+    public void SaveAsTransferFile_DataSaved_FileSaved()
+    {
+        // Arrange 
+        var m = new BasicCredentialsManager
+        {
+            FolderPath = Path.GetTempPath()
+        };
+        m.Init();
+
+        Assert.That(m.Credentials, Is.Not.Null);
+        const string s1 = "test1";
+        m.Credentials.Password = s1;
+
+        const string s2 = "test2";
+        m.Credentials.Url = s2;
+
+        const string s3 = "test3";
+        m.Credentials.Username = s3;
 
         CheckFile(m.FilePath);
+
+        m.Protect();
+
+        // Act  
+        m.SaveAsTransferFile();
+
+        // Assert
+        Wait.Until(() => File.Exists(m.TransferFileName));
+        Assert.That(File.Exists(m.TransferFileName), Is.True);
+
+        CheckFile(m.FilePath);
+        CheckFile(m.TransferFileName);
+    }
+
+    [Test]
+    public void LoadFromTransferFile_DataSaved_FileLoaded()
+    {
+        // Arrange 
+        var m = new BasicCredentialsManager
+        {
+            FolderPath = Path.GetTempPath()
+        };
+        m.Init();
+
+        Assert.That(m.Credentials, Is.Not.Null);
+        const string s1 = "test1";
+        m.Credentials.Password = s1;
+
+        const string s2 = "test2";
+        m.Credentials.Url = s2;
+
+        const string s3 = "test3";
+        m.Credentials.Username = s3;
+
+        CheckFile(m.FilePath);
+
+        m.Protect();
+
+        m.SaveAsTransferFile();
+
+        // Act  
+        m.LoadFromTransferFile();
+
+        // Assert
+        //Wait.Until(() => File.Exists(m.TransferFileName));
+        Assert.That(File.Exists(m.TransferFileName), Is.False);
+
+        CheckFile(m.FilePath);
+        //CheckFile(m.TransferFileName);
     }
 }

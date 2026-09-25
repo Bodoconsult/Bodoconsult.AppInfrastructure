@@ -40,7 +40,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     // This method is called by the Set accessor of each property.
     // The CallerMemberName attribute that is applied to the optional propertyName
     // parameter causes the property name of the caller to be substituted as an argument.
-    private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
     {
         if (PropertyChanged != null)
         {

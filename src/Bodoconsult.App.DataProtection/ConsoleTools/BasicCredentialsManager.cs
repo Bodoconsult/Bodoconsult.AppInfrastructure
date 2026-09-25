@@ -1,9 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Text;
-using System.Text.Json;
+using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection.FileProtection;
+using Bodoconsult.App.Helpers;
+using System.Text;
+using System.Text.Json;
 
 namespace Bodoconsult.App.DataProtection.ConsoleTools;
 
@@ -14,7 +16,24 @@ public class BasicCredentialsManager
 {
     private IDataProtectionManager _dpm = new DoNothingDataProtectionManager();
     private string? _folderPath;
+    private string _transferTargetPath = string.Empty;
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    public BasicCredentialsManager()
+    {
+        TransferTargetPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        ReadStringDelegate = ReadFromConsole; 
+    }
+
+    private static string ReadFromConsole(string message)
+    {
+        Console.WriteLine($"{message}:");
+        var s = PasswordHandler.ReadPassword();
+        return s;
+    }
+    
     /// <summary>
     /// Name of the credential set
     /// </summary>
@@ -23,7 +42,20 @@ public class BasicCredentialsManager
     /// <summary>
     /// Target folder path for the transfer file
     /// </summary>
-    public string TransferTargetPath { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    public string TransferTargetPath
+    {
+        get => _transferTargetPath;
+        set
+        {
+            _transferTargetPath = value;
+            TransferFileName = Path.Combine(_transferTargetPath, $"{AppName}Transfer.json");
+        }
+    }
+
+    /// <summary>
+    /// Full filename of the transfer file
+    /// </summary>
+    public string TransferFileName { get; private set; } = string.Empty;
 
     /// <summary>
     /// Current folder path to store the credentials in
@@ -46,20 +78,20 @@ public class BasicCredentialsManager
     /// </summary>
     public string AppName { get; set; } = "Default";
 
-    /// <summary>
-    /// Key 1
-    /// </summary>
-    public string Key { get; set; } = "Key1";
+    ///// <summary>
+    ///// Key 1
+    ///// </summary>
+    //public string Key { get; set; } = "Key1";
 
-    /// <summary>
-    /// Key 1
-    /// </summary>
-    public string Key2 { get; set; } = "Key2";
+    ///// <summary>
+    ///// Key 1
+    ///// </summary>
+    //public string Key2 { get; set; } = "Key2";
 
-    /// <summary>
-    /// Key 1
-    /// </summary>
-    public string Key3 { get; set; } = "Key3";
+    ///// <summary>
+    ///// Key 1
+    ///// </summary>
+    //public string Key3 { get; set; } = "Key3";
 
     /// <summary>
     /// Extension to use for stroage file. Default: .dat
@@ -77,13 +109,20 @@ public class BasicCredentialsManager
     public BasicCredentials? Credentials { get; set; }
 
     /// <summary>
-    /// Initialize the data protection after settings props like <see cref="AppName"/>, <see cref="Key"/>, ...
+    /// Delegate to read a string input from console, UI, etc.. Default is reading from console. If needed implement your own <see cref="ReadStringDelegate "/> method
+    /// </summary>
+    /// <returns>Read string input</returns>
+    public ReadStringDelegate ReadStringDelegate { get; set; }
+
+    /// <summary>
+    /// Initialize the data protection after settings props like <see cref="AppName"/> etc.
     /// </summary>
     public void Init()
     {
         ArgumentNullException.ThrowIfNull(FolderPath);
         ArgumentNullException.ThrowIfNull(FilePath);
 
+        // Basic setup of data protection
         Credentials = new BasicCredentials
         {
             Name = Name
@@ -93,10 +132,21 @@ public class BasicCredentialsManager
 
         var fs = new SimpleFileProtectionService();
         _dpm = new DataProtectionManager(instance, fs, FilePath);
-
+        _dpm.ReadStringDelegate = ReadStringDelegate;
+        
+        // Load the values from an existing file
         _dpm.LoadValues();
 
+        // Load the values into the credentials entity
         _dpm.Unprotect(Credentials);
+    }
+
+    /// <summary>
+    /// Load the values the first time from console, UI, etc.. Overrides existing secrets file.
+    /// </summary>
+    public void AskForInitialLoadValues()
+    {
+        _dpm.AskForInitialLoadValues();
     }
 
     /// <summary>
@@ -135,22 +185,23 @@ public class BasicCredentialsManager
 
         var json = JsonSerializer.Serialize(Credentials);
 
-        var target = Path.Combine(TransferTargetPath, $"{AppName}Transfer.json");
-
-        File.WriteAllText(target, json, Encoding.UTF8);
+        File.WriteAllText(TransferFileName, json, Encoding.UTF8);
     }
 
     /// <summary>
-    /// Load the credentials from a transfer file stored in Path.Combine(TransferTargetPath, $"{AppName}Transfer.json")
+    /// Load the credentials from a transfer file stored in Path.Combine(TransferTargetPath, $"{AppName}Transfer.json"). After reading the transfer file successfully it is deleted
     /// </summary>
     public void LoadFromTransferFile()
     {
         ArgumentNullException.ThrowIfNull(Credentials);
 
-        var target = Path.Combine(TransferTargetPath, $"{AppName}Transfer.json");
-
-        var json = File.ReadAllText(target, Encoding.UTF8);
+        var json = File.ReadAllText(TransferFileName, Encoding.UTF8);
 
         Credentials = JsonSerializer.Deserialize<BasicCredentials>(json);
+
+        if (File.Exists(TransferFileName))
+        {
+            File.Delete(TransferFileName);
+        }
     }
 }

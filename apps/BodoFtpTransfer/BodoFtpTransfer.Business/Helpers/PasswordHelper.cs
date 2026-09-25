@@ -1,19 +1,18 @@
-﻿namespace BodoFtpTransfer.Business.Helpers
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+namespace BodoFtpTransfer.Business.Helpers;
+
+public static class PasswordHelper
 {
-    public static class PasswordHelper
+
+    public static string Encrypt(string raw)
     {
-
-        public static string Encrypt(string raw)
-        {
-            return PasswordHandler.Encrypt(raw);
-        }
-
-        public static string Decrypt(string crypted)
-        {
-            return PasswordHandler.Decrypt(crypted);
-        }
-
+        return PasswordHandler.Encrypt(raw);
     }
 
+    public static string Decrypt(string crypted)
+    {
+        return PasswordHandler.Decrypt(crypted);
+    }
 
 }

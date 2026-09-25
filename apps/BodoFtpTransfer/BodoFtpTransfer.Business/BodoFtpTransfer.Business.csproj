@@ -22,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
     <ProjectReference Include="..\..\..\src\Bodoconsult.Web.Ftp\Bodoconsult.Web.Ftp.csproj" />
   </ItemGroup>
 

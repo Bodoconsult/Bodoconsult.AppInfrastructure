@@ -167,7 +167,7 @@ public static class DataTableExtensions
     {
         if (dataCell is null)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         var t = type.Name.Replace("System.", string.Empty).ToLower();
