@@ -14,10 +14,8 @@ public class StringToFileService : IStringToFileService
 {
     private bool _isStarted;
     private readonly Lock _isStartedLock = new();
-
     private bool _isWriting;
     private readonly Lock _isWritingLock = new();
-
     private readonly ProducerConsumerQueue<string> _consumerQueue = new();
 
     /// <summary>
@@ -65,7 +63,7 @@ public class StringToFileService : IStringToFileService
     }
 
     /// <summary>
-    /// Writing content to file in asingle threaded manner
+    /// Writing content to file in a single threaded manner
     /// </summary>
     /// <param name="item">Item to write as file content</param>
     public void WriteToFile(string item)

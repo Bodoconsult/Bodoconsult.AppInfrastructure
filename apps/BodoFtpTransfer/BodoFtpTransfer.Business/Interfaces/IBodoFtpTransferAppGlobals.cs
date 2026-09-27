@@ -1,11 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.Web.Ftp.Models;
+using Bodoconsult.App.DataProtection.Interfaces;
 
 namespace BodoFtpTransfer.Business.Interfaces;
 
-public interface IBodoFtpTransferAppGlobals: IAppGlobals
+public interface IBodoFtpTransferAppGlobals: IBasicCredentialsAppGlobals
 {
     /// <summary>
     /// Directory names to exclude from transfer
@@ -26,9 +25,4 @@ public interface IBodoFtpTransferAppGlobals: IAppGlobals
     /// Local base directory to transfer
     /// </summary>
     string BaseDirectory { get; set; }
-
-    /// <summary>
-    /// SSH credentials to access FTP server
-    /// </summary>
-    SshCredentials Credentials { get; set; }
 }

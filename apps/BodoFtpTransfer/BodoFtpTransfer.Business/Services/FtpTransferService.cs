@@ -2,27 +2,18 @@
 
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.Web.Ftp.Models;
-using BodoFtpTransfer.Business.App;
 using BodoFtpTransfer.Business.Interfaces;
-using log4net;
-using System;
-using System.IO;
 using System.Reflection;
 
 namespace BodoFtpTransfer.Business.Services;
 
 public class FtpTransferService : IFtpTransferService
-{
-    private readonly string _batch;
+{ 
+    private readonly string _batch = string.Empty;
     private readonly IFtpBatchService _ftpBatch;
-    private string _excludedFiles;
-    private string _remoteDir;
+    private string _excludedFiles = string.Empty;
     private int _baseLen;
-    private string _baseDir;
-
-    //private readonly ILog _logger = LogManager.GetLogger(nameof(FtpTransferService));
-
+    private string _baseDir = string.Empty;
     private readonly IAppLoggerProxy _logger;
 
     /// <summary>
@@ -92,11 +83,7 @@ public class FtpTransferService : IFtpTransferService
     /// <summary>
     /// Relative path of the remote base directory to transfer to
     /// </summary>
-    public string RemoteDirectory
-    {
-        get => _remoteDir;
-        set => _remoteDir = value ?? "";
-    }
+    public string RemoteDirectory { get; set; }
 
     /// <summary>
     /// Local base directory to transfer
@@ -119,7 +106,7 @@ public class FtpTransferService : IFtpTransferService
         SetMessage("Update database...");
         _ftpBatch.BaseDir = _baseDir;
         _ftpBatch.FileName = _batch;
-        _ftpBatch.RemoteDirectory = _remoteDir;
+        _ftpBatch.RemoteDirectory = RemoteDirectory;
         _ftpBatch.ExcludedFiles = _excludedFiles;
         _ftpBatch.ExcludeDirs = ExcludeDirs;
         _ftpBatch.Open();
@@ -128,7 +115,7 @@ public class FtpTransferService : IFtpTransferService
         _ftpBatch.LoadAllFilePaths();
         _ftpBatch.StartCommandCollecting();
         _ftpBatch.GetRemoteData(
-            $"{_remoteDir}{_baseDir.Substring(_baseLen, _baseDir.Length - _baseLen).Replace(@"\", "/")}/");
+            $"{RemoteDirectory}{_baseDir.Substring(_baseLen, _baseDir.Length - _baseLen).Replace(@"\", "/", StringComparison.OrdinalIgnoreCase)}/");
         SetMessage("Save results to database...");
         _ftpBatch.RunCommandsFromCollection();
 

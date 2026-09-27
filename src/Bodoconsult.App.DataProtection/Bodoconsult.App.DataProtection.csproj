@@ -48,10 +48,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Interfaces\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
 	  <ProjectReference Include="..\Bodoconsult.App\Bodoconsult.App.csproj" />
 	</ItemGroup>

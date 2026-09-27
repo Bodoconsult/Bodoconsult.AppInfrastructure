@@ -6,9 +6,7 @@ using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
-using System;
 using System.Diagnostics;
-using System.Threading;
 
 namespace BodoFtpTransfer.Business.App;
 

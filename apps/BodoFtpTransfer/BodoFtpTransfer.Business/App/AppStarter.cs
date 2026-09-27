@@ -1,6 +1,4 @@
-﻿using BodoFtpTransfer.Business.Services;
-
-namespace BodoFtpTransfer.Business.App;
+﻿namespace BodoFtpTransfer.Business.App;
 
 public static class AppStarter
 {

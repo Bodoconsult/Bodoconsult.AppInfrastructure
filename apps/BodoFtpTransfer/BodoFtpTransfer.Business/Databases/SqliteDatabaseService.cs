@@ -1,10 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Database.Interfaces;
@@ -19,9 +16,7 @@ namespace BodoFtpTransfer.Business.Databases;
 public class SqliteDatabaseService : IDatabaseService
 {
     private readonly IConnManager _db;
-
-    private ConcurrentBag<DbCommand> _commands;
-
+    private readonly ConcurrentQueue<DbCommand> _commands = new();
     private bool _isCollecting;
 
     public SqliteDatabaseService(string connectionString, IAppGlobals appGlobals)
@@ -48,7 +43,7 @@ public class SqliteDatabaseService : IDatabaseService
     /// </summary>
     public void StartCommandCollecting()
     {
-        _commands = new ConcurrentBag<DbCommand>();
+        _commands.Clear();
         _isCollecting = true;
     }
 
@@ -61,7 +56,7 @@ public class SqliteDatabaseService : IDatabaseService
 
         SetMessage($"Run {data.Count} commands...");
 
-        _commands = null;
+        _commands.Clear();
 
         var result = _db.ExecMultiple(data);
 
@@ -83,7 +78,7 @@ public class SqliteDatabaseService : IDatabaseService
     /// <param name="msg">Anzuzeigende Nachricht</param>
     private void SetMessage(string msg)
     {
-        StatusMessageDelegate?.Invoke(msg);
+        StatusMessageDelegate.Invoke(msg);
     }
 
     /// <summary>
@@ -138,7 +133,7 @@ public class SqliteDatabaseService : IDatabaseService
 
         if (_isCollecting)
         {
-            _commands.Add(cmd);
+            _commands.Enqueue(cmd);
         }
         else
         {
@@ -192,8 +187,15 @@ public class SqliteDatabaseService : IDatabaseService
         // Parameter @SizeRemote
         p = new SqliteParameter("@SizeRemote", SqliteType.Integer) { Value = item.SizeRemote };
         cmd.Parameters.Add(p);
-
-        _db.Exec(cmd);
+        
+        if (_isCollecting)
+        {
+            _commands.Enqueue(cmd);
+        }
+        else
+        {
+            _db.Exec(cmd);
+        }
     }
 
     /// <summary>
@@ -205,8 +207,15 @@ public class SqliteDatabaseService : IDatabaseService
 
         var p = new SqliteParameter("@PK", SqliteType.Integer) { Value = id };
         cmd.Parameters.Add(p);
-
-        _db.Exec(cmd);
+        
+        if (_isCollecting)
+        {
+            _commands.Enqueue(cmd);
+        }
+        else
+        {
+            _db.Exec(cmd);
+        }
     }
 
     /// <summary>
@@ -233,9 +242,9 @@ public class SqliteDatabaseService : IDatabaseService
     /// <summary>
     /// Get all rows in table Files
     /// </summary>
-    public FtpFiles GetById(long pkId)
+    public FtpFiles? GetById(long pkId)
     {
-        FtpFiles dto = null;
+        FtpFiles? dto = null;
 
         var reader = _db.GetDataReader($"SELECT * FROM \"FtpFiles\" WHERE \"ID\"={pkId};");
 
@@ -330,7 +339,7 @@ public class SqliteDatabaseService : IDatabaseService
 
             if (_isCollecting)
             {
-                _commands.Add(cmd);
+                _commands.Enqueue(cmd);
             }
             else
             {
@@ -353,7 +362,7 @@ public class SqliteDatabaseService : IDatabaseService
 
             if (_isCollecting)
             {
-                _commands.Add(cmd);
+                _commands.Enqueue(cmd);
             }
             else
             {
@@ -386,7 +395,7 @@ public class SqliteDatabaseService : IDatabaseService
 
             if (_isCollecting)
             {
-                _commands.Add(cmd);
+                _commands.Enqueue(cmd);
             }
             else
             {
@@ -411,7 +420,7 @@ public class SqliteDatabaseService : IDatabaseService
 
             if (_isCollecting)
             {
-                _commands.Add(cmd);
+                _commands.Enqueue(cmd);
             }
             else
             {
@@ -434,7 +443,7 @@ public class SqliteDatabaseService : IDatabaseService
 
             if (_isCollecting)
             {
-                _commands.Add(cmd);
+                _commands.Enqueue(cmd);
             }
             else
             {

@@ -2,8 +2,6 @@
 
 using Bodoconsult.App.Abstractions.Delegates;
 using BodoFtpTransfer.Business.Model;
-using BodoFtpTransfer.Business.Services;
-using System.Collections.Generic;
 using System.Data.Common;
 
 namespace BodoFtpTransfer.Business.Interfaces;
@@ -56,7 +54,7 @@ public interface IDatabaseService
     /// <summary>
     /// Get all rows in table Files
     /// </summary>
-    FtpFiles GetById(long pkId);
+    FtpFiles? GetById(long pkId);
 
     /// <summary>
     /// Count all rows in table Files 

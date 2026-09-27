@@ -1,6 +1,5 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
 using Bodoconsult.App.Abstractions.Delegates;
 
 namespace BodoFtpTransfer.Business.Interfaces;

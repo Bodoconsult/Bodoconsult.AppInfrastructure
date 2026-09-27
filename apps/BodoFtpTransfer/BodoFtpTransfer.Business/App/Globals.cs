@@ -1,11 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
-using System.Threading;
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.Web.Ftp.Models;
+using Bodoconsult.App.DataProtection.ConsoleTools;
 using BodoFtpTransfer.Business.Interfaces;
 using Microsoft.Extensions.Configuration;
 
@@ -19,7 +17,7 @@ public class Globals : IBodoFtpTransferAppGlobals
     #region Singleton factory
 
     // Thread-safe implementation of singleton pattern
-    private static Lazy<Globals> _instance;
+    private static Lazy<Globals>? _instance;
 
     /// <summary>
     /// Get a singleton instance of 
@@ -148,5 +146,5 @@ public class Globals : IBodoFtpTransferAppGlobals
     /// <summary>
     /// SSH credentials to access FTP server
     /// </summary>
-    public SshCredentials Credentials { get; set; }
+    public BasicCredentials? Credentials { get; set; }
 }

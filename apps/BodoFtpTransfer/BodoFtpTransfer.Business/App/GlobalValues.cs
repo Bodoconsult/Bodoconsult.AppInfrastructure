@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
+﻿using System.Globalization;
 using System.Reflection;
 using Bodoconsult.Web.Ftp.Models;
 using BodoFtpTransfer.Business.Helpers;

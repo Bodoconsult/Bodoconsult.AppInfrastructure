@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App;
-using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
 using Bodoconsult.App.Factories;
@@ -9,12 +8,9 @@ using Bodoconsult.App.Interfaces;
 using BodoFtpTransfer.Business.App;
 using BodoFtpTransfer.Business.Databases;
 using BodoFtpTransfer.Business.Interfaces;
-using BodoFtpTransfer.Business.Model;
 using BodoFtpTransfer.Business.Services;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.Versioning;
 using DiContainer = Bodoconsult.App.Abstractions.DependencyInjection.DiContainer;
 
@@ -32,11 +28,9 @@ public class BodoFtpTransferAllServicesContainerServiceProvider : IDiContainerSe
     /// Default ctor
     /// </summary>
     /// <param name="appStartParameter"></param>
-    /// <param name="licenseMissingDelegate"></param>
-    public BodoFtpTransferAllServicesContainerServiceProvider(IAppStartParameter appStartParameter, LicenseMissingDelegate licenseMissingDelegate)
+    public BodoFtpTransferAllServicesContainerServiceProvider(IAppStartParameter appStartParameter)
     {
         AppStartParameter = appStartParameter;
-        LicenseMissingDelegate = licenseMissingDelegate;
     }
 
     /// <summary>
@@ -45,16 +39,13 @@ public class BodoFtpTransferAllServicesContainerServiceProvider : IDiContainerSe
     public IAppStartParameter AppStartParameter { get; }
 
     /// <summary>
-    /// Current <see cref="LicenseMissingDelegate"/>
-    /// </summary>
-    public LicenseMissingDelegate LicenseMissingDelegate { get; set; }
-
-    /// <summary>
     /// Add DI container services to a DI container
     /// </summary>
     /// <param name="diContainer">Current DI container</param>
     public void AddServices(DiContainer diContainer)
     {
+        ArgumentNullException.ThrowIfNull(Globals.Instance.LogDataFactory);
+
         // Factories to create tower instance related objects (should be singletons)
         diContainer.AddSingletonInstance(Globals.Instance.LogDataFactory);
         diContainer.AddSingleton<IAppLoggerProxyFactory, AppLoggerProxyFactory>();

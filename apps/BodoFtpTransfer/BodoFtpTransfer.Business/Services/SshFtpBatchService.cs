@@ -2,19 +2,10 @@
 
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.Web.Ftp.Models;
 using Bodoconsult.Web.Ftp.RemoteServerHandler;
-using BodoFtpTransfer.Business.Databases;
 using BodoFtpTransfer.Business.Helpers;
 using BodoFtpTransfer.Business.Model;
-using log4net;
-using System;
-using System.Collections.Generic;
 using System.Data.Common;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using BodoFtpTransfer.Business.Interfaces;
 
 namespace BodoFtpTransfer.Business.Services;
@@ -30,8 +21,13 @@ public class SshFtpBatchService : IFtpBatchService
     private readonly SshHandler _sftp;
     private readonly IAppLoggerProxy _logger;
     private readonly IList<FilePathItem> _allFiles = new List<FilePathItem>();
-    private string _excludeDirs;
-    private string _excludeRemoteDirs;
+    private string _excludeDirs = string.Empty;
+    private string _excludeRemoteDirs = string.Empty;
+    private string _remoteDir;
+    private int _remoteLen;
+    private string _base;
+    private int _baseLen;
+    private string _file;
 
 
     /// <summary>
@@ -49,7 +45,11 @@ public class SshFtpBatchService : IFtpBatchService
 
         ArgumentNullException.ThrowIfNull(globals.Credentials);
 
-        _sftp =  new SshHandler(globals.Credentials);
+        var sshCredentials = DataHelper.MapBasicCredentialsToSshCredentials(globals.Credentials);
+
+        _sftp =  new SshHandler(sshCredentials);
+
+        ArgumentNullException.ThrowIfNull(globals.StatusMessageDelegate);
         StatusMessageDelegate = globals.StatusMessageDelegate;
 
         ArgumentNullException.ThrowIfNull(globals.AppStartParameter.AppPath);
@@ -87,7 +87,9 @@ public class SshFtpBatchService : IFtpBatchService
     /// </summary>
     public StatusMessageDelegate StatusMessageDelegate { get; }
 
-
+    /// <summary>
+    /// Directory names to exclude from transfer
+    /// </summary>
     public string ExcludeDirs
     {
         get => _excludeDirs;
@@ -98,12 +100,14 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
+    /// <summary>
+    /// Files to exclude
+    /// </summary>
+    public string ExcludedFiles { get; set; } = string.Empty;
 
-    public string ExcludedFiles { get; set; }
-
-    private string _remoteDir;
-    private int _remoteLen;
-
+    /// <summary>
+    /// Relative path of the remote base directory to transfer to
+    /// </summary>
     public string RemoteDirectory
     {
         get => _remoteDir;
@@ -114,7 +118,6 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
-    private string _file;
     /// <summary>
     /// Pfad zur Batch-Datei
     /// </summary>
@@ -131,8 +134,6 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
-    private string _base;
-    private int _baseLen;
     /// <summary>
     /// Zu übertragendes Verzeichnis
     /// </summary>
@@ -162,7 +163,6 @@ public class SshFtpBatchService : IFtpBatchService
         _db.RunCommandsFromCollection();
     }
 
-
     /// <summary>
     /// Prüfe, ob Datei bereits übertragen wurde oder nicht
     /// </summary>
@@ -186,7 +186,7 @@ public class SshFtpBatchService : IFtpBatchService
                 fo.IsReadOnly = false;
             }
 
-            var remotePath = _remoteDir + fo.FullName.Substring(_baseLen, fo.FullName.Length - _baseLen).Replace(@"\", "/");
+            var remotePath = _remoteDir + fo.FullName.Substring(_baseLen, fo.FullName.Length - _baseLen).Replace(@"\", "/", StringComparison.OrdinalIgnoreCase);
 
             CheckObject(fo.FullName, remotePath, 'L', 'F', fo.Length);
         }
@@ -225,7 +225,6 @@ public class SshFtpBatchService : IFtpBatchService
         //_Update.ExecuteNonQuery();
 
         _sftp.Disconnect();
-
     }
 
     public void CheckRemoteFile(string remotePath, long size)
@@ -239,22 +238,24 @@ public class SshFtpBatchService : IFtpBatchService
     {
         var localPath = _base + remotePath[_remoteLen..].Replace("/", @"\", StringComparison.OrdinalIgnoreCase);
         CheckObject(HelperCheckLocalPath(localPath[..^1]), remotePath, 'R', 'D', 0);
-
     }
 
 
     private static string HelperCheckLocalPath(string localPath)
     {
-        localPath = localPath.Replace("\\\\", "\\");
-        if (!(localPath.StartsWith("\\", StringComparison.OrdinalIgnoreCase) & localPath.StartsWith("\\\\", StringComparison.OrdinalIgnoreCase) == false)) return localPath;
-        localPath = $"\\{localPath}";
+        localPath = localPath.Replace(@"\\", "\\", StringComparison.OrdinalIgnoreCase);
 
+        if (!(localPath.StartsWith("\\", StringComparison.OrdinalIgnoreCase) & !localPath.StartsWith(@"\\", StringComparison.OrdinalIgnoreCase)))
+        {
+            return localPath;
+        }
+        
+        localPath = $"\\{localPath}";
         return localPath;
     }
 
     private void CheckObject(string localPath, string remotePath, char source, char objectType, long size)
     {
-
         var erg = _allFiles.FirstOrDefault(x => x.Path == localPath);
 
         //var erg = _db.CheckIfFileExists(localPath);

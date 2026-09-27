@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
 using System.Runtime.Versioning;
-using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DependencyInjection;
 
@@ -18,10 +16,7 @@ public class BodoFtpTransferAllServicesDiContainerServiceProviderPackage : BaseD
     /// Default ctor
     /// </summary>
     /// <param name="appGlobals"></param>
-    /// <param name="statusMessageDelegate"></param>
-    /// <param name="licenseMissingDelegate"></param>
-    public BodoFtpTransferAllServicesDiContainerServiceProviderPackage(IAppGlobals appGlobals,
-        StatusMessageDelegate statusMessageDelegate, LicenseMissingDelegate licenseMissingDelegate) : base(appGlobals)
+    public BodoFtpTransferAllServicesDiContainerServiceProviderPackage(IAppGlobals appGlobals) : base(appGlobals)
     {
         ArgumentNullException.ThrowIfNull(appGlobals.Logger);
 
@@ -34,7 +29,7 @@ public class BodoFtpTransferAllServicesDiContainerServiceProviderPackage : BaseD
         ServiceProviders.Add(provider);
 
         // BodoFtpTransfer specific services
-        provider = new BodoFtpTransferAllServicesContainerServiceProvider(appGlobals.AppStartParameter, licenseMissingDelegate);
+        provider = new BodoFtpTransferAllServicesContainerServiceProvider(appGlobals.AppStartParameter);
         ServiceProviders.Add(provider);
     }
 }
