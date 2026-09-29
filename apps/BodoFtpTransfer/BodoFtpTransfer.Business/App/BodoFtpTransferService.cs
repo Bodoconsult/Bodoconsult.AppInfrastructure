@@ -33,7 +33,7 @@ public class BodoFtpTransferService : IApplicationService
     /// <summary>
     /// Request application stop delegate
     /// </summary>
-    public RequestApplicationStopDelegate RequestApplicationStopDelegate { get; set; }
+    public RequestApplicationStopDelegate? RequestApplicationStopDelegate { get; set; }
 
     /// <summary>
     /// Current app globals
@@ -223,5 +223,5 @@ public class BodoFtpTransferService : IApplicationService
     /// <summary>
     /// Current <see cref="IApplicationService.LicenseMissingDelegate"/>
     /// </summary>
-    public LicenseMissingDelegate LicenseMissingDelegate { get; set; }
+    public LicenseMissingDelegate? LicenseMissingDelegate { get; set; }
 }

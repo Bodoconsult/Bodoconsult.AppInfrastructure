@@ -33,4 +33,8 @@
     <ProjectReference Include="..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

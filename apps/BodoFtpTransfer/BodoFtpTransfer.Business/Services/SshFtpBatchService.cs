@@ -23,11 +23,11 @@ public class SshFtpBatchService : IFtpBatchService
     private readonly IList<FilePathItem> _allFiles = new List<FilePathItem>();
     private string _excludeDirs = string.Empty;
     private string _excludeRemoteDirs = string.Empty;
-    private string _remoteDir;
+    private string _remoteDir = string.Empty;
     private int _remoteLen;
-    private string _base;
+    private string _base = string.Empty;
     private int _baseLen;
-    private string _file;
+    private string _file = string.Empty;
 
 
     /// <summary>

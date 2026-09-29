@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -7,9 +8,9 @@ using System.Text;
 namespace Bodoconsult.App.Windows.Crypto.DataProtection;
 
 /// <summary>
-/// Service to protect data in a secure way deppending on user account or machine account
+/// Service to protect data in a secure way depending on user account or machine account
 /// </summary>
-public class DataProtectionService
+public class DataProtectionService : IDataProtectionService
 {
     /// <summary>
     /// Current protection scope
@@ -45,7 +46,6 @@ public class DataProtectionService
     /// </summary>
     /// <param name="secret">Data to encrypt</param>
     /// <returns>Encrypted byte array</returns>
-
     public byte[] ProtectString(string secret)
     {
         var bytes = Encoding.Unicode.GetBytes(secret);
@@ -80,6 +80,30 @@ public class DataProtectionService
     /// <returns>String with the decrypted data</returns>
     public string UnprotectString(byte[] data)
     {
+        var result = Unprotect(data);
+        return Encoding.Unicode.GetString(result);
+    }
+
+    /// <summary>
+    /// Store a value in a safe manner
+    /// </summary>
+    /// <param name="key">Key name for the value</param>
+    /// <param name="value">Value to store</param>
+    public string Protect(string key, string value)
+    {
+        var data = Encoding.Unicode.GetBytes(value);
+        var result = Protect(data);
+        return Encoding.Unicode.GetString(result);
+    }
+
+    /// <summary>
+    /// Load a value stored in a safe manner
+    /// </summary>
+    /// <param name="key">Key name for the value</param>
+    /// <param name="cipherValue">The encrypted value to decrypt</param>
+    public string Unprotect(string key, string cipherValue)
+    {
+        var data = Encoding.Unicode.GetBytes(cipherValue);
         var result = Unprotect(data);
         return Encoding.Unicode.GetString(result);
     }

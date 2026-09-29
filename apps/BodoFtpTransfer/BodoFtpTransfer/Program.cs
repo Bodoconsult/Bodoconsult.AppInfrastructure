@@ -1,6 +1,5 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
 using BodoFtpTransfer.Business.App;
 
 namespace BodoFtpTransfer;
@@ -30,7 +29,7 @@ internal class Program
                 modus = Convert.ToInt16(args[0]);
             }
 
-            GlobalValues.LoadAppSettings();
+            //GlobalValues.LoadAppSettings();
 
             AppStarter.Start(modus);
 

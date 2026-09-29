@@ -11,15 +11,15 @@ using Bodoconsult.App.Interfaces;
 namespace Bodoconsult.App;
 
 /// <summary>
-    /// Base class for <see cref="IAppBuilder"/> implementations
-    /// </summary>
-    public class BaseAppBuilder : IAppBuilder
-    {
+/// Base class for <see cref="IAppBuilder"/> implementations
+/// </summary>
+public class BaseAppBuilder : IAppBuilder
+{
 
-        /// <summary>
-        /// Curent app logger
-        /// </summary>
-        protected IAppLoggerProxy? Logger;
+    /// <summary>
+    /// Curent app logger
+    /// </summary>
+    protected IAppLoggerProxy? Logger;
 
     /// <summary>
     /// Default ctor

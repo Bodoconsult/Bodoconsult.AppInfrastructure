@@ -37,3 +37,4 @@ Better PDB handling
 
 Adjusting namespace for Clipboard class
 
+Implemented IDataProtectionService for DataProtectionService

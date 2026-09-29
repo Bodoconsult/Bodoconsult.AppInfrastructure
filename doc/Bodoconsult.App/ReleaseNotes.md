@@ -72,3 +72,5 @@ Release notes for Bodoconsult.App
 -   Migration of all ASPNetCore based features from Bodoconsult.App to Bodoconsult.App.DataProtection
 
 -   Removed unused dependencies
+
+-   Added Hasher class for hashing 

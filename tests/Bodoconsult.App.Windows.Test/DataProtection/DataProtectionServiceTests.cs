@@ -7,11 +7,11 @@ using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Windows.Crypto.DataProtection;
 using NUnit.Framework;
 
-namespace Bodoconsult.App.Windows.Test;
+namespace Bodoconsult.App.Windows.Test.DataProtection;
 
 [SupportedOSPlatform("windows")]
 [TestFixture]
-public class DataProtectionServiceTests
+internal class DataProtectionServiceTests
 {
     private DataProtectionService _service;
 

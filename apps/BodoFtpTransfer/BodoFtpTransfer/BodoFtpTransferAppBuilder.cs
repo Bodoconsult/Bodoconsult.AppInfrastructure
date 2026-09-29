@@ -4,7 +4,6 @@ using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Interfaces;
 using BodoFtpTransfer.Business.Interfaces;
 using BodoFtpTransfer.DiContainerProvider;
-using System;
 using System.Runtime.Versioning;
 
 namespace BodoFtpTransfer;
@@ -53,9 +52,9 @@ public class BodoFtpTransferAppBuilder : BaseAppBuilder
             throw new ArgumentException("AppGlobals is not IBodoFtpTransferAppGlobals");
         }
 
-        globals.RemoteDirectory = DefaultAppStartProvider.ReadStringProperty(section, "RemoteDirectory", globals.RemoteDirectory);
-        globals.ExcludeFiles= DefaultAppStartProvider.ReadStringProperty(section, "ExcludeFiles", globals.ExcludeFiles);
-        globals.ExcludeDirs = DefaultAppStartProvider.ReadStringProperty(section, "ExcludeDirs", globals.ExcludeDirs);
-        globals.BaseDirectory = DefaultAppStartProvider.ReadStringProperty(section, "BaseDirectory", globals.BaseDirectory);
+        globals.RemoteDirectory = DefaultAppStartProvider.ReadStringProperty(section, "RemoteDirectory", globals.RemoteDirectory) ?? string.Empty;
+        globals.ExcludeFiles= DefaultAppStartProvider.ReadStringProperty(section, "ExcludeFiles", globals.ExcludeFiles) ?? string.Empty;
+        globals.ExcludeDirs = DefaultAppStartProvider.ReadStringProperty(section, "ExcludeDirs", globals.ExcludeDirs) ?? string.Empty;
+        globals.BaseDirectory = DefaultAppStartProvider.ReadStringProperty(section, "BaseDirectory", globals.BaseDirectory) ?? string.Empty;
     }
 }

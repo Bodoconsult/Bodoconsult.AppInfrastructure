@@ -1,6 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace Bodoconsult.App.Security.Hashing;
+namespace Bodoconsult.App.DataProtection.Hashing;
 
 // ReSharper disable InconsistentNaming
 

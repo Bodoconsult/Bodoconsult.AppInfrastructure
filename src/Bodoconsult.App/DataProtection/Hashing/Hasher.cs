@@ -5,7 +5,7 @@ using System.Text;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bodoconsult.App.Security.Hashing;
+namespace Bodoconsult.App.DataProtection.Hashing;
 
 /// <summary>
 /// Implements multiple hashing mechanisms

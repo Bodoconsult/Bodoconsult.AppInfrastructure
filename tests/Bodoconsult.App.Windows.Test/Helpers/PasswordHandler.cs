@@ -15,7 +15,6 @@ namespace Bodoconsult.App.Windows.Test.Helpers;
 /// </summary>
 public class PasswordHandler
 {
-
     /// <summary>
     /// Keys used for symmetric data encryption 
     /// </summary>

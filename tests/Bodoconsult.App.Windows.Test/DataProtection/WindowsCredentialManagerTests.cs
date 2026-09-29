@@ -8,7 +8,7 @@ using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Windows.CredentialManager;
 using NUnit.Framework;
 
-namespace Bodoconsult.App.Windows.Test.CredentialManager;
+namespace Bodoconsult.App.Windows.Test.DataProtection;
 
 [TestFixture]
 public class WindowsCredentialManagerTests

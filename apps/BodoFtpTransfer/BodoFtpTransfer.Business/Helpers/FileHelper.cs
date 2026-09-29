@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Reflection;
-using Bodoconsult.App.Security.Hashing;
+using Bodoconsult.App.DataProtection.Hashing;
 
 namespace BodoFtpTransfer.Business.Helpers;
 
