@@ -29,7 +29,7 @@ public class WindowsCredentials : ICredentials
 
         if (targetName == string.Empty)
         {
-            throw new Win32Exception("Empty credential name is not allowed");
+            throw new Win32Exception("Empty credential target name is not allowed");
         }
 
         Type = type;
@@ -44,12 +44,12 @@ public class WindowsCredentials : ICredentials
     /// <summary>
     /// Username
     /// </summary>
-    public string UserName { get; set; }
+    public string? UserName { get; set; } 
 
     /// <summary>
     /// Password
     /// </summary>
-    public SecureString Password { get; set; }
+    public SecureString? Password { get; set; }
 
     /// <summary>
     /// Type of the credential
@@ -59,7 +59,7 @@ public class WindowsCredentials : ICredentials
     /// <summary>
     /// Comment
     /// </summary>
-    public string Comment { get; set; }
+    public string? Comment { get; set; } 
 
     /// <summary>
     /// Last modification data
@@ -79,7 +79,7 @@ public class WindowsCredentials : ICredentials
     /// <summary>
     /// Target alias
     /// </summary>
-    public string TargetAlias { get; set; }
+    public string? TargetAlias { get; set; } 
 
 
 }

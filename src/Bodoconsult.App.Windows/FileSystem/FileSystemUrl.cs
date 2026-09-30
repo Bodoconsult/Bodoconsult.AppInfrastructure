@@ -36,7 +36,7 @@ public class FileSystemUrl
     /// <summary>
     /// Link address stored in url file
     /// </summary>
-    public string Url { get; private set; }
+    public string? Url { get; private set; }
 
     /// <summary>
     /// Caption: Name of the url file without extension

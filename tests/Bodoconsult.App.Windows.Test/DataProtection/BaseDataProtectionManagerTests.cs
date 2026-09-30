@@ -6,7 +6,7 @@ using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.App.Test.App;
+using Bodoconsult.App.Windows.DataProtection;
 using Bodoconsult.App.Windows.Test.Model;
 using NUnit.Framework;
 
@@ -17,7 +17,7 @@ namespace Bodoconsult.App.Windows.Test.DataProtection;
 /// </summary>
 internal abstract class BaseDataProtectionManagerTests
 {
-    private readonly string _path = Globals.Instance.AppStartParameter.DataPath ?? Path.GetTempPath();
+    private readonly string _path =  Path.GetTempPath(); // Globals.Instance.AppStartParameter.DataPath ??
 
     protected const string Key = "MyKey";
     protected const string Key2 = "MyKey2";
@@ -44,7 +44,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Ctor_ValidSetup_PropsSetCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(_path, AppName);
+        var instance = DataProtectionService.CreateInstance(AppName);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -65,7 +65,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Protect_ValidSetup_SecretStoredCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(_path, AppName);
+        var instance = DataProtectionService.CreateInstance(AppName);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -88,7 +88,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Protect_ValidSetupSecretUpdated_SecretStoredCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(_path, AppName);
+        var instance = DataProtectionService.CreateInstance(AppName);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -113,7 +113,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Unprotect_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(_path, AppName);
+        var instance = DataProtectionService.CreateInstance(AppName);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -137,7 +137,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void LoadValues_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(_path, AppName);
+        var instance = DataProtectionService.CreateInstance(AppName);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -339,7 +339,7 @@ internal abstract class BaseDataProtectionManagerTests
 
     private string CreateDataProtectionManager(out DataProtectionManager dpm)
     {
-        var instance = DataProtectionService.CreateInstance(_path, AppName);
+        var instance = DataProtectionService.CreateInstance(AppName);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))

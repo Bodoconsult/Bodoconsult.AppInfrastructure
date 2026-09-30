@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System;
 using System.Linq;
 using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Interfaces;
@@ -23,13 +24,12 @@ public class EventLogLoggingProviderConfigurator : ILoggerProviderConfigurator
     /// <summary>
     /// The configuration section from appsettings.json or null if not existing
     /// </summary>
-    public IConfigurationSection Section { get; set; }
+    public IConfigurationSection? Section { get; set; }
 
     /// <summary>
     /// Settings for EventLog logging
     /// </summary>
     public EventLogSettings EventLogSettings { get; } = new();
-
 
     /// <summary>
     /// Add the DI container service used for the current logger provider
@@ -38,6 +38,8 @@ public class EventLogLoggingProviderConfigurator : ILoggerProviderConfigurator
     /// <param name="loggingConfig">Current logging config</param>
     public void AddServices(ILoggingBuilder builder, LoggingConfig loggingConfig)
     {
+        ArgumentNullException.ThrowIfNull(Section);
+
         var oValue = Section.GetChildren().FirstOrDefault(x => x.Key == "SourceName");
         EventLogSettings.SourceName = oValue?.Value;
 

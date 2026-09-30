@@ -12,7 +12,7 @@ namespace Bodoconsult.App.DataProtection.Hashing;
 /// </summary>
 public class Hasher
 {
-    private readonly HashAlgorithm _hashObject;
+    private readonly HashAlgorithm _hashObject = SHA1.Create();
     private readonly Encoding _encoding = Encoding.GetEncoding("ISO-8859-1");
 
     /// <summary>

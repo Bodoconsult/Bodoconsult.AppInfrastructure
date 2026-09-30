@@ -17,12 +17,12 @@ public interface ICredentials
     /// <summary>
     /// Username
     /// </summary>
-    public string UserName { get; set; }
+    public string? UserName { get; set; }
 
     /// <summary>
     /// Password
     /// </summary>
-    public SecureString Password { get; set; }
+    public SecureString? Password { get; set; }
 
     /// <summary>
     /// Type of the credential

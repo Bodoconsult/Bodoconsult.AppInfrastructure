@@ -35,6 +35,8 @@ Uses Bodoconsult.App.Abstractions 1.0.10
 
 Better PDB handling
 
+Enabled nullable for project
+
 Adjusting namespace for Clipboard class
 
-Implemented IDataProtectionService for DataProtectionService
+Implemented IDataProtectionService for DataProtectionService for usage with DataProtectionManager class

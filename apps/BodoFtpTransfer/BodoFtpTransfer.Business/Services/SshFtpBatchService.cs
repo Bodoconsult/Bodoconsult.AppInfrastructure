@@ -313,6 +313,10 @@ public class SshFtpBatchService : IFtpBatchService
 
             foreach (var r in files)
             {
+                if (r.Path is null)
+                {
+                    continue;
+                }
 #if DEBUG
                 SetMessage($"Hashcode für {r.Path}");
 #endif
@@ -417,6 +421,11 @@ public class SshFtpBatchService : IFtpBatchService
 
         foreach (var file in files)
         {
+            if (string.IsNullOrEmpty(file.PathRemote))
+            {
+                continue;
+            }
+
             //_S.Append(@"mkdir """ + _R["F_RemotePath"].ToString() + @"""" + "\r\n");
             MkDir(file.PathRemote);
         }
@@ -428,6 +437,11 @@ public class SshFtpBatchService : IFtpBatchService
 
         foreach (var file in files)
         {
+            if (string.IsNullOrEmpty(file.PathRemote))
+            {
+                continue;
+            }
+
             //_S.Append(@"mkdir """ + _R["F_RemotePath"].ToString() + @"""" + "\r\n");
             MkDir(file.PathRemote);
         }
@@ -440,6 +454,11 @@ public class SshFtpBatchService : IFtpBatchService
 
         foreach (var file in files)
         {
+            if (string.IsNullOrEmpty(file.PathRemote))
+            {
+                continue;
+            }
+
             Del(file.PathRemote);
         }
 
@@ -461,8 +480,16 @@ public class SshFtpBatchService : IFtpBatchService
         var files = _db.GetLocalFilesToCopy();
         foreach (var file in files)
         {
-            if (Put(file.Path, file.PathRemote) != true) continue;
-            // Bei Erfolg: Hashcode alt setzen auf neu
+            if (string.IsNullOrEmpty(file.PathRemote) || string.IsNullOrEmpty(file.Path))
+            {
+                continue;
+            }
+
+            if (Put(file.Path, file.PathRemote) != true)
+            {
+                continue;
+            }
+            // On success: set new hashcode for the file
 
             _db.SetHashCodeForRemoteFile(file.Path);
         }

@@ -1,6 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.Windows.Crypto.Hashing;
+using Bodoconsult.App.Windows.DataProtection.Hashing;
 using NUnit.Framework;
 
 namespace Bodoconsult.App.Windows.Test;

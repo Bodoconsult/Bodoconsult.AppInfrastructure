@@ -33,7 +33,7 @@ public static class FileIcon
     /// </summary>
     /// <param name="filepath">Full path for the file to get the icon for</param>
     /// <returns><see cref="Image"/> object with the icon</returns>
-    public static Image GetIcon(string filepath)
+    public static Image? GetIcon(string? filepath)
     {
         // if specified file path != null and string length > 0 
         if (filepath is null || string.IsNullOrEmpty(filepath))
@@ -192,7 +192,7 @@ public static class FileIcon
     /// </summary>
     /// <param name="extension">File extension</param>
     /// <returns>Icon image</returns>
-    public static Image GetIconForExtension(string extension)
+    public static Image? GetIconForExtension(string extension)
     {
         return Icons.GetValueOrDefault(extension);
     }

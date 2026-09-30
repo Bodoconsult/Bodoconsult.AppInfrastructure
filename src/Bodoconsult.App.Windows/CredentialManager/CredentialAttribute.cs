@@ -43,16 +43,14 @@ public readonly struct CredentialAttribute : IEquatable<CredentialAttribute>
         return Keyword == other.Keyword && Value == other.Value;
     }
 
-
     /// <summary>Indicates whether this instance and a specified object are equal.</summary>
     /// <param name="obj">The object to compare with the current instance.</param>
     /// <returns>
     /// <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
-    public override bool Equals (object obj)
+    public override bool Equals (object? obj)
     {
         return obj is CredentialAttribute other && Equals (other);
     }
-
 
     /// <summary>Returns the hash code for this instance.</summary>
     /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

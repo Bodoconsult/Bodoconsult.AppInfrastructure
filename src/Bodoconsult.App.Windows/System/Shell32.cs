@@ -162,7 +162,7 @@ public class Shell32
 
     [DllImport("Shell32.dll")]
     public static extern IntPtr SHGetFileInfo(
-        string pszPath,
+        string? pszPath,
         uint dwFileAttributes,
         ref ShFileInfo psfi,
         uint cbFileInfo,

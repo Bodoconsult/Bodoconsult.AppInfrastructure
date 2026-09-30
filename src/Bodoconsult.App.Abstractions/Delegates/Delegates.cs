@@ -30,6 +30,12 @@ public delegate void LicenseMissingDelegate(string message);
 public delegate string HandleFatalExceptionDelegate(Exception e);
 
 /// <summary>
+/// Delegate called if an app exception has been raised and a message to the UI has to be sent before app terminates
+/// </summary>
+/// <param name="e">Raised exception to handle</param>
+public delegate void HandleExceptionDelegate(Exception e);
+
+/// <summary>
 /// A delegate for converting a notification to the target object to transfer to the client
 /// </summary>
 /// <param name="notification">Current notification</param>

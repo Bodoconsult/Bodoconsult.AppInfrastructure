@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace Bodoconsult.App.Windows.Crypto.Hashing;
+namespace Bodoconsult.App.Windows.DataProtection.Hashing;
 
 /// <summary>
 /// Simple class for hashing passwords

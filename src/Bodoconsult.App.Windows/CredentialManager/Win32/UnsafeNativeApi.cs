@@ -36,7 +36,7 @@ internal static unsafe class UnsafeNativeApi
         ref CreduiInfo uiInfo,
         int errorMessage,
         ref uint authPackage,
-        byte[] authInBuffer,
+        byte[]? authInBuffer,
         uint authInBufferSize,
         out CredentialCoTaskSafeHandle authOutBuffer,
         out uint authOutBufferSize,

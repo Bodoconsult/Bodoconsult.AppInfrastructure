@@ -31,7 +31,7 @@ internal static class Win32Utility
         return data;
     }
 
-    public static unsafe SecureString UniStringToSecureString (IntPtr data, int dataLength)
+    public static unsafe SecureString? UniStringToSecureString (IntPtr data, int dataLength)
     {
         if (dataLength < 0)
         {
@@ -57,7 +57,7 @@ internal static class Win32Utility
         return new SecureString ((char*) data, characterCount);
     }
 
-    public static unsafe string UniStringToString (IntPtr data, int dataLength)
+    public static unsafe string? UniStringToString (IntPtr data, int dataLength)
     {
         if (dataLength < 0)
         {

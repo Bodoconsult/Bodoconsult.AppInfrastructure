@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
-namespace Bodoconsult.App.Windows.Crypto.Hashing;
+namespace Bodoconsult.App.Windows.DataProtection.Hashing;
 
 /// <summary>
 /// Hashing options

@@ -1,11 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Helpers;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using NotImplementedException = System.NotImplementedException;
 
-namespace Bodoconsult.App.Windows.Crypto.DataProtection;
+namespace Bodoconsult.App.Windows.DataProtection;
 
 /// <summary>
 /// Service to protect data in a secure way depending on user account or machine account
@@ -62,6 +65,8 @@ public class DataProtectionService : IDataProtectionService
     {
         try
         {
+            Debug.Print(ArrayHelper.GetStringFromArrayCsharpStyle(data, false));
+
             //Decrypt the data using the current scope
             return ProtectedData.Unprotect(data, EntropyBytes, CurrentDataProtectionScope);
         }
@@ -69,7 +74,7 @@ public class DataProtectionService : IDataProtectionService
         {
             Debug.Print("Data was not decrypted. An error occurred.");
             Debug.Print(e.ToString());
-            return null;
+            return [];
         }
     }
 
@@ -91,9 +96,11 @@ public class DataProtectionService : IDataProtectionService
     /// <param name="value">Value to store</param>
     public string Protect(string key, string value)
     {
-        var data = Encoding.Unicode.GetBytes(value);
-        var result = Protect(data);
-        return Encoding.Unicode.GetString(result);
+        var result = ProtectString(value);
+
+        Debug.Print(ArrayHelper.GetStringFromArrayCsharpStyle(result,  false));
+
+        return ArrayHelper.GetStringFromArrayCsharpStyle(result, false);
     }
 
     /// <summary>
@@ -103,8 +110,23 @@ public class DataProtectionService : IDataProtectionService
     /// <param name="cipherValue">The encrypted value to decrypt</param>
     public string Unprotect(string key, string cipherValue)
     {
-        var data = Encoding.Unicode.GetBytes(cipherValue);
-        var result = Unprotect(data);
-        return Encoding.Unicode.GetString(result);
+        var bytes = ArrayHelper.GetBytes(cipherValue);
+        var result = Unprotect(bytes);
+        return Encoding.Unicode.GetString( result);
+    }
+
+    /// <summary>
+    /// Create an instance of <see cref="DataProtectionService"/>
+    /// </summary>
+    /// <param name="appName">Current app name</param>
+    /// <returns><see cref="DataProtectionService"/> instance</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public static IDataProtectionService CreateInstance(string appName)
+    {
+        var s = new DataProtectionService
+        {
+            EntropyBytes = Encoding.Unicode.GetBytes(appName)
+        };
+        return s;
     }
 }

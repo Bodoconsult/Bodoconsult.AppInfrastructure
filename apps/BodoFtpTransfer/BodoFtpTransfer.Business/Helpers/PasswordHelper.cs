@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Helpers;
+
 namespace BodoFtpTransfer.Business.Helpers;
 
 public static class PasswordHelper
@@ -10,7 +12,7 @@ public static class PasswordHelper
         return PasswordHandler.Encrypt(raw);
     }
 
-    public static string Decrypt(string crypted)
+    public static string? Decrypt(string crypted)
     {
         return PasswordHandler.Decrypt(crypted);
     }

@@ -88,7 +88,7 @@ public static class CredentialsPrompt
 
         uint inAuth = 0;
 
-        CredentialCoTaskSafeHandle outputBuffer = null;
+        CredentialCoTaskSafeHandle? outputBuffer = null;
         try
         {
             var windowType = CreduiWindow.Generic;

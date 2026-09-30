@@ -12,7 +12,7 @@ public interface ICredentialManager
     /// </summary>
     /// <param name="targetName"></param>
     /// <returns>Credential</returns>
-    ICredentials Load(string targetName);
+    ICredentials? Load(string targetName);
 
     /// <summary>
     /// Save a credential

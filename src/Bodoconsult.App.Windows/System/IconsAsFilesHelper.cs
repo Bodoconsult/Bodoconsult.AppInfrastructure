@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
@@ -18,7 +19,7 @@ public class IconsAsFilesHelper
     /// <summary>
     /// Path to store the icons in
     /// </summary>
-    public string IconPath { private get; set; }
+    public string? IconPath { private get; set; }
 
     /// <summary>
     /// Add the extension for a certai file
@@ -32,22 +33,25 @@ public class IconsAsFilesHelper
         }
     }
 
-
-
     /// <summary>
     /// Save the icons for all registred extensions as GIF file
     /// </summary>
     public void SaveIcons()
     {
+        ArgumentNullException.ThrowIfNull(IconPath);
 
         foreach (var x in _ext)
         {
-            var fileName = Path.Combine(IconPath , $"{x.Key.Replace(".", null).ToLower()}.gif");
+            var fileName = Path.Combine(IconPath , $"{x.Key.Replace(".", null, StringComparison.OrdinalIgnoreCase).ToLower()}.gif");
 
-            if (File.Exists(fileName)) continue;
+            if (File.Exists(fileName))
+            {
+                continue;
+            }
 
             using var i = FileIcon.GetIcon(x.Key);
-            i.Save(fileName, ImageFormat.Gif);
+
+            i?.Save(fileName, ImageFormat.Gif);
         }
     }
 }

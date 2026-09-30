@@ -123,8 +123,13 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">Secure string</param>
     /// <returns>Clear text string</returns>
-    public static string? SecureStringToString(this SecureString value)
+    public static string? SecureStringToString(this SecureString? value)
     {
+        if (value is null)
+        {
+            return null;
+        }
+
         var ptr = Marshal.SecureStringToGlobalAllocUnicode(value);
         try
         {

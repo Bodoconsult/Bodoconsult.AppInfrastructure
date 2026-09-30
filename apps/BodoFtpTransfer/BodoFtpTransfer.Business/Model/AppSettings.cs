@@ -10,20 +10,20 @@ namespace BodoFtpTransfer.Business.Model;
 public class AppSettings
 {
 
-    public SshCredentials Credentials { get; set; }
+    public SshCredentials? Credentials { get; set; }
 
-    public string ExcludeDirs { get; set; }
+    public string ExcludeDirs { get; set; } = string.Empty;
 
-    public string ExcludedFiles { get; set; }
+    public string ExcludedFiles { get; set; } = string.Empty;
 
     /// <summary>
     /// Remote directory relative to Credentials.Url
     /// </summary>
-    public string RemoteDirectory { get; set; }
+    public string RemoteDirectory { get; set; } = string.Empty;
 
     /// <summary>
     /// Zu übertragendes lokales Verzeichnis
     /// </summary>
-    public string BaseDirectory { get; set; }
+    public string BaseDirectory { get; set; } = string.Empty;
 
 }
