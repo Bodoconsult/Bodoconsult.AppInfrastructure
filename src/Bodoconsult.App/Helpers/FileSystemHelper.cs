@@ -11,6 +11,8 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public static class FileSystemHelper
 {
+    private static string _appPath = string.Empty;
+
     /// <summary>
     /// Checks if a string contains invalid chars and returns the first invalid char
     /// </summary>
@@ -24,7 +26,7 @@ public static class FileSystemHelper
         {
             if (valueToCheck.Contains(invalidFileNameChar.ToString(CultureInfo.InvariantCulture)))
             {
-                s.Append( $"{invalidFileNameChar} (\\u{(int)invalidFileNameChar:0000}), ");
+                s.Append($"{invalidFileNameChar} (\\u{(int)invalidFileNameChar:0000}), ");
             }
         }
 
@@ -74,5 +76,26 @@ public static class FileSystemHelper
             UseShellExecute = true
         };
         Process.Start(startInfo);
+    }
+
+    /// <summary>
+    /// Get path of current application
+    /// </summary>
+    /// <returns>current application path</returns>
+    public static string GetAppPath()
+    {
+        if (!string.IsNullOrEmpty(_appPath))
+        {
+            return _appPath;
+        }
+
+        var s = Environment.ProcessPath;
+
+        ArgumentNullException.ThrowIfNull(s);
+
+        s = new FileInfo(s).DirectoryName;
+
+        _appPath = s ?? string.Empty;
+        return _appPath;
     }
 }

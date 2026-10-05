@@ -35,8 +35,9 @@ public class WpfReactiveUiDemoAppAppBuilder : BaseWpfReactiveUiAppBuilder
     /// <param name="locator">The locator to use for the app instance</param>
     public override void LoadViewLocation(DefaultViewLocator locator)
     {
-        locator.Map<FirstViewModel, FirstView>(() => new FirstView());
-        locator.Map<SecondViewModel, SecondView>(() => new SecondView());
+        // ToDo : check
+        //locator.Map<FirstViewModel, FirstView>(() => new FirstView());
+        //locator.Map<SecondViewModel, SecondView>(() => new SecondView());
     }
 
     /// <summary>

@@ -2,7 +2,6 @@
 
 using System.Diagnostics;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.Web.Mail.Helpers;
 using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming

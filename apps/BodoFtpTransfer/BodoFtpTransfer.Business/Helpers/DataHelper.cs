@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Data;
+using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.DataProtection.ConsoleTools;
 using Bodoconsult.Web.Ftp.Models;
 using BodoFtpTransfer.Business.Model;

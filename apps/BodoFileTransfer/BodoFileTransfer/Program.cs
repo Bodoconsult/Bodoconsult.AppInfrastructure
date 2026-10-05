@@ -29,6 +29,8 @@ internal class Program
             param.IsPerformanceLoggingActivated = true;
         }
 
+        globals.AppStartParameter.Args = args;
+
         // Now start app buiding process
         IAppBuilder builder = new BodoFileTransferAppBuilder(globals);
 #if !DEBUG

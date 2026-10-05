@@ -69,4 +69,55 @@ public static class ResourceHelper
 
         return s;
     }
+
+    /// <summary>
+    /// Save an embedded resource file to an external file
+    /// </summary>
+    /// <param name="assembly">Assembly to load the resources from</param>
+    /// <param name="resourceName">resource name = file name</param>
+    /// <param name="fileName">File path to save the binary ressource</param>
+    /// <returns></returns>
+    public static void SaveBinaryResource(Assembly assembly, string resourceName, string fileName)
+    {
+        if (File.Exists(fileName))
+        {
+            File.Delete(fileName);
+        }
+
+        using var input = assembly.GetManifestResourceStream(resourceName);
+        using var output = File.Open(fileName, FileMode.CreateNew);
+        if (input == null)
+        {
+            throw new FileNotFoundException($"{resourceName}: Embedded resoure file not found");
+        }
+
+        var buffer = new byte[32768];
+        int read;
+        while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+        {
+            output.Write(buffer, 0, read);
+        }
+        output.Flush();
+    }
+
+    ///// <summary>
+    ///// Get a text from an embedded resource file
+    ///// </summary>
+    ///// <param name="assembly">Assembly to load ressources from</param>
+    ///// <param name="resourceName">resource name = file name</param>
+    ///// <returns></returns>
+    //public static string? GetTextResource(Assembly assembly, string resourceName)
+    //{
+    //    var str = assembly.GetManifestResourceStream(resourceName);
+
+    //    if (str == null)
+    //    {
+    //        return null;
+    //    }
+
+    //    using var file = new StreamReader(str);
+    //    var s = file.ReadToEnd();
+
+    //    return s;
+    //}
 }

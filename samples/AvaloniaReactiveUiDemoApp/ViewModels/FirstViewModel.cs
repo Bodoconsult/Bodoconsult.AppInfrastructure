@@ -35,13 +35,13 @@ public partial class FirstViewModel : ReactiveObject, IUiRegionViewModel
 
     public FirstViewModel()
     {
-        _test = "Blubb";
+        Test = "Blubb";
     }
 
     public FirstViewModel(IScreen screen)
     {
         HostScreen = screen;
-        _test = "Blubb";
+        Test = "Blubb";
     }
 
     /// <summary>

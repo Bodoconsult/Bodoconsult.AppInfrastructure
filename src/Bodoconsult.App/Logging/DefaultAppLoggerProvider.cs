@@ -73,7 +73,7 @@ public class DefaultAppLoggerProvider : IDefaultAppLoggerProvider
             var section = kids.FirstOrDefault(item => item.Key == configurator.SectionNameAppSettingsJson);
             if (section is null)
             {
-                return;
+                continue;
             }
 
             configurator.Section = section;

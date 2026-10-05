@@ -4,7 +4,6 @@ using System;
 using System.Runtime.Versioning;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Windows.System;
-using Bodoconsult.Web.Mail.Helpers;
 
 namespace BodoWebMailer;
 

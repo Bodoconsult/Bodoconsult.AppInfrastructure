@@ -1,0 +1,14 @@
+﻿#DiskShadow script file
+set context persistent nowriters
+set metadata {2}\backup.cab
+set verbose on
+begin backup
+
+add volume {0} alias DataVolumeShadow
+
+create
+
+expose %DataVolumeShadow% {1}
+
+end backup
+#End of script

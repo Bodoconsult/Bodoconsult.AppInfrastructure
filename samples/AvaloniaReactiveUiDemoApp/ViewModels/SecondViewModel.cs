@@ -28,15 +28,15 @@ public partial class SecondViewModel : ReactiveObject, IUiRegionViewModel
 
     public SecondViewModel()
     {
-        _test = "Mummmpf";
+        Test = "Mummmpf";
     }
 
     public SecondViewModel(IScreen screen)
     {
         HostScreen = screen;
-        _test = "Mummmpf";
+        Test = "Mummmpf";
     }
-
+        
     /// <summary>
     /// Method based late injection of <see cref="ReactiveUI.IScreen"/> instance for navigation
     /// </summary>

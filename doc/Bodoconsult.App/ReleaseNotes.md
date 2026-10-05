@@ -74,3 +74,5 @@ Release notes for Bodoconsult.App
 -   Removed unused dependencies
 
 -   Added Hasher class for hashing 
+
+-   Bugfix in DefaultAppLoggerProvider.AddLoggerProviders(): bug leading to no app log created under certain circumstances

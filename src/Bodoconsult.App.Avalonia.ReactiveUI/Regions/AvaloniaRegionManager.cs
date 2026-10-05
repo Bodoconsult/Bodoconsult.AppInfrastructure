@@ -68,22 +68,23 @@ public class AvaloniaRegionManager : RegionManagerBase
         reactiveWindow.Focus();
         reactiveWindow.Show();
 
-        // Activate navigation to target region now
 
-        SubscribeExtensions.Subscribe(reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
-                {
-                    var region = uiWindow.FindRegion(regionName);
-                    ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
-                    if (viewModel is not IUiRegionViewModel uvm)
-                    {
-                        throw new ArgumentException($"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
-                    }
+        //// Activate navigation to target region now
+        //SubscribeExtensions.Subscribe(reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
+        //        {
+        //            var region = uiWindow.FindRegion(regionName);
+        //            ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
-                    uvm.InjectScreen(region);
+        //            if (viewModel is not IUiRegionViewModel uvm)
+        //            {
+        //                throw new ArgumentException($"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
+        //            }
 
-                    region.Router.Navigate.Execute(viewModel);
-                });
+        //            uvm.InjectScreen(region);
+
+        //            region.Router.Navigate.Execute(viewModel);
+        //        });
 
         return uiWindow;
     }

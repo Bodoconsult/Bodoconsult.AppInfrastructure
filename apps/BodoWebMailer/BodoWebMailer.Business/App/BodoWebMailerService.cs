@@ -6,7 +6,6 @@ using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
-using Bodoconsult.Web.Mail.Helpers;
 using BodoWebMailer.Business.Interfaces;
 using System;
 using System.Diagnostics;

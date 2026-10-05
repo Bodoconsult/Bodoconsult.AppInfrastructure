@@ -2,7 +2,7 @@
 
 using Bodoconsult.App.Abstractions.DataProtection;
 
-namespace Bodoconsult.App.DataProtection.ConsoleTools;
+namespace Bodoconsult.App.DataProtection;
 
 /// <summary>
 /// Basic class for credentials for accessing websites etc.

@@ -3,7 +3,6 @@
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection.DependencyInjection;
-using Bodoconsult.App.DependencyInjection;
 using Bodoconsult.App.Test.Helpers;
 
 namespace Bodoconsult.App.Test.DependencyInjection;

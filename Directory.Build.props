@@ -1,18 +1,18 @@
 <Project>
 	<PropertyGroup>
-		<Version>1.0.10</Version>
+		<Version>1.0.1</Version>
 		
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<PackageOutputPath>..\..\packages\</PackageOutputPath>
-		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.Database</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
 		<Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
 		<Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
 		<Authors>Robert Leisner</Authors>
 
-		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Bodoconsult/Bodoconsult.Database</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>

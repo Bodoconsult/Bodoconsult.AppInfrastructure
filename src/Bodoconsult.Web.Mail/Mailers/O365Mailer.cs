@@ -7,7 +7,6 @@ using Bodoconsult.Web.Mail.Interfaces;
 using Bodoconsult.Web.Mail.Models;
 using Microsoft.Graph;
 using Microsoft.Graph.Models;
-using Microsoft.Graph.Models.Security;
 using Microsoft.Graph.Users.Item.SendMail;
 using Microsoft.Kiota.Abstractions.Authentication;
 using System;

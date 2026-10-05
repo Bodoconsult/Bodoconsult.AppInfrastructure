@@ -9,7 +9,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.SqlClient;
-using Bodoconsult.Web.Mail.Helpers;
 using BodoFileTransfer.Business.Helpers;
 using BodoFileTransfer.Business.Interfaces;
 using BodoFileTransfer.Business.Model;

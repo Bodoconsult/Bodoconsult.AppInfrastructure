@@ -11,7 +11,6 @@ using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.SqlClient;
 using Bodoconsult.Web.Html.Html;
 using Bodoconsult.Web.Html.HtmlTables;
-using Bodoconsult.Web.Mail.Helpers;
 using Bodoconsult.Web.Mail.Models;
 using BodoWebMailer.Business.Interfaces;
 

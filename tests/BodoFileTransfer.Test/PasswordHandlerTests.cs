@@ -2,7 +2,6 @@
 
 using System.Diagnostics;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.Web.Mail.Helpers;
 using NUnit.Framework;
 
 namespace BodoFileTransfer.Test;
@@ -29,7 +28,7 @@ public class PasswordHandlerTests
     public void TestDecrypt()
     {
         // Arrange 
-        var s = "TestBahnhof123";
+        var s = "robert.leisner@bodoconsult.de";
 
         // Act  
         var result1 = PasswordHandler.Encrypt(s);

@@ -85,7 +85,7 @@ public class BaseMailService : ISmtpMailService
     /// </summary>
     public virtual void GetDocumentFiles()
     {
-        var data = AccountHandler.GetFiles();
+        var data = AccountHandler.GetFilesForDelivery();
 
         // Check if the files in the input folder still exist. Remove item it if not
         foreach (var file in data)

@@ -6,7 +6,6 @@ using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
-using Bodoconsult.Web.Mail.Helpers;
 using BodoFileTransfer.Business.Interfaces;
 using System;
 using System.Diagnostics;
@@ -96,7 +95,7 @@ public class BodoFileTransferService : IApplicationService
 
     private void Start()
     {
-        int modus;
+        int mode;
         var accountId = 0;
 
         var args = AppGlobals.AppStartParameter.Args ?? [];
@@ -104,7 +103,7 @@ public class BodoFileTransferService : IApplicationService
         if (args.Length == 0)
         {
             Status("Mode 0");
-            modus = 0;
+            mode = 0;
         }
         else
         {
@@ -112,47 +111,46 @@ public class BodoFileTransferService : IApplicationService
             {
                 case "2":
                     Status("Mode 2");
-                    modus = 2;
+                    mode = 2;
                     try
                     {
                         accountId = Convert.ToInt32(args[1]);
                     }
                     catch
                     {
-                        modus = 0;
+                        mode = 0;
                     }
                     break;
 
                 case "1":
                     Status("Mode 1");
-                    modus = 1;
+                    mode = 1;
                     break;
                 default:
                     Status("Mode 0");
-                    modus = 0;
+                    mode = 0;
                     break;
             }
         }
 
+#if DEBUG
+        mode = 1;
+#endif
 
-//#if DEBUG
-//        modus = 1;
-//#endif
-
-        Status("Init BodoFileTransfer done!");
+        Status($"Init BodoFileTransfer done: mode {mode}!");
 
         var fh = AppGlobals.DiContainer.Get<IFolderHandler>();
         fh.LoadAccounts();
 
         //Status($"SentDateFilter: {fh.SentDateFilter}");
 
-        Status($"Run operations for current mode {modus}");
+        Status($"Run operations for current mode {mode}");
 
         fh.ProcessO365Accounts();
         fh.ProcessImapAccounts();
         fh.ProcessAccounts();
 
-        switch (modus)
+        switch (mode)
         {
             case 2: // Manual start for all manually sending accounts
                 fh.ManuallySendOutboundMails(accountId);
@@ -162,7 +160,6 @@ public class BodoFileTransferService : IApplicationService
                 break;
             default:    // Collect only files job for all not manually sending accounts
                 break;
-
         }
 
         Status("BodoFileTransfer done!");
@@ -248,24 +245,24 @@ public class BodoFileTransferService : IApplicationService
         var gms = di.Get<IGeneralAppManagementManager>();
         var request = new EmptyBusinessTransactionRequestData();
 
-        DefaultBusinessTransactionReply result;
+        //DefaultBusinessTransactionReply result;
 
-        // Create log dump on app stop
-        try
-        {
+        //// Create log dump on app stop
+        //try
+        //{
 
-            // ToDo: fill request with useful information for logging
-            result = gms.CreateLogDump(request);
+        //    // ToDo: fill request with useful information for logging
+        //    result = gms.CreateLogDump(request);
 
-            //if (result != null)
-            //{
-            _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
-            //}
-        }
-        catch
-        {
-            // Do nothing
-        }
+        //    //if (result != null)
+        //    //{
+        //    _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
+        //    //}
+        //}
+        //catch
+        //{
+        //    // Do nothing
+        //}s
 
         // Stop logging now
         try

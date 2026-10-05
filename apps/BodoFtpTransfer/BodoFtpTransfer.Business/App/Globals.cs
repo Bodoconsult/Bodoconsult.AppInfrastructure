@@ -3,6 +3,7 @@
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.DataProtection.ConsoleTools;
 using BodoFtpTransfer.Business.Interfaces;
 using Microsoft.Extensions.Configuration;

@@ -5,7 +5,6 @@ using Bodoconsult.App.Helpers;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using NotImplementedException = System.NotImplementedException;
 
 namespace Bodoconsult.App.Windows.DataProtection;

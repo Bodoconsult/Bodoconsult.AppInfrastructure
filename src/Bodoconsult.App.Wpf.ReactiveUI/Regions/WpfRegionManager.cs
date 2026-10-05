@@ -71,24 +71,24 @@ public class WpfRegionManager : RegionManagerBase
         reactiveWindow.Focus();
         reactiveWindow.Show();
 
-        // Activate navigation to target region now
-        SubscribeExtensions.Subscribe(
-            reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
-            {
-                var region = uiWindow.FindRegion(regionName);
+        //// Activate navigation to target region now
+        //SubscribeExtensions.Subscribe(
+        //    reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
+        //    {
+        //        var region = uiWindow.FindRegion(regionName);
 
-                ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
+        //        ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
-                if (viewModel is not IUiRegionViewModel uvm)
-                {
-                    throw new ArgumentException(
-                        $"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
-                }
+        //        if (viewModel is not IUiRegionViewModel uvm)
+        //        {
+        //            throw new ArgumentException(
+        //                $"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
+        //        }
 
-                uvm.InjectScreen(region);
+        //        uvm.InjectScreen(region);
 
-                region.Router.Navigate.Execute(viewModel);
-            });
+        //        region.Router.Navigate.Execute(viewModel);
+        //    });
 
         return uiWindow;
     }

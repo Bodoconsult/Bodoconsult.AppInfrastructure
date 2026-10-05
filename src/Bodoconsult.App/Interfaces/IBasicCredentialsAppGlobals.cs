@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.DataProtection.ConsoleTools;
+using Bodoconsult.App.DataProtection;
 
-namespace Bodoconsult.App.DataProtection.Interfaces;
+namespace Bodoconsult.App.Interfaces;
 
 /// <summary>
 /// App globals with basic credentials

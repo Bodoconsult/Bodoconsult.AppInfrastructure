@@ -24,9 +24,9 @@ public partial class CopyrightViewModel : ReactiveObject
 
         var modulInfo = $"{AppTitle} {_appGlobals.AppStartParameter.AppVersion}";
         AppTitle = modulInfo;
-        _modulesInfo = string.Empty;
-        _licenseInfo = string.Empty;
-        _toolInfo = string.Empty;
+        ModulesInfo = string.Empty;
+        LicenseInfo = string.Empty;
+        ToolInfo = string.Empty;
 
         LoadModule(modulInfo);
     }

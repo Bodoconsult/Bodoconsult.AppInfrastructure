@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using System.Collections;
 using System.Globalization;
 using System.Security.Cryptography;
@@ -56,30 +57,48 @@ public class PasswordHandler
     }
 
     /// <summary>
-    /// Encrypt as string with 
+    /// Encrypt as string with key
     /// </summary>
     /// <param name="originalString">Original string</param>
     /// <param name="key">Key to use for encryption</param>
     /// <returns>Encrypted string</returns>
     private static string EncryptInternal(string originalString, string key)
     {
-        var clearBytes = Encoding.Unicode.GetBytes(originalString);
+        var keyBytes = Encoding.UTF8.GetBytes(key);
+        byte[] encrypted;
 
-        using var encryptor = Aes.Create();
-        var pdb = new Rfc2898DeriveBytes(key, Salt, Iterations, HashAlgorithmName.SHA256);
-        encryptor.Key = pdb.GetBytes(32);
-        encryptor.IV = pdb.GetBytes(16);
-        using var ms = new MemoryStream();
-        using (var cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+        // Create an Aes object
+        // with the specified key and IV.
+        using (var aesAlg = Aes.Create())
         {
-            cs.Write(clearBytes, 0, clearBytes.Length);
-            cs.Close();
+            aesAlg.Key = keyBytes;
+            aesAlg.IV = Salt;
+
+            // Create an encryptor to perform the stream transform.
+            var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+            // Create the streams used for encryption.
+            using (var msEncrypt = new MemoryStream())
+            {
+                using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                {
+                    using (var swEncrypt = new StreamWriter(csEncrypt))
+                    {
+                        //Write all data to the stream.
+                        swEncrypt.Write(originalString);
+                    }
+                }
+
+                encrypted = msEncrypt.ToArray();
+            }
         }
-        return Convert.ToBase64String(ms.ToArray());
+
+        // Return the encrypted bytes from the memory stream.
+        return Convert.ToBase64String(encrypted);
     }
 
     /// <summary>
-    /// Encrypt as string with 
+    /// Encrypt as string with key 2
     /// </summary>
     /// <param name="originalString">Original string</param>
     /// <returns>Encrypted string</returns>
@@ -150,22 +169,33 @@ public class PasswordHandler
     /// <returns>Original string</returns>
     private static string DecryptInternal(string cryptedString, string key)
     {
+        var keyBytes = Encoding.UTF8.GetBytes(key);
         var cipherBytes = Convert.FromBase64String(cryptedString.Replace(" ", "+"));
-        
-        using var encryptor = Aes.Create();
-        
-        var pdb = new Rfc2898DeriveBytes(key, Salt, Iterations, HashAlgorithmName.SHA256);
-        encryptor.Key = pdb.GetBytes(32);
-        encryptor.IV = pdb.GetBytes(16);
-        using var ms = new MemoryStream();
-        using (var cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
-        {
-            cs.Write(cipherBytes, 0, cipherBytes.Length);
-            cs.Close();
-        }
-        cryptedString = Encoding.Unicode.GetString(ms.ToArray());
+        string? plaintext = null;
 
-        return cryptedString;
+        using Aes aesAlg = Aes.Create();
+        aesAlg.Key = keyBytes;
+        aesAlg.IV = Salt;
+
+        // Create a decryptor to perform the stream transform.
+        ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+        // Create the streams used for decryption.
+        using (MemoryStream msDecrypt = new MemoryStream(cipherBytes))
+        {
+            using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+            {
+                using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                {
+
+                    // Read the decrypted bytes from the decrypting stream
+                    // and place them in a string.
+                    plaintext = srDecrypt.ReadToEnd();
+                }
+            }
+        }
+
+        return plaintext;
     }
 
     /// <summary>
@@ -186,8 +216,8 @@ public class PasswordHandler
 
     private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
     {
-        var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.SHA256);
-        return pbkdf2.GetBytes(outputBytes);
+        var pbkdf2 = Rfc2898DeriveBytes.Pbkdf2(password, salt, iterations, HashAlgorithmName.SHA256, 256);
+        return pbkdf2;
     }
 
     /// <summary>
