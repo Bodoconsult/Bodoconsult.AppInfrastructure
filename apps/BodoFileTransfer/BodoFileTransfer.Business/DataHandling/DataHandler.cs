@@ -672,7 +672,7 @@ public class DataHandler : IDataHandler
             return _allO365Accounts;
         }
             
-        _allO365Accounts = new List<O365Account>();
+        _allO365Accounts = [];
 
         var dt = _db.GetDataTable("EXEC dbo.spO365Mail_GetAllAccounts");
         foreach (DataRow r in dt.Rows)
@@ -713,7 +713,7 @@ public class DataHandler : IDataHandler
             return _allO365SenderAccounts;
         }
 
-        _allO365SenderAccounts = new List<O365SenderAccount>();
+        _allO365SenderAccounts = [];
 
         var dt = _db.GetDataTable("EXEC dbo.spO365MailSender_GetAllAccounts");
         foreach (DataRow r in dt.Rows)

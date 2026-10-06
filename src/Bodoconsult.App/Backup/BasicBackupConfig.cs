@@ -48,7 +48,7 @@ public class BasicBackupConfig : IBackupConfig
     /// <summary>
     /// Current list of backup targets
     /// </summary>
-    public List<IBackupTargetSettings> BackupTargets { get; set; } = new();
+    public List<IBackupTargetSettings> BackupTargets { get; set; } = [];
 
     /// <summary>
     /// Name of the summary file to be created

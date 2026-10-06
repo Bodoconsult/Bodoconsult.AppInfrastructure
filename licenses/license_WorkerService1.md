@@ -10,7 +10,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Hosting.WindowsServices by Microsoft
 
@@ -22,5 +22,5 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 

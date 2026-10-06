@@ -13,7 +13,7 @@ public class FakeShellProcessManager : IShellProcessManager
     /// <summary>
     /// List of all executed commands
     /// </summary>
-    public List<string> Commands { get; } = new();
+    public List<string> Commands { get; } = [];
 
     /// <summary>
     /// Move a directory

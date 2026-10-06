@@ -27,6 +27,6 @@ public class MailData
     /// <summary>
     /// Document files handled in this mail
     /// </summary>
-    public List<DocumentFile> DocumentFiles { get; } = new();
+    public List<DocumentFile> DocumentFiles { get; } = [];
 
 }

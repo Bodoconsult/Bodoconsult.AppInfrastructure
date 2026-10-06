@@ -38,6 +38,27 @@ dotnet nuget push packages\Bodoconsult.App.Wpf.ReactiveUi.%version%.snupkg --sou
 dotnet nuget push packages\Bodoconsult.App.Wpf.Documents.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.App.Wpf.Documents.%version%.snupkg --source https://api.nuget.org/v3/index.json
 
+dotnet nuget push packages\Bodoconsult.Database.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.Database.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+dotnet nuget push packages\Bodoconsult.Database.SqlClient.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.Database.SqlClient.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+dotnet nuget push packages\Bodoconsult.Database.Postgres.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.Database.Postgres.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+dotnet nuget push packages\Bodoconsult.Database.Sqlite.%version%.nupkg --source https://api.nuget.org/v3/index.json
+dotnet nuget push packages\Bodoconsult.Database.Sqlite.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+REM dotnet nuget push packages\Bodoconsult.Database.Dbase.%version%.nupkg --source https://api.nuget.org/v3/index.json
+REM dotnet nuget push packages\Bodoconsult.Database.Dbase.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+REM dotnet nuget push packages\Bodoconsult.Database.Ef.%version%.nupkg --source https://api.nuget.org/v3/index.json
+REM dotnet nuget push packages\Bodoconsult.Database.Ef.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
+REM dotnet nuget push packages\Bodoconsult.Database.Ef.SqlServer.%version%.nupkg --source https://api.nuget.org/v3/index.json
+REM dotnet nuget push packages\Bodoconsult.Database.Ef.SqlServer.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
 dotnet nuget push packages\Bodoconsult.I18N.%version%.nupkg --source https://api.nuget.org/v3/index.json
 dotnet nuget push packages\Bodoconsult.I18N.%version%.snupkg --source https://api.nuget.org/v3/index.json
 

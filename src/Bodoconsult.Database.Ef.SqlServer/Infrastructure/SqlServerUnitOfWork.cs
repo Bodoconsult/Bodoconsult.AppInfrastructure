@@ -34,8 +34,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
             base(dbContextScopeFactory, logger, ambientDbContextLocator, backupEngine, migrationController)
         { }
 
-
-
         /// <summary>
         /// Get the generic repository for type TEntity
         /// </summary>
@@ -44,7 +42,7 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
         public override IRepository<TEntity> GetRepository<TEntity>()
         {
             // Checks if the Dictionary Key contains the Model class
-            if (Repositories.Keys.Contains(typeof(TEntity)))
+            if (Repositories.ContainsKey(typeof(TEntity)))
             {
                 // Return the repository for that Model class
                 return Repositories[typeof(TEntity)] as IRepository<TEntity>;
@@ -57,13 +55,17 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
             Repositories.Add(typeof(TEntity), repository);
 
             return repository;
-
         }
 
+        /// <summary>
+        /// Get the repository for type TEntity
+        /// </summary>
+        /// <typeparam name="TEntity">POCO entity type</typeparam>
+        /// <returns>The requested generic repository with uniqueidentifier ID column</returns>
         public override IRepositoryGuid<TEntity> GetRepositoryGuid<TEntity>()
         {
             // Checks if the Dictionary Key contains the Model class
-            if (RepositoriesGuid.Keys.Contains(typeof(TEntity)))
+            if (RepositoriesGuid.ContainsKey(typeof(TEntity)))
             {
                 // Return the repository for that Model class
                 return RepositoriesGuid[typeof(TEntity)] as IRepositoryGuid<TEntity>;
@@ -99,12 +101,11 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
 
                 if (sql.Contains("\r\nGO\r\n", StringComparison.OrdinalIgnoreCase))
                 {
-                    var cmds = sql.Split(new[] { '\r', '\n', 'G', 'O', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                    var cmds = sql.Split(['\r', '\n', 'G', 'O', '\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
                     for (var index = 0; index < cmds.Length; index++)
                     {
                         sql1 = cmds[index];
-
 
                         using var command = new SqlCommand(_executeSql, conn);
                         command.Parameters.Add("@Data", SqlDbType.NVarChar).Value = sql1;
@@ -116,16 +117,12 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
                 {
                     sql1 = sql;
 
-
                     using var command = new SqlCommand(_executeSql, conn);
                     command.Parameters.Add("@Data", SqlDbType.NVarChar).Value = sql1;
                     command.CommandTimeout = ContextConfig.CommandTimeout;
                     command.ExecuteNonQuery();
                 }
-
-
                 conn.Close();
-                conn.Dispose();
 
                 return true;
             }
@@ -136,8 +133,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
                 Log.LogError($"Runsql: {sql1}", e);
                 return false;
             }
-
-
         }
 
         /// <summary>
@@ -151,8 +146,7 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
             {
                 return false;
             }
-
-
+            
             var cmds = sql.ToList();
 
             if (!cmds.Any())
@@ -177,7 +171,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
                     command.ExecuteNonQuery();
                 }
                 conn.Close();
-                conn.Dispose();
 
                 return true;
             }
@@ -185,7 +178,7 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
             catch (Exception e)
             {
                 // Debug.Print($"Error: Runsql: {sql}: {cmd}: {e.Message}");
-                Log.LogError($"Runsql: {sql}: {cmd}", e);
+                Log.LogError($"Runsql: {cmds}: {cmd}", e);
                 return false;
             }
 
@@ -198,9 +191,14 @@ namespace Bodoconsult.Database.Ef.SqlServer.Infrastructure
         {
             var raw = ContextConfig.ConnectionString;
 
-            var i = raw.ToUpperInvariant().IndexOf("INITIAL CATALOG=", StringComparison.Ordinal);
+            if (string.IsNullOrEmpty(raw))
+            {
+                return;
+            }
 
-            var j = raw.ToUpperInvariant().IndexOf(";", i + 1, StringComparison.Ordinal);
+            var i = raw.IndexOf("INITIAL CATALOG=", StringComparison.OrdinalIgnoreCase);
+
+            var j = raw.IndexOf(";", i + 1, StringComparison.OrdinalIgnoreCase);
 
             var databaseName = raw.Substring(i + 16, j - i - 16);
 

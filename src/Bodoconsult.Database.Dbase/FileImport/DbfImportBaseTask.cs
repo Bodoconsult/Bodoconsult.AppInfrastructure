@@ -15,7 +15,7 @@ namespace Bodoconsult.Database.Dbase.FileImport;
 /// Base class for import tasks from DBF file
 /// </summary>
 /// <typeparam name="TData">Target entity type</typeparam>
-public class DbfImportBaseTask<TData> : FileImportBaseTask<TData> where TData : class, new()
+public class DbfImportBaseTask<TData> : BaseFileImportTask<TData> where TData : class, new()
 {
 
     #region Private Fields
@@ -26,14 +26,19 @@ public class DbfImportBaseTask<TData> : FileImportBaseTask<TData> where TData : 
 
     #region Protected Constructors
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="name">Table name</param>
+    /// <param name="dbBasePath">DBase data path</param>
+    /// <param name="log">Current logger</param>
+    /// <param name="mapToEntityDelegate">Delegate to map record to entity</param>
     protected DbfImportBaseTask(string name, string dbBasePath, IAppLoggerProxy log, MapToEntityDelegate<TData> mapToEntityDelegate)
         : base(name, dbBasePath, log, mapToEntityDelegate)
     {
         _queue = new ProducerConsumerQueue<List<TData>>();
         _queue.ConsumerTaskDelegate = StoreData;
     }
-
-
 
     #endregion Protected Constructors
 
@@ -48,6 +53,9 @@ public class DbfImportBaseTask<TData> : FileImportBaseTask<TData> where TData : 
 
     #region Public Methods
 
+    /// <summary>
+    /// Execute the import task
+    /// </summary>
     public sealed override void Execute()
     {
         try
@@ -127,5 +135,4 @@ public class DbfImportBaseTask<TData> : FileImportBaseTask<TData> where TData : 
     }
 
     #endregion Public Methods
-
 }

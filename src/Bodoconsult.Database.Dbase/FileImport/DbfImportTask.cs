@@ -23,7 +23,7 @@ namespace Bodoconsult.Database.Dbase.FileImport
         /// <summary>
         /// The result of the task
         /// </summary>
-        public List<TData> Result { get; } = new();
+        public List<TData> Result { get; } = [];
 
         #endregion
 

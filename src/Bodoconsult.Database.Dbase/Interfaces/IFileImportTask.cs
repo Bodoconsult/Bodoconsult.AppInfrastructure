@@ -6,9 +6,19 @@ using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.Database.Dbase.Interfaces;
 
-
+/// <summary>
+/// Map record to entity delegate
+/// </summary>
+/// <typeparam name="TData">Type of entity to return</typeparam>
+/// <param name="dbf">DBase data table</param>
+/// <param name="record">Current record to map</param>
+/// <returns>Entity of the requested type</returns>
 public delegate TData MapToEntityDelegate<out TData>(DbfResult dbf, List<string> record);
 
+/// <summary>
+/// Interface for Dbase file import tasks
+/// </summary>
+/// <typeparam name="TData"></typeparam>
 public interface IFileImportTask<TData> where TData : class, new()
 {
     /// <summary>
@@ -65,7 +75,6 @@ public interface IFileImportTask<TData> where TData : class, new()
     /// </summary>
     /// <returns>True if the DBF exists else false</returns>
     bool FileExists { get; }
-
 
     /// <summary>
     /// Count errors

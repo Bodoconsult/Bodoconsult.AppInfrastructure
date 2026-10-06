@@ -63,21 +63,17 @@ License-Url: https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE
 
 Project-Url: https://github.com/contre/Windows-API-Code-Pack-1.1
 
-## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
+## Nuget package library Microsoft.WindowsAppSDK by Microsoft
 
-Copyright: (c) .NET Foundation and Contributors.  All rights reserved.
+Copyright: © Microsoft Corporation. All rights reserved.
 
-The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
+The Windows App SDK empowers all Windows Desktop apps with modern Windows UI, APIs, and platform features, including back-compat support.
 
-      Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
+License: license.txt
 
-      For UWP/MSIX apps, you can also generate tile and badge notifications.
+License-Url: https://www.nuget.org/packages/Microsoft.WindowsAppSDK/2.5.1/License
 
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/CommunityToolkit/WindowsCommunityToolkit.git
+Project-Url: 
 
 ## Nuget package library Microsoft.Xaml.Behaviors.Wpf by Microsoft
 
@@ -115,26 +111,4 @@ License: MIT
 License-Url: https://github.com/dotnet/corefx/blob/master/LICENSE.TXT
 
 Project-Url: 
-
-## Nuget package library System.Drawing.Common by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Provides access to GDI+ graphics functionality.
-
-      Commonly Used Types:
-      System.Drawing.Bitmap
-      System.Drawing.BitmapData
-      System.Drawing.Brush
-      System.Drawing.Font
-      System.Drawing.Graphics
-      System.Drawing.Icon
-
-      Since .NET 7, non-Windows platforms are not supported, even with the runtime configuration switch. See https://aka.ms/systemdrawingnonwindows for more information.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/winforms
 

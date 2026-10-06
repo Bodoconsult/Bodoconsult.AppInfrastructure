@@ -13,7 +13,7 @@ namespace Bodoconsult.Database.DataTableBackup.Formatters;
 public class DefaultXmlDataTableBackupFormatter : IDataTableBackupFormatter
 {
 
-    private readonly List<string> _properties = new();
+    private readonly List<string> _properties = [];
     private int _propCount;
 
     /// <summary>

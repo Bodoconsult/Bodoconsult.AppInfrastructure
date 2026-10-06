@@ -15,15 +15,18 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools.SqlGenerators
     /// <remarks>Based on https://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/ </remarks>
     public sealed class MySqlServerMigrationSqlGenerator : SqlServerMigrationsSqlGenerator
     {
-
+        /// <summary>
+        /// Default ctor
+        /// </summary>
+        /// <param name="dependencies">Dependencies</param>
+        /// <param name="migrationsAnnotations">Annotations</param>
         public MySqlServerMigrationSqlGenerator(MigrationsSqlGeneratorDependencies dependencies,
                 ICommandBatchPreparer migrationsAnnotations) : base(dependencies, migrationsAnnotations)
         {
-            sqlHelper = Dependencies.SqlGenerationHelper;
+            _sqlHelper = Dependencies.SqlGenerationHelper;
         }
-
-
-        private readonly ISqlGenerationHelper sqlHelper;
+        
+        private readonly ISqlGenerationHelper _sqlHelper;
 
         /// <summary>
         /// Generate statements if there is not default statement generated for the operation
@@ -36,9 +39,7 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools.SqlGenerators
             IModel model,
             MigrationCommandListBuilder builder)
         {
-
-            if (builder==null) {
-                throw new ArgumentNullException(nameof(builder));}
+            ArgumentNullException.ThrowIfNull(builder);
 
             if (operation is GrantPermissionOperation gpo)
             {
@@ -58,19 +59,16 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools.SqlGenerators
                 return;
             }
 
-
             if (operation is DropDatabaseRoleOperation ddro)
             {
                 PerformDropDatabaseRoleOperation(ddro, builder);
                 return;
             }
 
-
             if (operation is ChangeIdentityOperation cio)
             {
                 PerformChangeIdentityOperation(cio, builder);
                 return;
-
             }
 
             if (operation is CreateCheckConstraintOperation cco)
@@ -96,28 +94,27 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools.SqlGenerators
 
         private void PerformAlterView(AlterViewOperation operation, MigrationCommandListBuilder builder)
         {
-
-            var comment = string.IsNullOrEmpty(operation.Comment) ? "" : $"\r\n/*\r\n{operation.Comment}\r\n*/\r\n";
+            var comment = string.IsNullOrEmpty(operation.Comment) ? string.Empty : $"\r\n/*\r\n{operation.Comment}\r\n*/\r\n";
 
             builder.Append($"ALTER VIEW {operation.ViewName}{comment} AS\r\n\r\n{operation.ViewBody}\r\n\r\n")
-                .AppendLine(sqlHelper.StatementTerminator)
+                .AppendLine(_sqlHelper.StatementTerminator)
                 .EndCommand();
-
         }
 
         private void PerformCreateView(CreateViewOperation operation, MigrationCommandListBuilder builder)
         {
-            var comment = string.IsNullOrEmpty(operation.Comment) ? "" : $"\r\n/*\r\n{operation.Comment}\r\n*/\r\n";
+            var comment = string.IsNullOrEmpty(operation.Comment) ? string.Empty : $"\r\n/*\r\n{operation.Comment}\r\n*/\r\n";
 
             builder.Append($"CREATE VIEW {operation.ViewName}{comment} AS\r\n\r\n{operation.ViewBody}\r\n\r\n")
-                .AppendLine(sqlHelper.StatementTerminator)
+                .AppendLine(_sqlHelper.StatementTerminator)
                 .EndCommand();
         }
 
         /// <summary>
         /// Perform a <see cref="DropDatabaseRoleOperation"/> to drop a database role
         /// </summary>
-        /// <param name="operation"></param>
+        /// <param name="operation">Current operation</param>
+        /// <param name="builder">Current migration command builder</param>
         private void PerformDropDatabaseRoleOperation(DropDatabaseRoleOperation operation, MigrationCommandListBuilder builder)
         {
 
@@ -144,20 +141,18 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools.SqlGenerators
             // Drop the role itself
             sql = $"IF EXISTS (SELECT * FROM sys.database_principals WHERE name = N'{operation.RoleName}' AND type = 'R') DROP ROLE [{operation.RoleName}]";
 
-
             builder.Append(sql)
-                .AppendLine(sqlHelper.StatementTerminator)
+                .AppendLine(_sqlHelper.StatementTerminator)
                 .EndCommand();
         }
-
 
 
         /// <summary>
         /// Perform a <see cref="ChangeIdentityOperation"/> to reset seed value for Idenity columns
         /// </summary>
         /// <remarks>Based on https://romiller.com/2013/04/30/ef6-switching-identity-onoff-with-a-custom-migration-operation/</remarks>
-        /// <param name="operation"></param>
-
+        /// <param name="operation">Current operation</param>
+        /// <param name="builder">Current migration command builder</param>
         private void PerformChangeIdentityOperation(ChangeIdentityOperation operation, MigrationCommandListBuilder builder)
         {
             throw new NotImplementedException();
@@ -246,56 +241,46 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools.SqlGenerators
             //var stringMapping = Dependencies.TypeMappingSource.FindMapping(typeof(string));
 
             builder.Append($"IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'{operation.RoleName}' AND type = 'R') CREATE ROLE [{operation.RoleName}] AUTHORIZATION [dbo]")
-                .AppendLine(sqlHelper.StatementTerminator)
+                .AppendLine(_sqlHelper.StatementTerminator)
                 .EndCommand();
         }
 
         private void PerformGrantPermissionOperation(GrantPermissionOperation operation, MigrationCommandListBuilder builder)
         {
-
             //var stringMapping = Dependencies.TypeMappingSource.FindMapping(typeof(string));
 
             builder.Append($"GRANT {operation.Permission.ToString().ToUpperInvariant()} ON { operation.DatabaseObject} TO {operation.UserOrRole}")
-                .Append(sqlHelper.StatementTerminator)
+                .Append(_sqlHelper.StatementTerminator)
                 .EndCommand();
-
         }
 
 
 
         private void PerformDenyPermissionOperation(DenyPermissionOperation operation, MigrationCommandListBuilder builder)
         {
-
             //var stringMapping = Dependencies.TypeMappingSource.FindMapping(typeof(string));
 
             builder.Append($"DENY {operation.Permission.ToString().ToUpperInvariant()} ON {operation.DatabaseObject} TO {operation.UserOrRole}")
-                .Append(sqlHelper.StatementTerminator)
+                .Append(_sqlHelper.StatementTerminator)
                 .EndCommand();
-
         }
 
 
         private void PerformCreateCheckConstraint(CreateCheckConstraintOperation operation, MigrationCommandListBuilder builder)
         {
-
-            if (operation != null)
+            if (operation == null)
             {
-                if (operation.CheckConstraintName == null)
-                {
-                    operation.CheckConstraintName = operation.BuildDefaultName();
-                }
-
-                var tableName = sqlHelper.DelimitIdentifier(operation.Table);
-                var constraintName = sqlHelper.DelimitIdentifier(operation.CheckConstraintName);
-
-
-                builder.Append($"ALTER TABLE {tableName} ADD CONSTRAINT {constraintName} CHECK ({operation.CheckConstraint})")
-                    .Append(sqlHelper.StatementTerminator)
-                    .EndCommand();
-
-
+                return;
             }
 
+            operation.CheckConstraintName ??= operation.BuildDefaultName();
+
+            var tableName = _sqlHelper.DelimitIdentifier(operation.Table);
+            var constraintName = _sqlHelper.DelimitIdentifier(operation.CheckConstraintName);
+
+            builder.Append($"ALTER TABLE {tableName} ADD CONSTRAINT {constraintName} CHECK ({operation.CheckConstraint})")
+                .Append(_sqlHelper.StatementTerminator)
+                .EndCommand();
         }
     }
 }

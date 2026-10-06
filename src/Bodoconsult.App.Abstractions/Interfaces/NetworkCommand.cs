@@ -24,5 +24,5 @@ public class NetworkCommand
     /// <summary>
     /// Current command parameters
     /// </summary>
-    public List<NetworkCommandParameter> Parameters { get; } = new();
+    public List<NetworkCommandParameter> Parameters { get; } = [];
 }

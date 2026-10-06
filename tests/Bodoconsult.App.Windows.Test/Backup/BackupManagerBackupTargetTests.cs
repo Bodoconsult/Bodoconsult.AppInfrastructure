@@ -57,7 +57,7 @@ internal class BackupManagerTests
         var factory = new RobocopyBackupTargetFactory(spm);
 
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
         var jobTask = new BasicBackupConfig
         {
             Errors = errors,
@@ -106,7 +106,7 @@ internal class BackupManagerTests
         var factory = new RobocopyBackupTargetFactory(spm);
 
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
         var jobTask = new BasicBackupConfig
         {
             GetAliveFolder = "C:\\temp",
@@ -161,7 +161,7 @@ internal class BackupManagerTests
         var factory = new RobocopyBackupTargetFactory(spm);
 
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
         var jobTask = new BasicBackupConfig
         {
             GetAliveFolder = "C:\\temp",

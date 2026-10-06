@@ -30,7 +30,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
@@ -42,7 +42,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
@@ -54,7 +54,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging by Microsoft
 
@@ -66,7 +66,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
@@ -78,7 +78,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
@@ -90,7 +90,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
@@ -102,5 +102,5 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 

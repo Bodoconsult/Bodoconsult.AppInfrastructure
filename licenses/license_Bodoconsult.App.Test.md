@@ -42,13 +42,13 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
 
-This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/aspnetcore
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
 
@@ -56,13 +56,13 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 Additional APIs for ASP.NET Core data protection.
 
-This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/aspnetcore
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.AspNetCore.TestHost by Microsoft
 
@@ -70,13 +70,13 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
-This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/aspnetcore
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
@@ -88,7 +88,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging by Microsoft
 
@@ -100,7 +100,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
 
@@ -126,23 +126,24 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
-## Nuget package library NUnit by Charlie Poole,  Rob Prouse
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse,  Terje Sandstrom and contributors
 
-Copyright: Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License.
+Copyright: Copyright (c) 2009-2019 Charlie Poole, 2014-2025 Rob Prouse, 2026 Terje Sandstrom and Contributors. MIT License.
 
 NUnit is a unit-testing framework for all .NET languages.
             It can run on macOS, Linux and Windows operating systems.
             NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
             It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
 
-            The latest version, version 4, is an upgrade from the groundbreaking NUnit 3 framework. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+            The latest version, version 5, is an upgrade from the groundbreaking NUnit 3 framework and its major update version 4. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
 
             If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+            If you're upgrading from NUnit 4, please check the release notes for version 5 (https://docs.nunit.org/articles/nunit/release-notes/framework.html).
 
             Supported platforms:
             - .NET Framework 4.6.2+
-            - .NET 6.0+
             - .NET 8.0+
+            - .NET 10.0+
 
 License: MIT
 
@@ -164,18 +165,4 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
-
-## Nuget package library System.Text.Json by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.
-
-The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/runtime
 

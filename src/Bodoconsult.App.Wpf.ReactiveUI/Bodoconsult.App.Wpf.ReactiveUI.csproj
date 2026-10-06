@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+		<TargetFramework>net10.0-windows10.0.17763.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -33,6 +33,36 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<!-- Modern symbols package format -->
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\aligncenter.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\alignjustify.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\alignleft.PNG" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\alignright.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\codeblock.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\codeinline.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\editcopy.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\editcut.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\editpaste.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\editredo.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\editundo.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\filesave.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\fontbold.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\fontgrow.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\fontitalic.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\fontshrink.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\fontunderline.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\indentdecrease.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\indentincrease.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\listbullets.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\listnumbers.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\LogonImage.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\normaltext.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\PrintDocument.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\save.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\separator.png" />
+	  <Content Remove="Resources\Styling\BitmapGraphics\Assets\test.jpg" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Resources\Entypo.ttf" />

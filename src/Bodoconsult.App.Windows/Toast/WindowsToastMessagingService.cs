@@ -2,6 +2,9 @@
 
 using System;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Microsoft.Windows.AppNotifications;
+using Microsoft.Windows.AppNotifications.Builder;
+
 //using Microsoft.Windows.AppNotifications;
 //using Microsoft.Windows.AppNotifications.Builder;
 
@@ -25,16 +28,16 @@ public class WindowsToastMessagingService : IToastMessagingService
         //    .AddText(notificationRequest.Text)
         //    .Show();
 
-        //var notification = new AppNotificationBuilder()
-        //    //.AddArgument("action", "viewItem")
-        //    .AddText(notificationRequest.Title)
-        //    .AddText(notificationRequest.Text)
-        //    //.AddButton(new AppNotificationButton("Acknowledge")
-        //    //    .AddArgument("action", "acknowledge"))
-        //    .BuildNotification();
+        var notification = new AppNotificationBuilder()
+            //.AddArgument("action", "viewItem")
+            .AddText(notificationRequest.Title)
+            .AddText(notificationRequest.Text)
+            //.AddButton(new AppNotificationButton("Acknowledge")
+            //    .AddArgument("action", "acknowledge"))
+            .BuildNotification();
 
-        //AppNotificationManager.Default.Show(notification);
+        AppNotificationManager.Default.Show(notification);
 
-        throw new NotImplementedException("Currently not implemented due to NET 10 issue with NUGET package");
+        //throw new NotImplementedException("Currently not implemented due to NET 10 issue with NUGET package");
     }
 }

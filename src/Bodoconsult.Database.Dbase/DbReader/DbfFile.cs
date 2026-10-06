@@ -443,41 +443,40 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
         }
 
+        /// <summary>
+        /// Wite a record to database
+        /// </summary>
+        /// <param name="orec">Record to write to database</param>
+        /// <param name="bClearRecordAfterWrite">If true the record is clear after writing it to database</param>
         public void Write(DbfRecord orec, bool bClearRecordAfterWrite)
         {
-
             Write(orec);
 
             if (bClearRecordAfterWrite)
             {
                 orec.Clear();
             }
-
         }
-
 
         /// <summary>
         /// Update a record. RecordIndex (zero based index) must be more than -1, otherwise an exception is thrown.
         /// You can also use Write method which updates a record if it has RecordIndex or adds a new one if RecordIndex == -1.
         /// RecordIndex is set automatically when you call any Read() methods on this class.
         /// </summary>
-        /// <param name="orec"></param>
+        /// <param name="orec">Record to update</param>
         public void Update(DbfRecord orec)
         {
-
             //if header was never written, write it first, then output the record
             if (!MHeaderWritten)
             {
                 WriteHeader();
             }
 
-
             //Check if record has an index
             if (orec.RecordIndex < 0)
             {
                 throw new Exception("RecordIndex is not set, unable to update record. Set RecordIndex or call Write() method to add a new record to file.");
             }
-
 
             //Check if this record matches record size specified by header and number of columns. 
             //Client can pass a record from another DBF that is incompatible with this one and that would corrupt the file.
@@ -495,7 +494,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
                                     "writen to (a read-only stream) or you have not opened a stream at all.");
             }
 
-
             //move to the specified record, note that an exception will be thrown if stream is not seekable! 
             //This is ok, since we provide a function to check whether the stream is seekable. 
             var nSeekToPosition = MHeader.HeaderLength + orec.RecordIndex * MHeader.RecordLength;
@@ -512,11 +510,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
             //write
             orec.Write(MDbfFile);
-
-
         }
-
-
 
         /// <summary>
         /// Save header to file. Normally, you do not have to call this method, header is saved 
@@ -524,7 +518,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
         /// </summary>
         public bool WriteHeader()
         {
-
             //update header if possible
             //--------------------------------
             if (MDbfFileWriter == null)
@@ -551,8 +544,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
             return false;
 
         }
-
-
 
         /// <summary>
         /// Access DBF header with information on columns. Use this object for faster access to header. 

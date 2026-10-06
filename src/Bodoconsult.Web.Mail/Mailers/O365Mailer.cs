@@ -270,7 +270,7 @@ public class O365Mailer: BaseMailer
 
     private void AddAttachments(MassMailItem massMailItem, Message message)
     {
-        message.Attachments ??= new();
+        message.Attachments ??= [];
 
         var i = 0;
         foreach (var file in massMailItem.Attachments.Where(file => !string.IsNullOrEmpty(file)))
@@ -290,7 +290,7 @@ public class O365Mailer: BaseMailer
 
     private static void AddImages(IList<ImageMetaData> images, Message message)
     {
-        message.Attachments ??= new();
+        message.Attachments ??= [];
 
         foreach (var image in images.Where(file => !string.IsNullOrEmpty(file.Url)))
         {

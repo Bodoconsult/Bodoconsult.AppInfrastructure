@@ -1,7 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.Windows.AppNotifications;
+using Microsoft.Windows.AppNotifications.Builder;
+
+
+// https://learn.microsoft.com/de-de/windows/apps/develop/notifications/app-notifications/app-notifications-console
 
 namespace Bodoconsult.App.WinForms.Toast;
 
@@ -16,9 +20,21 @@ public class WinFormsToastMessagingService : IToastMessagingService
     /// <param name="notificationRequest">Notification request</param>
     public void SendSimpleToastMessage(NotifyRequestRecord notificationRequest)
     {
-        new ToastContentBuilder()
+        //new ToastContentBuilder()
+        //    .AddText(notificationRequest.Title)
+        //    .AddText(notificationRequest.Text)
+        //    .Show();
+
+        var notification = new AppNotificationBuilder()
+            //.AddArgument("action", "viewItem")
             .AddText(notificationRequest.Title)
             .AddText(notificationRequest.Text)
-            .Show();
+            //.AddButton(new AppNotificationButton("Acknowledge")
+            //    .AddArgument("action", "acknowledge"))
+            .BuildNotification();
+
+        AppNotificationManager.Default.Show(notification);
+
+        //throw new NotImplementedException("Currently not implemented due to NET 10 issue with NUGET package");
     }
 }

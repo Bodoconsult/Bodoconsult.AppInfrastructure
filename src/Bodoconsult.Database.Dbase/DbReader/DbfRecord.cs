@@ -39,6 +39,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace Bodoconsult.Database.Dbase.DbReader
 {
@@ -53,17 +54,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
     /// </summary>
     public class DbfRecord
     {
-
-
-        /// <summary>
-        /// The current memo data source
-        /// </summary>
-        public DbfMemo MemoSource { get; set; }
-
-
-
-        public byte[] RecordData => _mData;
-
         /// <summary>
         /// Dbf data are a mix of ASCII characters and binary, which neatly fit in a byte array.
         /// BinaryWriter would esentially perform the same conversion using the same Encoding class.
@@ -75,25 +65,25 @@ namespace Bodoconsult.Database.Dbase.DbReader
         /// </summary>
         private readonly byte[] _mEmptyRecord;
 
-
         //array used to clear decimals, we can clear up to 40 decimals which is much more than is allowed under DBF spec anyway.
         //Note: 48 is ASCII code for 0.
-        private static readonly byte[] MDecimalClear = {48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,
+        private static readonly byte[] MDecimalClear =
+        [
+            48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,
                                                                48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,
-                                                               48,48,48,48,48,48,48,48,48,48,48,48,48,48,48};
-
+                                                               48,48,48,48,48,48,48,48,48,48,48,48,48,48,48
+        ];
 
         //Warning: do not make this one static because that would not be thread safe!! The reason I have 
         //placed this here is to skip small memory allocation/deallocation which fragments memory in .net.
-        private readonly int[] _mTempIntVal = { 0 };
+        private readonly int[] _mTempIntVal = [0];
 
 
         //Ascii Encoder
         //private static readonly Encoding ASCIIEncoder = Encoding.GetEncoding(1250);
         private static readonly Encoding AsciiEncoder = Encoding.GetEncoding(_codePage);
 
-
-        private static int _codePage;
+        private static int _codePage = 850;
 
         /// <summary>
         /// 
@@ -113,7 +103,15 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
         }
 
+        /// <summary>
+        /// The current memo data source
+        /// </summary>
+        public DbfMemo MemoSource { get; set; }
 
+        /// <summary>
+        /// Current record data
+        /// </summary>
+        public byte[] RecordData => _mData;
 
         /// <summary>
         /// Set string data to a column, if the string is longer than specified column length it will be truncated!
@@ -124,7 +122,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
         /// <returns></returns>
         public string this[int nColIndex]
         {
-
             set
             {
 
@@ -213,16 +210,15 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
                             }
                             else
+                            {
                                 cNum = value.ToCharArray();
-
+                            }
 
                             //throw an exception if integer overflow would occur
                             if (!AllowIntegerTruncate && cNum.Length > ocol.Length - ocol.DecimalCount - 1)
                             {
                                 throw new DbfDataTruncateException("Value not set. Integer does not fit and would be truncated. AllowIntegerTruncate is set to false. To supress this exception set AllowIntegerTruncate to true, although that is not recomended.");
                             }
-
-
 
                             //clear all decimals, set to 0.
                             //-----------------------------------------------------
@@ -231,13 +227,13 @@ namespace Bodoconsult.Database.Dbase.DbReader
                             //clear all numbers, set to [space].
                             Buffer.BlockCopy(_mEmptyRecord, 0, _mData, ocol.DataAddress, ocol.Length - ocol.DecimalCount);
 
-
-
                             //set decimal numbers, CAREFUL not to overflow buffer! (truncate instead)
                             //-----------------------------------------------------------------------
-                            if (nidxDecimal > -1)
+                            if (nidxDecimal > -1 && cDec is not null)
                             {
-                                var nLen = cDec.Length > ocol.DecimalCount ? ocol.DecimalCount : cDec.Length;
+                                var len = cDec.Length;
+
+                                var nLen = len > ocol.DecimalCount ? ocol.DecimalCount : len;
                                 AsciiEncoder.GetBytes(cDec, 0, nLen, _mData, ocol.DataAddress + ocol.Length - ocol.DecimalCount);
                             }
 
@@ -246,15 +242,10 @@ namespace Bodoconsult.Database.Dbase.DbReader
                             var nNumLen = cNum.Length > ocol.Length - ocol.DecimalCount - 1 ? ocol.Length - ocol.DecimalCount - 1 : cNum.Length;
                             AsciiEncoder.GetBytes(cNum, 0, nNumLen, _mData, ocol.DataAddress + ocol.Length - ocol.DecimalCount - nNumLen - 1);
 
-
                             //set decimal point
                             //-----------------------------------------------------------------------
                             _mData[ocol.DataAddress + ocol.Length - ocol.DecimalCount - 1] = (byte)'.';
-
-
                         }
-
-
                     }
                     else if (ocolType == DbfColumn.DbfColumnType.Integer)
                     {
@@ -284,7 +275,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
                         {
                             _mData[ocol.DataAddress] = (byte)'T';
                         }
-                        else if (value == " " || value == "?")
+                        else if (value is " " or "?")
                         {
                             _mData[ocol.DataAddress] = (byte)'?';
                         }
@@ -305,7 +296,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
                         {
                             throw new InvalidOperationException("Date could not be parsed from source string! Please parse the Date and set the value (you can try using DateTime.Parse() or DateTime.TryParse() functions).");
                         }
-
                     }
                     else if (ocolType == DbfColumn.DbfColumnType.Binary)
                     {
@@ -316,9 +306,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
                     {
                         throw new Exception($"Unrecognized data type: {ocolType}");
                     }
-
                 }
-
             }
 
             get
@@ -336,9 +324,9 @@ namespace Bodoconsult.Database.Dbase.DbReader
                     return s;
                 }
 
-                var result = int.TryParse(s, 
-                    NumberStyles.Integer, 
-                    CultureInfo.InvariantCulture, 
+                var result = int.TryParse(s,
+                    NumberStyles.Integer,
+                    CultureInfo.InvariantCulture,
                     out var pointer);
 
                 if (result)
@@ -347,59 +335,49 @@ namespace Bodoconsult.Database.Dbase.DbReader
                 }
 
                 return s;
-
             }
         }
 
-
         /// <summary>
-        /// Get date value.
+        /// Get date value
         /// </summary>
-        /// <param name="nColIndex"></param>
-        /// <returns></returns>
+        /// <param name="nColIndex">Column index</param>
+        /// <returns>Datetime value</returns>
         public DateTime GetDateValue(int nColIndex)
         {
             var ocol = Header[nColIndex];
 
             if (ocol.ColumnType != DbfColumn.DbfColumnType.Date)
             {
-                throw new Exception("Invalid data type. Column '" + ocol.Name + "' is not a date column.");
+                throw new Exception($"Invalid data type. Column '{ocol.Name}' is not a date column.");
             }
-
 
             var sDateVal = AsciiEncoder.GetString(_mData, ocol.DataAddress, ocol.Length);
             return DateTime.ParseExact(sDateVal, "yyyyMMdd", CultureInfo.InvariantCulture);
-
         }
 
-
         /// <summary>
-        /// Get date value.
+        /// Get date value
         /// </summary>
-        /// <param name="nColIndex"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="nColIndex">Column index</param>
+        /// <param name="value">value to parse</param>
         public void SetDateValue(int nColIndex, DateTime value)
         {
 
             var ocol = Header[nColIndex];
             var ocolType = ocol.ColumnType;
 
-
             if (ocolType == DbfColumn.DbfColumnType.Date)
             {
-
                 //Format date and set value, date format is like this: yyyyMMdd
                 //-------------------------------------------------------------
                 AsciiEncoder.GetBytes(value.ToString("yyyyMMdd"), 0, ocol.Length, _mData, ocol.DataAddress);
-
             }
             else
             {
                 throw new Exception($"Invalid data type. Column is of '{ocol.ColumnType}' type, not date.");
             }
         }
-
 
         /// <summary>
         /// Clears all data in the record.
@@ -408,9 +386,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
         {
             Buffer.BlockCopy(_mEmptyRecord, 0, _mData, 0, _mEmptyRecord.Length);
             RecordIndex = -1;
-
         }
-
 
         /// <summary>
         /// returns a string representation of this record.
@@ -434,7 +410,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
         /// count how many records were read, and that's exactly what CDbfFile does.
         /// </remarks>
         public int RecordIndex { get; set; } = -1;
-
 
         /// <summary>
         /// Returns/sets flag indicating whether this record was tagged deleted. 
@@ -470,7 +445,6 @@ namespace Bodoconsult.Database.Dbase.DbReader
         /// </summary>
         public bool AllowDecimalTruncate { get; set; }
 
-
         /// <summary>
         /// Specifies whether integer portion of numbers can be truncated.
         /// If false and integer digits overflow the field, an exception is thrown. 
@@ -478,12 +452,10 @@ namespace Bodoconsult.Database.Dbase.DbReader
         /// </summary>
         public bool AllowIntegerTruncate { get; set; }
 
-
         /// <summary>
         /// Returns header object associated with this record.
         /// </summary>
         public DbfHeader Header { get; }
-
 
         /// <summary>
         /// Get column by index.
@@ -527,9 +499,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
         protected internal void Write(Stream osw)
         {
             osw.Write(_mData, 0, _mData.Length);
-
         }
-
 
         /// <summary>
         /// Writes data to stream. Make sure stream is positioned correctly because we simply write out data to it, and clear the record.
@@ -544,9 +514,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
             {
                 Clear();
             }
-
         }
-
 
         /// <summary>
         /// Read record from stream. Returns true if record read completely, otherwise returns false.

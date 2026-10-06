@@ -29391,10 +29391,60 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "apps/BodoWebMailer/Db_Install/SQLServer_Install.md",
+      "source_relative_path": "apps/BodoFileTransfer/BodoFileTransfer/Db_Install/SQLServer_Install.md",
       "output": {
         ".html": {
-          "relative_path": "apps/BodoWebMailer/Db_Install/SQLServer_Install.html"
+          "relative_path": "apps/BodoFileTransfer/BodoFileTransfer/Db_Install/SQLServer_Install.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "apps/BodoWebMailer/BodoWebMailer/Db_Install/SQLServer_Install.md",
+      "output": {
+        ".html": {
+          "relative_path": "apps/BodoWebMailer/BodoWebMailer/Db_Install/SQLServer_Install.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/BodoFileTransfer/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFileTransfer/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/BodoFileTransfer/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFileTransfer/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/BodoFtpTransfer/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFtpTransfer/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/BodoFtpTransfer/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFtpTransfer/ReleaseNotes.html"
         }
       },
       "version": ""
@@ -29557,6 +29607,49 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.App.BackgroundService/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.DataProtection/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.DataProtection/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.DataProtection/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.DataProtection/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.DataProtection/Typography.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.DataProtection/Typography.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.App.DataProtection/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.DataProtection/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.App.DataProtection/toc.json"
         }
       },
       "version": ""
@@ -29967,6 +30060,237 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Charting/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Dbase/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Dbase/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Dbase/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Dbase/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Database.Dbase/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Dbase/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Database.Dbase/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Postgres/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Postgres/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Postgres/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Postgres/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Database.Postgres/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Postgres/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Database.Postgres/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.SqlClient/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.SqlClient/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.SqlClient/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.SqlClient/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Database.SqlClient/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.SqlClient/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Database.SqlClient/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Sqlite/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Sqlite/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Sqlite/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Sqlite/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Database.Sqlite/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Sqlite/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Database.Sqlite/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database/ReleaseNotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Database/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Database/toc.json"
         }
       },
       "version": ""
@@ -30617,6 +30941,76 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoFileTransfer.Business.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoFileTransfer.Business.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoFileTransfer.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoFileTransfer.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoFileTransfer.Ui.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoFileTransfer.Ui.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoFileTransfer.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoFileTransfer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoFtpTransfer.Business.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoFtpTransfer.Business.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoFtpTransfer.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoFtpTransfer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_BodoFtpTransferBusiness.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_BodoFtpTransferBusiness.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "licenses/license_BodoWebMailer.Business.md",
       "output": {
         ".html": {
@@ -30707,6 +31101,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.DataProtection.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.DataProtection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.Test.md",
       "output": {
         ".html": {
@@ -30721,6 +31125,16 @@
       "output": {
         ".html": {
           "relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Test.html"
         }
       },
       "version": ""
@@ -30887,6 +31301,136 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Dbase.Ef.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Dbase.Ef.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Dbase.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Dbase.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Ef.SqlServer.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Ef.SqlServer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Ef.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Ef.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Ef.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Ef.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Postgres.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Postgres.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Postgres.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Postgres.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.SqlClient.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.SqlClient.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.SqlClient.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.SqlClient.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Sqlite.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Sqlite.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Sqlite.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Sqlite.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Test.Utilities.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Test.Utilities.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Database.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Database.Test.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "licenses/license_Bodoconsult.Drawing.SkiaSharp.md",
       "output": {
         ".html": {
@@ -30931,6 +31475,16 @@
       "output": {
         ".html": {
           "relative_path": "licenses/license_Bodoconsult.I18N.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_Bodoconsult.Office.Test.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_Bodoconsult.Office.Test.html"
         }
       },
       "version": ""
@@ -31087,6 +31641,26 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "licenses/license_EfConsoleApp1.Model.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_EfConsoleApp1.Model.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/license_EfConsoleApp1.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/license_EfConsoleApp1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "licenses/license_GrpcServerApp.Grpc.Common.md",
       "output": {
         ".html": {
@@ -31211,6 +31785,36 @@
       "output": {
         ".html": {
           "relative_path": "src/Bodoconsult.App/CONTRIBUTING.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Bodoconsult.Database.Dbase/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Bodoconsult.Database.Dbase/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Bodoconsult.Database.Ef/changes.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Bodoconsult.Database.Ef/changes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Bodoconsult.Database/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Bodoconsult.Database/README.html"
         }
       },
       "version": ""

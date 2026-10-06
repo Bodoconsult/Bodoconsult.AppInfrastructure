@@ -27,12 +27,12 @@ public sealed class MassMailHandler : IMassMailHandler
     /// <summary>
     /// List of all MailReceivers
     /// </summary>
-    public List<MailReceiver> MailReceivers { get; } = new();
+    public List<MailReceiver> MailReceivers { get; } = [];
 
     /// <summary>
     /// List with file paths to be attached to the mail
     /// </summary>
-    public List<string> Attachments { get; } = new();
+    public List<string> Attachments { get; } = [];
 
     /// <summary>
     /// Subject for the mass mail

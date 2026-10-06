@@ -8,7 +8,11 @@ using Bodoconsult.Database.Dbase.Interfaces;
 
 namespace Bodoconsult.Database.Dbase.FileImport;
 
-public abstract class FileImportBaseTask<TData>: IFileImportTask<TData> where TData : class, new()
+/// <summary>
+/// Base file import task
+/// </summary>
+/// <typeparam name="TData"></typeparam>
+public abstract class BaseFileImportTask<TData>: IFileImportTask<TData> where TData : class, new()
 {
     #region Public Properties
 
@@ -79,7 +83,7 @@ public abstract class FileImportBaseTask<TData>: IFileImportTask<TData> where TD
     /// <param name="folderPath">Current folder path the file is in</param>
     /// <param name="log">Current logger instance</param>
     /// <param name="mapToEntityDelegate">Delegate to map a record to an entity</param>
-    protected FileImportBaseTask(string name, string folderPath, IAppLoggerProxy log, MapToEntityDelegate<TData> mapToEntityDelegate)
+    protected BaseFileImportTask(string name, string folderPath, IAppLoggerProxy log, MapToEntityDelegate<TData> mapToEntityDelegate)
     {
         Name = name;
         FolderPath = folderPath ?? throw new ArgumentNullException(nameof(folderPath));
@@ -92,6 +96,9 @@ public abstract class FileImportBaseTask<TData>: IFileImportTask<TData> where TD
 
     #endregion Construction
 
+    /// <summary>
+    /// Execute the import task
+    /// </summary>
     public abstract void Execute();
 
     /// <summary>

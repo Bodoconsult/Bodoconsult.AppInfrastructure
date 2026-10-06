@@ -21,7 +21,7 @@ public sealed class MailHandler : IMailHandler
     private readonly IAppLoggerProxy _logger;
     private readonly IMailer _mailer;
     private readonly IMailStorageService _service;
-    private readonly List<string> _tempFiles = new();
+    private readonly List<string> _tempFiles = [];
 
     /// <summary>
     /// Delegate for handling status messages for console

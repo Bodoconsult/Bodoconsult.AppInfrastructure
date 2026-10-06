@@ -14,8 +14,7 @@ namespace Bodoconsult.Database.DataTableBackup.Formatters
     /// </summary>
     public class DefaultCsvDataTableBackupFormatter : IDataTableBackupFormatter
     {
-
-        private readonly List<string> _properties = new();
+        private readonly List<string> _properties = [];
         private int _propCount;
 
         /// <summary>

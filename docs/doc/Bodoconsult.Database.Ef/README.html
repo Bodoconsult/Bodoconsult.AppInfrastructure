@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Bodoconsult.Database.Ef | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Bodoconsult.Database.Ef | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Ef/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="bodoconsultdatabaseef">Bodoconsult.Database.Ef</h1>
+
+<h1 id="what-does-the-library">What does the library</h1>
+<p>Bodoconsult.Database.Ef is a library based on Microsoft Entity Framework Core (EFCore). EFCore is an object-relational-mapper (ORM) bringing the relational database model together with object ortiented programming languages.</p>
+<h1 id="how-to-use-the-library">How to use the library</h1>
+<p>The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<blockquote>
+<p><a href="#overview">Overview</a></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#points-you-should-know-before-using-efcore">Points you should know before using EFCore</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#recommened-layers-for-database-access-in-an-app">Recommened layers for database access in an app</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#efcore-working-modes">EfCore working modes</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href=""></a></p>
+</blockquote>
+</blockquote>
+<p>--</p>
+<blockquote>
+<p><a href="#how-to-use-bodoconsultdatabaseef-in-database-service-layer">How to use Bodoconsult.Database.Ef in database service layer</a></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#main-classes-in-bodoconsultdatabaseef">Main classes in Bodoconsult.Database.Ef</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#the-entity-interfaces-ientityrequirementsguid-and-ientityrequirements">The entity interfaces IEntityRequirementsGuid and IEntityRequirements</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#the-repository-classes-based-on-interfaces-irepository-and-irepositoryguid">The repository classes based on interfaces IRepository and IRepositoryGuid</a></p>
+</blockquote>
+</blockquote>
+<p>--</p>
+<blockquote>
+<p><a href="#setting-up-the-database-context-with-bodoconsultdatabaseef">Setting up the database context with Bodoconsult.Database.Ef</a></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#entities">Entities</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#entity-configuration">Entity configuration</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#database-context">Database context</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#enhance-database-context-for-target-database-type">Enhance database context for target database type</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#create-a-dbcontext-factory">Create a DbContext factory</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#create-a-unit-of-work-based-on-sqlserverunitofwork">Create a unit of work based on SqlServerUnitOfWork</a></p>
+</blockquote>
+</blockquote>
+<p>--</p>
+<blockquote>
+<p><a href="#handling-evolving-database-schemas-migrations">Handling evolving database schemas: Migrations</a></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#overview-migrations">Overview migrations</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#entity-framework-core-tools-efcore-tools">Entity Framework Core tools (EFCore tools)</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#how-to-make-db-schema-changes">How to make DB schema changes</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#existing-databases">Existing databases</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#example-for-efcore-migrations-followed-by-a-data-migration">Example for EfCore migrations followed by a data migration</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#create-model-data-converters-basemodeldataconverter">Create model data converters: BaseModelDataConverter</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#create-a-model-data-conversion-handler-factory-imodeldataconvertershandlerfactory">Create a model data conversion handler factory: IModelDataConvertersHandlerFactory</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href="#running-schema-and-data-migrations-imigrationcontroller">Running schema and data migrations: IMigrationController</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a href=""></a></p>
+</blockquote>
+</blockquote>
+<h1 id="overview">Overview</h1>
+<p>Bodoconsult.Database.Ef is intended to work as a separation layer between EFCore database layer and database service layer. The main classes IUnitOfWork, DbContextScope, DbReadOnlyScope, IRepository and IRepositoryGuid hide the EFCore specific implementations behind a general abstraction implementable for other database technologies too. This makes using the database layer easier to use for people with limited skills in EFCore.</p>
+<p>To abstract database layer may be a good idea especially if you have EFCore changing history in mind. MS restarted EF already multiple times with nearly always fully incompatible codebases causing a lot of migration work at their customers side. This is a reason some companies and developers are not eager to work with EFCore.</p>
+<p>Most examples you will find for EFCore are based on code-first access to EFCore. If you have to migrate legacy databases at customer side already working you will the database-first access to EFCore. These real world cases are generally much more complex then code-first but EFCore may add additional complexity.</p>
+<h2 id="points-you-should-know-before-using-efcore">Points you should know before using EFCore</h2>
+<p>To employ EFCore in a database project should be an explicit and well defined decision. If your project may gets more complex and is potentially holding more data in the database data this decision can be crucial for the success of the projects.</p>
+<p>Our experience as a rule of thumb is the more complex and the more data a database potentially contains the more crucial is performance and the more critical is the usage of EFCore.</p>
+<p>There are alternatives for EFCore: You can use another ORM mapper like lightweight Dapper or you doing the mapping manually yorself based System.Data classes like DataTable and DataReader. The later might lead to the most performant code but is the most time consuming developing way.</p>
+<p>Advantages of EFCore are</p>
+<ul>
+<li><p>Entities are typesafe allowing better code quality.</p>
+</li>
+<li><p>Loading entities is easier for the developer than to hard code it with basic System.Data classes like DataTable and DataReader.</p>
+</li>
+<li><p>Use of LINQ and similar technologies simplifies code developement</p>
+</li>
+<li><p>EFCore is usable with a lot of different database like SqlServer, Oracle, MySql, Sqlite etc.</p>
+</li>
+</ul>
+<p>Disadvantages of EFCore are:</p>
+<ul>
+<li><p>Loading an entity with EFCore means basically loading all properties from the database only if there is needed only one property of the entity. There are workarounds that but they are time consuming to implement and therefore weakening the advantages of EFCore.</p>
+</li>
+<li><p>EFCore SQL generation may created highly complex and bad performing SQL code from LINQ queries</p>
+</li>
+<li><p>Performance drawbacks due to additional EFCore internal loading of entities from database especially in default untracked mode when saving updated data. Up to EFCore 3.1. the tracked mode was default. This means EFore tracks the changes made at a entity internally until entity is saved to database again. This default setting didn't help in many real life scenarios where the data are given i.e. to a GUI client via a non-EFCore technology like GRPC and given back to EFCore later in an updated state same way. Nowadays loading entities is done by EFCore is done in untracked mode by default.</p>
+</li>
+<li><p>EFCore is an additonal layer requiring a lot of ressources compared to plain SQL. This might be an issue for bigger data management processes like data migrations. In such cases you have to weight typesafety and unit testability against performance.</p>
+</li>
+</ul>
+<h2 id="recommened-layers-for-database-access-in-an-app">Recommened layers for database access in an app</h2>
+<p>In the following documentation we use the following (uncomplete) layer model of an app:</p>
+<ul>
+<li><p><strong>Business logic layer</strong>: Implements business logic but no database details. The database is access only via Database service layer.</p>
+</li>
+<li><p><strong>Database service layer</strong>: Implements database access logic based on System.Data, EFCore, Dapper etc.</p>
+</li>
+<li><p><strong>Database layer</strong>: This layer is not urgently needed but simplifies the access to EFCore in Bodoconsult.Database.Ef. It provides general functionality frequently used generally like basic connection handling or entity related actions like adding, updating, deleting and selecting entities in an generic manner. Its usage simplifies the database service layer code.</p>
+</li>
+<li><p><strong>Model layer</strong>: Defines the entities (tables) used in the database.</p>
+</li>
+</ul>
+<h2 id="efcore-working-modes">EfCore working modes</h2>
+<ul>
+<li><p><strong>Attached and tracked entities</strong>: Attached means the DBContext knows the entity. Attached entities are normally tracked by the DBContext meaning all changes on the entity done in the DbContext are known to the DBContext. This is the default mode.</p>
+</li>
+<li><p><strong>Attached and untracked entities</strong>: Loading an entity untracked means the DBContext knows the entity but does not care for changes to it. Not caring for changes makes loading of the entities faster. This mode is normally used to load entities transferred to other data formats like a DTO if tracking makis no sense at all.</p>
+</li>
+<li><p><strong>Unattached and untracked entities</strong>: As soon as you have an entity created by another DBContext then the current one it is unattached to this DBContext. You can attach it to the DBContext if required producing an request to the database to load the state of the entity in the database for resolving changes to the entity.</p>
+</li>
+</ul>
+<p>For server apps employing a GUI or a webservice or similar the attached and tracked mode may not be very helpful most of the times. Imagine a table Customer the GUI client will edit and store then back to database. For such scenarios you have to employ some kind of a DTO to transfer data maybe via GRPC from server to client and return. Loading the entities from database will be done probably in two different DBContexts. So the tracking will not be very helpful at least in the first DBContext.</p>
+<h1 id="how-to-use-bodoconsultdatabaseef-in-database-service-layer">How to use Bodoconsult.Database.Ef in database service layer</h1>
+<h2 id="main-classes-in-bodoconsultdatabaseef">Main classes in Bodoconsult.Database.Ef</h2>
+<p>The business logic layer should not access the database layer directly. A direct access to database layer weakens replaceablility and testability of the business logic layer.</p>
+<p>To use the database layer from database service layer you normally need the following classes:</p>
+<ul>
+<li><p><strong>IUnitOfWork</strong>: The central class providing database service access.</p>
+</li>
+<li><p><strong>DbContextScope</strong> and <strong>DbReadOnlyScope</strong>: This both classes represent the database connection and all its configuration required for EFCore. To access entities in the database you need to have a valid instance of one of those classes. Use IuniOfWork.GetContextScope() and IUnitOfWork.GetReadOnlyContextScope() to get this instances.</p>
+</li>
+<li><p><strong>IRepository</strong> and <strong>IRepositoryGuid</strong>: Use both interfaces for accessing data from entity tables, update data in the tables etc. Use IUnitOfWork.GetRepository<tentity> and IUnitOfWork.GetRepositoryGuid<tentity> to access data from a certain entity type TEntity.</tentity></tentity></p>
+</li>
+</ul>
+<p>The following code shows the basic idea of getting data from a table readonly:</p>
+<pre><code class="lang-csharp">// Read data from database
+using (uow.GetReadOnlyContextScope())   // Opening connection and closing it on Dispose() of uow
+{
+    var repo = uow.GetRepository&lt;Users&gt;();
+    var result = repo.Any(x =&gt; x.UserTypeId &gt; 0);
+    Assert.That(result, Is.True);
+}
+</code></pre>
+<p>The following code shows the basic idea of adding a row to a table. Updating, deleting and selecting entities data are done similar.</p>
+<pre><code class="lang-csharp">// Write data to database
+using (uow.GetReadOnlyContextScope())   // Opening connection and closing it on Dispose() of uow
+{
+    var repo = uow.GetRepository&lt;Users&gt;();
+    
+    var newEntity = new Users():
+    newEntity.Name = &quot;Blubb&quot;;
+
+    repo.Add(newEntity);    
+
+    scope.SaveChanges();
+}
+</code></pre>
+<p>The following chart shows the intended (uncomplete) database related layering of an app using Bodoconsult.Database.Ef:</p>
+<p><img src="DbLayer.png" alt="Database layer"></p>
+<h2 id="the-entity-interfaces-ientityrequirementsguid-and-ientityrequirements">The entity interfaces IEntityRequirementsGuid and IEntityRequirements</h2>
+<p>Entities to be used with Bodoconsult.Database.Ef have to implement interface IEntityRequirements or IEntityRequirementsGuid.</p>
+<p>Entities having an integer primary key field have to implement IEntityRequirements interface:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Defines basic requirements for POCO entity properties with an integer ID column as primary key field
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;May be used to force creation of DateCreated, DateChanged, UserCreated, userChanged properties for an entity.
+/// If all your POCO entities implement this interface or a derivative of it, it may be used to collect repositories automatically via reflection.&lt;/remarks&gt;
+public interface IEntityRequirements
+{
+    /// &lt;summary&gt;
+    /// Primary key column with unique values
+    /// &lt;/summary&gt;
+    int ID { get; set; }
+
+
+    /// &lt;summary&gt;
+    /// Row version to solve concurrency issues
+    /// &lt;/summary&gt;
+    byte[] RowVersion { get; set; }
+
+}
+</code></pre>
+<p>Entities requiring a GUID based primary key field have to implement IEntityRequirementsGuid interface:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Defines basic requirements for POCO entity properties with an uniqueidentifier ID column as primary key field
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;May be used to force creation of DateCreated, DateChanged, UserCreated, userChanged properties for a entity.
+/// If all your POCO entities implement this interface or a derivative of it, it may be used to collect repositories automatically via reflection.&lt;/remarks&gt;
+public interface IEntityRequirementsGuid
+{
+    /// &lt;summary&gt;
+    /// Primary key column with unique values
+    /// &lt;/summary&gt;
+    Guid Uid { get; set; }
+
+
+    /// &lt;summary&gt;
+    /// Row version to solve concurrency issues
+    /// &lt;/summary&gt;
+    byte[] RowVersion { get; set; }
+
+}
+</code></pre>
+<h2 id="the-repository-classes-based-on-interfaces-irepository-and-irepositoryguid">The repository classes based on interfaces IRepository and IRepositoryGuid</h2>
+<p>The generic implementations of the interfaces IRepository and IRepositoryGuid are intended to be used for a simplified access to data in a database table.</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Interface for StSys data repositories
+/// &lt;/summary&gt;
+/// &lt;typeparam name=&quot;TEntity&quot;&gt;&lt;/typeparam&gt;
+public interface IRepository&lt;TEntity&gt; where TEntity : class, IEntityRequirements, new()
+{
+    /// &lt;summary&gt;
+    /// Any items in set data set
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;true if any items&lt;/returns&gt;
+    bool Any();
+
+    /// &lt;summary&gt;
+    /// Any items in set data set
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;where&quot;&gt;condition&lt;/param&gt;
+    /// &lt;returns&gt;true if any items&lt;/returns&gt;
+    bool Any(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Any items in set data set (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;true if any items&lt;/returns&gt;
+    Task&lt;bool&gt; AnyAsync();
+
+    /// &lt;summary&gt;
+    /// Any items in set data set (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;where&quot;&gt;condition&lt;/param&gt;
+    /// &lt;returns&gt;true if any items&lt;/returns&gt;
+    Task&lt;bool&gt; AnyAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Create a new entity. Requires the ID to be 0. If the ID is not 0 the existing entity with this ID is updated
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;entity to add&lt;/param&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    TEntity Add(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Add a list of entities to the store
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entities&quot;&gt;list of entities&lt;/param&gt;
+    void Add(IEnumerable&lt;TEntity&gt; entities);
+
+    /// &lt;summary&gt;
+    /// Create or update an entity
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;entity to add&lt;/param&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    TEntity AddOrUpdate(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Create a new entity (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;entity to add&lt;/param&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    Task&lt;TEntity&gt; AddAsync(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Add a list of entities to the store (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entities&quot;&gt;list of entities&lt;/param&gt;
+    Task AddAsync(IEnumerable&lt;TEntity&gt; entities);
+
+    /// &lt;summary&gt;
+    /// Add a list of entities to the store. Does not check nested entities. Use normally with plain new pocos to speed up mass imports
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entities&quot;&gt;list of entities&lt;/param&gt;
+    void AddBatch(IEnumerable&lt;TEntity&gt; entities);
+
+    /// &lt;summary&gt;
+    /// Delete entities 
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    bool Delete(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Deletes a entity 
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;Entity to delete&lt;/param&gt;
+    /// &lt;returns&gt;true on success&lt;/returns&gt;
+    bool Delete(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Delete entities (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    Task&lt;bool&gt; DeleteAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Deletes a entity  (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;Entity to delete&lt;/param&gt;
+    /// &lt;returns&gt;true on success&lt;/returns&gt;
+    Task&lt;bool&gt; DeleteAsync(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Drop all entities
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    void DropAll();
+
+    /// &lt;summary&gt;
+    /// Get an untracked entity using delegate
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    TEntity GetOne(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Get an untracked entity using delegate
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;param name=&quot;loadNestedEntities&quot;&gt;Load all nested entities&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    TEntity GetOne(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where, bool loadNestedEntities);
+
+    /// &lt;summary&gt;
+    /// Get an untracked entity using delegate with selected includes
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;param name=&quot;includePaths&quot;&gt;Load all entities from the selected apths. Paths separated by semicolon.&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    TEntity GetOneInclude(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where, string includePaths);
+
+    /// &lt;summary&gt;
+    /// Get a tracked entity using delegate (
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    TEntity GetOneTracked(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Get a tracked entity using delegate (
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;param name=&quot;loadNestedEntities&quot;&gt;Load all nested entities&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    TEntity GetOneTracked(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where, bool loadNestedEntities);
+
+    /// &lt;summary&gt;
+    /// Get a tracked entity using delegate with selected includes
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;param name=&quot;includePaths&quot;&gt;Load all entities from the selected apths. Paths separated by semicolon.&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    TEntity GetOneTrackedInclude(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where, string includePaths);
+
+    /// &lt;summary&gt;
+    /// Get an entity using delegate (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    Task&lt;TEntity&gt; GetOneAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Get an entity using delegate (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection expression&lt;/param&gt;
+    /// &lt;param name=&quot;loadNestedEntities&quot;&gt;Load all nested entities&lt;/param&gt;
+    /// &lt;returns&gt;Requested entity or null if entity not found&lt;/returns&gt;
+    Task&lt;TEntity&gt; GetOneAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where, bool loadNestedEntities);
+
+    /// &lt;summary&gt;
+    /// Get all entities as IQueryable. Entities will be loaded untracked.
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Queryable list of all entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetAll();
+
+    /// &lt;summary&gt;
+    /// Get all entities as IQueryable. Entities will be loaded untracked.
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Queryable list of all entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetAll(params Expression&lt;Func&lt;TEntity, object&gt;&gt;[] includeProperties);
+
+    /// &lt;summary&gt;
+    /// Gets entities using selection delegate. Entities will be loaded tracked.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection delegate&lt;/param&gt;
+    /// &lt;returns&gt;List of entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetListTracked(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Gets entities using selection delegate. Entities will be loaded tracked.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection delegate&lt;/param&gt;
+    /// &lt;param name=&quot;includeProperties&quot;&gt;Related properties to include&lt;/param&gt;
+    /// &lt;returns&gt;List of entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetListTracked(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where, params Expression&lt;Func&lt;TEntity, object&gt;&gt;[] includeProperties);
+
+    /// &lt;summary&gt;
+    /// Get all entities as IQueryable. Entities will be loaded tracked. Entities will be loaded tracked.
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Queryable list of all entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetAllTracked();
+
+    /// &lt;summary&gt;
+    /// Get all entities as IQueryable. Entities will be loaded tracked. Entities will be loaded tracked.
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Queryable list of all entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetAllTracked(params Expression&lt;Func&lt;TEntity, object&gt;&gt;[] includeProperties);
+
+    /// &lt;summary&gt;
+    /// Gets entities using selection delegate
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection delegate&lt;/param&gt;
+    /// &lt;returns&gt;List of entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetList(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Gets entities using selection delegate
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;where&quot;&gt;selection delegate&lt;/param&gt;
+    /// &lt;param name=&quot;includeProperties&quot;&gt;Related properties to include&lt;/param&gt;
+    /// &lt;returns&gt;List of entities&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; GetList(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where, params Expression&lt;Func&lt;TEntity, object&gt;&gt;[] includeProperties);
+
+    /// &lt;summary&gt;
+    /// Get number of entities
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Number of entities found&lt;/returns&gt;
+    int Count();
+
+    /// &lt;summary&gt;
+    /// Get number of entities
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Number of entities found&lt;/returns&gt;
+    int Count(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Get number of entities (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Number of entities found&lt;/returns&gt;
+    Task&lt;int&gt; CountAsync();
+
+    /// &lt;summary&gt;
+    /// Get number of entities (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;Number of entities found&lt;/returns&gt;
+    Task&lt;int&gt; CountAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; where);
+
+    /// &lt;summary&gt;
+    /// Update a entity and all nested enties using the Microsoft style. Prefer usage of &lt;see cref=&quot;Update&quot;/&gt; or
+    /// &lt;see cref=&quot;UpdateTopLevelEntityOnly&quot;/&gt;due to
+    /// better performance and more stable behaviour in a disconnected scenario
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt;
+    /// of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;Entity to update&lt;/param&gt;
+    /// &lt;returns&gt;true on success&lt;/returns&gt;
+    /// &lt;remarks&gt;Uses EFCore default implementation: if the entity is detached, it will be attached and set to Modified state and all
+    ///  nested enties will be set to Modified state too. This behaviour may result in lots of (unncessary) database updates and
+    /// as result of them index fragmentation in the database.&lt;/remarks&gt;
+    TEntity UpdateMs(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Update a entity and all nested enties
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;Entity to update&lt;/param&gt;
+    /// &lt;returns&gt;true on success&lt;/returns&gt;
+    ///  &lt;remarks&gt;Uses own update implementation: detached entities will be attached and all nested entities in entity graph will be checked for changes.
+    /// This behaviour produces much less update statements in the database.&lt;/remarks&gt;
+    TEntity Update(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Update a entity but no nested entities
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;Entity to update&lt;/param&gt;
+    /// &lt;returns&gt;true on success&lt;/returns&gt;
+    /// &lt;remarks&gt;Uses own update implementation: updates only the etity itself and no nested enties.&lt;/remarks&gt;
+    TEntity UpdateTopLevelEntityOnly(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Update a entity (asyncron version)
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;Entity to update&lt;/param&gt;
+    /// &lt;returns&gt;true on success&lt;/returns&gt;
+    Task&lt;TEntity&gt; UpdateAsync(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Attach a detached entity. Normally not needed!!!
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;entity to attach&lt;/param&gt;
+    /// &lt;returns&gt;returns th attached entity&lt;/returns&gt;
+    TEntity Attach(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Attach a detached entity if it is not attached. Normally not needed!!!
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;. Does not commit the entity to database. Call &lt;see cref=&quot;IContextScope.SaveChanges()&quot;/&gt; of the current UnitOfWork.&lt;/remarks&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;entity to attach&lt;/param&gt;
+    /// &lt;returns&gt;returns the attached entity&lt;/returns&gt;
+    TEntity AttachIfNot(TEntity entity);
+
+    /// &lt;summary&gt;
+    /// Bulk insert data to the database
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;entities&quot;&gt;Insert data in a table by bulkcopying it&lt;/param&gt;
+    void BulkInsertAll(IEnumerable&lt;TEntity&gt; entities);
+
+    /// &lt;summary&gt;
+    /// Async bulk insert data to the database
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;entities&quot;&gt;&lt;/param&gt;
+    Task BulkInsertAllAsync(IEnumerable&lt;TEntity&gt; entities);
+
+    /// &lt;summary&gt;
+    /// Get all include paths for the type TEnity
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    IEnumerable&lt;string&gt; GetIncludePaths();
+
+    /// &lt;summary&gt;
+    /// Load all entites for a query result
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;query&quot;&gt;Query to prepare for loading all nested entities for the result&lt;/param&gt;
+    /// &lt;returns&gt;Query prepare for loading all nested entities for the result&lt;/returns&gt;
+    IQueryable&lt;TEntity&gt; LoadAllNestedEntities(IQueryable&lt;TEntity&gt; query);
+}
+</code></pre>
+<h1 id="setting-up-the-database-context-with-bodoconsultdatabaseef">Setting up the database context with Bodoconsult.Database.Ef</h1>
+<h2 id="process-of-setting-up-the-database-context">Process of setting up the database context</h2>
+<p>The unit of work should be loaded as a singleton instance on app start. During instanciation the DbContext is created, the necessary migrations are executed and if needed existing data are migrated or a fresh database is seeded.</p>
+<p><img src="UnitOfWork.png" alt="Unit of work"></p>
+<h2 id="entities">Entities</h2>
+<p>If talking about Entity Framework an entity is a simple class representing a table in the database. Sometimes entities are named <em>plain old code objects</em> (POCO) too.</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Represents an app setting item
+/// &lt;/summary&gt;
+public class AppSettings : IEntityRequirements
+{
+    public int ID { get; set; }
+
+    /// &lt;summary&gt;
+    /// Row version to solve concurrency issues
+    /// &lt;/summary&gt;
+    public byte[] RowVersion { get; set; }
+
+    /// &lt;summary&gt;
+    /// The key name of the app setting
+    /// &lt;/summary&gt;
+    [Required(AllowEmptyStrings = false)]
+    [StringLength(255)]
+    public string Key { get; set; }
+
+    /// &lt;summary&gt;
+    /// Current value of the app setting
+    /// &lt;/summary&gt;
+    public string Value { get; set; }
+}
+</code></pre>
+<p>Entities to be used with Bodoconsult.Database.Ef have to implement interface IEntityRequirements or IEntityRequirementsGuid.</p>
+<p>Do not use prefixes for entities. It is not recommend by MS anymore. In the above example name the class AppSettings instead of TAppSettings for example.</p>
+<p>RowVersion fields are helpful for checking if a data row was been updated since it was fetched. The time period between fetching the data and trying to save it to database should be short. Best is staying in the execution time of one method. RowVersion fields are helpful mainly if working in tracked mode. In untracked mode RowVersion fields proofed to be not very helpful.</p>
+<p>Use attributes to configure properties as required but do not forget later to the configuration of the entity for EFCore properly (see next section).</p>
+<p>Entities used with Entity Framework should contain simple get-set properties only. There should not be implemented any kind of logic in an entity.
+If you want to enhance an entity with logic used extension methods for implementing the logic:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Extension method for &lt;see cref=&quot;AppSettings&quot;/&gt; entity
+/// &lt;/summary&gt;
+public static class AppSettingsExtensions
+{
+    /// &lt;summary&gt;
+    /// Returns the entity data as a friendly readable string
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;appSettings&quot;&gt;Current entity instance&lt;/param&gt;
+    /// &lt;returns&gt;Entity data as a friendly readable string&lt;/returns&gt;
+    public static string ToFormattedString(this AppSettings appSettings)
+    {
+        return $&quot;{appSettings.Key}: {appSettings.RowVersion}&quot;;
+    }
+}
+</code></pre>
+<p>If logic is implemented in the entity class itself, the logic is loaded to memory per instance created of the entity type. The extension method is loaded only once. Espacially for heavy-usage entities is may reduce the memory pressure of your app.</p>
+<h2 id="entity-configuration">Entity configuration</h2>
+<p>Entity configuration for entity properties may be done in the entity class itself via attributes like [Required(AllowEmptyStrings = false)] in the above sample.</p>
+<p>More and more complex configuration can be done in a separate configuration file implementing IEntityTypeConfiguration&lt;T&gt;. Use this file to configure table details, database indexes and other more sophisticated settings.</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Entity configuration for &lt;see cref=&quot;AppSettings&quot;/&gt; entity
+/// &lt;/summary&gt;
+public class AppSettingsConfig : IEntityTypeConfiguration&lt;AppSettings&gt;
+{
+
+    public void Configure(EntityTypeBuilder&lt;AppSettings&gt; builder)
+    {
+        if (builder == null)
+        {
+            throw new ArgumentNullException(nameof(builder));
+        }
+
+
+        builder.HasKey(x =&gt; x.ID);
+        builder.ToTable(&quot;AppSettings&quot;);
+        builder.Property(x =&gt; x.ID).ValueGeneratedOnAdd();
+
+        builder.Property(e =&gt; e.Key)
+                .HasMaxLength(255)
+                .IsRequired();
+
+        builder.Property(p =&gt; p.RowVersion).IsRowVersion().IsConcurrencyToken().IsRequired();
+
+        builder.HasIndex(u =&gt; u.Key)
+            //.HasName(&quot;AppSettingsKeyUnique&quot;) // Old
+            .HasDatabaseName(&quot;AppSettingsKeyUnique&quot;) // New
+            .IsUnique();
+    }
+}
+</code></pre>
+<h2 id="database-context">Database context</h2>
+<p>Implement a base DbContext based class:</p>
+<pre><code class="lang-csharp">public class ExampleDbContext : Microsoft.EntityFrameworkCore.DbContext
+{
+
+    /// &lt;summary&gt;
+    /// Default ctor
+    /// &lt;/summary&gt;
+    public ExampleDbContext() : base(GetDefaultOptions())
+    { }
+
+    /// &lt;summary&gt;
+    /// Ctor for setting up DbContext with a specific connection string
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;connectionString&quot;&gt;Connection string&lt;/param&gt;
+    public ExampleDbContext(string connectionString) : base(GetDefaultOptions(connectionString))
+    { }
+
+    /// &lt;summary&gt;
+    /// Ctor for setting up DbContext with non SqLserver database i.e. for in-memory testing
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;options&quot;&gt;DbContext options&lt;/param&gt;
+    public ExampleDbContext(DbContextOptions options)
+        : base(options)
+    { }
+
+
+    /// &lt;summary&gt;
+    /// Get default options for the DbContext
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;connectionString&quot;&gt;Connection string to use&lt;/param&gt;
+    /// &lt;returns&gt;DbContext options&lt;/returns&gt;
+    protected static DbContextOptions GetDefaultOptions(string connectionString = null)
+    {
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new ArgumentNullException(nameof(connectionString));
+        }
+
+        var builder = new DbContextOptionsBuilder&lt;ExampleDbContext&gt;();
+
+        builder.UseSqlServer(connectionString, x =&gt; x
+            .MigrationsAssembly(&quot;EntityFrameworkSample&quot;)
+            .EnableRetryOnFailure()
+            .CommandTimeout((int)TimeSpan.FromSeconds(600).TotalSeconds));
+        return builder.Options;
+    }
+
+    #region Database sets
+
+    public DbSet&lt;AppSettings&gt; AppSettings { get; set; }
+
+    public DbSet&lt;Users&gt; Users { get; set; }
+
+
+    #endregion
+
+    #region Query sets
+
+    ///// &lt;summary&gt;
+    ///// Items for the component tree in the UI (material handling view)
+    ///// &lt;/summary&gt;
+    //public DbQuery&lt;QComponentTreeItem&gt; QComponentTreeItems { get; set; }
+
+    #endregion
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        if (modelBuilder == null)
+        {
+            throw new ArgumentNullException(nameof(modelBuilder));
+        }
+
+        LoadConfig(modelBuilder);
+    }
+
+
+    private static readonly IEntityTypeConfiguration&lt;AppSettings&gt; AppSettingsConfig = new AppSettingsConfig();
+    private static readonly IEntityTypeConfiguration&lt;Users&gt; UsersConfig = new UsersConfig();
+
+    private static void LoadConfig(ModelBuilder modelBuilder)
+    {
+        // Config model
+        modelBuilder.ApplyConfiguration(AppSettingsConfig);
+        modelBuilder.ApplyConfiguration(UsersConfig);
+
+
+        //**********************
+        // Add relations
+        //
+        // Build only one-to-many relationships for being compatible with EFCore 2.2
+        //**********************
+
+        //// TArticle
+        //modelBuilder.Entity&lt;TArticle&gt;()
+        //    .HasOne(x =&gt; x.ArticleGroup)
+        //    .WithMany(x =&gt; x.Articles)
+        //    .HasForeignKey(s =&gt; s.ArticleGroupId);
+
+    }
+}
+</code></pre>
+<h2 id="enhance-database-context-for-target-database-type">Enhance database context for target database type</h2>
+<p>In case your DBContext instance requires implementations specific for a certain type of database, implement a class derived from your base DbContextclass and add or adjust the required features.</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Implement SQLServer specific features for the DbContext
+/// &lt;/summary&gt;
+public class SqlServerExampleDbContext : ExampleDbContext
+{
+    /// &lt;summary&gt;
+    /// Default ctor
+    /// &lt;/summary&gt;
+    public SqlServerExampleDbContext() : base(GetDefaultOptions())
+    { }
+
+    /// &lt;summary&gt;
+    /// Ctor for setting up DbContext with a specific connection string
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;connectionString&quot;&gt;Connection string&lt;/param&gt;
+    public SqlServerExampleDbContext(string connectionString) : base(GetDefaultOptions(connectionString))
+    { }
+
+    /// &lt;summary&gt;
+    /// Ctor with context options
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;options&quot;&gt;Current DB options&lt;/param&gt;
+    public SqlServerExampleDbContext(DbContextOptions options) : base(options)
+    { }
+
+    // Add or adjust DB specific logic
+
+}
+</code></pre>
+<h2 id="create-a-design-time-dbcontext-factory-idesigntimedbcontextfactory">Create a design time DbContext factory: IDesignTimeDbContextFactory<sqlserverexampledbcontext></sqlserverexampledbcontext></h2>
+<p>The design time factory is used by the EFCore tools. Locate this class in the same folder in the StartProject as defined in VS.</p>
+<p>Before running EFCore tools (see below) write unit tests for design time DbContext factory. Otherwise you may get not very helpful error messages shown at Package-Manager-Console (PMC)</p>
+<pre><code class="lang-csharp">public class SqlServerDesignTimeExampleDbContextFactory : IDesignTimeDbContextFactory&lt;SqlServerExampleDbContext&gt;
+{
+    private DbContextOptionsBuilder&lt;SqlServerExampleDbContext&gt; _builder;
+
+    private readonly ILoggerFactory _loggerfactory = new FakeLoggerFactory();
+
+    /// &lt;summary&gt;Creates a new instance of a derived context.&lt;/summary&gt;
+    /// &lt;param name=&quot;args&quot;&gt;Arguments provided by the design-time service.&lt;/param&gt;
+    /// &lt;returns&gt;An instance of &lt;typeparamref name=&quot;TContext&quot; /&gt;.&lt;/returns&gt;
+    public SqlServerExampleDbContext CreateDbContext(string[] args)
+    {
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(&quot;appsettings.json&quot;, false)
+            .Build();
+
+        var conn = configuration.GetConnectionString(&quot;DefaultConnection&quot;);
+
+        if (string.IsNullOrEmpty(conn))
+        {
+            throw new ArgumentException($&quot;{nameof(conn)} may not be null&quot;);
+        }
+
+        // if options builder is not loaded already load it now
+        if (_builder == null)
+        {
+            _builder = new DbContextOptionsBuilder&lt;SqlServerExampleDbContext&gt;();
+
+            _builder
+                .UseLoggerFactory(_loggerfactory)
+                .UseSqlServer(conn, x =&gt; x
+                    .MigrationsAssembly(typeof(SqlServerExampleDbContext).Assembly.FullName)
+                    .EnableRetryOnFailure()
+                    .CommandTimeout((int)TimeSpan.FromSeconds(60).TotalSeconds));
+        }
+
+        // Create the DB context now
+        var dbContext = new SqlServerExampleDbContext(_builder.Options);
+        dbContext.Database.SetCommandTimeout(60);
+        dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
+
+        return dbContext;
+    }
+}
+</code></pre>
+<h2 id="create-a-production-or-testing-dbcontext-factory-idbcontextwithconfigfactory">Create a production or testing DbContext factory: IDbContextWithConfigFactory<sqlserverexampledbcontext></sqlserverexampledbcontext></h2>
+<p>Locate this class in the same folder as the DBContext.</p>
+<pre><code class="lang-csharp">public class SqlServerExampleDbContextFactory: IDbContextFactory&lt;SqlServerExampleDbContext&gt;
+{
+    /// &lt;summary&gt;
+    /// Current DB context configuration
+    /// &lt;/summary&gt;
+
+    public IContextConfig ContextConfig { get;  }
+
+    /// &lt;summary&gt;
+    /// Current app logger instance
+    /// &lt;/summary&gt;
+    public IAppLoggerProxy Logger { get; }
+
+    /// &lt;summary&gt;
+    /// 
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;config&quot;&gt;Current context configuration&lt;/param&gt;
+    /// &lt;param name=&quot;logger&quot;&gt;Current logger to use&lt;/param&gt;
+    public SqlServerExampleDbContextFactory(IContextConfig config, IAppLoggerProxy logger)
+    {
+        
+        Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+        ContextConfig = config ?? throw new ArgumentNullException(nameof(config));
+    }
+
+    public SqlServerExampleDbContext CreateDbContext()
+    {
+        if (string.IsNullOrEmpty(ContextConfig.ConnectionString))
+        {
+            throw new ArgumentException(nameof(ContextConfig.ConnectionString));
+        }
+
+        var builder = new DbContextOptionsBuilder&lt;ExampleDbContext&gt;();
+
+        builder
+            .UseLoggerFactory(Logger.LoggerFactory)
+            .UseSqlServer(ContextConfig.ConnectionString, x =&gt; x
+                .MigrationsAssembly(&quot;EntityFrameworkSample&quot;)
+                .EnableRetryOnFailure()
+                .CommandTimeout((int)TimeSpan.FromSeconds(ContextConfig.CommandTimeout).TotalSeconds));
+
+        var dbContext = new SqlServerExampleDbContext(builder.Options);
+        dbContext.Database.SetCommandTimeout(ContextConfig.CommandTimeout);
+        dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
+
+        return dbContext;
+    }
+}
+</code></pre>
+<p>The following experimental implementation of IDbContextWithConfigFactory is reusing the DbContextOptionsBuilder instance. Unit tests are running sucessfully, but potentially there might be sideeffects of this optimization.</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// High performance factory for &lt;see cref=&quot;SqlServerExampleDbContext&quot;/&gt; instances
+/// &lt;/summary&gt;
+public class SqlServerExampleDbHighPerformanceContextFactory : IDbContextWithConfigFactory&lt;SqlServerExampleDbContext&gt;
+{
+
+    private DbContextOptionsBuilder&lt;SqlServerExampleDbContext&gt; _builder;
+
+    /// &lt;summary&gt;
+    /// Current DB context configuration
+    /// &lt;/summary&gt;
+
+    /// &lt;summary&gt;
+    /// Current app logger instance
+    /// &lt;/summary&gt;
+    public IAppLoggerProxy Logger { get; }
+
+    /// &lt;summary&gt;
+    /// 
+    /// &lt;/summary&gt;
+    public SqlServerExampleDbHighPerformanceContextFactory(IAppGlobalsWithDatabase appGlobals, IAppLoggerProxy logger)
+    {
+        Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        AppGlobals = appGlobals ?? throw new ArgumentNullException(nameof(appGlobals));
+    }
+
+    /// &lt;summary&gt;
+    /// Current app globals with database settings
+    /// &lt;/summary&gt;
+    public IAppGlobalsWithDatabase AppGlobals { get; }
+
+
+    public SqlServerExampleDbContext CreateDbContext()
+    {
+        if (string.IsNullOrEmpty(AppGlobals.ContextConfig.ConnectionString))
+        {
+            throw new ArgumentNullException(nameof(AppGlobals.ContextConfig.ConnectionString));
+        }
+
+        // if options builder is not loaded already load it now
+        if (_builder == null)
+        {
+            _builder = new DbContextOptionsBuilder&lt;SqlServerExampleDbContext&gt;();
+
+            _builder
+                .UseLoggerFactory(Logger.LoggerFactory)
+                .UseSqlServer(AppGlobals.ContextConfig.ConnectionString, x =&gt; x
+                    .MigrationsAssembly(&quot;EfConsoleApp1.Model&quot;)
+                    .EnableRetryOnFailure()
+                    .CommandTimeout((int)TimeSpan.FromSeconds(AppGlobals.ContextConfig.CommandTimeout).TotalSeconds));
+        }
+
+        // Create the DB context now
+        var dbContext = new SqlServerExampleDbContext(_builder.Options);
+        dbContext.Database.SetCommandTimeout(AppGlobals.ContextConfig.CommandTimeout);
+        dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
+
+        return dbContext;
+    }
+}
+</code></pre>
+<h2 id="create-a-unit-of-work-based-on-sqlserverunitofwork">Create a unit of work based on SqlServerUnitOfWork</h2>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Current unit of work for ExampleDb running on SqlServer
+/// &lt;/summary&gt;
+public class SqlServerExampleDbUnitOfWork: SqlServerUnitOfWork&lt;SqlServerExampleDbContext&gt;
+{
+    public SqlServerExampleDbUnitOfWork(IContextScopeFactory&lt;SqlServerExampleDbContext&gt; dbContextScopeFactory, IAppLoggerProxy logger, IAmbientDbContextLocator ambientDbContextLocator, IBackupEngine backupEngine, IMigrationController migrationController) : base(dbContextScopeFactory, logger, ambientDbContextLocator, backupEngine, migrationController)
+    { }
+
+    // Add additional functionality for your unit of work here if needed
+}
+</code></pre>
+<pre><code class="lang-csharp">
+</code></pre>
+<h1 id="handling-evolving-database-schemas-migrations">Handling evolving database schemas: Migrations</h1>
+<p>If talking about EFCore we should differ to kinds of migrations:</p>
+<ul>
+<li><p>EFCore migrations (migrations): create a new database or bring an existing one to the current database schema version. Migrations change the database structure.</p>
+</li>
+<li><p>Data migrations (converters): seed a new database or convert existing data to the new database schema version,</p>
+</li>
+</ul>
+<h2 id="overview-migrations">Overview migrations</h2>
+<p>Migrations define how to reach the defined database (DB) schema in the DbContext instance with database tools. A migration is bound to a certain database schema version.</p>
+<p>A migration 20250401171019_V1_00 consists of two file 20250401171019_V1_00.cs and 20250401171019_V1_00.Designer.cs. The name of a migration always start with a timestamp the migration was created and an additional name (V1_00).</p>
+<p>All migrations applied to a database already are stored in a table called _EFMigrationsHistory. The EF Core migration process checks this table before running existing migrations. If no entries are found all migrations are executed sorted by timestamp ascending. If there are entries in the table only the missing migrations are executed sorted by timestamp ascending.</p>
+<p>The <a href="../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/20250401171019_V1_00.cs">20250401171019_V1_00.cs</a> file contains the migration commands to come to the next schema version of the DB schema. This file contains a method Up() for upward migration and Down() for downward migration. Downward migration have been evolved as tricky in real world scenarios with existing data. Bringing already migrated data to the old state may be demanding! Our recommendation is: do NOT use it at least in more complex database scenarios.</p>
+<p>The <a href="../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/20250401171019_V1_00.Designer.cs">20250401171019_V1_00.Designer.cs</a> is containing a definition of the current schema as metadata for usage by EF Core.</p>
+<p>There is another file important for the migrations: the model snapshot. <a href="../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/StSysDbEntitiesSqlServerModelSnapshot.cs">StSysDbEntitiesSqlServerModelSnapshot</a>  contains a snapshot after the last existing migration has been running. The content in the method BuildModel() is the same as in the method BuildTargetModel in the Designer file of the last migration. If you use EFCore tools the model snapshot is update after each add of a new migration. It is possible and maybe the only way of working in complex scenarios to edit this file manually.</p>
+<h2 id="entity-framework-core-tools-efcore-tools">Entity Framework Core tools (EFCore tools)</h2>
+<p>The proposed way by MS is to let the migrations be created by the integrated EFCore tools.</p>
+<p>In more complex scenarios in real world i.e. coming from existing databases it is sometimes much easier to create or adjust the migration files manually.</p>
+<p>To test migrations from VS use the EFCore tools from Package Manager Console window (PMC). Select the project with the migrations in. The connection string for the test is taken from appsettings.json.</p>
+<p>Run the following command to create an empty database with the last available database schema (meaning running all migrations)</p>
+<pre><code class="lang-powershell">Update-Database -Context SqlServerExampleDbContext 
+</code></pre>
+<p>Run the following command to create an empty database with the request database schema (meaning running only migrations up to 20250401171019_V1_00 included)</p>
+<pre><code class="lang-powershell">Update-Database 20250401171019_V1_00 -Context SqlServerExampleDbContext
+</code></pre>
+<p>See <a href="https://learn.microsoft.com/en-us/ef/core/cli/powershell">https://learn.microsoft.com/en-us/ef/core/cli/powershell</a> for more details.</p>
+<h2 id="how-to-make-db-schema-changes">How to make DB schema changes</h2>
+<p>During development process there may be required a lot of schema changes. It is not a good idea to create a seperate migration for every little change in the schema. Here the EFCore tools will be helpful even for complex projects. The basic ideas to let the EFCore tools create a new migration, take the content of this migration to the migration before that migration and then remove the new migration. So if you need a DB change here is the process we use for:</p>
+<ul>
+<li><p>Make the required changes for the entity (see <a href="#entities">Entitie basics</a>)</p>
+</li>
+<li><p>Update the entity EFCore configuration (see <a href="#entity-configuration">Entity configuration</a>)</p>
+</li>
+<li><p>Run the command Add to add a new migration from PMC</p>
+</li>
+</ul>
+<pre><code class="lang-powershell">Add-Migration -Name NewMigration -OutputDir YourMigrationFolderRelativeToProjectFolder
+</code></pre>
+<ul>
+<li><p>Copy the content of the method Up() in migration file of the newly created migration at the end of the method Up() in the last migration before the new one.</p>
+</li>
+<li><p>Copy the content of the migration designer file of the newly created migration to the migration designer file of the last migration before the new one.</p>
+</li>
+<li><p>Copy the content of the migration designer file of the newly created migration to the model snapshot file.</p>
+</li>
+<li><p>Now remove the newly created migration from the project (or delete it)</p>
+</li>
+</ul>
+<h2 id="existing-databases">Existing databases</h2>
+<p>If a database is already existing and filled with production data migrations may get difficile. Think about a scenario the existing database has a database schema no fitting to your new required database schema.</p>
+<p>In such a case you have first to update the existing database schema to the new database schema and then bring the data in the tables to the new schema.</p>
+<p>The experience has shown in bigger DB project based on EFCore 3.1 with three main database schemas that including data migration into EFCore migrations is not a good idea. Debugging is complicated and implementation difficult to make it unit testable. So the better idea is to perform the migrations as intended by MS and after that run data migrations separately. In the following you will see how we solved the task bringing databases from schema version 1 to target schema version 3. Version 1 was weakly normalized. So compared to the target schema version 3 there were a lot of tables and fields missing. On the other side some fields from schema version 1 could be removed after normalization. Some old tables were replaced by new tables too. So version 2 is an intermediate state adding the new tables and fields as required. Version 3 then cleans the database schema to the finally required state by removing unused tables and unused fields.</p>
+<p>The first approach was to that all in one solution. Theoretically this should be possible. In reality you need to define three sets of entities, entity configs and DBContexts for each of the schema versions. This makes configuration for example of the entities more demanding as entity XYZ_V1 should be mapped to table XYZ and XYZ_V2 and XYZ_V3 too. Yes, you can do that. We failed with this approach due to the huge complexity of this approach.</p>
+<p>Spending a lot of time with experiments we decided to handle each schema version in a separate solution with a separate busienss logic, data model and UI. This kept at least the complexity added by using EFCore at an acceptable level. In each solution you have the model related to the current schema version included. The migrations from version 1 were then taken to version 2 and a new migration added to reach version 2. In version 3 project the model was as required in version 3 and the migrations from version 2 were added completely and a new migration was added to reach version 3.</p>
+<p>In each solution for the three schema versions always the schema migrations run first and then follow the data migrations.</p>
+<p>In such a real world project the EFCore tools proofed to be less helpful. Migrations work was done mainly manually.</p>
+<p>As long as you only add new entities or new properties to your entities migrations are easy. But if you need to change the datatype of an existing property to a new type it gets much more tricky.</p>
+<h2 id="example-for-efcore-migrations-followed-by-a-data-migration">Example for EfCore migrations followed by a data migration</h2>
+<p>The example shows how to migrate an existing V1_00 database to the final V2_00 schema version bringing the database in a better normalized state. In V1_00 the user type is a string property in table Users. In V2_00 will be added a table UserType and the field Users.UserType will be replace by Users.UserTypeId.</p>
+<p>The repo contains a EfConsoleApp1 sample app. In the EfConsoleApp1.Model project there are 2 migrations defined. The first of them - 20250401171019_V1_00 - (Migration1) is creating table AppSettings and Users.</p>
+<p>The second migration 20250522151025_V2_00 (Migration2) adds RowVersion fields to both tables. And it adds the new table UserType. Then the field Users.UserType should be replaced with Users.UserTypeId.</p>
+<p>In a next step the Users.UserType should be removed from database schema. This is not shown here. It requires a new DbContext with adjusted entities. Migrations 20250401171019_V1_00 and 20250522151025_V2_00 will have to be copied to the new DbContext and enhanced with a third migration deleting tables and fields like User.UserType to reach the final database schema. This second DBContext is necessary because without it the data migration from Users.UserType to Users.UserTypeId is not possible with EFCore as Users.UserType is not existing in final database schema.</p>
+<h2 id="create-model-data-converters-basemodeldataconverter">Create model data converters: BaseModelDataConverter</h2>
+<p>Create converters for data migration for existing database by creating classes inheriting from BaseModelDataConverter. Normally it is a good idea to have a separate converter per table.</p>
+<p>Here a sample implementation using EfCore for AppSettings entity:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// This converter checks at every app start if all expected settings (LastUpdate and Company) are available. If not they are created with default values
+/// &lt;/summary&gt;
+public class AppSettingsConverterEf: BaseModelDataConverter
+{
+    private readonly IRepository&lt;AppSettings&gt; _repo;
+
+    public AppSettingsConverterEf(IUnitOfWork unitOfWork, IAppLoggerProxy appLogger) : base(unitOfWork, appLogger)
+    {
+        RequiredAppVersion = new Version(1, 0, 0);
+        UnitOfWork = unitOfWork;
+        _repo = UnitOfWork.GetRepository&lt;AppSettings&gt;();
+    }
+
+    /// &lt;summary&gt;
+    /// Check if the premises are fulfilled to run the converter
+    /// &lt;/summary&gt;
+    public override bool CheckPremisesToRunConverter()
+    {
+        // Run it always
+        return true;
+    }
+
+
+    /// &lt;summary&gt;
+    /// Run the converter
+    /// &lt;/summary&gt;
+    public override void Run()
+    {
+        // Check setting LastUpdate
+        CheckLastUpdateSetting();
+
+        // Check setting Company
+        CheckCompanySetting();
+    }
+
+    public void CheckLastUpdateSetting()
+    {
+        using (var scope = UnitOfWork.GetContextScope())
+        {
+            if (_repo.Any(x =&gt; x.Key == &quot;LastUpdate&quot;))
+            {
+                return;
+            }
+
+            var setting = new AppSettings
+            {
+                Key = &quot;LastUpdate&quot;
+            };
+
+            _repo.Add(setting);
+
+            scope.SaveChanges();
+        }
+    }
+
+    public void CheckCompanySetting()
+    {
+        using (var scope = UnitOfWork.GetContextScope())
+        {
+            if (_repo.Any(x =&gt; x.Key == &quot;Company&quot;))
+            {
+                return;
+            }
+
+            var setting = new AppSettings
+            {
+                Key = &quot;Company&quot;,
+                Value = &quot;TestCompany Ltd&quot;
+            };
+
+            _repo.Add(setting);
+
+            scope.SaveChanges();
+        }
+    }
+}
+</code></pre>
+<p>If you have performance issues you can run data conversions with plain SQL too. The disadvantage of working with SQL is that the converters using SQL are not unit testable but only integration testable. Example:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// This converter checks at every app start if all expected settings (LastUpdate and Company) are available. If not they are created with default values
+/// &lt;/summary&gt;
+public class AppSettingsConverterSql : BaseModelDataConverter
+{
+    public AppSettingsConverterSql(IUnitOfWork unitOfWork, IAppLoggerProxy appLogger) : base(unitOfWork, appLogger)
+    {
+        RequiredAppVersion = new Version(1, 0, 0);
+    }
+
+    /// &lt;summary&gt;
+    /// Check if the premises are fulfilled to run the converter
+    /// &lt;/summary&gt;
+    public override bool CheckPremisesToRunConverter()
+    {
+        // Run it always
+        return true;
+    }
+
+
+    /// &lt;summary&gt;
+    /// Run the converter
+    /// &lt;/summary&gt;
+    public override void Run()
+    {
+
+        // Check setting LastUpdate
+        var sql = &quot;INSERT INTO [dbo].[AppSettings] ([Key],[Value]) SELECT 'LastUpdate', null WHERE NOT EXISTS (SELECT * FROM [dbo].[AppSettings] WHERE [key]='LastUpdate')&quot;;
+        UnitOfWork.RunSql(sql);
+
+        // Check setting Company
+        sql = &quot;INSERT INTO [dbo].[AppSettings] ([Key] ,[Value]) SELECT 'Company', 'TestCompany Ltd' WHERE NOT EXISTS (SELECT * FROM [dbo].[AppSettings] WHERE [key]='Company')&quot;;
+        UnitOfWork.RunSql(sql);
+    }
+}
+</code></pre>
+<h2 id="create-a-model-data-conversion-handler-factory-imodeldataconvertershandlerfactory">Create a model data conversion handler factory: IModelDataConvertersHandlerFactory</h2>
+<p>If you do not need data migration or seeding choose DoNothingDataModelConvertersHandlerFactory:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Do NOT seed the database or migrate any existing data
+/// &lt;/summary&gt;
+public class DoNothingDataModelConvertersHandlerFactory : IModelDataConvertersHandlerFactory
+{
+    private readonly IAppLoggerProxy _logger;
+
+    /// &lt;summary&gt;
+    /// Default ctor
+    /// &lt;/summary&gt;
+    public DoNothingDataModelConvertersHandlerFactory(IAppLoggerProxy logger)
+    {
+        _logger = logger;
+    }
+
+    /// &lt;summary&gt;
+    /// Create the instance of &lt;see cref=&quot;IModelDataConvertersHandler&quot;/&gt; with all loaded converters for data migration
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public IModelDataConvertersHandler CreateInstance()
+    {
+
+        var h = new ModelDataConvertersHandler(_logger);
+        // Do NOT load converters here
+        return h;
+
+    }
+}
+</code></pre>
+<p>If you need migrations implement your own factory based on IModelDataConvertersHandlerFactory to load all the required converters based on IModelDataComverter to do the data migrations:</p>
+<pre><code class="lang-csharp">public class SqlServerExampleDbEfModelDataConvertersHandlerFactory: IModelDataConvertersHandlerFactory
+{
+    private readonly IAppLoggerProxy _logger;
+
+    /// &lt;summary&gt;
+    /// Default ctor
+    /// &lt;/summary&gt;
+    public SqlServerExampleDbEfModelDataConvertersHandlerFactory(IAppLoggerProxy logger)
+    {
+        _logger = logger;
+    }
+
+    /// &lt;summary&gt;
+    /// Create the instance of &lt;see cref=&quot;IModelDataConvertersHandler&quot;/&gt; with all loaded converters for data migration
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public IModelDataConvertersHandler CreateInstance()
+    {
+        var h = new ModelDataConvertersHandler(_logger);
+
+        // Load converters now in the order you need!
+        h.AddConverter&lt;AppSettingsConverterEf&gt;();
+        h.AddConverter&lt;UserTypeConverterEf&gt;(); // must be done before user migration to have the UserType.ID available
+        h.AddConverter&lt;UsersConverterEf&gt;();
+
+        return h;
+    }
+}
+</code></pre>
+<h2 id="running-schema-and-data-migrations-imigrationcontroller">Running schema and data migrations: IMigrationController</h2>
+<p>Running the migrations and migrate the data afterwards will be handled by an implementation of IMigrationController. For SqlServer there is a default implementation SqlServerMigrationController. This default implementation takes a backup of an existing database, then migrates to the new database schema and runs data migrations afterwards.</p>
+<p>The data migrations are handled in an IModelDataConvertersHandler implementation. This implementation needs all converters for existing data based on IModelDataConverter to be loaded in your IModelDataConvertersHandlerFactory implementation before injected via ctor into IUnitOfWork implementation.</p>
+<h1 id="about-us">About us</h1>
+<p>Bodoconsult <a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a> is a Munich based software company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Ef/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

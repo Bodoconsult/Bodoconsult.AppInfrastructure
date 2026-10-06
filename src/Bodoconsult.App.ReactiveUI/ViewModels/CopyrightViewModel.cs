@@ -11,7 +11,7 @@ namespace Bodoconsult.App.ReactiveUI.ViewModels;
 /// </summary>
 public partial class CopyrightViewModel : ReactiveObject
 {
-    private readonly List<string> _modules = new();
+    private readonly List<string> _modules = [];
     private readonly IAppGlobals _appGlobals;
 
     /// <summary>

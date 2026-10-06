@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Typography | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Typography | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.App.DataProtection/Typography.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="typography">Typography</h1>
+
+<p>Bodoconsult.App.Abstractions.TypographyBase is a base class implementing ITypography containing properties and methods around typographic settings for paper reports and / or charts.
+The itention of this library is to store a complete typographic set of properties outside the app in an adjustable JSON file and to read it from there if needed.</p>
+<p>The library contains three predefined typographic sets for common use cases in the classes called DefaultTypographyPageHeader, CompactTypographyPageHeader and ElegantTypographyPageHeader.
+The default paper format is DIN A4 portrait.</p>
+<p>DefaultTypographyPageHeader is a typographic style set for a normal paper report. It is a compromiss between use of space and elegance.</p>
+<p>CompactTypographyPageHeader is a typographic style set for compact paper report intended to get as much information as possible on a given paper format.</p>
+<p>ElegantTypographyPageHeader is a typograhic style set preferring elegance over use of space. It needs more pages of paper per given information to print.</p>
+<h1 id="how-to-use-the-library">How to use the library</h1>
+<p>The source code contain NUnit test classes, the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<h2 id="basic-usage">Basic usage</h2>
+<pre><code class="lang-csharp">var t = new ElegantTypographyPageHeader(&quot;Cambria&quot;, &quot;Cambria&quot;, &quot;Cambria&quot;)
+            {
+                LogoPath = @&quot;C:\bodoconsult\Logos\logo.jpg&quot;
+            };
+            
+t.SetMargins();
+</code></pre>
+<h2 id="customizing-a-typographic-set">Customizing a typographic set</h2>
+<pre><code class="lang-csharp">var t = new ElegantTypographyPageHeader(&quot;Cambria&quot;, &quot;Cambria&quot;, &quot;Cambria&quot;)
+            {
+                LogoPath = @&quot;C:\bodoconsult\Logos\logo.jpg&quot;,
+                FontSize = 12,
+            };
+            
+t.SetMargins();
+</code></pre>
+<h2 id="creating-your-user-defined-typographic-set">Creating your user-defined typographic set</h2>
+<p>The following example shows the implementation of a user-defined typographic set.</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Provides your user-defined typograph based on sans serif fonts at default. See non-default constructor to change fonts
+/// &lt;/summary&gt;
+public class UserDefinedTypographyPageHeader : TypographyBase
+{
+    /// &lt;summary&gt;
+    /// Default ctor. Sets font names to Calibri
+    /// &lt;/summary&gt;
+    public UserDefinedTypographyPageHeader()
+    {
+        BaseConstructor(&quot;Calibri&quot;, &quot;Calibri&quot;, &quot;Calibri&quot;);
+    }
+
+    /// &lt;summary&gt;
+    /// Ctor to set font names
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;primaryFontname&quot;&gt;Font name for text&lt;/param&gt;
+    /// &lt;param name=&quot;secondaryFontName&quot;&gt;Font name for headings&lt;/param&gt;
+    /// &lt;param name=&quot;thirdFontName&quot;&gt;Font name for titles&lt;/param&gt;
+    public UserDefinedTypographyPageHeader(string primaryFontname, string secondaryFontName, string thirdFontName)
+    {
+        BaseConstructor(primaryFontname, secondaryFontName, thirdFontName);
+    }
+
+    private void BaseConstructor(string primaryFontname, string secondaryFontName, string thirdFontName)
+    {
+        // Default page DIN A4 
+        PageHeight = 29.4;
+        PageWidth = 21.0;
+
+        FontName = primaryFontname;
+        FontSize = 11;
+        SmallFontSize = FontSize - 2;
+        ExtraSmallFontSize = SmallFontSize - 2;
+
+        LogoPath = @&quot;C:\bodoconsult\Logos\logo.jpg&quot;;
+
+        HeadingFontName = secondaryFontName;
+        HeadingFontSize5 = FontSize;
+        HeadingFontSize4 = HeadingFontSize5;
+        HeadingFontSize3 = HeadingFontSize4;
+        HeadingFontSize2 = HeadingFontSize3;
+        HeadingFontSize1 = HeadingFontSize2 + 2;
+
+        LineHeight = 0.5;
+        ColumnDividerWidth = 0.5;
+        ColumnWidth = 2.0;
+        ColumnCount = 6;
+        DotsPerInch = 300;
+        LogoWidth = 2 * ColumnWidth + ColumnDividerWidth;
+
+        TitleFontName = thirdFontName;
+        SubTitleFontName = thirdFontName;
+
+        TitleFontSize = HeadingFontSize1 + 4;
+        SubTitleFontSize = HeadingFontSize1 + 2;
+
+
+        MarginLeftFactor = 2.5;
+        MarginRightFactor = 2.5;
+        MarginTopFactor = 3;
+        MarginBottomFactor = 2;
+
+        SetMargins();
+
+        PageFooterHeight = 0.5;
+        PageHeaderHeight = 1.5;
+        PageHeaderMargin = 1.5;
+        PageFooterMargin = ColumnDividerWidth;
+
+
+        ChartStyle = new ChartStyle
+        {
+            FontName = FontName,
+            TitleFontName = HeadingFontName,
+            FontSize = (float)FontSize,
+            Width = GetPixelWidth(6),
+            Height = GetPixelHeight(6),
+            PaperColor = Color.White
+        };
+
+        TableBodyBackground = Color.White;
+        TableHeaderBackground = Color.White;
+        TableBodyUnborderedBackground = Color.Transparent;
+        TableHeaderUnborderedBackground = Color.Transparent;
+        TableCornerRadius = 0.3;
+        TableBorderWidth = 0.05;
+        TableBorderColor = Color.FromArgb(178, 204, 255);
+
+    }
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.App.DataProtection/Typography.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

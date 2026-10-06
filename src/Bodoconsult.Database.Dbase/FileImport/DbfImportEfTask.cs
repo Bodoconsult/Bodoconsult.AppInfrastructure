@@ -14,9 +14,11 @@ namespace Bodoconsult.Database.Dbase.FileImport
     /// <typeparam name="TData">Target entity type</typeparam>
     public class DbfImportEfTask<TData> : DbfImportBaseTask<TData> where TData : class, IEntityRequirements, new()
     {
-
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Current data repository
+        /// </summary>
         protected IRepository<TData> Repository;
 
         /// <summary>
@@ -30,6 +32,9 @@ namespace Bodoconsult.Database.Dbase.FileImport
 
         #region Public Methods
 
+        /// <summary>
+        /// Store the read data from file into target. This method should be called batchwise by <see cref="IFileImportTask{TData}.Execute"/> 
+        /// </summary>
         public override void StoreData(List<TData> data)
         {
             using (var scope = _unitOfWork.GetContextScope(false, false, IsolationLevel.Serializable))
@@ -49,7 +54,6 @@ namespace Bodoconsult.Database.Dbase.FileImport
         }
 
         #endregion
-
     }
 
 }

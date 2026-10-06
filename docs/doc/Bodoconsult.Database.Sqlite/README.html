@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Bodoconsult.Database.Sqlite | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Bodoconsult.Database.Sqlite | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Sqlite/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="bodoconsultdatabasesqlite">Bodoconsult.Database.Sqlite</h1>
+
+<p>This is the predecessor project of Bodoconsult.Core.Database.Sqlite</p>
+<h2 id="what-does-the-library">What does the library</h2>
+<p>Bodoconsult.Database.Sqlite library simplifies the access to Sqlite3 based databases.
+It handles the most common database actions like getting datatables, running SQL statement or fetch scalar values from the database.</p>
+<p>Additionally the library contains some tools for developers making the usage of the database layers derived from Bodoconsult.Database as easy as possible. See below.</p>
+<h2 id="how-to-use-the-library">How to use the library</h2>
+<p>The source code contain a NUnit test classes, the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<p>The database used for unit tests is the Chinook sample database from <a href="https://github.com/lerocha/chinook-database">https://github.com/lerocha/chinook-database</a>.</p>
+<h3 id="connection-string-to-sqlite3">Connection string to Sqlite3</h3>
+<p>To connect to a Sqlite3 database with this library you need to provide connection string. Here a sample for such a connection string:</p>
+<p>Data Source=c:\mydb.db;Version=3;</p>
+<p>For more information on connection strings see <a href="https://www.connectionstrings.com/sqlite/">https://www.connectionstrings.com/sqlite/</a>.</p>
+<p>If the database file called in the connection string is not existing, a new empty database file is created.</p>
+<h3 id="class-overview-and-main-methods">Class overview and main methods</h3>
+<p>The most important class in the library is the the class SqliteConnManager. SqliteConnManager exposes the following main methods:</p>
+<h4 id="connection-related-and-general-methods">Connection related and general methods</h4>
+<ul>
+<li>TestConnection()</li>
+<li>GetCommand()</li>
+<li>GetParameter()</li>
+</ul>
+<h4 id="methods-for-running-sql-statements-or-commands">Methods for running SQL statements or commands</h4>
+<ul>
+<li>Exec()</li>
+<li>ExecMultiple()</li>
+</ul>
+<h4 id="methods-for-getting-data">Methods for getting data</h4>
+<ul>
+<li>GetDataTable()</li>
+<li>GetDataReader()</li>
+<li>GetDataAdapter()</li>
+</ul>
+<h3 id="samples">Samples</h3>
+<pre><code class="lang-csharp">
+ [TestFixture]
+    public class UnitTestSqliteConnManager
+    {
+
+        private IConnManager _db;
+
+        [SetUp]
+        public void Setup()
+        {
+            var conn = TestHelper.SqliteConnectionString;
+
+            _db = SqliteConnManager.GetConnManager(conn);
+
+        }
+
+        [Test]
+        public void TestTestConnection()
+        {
+            // Assert
+
+            // Act
+            var result = _db.TestConnection();
+
+            // Assert
+            Assert.That(result);
+
+        }
+
+        [Test]
+        public void TestGetDataTableSql()
+        {
+            // Assert
+            var sql = &quot;SELECT * FROM \&quot;Customer\&quot;;&quot;;
+
+            // Act
+            var result = _db.GetDataTable(sql);
+
+            // Assert
+            Assert.That(result);
+
+        }
+
+
+        [Test]
+        public void TestGetDataTableCommand()
+        {
+            // Act
+            var sql =
+                &quot;SELECT * FROM \&quot;Customer\&quot;; &quot;;
+
+            var cmd = new SqliteCommand(sql);
+
+            // Act
+            var result = _db.GetDataTable(cmd);
+
+            // Assert
+            Assert.That(result);
+
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataTableFromCommandWithGetCommand()
+        {
+            const string sql = &quot;SELECT * FROM Customer&quot;;
+
+            var cmd = _db.GetCommand();
+            cmd.CommandText = sql;
+
+            // Add parameters here if required
+            var erg = _db.GetDataTable(cmd);
+
+
+            Assert.That(erg.Rows.Count &gt; 0);
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a plain SQL string (avoid this option due to SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromSql()
+        {
+
+            const string sql = &quot;SELECT * FROM \&quot;Customer\&quot;&quot;;
+
+            var erg = _db.GetDataReader(sql);
+
+            Assert.That(erg.FieldCount &gt; 0);
+        }
+
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromCommand()
+        {
+
+            const string sql = &quot;SELECT * FROM \&quot;Customer\&quot;&quot;;
+
+
+            var cmd = new SqliteCommand
+            {
+                CommandText = sql
+            };
+
+            // Add parameters here if required
+
+            var erg = _db.GetDataReader(cmd);
+
+            Assert.That(erg.FieldCount &gt; 0);
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromCommandWidthGetCommand()
+        {
+            const string sql = &quot;SELECT * FROM \&quot;Customer\&quot;&quot;;
+
+            var cmd = _db.GetCommand();
+            cmd.CommandText = sql;
+
+            // Add parameters here if required
+            var erg = _db.GetDataReader(cmd);
+
+            Assert.That(erg.FieldCount &gt; 0);
+
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromCommandWidthGetCommandAndParameter()
+        {
+            const string sql = &quot;SELECT * FROM \&quot;Customer\&quot; WHERE \&quot;CustomerId\&quot;=@ID;&quot;;
+
+            var cmd = _db.GetCommand();
+            cmd.CommandText = sql;
+
+            var p = _db.GetParameter(cmd, &quot;@ID&quot;, GeneralDbType.Int);
+            p.Value = 8;
+
+            // Add parameters here if required
+            var erg = _db.GetDataReader(cmd);
+
+            Assert.That(erg.FieldCount &gt; 0);
+            Assert.That(erg.HasRows);
+
+        }
+
+        /// &lt;summary&gt;
+        /// Execute a plain SQL string (avoid this option due to SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecFromSql()
+        {
+
+            const string sql = &quot;DELETE FROM Customer WHERE CustomerId=-99&quot;;
+
+            Assert.DoesNotThrow(() =&gt; _db.Exec(sql));
+        }
+
+
+        /// &lt;summary&gt;
+        /// Execute a SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecFromCommand()
+        {
+
+            const string sql = &quot;DELETE FROM \&quot;Customer\&quot; WHERE \&quot;CustomerId\&quot;=@Key&quot;;
+
+            // Create command
+            var cmd = new SqliteCommand()
+            {
+                CommandText = sql
+            };
+
+            // Add a parameter to the command
+            var para = cmd.Parameters.Add(&quot;@Key&quot;, SqliteType.Integer);
+            para.Value = -99;
+
+            Assert.DoesNotThrow(() =&gt; _db.Exec(cmd));
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a scalar value from database from a plain SQL string (avoid this option due to SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecWithResultFromSql()
+        {
+
+            const string sql = &quot;SELECT \&quot;CustomerId\&quot; FROM \&quot;Customer\&quot; WHERE \&quot;CustomerId\&quot;=8;&quot;;
+
+            var result = _db.ExecWithResult(sql);
+
+            Assert.That(result);
+            Assert.IsFalse(string.IsNullOrEmpty(result));
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a scalar value from database from SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecWithResultFromCommand()
+        {
+
+            const string sql = &quot;SELECT \&quot;CustomerId\&quot; FROM \&quot;Customer\&quot; WHERE \&quot;CustomerId\&quot;=@Key&quot;;
+
+            // Create command
+            var cmd = new SqliteCommand
+            {
+                CommandText = sql
+            };
+
+            // Add a parameter to the command
+            var para = cmd.Parameters.Add(&quot;@Key&quot;, SqliteType.Integer);
+            para.Value = 8;
+
+            var result = _db.ExecWithResult(cmd);
+
+            Assert.That(result);
+            Assert.IsFalse(string.IsNullOrEmpty(result));
+        }
+
+
+        [Test]
+        public void TestExecMultiple()
+        {
+            const string sql = &quot;DELETE FROM \&quot;Customer\&quot; WHERE \&quot;CustomerId\&quot;=-99&quot;;
+
+            var commands = new List&lt;DbCommand&gt;();
+
+            var cmd = new SqliteCommand(sql);
+            commands.Add(cmd);
+
+            cmd = new SqliteCommand(sql);
+            commands.Add(cmd);
+
+            cmd = new SqliteCommand(sql);
+            commands.Add(cmd);
+
+            var result = _db.ExecMultiple(commands);
+
+            Assert.That(result == 0);
+        }
+
+
+        [TestCase(GeneralDbType.Int, SqliteType.Integer)]
+
+        [TestCase(GeneralDbType.Decimal, SqliteType.Real)]
+        [TestCase(GeneralDbType.Float, SqliteType.Real)]
+        [TestCase(GeneralDbType.Text, SqliteType.Text)]
+        public void Test(GeneralDbType inpuType, SqliteType expectedType)
+        {
+            // Arrange
+
+            // Act
+            var result = SqliteConnManager.MapGeneralDbTypeToSqliteType(inpuType);
+
+            // Assert
+            Assert.AreEqual(expectedType, result);
+        }
+    }
+
+</code></pre>
+<h3 id="developer-tools-for-making-best-usage-of-bodoconsultdatabase-based-data-layers">Developer tools for making best usage of Bodoconsult.Database based data layers</h3>
+<p>There is as basic metadata infrastructure implemented to help developers to make best usage of Bodoconsult.Database. This metadata infrastructure derived from
+IMetaDataService / BaseMetaDataService creates C# code files based on a certain SQL statement OR DBCommand object.</p>
+<ol>
+<li>It first creates an adjusted entity class for the SQL statement OR DBCommand object.</li>
+<li>Then it creates a mapping method to map a DataReader row object to the entity class.</li>
+<li>At last it creates an service class for adding new rows, updating rows and getting rows from the database table related to SQL statement OR DBCommand object.
+This feature works only well for statements absed on a single table. If there are more tables targeted in the statement, only the GetAll and GetById may make sense in the service class.
+The other methods ma be removed in that case.</li>
+</ol>
+<p>Here a sample how to use the IMetaDataService infrastructure:</p>
+<pre><code class="lang-csharp">
+			const string conn = &quot;Valid ADO.NET provider connection string&quot;;
+
+            const string sql = &quot;SELECT * FROM \&quot;Customer\&quot;;&quot;;
+
+            const string entityName = &quot;Customer&quot;;
+
+            const string primaryKeyField = &quot;CustomerId&quot;;
+
+            const string targetPath = @&quot;D:\temp&quot;;
+
+			// Instanciate the metadata service
+			var service = SqliteMetaDataService();
+
+			// Get the metadata for the SQL statement
+            service.GetMetaData(conn, entityName, sql, primaryKeyField);
+
+            // Export the code files
+            var result = service.ExportAll(targetPath);
+
+</code></pre>
+<p>As a result you will find four files with code in the folder D:\temp:</p>
+<ul>
+<li>D:\temp\Customer_EntityClass_Code.txt</li>
+<li>D:\temp\Customer_DataHelperMethod_Code.txt</li>
+<li>D:\temp\Customer_ServiceClass_Code.txt</li>
+<li>D:\temp\Customer_TestDataHelperMethod_Code.txt</li>
+</ul>
+<h2 id="about-us">About us</h2>
+<p>Bodoconsult (<a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a>) is a Munich based software development company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Sqlite/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

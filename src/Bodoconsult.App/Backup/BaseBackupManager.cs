@@ -14,7 +14,7 @@ public abstract class BaseBackupManager : IBackupManager
 {
     // Interne Fehlervariable zur Vermeidung von Folgefehlern
     private int _error;
-    private readonly List<Task> _tasks = new();
+    private readonly List<Task> _tasks = [];
     private readonly IBackupTargetFactory _backupTargetFactory;
 
     /// <summary>

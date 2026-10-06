@@ -24,6 +24,11 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
         /// </summary>
         private readonly IAppLoggerProxy _log;
 
+        /// <summary>
+        /// Default ctor
+        /// </summary>
+        /// <param name="modelDataConvertersHandlerFactory">Current data converter handler factory</param>
+        /// <param name="logger">Current app logger</param>
         public SqlServerMigrationController( IModelDataConvertersHandlerFactory modelDataConvertersHandlerFactory, IAppLoggerProxy logger)
         {
             _log = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -36,7 +41,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
 
             var sql = "select isnull(OBJECT_ID(N'[__MigrationHistory]'),-1)";
             var isEf6Table = context.ExecuteSqlWithResult<int>(sql);
-
 
             sql = "select isnull(OBJECT_ID(N'[__EFMigrationsHistory]'),-1)";
             var isEfCoreTable = context.ExecuteSqlWithResult<int>(sql);
@@ -72,7 +76,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
         /// </summary>
         public IUnitOfWork UnitOfWork { get; private set; }
 
-
         /// <summary>
         /// Current database model data converter handler
         /// </summary>
@@ -98,7 +101,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
         /// </summary>
         public bool MigrationsPending { get; set; }
 
-
         /// <summary>
         /// Load the current <see cref="IUnitOfWork"/> instance
         /// </summary>
@@ -112,7 +114,7 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
 
             UnitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 
-            if (UnitOfWork.AppGlobals.ContextConfig.TurnOffMigrations)
+            if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffMigrations ?? true)
             {
                 return;
             }
@@ -132,7 +134,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
             {
                 CheckEf6AndMigrate(context);
             }
-
 
             // Migrations pending?
             MigrationsPending = context.Database.GetPendingMigrations().Any();
@@ -211,7 +212,7 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
         {
 
 #if DEBUG
-            if (UnitOfWork.AppGlobals.ContextConfig.TurnOffBackup)
+            if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffBackup ?? true)
             {
                 return;
             }
@@ -227,6 +228,10 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
                 return;
             }
 
+            if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
+            {
+                return;
+            }
 
             var fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
 
@@ -250,7 +255,6 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
         /// <param name="fileName">Full path to the backup file</param>
         public void SaveDatabase(string fileName)
         {
-
             if (IsNewDatabase || !HasTables)
             {
                 return;
@@ -261,11 +265,15 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
                 return;
             }
 
+            if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
+            {
+                return;
+            }
+
             if (string.IsNullOrEmpty(fileName))
             {
                 fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
             }
-
 
             _log.LogInformation("Migrations: save database before migration");
 
@@ -274,36 +282,32 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
                 UnitOfWork.RunBackup(fileName);
                 _log.LogInformation($"Migrations: database save to {fileName}");
             }
-
             catch (Exception e)
             {
                 _log.LogError("Migrations:BackupDatabase", e);
             }
-
-
         }
-
-
 
         /// <summary>
         /// Migrate database to current version: applies schema changes
         /// </summary>
         public void MigrateDatabase()
         {
-
             if (!MigrationsPending)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
             {
                 return;
             }
 
             try
             {
-
                 //_log.Info("Migrations: script changes");
 
-
                 _log.LogInformation("Migrations: update database");
-
 
                 using (var scope = UnitOfWork.GetContextScope())
                 {
@@ -315,13 +319,9 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
                     context.Database.Migrate();
 
                     context.Database.SetCommandTimeout(timeout);
-
                 }
 
-
                 var fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
-
-
 
                 try
                 {
@@ -329,16 +329,11 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
 
                     UnitOfWork.ShrinkDatabase();
                     _log.LogInformation($"Migrations: database save after migration to {fileName}");
-
-
                 }
-
                 catch (Exception e)
                 {
                     _log.LogError("Migrations:BackupDatabase after migration", e);
                 }
-
-
             }
             catch (Exception e)
             {
@@ -353,8 +348,7 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
         /// </summary>
         public void ApplyDatabaseUpdates()
         {
-
-            if (UnitOfWork.AppGlobals.ContextConfig.TurnOffConverters)
+            if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffConverters ?? true)
             {
                 return;
             }

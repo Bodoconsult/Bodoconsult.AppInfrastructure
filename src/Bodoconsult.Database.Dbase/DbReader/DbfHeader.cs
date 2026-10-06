@@ -188,7 +188,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
         public DbfHeader()
         {
             //create a list of fields of default size
-            MFields = new List<DbfColumn>();
+            MFields = [];
 
         }
 
@@ -533,7 +533,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
             if (nFileType != 0x03 && nFileType != 245)
             {
-                throw new NotSupportedException("Unsupported DBF reader Type " + nFileType);
+                throw new NotSupportedException($"Unsupported DBF reader Type {nFileType}");
             }
 
             // parse the update date information.

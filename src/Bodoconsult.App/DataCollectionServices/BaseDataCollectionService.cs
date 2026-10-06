@@ -79,7 +79,7 @@ public abstract class BaseDataCollectionService<T> : IDataCollectionService<T> w
     /// <summary>
     /// The currently collected data
     /// </summary>
-    public List<T> Data { get; } = new();
+    public List<T> Data { get; } = [];
 
     /// <summary>
     /// Start the data collection

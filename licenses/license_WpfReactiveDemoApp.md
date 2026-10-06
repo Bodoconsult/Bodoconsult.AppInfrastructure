@@ -1,17 +1,5 @@
 # Referenced libraries for WpfReactiveDemoApp
 
-## Nuget package library ReactiveUI.Extensions by ReactiveUI Association Inc
-
-Copyright: Copyright (c) ReactiveUI Association Inc 2026
-
-High-value Reactive Extensions (Rx) operators and async-native observable primitives for building reactive .NET applications. Includes operators that complement System.Reactive and a fully async IObservableAsync pipeline.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/reactiveui/Extensions
-
 ## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors

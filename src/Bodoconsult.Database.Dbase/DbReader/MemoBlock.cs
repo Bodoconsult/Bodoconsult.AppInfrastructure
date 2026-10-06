@@ -36,23 +36,30 @@
 
 namespace Bodoconsult.Database.Dbase.DbReader
 {
+    /// <summary>
+    /// Represents a Memo DBase data field
+    /// </summary>
     public class MemoBlock
     {
-        public MemoDataType MemoDataType { get; }
-        public byte[] Memo { get; }
-
+        /// <summary>
+        /// Default ctor
+        /// </summary>
+        /// <param name="type">Memo data type</param>
+        /// <param name="data">Memo data as byte array</param>
         public MemoBlock(MemoDataType type, byte[] data)
         {
             MemoDataType = type;
             Memo = data;
         }
-    }
 
-    public enum MemoDataType
-    {
-        Picture = 0
-        , Text = 1
-    }
+        /// <summary>
+        /// Memo data type
+        /// </summary>
+        public MemoDataType MemoDataType { get; }
 
-  
+        /// <summary>
+        /// Memo data as byte array
+        /// </summary>
+        public byte[] Memo { get; }
+    }
 }

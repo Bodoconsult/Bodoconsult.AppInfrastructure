@@ -13,7 +13,7 @@ namespace BodoWebMailer.Business.Services;
 /// </summary>
 public sealed class FakeMailStorageService : IMailStorageService
 {
-    private readonly List<MailItem> _mailItems  = new();
+    private readonly List<MailItem> _mailItems  = [];
 
     /// <summary>
     /// Get the mail account data from database

@@ -42,11 +42,18 @@ using System.Linq;
 
 namespace Bodoconsult.Database.Dbase.DbReader
 {
+    /// <summary>
+    /// Reppresents a collection of memo blocks
+    /// </summary>
     public class MemoCollection : IEnumerable<MemoBlock>
     {
         private readonly Stream _stream;
         private int _blockSize;
 
+        /// <summary>
+        /// Default ctor
+        /// </summary>
+        /// <param name="memoStream">Stream with memo data</param>
         public MemoCollection(Stream memoStream)
         {
             _stream = memoStream;
@@ -54,6 +61,8 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
         #region IEnumerable<MemoBlock> Members
 
+        /// <summary>Returns an enumerator that iterates through the collection.</summary>
+        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
         public IEnumerator<MemoBlock> GetEnumerator()
         {
             return GetCollection();
@@ -92,24 +101,22 @@ namespace Bodoconsult.Database.Dbase.DbReader
         private MemoBlock ReadMemo()
         {
             var header = new byte[8];
-            _stream.Read(header, 0, 8);
+            _stream.ReadExactly(header, 0, 8);
             var type = (MemoDataType)ToInteger(header.Take(4).ToArray());
             var memoSize = ToInteger(header.Skip(4).Take(4).ToArray());
             var memoData = new byte[memoSize];
-            _stream.Read(memoData, 0, memoData.Length);
+            _stream.ReadExactly(memoData, 0, memoData.Length);
             return new MemoBlock(type, memoData);
-
         }
 
         private void GetBlockSize()
         {
             var buffer = new byte[512];
-            _stream.Read(buffer, 0, buffer.Length);
-            _blockSize = ToInteger(new byte[] { 0, 0, buffer[6], buffer[7] });
-
+            _stream.ReadExactly(buffer);
+            _blockSize = ToInteger([0, 0, buffer[6], buffer[7]]);
         }
 
-        private int ToInteger(byte[] data)
+        private static int ToInteger(byte[] data)
         {
             if (BitConverter.IsLittleEndian)
             {

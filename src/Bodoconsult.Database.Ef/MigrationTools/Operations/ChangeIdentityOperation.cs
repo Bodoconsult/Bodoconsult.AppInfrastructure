@@ -36,7 +36,7 @@ namespace Bodoconsult.Database.Ef.MigrationTools.Operations
         /// <summary>
         /// Dependent columns
         /// </summary>
-        public List<DependentColumn> DependentColumns { get; } = new();
+        public List<DependentColumn> DependentColumns { get; } = [];
 
         /// <summary>
         ///     Indicates whether or not the operation might result in loss of data in the database.

@@ -34,13 +34,15 @@
 // About
 // A free and open source .net library for reading/writing DBF files. Fast and easy to use. Supports writing to forward-only streams which makes it easy to write dbf files in a web server environment.
 
-
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Bodoconsult.Database.Dbase.DbReader
 {
+    /// <summary>
+    /// Fast access to Dbase data table
+    /// </summary>
     public class FastDbf : IDisposable
     {
         #region Private Fields
@@ -55,6 +57,12 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
         #region Public Constructors
 
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="fname">Filename of the DBF file</param>
+        /// <param name="codepage">Codepage to use. Default: 1252</param>
+        /// <exception cref="FileNotFoundException"></exception>
         public FastDbf(string fname, int codepage = 1252)
         {
             _codepage = codepage;
@@ -72,11 +80,9 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
             if (File.Exists(memoFile))
             {
-
                 _ofpt = new DbfMemo(memoFile);
                 _ofpt.LoadMetaData();
             }
-
 
             _orec = new DbfRecord(_odbf.Header, codepage)
                 {
@@ -88,14 +94,26 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
         #region Public Properties
 
+        /// <summary>
+        /// Number of columns in the table
+        /// </summary>
         public int ColumnCount => _odbf.Header.ColumnCount;
+
+        /// <summary>
+        /// Numbe rof records in the taböe
+        /// </summary>
         public uint RecordCount => _odbf.Header.RecordCount;
 
         #endregion Public Properties
 
         #region Public Methods
 
-        public static DbfResult Read(string fname, int codepage = 1252)
+        /// <summary>
+        /// Read a DBase data table
+        /// </summary>
+        /// <param name="fname">DBase table filename</param>
+        /// <returns>A <see cref="DbfResult"/> instance containing the data in the Dbase table</returns>
+        public DbfResult Read(string fname)
         {
             if (!File.Exists(fname))
             {
@@ -117,7 +135,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
                 ofpt.LoadMetaData();
             }
 
-            var orec = new DbfRecord(odbf.Header, codepage)
+            var orec = new DbfRecord(odbf.Header, _codepage)
             {
                 MemoSource = ofpt
             };
@@ -158,6 +176,11 @@ namespace Bodoconsult.Database.Dbase.DbReader
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Find an index
+        /// </summary>
+        /// <param name="conditionFunc">Coniditional function</param>
+        /// <returns>Index number or null</returns>
         public int? FindIndex(Func<List<string>, bool> conditionFunc)
         {
             try
@@ -191,12 +214,17 @@ namespace Bodoconsult.Database.Dbase.DbReader
             return null;
         }
 
+        /// <summary>
+        /// Read the content of a DBase data table
+        /// </summary>
+        /// <param name="index">Index number</param>
+        /// <param name="count">Count. Default: 1</param>
+        /// <param name="filter">Flzter function</param>
+        /// <param name="skipIndexes">Skip indexes</param>
+        /// <returns>DBase data table file content</returns>
         public DbfResult Read(int index, int count = 1, Func<List<string>, bool> filter = null, List<int> skipIndexes = null)
         {
-            if (filter == null)
-            {
-                filter = x => true;
-            }
+            filter ??= _ => true;
 
             var retval = new DbfResult
             {
@@ -242,6 +270,7 @@ namespace Bodoconsult.Database.Dbase.DbReader
 
         #region Protected Methods
 
+        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposing)

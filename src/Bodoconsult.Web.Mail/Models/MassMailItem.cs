@@ -32,15 +32,15 @@ public sealed class MassMailItem
     /// <summary>
     /// Mail receivers
     /// </summary>
-    public List<MailReceiver> To { get; } = new();
+    public List<MailReceiver> To { get; } = [];
 
     /// <summary>
     /// Images found in the body
     /// </summary>
-    public List<ImageMetaData> Images { get; } = new();
+    public List<ImageMetaData> Images { get; } = [];
 
     /// <summary>
     /// List with file paths to be attached to the mail
     /// </summary>
-    public List<string> Attachments { get; } = new();
+    public List<string> Attachments { get; } = [];
 }

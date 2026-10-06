@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Bodoconsult.Database.Dbase | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Bodoconsult.Database.Dbase | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Dbase/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="bodoconsultdatabasedbase">Bodoconsult.Database.Dbase</h1>
+
+<h1 id="what-does-the-library">What does the library</h1>
+<p>Bodoconsult.Database.Dbase allows reading data from DBase or Clipper DBF database files.</p>
+<h1 id="how-to-use-the-library">How to use the library</h1>
+<p>This sample is taken from the implementation Bodoconsult.Database.SqlClient.</p>
+<p>The source code contain a NUnit test classes, the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<h1 id="how-to-use-the-bodoconsultdatabasedbase">How to use the Bodoconsult.Database.Dbase</h1>
+<h2 id="reading-dbf-file-into-list-of-entities">Reading DBF file into list of entities</h2>
+<pre><code class="lang-csharp">[Test]
+public void Execute_ValidSetup_PropertiesSetCorrectly()
+{
+    // Arrange 
+    var task = new DbfImportTask&lt;Article&gt;(DbFile, _folderPath, _logger, MapToEntityDelegate);
+    Assert.That(task.Result.Count, Is.EqualTo(0));
+
+    // Act  
+    task.Execute();
+
+    // Assert
+    Assert.That(task.Result.Count, Is.Not.EqualTo(0));
+}
+</code></pre>
+<h2 id="reading-dbf-file-in-an-environment-using-bodoconsultdatabaseef-and-entity-framework">Reading DBF file in an environment using Bodoconsult.Database.Ef and Entity Framework</h2>
+<pre><code class="lang-csharp">[Test]
+public void Execute_ValidSetupEf_PropertiesSetCorrectly()
+{
+    // Arrange 
+    ClearArticles();
+
+    var task = new DbfImportEfTask&lt;Article&gt;(DbfFileName, _folderPath, _logger, MapToEntityDelegate, _unitOfWork)
+    {
+        UseBulkInsert = false,
+        BatchSize = 50
+    };
+    Assert.That(Count(), Is.EqualTo(0));
+
+    // Act  
+    task.Execute();
+
+    // Assert
+    Assert.That(Count(), Is.Not.EqualTo(0));
+}
+</code></pre>
+<p>RowVersion fields and integer primary key fields cannot be transferred using DbfImportEfTask&lt;TData&gt; by default. Inserting existing integer primary keys is possible by bringing the database in a mode allowing this and turning of this mode later by SqlServer specific SQL commands. Fields to not transfer can set by addig their names to Repository&lt;TData&gt;.FieldsNotAllowedForBulkCopy or RepositoryGuid&lt;TData&gt;.FieldsNotAllowedForBulkCopy list. By default the fields RowVersion and Id are excluded.</p>
+<h2 id="reading-dbf-file-in-an-environment-using-bodoconsultdatabase-and-plain-systemdata">Reading DBF file in an environment using Bodoconsult.Database and plain System.Data</h2>
+<p>To store the read DBF file data to another database using Bodoconsult.Database you have to implement a super class derived from DbfImportBaseTask&lt;TData&gt; overriding the method StoreData(List&lt;TData&gt; data) with the code required to save the data to your data table by using plain SQL or ADO.NET.</p>
+<h1 id="about-us">About us</h1>
+<p>Bodoconsult (<a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a>) is a Munich based software development company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Dbase/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

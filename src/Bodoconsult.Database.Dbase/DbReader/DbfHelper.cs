@@ -39,9 +39,11 @@ using System;
 
 namespace Bodoconsult.Database.Dbase.DbReader
 {
+    /// <summary>
+    /// Helper class for DBF database handling
+    /// </summary>
     public static class DbfHelper
     {
-
         /// <summary>
         /// Convert a byte array to an integer value
         /// </summary>

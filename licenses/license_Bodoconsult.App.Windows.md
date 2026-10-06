@@ -26,44 +26,19 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
-## Nuget package library Microsoft.Toolkit.Uwp.Notifications by Microsoft.Toolkit, dotnetfoundation
-
-Copyright: (c) .NET Foundation and Contributors.  All rights reserved.
-
-The official way to send toast notifications on Windows 10 via code rather than XML, with the help of IntelliSense. Supports all C# app types, including WPF, UWP, WinForms, and Console, even without packaging your app as MSIX. Also supports C++ UWP apps.
-
-      Additionally, generate notification payloads from your ASP.NET web server to send as push notifications, or generate notification payloads from class libraries.
-
-      For UWP/MSIX apps, you can also generate tile and badge notifications.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/CommunityToolkit/WindowsCommunityToolkit.git
-
-## Nuget package library Microsoft.Win32.Registry by Microsoft
+## Nuget package library Microsoft.WindowsAppSDK by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
-Provides support for accessing and modifying the Windows Registry.
+The Windows App SDK empowers all Windows Desktop apps with modern Windows UI, APIs, and platform features, including back-compat support.
 
-Commonly Used Types:
-Microsoft.Win32.RegistryKey
-Microsoft.Win32.Registry
-Microsoft.Win32.RegistryValueKind
-Microsoft.Win32.RegistryHive
-Microsoft.Win32.RegistryView
- 
-When using NuGet 3.x this package requires at least version 3.4.
+License: license.txt
 
-License: MIT
+License-Url: https://www.nuget.org/packages/Microsoft.WindowsAppSDK/2.5.1/License
 
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: git://github.com/dotnet/runtime
+Project-Url: 
 
 ## Nuget package library System.Drawing.Common by Microsoft
 
@@ -85,7 +60,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/winforms
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library System.Security.Cryptography.ProtectedData by Microsoft
 

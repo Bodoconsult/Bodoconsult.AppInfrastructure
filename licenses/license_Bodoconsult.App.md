@@ -30,13 +30,13 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
 
-This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/aspnetcore
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
 
@@ -44,13 +44,13 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 Additional APIs for ASP.NET Core data protection.
 
-This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/d3aba8fe1a0d0f5c145506f292b72ea9d28406fc
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/aspnetcore
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
 
@@ -97,7 +97,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
@@ -109,7 +109,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging by Microsoft
 
@@ -121,7 +121,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
@@ -133,7 +133,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
@@ -145,7 +145,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
@@ -157,48 +157,5 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
-
-## Nuget package library Microsoft.Win32.Primitives by Microsoft
-
-Copyright: © Microsoft Corporation.  All rights reserved.
-
-Provides common types for Win32-based libraries.
-
-Commonly Used Types:
-System.ComponentModel.Win32Exception
- 
-When using NuGet 3.x this package requires at least version 3.4.
-
-License: MS-EULA
-
-License-Url: http://go.microsoft.com/fwlink/?LinkId=329770
-
-Project-Url: 
-
-## Nuget package library Microsoft.Windows.CsWin32 by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Microsoft Windows SDK Win32 API Source Generator
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/microsoft/CsWin32.git
-
-## Nuget package library System.Text.Json by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.
-
-The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 

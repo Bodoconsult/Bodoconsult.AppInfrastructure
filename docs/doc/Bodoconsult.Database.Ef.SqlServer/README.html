@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Bodoconsult.Database.Ef | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Bodoconsult.Database.Ef | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Ef.SqlServer/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="bodoconsultdatabaseef">Bodoconsult.Database.Ef</h1>
+
+<h1 id="what-does-the-library">What does the library</h1>
+<p>Bodoconsult.Database.Ef is a library based on Microsoft Entity Framework.</p>
+<h1 id="how-to-use-the-library">How to use the library</h1>
+<p>The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li>Entities</li>
+<li>Entity configuration</li>
+<li>Database context</li>
+<li>Enhance database context for target database type</li>
+<li>DbContext factory</li>
+</ul>
+<h1 id="implementation-details">Implementation details</h1>
+<h2 id="entities">Entities</h2>
+<p>If talking about Entity Framework an entity is a simple class representing a table in the database. Sometimes entities are named plain old code objects (POCO) too.</p>
+<pre><code class="lang-csharp">
+    /// &lt;summary&gt;
+    /// Represents a app setting item
+    /// &lt;/summary&gt;
+    
+    public class AppSettings: IEntityRequirements
+    {
+        public int ID { get; set; }
+
+        /// &lt;summary&gt;
+        /// Row version to solve concurrency issues
+        /// &lt;/summary&gt;
+        public byte[] RowVersion { get; set; }
+
+        /// &lt;summary&gt;
+        /// The key name of the app setting
+        /// &lt;/summary&gt;
+        [Required(AllowEmptyStrings = false)]
+        public string Key { get; set; }
+
+        /// &lt;summary&gt;
+        /// Current value of the app setting
+        /// &lt;/summary&gt;
+        public string Value { get; set; }
+
+    }
+
+</code></pre>
+<p>Do not use prefixes for entities. It is not recommend by MS anymore. In the above example name the class AppSettings instead of TAppSettings</p>
+<p>Entities used with Entity Framework should contain simple get-set properties only. There should not be implemented any kind of logic in an entity.
+If you want to enhance an entity with logic used extension methods for implementing the logic:</p>
+<pre><code class="lang-csharp">
+    /// &lt;summary&gt;
+    /// Extension method for &lt;see cref=&quot;AppSettings&quot;/&gt; entity
+    /// &lt;/summary&gt;
+    public static class AppSettingsExtensions
+    {
+        /// &lt;summary&gt;
+        /// Returns the entity data as a friendly readable string
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;appSettings&quot;&gt;Current entity instance&lt;/param&gt;
+        /// &lt;returns&gt;Entity data as a friendly readable string&lt;/returns&gt;
+        public static string ToFormattedString(this AppSettings appSettings)
+        {
+
+            return $&quot;{appSettings.Key}: {appSettings.RowVersion}&quot;;
+
+        }
+    }
+
+</code></pre>
+<p>If logic is implemented in the entity class itself, the logic is loaded to memory per instance created of the entity type. The extension method is loaded only once. Espacially for heavy-usage entities is may reduce the memory pressure of your app.</p>
+<h2 id="entity-configuration">Entity configuration</h2>
+<p>Entity configuration for entity properties may be done in the entity class itself via attributes like [Required(AllowEmptyStrings = false)] in the above sample.</p>
+<p>More and more complex configuration can be done in a separate configuration file implementing IEntityTypeConfiguration&lt;T&gt;. Use this file to configure table details, database indexes and other more sophisticated settings.</p>
+<pre><code class="lang-csharp">
+/// &lt;summary&gt;
+/// Entity configuration for &lt;see cref=&quot;AppSettings&quot;/&gt; entity
+/// &lt;/summary&gt;
+public class AppSettingsConfig : IEntityTypeConfiguration&lt;AppSettings&gt;
+{
+
+    public void Configure(EntityTypeBuilder&lt;AppSettings&gt; builder)
+    {
+        if (builder == null)
+        {
+            throw new ArgumentNullException(nameof(builder));
+        }
+
+
+        builder.HasKey(x =&gt; x.ID);
+        builder.ToTable(&quot;AppSettings&quot;);
+        builder.Property(x =&gt; x.ID).ValueGeneratedOnAdd();
+
+        builder.Property(e =&gt; e.Key)
+                .HasMaxLength(255)
+                .IsRequired();
+
+        builder.Property(p =&gt; p.RowVersion).IsRowVersion().IsConcurrencyToken().IsRequired();
+
+        builder.HasIndex(u =&gt; u.Key)
+            //.HasName(&quot;AppSettingsKeyUnique&quot;) // Old
+            .HasDatabaseName(&quot;AppSettingsKeyUnique&quot;) // New
+            .IsUnique();
+    }
+}
+
+</code></pre>
+<h2 id="database-context">Database context</h2>
+<p>Implement a base DbContext based class:</p>
+<pre><code class="lang-csharp">
+    public class ExampleDbContext : Microsoft.EntityFrameworkCore.DbContext
+    {
+
+        /// &lt;summary&gt;
+        /// Default ctor
+        /// &lt;/summary&gt;
+        public ExampleDbContext() : base(GetDefaultOptions())
+        { }
+
+        /// &lt;summary&gt;
+        /// Ctor for setting up DbContext with a specific connection string
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;connectionString&quot;&gt;Connection string&lt;/param&gt;
+        public ExampleDbContext(string connectionString) : base(GetDefaultOptions(connectionString))
+        { }
+
+        /// &lt;summary&gt;
+        /// Ctor for setting up DbContext with non SqLserver database i.e. for in-memory testing
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;options&quot;&gt;DbContext options&lt;/param&gt;
+        public ExampleDbContext(DbContextOptions options)
+            : base(options)
+        { }
+
+
+        /// &lt;summary&gt;
+        /// Get default options for the DbContext
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;connectionString&quot;&gt;Connection string to use&lt;/param&gt;
+        /// &lt;returns&gt;DbContext options&lt;/returns&gt;
+        protected static DbContextOptions GetDefaultOptions(string connectionString = null)
+        {
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new ArgumentNullException(nameof(connectionString));
+            }
+
+            var builder = new DbContextOptionsBuilder&lt;ExampleDbContext&gt;();
+
+            builder.UseSqlServer(connectionString, x =&gt; x
+                .MigrationsAssembly(&quot;EntityFrameworkSample&quot;)
+                .EnableRetryOnFailure()
+                .CommandTimeout((int)TimeSpan.FromSeconds(600).TotalSeconds));
+            return builder.Options;
+        }
+
+        #region Database sets
+
+        public DbSet&lt;AppSettings&gt; AppSettings { get; set; }
+
+        public DbSet&lt;Users&gt; Users { get; set; }
+
+
+        #endregion
+
+        #region Query sets
+
+        ///// &lt;summary&gt;
+        ///// Items for the component tree in the UI (material handling view)
+        ///// &lt;/summary&gt;
+        //public DbQuery&lt;QComponentTreeItem&gt; QComponentTreeItems { get; set; }
+
+        #endregion
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            if (modelBuilder == null)
+            {
+                throw new ArgumentNullException(nameof(modelBuilder));
+            }
+
+            LoadConfig(modelBuilder);
+        }
+
+
+        private static readonly IEntityTypeConfiguration&lt;AppSettings&gt; AppSettingsConfig = new AppSettingsConfig();
+        private static readonly IEntityTypeConfiguration&lt;Users&gt; UsersConfig = new UsersConfig();
+
+        private static void LoadConfig(ModelBuilder modelBuilder)
+        {
+            // Config model
+            modelBuilder.ApplyConfiguration(AppSettingsConfig);
+            modelBuilder.ApplyConfiguration(UsersConfig);
+
+
+            //**********************
+            // Add relations
+            //
+            // Build only one-to-many relationships for being compatible with EFCore 2.2
+            //**********************
+
+            //// TArticle
+            //modelBuilder.Entity&lt;TArticle&gt;()
+            //    .HasOne(x =&gt; x.ArticleGroup)
+            //    .WithMany(x =&gt; x.Articles)
+            //    .HasForeignKey(s =&gt; s.ArticleGroupId);
+
+        }
+    }
+
+</code></pre>
+<h2 id="enhance-database-context-for-target-database-type">Enhance database context for target database type</h2>
+<p>In case your DBContext instance requires implementations specific for a certain type of database, implement a class derived from your base DbContextclass and add or adjust the required features.</p>
+<pre><code class="lang-csharp">
+/// &lt;summary&gt;
+/// Implement SQLServer specific features for the DbContext
+/// &lt;/summary&gt;
+public class SqlServerExampleDbContext : ExampleDbContext
+{
+    /// &lt;summary&gt;
+    /// Default ctor
+    /// &lt;/summary&gt;
+    public SqlServerExampleDbContext() : base(GetDefaultOptions())
+    { }
+
+    /// &lt;summary&gt;
+    /// Ctor for setting up DbContext with a specific connection string
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;connectionString&quot;&gt;Connection string&lt;/param&gt;
+    public SqlServerExampleDbContext(string connectionString) : base(GetDefaultOptions(connectionString))
+    { }
+
+    /// &lt;summary&gt;
+    /// Ctor with context options
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;options&quot;&gt;Current DB options&lt;/param&gt;
+    public SqlServerExampleDbContext(DbContextOptions options) : base(options)
+    { }
+
+    // Add or adjust DB specific logic
+
+}
+
+</code></pre>
+<h2 id="dbcontext-factory">DbContext factory</h2>
+<pre><code class="lang-csharp">
+public class SqlServerExampleDbContextFactory: IDbContextFactory&lt;SqlServerExampleDbContext&gt;
+{
+    /// &lt;summary&gt;
+    /// Current DB context configuration
+    /// &lt;/summary&gt;
+
+    public IContextConfig ContextConfig { get;  }
+
+    /// &lt;summary&gt;
+    /// Current app logger instance
+    /// &lt;/summary&gt;
+    public IAppLoggerProxy Logger { get; }
+
+    /// &lt;summary&gt;
+    /// 
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;config&quot;&gt;Current context configuration&lt;/param&gt;
+    /// &lt;param name=&quot;logger&quot;&gt;Current logger to use&lt;/param&gt;
+    public SqlServerExampleDbContextFactory(IContextConfig config, IAppLoggerProxy logger)
+    {
+        
+        Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+        ContextConfig = config ?? throw new ArgumentNullException(nameof(config));
+    }
+
+    public SqlServerExampleDbContext CreateDbContext()
+    {
+        if (string.IsNullOrEmpty(ContextConfig.ConnectionString))
+        {
+            throw new ArgumentNullException(nameof(ContextConfig.ConnectionString));
+        }
+
+        var builder = new DbContextOptionsBuilder&lt;ExampleDbContext&gt;();
+
+        builder
+            .UseLoggerFactory(Logger.LoggerFactory)
+            .UseSqlServer(ContextConfig.ConnectionString, x =&gt; x
+                .MigrationsAssembly(&quot;EntityFrameworkSample&quot;)
+                .EnableRetryOnFailure()
+                .CommandTimeout((int)TimeSpan.FromSeconds(ContextConfig.CommandTimeout).TotalSeconds));
+
+        var dbContext = new SqlServerExampleDbContext(builder.Options);
+        dbContext.Database.SetCommandTimeout(ContextConfig.CommandTimeout);
+        dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
+
+        return dbContext;
+    }
+
+}
+
+</code></pre>
+<h1 id="about-us">About us</h1>
+<p>Bodoconsult <a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a> is a Munich based software company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database.Ef.SqlServer/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

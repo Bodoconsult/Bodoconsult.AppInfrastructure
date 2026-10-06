@@ -36,7 +36,7 @@ License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/dotnet/runtime
+Project-Url: https://github.com/dotnet/dotnet
 
 ## Nuget package library Microsoft.Graph by Microsoft
 
@@ -46,7 +46,7 @@ Microsoft Graph Client Library allows you to call Office 365, Azure AD and other
 
 License: LICENSE.txt
 
-License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.6.0/License
+License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.7.0/License
 
 Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
 

@@ -67,7 +67,7 @@ public sealed class HtmlToMailConverter
     /// <summary>
     /// Contains all found images in the document
     /// </summary>
-    public List<ImageMetaData> Images { get; set; } = new();
+    public List<ImageMetaData> Images { get; set; } = [];
 
     /// <summary>
     /// Load the file from its location

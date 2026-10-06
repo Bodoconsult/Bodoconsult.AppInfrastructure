@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Bodoconsult.Database | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Bodoconsult.Database | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="bodoconsultdatabase">Bodoconsult.Database</h1>
+
+<h1 id="what-does-the-library">What does the library</h1>
+<p>Bodoconsult.Database library simplifies the access to SQL based databases using System.Data classes like DataTable, DataReader etc.. This library is a base class which does not contain implementations.
+It handles the most common database actions like getting datatables, running SQL statement or fetch scalar values from the database.</p>
+<p>Additionally the library contains some tools for developers making the usage of the database layers derived from Bodoconsult.Database as easy as possible. See below.</p>
+<p>See the following implementations for specific database systems:</p>
+<blockquote>
+<p><strong><a href="../Bodoconsult.Database.SqlClient/README.html">Bodoconsult.Database.SqlClient</a></strong> for Microsoft SqlServer, Microsoft SqlServer Express or LocalDb based databases (Nuget: <a href="https://www.nuget.org/packages/Bodoconsult.Database.SqlClient/">https://www.nuget.org/packages/Bodoconsult.Database.SqlClient/</a>)</p>
+</blockquote>
+<blockquote>
+<p><strong><a href="doc/Bodoconsult.Database.Postgres/README.md">Bodoconsult.Database.Postgres</a></strong> for PostgreSQL based databases (Nuget: <a href="https://www.nuget.org/packages/Bodoconsult.Database.Postgres/">https://www.nuget.org/packages/Bodoconsult.Database.Postgres/</a>)</p>
+</blockquote>
+<blockquote>
+<p><strong><a href="doc/Bodoconsult.Database.Sqlite/README.md">Bodoconsult.Database.Sqlite</a></strong> for SqLite based databases (Nuget: <a href="https://www.nuget.org/packages/Bodoconsult.Database.Sqlite/">https://www.nuget.org/packages/Bodoconsult.Database.Sqlite/</a>)</p>
+</blockquote>
+<h1 id="how-to-use-the-library">How to use the library</h1>
+<p>This sample is taken from the implementation Bodoconsult.Database.SqlClient.</p>
+<p>The source code contain a NUnit test classes, the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
+<h1 id="how-to-use-the-database-layer">How to use the database layer</h1>
+<pre><code class="lang-csharp">
+    [TestFixture]
+    public class TestsSqlClientConnManager
+    {
+
+        private readonly string _connectionString = TestHelper.SqlServerString;
+
+
+        private IConnManager _db;
+
+        [SetUp]
+        public void Setup()
+        {
+            _db = SqlClientConnManager.GetConnManager(_connectionString);
+
+        }
+
+        /// &lt;summary&gt;
+        /// Test the connection
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestTestConnection()
+        {
+
+            var erg = _db.TestConnection();
+
+
+            Assert.That(erg);
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a plain SQL string (avoid this option due to SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataTableFromSql()
+        {
+
+            const string sql = &quot;SELECT * FROM dbo.Customer&quot;;
+
+            var erg = _db.GetDataTable(sql);
+
+            Assert.That(erg.Rows.Count&gt;0);
+        }
+
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataTableFromCommand()
+        {
+
+            const string sql = &quot;SELECT * FROM dbo.Customer&quot;;
+
+
+            var cmd = new SqlCommand
+            {
+                CommandText = sql
+            };
+
+            // Add parameters here if required
+
+            var erg = _db.GetDataTable(cmd);
+
+
+            Assert.That(erg.Rows.Count &gt; 0);
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataTableFromCommandWidthGetCommand()
+        {
+            const string sql = &quot;SELECT * FROM dbo.Customer&quot;;
+
+            var cmd = _db.GetCommand();
+            cmd.CommandText = sql;
+
+            // Add parameters here if required
+            var erg = _db.GetDataTable(cmd);
+
+
+            Assert.That(erg.Rows.Count &gt; 0);
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataTableFromCommandWidthGetCommandWithParameter()
+        {
+            const string sql = &quot;SELECT * FROM dbo.Customer WHERE CustomerId=@ID&quot;;
+
+            var cmd = _db.GetCommand();
+            cmd.CommandText = sql;
+
+            var p = _db.GetParameter(cmd, &quot;@ID&quot;, GeneralDbType.Int);
+            p.Value = 1;
+
+            // Add parameters here if required
+            var erg = _db.GetDataTable(cmd);
+
+
+            Assert.That(erg.Rows.Count &gt; 0);
+            Assert.That(erg.Rows.Count == 1);
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a plain SQL string (avoid this option due to SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromSql()
+        {
+
+            const string sql = &quot;SELECT * FROM dbo.Customer&quot;;
+
+            var erg = _db.GetDataReader(sql);
+
+            Assert.That(erg.FieldCount &gt; 0);
+        }
+
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromCommand()
+        {
+
+            const string sql = &quot;SELECT * FROM dbo.Customer&quot;;
+
+
+            var cmd = new SqlCommand
+            {
+                CommandText = sql
+            };
+
+            // Add parameters here if required
+
+            var erg = _db.GetDataReader(cmd);
+
+            Assert.That(erg.FieldCount &gt; 0);
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromCommandWidthGetCommand()
+        {
+            const string sql = &quot;SELECT * FROM dbo.Customer&quot;;
+
+            var cmd = _db.GetCommand();
+            cmd.CommandText = sql;
+
+            // Add parameters here if required
+            var erg = _db.GetDataReader(cmd);
+
+            Assert.That(erg.FieldCount&gt;0);
+
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a datatable from the database from a (parameterized) SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestGetDataReaderFromCommandWidthGetCommandAndParameter()
+        {
+            const string sql = &quot;SELECT * FROM dbo.Customer WHERE [CustomerId]=@ID;&quot;;
+
+            var cmd = _db.GetCommand();
+            cmd.CommandText = sql;
+
+            var p = _db.GetParameter(cmd, &quot;@ID&quot;, GeneralDbType.Int);
+            p.Value = 1;
+
+            // Add parameters here if required
+            var erg = _db.GetDataReader(cmd);
+
+            Assert.That(erg.FieldCount &gt; 0);
+            Assert.That(erg.HasRows);
+
+        }
+
+        /// &lt;summary&gt;
+        /// Execute a plain SQL string (avoid this option due to SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecFromSql()
+        {
+
+            const string sql = &quot;DELETE FROM dbo.Customer WHERE CustomerId=-99&quot;;
+
+            Assert.DoesNotThrow(() =&gt; _db.Exec(sql));
+        }
+
+
+        /// &lt;summary&gt;
+        /// Execute a SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecFromCommand()
+        {
+
+            const string sql = &quot;DELETE FROM dbo.Customer WHERE CustomerId=@Key&quot;;
+
+            // Create command
+            var cmd = new SqlCommand
+            {
+                CommandText = sql
+            };
+
+            // Add a parameter to the command
+            var para = cmd.Parameters.Add(&quot;@Key&quot;, SqlDbType.Int);
+            para.Value = -99;
+
+            Assert.DoesNotThrow(() =&gt; _db.Exec(cmd));
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a scalar value from database from a plain SQL string (avoid this option due to SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecWithResultFromSql()
+        {
+
+            const string sql = &quot;SELECT CustomerId FROM dbo.Customer WHERE CustomerId=1&quot;;
+
+            var result = _db.ExecWithResult(sql);
+
+            Assert.That(result);
+            Assert.IsFalse(string.IsNullOrEmpty(result));
+        }
+
+
+        /// &lt;summary&gt;
+        /// Get a scalar value from database from SqlCommand object (choose this option to avoid SQL injection)
+        /// &lt;/summary&gt;
+        [Test]
+        public void TestExecWithResultFromCommand()
+        {
+
+            const string sql = &quot;SELECT CustomerId FROM dbo.Customer WHERE CustomerId=@Key&quot;;
+
+            // Create command
+            var cmd = new SqlCommand
+            {
+                CommandText = sql
+            };
+
+            // Add a parameter to the command
+            var para = cmd.Parameters.Add(&quot;@Key&quot;, SqlDbType.Int);
+            para.Value = 1;
+
+            var result = _db.ExecWithResult(cmd);
+
+            Assert.That(result);
+            Assert.IsFalse(string.IsNullOrEmpty(result));
+        }
+
+
+        [Test]
+        public void TestExecMultiple()
+        {
+            const string sql = &quot;DELETE FROM Customer WHERE CustomerId=-99&quot;;
+
+            var commands = new List&lt;DbCommand&gt;();
+
+            var cmd = new SqlCommand(sql);
+            commands.Add(cmd);
+
+            cmd = new SqlCommand(sql);
+            commands.Add(cmd);
+
+            cmd = new SqlCommand(sql);
+            commands.Add(cmd);
+
+            var result = _db.ExecMultiple(commands);
+
+            Assert.That(result == 0);
+        }
+    }
+	
+</code></pre>
+<h2 id="entitybackup-for-easy-handling-of-table-data-backup-and-removal">EntityBackup for easy handling of table data backup and removal</h2>
+<p>EntityBackup is a simple backup solution to keep fast growing tables with a
+date column as small as possible by backing up the data to CSV files and removing the data from the table.</p>
+<p>An example for such a table may be a table with trace log data written in. The table is growing fast. Maybe you think about keeping the trace data in this table only for one year but you may not loose the older data completely.
+For such a case you can backup older data as CSV to disk and remove the backuped data from the table. This is what EntityBackup is intended for.</p>
+<p>There are some more implementations for IEntityBackupService<t>:</t></p>
+<ul>
+<li><p>CsvEntityBackupService<t>: export the data to a CSV file</t></p>
+</li>
+<li><p>XmlEntityBackupService<t>: export the data to a XML file</t></p>
+</li>
+<li><p>JsonEntityBackupService<t>: export the data to a JSON file</t></p>
+</li>
+</ul>
+<h3 id="how-to-use-csventitybackupservice-based-on-interface-ientitybackupservice">How to use CsvEntityBackupService<t> based on interface IEntityBackupService<t></t></t></h3>
+<p>CsvEntityBackupService<t> class provides a full implementation for the getting the required data, backup it and remove it from database.</t></p>
+<p>The main dependency for CsvEntityBackupService<t> is the interface IEntityBackupDataService<t>. Implementations of this interface care for getting the necessary data,
+formatting a single entity and the removal of the processed entities from database.</t></t></p>
+<pre><code class="lang-csharp">
+
+        [Test]
+        public void Backup_ValidSetup_FileCreated()
+        {
+            // Arrange 
+            var from = new DateTime(2023, 7, 19);
+            var to = new DateTime(2023, 7, 22);
+
+
+            var dataService = new DemoEntityEntityBackupDataService();
+            GetDataForService(dataService.DemoEntities, from, to);
+
+            var backupService = new CsvEntityBackupService&lt;DemoEntity&gt;(dataService, FileHelper.EntityBackupPath, &quot;TestBackup&quot;);
+
+            // Act  
+            backupService.BackupToCsv(from, to);
+
+            // Assert
+            Assert.That(backupService.FilesWritten, Is.EqualTo(2));
+        }
+
+        private static void GetDataForService(ICollection&lt;DemoEntity&gt; result, DateTime from, DateTime to)
+        {
+            var entity = new DemoEntity
+            {
+                Id = 1,
+                Name = &quot;Test1&quot;,
+                Date = from
+            };
+
+            result.Add(entity);
+
+            entity = new DemoEntity
+            {
+                Id = 2,
+                Name = &quot;Test2&quot;,
+                Date = from.AddDays(1)
+            };
+
+            result.Add(entity);
+
+            entity = new DemoEntity
+            {
+                Id = 3,
+                Name = &quot;Test3&quot;,
+                Date = to.AddDays(1)
+            };
+
+            result.Add(entity);
+
+            entity = new DemoEntity
+            {
+                Id = 4,
+                Name = &quot;Test4&quot;,
+                Date = from
+            };
+
+            result.Add(entity);
+        }
+
+</code></pre>
+<h3 id="interface-ientitybackupdataservice">Interface IEntityBackupDataService<t></t></h3>
+<p>This interface has to be implemented by the user of EntityBackup to deliver the required data,
+the formatting of a single entity and the removal of the processed entities from database.</p>
+<h3 id="sample-implementation-of-interface-ientitybackupdataservice">Sample implementation of interface IEntityBackupDataService<t></t></h3>
+<pre><code class="lang-csharp">
+/// &lt;summary&gt;
+/// Example for a implementation of &lt;see cref=&quot;IEntityBackupDataService&amp;lt;T&amp;gt;&quot;/&gt;  based on &lt;see cref=&quot;DemoEntity&quot;/&gt;
+/// &lt;/summary&gt;
+public class DemoEntityEntityBackupDataService : BaseEntityBackupDataService&lt;DemoEntity&gt;
+{
+
+    /// &lt;summary&gt;
+    /// Demo entities for testing
+    /// &lt;/summary&gt;
+    public List&lt;DemoEntity&gt; DemoEntities { get; } = new();
+
+    /// &lt;summary&gt;
+    /// Get the data for an entity by date
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;from&quot;&gt;Date from inclusive&lt;/param&gt;
+    /// &lt;param name=&quot;to&quot;&gt;Date until exclusive&lt;/param&gt;
+    /// &lt;param name=&quot;pageSize&quot;&gt;Page size&lt;/param&gt;
+    /// &lt;param name=&quot;pageIndex&quot;&gt;Current page index&lt;/param&gt;
+    /// &lt;returns&gt;List with entities&lt;/returns&gt;
+    public override IList&lt;DemoEntity&gt; GetData(DateTime from, DateTime to, int pageSize, int pageIndex)
+    {
+        return DemoEntities.Where(x =&gt; x.Date &gt;= from &amp;&amp; x.Date &lt; to).ToList();
+    }
+
+    /// &lt;summary&gt;
+    /// Format the entity as a line with semicolon separated fields
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;entity&quot;&gt;Entity to serialize&lt;/param&gt;
+    /// &lt;param name=&quot;stringBuilder&quot;&gt;StringBuilder to append the data&lt;/param&gt;
+    public override void FormatAsString(DemoEntity entity, StringBuilder stringBuilder)
+    {
+        stringBuilder.AppendLine($&quot;{entity.Id};{entity.Name};{entity.Date}&quot;);
+    }
+
+    /// &lt;summary&gt;
+    /// Remove the entities backuped already
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;entities&quot;&gt;Entities to remove&lt;/param&gt;
+    public override void RemoveData(IList&lt;DemoEntity&gt; entities)
+    {
+
+        foreach (var entity in entities)
+        {
+            DemoEntities.Remove(entity);
+        }
+
+    }
+
+}
+
+</code></pre>
+<h2 id="developer-tools-for-making-best-usage-of-bodoconsultdatabase-based-data-layers">Developer tools for making best usage of Bodoconsult.Database based data layers</h2>
+<p>There is as basic metadata infrastructure implemented to help developers to make best usage of Bodoconsult.Database. This metadata infrastructure derived from
+IMetaDataService / BaseMetaDataService creates C# code files based on a certain SQL statement OR DBCommand object.</p>
+<ol>
+<li>It first creates an adjusted entity class for the SQL statement OR DBCommand object.</li>
+<li>Then it creates a mapping method to map a DataReader row object to the entity class.</li>
+<li>At last it creates an service class for adding new rows, updating rows and getting rows from the database table related to SQL statement OR DBCommand object.</li>
+</ol>
+<p>This feature works only well for statements based on a single table. If there are more tables targeted in the statement, only the GetAll and GetById may make sense in the service class.
+The other methods ma be removed in that case.</p>
+<p>Here a sample how to use the IMetaDataService infrastructure:</p>
+<pre><code class="lang-csharp">
+			const string conn = &quot;Valid ADO.NET provider connection string&quot;;
+
+            const string sql = &quot;SELECT * FROM [Customer];&quot;;
+
+            const string entityName = &quot;Customer&quot;;
+
+            const string primaryKeyField = &quot;CustomerId&quot;;
+
+            const string targetPath = @&quot;D:\temp&quot;;
+
+			// Instanciate the metadata service
+			var service = SqlClientMetaDataService();
+
+			// Get the metadata for the SQL statement
+            service.GetMetaData(conn, entityName, sql, primaryKeyField);
+
+            // Export the code files
+            var result = service.ExportAll(targetPath);
+
+</code></pre>
+<p>As a result you will find four files with code in the folder D:\temp:</p>
+<ul>
+<li>D:\temp\Customer_EntityClass_Code.txt</li>
+<li>D:\temp\Customer_DataHelperMethod_Code.txt</li>
+<li>D:\temp\Customer_ServiceClass_Code.txt</li>
+<li>D:\temp\Customer_TestDataHelperMethod_Code.txt</li>
+</ul>
+<h1 id="sqlrunnerservice">SqlRunnerService</h1>
+<p>SqlRunnerService is a helper class to run SQL statements in an ordered on always the same thread.</p>
+<h1 id="about-us">About us</h1>
+<p>Bodoconsult (<a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a>) is a Munich based software development company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/Bodoconsult.Database/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

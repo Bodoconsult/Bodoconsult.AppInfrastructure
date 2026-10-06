@@ -196,7 +196,7 @@ public class DummyI18N : II18N
     /// <returns>List with translated enum values</returns>
     public List<string> TranslateEnumToList<TEnum>()
     {
-        return new();
+        return [];
     }
 
     /// <summary>
@@ -206,6 +206,6 @@ public class DummyI18N : II18N
     /// <returns>List with translated enum values as<see cref="Tuple"/> instances</returns>
     public List<Tuple<TEnum, string>> TranslateEnumToTupleList<TEnum>()
     {
-        return new();
+        return [];
     }
 }

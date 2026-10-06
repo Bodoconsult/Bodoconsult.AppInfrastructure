@@ -54,7 +54,7 @@ internal class RobocopyBackupTargetTests
 
         var spm = new FakeShellProcessManager();
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
 
         var settings = new BackupTargetSettings
         {
@@ -96,7 +96,7 @@ internal class RobocopyBackupTargetTests
 
         var spm = new FakeShellProcessManager();
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
 
         var settings = new BackupTargetSettings
         {
@@ -139,7 +139,7 @@ internal class RobocopyBackupTargetTests
 
         var spm = new FakeShellProcessManager();
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
 
         var settings = new BackupTargetSettings
         {
@@ -181,7 +181,7 @@ internal class RobocopyBackupTargetTests
 
         var spm = new FakeShellProcessManager();
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
 
         var settings = new BackupTargetSettings
         {
@@ -223,7 +223,7 @@ internal class RobocopyBackupTargetTests
 
         var spm = new FakeShellProcessManager();
 
-        List<Exception> errors = new();
+        List<Exception> errors = [];
 
         var settings = new BackupTargetSettings
         {
