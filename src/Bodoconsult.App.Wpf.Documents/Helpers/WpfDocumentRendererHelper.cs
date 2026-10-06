@@ -420,10 +420,8 @@ public static class WpfDocumentRendererHelper
         PageNumberFormatEnum pageNumberFormat)
     {
         var visual = new DrawingVisual();
-        using (var context = visual.RenderOpen())
-        {
-            drawDelegate(context, area, page, dpi, pageNumberFormat);
-        }
+        using var context = visual.RenderOpen();
+        drawDelegate(context, area, page, dpi, pageNumberFormat);
         return visual;
     }
 

@@ -179,16 +179,12 @@ public static class WpfDocumentUtility
             File.Delete(path);
         }
 
-        using (var stream = new MemoryStream())
-        {
-            content.Save(stream, DataFormats.Rtf);
-            using (var fstream = File.OpenWrite(path))
-            {
-                stream.WriteTo(fstream);
-                fstream.Flush();
-                fstream.Close();
-            }
-        }
+        using var stream = new MemoryStream();
+        content.Save(stream, DataFormats.Rtf);
+        using var fstream = File.OpenWrite(path);
+        stream.WriteTo(fstream);
+        fstream.Flush();
+        fstream.Close();
     }
 
     /// <summary>
@@ -206,14 +202,10 @@ public static class WpfDocumentUtility
             return;
         }
 
-        using (var stream = File.OpenRead(path))
-        {
-            using (var ms = new MemoryStream())
-            {
-                stream.CopyTo(ms);
-                content.Load(ms, DataFormats.Rtf);
-            }
-        }
+        using var stream = File.OpenRead(path);
+        using var ms = new MemoryStream();
+        stream.CopyTo(ms);
+        content.Load(ms, DataFormats.Rtf);
     }
 
 
@@ -224,28 +216,20 @@ public static class WpfDocumentUtility
     /// <param name="path">Path to save the XPS file</param>
     public static void SaveDocumentAsXps(FlowDocument document, string path)
     {
-
         //ForceRenderFlowDocument(document);
 
-        using (var container = Package.Open(path, FileMode.Create))
+        using var container = Package.Open(path, FileMode.Create);
+        using var xpsDoc = new XpsDocument(container, CompressionOption.Maximum);
+        var rsm = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
+
+        var definition = new TypographySettingsService
         {
+            FooterHeight = 25,
+            DrawFooterDelegate = Footer
+        };
 
-            using (var xpsDoc = new XpsDocument(container, CompressionOption.Maximum))
-            {
-
-                var rsm = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
-
-                var definition = new TypographySettingsService
-                {
-                    FooterHeight = 25,
-                    DrawFooterDelegate = Footer
-                };
-
-                rsm.SaveAsXaml(new HeaderFooterPaginator(document, definition, document.Dispatcher, PageNumberFormatEnum.Decimal));
-                rsm.Commit();
-
-            }
-        }
+        rsm.SaveAsXaml(new HeaderFooterPaginator(document, definition, document.Dispatcher, PageNumberFormatEnum.Decimal));
+        rsm.Commit();
     }
 
 

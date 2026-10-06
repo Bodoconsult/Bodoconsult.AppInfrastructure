@@ -25,10 +25,8 @@ public class ResourceHelper
 
         string s;
 
-        using (var file = new StreamReader(str))
-        {
-            s = file.ReadToEnd();
-        }
+        using var file = new StreamReader(str);
+        s = file.ReadToEnd();
 
         return s;
     }

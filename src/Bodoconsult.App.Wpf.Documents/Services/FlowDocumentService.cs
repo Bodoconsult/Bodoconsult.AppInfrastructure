@@ -1810,38 +1810,33 @@ public class FlowDocumentService
 
         Dispatcher.Invoke(() =>
         {
-            using (var container = Package.Open(path, FileMode.Create))
-            {
-                using (var xpsDoc = new XpsDocument(container, CompressionOption.Maximum))
-                {
-                    //Trace.WriteLine("Xps export 1...");
+            using var container = Package.Open(path, FileMode.Create);
+            using var xpsDoc = new XpsDocument(container, CompressionOption.Maximum);
+            //Trace.WriteLine("Xps export 1...");
 
-                    var rsm = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
+            var rsm = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
 
-                    //var definition = new PrintDefinition();
+            //var definition = new PrintDefinition();
 
-                    //if (PageFooter != null)
-                    //{
-                    //    definition.FooterHeight = FooterHeight;
-                    //    definition.Footer += PageFooter;
-                    //}
-                    //if (PageHeader != null)
-                    //{
-                    //    definition.HeaderHeight = HeaderHeight;
-                    //    definition.Header += PageHeader;
-                    //}
+            //if (PageFooter != null)
+            //{
+            //    definition.FooterHeight = FooterHeight;
+            //    definition.Footer += PageFooter;
+            //}
+            //if (PageHeader != null)
+            //{
+            //    definition.HeaderHeight = HeaderHeight;
+            //    definition.Header += PageHeader;
+            //}
 
-                    //var paginator = ((IDocumentPaginatorSource)Document).DocumentPaginator;
+            //var paginator = ((IDocumentPaginatorSource)Document).DocumentPaginator;
 
-                    var paginator = new HeaderFooterPaginator(Document, TypographySettingsService, Dispatcher, PageNumberFormatEnum.Decimal);
-                    rsm.SaveAsXaml(paginator);
+            var paginator = new HeaderFooterPaginator(Document, TypographySettingsService, Dispatcher, PageNumberFormatEnum.Decimal);
+            rsm.SaveAsXaml(paginator);
 
-                    //Trace.WriteLine("Xps export 2...");
-                    //rsm.SaveAsXaml(((IDocumentPaginatorSource)Document).DocumentPaginator);
-                    rsm.Commit();
-                }
-            }
-
+            //Trace.WriteLine("Xps export 2...");
+            //rsm.SaveAsXaml(((IDocumentPaginatorSource)Document).DocumentPaginator);
+            rsm.Commit();
 
 
             //        _pool.Release();

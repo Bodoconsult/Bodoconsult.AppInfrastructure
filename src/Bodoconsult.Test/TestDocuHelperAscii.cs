@@ -40,13 +40,9 @@ public class TestDocuHelperAscii : TestDocuHelperBase
     /// <param name="array"></param>
     public override void PrintIt(string inputString, params object[] array)
     {
-
         // Write to file
-        using (var sw = File.AppendText(TargetPath))
-        {
-            sw.WriteLine(inputString, array);
-        }
-
+        using var sw = File.AppendText(TargetPath);
+        sw.WriteLine(inputString, array);
     }
 
     /// <summary>

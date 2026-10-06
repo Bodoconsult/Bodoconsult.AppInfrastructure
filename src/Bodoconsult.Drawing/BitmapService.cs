@@ -570,14 +570,11 @@ public class BitmapService : IDisposable
         imageAttributes.ClearColorMatrix();
         imageAttributes.SetColorMatrix(colorMatrix);
 
-        using (var g = Graphics.FromImage(CurrentBitmap))
-        {
-            // Change brightness, contrast and gamma
-            g.DrawImage(CurrentBitmap, new Rectangle(0, 0, CurrentBitmap.Width, CurrentBitmap.Height)
-                , 0, 0, CurrentBitmap.Width, CurrentBitmap.Height,
-                GraphicsUnit.Pixel, imageAttributes);
-        }
-
+        using var g = Graphics.FromImage(CurrentBitmap);
+        // Change brightness, contrast and gamma
+        g.DrawImage(CurrentBitmap, new Rectangle(0, 0, CurrentBitmap.Width, CurrentBitmap.Height)
+            , 0, 0, CurrentBitmap.Width, CurrentBitmap.Height,
+            GraphicsUnit.Pixel, imageAttributes);
     }
 
     /// <summary>

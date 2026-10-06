@@ -22,17 +22,14 @@ public class JsonXmlHelper
     {
         T job;
 
-        using (var file = File.OpenText(fileName))
+        using var file = File.OpenText(fileName);
+        var serializer = new JsonSerializer
         {
-            var serializer = new JsonSerializer
-            {
-                TypeNameHandling = TypeNameHandling.Objects,
-                TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full,
-            };
+            TypeNameHandling = TypeNameHandling.Objects,
+            TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full,
+        };
 
-            job = (T)serializer.Deserialize(file, typeof(T));
-
-        }
+        job = (T)serializer.Deserialize(file, typeof(T));
 
         return job;
     }
@@ -52,17 +49,14 @@ public class JsonXmlHelper
 
         if (str is null) return default(T);
 
-        using (var file = new StreamReader(str))
+        using var file = new StreamReader(str);
+        var serializer = new JsonSerializer
         {
-            var serializer = new JsonSerializer
-            {
-                TypeNameHandling = TypeNameHandling.Objects,
-                TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full,
-            };
+            TypeNameHandling = TypeNameHandling.Objects,
+            TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full,
+        };
 
-            job = (T)serializer.Deserialize(file, typeof(T));
-
-        }
+        job = (T)serializer.Deserialize(file, typeof(T));
 
         return job;
     }

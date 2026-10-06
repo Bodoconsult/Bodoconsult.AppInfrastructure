@@ -117,10 +117,8 @@ public class TestDocuHelperHtml : TestDocuHelperBase
         PrintIt1("</html>");
 
         // Write to file
-        using (var sw = File.AppendText(TargetPath))
-        {
-            sw.Write(_content.ToString());
-        }
+        using var sw = File.AppendText(TargetPath);
+        sw.Write(_content.ToString());
     }
 
     /// <summary>
@@ -264,18 +262,12 @@ public class TestDocuHelperHtml : TestDocuHelperBase
         var assembly = Assembly.GetExecutingAssembly();
         const string resourceName = "Bodoconsult.Test.StyleSheet.css";
 
-        using (var stream = assembly.GetManifestResourceStream(resourceName))
-        {
-            if (stream is null) return null;
+        using var stream = assembly.GetManifestResourceStream(resourceName);
+        if (stream is null) return null;
 
-            using (var reader = new StreamReader(stream))
-            {
-                var result = reader.ReadToEnd();
-                return result;
-            }
-
-        }
-
+        using var reader = new StreamReader(stream);
+        var result = reader.ReadToEnd();
+        return result;
     }
 
 
@@ -288,18 +280,12 @@ public class TestDocuHelperHtml : TestDocuHelperBase
         var assembly = Assembly.GetExecutingAssembly();
         const string resourceName = "Bodoconsult.Test.StyleSheetPrint.css";
 
-        using (var stream = assembly.GetManifestResourceStream(resourceName))
-        {
-            if (stream is null) return null;
+        using var stream = assembly.GetManifestResourceStream(resourceName);
+        if (stream is null) return null;
 
-            using (var reader = new StreamReader(stream))
-            {
-                var result = reader.ReadToEnd();
-                return result;
-            }
-
-        }
-
+        using var reader = new StreamReader(stream);
+        var result = reader.ReadToEnd();
+        return result;
     }
 
 

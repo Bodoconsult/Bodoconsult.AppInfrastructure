@@ -21,21 +21,16 @@ public static class ImageTools
     /// <returns></returns>
     public static ImageSize GetImageSize(string fileName)
     {
-
-        using (Stream stream = File.OpenRead(fileName))
+        using Stream stream = File.OpenRead(fileName);
+        using var sourceImage = Image.FromStream(stream, false, false);
+        var x = new ImageSize
         {
-            using (var sourceImage = Image.FromStream(stream, false, false))
-            {
-                var x = new ImageSize
-                {
-                    Width = sourceImage.Width,
-                    Height = sourceImage.Height,
-                };
+            Width = sourceImage.Width,
+            Height = sourceImage.Height,
+        };
 
 
-                return x;
-            }
-        }
+        return x;
     }
 
     /// <summary>

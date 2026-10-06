@@ -18,7 +18,7 @@ It delivers the following main functionality:
 
 > [Business transactions to simplify transportation layer implementations for technologies like GRPC, WebAPI, etc...](#business-transactions)
 
-> [IDataExportService<T>/DataExportServiceBase<T> for long running data exports to string or binary files](#data-export-services)
+> [IDataExportService<T>/DataExportServiceBase<T> for longrunning data exports to string or binary files](#data-export-services)
 
 > [# Client notifications for technologies like GRPC, WebAPI, etc...](#client-notifications)
 

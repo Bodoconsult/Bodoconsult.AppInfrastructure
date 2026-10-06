@@ -220,13 +220,13 @@ public class AppBenchProxy : IAppBenchProxy
         GC.SuppressFinalize(this);
     }
 
-    /// <summary>
-    /// Dtor.
-    /// </summary>
-    ~AppBenchProxy()
-    {
-        Dispose(false);
-    }
+    ///// <summary>
+    ///// Dtor.
+    ///// </summary>
+    //~AppBenchProxy()
+    //{
+    //    Dispose(false);
+    //}
 
     /// <summary>
     /// Create a app bench proxy

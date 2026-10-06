@@ -531,21 +531,16 @@ public class StructuredText : IStructuredText
             data.TableName = "dataTable";
         }
 
-        using (var ms = new MemoryStream())
+        using var ms = new MemoryStream();
+        data.WriteXml(ms, XmlWriteMode.WriteSchema);
+        ms.Position = 0;
+
+        using var sr = new StreamReader(ms);
+        TextItems.Add(new TableTextItem
         {
-
-            data.WriteXml(ms, XmlWriteMode.WriteSchema);
-            ms.Position = 0;
-
-            using (var sr = new StreamReader(ms))
-            {
-                TextItems.Add(new TableTextItem
-                {
-                    LogicalType = TextItemType.Table,
-                    Content = title,
-                    DataTableXml = sr.ReadToEnd()
-                });
-            }
-        }
+            LogicalType = TextItemType.Table,
+            Content = title,
+            DataTableXml = sr.ReadToEnd()
+        });
     }
 }
