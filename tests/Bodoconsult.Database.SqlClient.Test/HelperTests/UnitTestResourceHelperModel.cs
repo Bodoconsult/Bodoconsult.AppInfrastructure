@@ -3,37 +3,36 @@
 using Bodoconsult.Database.SqlClient.Helpers;
 using NUnit.Framework;
 
-namespace Bodoconsult.Database.SqlClient.Test.HelperTests
+namespace Bodoconsult.Database.SqlClient.Test.HelperTests;
+
+[TestFixture]
+internal class UnitTestResourceHelperModel
 {
-    [TestFixture]
-    internal class UnitTestResourceHelperModel
+
+    [Test]
+    public void TestGetTextResource()
     {
+        // Arrange 
 
-        [Test]
-        public void TestGetTextResource()
-        {
-            // Arrange 
+        // Act  
+        var result = ResourceHelper.GetTextResource("test");
 
-            // Act  
-            var result = ResourceHelper.GetTextResource("test");
-
-            // Assert
-            Assert.That(!string.IsNullOrEmpty(result));
-
-        }
-
-        [Test]
-        public void TestGetSqlResource()
-        {
-            // Arrange 
-
-            // Act  
-            var result = ResourceHelper.GetSqlResource("Backup");
-
-            // Assert
-            Assert.That(!string.IsNullOrEmpty(result));
-
-        }
+        // Assert
+        Assert.That(!string.IsNullOrEmpty(result));
 
     }
+
+    [Test]
+    public void TestGetSqlResource()
+    {
+        // Arrange 
+
+        // Act  
+        var result = ResourceHelper.GetSqlResource("Backup");
+
+        // Assert
+        Assert.That(!string.IsNullOrEmpty(result));
+
+    }
+
 }

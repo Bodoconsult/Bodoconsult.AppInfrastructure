@@ -2,10 +2,10 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
+using System;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Bodoconsult.App.Windows.DataProtection;
 
@@ -97,9 +97,9 @@ public class DataProtectionService : IDataProtectionService
     {
         var result = ProtectString(value);
 
-        Debug.Print(ArrayHelper.GetStringFromArrayCsharpStyle(result,  false));
+        //Debug.Print(ArrayHelper.GetStringFromArrayCsharpStyle(result,  false));
 
-        return ArrayHelper.GetStringFromArrayCsharpStyle(result, false);
+        return Convert.ToBase64String(result);
     }
 
     /// <summary>
@@ -109,22 +109,34 @@ public class DataProtectionService : IDataProtectionService
     /// <param name="cipherValue">The encrypted value to decrypt</param>
     public string Unprotect(string key, string cipherValue)
     {
-        var bytes = ArrayHelper.GetBytes(cipherValue);
+        var bytes = Convert.FromBase64String(cipherValue);
         var result = Unprotect(bytes);
         return Encoding.Unicode.GetString( result);
+    }
+
+    /// <summary>
+    /// Create an instance of <see cref="DataProtectionService"/> with user scope
+    /// </summary>
+    /// <param name="appName">Current app name</param>
+    /// <returns><see cref="DataProtectionService"/> instance</returns>
+
+    public static IDataProtectionService CreateInstance(string appName)
+    {
+        return CreateInstance(appName, DataProtectionScope.CurrentUser);
     }
 
     /// <summary>
     /// Create an instance of <see cref="DataProtectionService"/>
     /// </summary>
     /// <param name="appName">Current app name</param>
+    /// <param name="currentDataProtectionScope">Current protection scope</param>
     /// <returns><see cref="DataProtectionService"/> instance</returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public static IDataProtectionService CreateInstance(string appName)
+    public static IDataProtectionService CreateInstance(string appName, DataProtectionScope currentDataProtectionScope)
     {
         var s = new DataProtectionService
         {
-            EntropyBytes = Encoding.Unicode.GetBytes(appName)
+            EntropyBytes = Encoding.Unicode.GetBytes(appName),
+            CurrentDataProtectionScope = currentDataProtectionScope
         };
         return s;
     }

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.DataProtection;
 
 namespace BodoFtpTransfer.Business.Helpers;
 

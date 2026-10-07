@@ -2,68 +2,67 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.Helpers
+namespace Bodoconsult.Database.Ef.Helpers;
+
+/// <summary>
+/// Extensions relate to EFCore
+/// </summary>
+public static class EfExtensions
 {
     /// <summary>
-    /// Extensions relate to EFCore
+    /// Include properties by property path
     /// </summary>
-    public static class EfExtensions
+    /// <typeparam name="T"></typeparam>
+    /// <param name="source">Source</param>
+    /// <param name="navigationPropertyPaths">List with property paths to include</param>
+    /// <returns></returns>
+    public static IQueryable<T> MultipleInclude<T>(this IQueryable<T> source, IEnumerable<string> navigationPropertyPaths)
+        where T : class
     {
-        /// <summary>
-        /// Include properties by property path
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source">Source</param>
-        /// <param name="navigationPropertyPaths">List with property paths to include</param>
-        /// <returns></returns>
-        public static IQueryable<T> MultipleInclude<T>(this IQueryable<T> source, IEnumerable<string> navigationPropertyPaths)
-            where T : class
-        {
-            return navigationPropertyPaths == null ? source : navigationPropertyPaths.Aggregate(source, (query, path) => query.Include(path));
-        }
-
-
-        //public static IQueryable<T> IncludeAll<T>(this IQueryable<T> source, IEnumerable<string> navigationPropertyPaths)
-        //    where T : class
-        //{
-        //    return navigationPropertyPaths == null ? source : navigationPropertyPaths.Aggregate(source, (query, path) => query.Include(path));
-        //}
-
-
-        //public static IEnumerable<string> GetIncludePaths(this DbContext context, Type clrEntityType)
-        //{
-        //    var entityType = context.Model.FindEntityType(clrEntityType);
-        //    var includedNavigations = new HashSet<INavigation>();
-        //    var stack = new Stack<IEnumerator<INavigation>>();
-        //    while (true)
-        //    {
-        //        var entityNavigations = new List<INavigation>();
-        //        foreach (var navigation in entityType.GetNavigations())
-        //        {
-        //            if (includedNavigations.Add(navigation))
-        //                entityNavigations.Add(navigation);
-        //        }
-        //        if (entityNavigations.Count == 0)
-        //        {
-        //            if (stack.Count > 0)
-        //                yield return string.Join(".", stack.Reverse().Select(e => e.Current.Name));
-        //        }
-        //        else
-        //        {
-        //            foreach (var navigation in entityNavigations)
-        //            {
-        //                var inverseNavigation = navigation.FindInverse();
-        //                if (inverseNavigation != null)
-        //                    includedNavigations.Add(inverseNavigation);
-        //            }
-        //            stack.Push(entityNavigations.GetEnumerator());
-        //        }
-        //        while (stack.Count > 0 && !stack.Peek().MoveNext())
-        //            stack.Pop();
-        //        if (stack.Count == 0) break;
-        //        entityType = stack.Peek().Current.GetTargetType();
-        //    }
-        //}
-
+        return navigationPropertyPaths == null ? source : navigationPropertyPaths.Aggregate(source, (query, path) => query.Include(path));
     }
+
+
+    //public static IQueryable<T> IncludeAll<T>(this IQueryable<T> source, IEnumerable<string> navigationPropertyPaths)
+    //    where T : class
+    //{
+    //    return navigationPropertyPaths == null ? source : navigationPropertyPaths.Aggregate(source, (query, path) => query.Include(path));
+    //}
+
+
+    //public static IEnumerable<string> GetIncludePaths(this DbContext context, Type clrEntityType)
+    //{
+    //    var entityType = context.Model.FindEntityType(clrEntityType);
+    //    var includedNavigations = new HashSet<INavigation>();
+    //    var stack = new Stack<IEnumerator<INavigation>>();
+    //    while (true)
+    //    {
+    //        var entityNavigations = new List<INavigation>();
+    //        foreach (var navigation in entityType.GetNavigations())
+    //        {
+    //            if (includedNavigations.Add(navigation))
+    //                entityNavigations.Add(navigation);
+    //        }
+    //        if (entityNavigations.Count == 0)
+    //        {
+    //            if (stack.Count > 0)
+    //                yield return string.Join(".", stack.Reverse().Select(e => e.Current.Name));
+    //        }
+    //        else
+    //        {
+    //            foreach (var navigation in entityNavigations)
+    //            {
+    //                var inverseNavigation = navigation.FindInverse();
+    //                if (inverseNavigation != null)
+    //                    includedNavigations.Add(inverseNavigation);
+    //            }
+    //            stack.Push(entityNavigations.GetEnumerator());
+    //        }
+    //        while (stack.Count > 0 && !stack.Peek().MoveNext())
+    //            stack.Pop();
+    //        if (stack.Count == 0) break;
+    //        entityType = stack.Peek().Current.GetTargetType();
+    //    }
+    //}
+
 }

@@ -37,25 +37,24 @@
 
 using System;
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// Helper class for DBF database handling
+/// </summary>
+public static class DbfHelper
 {
     /// <summary>
-    /// Helper class for DBF database handling
+    /// Convert a byte array to an integer value
     /// </summary>
-    public static class DbfHelper
+    /// <param name="data">Byte array</param>
+    /// <returns>Integer value</returns>
+    public static int ToInteger(byte[] data)
     {
-        /// <summary>
-        /// Convert a byte array to an integer value
-        /// </summary>
-        /// <param name="data">Byte array</param>
-        /// <returns>Integer value</returns>
-        public static int ToInteger(byte[] data)
+        if (BitConverter.IsLittleEndian)
         {
-            if (BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(data);
-            }
-            return BitConverter.ToInt32(data, 0);
+            Array.Reverse(data);
         }
+        return BitConverter.ToInt32(data, 0);
     }
 }

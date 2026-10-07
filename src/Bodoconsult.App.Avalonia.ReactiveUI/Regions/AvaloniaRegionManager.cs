@@ -4,10 +4,8 @@ using Bodoconsult.App.Avalonia.ReactiveUI.Helper;
 using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
-using ReactiveUI;
 using Avalonia.Controls;
 using ReactiveUI.Avalonia;
-using ReactiveUI.Primitives;
 
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Regions;

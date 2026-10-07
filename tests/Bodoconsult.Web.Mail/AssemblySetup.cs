@@ -4,7 +4,7 @@ using Bodoconsult.App.Extensions;
 using Bodoconsult.Web.Mail.Test.App;
 using NUnit.Framework;
 using System;
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.DataProtection;
 
 namespace Bodoconsult.Web.Mail.Test;
 

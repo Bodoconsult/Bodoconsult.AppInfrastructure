@@ -14,107 +14,106 @@ using Bodoconsult.Database.Ef.Enums;
 using Bodoconsult.Database.Ef.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.Infrastructure
+namespace Bodoconsult.Database.Ef.Infrastructure;
+
+/// <summary>
+/// Readonly context scope
+/// </summary>
+/// <typeparam name="T">Type representing the database</typeparam>
+public class DbContextReadOnlyScope<T> : IDbContextReadOnlyScope<T> where T : DbContext
 {
+    private readonly DbContextScope<T> _internalScope;
+
     /// <summary>
-    /// Readonly context scope
+    /// The DbContext instances that this DbContextScope manages.
     /// </summary>
-    /// <typeparam name="T">Type representing the database</typeparam>
-    public class DbContextReadOnlyScope<T> : IDbContextReadOnlyScope<T> where T : DbContext
+    public IDbContextCollection<T> DbContexts => _internalScope.DbContexts;
+
+    /// <summary>
+    /// Current context config
+    /// </summary>
+    public IContextConfig ContextConfig { get; }
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    public DbContextReadOnlyScope()
+        : this(joiningOption: DbContextScopeOption.JoinExisting, isolationLevel: null, dbContextFactory: null)
+    { }
+
+    /// <summary>
+    /// Ctor
+    /// </summary>
+    /// <param name="dbContextFactory">Current context factory</param>
+    public DbContextReadOnlyScope(IDbContextWithConfigFactory<T> dbContextFactory)
+        : this(joiningOption: DbContextScopeOption.JoinExisting, isolationLevel: null, dbContextFactory: dbContextFactory)
+    { }
+
+    /// <summary>
+    /// Ctor
+    /// </summary>
+    /// <param name="isolationLevel">Requested isolation level</param>
+    public DbContextReadOnlyScope(IsolationLevel isolationLevel)
+        : this(joiningOption: DbContextScopeOption.ForceCreateNew, isolationLevel: isolationLevel, dbContextFactory: null)
+    { }
+
+    /// <summary>
+    /// Ctor
+    /// </summary>
+    /// <param name="isolationLevel">Requested isolation level</param>
+    /// <param name="dbContextFactory">Current context factory</param>
+    public DbContextReadOnlyScope(IsolationLevel isolationLevel, IDbContextWithConfigFactory<T> dbContextFactory)
+        : this(joiningOption: DbContextScopeOption.ForceCreateNew, isolationLevel: isolationLevel, dbContextFactory: dbContextFactory)
+    { }
+
+    /// <summary>
+    /// Ctor
+    /// </summary>
+    /// <param name="joiningOption">Scope joing option</param>
+    /// <param name="isolationLevel">Requested isolation level</param>
+    /// <param name="dbContextFactory">Current context factory</param>
+    public DbContextReadOnlyScope(DbContextScopeOption joiningOption, IsolationLevel? isolationLevel, IDbContextWithConfigFactory<T> dbContextFactory)
     {
-        private readonly DbContextScope<T> _internalScope;
-
-        /// <summary>
-        /// The DbContext instances that this DbContextScope manages.
-        /// </summary>
-        public IDbContextCollection<T> DbContexts => _internalScope.DbContexts;
-
-        /// <summary>
-        /// Current context config
-        /// </summary>
-        public IContextConfig ContextConfig { get; }
-
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        public DbContextReadOnlyScope()
-            : this(joiningOption: DbContextScopeOption.JoinExisting, isolationLevel: null, dbContextFactory: null)
-        { }
-
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="dbContextFactory">Current context factory</param>
-        public DbContextReadOnlyScope(IDbContextWithConfigFactory<T> dbContextFactory)
-            : this(joiningOption: DbContextScopeOption.JoinExisting, isolationLevel: null, dbContextFactory: dbContextFactory)
-        { }
-
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="isolationLevel">Requested isolation level</param>
-        public DbContextReadOnlyScope(IsolationLevel isolationLevel)
-            : this(joiningOption: DbContextScopeOption.ForceCreateNew, isolationLevel: isolationLevel, dbContextFactory: null)
-        { }
-
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="isolationLevel">Requested isolation level</param>
-        /// <param name="dbContextFactory">Current context factory</param>
-        public DbContextReadOnlyScope(IsolationLevel isolationLevel, IDbContextWithConfigFactory<T> dbContextFactory)
-            : this(joiningOption: DbContextScopeOption.ForceCreateNew, isolationLevel: isolationLevel, dbContextFactory: dbContextFactory)
-        { }
-
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="joiningOption">Scope joing option</param>
-        /// <param name="isolationLevel">Requested isolation level</param>
-        /// <param name="dbContextFactory">Current context factory</param>
-        public DbContextReadOnlyScope(DbContextScopeOption joiningOption, IsolationLevel? isolationLevel, IDbContextWithConfigFactory<T> dbContextFactory)
-        {
-            ArgumentNullException.ThrowIfNull(dbContextFactory);
+        ArgumentNullException.ThrowIfNull(dbContextFactory);
             
-            ContextConfig = dbContextFactory.AppGlobals.ContextConfig;
-            _internalScope = new DbContextScope<T>(joiningOption: joiningOption, readOnly: true, isolationLevel: isolationLevel, dbContextFactory: dbContextFactory);
-        }
+        ContextConfig = dbContextFactory.AppGlobals.ContextConfig;
+        _internalScope = new DbContextScope<T>(joiningOption: joiningOption, readOnly: true, isolationLevel: isolationLevel, dbContextFactory: dbContextFactory);
+    }
 
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-        public void Dispose()
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// Dtor
+    /// </summary>
+    ~DbContextReadOnlyScope()
+    {
+        Dispose(false);
+    }
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposing)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            return;
         }
 
-        /// <summary>
-        /// Dtor
-        /// </summary>
-        ~DbContextReadOnlyScope()
+
+        try
         {
-            Dispose(false);
+            _internalScope.Dispose();
         }
-
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-        protected virtual void Dispose(bool disposing)
+        catch //(Exception e)
         {
-            if (!disposing)
-            {
-                return;
-            }
-
-
-            try
-            {
-                _internalScope.Dispose();
-            }
-            catch //(Exception e)
-            {
-                // ignored
-            }
-
-
+            // ignored
         }
+
 
     }
+
 }

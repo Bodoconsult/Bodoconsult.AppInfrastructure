@@ -10,27 +10,27 @@ namespace Bodoconsult.App.DataProtection.Hashing;
 public enum HashAlgorithmEnum
 {
     /// <summary>
-    /// MD5-Verfahren, das einen Hash mit einer Länge von 128 Bit erzeugt
+    /// MD5-algorithm create a hash with the length of 128 bit
     /// </summary>
     MD5,
 
     /// <summary>
-    /// SHA-Verfahren, das einen Hash mit einer Länge von 160 Bit erzeugt
+    /// (Keyless) SHA-algorithm create a hash with the length of 160 bit 
     /// </summary>
     SHA1,
 
     /// <summary>
-    /// SHA-Verfahren, das einen Hash mit einer Länge von 256 Bit erzeugt
+    /// (Keyless) SHA-algorithm create a hash with the length of 256 bit
     /// </summary>
     SHA256,
 
     /// <summary>
-    /// SHA-Verfahren, das einen Hash mit einer Länge von 384 Bit erzeugt
+    /// (Keyless) SHA-algorithm create a hash with the length of 384 bit
     /// </summary>
     SHA384,
 
     /// <summary>
-    /// SHA-Verfahren, das einen Hash mit einer Länge von 512 Bit erzeugt
+    /// (Keyless) SHA-algorithm create a hash with the length of 512 bit
     /// </summary>
     SHA512,
 }

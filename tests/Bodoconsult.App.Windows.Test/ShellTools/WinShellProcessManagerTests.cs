@@ -5,125 +5,124 @@ using Bodoconsult.App.Abstractions.ShellTools;
 using Bodoconsult.App.Windows.ShellTools;
 using NUnit.Framework;
 
-namespace Bodoconsult.App.Windows.Test.ShellTools
+namespace Bodoconsult.App.Windows.Test.ShellTools;
+
+[TestFixture]
+internal class WinShellProcessManagerTests
 {
-    [TestFixture]
-    internal class WinShellProcessManagerTests
+    private readonly string _target = Path.GetTempPath();
+
+    [OneTimeTearDown]
+    public void CleanUp()
     {
-        private readonly string _target = Path.GetTempPath();
-
-        [OneTimeTearDown]
-        public void CleanUp()
+        var targetDir = Path.Combine(_target, "Blubb");
+        if (Directory.Exists(targetDir))
         {
-            var targetDir = Path.Combine(_target, "Blubb");
-            if (Directory.Exists(targetDir))
-            {
-                Directory.Delete(targetDir, true);
-            }
-
-            targetDir = Path.Combine(_target, "Blabb");
-            if (Directory.Exists(targetDir))
-            {
-                Directory.Delete(targetDir, true);
-            }
+            Directory.Delete(targetDir, true);
         }
 
-        [Test]
-        public void RemoveDirectory_ExistingDir_DirRemoved()
+        targetDir = Path.Combine(_target, "Blabb");
+        if (Directory.Exists(targetDir))
         {
-            // Arrange 
-            var spm = new WinShellProcessManager();
+            Directory.Delete(targetDir, true);
+        }
+    }
 
-            var newDir = Path.Combine(_target, "Blubb");
+    [Test]
+    public void RemoveDirectory_ExistingDir_DirRemoved()
+    {
+        // Arrange 
+        var spm = new WinShellProcessManager();
 
-            if (!Directory.Exists(newDir))
-            {
-                Directory.CreateDirectory(newDir);
-            }
+        var newDir = Path.Combine(_target, "Blubb");
 
-            Assert.That(Directory.Exists(newDir), Is.True);
-
-            // Act
-            var p = new RemoveDirectoryShellProcessParameters
-            {
-                Path = newDir
-            };
-
-            spm.RemoveDirectory(p);
-
-            // Assert
-            Assert.That(Directory.Exists(newDir), Is.False);
+        if (!Directory.Exists(newDir))
+        {
+            Directory.CreateDirectory(newDir);
         }
 
-        [Test]
-        public void MoveDirectory_ExistingDir_DirMoved()
+        Assert.That(Directory.Exists(newDir), Is.True);
+
+        // Act
+        var p = new RemoveDirectoryShellProcessParameters
         {
-            // Arrange 
-            var spm = new WinShellProcessManager();
+            Path = newDir
+        };
 
-            var newDir = Path.Combine(_target, "Blubb");
+        spm.RemoveDirectory(p);
 
-            if (!Directory.Exists(newDir))
-            {
-                Directory.CreateDirectory(newDir);
-            }
+        // Assert
+        Assert.That(Directory.Exists(newDir), Is.False);
+    }
 
-            Assert.That(Directory.Exists(newDir), Is.True);
+    [Test]
+    public void MoveDirectory_ExistingDir_DirMoved()
+    {
+        // Arrange 
+        var spm = new WinShellProcessManager();
 
-            var targetDir = Path.Combine(_target, "Blabb");
+        var newDir = Path.Combine(_target, "Blubb");
 
-            if (Directory.Exists(targetDir))
-            {
-                Directory.Delete(targetDir, true);
-            }
-
-            // Act
-            var p = new MoveDirectoryShellProcessParameters
-            {
-                SourcePath = newDir,
-                TargetPath = targetDir
-            };
-
-            spm.MoveDirectory(p);
-
-            // Assert
-            Assert.That(Directory.Exists(targetDir), Is.True);
+        if (!Directory.Exists(newDir))
+        {
+            Directory.CreateDirectory(newDir);
         }
 
-        [Test]
-        public void RunRobocopy_ExistingDir_DirRemoved()
+        Assert.That(Directory.Exists(newDir), Is.True);
+
+        var targetDir = Path.Combine(_target, "Blabb");
+
+        if (Directory.Exists(targetDir))
         {
-            // Arrange 
-            var spm = new WinShellProcessManager();
+            Directory.Delete(targetDir, true);
+        }
 
-            var newDir = Path.Combine(_target, "Blubb");
+        // Act
+        var p = new MoveDirectoryShellProcessParameters
+        {
+            SourcePath = newDir,
+            TargetPath = targetDir
+        };
 
-            if (!Directory.Exists(newDir))
-            {
-                Directory.CreateDirectory(newDir);
-            }
+        spm.MoveDirectory(p);
 
-            Assert.That(Directory.Exists(newDir), Is.True);
+        // Assert
+        Assert.That(Directory.Exists(targetDir), Is.True);
+    }
 
-            var targetDir = Path.Combine(_target, "Blabb");
+    [Test]
+    public void RunRobocopy_ExistingDir_DirRemoved()
+    {
+        // Arrange 
+        var spm = new WinShellProcessManager();
 
-            if (!Directory.Exists(targetDir))
-            {
-                Directory.Delete(targetDir, true);
-            }
+        var newDir = Path.Combine(_target, "Blubb");
 
-            // Act
-            var args = $"{newDir} {targetDir} *.* /FFT /S /E /COPY:DT /B /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd /NoDCopy";
+        if (!Directory.Exists(newDir))
+        {
+            Directory.CreateDirectory(newDir);
+        }
+
+        Assert.That(Directory.Exists(newDir), Is.True);
+
+        var targetDir = Path.Combine(_target, "Blabb");
+
+        if (!Directory.Exists(targetDir))
+        {
+            Directory.Delete(targetDir, true);
+        }
+
+        // Act
+        var args = $"{newDir} {targetDir} *.* /FFT /S /E /COPY:DT /B /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd /NoDCopy";
            
-            var p = new RobocopyShellProcessParameters
-            {
-                Args = args
-            };
+        var p = new RobocopyShellProcessParameters
+        {
+            Args = args
+        };
 
-            spm.RunRobocopy(p);
+        spm.RunRobocopy(p);
 
-            // Assert
-            Assert.That(Directory.Exists(targetDir), Is.True);
-        }
+        // Assert
+        Assert.That(Directory.Exists(targetDir), Is.True);
     }
 }

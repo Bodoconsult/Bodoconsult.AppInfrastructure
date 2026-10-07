@@ -1,14 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
-using System.Diagnostics;
-using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Windows.DataProtection;
 using Bodoconsult.App.Windows.Test.Model;
 using NUnit.Framework;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace Bodoconsult.App.Windows.Test.DataProtection;
 
@@ -28,6 +29,11 @@ internal abstract class BaseDataProtectionManagerTests
 
     protected IFileProtectionService FileProtectionService;
 
+    /// <summary>
+    /// Current protection scope
+    /// </summary>
+    protected DataProtectionScope CurrentDataProtectionScope { get; set; } = DataProtectionScope.CurrentUser;
+
     protected string Extension;
 
     private int _count;
@@ -44,7 +50,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Ctor_ValidSetup_PropsSetCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(AppName);
+        var instance = DataProtectionService.CreateInstance(AppName, CurrentDataProtectionScope);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -65,7 +71,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Protect_ValidSetup_SecretStoredCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(AppName);
+        var instance = DataProtectionService.CreateInstance(AppName, CurrentDataProtectionScope);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -88,7 +94,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Protect_ValidSetupSecretUpdated_SecretStoredCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(AppName);
+        var instance = DataProtectionService.CreateInstance(AppName, CurrentDataProtectionScope);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -113,7 +119,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void Unprotect_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(AppName);
+        var instance = DataProtectionService.CreateInstance(AppName, CurrentDataProtectionScope);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))
@@ -137,7 +143,7 @@ internal abstract class BaseDataProtectionManagerTests
     public void LoadValues_ValidSetup_SecretUnprotectedCorrectly()
     {
         // Arrange 
-        var instance = DataProtectionService.CreateInstance(AppName);
+        var instance = DataProtectionService.CreateInstance(AppName, CurrentDataProtectionScope);
 
         var filePath = Path.Combine(_path, $"appData.{Extension}");
         if (File.Exists(filePath))

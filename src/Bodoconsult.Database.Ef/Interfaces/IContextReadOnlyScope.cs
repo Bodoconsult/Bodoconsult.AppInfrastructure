@@ -10,18 +10,17 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 
-namespace Bodoconsult.Database.Ef.Interfaces
+namespace Bodoconsult.Database.Ef.Interfaces;
+
+/// <summary>
+/// A read-only DbContextScope. Refer to the comments for IDbContextScope
+/// for more details.
+/// </summary>
+public interface IContextReadOnlyScope: IDisposable
+
 {
     /// <summary>
-    /// A read-only DbContextScope. Refer to the comments for IDbContextScope
-    /// for more details.
+    /// Current context config
     /// </summary>
-    public interface IContextReadOnlyScope: IDisposable
-
-    {
-        /// <summary>
-        /// Current context config
-        /// </summary>
-        IContextConfig ContextConfig { get; }
-    }
+    IContextConfig ContextConfig { get; }
 }

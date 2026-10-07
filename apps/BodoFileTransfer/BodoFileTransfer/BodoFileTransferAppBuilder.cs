@@ -9,7 +9,7 @@ using BodoFileTransfer.DiContainerProvider;
 
 namespace BodoFileTransfer;
 
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 public class BodoFileTransferAppBuilder : BaseAppBuilder
 {
     /// <summary>

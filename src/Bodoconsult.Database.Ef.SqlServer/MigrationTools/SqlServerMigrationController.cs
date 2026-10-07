@@ -9,141 +9,140 @@ using Bodoconsult.Database.Ef.Interfaces;
 using Bodoconsult.Database.Ef.SqlServer.Helpers;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
+namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools;
+
+/// <summary>
+/// Handles the migrations during update to the newest database version
+/// </summary>
+public class SqlServerMigrationController<T> : IMigrationController where T : DbContext
 {
+    private readonly string _timestamp = $"{DateTime.Now:yyyyMMddhhmmss}";
 
     /// <summary>
-    /// Handles the migrations during update to the newest database version
+    /// Logger
     /// </summary>
-    public class SqlServerMigrationController<T> : IMigrationController where T : DbContext
+    private readonly IAppLoggerProxy _log;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="modelDataConvertersHandlerFactory">Current data converter handler factory</param>
+    /// <param name="logger">Current app logger</param>
+    public SqlServerMigrationController( IModelDataConvertersHandlerFactory modelDataConvertersHandlerFactory, IAppLoggerProxy logger)
     {
-        private readonly string _timestamp = $"{DateTime.Now:yyyyMMddhhmmss}";
+        _log = logger ?? throw new ArgumentNullException(nameof(logger));
+        ModelDataConvertersHandler = modelDataConvertersHandlerFactory.CreateInstance();
+    }
 
-        /// <summary>
-        /// Logger
-        /// </summary>
-        private readonly IAppLoggerProxy _log;
+    private void CheckEf6AndMigrate(DbContext context)
+    {
+        _log.LogInformation("Migrations: check if there are EF6 migrations");
 
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="modelDataConvertersHandlerFactory">Current data converter handler factory</param>
-        /// <param name="logger">Current app logger</param>
-        public SqlServerMigrationController( IModelDataConvertersHandlerFactory modelDataConvertersHandlerFactory, IAppLoggerProxy logger)
+        var sql = "select isnull(OBJECT_ID(N'[__MigrationHistory]'),-1)";
+        var isEf6Table = context.ExecuteSqlWithResult<int>(sql);
+
+        sql = "select isnull(OBJECT_ID(N'[__EFMigrationsHistory]'),-1)";
+        var isEfCoreTable = context.ExecuteSqlWithResult<int>(sql);
+
+        if (isEfCoreTable > -1)
         {
-            _log = logger ?? throw new ArgumentNullException(nameof(logger));
-            ModelDataConvertersHandler = modelDataConvertersHandlerFactory.CreateInstance();
+            return;
         }
 
-        private void CheckEf6AndMigrate(DbContext context)
+        if (isEf6Table == -1)
         {
-            _log.LogInformation("Migrations: check if there are EF6 migrations");
-
-            var sql = "select isnull(OBJECT_ID(N'[__MigrationHistory]'),-1)";
-            var isEf6Table = context.ExecuteSqlWithResult<int>(sql);
-
-            sql = "select isnull(OBJECT_ID(N'[__EFMigrationsHistory]'),-1)";
-            var isEfCoreTable = context.ExecuteSqlWithResult<int>(sql);
-
-            if (isEfCoreTable > -1)
-            {
-                return;
-            }
-
-            if (isEf6Table == -1)
-            {
-                //
-                //                throw new NotSupportedException("Database schema is not compatible to this app (EF table missing)!");
-                //
-                return;
-            }
-
-            // Create table for migrations
-            sql = ResourceHelper.GetSqlResource("Ef6Migration1");
-            context.Database.ExecuteSql(FormattableStringFactory.Create(sql));
-
-            // 1. migration
-            sql = ResourceHelper.GetSqlResource("Ef6Migration2");
-            context.Database.ExecuteSql(FormattableStringFactory.Create(sql));
-
-            // 2. migration
-            sql = ResourceHelper.GetSqlResource("Ef6Migration3");
-            context.Database.ExecuteSql(FormattableStringFactory.Create(sql));
+            //
+            //                throw new NotSupportedException("Database schema is not compatible to this app (EF table missing)!");
+            //
+            return;
         }
 
-        /// <summary>
-        /// Current unit of work
-        /// </summary>
-        public IUnitOfWork UnitOfWork { get; private set; }
+        // Create table for migrations
+        sql = ResourceHelper.GetSqlResource("Ef6Migration1");
+        context.Database.ExecuteSql(FormattableStringFactory.Create(sql));
 
-        /// <summary>
-        /// Current database model data converter handler
-        /// </summary>
-        public IModelDataConvertersHandler ModelDataConvertersHandler { get; }
+        // 1. migration
+        sql = ResourceHelper.GetSqlResource("Ef6Migration2");
+        context.Database.ExecuteSql(FormattableStringFactory.Create(sql));
 
-        /// <summary>
-        /// Run a string containing SQL statements separated with \r\nGO\r\n before migrating an existing database
-        /// </summary>
-        public string MigrationRunBeforeExistingDb { get; set; }
+        // 2. migration
+        sql = ResourceHelper.GetSqlResource("Ef6Migration3");
+        context.Database.ExecuteSql(FormattableStringFactory.Create(sql));
+    }
 
-        /// <summary>
-        /// Is Database a new database? True if yes. Must be set before calling methods of <see cref="IMigrationController"/>
-        /// </summary>
-        public bool IsNewDatabase { get; set; }
+    /// <summary>
+    /// Current unit of work
+    /// </summary>
+    public IUnitOfWork UnitOfWork { get; private set; }
 
-        /// <summary>
-        /// Has database tables? True if yes. Must be set before calling methods of <see cref="IMigrationController"/>
-        /// </summary>
-        public bool HasTables { get; set; }
+    /// <summary>
+    /// Current database model data converter handler
+    /// </summary>
+    public IModelDataConvertersHandler ModelDataConvertersHandler { get; }
 
-        /// <summary>
-        /// Are migrations pending? True if yes. Must be set before calling methods of <see cref="IMigrationController"/>
-        /// </summary>
-        public bool MigrationsPending { get; set; }
+    /// <summary>
+    /// Run a string containing SQL statements separated with \r\nGO\r\n before migrating an existing database
+    /// </summary>
+    public string MigrationRunBeforeExistingDb { get; set; }
 
-        /// <summary>
-        /// Load the current <see cref="IUnitOfWork"/> instance
-        /// </summary>
-        /// <param name="unitOfWork">Current <see cref="IUnitOfWork"/> instance</param>
-        public void LoadUnitOfWork(IUnitOfWork unitOfWork)
+    /// <summary>
+    /// Is Database a new database? True if yes. Must be set before calling methods of <see cref="IMigrationController"/>
+    /// </summary>
+    public bool IsNewDatabase { get; set; }
+
+    /// <summary>
+    /// Has database tables? True if yes. Must be set before calling methods of <see cref="IMigrationController"/>
+    /// </summary>
+    public bool HasTables { get; set; }
+
+    /// <summary>
+    /// Are migrations pending? True if yes. Must be set before calling methods of <see cref="IMigrationController"/>
+    /// </summary>
+    public bool MigrationsPending { get; set; }
+
+    /// <summary>
+    /// Load the current <see cref="IUnitOfWork"/> instance
+    /// </summary>
+    /// <param name="unitOfWork">Current <see cref="IUnitOfWork"/> instance</param>
+    public void LoadUnitOfWork(IUnitOfWork unitOfWork)
+    {
+        UnitOfWork = unitOfWork;
+        ModelDataConvertersHandler.LoadUnitOfWork(unitOfWork);
+
+        _log.LogInformation("Migrations: prepare all for migrations");
+
+        UnitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+
+        if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffMigrations ?? true)
         {
-            UnitOfWork = unitOfWork;
-            ModelDataConvertersHandler.LoadUnitOfWork(unitOfWork);
+            return;
+        }
 
-            _log.LogInformation("Migrations: prepare all for migrations");
+        using var scope = UnitOfWork.GetContextScope();
+        var context = ((IDbContextScope<T>)scope).DbContexts.GetContext();
 
-            UnitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+        // Check if the database already exists
+        IsNewDatabase = !context.Database.CanConnect();
 
-            if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffMigrations ?? true)
-            {
-                return;
-            }
+        // Check if the database has tables
+        var sql = "SELECT count(*) FROM sys.tables WHERE type = 'U';";
+        HasTables = !IsNewDatabase && context.ExecuteSqlWithResult<int>(sql) > 0;
 
-            using var scope = UnitOfWork.GetContextScope();
-            var context = ((IDbContextScope<T>)scope).DbContexts.GetContext();
+        // Check for Ef6
+        if (!IsNewDatabase && HasTables)
+        {
+            CheckEf6AndMigrate(context);
+        }
 
-            // Check if the database already exists
-            IsNewDatabase = !context.Database.CanConnect();
+        // Migrations pending?
+        MigrationsPending = context.Database.GetPendingMigrations().Any();
 
-            // Check if the database has tables
-            var sql = "SELECT count(*) FROM sys.tables WHERE type = 'U';";
-            HasTables = !IsNewDatabase && context.ExecuteSqlWithResult<int>(sql) > 0;
+        if (MigrationsPending)
+        {
+            _log.LogInformation("Migrations: script changes");
 
-            // Check for Ef6
-            if (!IsNewDatabase && HasTables)
-            {
-                CheckEf6AndMigrate(context);
-            }
-
-            // Migrations pending?
-            MigrationsPending = context.Database.GetPendingMigrations().Any();
-
-            if (MigrationsPending)
-            {
-                _log.LogInformation("Migrations: script changes");
-
-                //// Use one migrator to script the changes to a file
-                //var migrator = context.GetService<IMigrator>();
+            //// Use one migrator to script the changes to a file
+            //var migrator = context.GetService<IMigrator>();
 
 //                    sql = migrator.GenerateScript();
 //                    var scriptFile = GetScriptFileName(_timestamp);
@@ -166,225 +165,224 @@ namespace Bodoconsult.Database.Ef.SqlServer.MigrationTools
 //                    File.AppendAllText(scriptFile, sql);
 
 
-                // ToDO: save SQL as file
-                ////var scripter = new FileMigratorScriptingDecorator(migrator, _timestamp);
-                ////scripter.Save();
-            }
-            else
+            // ToDO: save SQL as file
+            ////var scripter = new FileMigratorScriptingDecorator(migrator, _timestamp);
+            ////scripter.Save();
+        }
+        else
+        {
+            sql = MigrationRunBeforeExistingDb;
+
+            if (sql == null)
             {
-                sql = MigrationRunBeforeExistingDb;
+                return;
+            }
 
-                if (sql == null)
+            var cmds = sql.Split("\r\nGO\r\n", StringSplitOptions.RemoveEmptyEntries);
+
+            var timeout = context.Database.GetCommandTimeout();
+            context.Database.SetCommandTimeout(6000);
+
+            foreach (var sql1 in cmds)
+            {
+                try
                 {
-                    return;
+                    if (string.IsNullOrEmpty(sql1.Replace("\r\n", " ", StringComparison.OrdinalIgnoreCase).Trim()))
+                    {
+                        continue;
+                    }
+                    context.Database.ExecuteSql(FormattableStringFactory.Create(sql1));
                 }
+                catch (Exception e)
+                {
+                    _log.LogError($"Running SQL {sql1} failed", e);
+                    throw;
+                }
+            }
 
-                var cmds = sql.Split("\r\nGO\r\n", StringSplitOptions.RemoveEmptyEntries);
+            context.Database.SetCommandTimeout(timeout);
+        }
+    }
+
+    /// <summary>
+    /// Backup a database to a file
+    /// </summary>
+    public void SaveDatabase()
+    {
+
+#if DEBUG
+        if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffBackup ?? true)
+        {
+            return;
+        }
+#endif
+
+        if (IsNewDatabase || !HasTables)
+        {
+            return;
+        }
+
+        if (!MigrationsPending)
+        {
+            return;
+        }
+
+        if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
+        {
+            return;
+        }
+
+        var fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
+
+
+        _log.LogInformation("Migrations: save database before migration");
+
+        try
+        {
+            UnitOfWork.RunBackup(fileName);
+            _log.LogInformation($"Migrations: database save to {fileName}");
+        }
+        catch (Exception e)
+        {
+            _log.LogError("Migrations:BackupDatabase", e);
+        }
+    }
+
+    /// <summary>
+    /// Backup a database to a file
+    /// </summary>
+    /// <param name="fileName">Full path to the backup file</param>
+    public void SaveDatabase(string fileName)
+    {
+        if (IsNewDatabase || !HasTables)
+        {
+            return;
+        }
+
+        if (!MigrationsPending)
+        {
+            return;
+        }
+
+        if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
+        {
+            return;
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
+        }
+
+        _log.LogInformation("Migrations: save database before migration");
+
+        try
+        {
+            UnitOfWork.RunBackup(fileName);
+            _log.LogInformation($"Migrations: database save to {fileName}");
+        }
+        catch (Exception e)
+        {
+            _log.LogError("Migrations:BackupDatabase", e);
+        }
+    }
+
+    /// <summary>
+    /// Migrate database to current version: applies schema changes
+    /// </summary>
+    public void MigrateDatabase()
+    {
+        if (!MigrationsPending)
+        {
+            return;
+        }
+
+        if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
+        {
+            return;
+        }
+
+        try
+        {
+            //_log.Info("Migrations: script changes");
+
+            _log.LogInformation("Migrations: update database");
+
+            using (var scope = UnitOfWork.GetContextScope())
+            {
+                var context = ((IDbContextScope<T>)scope).DbContexts.GetContext();
 
                 var timeout = context.Database.GetCommandTimeout();
                 context.Database.SetCommandTimeout(6000);
 
-                foreach (var sql1 in cmds)
-                {
-                    try
-                    {
-                        if (string.IsNullOrEmpty(sql1.Replace("\r\n", " ", StringComparison.OrdinalIgnoreCase).Trim()))
-                        {
-                            continue;
-                        }
-                        context.Database.ExecuteSql(FormattableStringFactory.Create(sql1));
-                    }
-                    catch (Exception e)
-                    {
-                        _log.LogError($"Running SQL {sql1} failed", e);
-                        throw;
-                    }
-                }
+                context.Database.Migrate();
 
                 context.Database.SetCommandTimeout(timeout);
-            }
-        }
-
-        /// <summary>
-        /// Backup a database to a file
-        /// </summary>
-        public void SaveDatabase()
-        {
-
-#if DEBUG
-            if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffBackup ?? true)
-            {
-                return;
-            }
-#endif
-
-            if (IsNewDatabase || !HasTables)
-            {
-                return;
-            }
-
-            if (!MigrationsPending)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
-            {
-                return;
             }
 
             var fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
 
-
-            _log.LogInformation("Migrations: save database before migration");
-
             try
             {
                 UnitOfWork.RunBackup(fileName);
-                _log.LogInformation($"Migrations: database save to {fileName}");
+
+                UnitOfWork.ShrinkDatabase();
+                _log.LogInformation($"Migrations: database save after migration to {fileName}");
             }
             catch (Exception e)
             {
-                _log.LogError("Migrations:BackupDatabase", e);
+                _log.LogError("Migrations:BackupDatabase after migration", e);
             }
         }
-
-        /// <summary>
-        /// Backup a database to a file
-        /// </summary>
-        /// <param name="fileName">Full path to the backup file</param>
-        public void SaveDatabase(string fileName)
+        catch (Exception e)
         {
-            if (IsNewDatabase || !HasTables)
-            {
-                return;
-            }
-
-            if (!MigrationsPending)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(fileName))
-            {
-                fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
-            }
-
-            _log.LogInformation("Migrations: save database before migration");
-
-            try
-            {
-                UnitOfWork.RunBackup(fileName);
-                _log.LogInformation($"Migrations: database save to {fileName}");
-            }
-            catch (Exception e)
-            {
-                _log.LogError("Migrations:BackupDatabase", e);
-            }
+            Debug.WriteLine(e.Message);
+            Debug.WriteLine(e.StackTrace);
+            throw;
         }
-
-        /// <summary>
-        /// Migrate database to current version: applies schema changes
-        /// </summary>
-        public void MigrateDatabase()
-        {
-            if (!MigrationsPending)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(UnitOfWork.AppGlobals.AppStartParameter.BackupPath))
-            {
-                return;
-            }
-
-            try
-            {
-                //_log.Info("Migrations: script changes");
-
-                _log.LogInformation("Migrations: update database");
-
-                using (var scope = UnitOfWork.GetContextScope())
-                {
-                    var context = ((IDbContextScope<T>)scope).DbContexts.GetContext();
-
-                    var timeout = context.Database.GetCommandTimeout();
-                    context.Database.SetCommandTimeout(6000);
-
-                    context.Database.Migrate();
-
-                    context.Database.SetCommandTimeout(timeout);
-                }
-
-                var fileName = Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{DateTime.Now:yyyyMMddHHmmss}.bak");
-
-                try
-                {
-                    UnitOfWork.RunBackup(fileName);
-
-                    UnitOfWork.ShrinkDatabase();
-                    _log.LogInformation($"Migrations: database save after migration to {fileName}");
-                }
-                catch (Exception e)
-                {
-                    _log.LogError("Migrations:BackupDatabase after migration", e);
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Update database app content to current version (if necessary). Use only for app content not user content!
-        /// </summary>
-        public void ApplyDatabaseUpdates()
-        {
-            if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffConverters ?? true)
-            {
-                return;
-            }
-
-            ModelDataConvertersHandler.RunConverters();
-
-            // Collect all messages and save it in one step to logfile
-            var s = new StringBuilder();
-
-            foreach (var message in ModelDataConvertersHandler.Messages)
-            {
-                s.AppendLine(message);
-            }
-
-            var msg = s.ToString();
-            if (!string.IsNullOrEmpty(msg))
-            {
-                _log.LogInformation(s.ToString());
-            }
-
-            //// Todo: apply other content changes if necessary
-        }
-
-        //#region Private methods
-
-        ///// <summary>
-        ///// The real workload to do in the ctors
-        ///// </summary>
-        ///// <param name="timestamp">timestamp like 20190419110556</param>
-        ///// <returns></returns>
-        //private string GetScriptFileName(string timestamp)
-        //{
-        //    return Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{timestamp}.sql");
-        //}
-
-        //#endregion
-
     }
+
+    /// <summary>
+    /// Update database app content to current version (if necessary). Use only for app content not user content!
+    /// </summary>
+    public void ApplyDatabaseUpdates()
+    {
+        if (UnitOfWork.AppGlobals.ContextConfig?.TurnOffConverters ?? true)
+        {
+            return;
+        }
+
+        ModelDataConvertersHandler.RunConverters();
+
+        // Collect all messages and save it in one step to logfile
+        var s = new StringBuilder();
+
+        foreach (var message in ModelDataConvertersHandler.Messages)
+        {
+            s.AppendLine(message);
+        }
+
+        var msg = s.ToString();
+        if (!string.IsNullOrEmpty(msg))
+        {
+            _log.LogInformation(s.ToString());
+        }
+
+        //// Todo: apply other content changes if necessary
+    }
+
+    //#region Private methods
+
+    ///// <summary>
+    ///// The real workload to do in the ctors
+    ///// </summary>
+    ///// <param name="timestamp">timestamp like 20190419110556</param>
+    ///// <returns></returns>
+    //private string GetScriptFileName(string timestamp)
+    //{
+    //    return Path.Combine(UnitOfWork.AppGlobals.AppStartParameter.BackupPath, $"MigrationSqlBackup{timestamp}.sql");
+    //}
+
+    //#endregion
+
 }

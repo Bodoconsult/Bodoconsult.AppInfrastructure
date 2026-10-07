@@ -10,19 +10,18 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.Interfaces
+namespace Bodoconsult.Database.Ef.Interfaces;
+
+/// <summary>
+/// Convenience methods to retrieve ambient DbContext instances. 
+/// </summary>
+public interface IAmbientDbContextLocator
 {
     /// <summary>
-    /// Convenience methods to retrieve ambient DbContext instances. 
+    /// If called within the scope of a DbContextScope, gets or creates 
+    /// the ambient DbContext instance for the provided DbContext type. 
+    /// 
+    /// Otherwise returns null. 
     /// </summary>
-    public interface IAmbientDbContextLocator
-    {
-        /// <summary>
-        /// If called within the scope of a DbContextScope, gets or creates 
-        /// the ambient DbContext instance for the provided DbContext type. 
-        /// 
-        /// Otherwise returns null. 
-        /// </summary>
-        TContext GetContext<TContext>() where TContext : DbContext;
-    }
+    TContext GetContext<TContext>() where TContext : DbContext;
 }

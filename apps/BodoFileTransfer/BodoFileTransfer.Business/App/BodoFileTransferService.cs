@@ -2,7 +2,6 @@
 
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
@@ -10,6 +9,7 @@ using BodoFileTransfer.Business.Interfaces;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using Bodoconsult.App.DataProtection;
 
 namespace BodoFileTransfer.Business.App;
 

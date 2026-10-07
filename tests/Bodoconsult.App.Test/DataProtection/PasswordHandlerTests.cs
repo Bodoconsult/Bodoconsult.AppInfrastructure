@@ -1,12 +1,17 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.DataProtection;
 
-namespace Bodoconsult.App.Test.HelperTests;
+namespace Bodoconsult.App.Test.DataProtection;
 
 [TestFixture]
 internal class PasswordHandlerTests
 {
+    public PasswordHandlerTests()
+    {
+        PasswordHandler.CreateKeys();
+    }
+
     [Test]
     public void Encrypt_ValidString_EncryptedSuccessfully()
     {

@@ -11,7 +11,7 @@ namespace BodoWebMailer.DiContainerProvider;
 /// <summary>
 /// Load all the complete package of BodoWebMailer services based on GRPC to DI container. Intended mainly for production
 /// </summary>
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 public class BodoWebMailerAllServicesDiContainerServiceProviderPackage : BaseDiContainerServiceProviderPackage
 {
     /// <summary>

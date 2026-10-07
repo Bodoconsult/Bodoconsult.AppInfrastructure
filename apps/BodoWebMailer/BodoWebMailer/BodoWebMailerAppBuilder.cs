@@ -7,7 +7,7 @@ using System.Runtime.Versioning;
 
 namespace BodoWebMailer;
 
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 public class BodoWebMailerAppBuilder: BaseAppBuilder
 {
     /// <summary>

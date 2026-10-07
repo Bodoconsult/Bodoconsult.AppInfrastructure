@@ -5,12 +5,11 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Extensions;
 using BodoFileTransfer.Business.App;
 using System;
-using System.Linq;
 using System.Runtime.Versioning;
 
 namespace BodoFileTransfer;
 
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 internal class Program
 {
     private static void Main(string[] args)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.DataProtection;
 using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.SqlClient;
 using BodoFileTransfer.Business.Helpers;

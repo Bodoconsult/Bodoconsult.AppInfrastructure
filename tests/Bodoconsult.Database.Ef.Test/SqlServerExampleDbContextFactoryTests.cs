@@ -4,34 +4,33 @@ using Bodoconsult.Database.Ef.Test.Infrastructure;
 using Bodoconsult.Database.Test.Utilities.App;
 using EfConsoleApp1.Model.DatabaseModel.DbContext;
 
-namespace Bodoconsult.Database.Ef.Test
+namespace Bodoconsult.Database.Ef.Test;
+
+public class SqlServerExampleDbContextFactoryTests : BaseDatabaseTests
 {
-    public class SqlServerExampleDbContextFactoryTests : BaseDatabaseTests
+    [SetUp]
+    public void Setup()
     {
-        [SetUp]
-        public void Setup()
-        {
-            PrepareServer();
-        }
+        PrepareServer();
+    }
 
-        [Test]
-        public void CreateDbContext_ValidSetup_DbContextCreated()
-        {
-            // Arrange 
-            var config = Globals.Instance.ContextConfig;
+    [Test]
+    public void CreateDbContext_ValidSetup_DbContextCreated()
+    {
+        // Arrange 
+        var config = Globals.Instance.ContextConfig;
 
-            // ToDo: bug in Bodoconsult.App remove with 1.0.4
-            config.ConnectionString = Globals.Instance.AppStartParameter.DefaultConnectionString;
+        // ToDo: bug in Bodoconsult.App remove with 1.0.4
+        config.ConnectionString = Globals.Instance.AppStartParameter.DefaultConnectionString;
 
-            var factory = new SqlServerExampleDbContextFactory(Globals.Instance, Globals.Instance.Logger);
+        var factory = new SqlServerExampleDbContextFactory(Globals.Instance, Globals.Instance.Logger);
 
-            // Act  
-            var instance = factory.CreateDbContext();
+        // Act  
+        var instance = factory.CreateDbContext();
 
-            // Assert
-            Assert.That(instance, Is.Not.Null);
-
-        }
+        // Assert
+        Assert.That(instance, Is.Not.Null);
 
     }
+
 }

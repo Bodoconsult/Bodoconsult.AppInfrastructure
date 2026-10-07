@@ -2,7 +2,7 @@
 
 using System;
 using System.Runtime.Versioning;
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.Windows.System;
 
 namespace BodoWebMailer;
@@ -20,7 +20,7 @@ public class ConsoleHelper
     {
      
         Console.WriteLine("Insert token for user (encrypted token will be copied to clipboard):");
-        var s = PasswordHandler.ReadPassword();
+        var s = Bodoconsult.App.Helpers.ConsoleHelper.ReadSecret();
 
         s = PasswordHandler.Encrypt(s);
 

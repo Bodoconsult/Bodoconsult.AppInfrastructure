@@ -39,80 +39,79 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// Represents the data of a memo file with file extension .fpt
+/// </summary>
+public class DbfMemo: IDisposable
 {
+    private readonly BinaryReader _br;
+
+
     /// <summary>
-    /// Represents the data of a memo file with file extension .fpt
+    /// File header data of the FPT memo file
     /// </summary>
-    public class DbfMemo: IDisposable
+    public MemoFileHeader FileHeader { get; set; }
+
+    /// <summary>
+    /// Ctor
+    /// </summary>
+    /// <param name="fileName"></param>
+    public DbfMemo(string fileName)
     {
-        private readonly BinaryReader _br;
 
-
-        /// <summary>
-        /// File header data of the FPT memo file
-        /// </summary>
-        public MemoFileHeader FileHeader { get; set; }
-
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="fileName"></param>
-        public DbfMemo(string fileName)
+        try
+        {
+            _br = new BinaryReader(File.OpenRead(fileName));
+        }
+        catch (Exception e)
         {
 
-            try
-            {
-                _br = new BinaryReader(File.OpenRead(fileName));
-            }
-            catch (Exception e)
-            {
-
-                throw new FileLoadException($"Memo file {fileName} could not be opened.", e);
-            }
+            throw new FileLoadException($"Memo file {fileName} could not be opened.", e);
         }
+    }
 
-        /// <summary>
-        /// Load the meta data from the memo file
-        /// </summary>
-        public void LoadMetaData()
-        {
-            FileHeader = new MemoFileHeader(_br);
-        }
+    /// <summary>
+    /// Load the meta data from the memo file
+    /// </summary>
+    public void LoadMetaData()
+    {
+        FileHeader = new MemoFileHeader(_br);
+    }
 
-        /// <summary>
-        /// Read the string content from the byte buffer
-        /// </summary>
-        /// <param name="header">Current memo block header</param>
-        /// <returns>String content of the memo field</returns>
-        private string GetRawContent(MemoBlockHeader header)
-        {
-            var buffer = new byte[header.ContentSize];
-            _br.BaseStream.Seek(header.StartLocation, SeekOrigin.Begin);
-            _br.Read(buffer, 0, header.ContentSize);
+    /// <summary>
+    /// Read the string content from the byte buffer
+    /// </summary>
+    /// <param name="header">Current memo block header</param>
+    /// <returns>String content of the memo field</returns>
+    private string GetRawContent(MemoBlockHeader header)
+    {
+        var buffer = new byte[header.ContentSize];
+        _br.BaseStream.Seek(header.StartLocation, SeekOrigin.Begin);
+        _br.Read(buffer, 0, header.ContentSize);
 
-            return Encoding.UTF8.GetString(buffer);
-        }
+        return Encoding.UTF8.GetString(buffer);
+    }
 
-        /// <summary>
-        /// Read the strong content for a certain pointer
-        /// </summary>
-        /// <param name="pointer">Pointer</param>
-        /// <returns>Content string of the memo field</returns>
-        public string GetContent(int pointer)
-        {
+    /// <summary>
+    /// Read the strong content for a certain pointer
+    /// </summary>
+    /// <param name="pointer">Pointer</param>
+    /// <returns>Content string of the memo field</returns>
+    public string GetContent(int pointer)
+    {
 
-            var header = new MemoBlockHeader(pointer, _br, FileHeader.BlockSize);
+        var header = new MemoBlockHeader(pointer, _br, FileHeader.BlockSize);
 
-            var s = GetRawContent(header);
+        var s = GetRawContent(header);
 
-            return s;
-        }
+        return s;
+    }
 
-        /// <summary>Disposes open ressources</summary>
-        public void Dispose()
-        {
-            _br?.Dispose();
-        }
+    /// <summary>Disposes open ressources</summary>
+    public void Dispose()
+    {
+        _br?.Dispose();
     }
 }

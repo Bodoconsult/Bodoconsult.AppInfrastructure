@@ -8,7 +8,7 @@ namespace BodoFtpTransfer.DiContainerProvider;
 /// <summary>
 /// The current DI container used for production 
 /// </summary>
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 public class BodoFtpTransferProductionDiContainerServiceProviderPackageFactory : IDiContainerServiceProviderPackageFactory
 {
     /// <summary>

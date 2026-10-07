@@ -5,50 +5,49 @@ using Bodoconsult.Database.Test.Utilities.App;
 using Bodoconsult.Database.Test.Utilities.Helpers;
 using System;
 
-namespace Bodoconsult.Database.Dbase.Test
+namespace Bodoconsult.Database.Dbase.Test;
+
+/// <summary>
+/// Setup for the assembly for all tests
+/// </summary>
+[SetUpFixture]
+public static class AssemblySetup
 {
     /// <summary>
-    /// Setup for the assembly for all tests
+    /// At startup of the assembly
     /// </summary>
-    [SetUpFixture]
-    public static class AssemblySetup
+    [OneTimeSetUp]
+    public static void AssemblyStartUp()
     {
-        /// <summary>
-        /// At startup of the assembly
-        /// </summary>
-        [OneTimeSetUp]
-        public static void AssemblyStartUp()
-        {
 
-            var globals = Globals.Instance;
-            globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
+        var globals = Globals.Instance;
+        globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
 
-            // Set additional app start parameters as required
-            var param = globals.AppStartParameter;
-            param.AppName = "Database tests";
-            param.SoftwareTeam = "Robert Leisner";
-            param.AppFolderName = "BodoconsultDatabase";
-            param.BackupPath = FileHelper.GetTempPath();
+        // Set additional app start parameters as required
+        var param = globals.AppStartParameter;
+        param.AppName = "Database tests";
+        param.SoftwareTeam = "Robert Leisner";
+        param.AppFolderName = "BodoconsultDatabase";
+        param.BackupPath = FileHelper.GetTempPath();
 
-            // Now start the app building process
-            var builder = new MyDebugAppBuilder(globals);
+        // Now start the app building process
+        var builder = new MyDebugAppBuilder(globals);
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
 #endif
 
-            // Load basic app metadata
+        // Load basic app metadata
 
-            builder.LoadBasicSettings();
+        builder.LoadBasicSettings();
 
-            // Process the config file
-            builder.ProcessConfiguration();
+        // Process the config file
+        builder.ProcessConfiguration();
 
-            // Now load the globally needed settings
-            builder.LoadGlobalSettings();
+        // Now load the globally needed settings
+        builder.LoadGlobalSettings();
 
-            ArgumentNullException.ThrowIfNull(Globals.Instance.Logger);
-            Globals.Instance.Logger.LogInformation("Starting tests...");
+        ArgumentNullException.ThrowIfNull(Globals.Instance.Logger);
+        Globals.Instance.Logger.LogInformation("Starting tests...");
 
-        }
     }
 }

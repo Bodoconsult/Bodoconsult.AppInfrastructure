@@ -4,7 +4,7 @@ using Bodoconsult.App.Extensions;
 using BodoFileTransfer.Test.App;
 using NUnit.Framework;
 using System;
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.DataProtection;
 
 namespace BodoFileTransfer.Test;
 

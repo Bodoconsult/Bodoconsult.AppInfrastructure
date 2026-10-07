@@ -1,6 +1,5 @@
-﻿namespace Bodoconsult.Database.Test.DataTableBackup.Formatters
+﻿namespace Bodoconsult.Database.Test.DataTableBackup.Formatters;
+
+internal class Class1
 {
-    internal class Class1
-    {
-    }
 }

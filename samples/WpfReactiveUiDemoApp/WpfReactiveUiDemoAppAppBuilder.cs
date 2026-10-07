@@ -3,11 +3,9 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 
 using Bodoconsult.App.Wpf.ReactiveUI.App;
-using ReactiveUI;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using WpfReactiveUiDemoApp.DiContainerProvider;
 using WpfReactiveUiDemoApp.ViewModels;
-using WpfReactiveUiDemoApp.Views;
 
 namespace WpfReactiveUiDemoApp;
 

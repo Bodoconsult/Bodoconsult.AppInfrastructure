@@ -23,7 +23,7 @@ namespace BodoFileTransfer.DiContainerProvider;
 /// <summary>
 /// Load all specific BodoFileTransfer services to DI container. Intended mainly for production
 /// </summary>
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 public class BodoFileTransferAllServicesContainerServiceProvider : IDiContainerServiceProvider
 {
     private readonly string _benchmarkFileName = Path.Combine("C:\\ProgramData\\BodoFileTransfer", "BodoFileTransfer_Benchmark.csv");

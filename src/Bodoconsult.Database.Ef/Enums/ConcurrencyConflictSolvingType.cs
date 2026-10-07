@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-namespace Bodoconsult.Database.Ef.Enums
+namespace Bodoconsult.Database.Ef.Enums;
+
+/// <summary>
+/// How should concurrency conflict solving happen?
+/// </summary>
+public enum ConcurrencyConflictSolvingType
 {
     /// <summary>
-    /// How should concurrency conflict solving happen?
+    /// The data in the database will be kept
     /// </summary>
-    public enum ConcurrencyConflictSolvingType
-    {
-        /// <summary>
-        /// The data in the database will be kept
-        /// </summary>
-        DatabaseWins,
+    DatabaseWins,
 
-        /// <summary>
-        /// The entity will override the data in the database
-        /// </summary>
-        EntityWins
-    }
+    /// <summary>
+    /// The entity will override the data in the database
+    /// </summary>
+    EntityWins
 }

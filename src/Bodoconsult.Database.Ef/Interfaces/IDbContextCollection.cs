@@ -10,16 +10,15 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.Interfaces
+namespace Bodoconsult.Database.Ef.Interfaces;
+
+/// <summary>
+/// Maintains a list of lazily-created DbContext instances.
+/// </summary>
+public interface IDbContextCollection<TContext> : IDisposable where TContext : DbContext
 {
     /// <summary>
-    /// Maintains a list of lazily-created DbContext instances.
+    /// Get or create a DbContext instance of the specified type. 
     /// </summary>
-    public interface IDbContextCollection<TContext> : IDisposable where TContext : DbContext
-    {
-        /// <summary>
-        /// Get or create a DbContext instance of the specified type. 
-        /// </summary>
-        TContext GetContext();
-    }
+    TContext GetContext();
 }

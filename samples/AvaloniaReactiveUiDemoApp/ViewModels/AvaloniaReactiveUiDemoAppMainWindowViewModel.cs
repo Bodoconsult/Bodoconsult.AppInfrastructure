@@ -15,7 +15,6 @@ using Bodoconsult.App.ReactiveUI.ViewModels;
 using ReactiveUI;
 using ReactiveUI.Primitives;
 using ReactiveUI.Primitives.Concurrency;
-using System.Reactive.Linq;
 
 namespace AvaloniaReactiveUiDemoApp.ViewModels;
 

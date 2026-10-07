@@ -36,32 +36,31 @@
 
 using System.IO;
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// Memo file metadata header
+/// </summary>
+public class MemoFileHeader
 {
     /// <summary>
-    /// Memo file metadata header
+    /// Default ctor
     /// </summary>
-    public class MemoFileHeader
+    /// <param name="br">Content of the memo file</param>
+    public MemoFileHeader(BinaryReader br)
     {
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="br">Content of the memo file</param>
-        public MemoFileHeader(BinaryReader br)
-        {
 
-            br.BaseStream.Seek(6, SeekOrigin.Begin);
+        br.BaseStream.Seek(6, SeekOrigin.Begin);
 
-            var buffer = new byte[4];
-            br.Read(buffer, 2, 2);
+        var buffer = new byte[4];
+        br.Read(buffer, 2, 2);
 
-            BlockSize = DbfHelper.ToInteger(buffer);
+        BlockSize = DbfHelper.ToInteger(buffer);
 
-        }
-
-        /// <summary>
-        /// Block size of the memo content
-        /// </summary>
-        public int BlockSize { get; set; }
     }
+
+    /// <summary>
+    /// Block size of the memo content
+    /// </summary>
+    public int BlockSize { get; set; }
 }

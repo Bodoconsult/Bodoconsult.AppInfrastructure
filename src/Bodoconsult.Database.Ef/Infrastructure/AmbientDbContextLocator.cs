@@ -11,23 +11,22 @@
 using Bodoconsult.Database.Ef.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.Infrastructure
+namespace Bodoconsult.Database.Ef.Infrastructure;
+
+/// <summary>
+/// Ambient DB context locator
+/// </summary>
+public class AmbientDbContextLocator : IAmbientDbContextLocator
 {
     /// <summary>
-    /// Ambient DB context locator
+    /// If called within the scope of a DbContextScope, gets or creates 
+    /// the ambient DbContext instance for the provided DbContext type. 
+    /// 
+    /// Otherwise returns null. 
     /// </summary>
-    public class AmbientDbContextLocator : IAmbientDbContextLocator
+    public T GetContext<T>() where T : DbContext
     {
-        /// <summary>
-        /// If called within the scope of a DbContextScope, gets or creates 
-        /// the ambient DbContext instance for the provided DbContext type. 
-        /// 
-        /// Otherwise returns null. 
-        /// </summary>
-        public T GetContext<T>() where T : DbContext
-        {
-            var ambientDbContextScope = DbContextScope<T>.GetAmbientScope();
-            return ambientDbContextScope?.DbContexts.GetContext();
-        }
+        var ambientDbContextScope = DbContextScope<T>.GetAmbientScope();
+        return ambientDbContextScope?.DbContexts.GetContext();
     }
 }

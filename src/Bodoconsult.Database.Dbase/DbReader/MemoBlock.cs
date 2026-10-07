@@ -34,32 +34,31 @@
 // About
 // A free and open source .net library for reading/writing DBF files. Fast and easy to use. Supports writing to forward-only streams which makes it easy to write dbf files in a web server environment.
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// Represents a Memo DBase data field
+/// </summary>
+public class MemoBlock
 {
     /// <summary>
-    /// Represents a Memo DBase data field
+    /// Default ctor
     /// </summary>
-    public class MemoBlock
+    /// <param name="type">Memo data type</param>
+    /// <param name="data">Memo data as byte array</param>
+    public MemoBlock(MemoDataType type, byte[] data)
     {
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="type">Memo data type</param>
-        /// <param name="data">Memo data as byte array</param>
-        public MemoBlock(MemoDataType type, byte[] data)
-        {
-            MemoDataType = type;
-            Memo = data;
-        }
-
-        /// <summary>
-        /// Memo data type
-        /// </summary>
-        public MemoDataType MemoDataType { get; }
-
-        /// <summary>
-        /// Memo data as byte array
-        /// </summary>
-        public byte[] Memo { get; }
+        MemoDataType = type;
+        Memo = data;
     }
+
+    /// <summary>
+    /// Memo data type
+    /// </summary>
+    public MemoDataType MemoDataType { get; }
+
+    /// <summary>
+    /// Memo data as byte array
+    /// </summary>
+    public byte[] Memo { get; }
 }

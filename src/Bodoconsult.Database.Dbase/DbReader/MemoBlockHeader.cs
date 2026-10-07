@@ -36,55 +36,54 @@
 
 using System.IO;
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// Represents the metadata of a memo field string content
+/// </summary>
+public class MemoBlockHeader
 {
+
     /// <summary>
-    /// Represents the metadata of a memo field string content
+    /// Length of the memo string header
     /// </summary>
-    public class MemoBlockHeader
+    public const int BlockHeaderLength = 8;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="pointer">Number of the starting block from DBF table</param>
+    /// <param name="br">Memo file content</param>
+    /// <param name="blockSize">Current block size of the memo file</param>
+    public MemoBlockHeader(int pointer, BinaryReader br, int blockSize)
     {
 
-        /// <summary>
-        /// Length of the memo string header
-        /// </summary>
-        public const int BlockHeaderLength = 8;
+        var offset = pointer * blockSize;
 
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="pointer">Number of the starting block from DBF table</param>
-        /// <param name="br">Memo file content</param>
-        /// <param name="blockSize">Current block size of the memo file</param>
-        public MemoBlockHeader(int pointer, BinaryReader br, int blockSize)
+        var buffer = new byte[1];
+
+        var i = offset + BlockHeaderLength;
+
+        while (buffer[0]!=175)
         {
-
-            var offset = pointer * blockSize;
-
-            var buffer = new byte[1];
-
-            var i = offset + BlockHeaderLength;
-
-            while (buffer[0]!=175)
-            {
-                i++;
-                br.BaseStream.Seek(i, SeekOrigin.Begin);
-                br.Read(buffer, 0, 1);
-            }
-
-            ContentSize = i - offset - BlockHeaderLength;
-            StartLocation = offset + BlockHeaderLength;
+            i++;
+            br.BaseStream.Seek(i, SeekOrigin.Begin);
+            br.Read(buffer, 0, 1);
         }
 
-        /// <summary>
-        /// Size of the memo content
-        /// </summary>
-        public int ContentSize { get; set; }
-
-        /// <summary>
-        /// Start location of the content
-        /// </summary>
-        public int StartLocation { get; set; }
-
-
+        ContentSize = i - offset - BlockHeaderLength;
+        StartLocation = offset + BlockHeaderLength;
     }
+
+    /// <summary>
+    /// Size of the memo content
+    /// </summary>
+    public int ContentSize { get; set; }
+
+    /// <summary>
+    /// Start location of the content
+    /// </summary>
+    public int StartLocation { get; set; }
+
+
 }

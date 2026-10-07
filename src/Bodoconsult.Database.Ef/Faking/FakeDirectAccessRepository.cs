@@ -2,26 +2,25 @@
 
 using Bodoconsult.Database.Ef.Interfaces;
 
-namespace Bodoconsult.Database.Ef.Faking
+namespace Bodoconsult.Database.Ef.Faking;
+
+/// <summary>
+/// Fake implemenation of <see cref="IDirectAccessRepository"/>
+/// </summary>
+public class FakeDirectAccessRepository : IDirectAccessRepository
 {
+
     /// <summary>
-    /// Fake implemenation of <see cref="IDirectAccessRepository"/>
+    /// Default ctor
     /// </summary>
-    public class FakeDirectAccessRepository : IDirectAccessRepository
+    /// <param name="contextLocator">Current context locator</param>
+    public FakeDirectAccessRepository(IAmbientDbContextLocator contextLocator)
     {
-
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="contextLocator">Current context locator</param>
-        public FakeDirectAccessRepository(IAmbientDbContextLocator contextLocator)
-        {
-            ContextLocator  = contextLocator;
-        }
-
-        /// <summary>
-        /// Current context locator
-        /// </summary>
-        public IAmbientDbContextLocator ContextLocator { get; set; }
+        ContextLocator  = contextLocator;
     }
+
+    /// <summary>
+    /// Current context locator
+    /// </summary>
+    public IAmbientDbContextLocator ContextLocator { get; set; }
 }

@@ -10,12 +10,21 @@ namespace Bodoconsult.App.Helpers;
 /// </summary>
 public static class ConsoleHelper
 {
-
     /// <summary>
-    /// Read a password from console
+    /// Read a secret from console
     /// </summary>
     /// <returns>password string</returns>
-    public static string ReadPassword()
+    public static string ReadSecret(string message)
+    {
+        Console.WriteLine(message);
+        return ReadSecret();
+    }
+
+    /// <summary>
+    /// Read a secret from console in a secure manner not showing the secret
+    /// </summary>
+    /// <returns>String with the secret read hidden from console</returns>
+    public static string ReadSecret()
     {
         var passbits = new Queue();
 

@@ -38,279 +38,278 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// Fast access to Dbase data table
+/// </summary>
+public class FastDbf : IDisposable
 {
+    #region Private Fields
+
+    private readonly int _codepage;
+    private DbfFile _odbf;
+    private readonly DbfRecord _orec;
+
+    private readonly DbfMemo _ofpt;
+
+    #endregion Private Fields
+
+    #region Public Constructors
+
     /// <summary>
-    /// Fast access to Dbase data table
+    /// Ctor
     /// </summary>
-    public class FastDbf : IDisposable
+    /// <param name="fname">Filename of the DBF file</param>
+    /// <param name="codepage">Codepage to use. Default: 1252</param>
+    /// <exception cref="FileNotFoundException"></exception>
+    public FastDbf(string fname, int codepage = 1252)
     {
-        #region Private Fields
-
-        private readonly int _codepage;
-        private DbfFile _odbf;
-        private readonly DbfRecord _orec;
-
-        private readonly DbfMemo _ofpt;
-
-        #endregion Private Fields
-
-        #region Public Constructors
-
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="fname">Filename of the DBF file</param>
-        /// <param name="codepage">Codepage to use. Default: 1252</param>
-        /// <exception cref="FileNotFoundException"></exception>
-        public FastDbf(string fname, int codepage = 1252)
+        _codepage = codepage;
+        if (!File.Exists(fname))
         {
-            _codepage = codepage;
-            if (!File.Exists(fname))
-            {
-                throw new FileNotFoundException(fname);
-            }
-
-            _odbf = new DbfFile();
-            _odbf.Open(fname, FileMode.Open);
-
-            var fi = new FileInfo(fname);
-
-            var memoFile = fi.FullName.Replace(fi.Extension, ".fpt");
-
-            if (File.Exists(memoFile))
-            {
-                _ofpt = new DbfMemo(memoFile);
-                _ofpt.LoadMetaData();
-            }
-
-            _orec = new DbfRecord(_odbf.Header, codepage)
-                {
-                    MemoSource = _ofpt
-                };
+            throw new FileNotFoundException(fname);
         }
 
-        #endregion Public Constructors
+        _odbf = new DbfFile();
+        _odbf.Open(fname, FileMode.Open);
 
-        #region Public Properties
+        var fi = new FileInfo(fname);
 
-        /// <summary>
-        /// Number of columns in the table
-        /// </summary>
-        public int ColumnCount => _odbf.Header.ColumnCount;
+        var memoFile = fi.FullName.Replace(fi.Extension, ".fpt");
 
-        /// <summary>
-        /// Numbe rof records in the taböe
-        /// </summary>
-        public uint RecordCount => _odbf.Header.RecordCount;
-
-        #endregion Public Properties
-
-        #region Public Methods
-
-        /// <summary>
-        /// Read a DBase data table
-        /// </summary>
-        /// <param name="fname">DBase table filename</param>
-        /// <returns>A <see cref="DbfResult"/> instance containing the data in the Dbase table</returns>
-        public DbfResult Read(string fname)
+        if (File.Exists(memoFile))
         {
-            if (!File.Exists(fname))
+            _ofpt = new DbfMemo(memoFile);
+            _ofpt.LoadMetaData();
+        }
+
+        _orec = new DbfRecord(_odbf.Header, codepage)
+        {
+            MemoSource = _ofpt
+        };
+    }
+
+    #endregion Public Constructors
+
+    #region Public Properties
+
+    /// <summary>
+    /// Number of columns in the table
+    /// </summary>
+    public int ColumnCount => _odbf.Header.ColumnCount;
+
+    /// <summary>
+    /// Numbe rof records in the taböe
+    /// </summary>
+    public uint RecordCount => _odbf.Header.RecordCount;
+
+    #endregion Public Properties
+
+    #region Public Methods
+
+    /// <summary>
+    /// Read a DBase data table
+    /// </summary>
+    /// <param name="fname">DBase table filename</param>
+    /// <returns>A <see cref="DbfResult"/> instance containing the data in the Dbase table</returns>
+    public DbfResult Read(string fname)
+    {
+        if (!File.Exists(fname))
+        {
+            throw new FileNotFoundException(fname);
+        }
+
+        var odbf = new DbfFile();
+        odbf.Open(fname, FileMode.Open);
+
+        DbfMemo ofpt = null;
+
+        var fi = new FileInfo(fname);
+
+        var memoFile = fi.FullName.Replace(fi.Extension, ".fpt");
+
+        if (File.Exists(memoFile))
+        {
+            ofpt = new DbfMemo(memoFile);
+            ofpt.LoadMetaData();
+        }
+
+        var orec = new DbfRecord(odbf.Header, _codepage)
+        {
+            MemoSource = ofpt
+        };
+
+        var retval = new DbfResult { DbfHeader = odbf.Header };
+
+        try
+        {
+            for (var i = 0; i < odbf.Header.RecordCount; i++)
             {
-                throw new FileNotFoundException(fname);
-            }
-
-            var odbf = new DbfFile();
-            odbf.Open(fname, FileMode.Open);
-
-            DbfMemo ofpt = null;
-
-            var fi = new FileInfo(fname);
-
-            var memoFile = fi.FullName.Replace(fi.Extension, ".fpt");
-
-            if (File.Exists(memoFile))
-            {
-                ofpt = new DbfMemo(memoFile);
-                ofpt.LoadMetaData();
-            }
-
-            var orec = new DbfRecord(odbf.Header, _codepage)
-            {
-                MemoSource = ofpt
-            };
-
-            var retval = new DbfResult { DbfHeader = odbf.Header };
-
-            try
-            {
-                for (var i = 0; i < odbf.Header.RecordCount; i++)
+                if (!odbf.Read(i, orec))
                 {
-                    if (!odbf.Read(i, orec))
-                    {
-                        break;
-                    }
+                    break;
+                }
 
-                    if (orec.IsDeleted)
-                    {
-                        continue;
-                    }
+                if (orec.IsDeleted)
+                {
+                    continue;
+                }
 
-                    var record = GetRecord(odbf.Header, orec);
+                var record = GetRecord(odbf.Header, orec);
 
+                retval.DbfRecords.Add(record);
+            }
+        }
+        finally
+        {
+            odbf.Close();
+        }
+
+        return retval;
+    }
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// Find an index
+    /// </summary>
+    /// <param name="conditionFunc">Coniditional function</param>
+    /// <returns>Index number or null</returns>
+    public int? FindIndex(Func<List<string>, bool> conditionFunc)
+    {
+        try
+        {
+            for (var i = 0; i < RecordCount; i++)
+            {
+                if (!_odbf.Read(i, _orec))
+                {
+                    break;
+                }
+
+                if (_orec.IsDeleted)
+                {
+                    continue;
+                }
+
+                var record = GetRecord(_odbf.Header, _orec);
+                if (conditionFunc(record))
+                {
+                    return i;
+                }
+            }
+        }
+        catch
+        {
+            _odbf.Close();
+            _odbf = null;
+            throw;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Read the content of a DBase data table
+    /// </summary>
+    /// <param name="index">Index number</param>
+    /// <param name="count">Count. Default: 1</param>
+    /// <param name="filter">Flzter function</param>
+    /// <param name="skipIndexes">Skip indexes</param>
+    /// <returns>DBase data table file content</returns>
+    public DbfResult Read(int index, int count = 1, Func<List<string>, bool> filter = null, List<int> skipIndexes = null)
+    {
+        filter ??= _ => true;
+
+        var retval = new DbfResult
+        {
+            DbfHeader = _odbf.Header
+        };
+
+        try
+        {
+            for (var i = 0; i < count && i + index < RecordCount; i++)
+            {
+                if (skipIndexes != null && skipIndexes.Contains(index + i))
+                {
+                    continue;
+                }
+
+                if (!_odbf.Read(index + i, _orec))
+                {
+                    break;
+                }
+
+                if (_orec.IsDeleted)
+                {
+                    continue;
+                }
+
+                var record = GetRecord(_odbf.Header, _orec);
+                if (filter(record))
+                {
                     retval.DbfRecords.Add(record);
                 }
             }
-            finally
-            {
-                odbf.Close();
-            }
-
-            return retval;
         }
-
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-        public void Dispose()
+        catch
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Find an index
-        /// </summary>
-        /// <param name="conditionFunc">Coniditional function</param>
-        /// <returns>Index number or null</returns>
-        public int? FindIndex(Func<List<string>, bool> conditionFunc)
-        {
-            try
-            {
-                for (var i = 0; i < RecordCount; i++)
-                {
-                    if (!_odbf.Read(i, _orec))
-                    {
-                        break;
-                    }
-
-                    if (_orec.IsDeleted)
-                    {
-                        continue;
-                    }
-
-                    var record = GetRecord(_odbf.Header, _orec);
-                    if (conditionFunc(record))
-                    {
-                        return i;
-                    }
-                }
-            }
-            catch
-            {
-                _odbf.Close();
-                _odbf = null;
-                throw;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Read the content of a DBase data table
-        /// </summary>
-        /// <param name="index">Index number</param>
-        /// <param name="count">Count. Default: 1</param>
-        /// <param name="filter">Flzter function</param>
-        /// <param name="skipIndexes">Skip indexes</param>
-        /// <returns>DBase data table file content</returns>
-        public DbfResult Read(int index, int count = 1, Func<List<string>, bool> filter = null, List<int> skipIndexes = null)
-        {
-            filter ??= _ => true;
-
-            var retval = new DbfResult
-            {
-                DbfHeader = _odbf.Header
-            };
-
-            try
-            {
-                for (var i = 0; i < count && i + index < RecordCount; i++)
-                {
-                    if (skipIndexes != null && skipIndexes.Contains(index + i))
-                    {
-                        continue;
-                    }
-
-                    if (!_odbf.Read(index + i, _orec))
-                    {
-                        break;
-                    }
-
-                    if (_orec.IsDeleted)
-                    {
-                        continue;
-                    }
-
-                    var record = GetRecord(_odbf.Header, _orec);
-                    if (filter(record))
-                    {
-                        retval.DbfRecords.Add(record);
-                    }
-                }
-            }
-            catch
-            {
-                _odbf.Close();
-                _odbf = null;
-            }
-
-            return retval;
-        }
-
-        #endregion Public Methods
-
-        #region Protected Methods
-
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposing)
-            {
-                return;
-            }
-            _odbf?.Close();
+            _odbf.Close();
             _odbf = null;
         }
 
-        #endregion Protected Methods
-
-        #region Private Methods
-
-        private static List<string> GetRecord(DbfHeader dbfHeader, DbfRecord orec)
-        {
-            var record = new List<string>();
-
-            for (var j = 0; j < dbfHeader.ColumnCount; j++)
-            {
-                //var header = odbf.Header[j];
-                //if (header.ColumnType == DbfColumn.DbfColumnType.Character)
-                //{
-                //    var data = orec.RecordData.ToList().Skip(header.DataAddress).Take(header.Length);
-                //    foreach (var encodingInfo in Encoding.GetEncodings())
-                //    {
-                //        Debug.Write(encodingInfo.GetEncoding().GetString(data.ToArray()) + "\t");
-                //        Debug.WriteLine(string.Format("DisplayName:{0} CodePage:{1} Name:{2} ", encodingInfo.DisplayName, encodingInfo.CodePage, encodingInfo.Name));
-                //    }
-                //    var encoding = Encoding.GetEncoding(852);
-
-                //}
-                //else
-                //{
-                    record.Add(orec[j]);
-                //}
-            }
-            return record;
-        }
-
-        #endregion Private Methods
+        return retval;
     }
+
+    #endregion Public Methods
+
+    #region Protected Methods
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposing)
+        {
+            return;
+        }
+        _odbf?.Close();
+        _odbf = null;
+    }
+
+    #endregion Protected Methods
+
+    #region Private Methods
+
+    private static List<string> GetRecord(DbfHeader dbfHeader, DbfRecord orec)
+    {
+        var record = new List<string>();
+
+        for (var j = 0; j < dbfHeader.ColumnCount; j++)
+        {
+            //var header = odbf.Header[j];
+            //if (header.ColumnType == DbfColumn.DbfColumnType.Character)
+            //{
+            //    var data = orec.RecordData.ToList().Skip(header.DataAddress).Take(header.Length);
+            //    foreach (var encodingInfo in Encoding.GetEncodings())
+            //    {
+            //        Debug.Write(encodingInfo.GetEncoding().GetString(data.ToArray()) + "\t");
+            //        Debug.WriteLine(string.Format("DisplayName:{0} CodePage:{1} Name:{2} ", encodingInfo.DisplayName, encodingInfo.CodePage, encodingInfo.Name));
+            //    }
+            //    var encoding = Encoding.GetEncoding(852);
+
+            //}
+            //else
+            //{
+            record.Add(orec[j]);
+            //}
+        }
+        return record;
+    }
+
+    #endregion Private Methods
 }

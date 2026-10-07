@@ -7,323 +7,322 @@ using Bodoconsult.Database.SqlClient.MetaData;
 using Bodoconsult.Database.Test.Utilities.Helpers;
 using NUnit.Framework;
 
-namespace Bodoconsult.Database.SqlClient.Test
+namespace Bodoconsult.Database.SqlClient.Test;
+
+/// <summary>
+/// Install postgres version of Chinook database before testing.
+/// See https://github.com/lerocha/chinook-database/tree/master/ChinookDatabase/DataSources for details.
+///
+/// Pay attention field names and table names are normally lower case words in PostgreSQL.
+/// If you want to use upper case or a mixture of upper and lower case, please set the names in
+/// quotation marks.
+/// </summary>
+[TestFixture]
+public class UnitTestSqlClientMetaDataService
 {
-    /// <summary>
-    /// Install postgres version of Chinook database before testing.
-    /// See https://github.com/lerocha/chinook-database/tree/master/ChinookDatabase/DataSources for details.
-    ///
-    /// Pay attention field names and table names are normally lower case words in PostgreSQL.
-    /// If you want to use upper case or a mixture of upper and lower case, please set the names in
-    /// quotation marks.
-    /// </summary>
-    [TestFixture]
-    public class UnitTestSqlClientMetaDataService
+
+    private IMetaDataService _service;
+
+    private string _conn;
+
+    private const string Sql = "SELECT * FROM [Customer];";
+
+    private const string EntityName = "Customer";
+
+    private const string PrimaryKeyField = "CustomerId";
+
+    private const string TargetPath = @"D:\temp";
+
+    [SetUp]
+    public void Setup()
     {
+        _conn = TestHelper.LocalDbConnectionString;
 
-        private IMetaDataService _service;
+        _service = new SqlClientMetaDataService();
+    }
 
-        private string _conn;
-
-        private const string Sql = "SELECT * FROM [Customer];";
-
-        private const string EntityName = "Customer";
-
-        private const string PrimaryKeyField = "CustomerId";
-
-        private const string TargetPath = @"D:\temp";
-
-        [SetUp]
-        public void Setup()
-        {
-            _conn = TestHelper.LocalDbConnectionString;
-
-            _service = new SqlClientMetaDataService();
-        }
-
-        [Test]
-        public void TestGetMetaData()
-        {
-            // Assert
+    [Test]
+    public void TestGetMetaData()
+    {
+        // Assert
             
-            // Act
-            var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
+        // Act
+        var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
 
-            // Assert
-            Assert.That(table, Is.Not.Null);
+        // Assert
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo( EntityName) );
+        Assert.That(table.Name, Is.EqualTo( EntityName) );
 
-            Assert.That(table.Fields.Any());
-        }
+        Assert.That(table.Fields.Any());
+    }
 
 
-        //[Test]
-        //public void TestGetMetaDataMoreTypes()
-        //{
-        //    // Assert
-        //    const string sql = "SELECT * FROM [Employee];";
+    //[Test]
+    //public void TestGetMetaDataMoreTypes()
+    //{
+    //    // Assert
+    //    const string sql = "SELECT * FROM [Employee];";
 
-        //    const string entityName = "Employee";
+    //    const string entityName = "Employee";
 
-        //    Assert.IsNull(table);
+    //    Assert.IsNull(table);
 
-        //    // Act
-        //    _service.GetMetaData(_conn, entityName, sql);
+    //    // Act
+    //    _service.GetMetaData(_conn, entityName, sql);
 
-        //    // Assert
-        //    Assert.That(table);
+    //    // Assert
+    //    Assert.That(table);
 
-        //    Assert.AreEqual(entityName, table.Name);
+    //    Assert.AreEqual(entityName, table.Name);
 
-        //    Assert.That(table.Fields.Any());
-        //}
+    //    Assert.That(table.Fields.Any());
+    //}
 
-        [Test]
-        public void TestCreateEntityClass()
-        {
-            // Assert
+    [Test]
+    public void TestCreateEntityClass()
+    {
+        // Assert
             
 
-            var table = _service.GetMetaData(_conn, EntityName, Sql);
+        var table = _service.GetMetaData(_conn, EntityName, Sql);
 
-            Assert.That(table, Is.Not.Null);
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo(EntityName));
+        Assert.That(table.Name, Is.EqualTo(EntityName));
 
-            Assert.That(table.Fields.Any());
+        Assert.That(table.Fields.Any());
 
-            // Act
-            var result = _service.CreateEntityClass(table);
+        // Act
+        var result = _service.CreateEntityClass(table);
 
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
 
-            Debug.Print(result);
-        }
-
-
-        [Test]
-        public void TestCreateNewEntity()
-        {
-            // Assert
-            var table = _service.GetMetaData(_conn, EntityName, Sql);
-
-            Assert.That(table, Is.Not.Null);
-
-            Assert.That(table.Name, Is.EqualTo(EntityName));
-
-            Assert.That(table.Fields.Any());
-
-            // Act
-            var result = _service.CreateNewEntity(table);
-
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
-
-            Debug.Print(result);
-        }
+        Debug.Print(result);
+    }
 
 
-        [Test]
-        public void TestCreateMappingFromDbToEntityForDataReader()
-        {
-            // Assert
-            var table = _service.GetMetaData(_conn, EntityName, Sql);
+    [Test]
+    public void TestCreateNewEntity()
+    {
+        // Assert
+        var table = _service.GetMetaData(_conn, EntityName, Sql);
 
-            Assert.That(table, Is.Not.Null);
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo(EntityName));
+        Assert.That(table.Name, Is.EqualTo(EntityName));
 
-            Assert.That(table.Fields.Any());
+        Assert.That(table.Fields.Any());
 
-            // Act
-            var result = _service.CreateMappingFromDbToEntityForDataReader(table);
+        // Act
+        var result = _service.CreateNewEntity(table);
 
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
 
-            Debug.Print(result);
-        }
+        Debug.Print(result);
+    }
 
-        [Test]
-        public void TestCreateNewEntityCommand()
-        {
-            // Assert
+
+    [Test]
+    public void TestCreateMappingFromDbToEntityForDataReader()
+    {
+        // Assert
+        var table = _service.GetMetaData(_conn, EntityName, Sql);
+
+        Assert.That(table, Is.Not.Null);
+
+        Assert.That(table.Name, Is.EqualTo(EntityName));
+
+        Assert.That(table.Fields.Any());
+
+        // Act
+        var result = _service.CreateMappingFromDbToEntityForDataReader(table);
+
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+
+        Debug.Print(result);
+    }
+
+    [Test]
+    public void TestCreateNewEntityCommand()
+    {
+        // Assert
             
 
-            var table = _service.GetMetaData(_conn, EntityName, Sql);
+        var table = _service.GetMetaData(_conn, EntityName, Sql);
 
-            Assert.That(table, Is.Not.Null);
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo(EntityName));
+        Assert.That(table.Name, Is.EqualTo(EntityName));
 
-            Assert.That(table.Fields.Any());
+        Assert.That(table.Fields.Any());
 
-            // Act
-            var result = _service.CreateNewEntityCommand(table);
+        // Act
+        var result = _service.CreateNewEntityCommand(table);
 
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
 
-            Debug.Print(result);
-        }
-
-
-        [Test]
-        public void TestCreateUpdateEntityCommand()
-        {
-            // Assert
-            var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
-
-            Assert.That(table, Is.Not.Null);
-
-            Assert.That(table.Name, Is.EqualTo(EntityName));
-
-            Assert.That(table.Fields.Any());
-
-            // Act
-            var result = _service.CreateUpdateEntityCommand(table);
-
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
-
-            Debug.Print(result);
-        }
+        Debug.Print(result);
+    }
 
 
-        [Test]
-        public void TestCreateDeleteEntityCommand()
-        {
-            // Assert
-            var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
+    [Test]
+    public void TestCreateUpdateEntityCommand()
+    {
+        // Assert
+        var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
 
-            Assert.That(table, Is.Not.Null);
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo(EntityName));
+        Assert.That(table.Name, Is.EqualTo(EntityName));
 
-            Assert.That(table.Fields.Any());
+        Assert.That(table.Fields.Any());
 
-            // Act
-            var result = _service.CreateDeleteEntityCommand(table);
+        // Act
+        var result = _service.CreateUpdateEntityCommand(table);
 
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
 
-            Debug.Print(result);
-        }
+        Debug.Print(result);
+    }
 
 
-        [Test]
-        public void TestCreateEntityServiceClass()
-        {
-            // Assert
-            var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
+    [Test]
+    public void TestCreateDeleteEntityCommand()
+    {
+        // Assert
+        var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
 
-            Assert.That(table, Is.Not.Null);
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo(EntityName));
+        Assert.That(table.Name, Is.EqualTo(EntityName));
 
-            Assert.That(table.Fields.Any());
+        Assert.That(table.Fields.Any());
 
-            // Act
-            var result = _service.CreateEntityServiceClass(table);
+        // Act
+        var result = _service.CreateDeleteEntityCommand(table);
 
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
 
-            Debug.Print(result);
-        }
+        Debug.Print(result);
+    }
 
-        [Test]
-        public void TestCreateGetAllEntitiesCommand()
-        {
-            // Assert
+
+    [Test]
+    public void TestCreateEntityServiceClass()
+    {
+        // Assert
+        var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
+
+        Assert.That(table, Is.Not.Null);
+
+        Assert.That(table.Name, Is.EqualTo(EntityName));
+
+        Assert.That(table.Fields.Any());
+
+        // Act
+        var result = _service.CreateEntityServiceClass(table);
+
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+
+        Debug.Print(result);
+    }
+
+    [Test]
+    public void TestCreateGetAllEntitiesCommand()
+    {
+        // Assert
             
 
-             var table = _service.GetMetaData(_conn, EntityName, Sql);
+        var table = _service.GetMetaData(_conn, EntityName, Sql);
 
-            Assert.That(table, Is.Not.Null);
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo(EntityName));
+        Assert.That(table.Name, Is.EqualTo(EntityName));
 
-            Assert.That(table.Fields.Any());
+        Assert.That(table.Fields.Any());
 
-            // Act
-            var result = _service.CreateGetAllEntitiesCommand(table);
+        // Act
+        var result = _service.CreateGetAllEntitiesCommand(table);
 
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
 
-            Debug.Print(result);
-        }
+        Debug.Print(result);
+    }
 
-        [Test]
-        public void TestCreateCountCommand()
-        {
-            // Assert
+    [Test]
+    public void TestCreateCountCommand()
+    {
+        // Assert
             
 
-            var table = _service.GetMetaData(_conn, EntityName, Sql);
+        var table = _service.GetMetaData(_conn, EntityName, Sql);
 
-            Assert.That(table, Is.Not.Null);
+        Assert.That(table, Is.Not.Null);
 
-            Assert.That(table.Name, Is.EqualTo(EntityName));
+        Assert.That(table.Name, Is.EqualTo(EntityName));
 
-            Assert.That(table.Fields.Any());
+        Assert.That(table.Fields.Any());
 
-            // Act
-            var result = _service.CreateCountCommand(table);
+        // Act
+        var result = _service.CreateCountCommand(table);
 
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
 
-            Debug.Print(result);
-        }
+        Debug.Print(result);
+    }
 
-        [Test]
-        public void TestCreateGetByIdCommand()
+    [Test]
+    public void TestCreateGetByIdCommand()
+    {
+        // Assert
+        var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
+
+        Assert.That(table, Is.Not.Null);
+
+        Assert.That(table.Name, Is.EqualTo(EntityName));
+
+        Assert.That(table.Fields.Any());
+
+        // Act
+        var result = _service.CreateGetByIdCommand(table);
+
+        // Assert
+        Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
+
+        Debug.Print(result);
+    }
+
+    [Test]
+    public void TestExport()
+    {
+        // Assert
+        var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
+
+        Assert.That(table, Is.Not.Null);
+
+        Assert.That(table.Name, Is.EqualTo(EntityName));
+
+        Assert.That(table.Fields.Any());
+
+        // Act
+        var result = _service.ExportAll(table, TargetPath);
+
+        // Assert
+        Assert.That(result.Any());
+
+        foreach (var fileName in result)
         {
-            // Assert
-            var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
-
-            Assert.That(table, Is.Not.Null);
-
-            Assert.That(table.Name, Is.EqualTo(EntityName));
-
-            Assert.That(table.Fields.Any());
-
-            // Act
-            var result = _service.CreateGetByIdCommand(table);
-
-            // Assert
-            Assert.That(string.IsNullOrEmpty(result), Is.EqualTo(false));
-
-            Debug.Print(result);
-        }
-
-        [Test]
-        public void TestExport()
-        {
-            // Assert
-            var table = _service.GetMetaData(_conn, EntityName, Sql, PrimaryKeyField);
-
-            Assert.That(table, Is.Not.Null);
-
-            Assert.That(table.Name, Is.EqualTo(EntityName));
-
-            Assert.That(table.Fields.Any());
-
-            // Act
-            var result = _service.ExportAll(table, TargetPath);
-
-            // Assert
-            Assert.That(result.Any());
-
-            foreach (var fileName in result)
-            {
-                Debug.Print(fileName);
-            }
+            Debug.Print(fileName);
         }
     }
 }

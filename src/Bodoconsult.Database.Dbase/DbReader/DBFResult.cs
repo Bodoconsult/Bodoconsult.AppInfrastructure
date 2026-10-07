@@ -38,40 +38,39 @@
 using System;
 using System.Collections.Generic;
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// DBase result
+/// </summary>
+public class DbfResult: IDisposable
 {
     /// <summary>
-    /// DBase result
+    /// Header
     /// </summary>
-    public class DbfResult: IDisposable
+    public DbfHeader DbfHeader { get; set; }
+
+    /// <summary>
+    /// Records
+    /// </summary>
+    public List<List<string>> DbfRecords { get; } = [];
+
+    /// <summary>
+    /// Get a column value
+    /// </summary>
+    /// <param name="record">Current record</param>
+    /// <param name="columnName">Column name</param>
+    /// <returns>Value in the column for the current record</returns>
+    public string ColumnValue(List<string> record, string columnName)
     {
-        /// <summary>
-        /// Header
-        /// </summary>
-        public DbfHeader DbfHeader { get; set; }
+        var index = DbfHeader.FindColumn(columnName);
 
-        /// <summary>
-        /// Records
-        /// </summary>
-        public List<List<string>> DbfRecords { get; } = [];
+        return index >= 0 ? record[index] : string.Empty;
+    }
 
-        /// <summary>
-        /// Get a column value
-        /// </summary>
-        /// <param name="record">Current record</param>
-        /// <param name="columnName">Column name</param>
-        /// <returns>Value in the column for the current record</returns>
-        public string ColumnValue(List<string> record, string columnName)
-        {
-            var index = DbfHeader.FindColumn(columnName);
-
-            return index >= 0 ? record[index] : string.Empty;
-        }
-
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-        public void Dispose()
-        {
-            DbfRecords.Clear();
-        }
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    public void Dispose()
+    {
+        DbfRecords.Clear();
     }
 }

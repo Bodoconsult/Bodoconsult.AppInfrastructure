@@ -37,21 +37,19 @@
 
 using System;
 
-namespace Bodoconsult.Database.Dbase.DbReader
+namespace Bodoconsult.Database.Dbase.DbReader;
+
+/// <summary>
+/// Data trucated exception
+/// </summary>
+public class DbfDataTruncateException : Exception
 {
 
     /// <summary>
-    /// Data trucated exception
+    /// Default ctor
     /// </summary>
-    public class DbfDataTruncateException : Exception
+    /// <param name="smessage">Message</param>
+    public DbfDataTruncateException(string smessage) : base(smessage)
     {
-
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="smessage">Message</param>
-        public DbfDataTruncateException(string smessage) : base(smessage)
-        {
-        }
     }
 }

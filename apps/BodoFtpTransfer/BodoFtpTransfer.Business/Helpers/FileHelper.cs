@@ -20,7 +20,7 @@ public static class FileHelper
     public static string GetHashCode(string fileName)
     {
         var fi = new FileStream(fileName, FileMode.Open);
-        var hashcode = Hasher.ComputeHashHex(fi);
+        var hashcode = Hasher.ComputeHash(fi);
         fi.Close();
 
         return hashcode;

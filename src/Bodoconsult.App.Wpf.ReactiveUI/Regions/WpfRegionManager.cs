@@ -6,7 +6,6 @@ using Bodoconsult.App.ReactiveUI.Regions;
 using Bodoconsult.App.Wpf.Helpers;
 using ReactiveUI;
 using System.Windows;
-using ReactiveUI.Primitives;
 using ReactiveUI.Primitives.Disposables;
 
 namespace Bodoconsult.App.Wpf.ReactiveUI.Regions;

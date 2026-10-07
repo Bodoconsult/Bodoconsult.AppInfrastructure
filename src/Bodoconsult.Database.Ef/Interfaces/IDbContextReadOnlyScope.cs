@@ -10,17 +10,16 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.Interfaces
+namespace Bodoconsult.Database.Ef.Interfaces;
+
+/// <summary>
+/// A read-only DbContextScope. Refer to the comments for IDbContextScope
+/// for more details.
+/// </summary>
+public interface IDbContextReadOnlyScope<T> : IContextReadOnlyScope where T: DbContext
 {
     /// <summary>
-    /// A read-only DbContextScope. Refer to the comments for IDbContextScope
-    /// for more details.
+    /// The DbContext instances that this DbContextScope manages.
     /// </summary>
-    public interface IDbContextReadOnlyScope<T> : IContextReadOnlyScope where T: DbContext
-    {
-        /// <summary>
-        /// The DbContext instances that this DbContextScope manages.
-        /// </summary>
-        IDbContextCollection<T> DbContexts { get; }
-    }
+    IDbContextCollection<T> DbContexts { get; }
 }

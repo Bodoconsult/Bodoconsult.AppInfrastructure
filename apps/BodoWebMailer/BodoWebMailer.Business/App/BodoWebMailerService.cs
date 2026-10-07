@@ -10,6 +10,7 @@ using BodoWebMailer.Business.Interfaces;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using Bodoconsult.App.DataProtection;
 
 namespace BodoWebMailer.Business.App;
 

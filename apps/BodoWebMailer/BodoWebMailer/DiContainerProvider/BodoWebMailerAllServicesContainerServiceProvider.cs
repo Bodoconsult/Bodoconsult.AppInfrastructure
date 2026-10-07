@@ -21,7 +21,7 @@ namespace BodoWebMailer.DiContainerProvider;
 /// <summary>
 /// Load all specific BodoWebMailer services to DI container. Intended mainly for production
 /// </summary>
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 public class BodoWebMailerAllServicesContainerServiceProvider : IDiContainerServiceProvider
 {
 

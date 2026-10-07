@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using ReactiveUI;
-
 namespace Bodoconsult.App.ReactiveUI.Interfaces;
 
 /// <summary>

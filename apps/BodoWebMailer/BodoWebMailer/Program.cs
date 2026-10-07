@@ -4,13 +4,12 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using BodoWebMailer.Business.App;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.Versioning;
 using Bodoconsult.App.Extensions;
 
 namespace BodoWebMailer;
 
-[SupportedOSPlatform("windows10.0.17763.0")]
+[SupportedOSPlatform("windows10.0.17763")]
 internal class Program
 {
     private static int Main(string[] args)

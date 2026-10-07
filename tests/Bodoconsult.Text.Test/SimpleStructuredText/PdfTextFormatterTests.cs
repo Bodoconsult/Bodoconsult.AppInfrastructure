@@ -8,7 +8,6 @@ using Bodoconsult.Text.Formatter;
 using Bodoconsult.Text.Model;
 using Bodoconsult.Text.Test.Helpers;
 using NUnit.Framework;
-using NUnit.Framework.Legacy;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;
 
 namespace Bodoconsult.Text.Test.SimpleStructuredText;

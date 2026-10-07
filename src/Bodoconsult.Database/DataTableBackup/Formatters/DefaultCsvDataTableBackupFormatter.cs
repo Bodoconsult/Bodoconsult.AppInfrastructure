@@ -6,88 +6,86 @@ using System.Data;
 using System.Text;
 using Bodoconsult.Database.Interfaces;
 
-namespace Bodoconsult.Database.DataTableBackup.Formatters
+namespace Bodoconsult.Database.DataTableBackup.Formatters;
+
+/// <summary>
+/// The default CSV formatter used for DataTable based backup
+/// </summary>
+public class DefaultCsvDataTableBackupFormatter : IDataTableBackupFormatter
 {
+    private readonly List<string> _properties = [];
+    private int _propCount;
 
     /// <summary>
-    /// The default CSV formatter used for DataTable based backup
+    /// Data to format
     /// </summary>
-    public class DefaultCsvDataTableBackupFormatter : IDataTableBackupFormatter
+    public DataTable Data { get; private set; }
+
+    /// <summary>
+    /// Load the data in the formatter
+    /// </summary>
+    /// <param name="data">Data to format</param>
+    public void LoadData(DataTable data)
     {
-        private readonly List<string> _properties = [];
-        private int _propCount;
+        Data = data;
+    }
 
-        /// <summary>
-        /// Data to format
-        /// </summary>
-        public DataTable Data { get; private set; }
-
-        /// <summary>
-        /// Load the data in the formatter
-        /// </summary>
-        /// <param name="data">Data to format</param>
-        public void LoadData(DataTable data)
+    /// <summary>
+    /// The the data as a formatted string
+    /// </summary>
+    /// <returns></returns>
+    public StringBuilder GetResult()
+    {
+        _properties.Clear();
+        foreach (DataColumn column in Data.Columns)
         {
-            Data = data;
+            _properties.Add(column.ColumnName);
         }
 
-        /// <summary>
-        /// The the data as a formatted string
-        /// </summary>
-        /// <returns></returns>
-        public StringBuilder GetResult()
-        {
-            _properties.Clear();
-            foreach (DataColumn column in Data.Columns)
-            {
-                _properties.Add(column.ColumnName);
-            }
+        _propCount = Data.Columns.Count - 1;
 
-            _propCount = Data.Columns.Count - 1;
+        var result = new StringBuilder();
 
-            var result = new StringBuilder();
+        AddHeader(result);
 
-            AddHeader(result);
+        AddContent(result);
 
-            AddContent(result);
+        return result;
 
-            return result;
+    }
 
-        }
+    private void AddContent(StringBuilder result)
+    {
 
-        private void AddContent(StringBuilder result)
-        {
-
-            foreach (DataRow row in Data.Rows)
-            {
-                var count = 0;
-                foreach (var propertyInfo in _properties)
-                {
-                    result.Append(row[propertyInfo]);
-                    if (count < _propCount)
-                    {
-                        result.Append(";");
-                    }
-
-                    count++;
-                }
-                result.Append(Environment.NewLine);
-            }
-        }
-
-        private void AddHeader(StringBuilder result)
+        foreach (DataRow row in Data.Rows)
         {
             var count = 0;
-            foreach (DataColumn column in Data.Columns)
+            foreach (var propertyInfo in _properties)
             {
-                result.Append(column.ColumnName);
+                result.Append(row[propertyInfo]);
                 if (count < _propCount)
                 {
                     result.Append(";");
                 }
+
                 count++;
             }
             result.Append(Environment.NewLine);
         }
+    }
+
+    private void AddHeader(StringBuilder result)
+    {
+        var count = 0;
+        foreach (DataColumn column in Data.Columns)
+        {
+            result.Append(column.ColumnName);
+            if (count < _propCount)
+            {
+                result.Append(";");
+            }
+            count++;
+        }
+        result.Append(Environment.NewLine);
     }
 }

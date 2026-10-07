@@ -30,4 +30,22 @@ dotnet nuget push packages\Bodoconsult.Web.Html.%version%.snupkg --source \\BCGS
 dotnet nuget push packages\Bodoconsult.Web.Mail.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.Web.Mail.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
 
+dotnet nuget push packages\Bodoconsult.Database.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Database.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.Database.SqlClient.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Database.SqlClient.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.App.Windows.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.App.Windows.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.Text.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Text.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.Office.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Office.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.Pdf.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Pdf.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
 pause

@@ -29,8 +29,7 @@ public class BasicCredentialsManager
 
     private static string ReadFromConsole(string message)
     {
-        Console.WriteLine($"{message}:");
-        var s = PasswordHandler.ReadPassword();
+        var s = ConsoleHelper.ReadSecret($"{message}:");
         return s;
     }
     

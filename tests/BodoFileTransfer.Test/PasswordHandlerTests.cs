@@ -1,7 +1,7 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Diagnostics;
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.DataProtection;
 using NUnit.Framework;
 
 namespace BodoFileTransfer.Test;

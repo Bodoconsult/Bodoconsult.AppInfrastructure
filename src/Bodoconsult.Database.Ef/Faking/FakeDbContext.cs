@@ -3,12 +3,11 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Bodoconsult.Database.Ef.Faking
+namespace Bodoconsult.Database.Ef.Faking;
+
+/// <summary>
+/// Fake database context
+/// </summary>
+public class FakeDbContext: DbContext
 {
-    /// <summary>
-    /// Fake database context
-    /// </summary>
-    public class FakeDbContext: DbContext
-    {
-    }
 }

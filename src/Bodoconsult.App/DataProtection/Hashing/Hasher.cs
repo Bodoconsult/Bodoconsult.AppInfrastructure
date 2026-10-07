@@ -12,14 +12,13 @@ namespace Bodoconsult.App.DataProtection.Hashing;
 /// </summary>
 public class Hasher
 {
-    private readonly HashAlgorithm _hashObject = SHA1.Create();
-    private readonly Encoding _encoding = Encoding.GetEncoding("ISO-8859-1");
+    private readonly HashAlgorithm _hashObject = SHA256.Create();
 
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="algorithm">Angabe des zu verwendenden Hash-Algorithmus</param>
-    public Hasher(HashAlgorithmEnum algorithm)
+    public Hasher(HashAlgorithmEnum algorithm = HashAlgorithmEnum.SHA256)
     {
         switch (algorithm)
         {
@@ -42,6 +41,19 @@ public class Hasher
     }
 
     /// <summary>
+    /// Create a random key
+    /// </summary>
+    /// <returns>Random key as string</returns>
+    public static string CreateRandomKey()
+    {
+        var salt = new byte[256];
+
+        var rng = RandomNumberGenerator.Create();
+        rng.GetBytes(salt);
+        return Convert.ToBase64String(salt);
+    }
+
+    /// <summary>
     /// The key used for hashing
     /// </summary>
     public string Key
@@ -52,10 +64,10 @@ public class Hasher
             if (_hashObject is KeyedHashAlgorithm kha)
             {
                 // Key to string
-                return _encoding.GetString(kha.Key);
+                return Convert.ToBase64String(kha.Key);
             }
 
-            throw new NotSupportedException("Der aktuell verwendete Hash-Algorithmus unterstützt keine Schlüssel");
+            throw new NotSupportedException("The current hashing algorithm does not support keys");
         }
 
         set
@@ -75,11 +87,11 @@ public class Hasher
             if (_hashObject is KeyedHashAlgorithm kha)
             // Schlüssel in einen String umwandeln und zurückgeben
             {
-                kha.Key = _encoding.GetBytes(value);
+                kha.Key = Convert.FromBase64String(value);
             }
             else
             {
-                throw new NotSupportedException("The current hash algorithm does not support keys");
+                throw new NotSupportedException("The current hashing algorithm does not support keys");
             }
         }
     }
@@ -87,7 +99,7 @@ public class Hasher
     private static string ByteArrayToString(byte[] arrInput)
     {
         int i;
-        var sOutput = new StringBuilder(arrInput.Length);
+        var sOutput = new StringBuilder();
         for (i = 0; i < arrInput.Length - 1; i++)
         {
             sOutput.Append(arrInput[i].ToString("X2"));
@@ -100,8 +112,9 @@ public class Hasher
     /// </summary>
     /// <param name="inputStream">Input stream</param>
     /// <returns>Hash as byte array</returns>
-    public byte[] ComputeHash(Stream inputStream)
+    public byte[] ComputeHashAsArray(Stream inputStream)
     {
+        inputStream.Position = 0;
         return _hashObject.ComputeHash(inputStream);
     }
 
@@ -110,8 +123,60 @@ public class Hasher
     /// </summary>
     /// <param name="inputStream">Input stream</param>
     /// <returns>Hash as string with hex values</returns>
-    public string ComputeHashHex(Stream inputStream)
+    public string ComputeHash(Stream inputStream)
     {
+        inputStream.Position = 0;
         return ByteArrayToString(_hashObject.ComputeHash(inputStream));
+    }
+
+    /// <summary>
+    /// Compute a string with the hash in hex format
+    /// </summary>
+    /// <param name="input">Input string</param>
+    /// <returns>Hash as string with hex values</returns>
+
+    public string ComputeHash(string input)
+    {
+        var bytes = Encoding.Unicode.GetBytes(input);
+        return ByteArrayToString(_hashObject.ComputeHash(bytes));
+    }
+
+    /// <summary>
+    /// Hashes a value and compares with another hashed value
+    /// </summary>
+    /// <param name="pureValue">Pure value like a password</param>
+    /// <param name="hashedValue">Hashed value to compare with</param>
+    /// <returns>True if the hash value is correct for the given pureValue</returns>
+    public bool ValidateHash(string pureValue, string hashedValue)
+    {
+        try
+        {
+            var calcHash = ComputeHash(pureValue);
+            return calcHash.Equals(hashedValue, StringComparison.Ordinal);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+
+    /// <summary>
+    /// Hashes a value and compares with another hashed value
+    /// </summary>
+    /// <param name="pureInputStream">Pure stream with data to hash</param>
+    /// <param name="hashedValue">Hashed value to compare with</param>
+    /// <returns>True if the hash value is correct for the given pureInputStream</returns>
+    public bool ValidateHash(Stream pureInputStream, string hashedValue)
+    {
+        try
+        {
+            var calcHash = ComputeHash(pureInputStream);
+            return calcHash.Equals(hashedValue, StringComparison.Ordinal);
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

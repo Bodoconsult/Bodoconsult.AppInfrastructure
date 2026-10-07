@@ -2,7 +2,6 @@
 
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
-using ReactiveUI;
 using ReactiveUI.Builder;
 using Splat;
 using Bodoconsult.App.ReactiveUI.DependecyResolvers;

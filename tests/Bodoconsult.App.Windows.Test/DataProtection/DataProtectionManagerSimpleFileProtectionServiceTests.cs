@@ -2,16 +2,19 @@
 
 using Bodoconsult.App.DataProtection.FileProtection;
 using NUnit.Framework;
+using System.Security.Cryptography;
 
 namespace Bodoconsult.App.Windows.Test.DataProtection;
 
+[TestFixture]
 [NonParallelizable]
 [SingleThreaded]
-internal class DataProtectionManagerSimpleFileProtectionServiceTests : BaseDataProtectionManagerTests
+internal class DataProtectionManagerUserScopeSimpleFileProtectionServiceTests : BaseDataProtectionManagerTests
 {
-    public DataProtectionManagerSimpleFileProtectionServiceTests()
+    public DataProtectionManagerUserScopeSimpleFileProtectionServiceTests()
     {
         FileProtectionService = new SimpleFileProtectionService();
         Extension = "dat";
+        CurrentDataProtectionScope = DataProtectionScope.CurrentUser;
     }
 }
