@@ -315,7 +315,7 @@ public class RobocopyBackupTarget : IBackupTarget
 
             var dir = Path.Combine(_backupTargetSettings.Target, $"{kw:000000}");
 
-            //Status("ClearBackups: " + dir);
+            //Status("ClearWeeks: " + dir);
 
             try
             {
@@ -368,7 +368,7 @@ public class RobocopyBackupTarget : IBackupTarget
 
             var dir = Path.Combine(_backupTargetSettings.Target, $"{d:yyyyMM}");
 
-            //Status("ClearBackups: " + dir);
+            Status("ClearMonths: " + dir);
 
             try
             {

@@ -95,7 +95,7 @@ public class DataProtectionService : IDataProtectionService
     /// <param name="value">Value to store</param>
     public string Protect(string key, string value)
     {
-        var result = ProtectString(value);
+        var result = ProtectString($"{key}{value}");
 
         //Debug.Print(ArrayHelper.GetStringFromArrayCsharpStyle(result,  false));
 
@@ -111,7 +111,8 @@ public class DataProtectionService : IDataProtectionService
     {
         var bytes = Convert.FromBase64String(cipherValue);
         var result = Unprotect(bytes);
-        return Encoding.Unicode.GetString( result);
+        var s = Encoding.Unicode.GetString( result);
+        return s.StartsWith(key, StringComparison.Ordinal) ? s[key.Length..] : string.Empty;
     }
 
     /// <summary>

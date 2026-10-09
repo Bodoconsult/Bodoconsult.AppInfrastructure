@@ -1,6 +1,6 @@
 ﻿#DiskShadow script file
 set context persistent nowriters
-set metadata {2}\backup.cab
+set metadata {2}
 set verbose on
 begin backup
 

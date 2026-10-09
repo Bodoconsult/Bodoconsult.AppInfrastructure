@@ -2,13 +2,24 @@
 
 using Bodoconsult.App.Windows.Helpers;
 using NUnit.Framework;
+using System;
 using System.IO;
 
 namespace Bodoconsult.App.Windows.Test.HelperTests;
 
 [TestFixture]
-public class DiskShadowHelperTests
+internal class DiskShadowHelperTests
 {
+    public DiskShadowHelperTests()
+    {
+        DiskShadowHelper.TempDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Bodoconsult.App");
+
+        if (!Directory.Exists(DiskShadowHelper.TempDir))
+        {
+            Directory.CreateDirectory(DiskShadowHelper.TempDir);
+        }
+    }
+
     [Test]
     public void CreateDrive_ExistingDrive_ShadowingActive()
     {

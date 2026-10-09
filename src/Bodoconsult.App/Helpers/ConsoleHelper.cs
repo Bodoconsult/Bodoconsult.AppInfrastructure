@@ -56,4 +56,24 @@ public static class ConsoleHelper
 
         return string.Join(string.Empty, pass);
     }
+
+    /// <summary>
+    /// Wait until any key is pressed by the user
+    /// </summary>
+    public static void WaitUntilAnyKeyPressed()
+    {
+        Console.WriteLine("Press any key to proceed...");
+        Console.ReadLine();
+    }
+
+    /// <summary>
+    /// Wait until any key is pressed by the user
+    /// </summary>
+    /// <param name="message">Message to show before waiting on the user input</param>
+    public static void WaitUntilAnyKeyPressed(string message)
+    {
+        Console.WriteLine(message);
+        Console.WriteLine("Press any key to proceed...");
+        Console.ReadLine();
+    }
 }

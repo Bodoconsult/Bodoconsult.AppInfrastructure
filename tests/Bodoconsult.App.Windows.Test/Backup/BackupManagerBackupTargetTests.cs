@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using ABI.System.Collections.Generic;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.ShellTools;
 using Bodoconsult.App.Backup;
@@ -92,6 +93,8 @@ internal class BackupManagerTests
             Directory.CreateDirectory(newDir);
         }
 
+        var shadow = newDir.Replace(@"C:\", @"H:\", StringComparison.OrdinalIgnoreCase);
+
         Assert.That(Directory.Exists(newDir), Is.True);
 
         var targetDir = Path.Combine(_target, "Blabb");
@@ -120,7 +123,7 @@ internal class BackupManagerTests
         {
             BackupMode = BackupModeEnum.Simple,
             Count = 5,
-            Source = newDir,
+            Source = shadow,
             Target = targetDir,
             Thread = 1
         });

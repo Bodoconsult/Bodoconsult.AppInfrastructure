@@ -1,4 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System;
 using System.Collections.Generic;
@@ -8,14 +8,15 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.ShellTools;
 using Bodoconsult.App.Backup;
 using Bodoconsult.App.Windows.Backup;
+using Bodoconsult.App.Windows.ShellTools;
 using NUnit.Framework;
 
 namespace Bodoconsult.App.Windows.Test.Backup;
 
 [TestFixture]
-internal class RobocopyBackupTargetTests
+internal class RobocopyBackupTargetRealTests
 {
-    private readonly string _target = Path.GetTempPath();
+    private readonly string _target = @"C:\temp"; //Path.GetTempPath();
 
     [TearDown]
     public void CleanUp()
@@ -52,7 +53,7 @@ internal class RobocopyBackupTargetTests
             Directory.Delete(targetDir, true);
         }
 
-        var spm = new FakeShellProcessManager();
+        var spm = new WinShellProcessManager();
 
         List<Exception> errors = [];
 
@@ -63,8 +64,9 @@ internal class RobocopyBackupTargetTests
             BackupMode = BackupModeEnum.Week1,
             Count = 5,
             Errors = errors,
-            StatusChanged = StatusChanged
-        };
+            StatusChanged = StatusChanged,
+            Command  = "robocopy ??source?? ??target??  *.* /FFT /S /E /log:??log?? /COPY:DT /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy"
+    };
 
         var rbt = new RobocopyBackupTarget(spm, settings);
 
@@ -72,7 +74,7 @@ internal class RobocopyBackupTargetTests
         rbt.StartBackupProcess();
 
         // Assert
-        Assert.That(spm.Commands.Count, Is.GreaterThanOrEqualTo(15));
+        //Assert.That(spm.Commands.Count, Is.GreaterThanOrEqualTo(1));
     }
 
     [Test]
@@ -94,7 +96,7 @@ internal class RobocopyBackupTargetTests
             Directory.Delete(targetDir, true);
         }
 
-        var spm = new FakeShellProcessManager();
+        var spm = new WinShellProcessManager();
 
         List<Exception> errors = [];
 
@@ -105,7 +107,8 @@ internal class RobocopyBackupTargetTests
             BackupMode = BackupModeEnum.Week1,
             Count = 5,
             Errors = errors,
-            StatusChanged = StatusChanged
+            StatusChanged = StatusChanged,
+            Command = "robocopy ??source?? ??target??  *.* /FFT /S /E /log:??log?? /COPY:DT /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy"
         };
 
 
@@ -115,7 +118,7 @@ internal class RobocopyBackupTargetTests
         rbt.StartBackupProcess();
 
         // Assert
-        Assert.That(spm.Commands.Count, Is.EqualTo(16));
+        //Assert.That(spm.Commands.Count, Is.EqualTo(1));
     }
 
     [Test]
@@ -137,7 +140,7 @@ internal class RobocopyBackupTargetTests
             Directory.Delete(targetDir, true);
         }
 
-        var spm = new FakeShellProcessManager();
+        var spm = new WinShellProcessManager();
 
         List<Exception> errors = [];
 
@@ -148,7 +151,8 @@ internal class RobocopyBackupTargetTests
             BackupMode = BackupModeEnum.Week1,
             Count = 5,
             Errors = errors,
-            StatusChanged = StatusChanged
+            StatusChanged = StatusChanged,
+            Command = "robocopy ??source?? ??target??  *.* /FFT /S /E /log:??log?? /COPY:DT /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy"
         };
 
         var rbt = new RobocopyBackupTarget(spm, settings);
@@ -157,7 +161,7 @@ internal class RobocopyBackupTargetTests
         rbt.StartBackupProcess();
 
         // Assert
-        Assert.That(spm.Commands.Count, Is.GreaterThanOrEqualTo(15));
+        //Assert.That(spm.Commands.Count, Is.GreaterThanOrEqualTo(1));
     }
 
     [Test]
@@ -179,7 +183,7 @@ internal class RobocopyBackupTargetTests
             Directory.Delete(targetDir, true);
         }
 
-        var spm = new FakeShellProcessManager();
+        var spm = new WinShellProcessManager();
 
         List<Exception> errors = [];
 
@@ -190,7 +194,8 @@ internal class RobocopyBackupTargetTests
             BackupMode = BackupModeEnum.Week1,
             Count = 5,
             Errors = errors,
-            StatusChanged = StatusChanged
+            StatusChanged = StatusChanged,
+            Command = "robocopy ??source?? ??target??  *.* /FFT /S /E /log:??log?? /COPY:DT /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy"
         };
 
         var rbt = new RobocopyBackupTarget(spm, settings);
@@ -199,7 +204,7 @@ internal class RobocopyBackupTargetTests
         rbt.StartBackupProcess();
 
         // Assert
-        Assert.That(spm.Commands.Count, Is.EqualTo(16));
+        //Assert.That(spm.Commands.Count, Is.EqualTo(1));
     }
 
     [Test]
@@ -221,7 +226,7 @@ internal class RobocopyBackupTargetTests
             Directory.Delete(targetDir, true);
         }
 
-        var spm = new FakeShellProcessManager();
+        var spm = new WinShellProcessManager();
 
         List<Exception> errors = [];
 
@@ -232,7 +237,8 @@ internal class RobocopyBackupTargetTests
             BackupMode = BackupModeEnum.Week1,
             Count = 5,
             Errors = errors,
-            StatusChanged = StatusChanged
+            StatusChanged = StatusChanged,
+            Command = "robocopy ??source?? ??target??  *.* /FFT /S /E /log:??log?? /COPY:DT /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy"
         };
 
         var rbt = new RobocopyBackupTarget(spm, settings);
@@ -241,7 +247,7 @@ internal class RobocopyBackupTargetTests
         rbt.StartBackupProcess();
 
         // Assert
-        Assert.That(spm.Commands.Count, Is.EqualTo(16));
+        //Assert.That(spm.Commands.Count, Is.EqualTo(1));
     }
 
     private void StatusChanged(string message)

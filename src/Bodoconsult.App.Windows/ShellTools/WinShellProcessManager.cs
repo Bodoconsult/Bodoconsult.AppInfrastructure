@@ -21,7 +21,7 @@ public class WinShellProcessManager : IShellProcessManager
     {
         if (!Directory.Exists(parameters.SourcePath) || Directory.Exists(parameters.TargetPath))
         {
-            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException("Source path must exists and target path must not be null or empty"));
+            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException($"Source path {parameters.SourcePath} must exist and target path {parameters.TargetPath} must not be null or empty"));
             return;
         }
 
@@ -35,9 +35,14 @@ public class WinShellProcessManager : IShellProcessManager
     /// <param name="parameters">Parameter set with full path of the directory to remove</param>
     public void RemoveDirectory(RemoveDirectoryShellProcessParameters parameters)
     {
+        if (string.IsNullOrEmpty(parameters.Path))
+        {
+            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException($"Path {parameters.Path} must not be null or empty"));
+            return;
+        }
+
         if (!Directory.Exists(parameters.Path))
         {
-            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException("Path must not be null or empty"));
             return;
         }
 
@@ -51,13 +56,13 @@ public class WinShellProcessManager : IShellProcessManager
     /// <param name="parameters">Parameter set with full path of the directory to remove</param>
     public void RunRobocopy(RobocopyShellProcessParameters parameters)
     {
-        if (!Directory.Exists(parameters.Args))
+        if (string.IsNullOrEmpty(parameters.Args))
         {
-            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException("Args must not be null or empty"));
+            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException($"Args {parameters.Args} must not be null or empty"));
             return;
-        }
+        } 
 
-        ShellAndWait("robocopy.exe", parameters.Args, parameters);
+        RunInShellWait($"robocopy.exe {parameters.Args}", parameters);
     }
 
     /// <summary>
@@ -68,7 +73,7 @@ public class WinShellProcessManager : IShellProcessManager
     {
         if (string.IsNullOrEmpty(parameters.Command))
         {
-            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException("Command must not be null or empty"));
+            parameters.HandleExceptionDelegate?.Invoke(new ArgumentException($"Command {parameters.Command} must not be null or empty"));
             return;
         }
 
@@ -81,20 +86,38 @@ public class WinShellProcessManager : IShellProcessManager
     /// <param name="parameters">Parameter set with an ID of the process to kill</param>
     public void TaskKill(TaskKillShellProcessParameter parameters)
     {
-        if (parameters.ProcessId<=0)
+        if (parameters.ProcessId <= 0)
         {
             parameters.HandleExceptionDelegate?.Invoke(new ArgumentException("Process ID must be greater than 0"));
             return;
         }
+
         // taskkill /PID 1234 /F
         TaskKillInternal(parameters.ProcessId, parameters);
     }
 
     private static void TaskKillInternal(int processId, BaseShellProcessParameters parameters)
     {
-        parameters.DoNotCheckExitCode = true;
-        var cmd = $"taskkill /PID {processId} /F";
-        RunInShellWait(cmd, parameters);
+        var processlist = Process.GetProcesses();
+        var isRunning = false;
+        foreach (var theprocess in processlist)
+        {
+            if (theprocess.Id != processId)
+            {
+                continue;
+            }
+
+            isRunning = true;
+            break;
+        }
+
+        if (isRunning)
+        {
+
+            parameters.DoNotCheckExitCode = true;
+            var cmd = $"taskkill /PID {processId} /F";
+            RunInShellWait(cmd, parameters);
+        }
     }
 
     /// <summary>
@@ -109,13 +132,13 @@ public class WinShellProcessManager : IShellProcessManager
             return;
         }
 
-        var psi = new ProcessStartInfo("cmd.exe ", $@"/C {strShellCmd}")
+        var psi = new ProcessStartInfo("cmd.exe", $"/C {strShellCmd}")
         {
             WorkingDirectory = parameters.WorkingDirectory,
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
-            WindowStyle = ProcessWindowStyle.Hidden, 
+            WindowStyle = ProcessWindowStyle.Hidden,
             CreateNoWindow = true
         };
 
