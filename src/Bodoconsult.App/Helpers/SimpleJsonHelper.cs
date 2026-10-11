@@ -29,7 +29,7 @@ public class SimpleJsonHelper
     /// </summary>
     /// <param name="json">JSON string to deserialize</param>
     /// <returns>Deserialize entity</returns>
-    public static T? LoadJson<T>(string json)
+    public static T? LoadJsonString<T>(string json)
     {
         var job = JsonSerializer.Deserialize<T>(json);
         return job;
@@ -41,22 +41,22 @@ public class SimpleJsonHelper
     /// <param name="value">object to convert</param>
     /// <typeparam name="T">type of object to convert</typeparam>
     /// <returns></returns>
-    public static string SerializeObject<T>(T value)
+    public static string Serialize<T>(T value)
     {
         var json = JsonSerializer.Serialize(value);
         return json;
     }
 
     /// <summary>
-    /// Save an object of type T as JSON to a file
+    /// Serialize an object of type T as JSON and save it to a file
     /// </summary>
     /// <param name="fileName">full path for the JSON file</param>
     /// <param name="data">object to serialize to JSON</param>
     /// <typeparam name="T">type of the object to serialize to JSON</typeparam>
     /// <returns>JSON string</returns>
-    public static string SaveAsFile<T>(string fileName, T data)
+    public static string SerializeAsFile<T>(string fileName, T data)
     {
-        var json = SerializeObject(data);
+        var json = Serialize(data);
         File.WriteAllText(fileName, json, Encoding.UTF8);
         return json;
     }

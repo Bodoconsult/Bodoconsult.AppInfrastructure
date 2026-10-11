@@ -346,12 +346,12 @@ public class O365Mailer: BaseMailer
 
         var ma = new O365MailAccount
         {
-            UserName = PasswordHandler.Decrypt(ad.UserName),
-            Tenant = PasswordHandler.Decrypt(ad.Tenant),
-            ClientId = PasswordHandler.Decrypt(ad.ClientId),
-            ClientSecret = PasswordHandler.Decrypt(ad.ClientSecret),
-            Instance = PasswordHandler.Decrypt(ad.Instance),
-            Scope = PasswordHandler.Decrypt(ad.Scope)
+            UserName = PasswordHandler.Decrypt(ad.UserName ?? string.Empty),
+            Tenant = PasswordHandler.Decrypt(ad.Tenant ?? string.Empty),
+            ClientId = PasswordHandler.Decrypt(ad.ClientId ?? string.Empty),
+            ClientSecret = PasswordHandler.Decrypt(ad.ClientSecret ?? string.Empty),
+            Instance = PasswordHandler.Decrypt(ad.Instance ?? string.Empty),
+            Scope = PasswordHandler.Decrypt(ad.Scope ?? string.Empty)
         };
 
         CurrentMailAccount = ma;

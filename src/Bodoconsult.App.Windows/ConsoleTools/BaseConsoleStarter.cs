@@ -1,0 +1,403 @@
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
+
+using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.DataProtection.Hashing;
+using Bodoconsult.App.Helpers;
+using Bodoconsult.App.Interfaces;
+
+namespace Bodoconsult.App.Windows.ConsoleTools;
+
+/// <summary>
+/// Base class for console app starters
+/// </summary>
+public abstract class BaseConsoleStarter : IConsoleStarter
+{
+    /// <summary>
+    /// The current app of the app
+    /// </summary>
+    protected readonly string? Path;
+
+    /// <summary>
+    /// The current path in C:\ProgrammData for the data of the app
+    /// </summary>
+    protected readonly string? DataPath;
+
+    /// <summary>
+    /// Is the app password already checked
+    /// </summary>
+    protected bool IsAppPasswordHashChecked;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="appName">App name</param>
+    /// <param name="args">Args the app was started with</param>
+    protected BaseConsoleStarter(string appName, string[] args)
+    {
+        DataProtectionService = Bodoconsult.App.Windows.DataProtection.DataProtectionService.CreateInstance(appName, DataProtectionScope.LocalMachine);
+        Args = args;
+
+        Path = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(Path);
+
+        Path = new FileInfo(Path).DirectoryName;
+        ArgumentNullException.ThrowIfNull(Path);
+
+        DataPath = global::System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), appName);
+
+        if (!Directory.Exists(DataPath))
+        {
+            Directory.CreateDirectory(DataPath);
+        }
+
+        HashFileName = global::System.IO.Path.Combine(DataPath, "data0.dat");
+
+        SmtpMailAccountFileName = global::System.IO.Path.Combine(Path, "data1.dat");
+        SmtpMailAccountImportFileName = global::System.IO.Path.Combine(Path, "smtp.json");
+
+        O365MailAccountFileName = global::System.IO.Path.Combine(Path, "data2.dat");
+        O365MailAccountImportFileName = global::System.IO.Path.Combine(Path, "0365.json");
+    }
+
+    /// <summary>
+    /// Current <see cref="Bodoconsult.App.DataProtection.Hashing.Hasher"/> instance for hashing data
+    /// </summary>
+    protected readonly Hasher Hasher = new();
+
+    /// <summary>
+    /// Current data protection service instance to use for protecting secrets
+    /// </summary>
+    protected readonly IDataProtectionService DataProtectionService;
+
+    /// <summary>
+    /// A delegate for running the main app thread from the starter
+    /// </summary>
+    public MainAppRunnerDelegate? MainAppRunnerDelegate { get; set; }
+
+    /// <summary>
+    /// Command line args
+    /// </summary>
+    public string[] Args { get; }
+
+    /// <summary>
+    /// Filename of the SMTP mail account storage file
+    /// </summary>
+    public string SmtpMailAccountFileName { get; }
+
+    /// <summary>
+    /// Filename of the SMTP mail account storage import file. To be deleted after import
+    /// </summary>
+    public string SmtpMailAccountImportFileName { get; }
+
+    /// <summary>
+    /// The current SMTP mail account or null if no SMTP mailing is used
+    /// </summary>
+    public SmtpMailAccount? SmtpMailAccount { get; private set; }
+
+    /// <summary>
+    /// Filename of the O365 MS Graph based mail account storage import file. To be deleted after import
+    /// </summary>
+    public string O365MailAccountImportFileName { get; }
+
+    /// <summary>
+    /// Filename of the O365 MS Graph based mail account storage file
+    /// </summary>
+    public string O365MailAccountFileName { get; }
+
+    /// <summary>
+    /// The current O365 mail account or null if no SMTP mailing is used
+    /// </summary>
+    public O365MailAccount? O365MailAccount { get; private set; }
+
+    /// <summary>
+    /// Filename of app password hash storage
+    /// </summary>
+    public string HashFileName { get; }
+
+    /// <summary>
+    /// The hash value of the JSON password
+    /// </summary>
+    public string? AppPasswordHash { get; private set; }
+
+    /// <summary>
+    /// Delete a file
+    /// </summary>
+    /// <param name="fileName">Filename to delete</param>
+    protected static void DeleteFile(string fileName)
+    {
+        if (File.Exists(fileName))
+        {
+            File.Delete(fileName);
+        }
+    }
+
+    /// <summary>
+    /// Show a status message
+    /// </summary>
+    /// <param name="message">Message to show in the console</param>
+    protected static void SetStatus(string message)
+    {
+        if (message.EndsWith("\r\n"))
+        {
+            message = message[..^2];
+        }
+        if (message.EndsWith("\r\n"))
+        {
+            message = message[..^2];
+        }
+        Console.WriteLine(message);
+    }
+
+    #region Basic JSON handling
+
+    /// <summary>
+    /// Save a simple entity in a crypted JSON file
+    /// </summary>
+    /// <typeparam name="T">Type of the entity to store</typeparam>
+    /// <param name="entityToStore">Entity to store</param>
+    /// <param name="key">Key</param>
+    /// <param name="fileName">Filename to save the crypted JSON string in</param>
+    public void SaveCryptedSimpleJson<T>(T entityToStore, string key, string fileName)
+    {
+        var json = SimpleJsonHelper.Serialize(entityToStore);
+
+        var cjson = DataProtectionService.Protect(key, json);
+
+        File.WriteAllText(fileName, cjson, Encoding.UTF8);
+    }
+
+    /// <summary>
+    /// Load a crypted simple json file
+    /// </summary>
+    /// <typeparam name="T">Type of the entity to deserialize from the JSON file</typeparam>
+    /// <param name="key">Key</param>
+    /// <param name="cjsonFile">Fillename of the crypted JSON file</param>
+    /// <returns>Deserialized entity</returns>
+    public T LoadCryptedSimpleJson<T>(string key, string cjsonFile)
+    {
+        var raw = File.ReadAllText(cjsonFile);
+
+        var json = DataProtectionService.Unprotect(key, raw);
+
+        var job = SimpleJsonHelper.LoadJsonString<T>(json);
+
+        ArgumentNullException.ThrowIfNull(job);
+
+        return job;
+    }
+
+    #endregion
+
+    #region SMTP account handling
+
+    /// <summary>
+    /// Load an existing SMTP mail config
+    /// </summary>
+    public void LoadSmtpConfig()
+    {
+        if (File.Exists(SmtpMailAccountFileName))
+        {
+            LoadSmtpMailAccount();
+
+            ArgumentNullException.ThrowIfNull(SmtpMailAccount);
+            return;
+        }
+
+        if (!File.Exists(SmtpMailAccountImportFileName))
+        {
+            return;
+        }
+        var ma = SimpleJsonHelper .LoadJsonFile<SmtpMailAccount>(SmtpMailAccountImportFileName);
+
+        ArgumentNullException.ThrowIfNull(ma);
+
+        SaveSmtpMailAccount(ma);
+
+        LoadSmtpMailAccount();
+
+        DeleteFile(SmtpMailAccountImportFileName);
+    }
+
+    /// <summary>
+    /// Save SMTP mail account data in a crypted file
+    /// </summary>
+    /// <param name="mailAccount">SMTP mail account data</param>
+    public void SaveSmtpMailAccount(SmtpMailAccount mailAccount)
+    {
+        SaveCryptedSimpleJson(mailAccount, "SMTP", SmtpMailAccountFileName);
+    }
+
+    /// <summary>
+    /// Load SMTP mail account data from a crypted file
+    /// </summary>
+    /// <returns>SMTP mail account data</returns>
+    public SmtpMailAccount LoadSmtpMailAccount()
+    {
+        SmtpMailAccount = LoadCryptedSimpleJson<SmtpMailAccount>("SMTP", SmtpMailAccountFileName);
+        return SmtpMailAccount;
+    }
+
+    #endregion
+
+    #region O365 mail account handling
+
+    /// <summary>
+    /// Load an existing O365 mail config
+    /// </summary>
+    public void LoadO365Config()
+    {
+        if (File.Exists(O365MailAccountFileName))
+        {
+            LoadO365MailAccount();
+
+            ArgumentNullException.ThrowIfNull(O365MailAccount);
+            return;
+        }
+
+        if (!File.Exists(O365MailAccountImportFileName))
+        {
+            return;
+        }
+        var ma = SimpleJsonHelper.LoadJsonFile<O365MailAccount>(O365MailAccountImportFileName);
+
+        ArgumentNullException.ThrowIfNull(ma);
+
+        SaveO365MailAccount(ma);
+
+        LoadO365MailAccount();
+
+        DeleteFile(O365MailAccountImportFileName);
+    }
+
+    /// <summary>
+    /// Save O365 mail account data in a crypted file
+    /// </summary>
+    /// <param name="mailAccount">O365 mail account data</param>
+    public void SaveO365MailAccount(O365MailAccount mailAccount)
+    {
+        SaveCryptedSimpleJson(mailAccount, "O365", O365MailAccountFileName);
+    }
+
+    /// <summary>
+    /// Load O365 mail account data from a crypted file
+    /// </summary>
+    /// <returns>O365 mail account data</returns>
+    public O365MailAccount LoadO365MailAccount()
+    {
+        O365MailAccount = LoadCryptedSimpleJson<O365MailAccount>("O365", O365MailAccountFileName);
+        return O365MailAccount;
+    }
+
+    #endregion
+
+    #region App password
+
+    /// <summary>
+    /// Ask the user for a JSON encryption password and hash it
+    /// </summary>
+    public void UiHashJsonPassword()
+    {
+        var pwd = UiAskTheUserForAppPassword();
+
+        if (string.IsNullOrEmpty(pwd))
+        {
+            return;
+        }
+
+        HashAppPassword(pwd);
+
+        ConsoleHelper.WaitUntilAnyKeyPressed("Password was crypted!");
+
+        //Clipboard.SetText(JsonPasswordHash);
+        //Console.WriteLine("Encrypted password was copied to clipboard!");
+    }
+
+    /// <summary>
+    /// Hash the app password
+    /// </summary>
+    public void HashAppPassword(string appPassword)
+    {
+        if (string.IsNullOrEmpty(appPassword) || File.Exists(HashFileName))
+        {
+            return;
+        }
+
+        AppPasswordHash = Hasher.ComputeHash(appPassword);
+
+        var crypt = DataProtectionService.Protect("HASH", AppPasswordHash);
+
+        File.WriteAllText(HashFileName, crypt);
+    }
+
+    /// <summary>
+    /// Load the app password hash from file if existing
+    /// </summary>
+    public void LoadAppPasswordHash()
+    {
+        if (!File.Exists(HashFileName))
+        {
+            return;
+        }
+
+        try
+        {
+            var crypt = File.ReadAllText(HashFileName);
+
+            AppPasswordHash = DataProtectionService.Unprotect("HASH", crypt);
+        }
+        catch (Exception e)
+        {
+            ConsoleHelper.WaitUntilAnyKeyPressed($"Loading pashword hash failed:\r\n{e}");
+        }
+    }
+
+    /// <summary>
+    /// Ask the user for an app password 
+    /// </summary>
+    /// <returns>True if the password is correct else false</returns>
+    public bool UiValidateAppPassword()
+    {
+        var pwd = UiAskTheUserForAppPassword();
+        var valid = !string.IsNullOrEmpty(pwd) && ValidateAppPassword(pwd);
+        return valid;
+    }
+
+    /// <summary>
+    /// Validate an app password
+    /// </summary>
+    /// <param name="jsonPassword">App password to validate</param>
+    /// <returns>True if the app password is correct else false</returns>
+    public bool ValidateAppPassword(string jsonPassword)
+    {
+        if (AppPasswordHash is null)
+        {
+            return false;
+        }
+        IsAppPasswordHashChecked = Hasher.ValidateHash(jsonPassword, AppPasswordHash);
+        return IsAppPasswordHashChecked;
+    }
+
+    /// <summary>
+    /// Do the requested start action. The default implementation simply runs the <see cref="MainAppRunnerDelegate "/>  
+    /// </summary>
+    public int Start()
+    {
+        return MainAppRunnerDelegate?.Invoke(this) ?? 0;
+    }
+
+    /// <summary>
+    /// Ask the user to insert an app password
+    /// </summary>
+    /// <returns></returns>
+    public static string UiAskTheUserForAppPassword()
+    {
+        var pwd = ConsoleHelper.ReadSecret("Please insert password for app:");
+        return pwd;
+    }
+
+    #endregion
+}

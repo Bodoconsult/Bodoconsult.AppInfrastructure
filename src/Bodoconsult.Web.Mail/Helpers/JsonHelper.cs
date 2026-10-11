@@ -14,7 +14,7 @@ namespace Bodoconsult.Web.Mail.Helpers;
 public class JsonHelper
 {
     /// <summary>
-    /// Load a object from a JSON file
+    /// Load an object from a JSON file
     /// </summary>
     /// <param name="fileName"></param>
     /// <returns></returns>
