@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Abstractions.ShellTools;
 using Bodoconsult.App.Backup;
 using Bodoconsult.App.Windows.Backup;
 using Bodoconsult.App.Windows.ShellTools;

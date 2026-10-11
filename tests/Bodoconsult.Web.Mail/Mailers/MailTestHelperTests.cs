@@ -4,7 +4,6 @@ using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
 using Bodoconsult.Web.Mail.Helpers;
-using Bodoconsult.Web.Mail.Models;
 using Bodoconsult.Web.Mail.Test.Helpers;
 using NUnit.Framework;
 

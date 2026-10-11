@@ -5,7 +5,6 @@ using Bodoconsult.Text.Enums;
 using Bodoconsult.Text.Helpers;
 using Bodoconsult.Text.Interfaces;
 using Bodoconsult.Text.Model;
-using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Data;
