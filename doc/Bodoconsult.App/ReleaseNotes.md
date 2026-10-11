@@ -1,6 +1,7 @@
 Release notes for Bodoconsult.App
 ==========================
 
+With each release all the repository internal references are updated.
 
 # 1.0.0
 
@@ -26,11 +27,9 @@ Release notes for Bodoconsult.App
 
 # 1.0.6
 
--	Using Bodoconsult.App.Abstractions 1.0.6
 
 # 1.0.7
 
--	Using Bodoconsult.App.Abstractions 1.0.7
 
 # 1.0.8
 
@@ -39,8 +38,6 @@ Release notes for Bodoconsult.App
 -	New FileTimeExtenions and GuidExtensions classes
 
 # 1.0.9
-
--   Uses Bodoconsult.App.Abstractions 1.0.9
 
 -   Changed to nullable project type
 
@@ -61,7 +58,9 @@ Release notes for Bodoconsult.App
 
 # 1.0.10
 
--   Uses Bodoconsult.App.Abstractions 1.0.10
+NOT intended for public use
+
+# 1.0.11
 
 -   Better PDB handling
 

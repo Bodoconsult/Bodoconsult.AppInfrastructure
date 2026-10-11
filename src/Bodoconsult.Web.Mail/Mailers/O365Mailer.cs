@@ -3,7 +3,6 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Zip;
 using Bodoconsult.Web.Mail.Helpers;
-using Bodoconsult.Web.Mail.Interfaces;
 using Bodoconsult.Web.Mail.Models;
 using Microsoft.Graph;
 using Microsoft.Graph.Models;

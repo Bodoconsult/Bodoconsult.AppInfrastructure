@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.Web.Mail.Models;
+using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace BodoFileTransfer.Business.Model;
 

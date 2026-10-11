@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
 using System.IO;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
 using Bodoconsult.Web.Mail.Helpers;
 using Bodoconsult.Web.Mail.Models;

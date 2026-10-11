@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.Web.Mail.Interfaces;
-
-namespace Bodoconsult.Web.Mail.Models;
+namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
 /// Represents an Office 365 app account used for mailing
@@ -13,35 +11,35 @@ public class O365MailAccount : IO365MailAccount
     /// <summary>
     /// Current O365 instance
     /// </summary>
-    public string Instance { get; set; }
+    public string? Instance { get; set; }
 
     /// <summary>
     /// Current tenant
     /// </summary>
-    public string Tenant { get; set; }
+    public string? Tenant { get; set; }
 
     /// <summary>
     /// Current client ID
     /// </summary>
-    public string ClientId { get; set; }
+    public string? ClientId { get; set; }
 
     /// <summary>
     /// Current client secret
     /// </summary>
-    public string ClientSecret { get; set; }
+    public string? ClientSecret { get; set; }
 
     /// <summary>
     /// User account name: Email address or for Office 365 shared mailboxes email addresse slash mailbox name (i.e. test@test/rechnung)
     /// </summary>
-    public string UserName { get; set; }
+    public string? UserName { get; set; }
 
     /// <summary>
     /// The current O365 scope to use
     /// </summary>
-    public string Scope { get; set; }
+    public string? Scope { get; set; }
 
     /// <summary>
     /// Mail address to use for sending 
     /// </summary>
-    public string MailAddressSender { get; set; }
+    public string? MailAddressSender { get; set; }
 }

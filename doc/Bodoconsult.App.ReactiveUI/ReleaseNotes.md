@@ -1,6 +1,7 @@
 Release notes for Bodoconsult.App.ReactiveUi
 ==========================
 
+With each release all the repository internal references are updated.
 
 # 1.0.9
 
@@ -20,7 +21,9 @@ Release notes for Bodoconsult.App.ReactiveUi
 
 # 1.0.10
 
--   Uses Bodoconsult.App.Abstractions 1.0.10
+NOT intended for public use
+
+# 1.0.11
 
 -   Better PDB handling
 

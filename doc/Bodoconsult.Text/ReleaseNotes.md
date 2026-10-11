@@ -1,6 +1,8 @@
 Release notes for Bodoconsult.Text
 ==========================
 
+With each release all the repository internal references are updated.
+
 # 1.0.8
 
 -	Using Bodoconsult.App.Abstractions 1.0.8
@@ -21,7 +23,9 @@ Release notes for Bodoconsult.Text
 
 # 1.0.10
 
--   Uses Bodoconsult.App.Abstractions 1.0.10
+NOT intended for public use
+
+# 1.0.11
 
 -   Better PDB handling
 

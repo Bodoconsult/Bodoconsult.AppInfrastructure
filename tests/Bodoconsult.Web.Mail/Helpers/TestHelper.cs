@@ -4,6 +4,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DataProtection;
 using Bodoconsult.Web.Mail.Helpers;
 using Bodoconsult.Web.Mail.Models;

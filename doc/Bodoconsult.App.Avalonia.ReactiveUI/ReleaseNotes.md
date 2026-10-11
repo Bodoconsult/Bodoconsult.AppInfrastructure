@@ -1,12 +1,11 @@
 Release notes for Bodoconsult.App.Avalonia.ReactiveUI
 ==========================
 
+With each release all the repository internal references are updated.
 
 # 1.0.9
 
 -   New package
-
--   Uses version 1.09 of Bodoconsult.App.Abstractions, Bodoconsult.App and Bodoconsult.App.Avalonia
 
 -   Added MenuControl/MenuControlViewModel to show a ReactiveUI based menu in a window
 
@@ -22,7 +21,9 @@ Release notes for Bodoconsult.App.Avalonia.ReactiveUI
 
 # 1.0.10
 
--   Uses Bodoconsult.App.Abstractions 1.0.10
+NOT intended for public use
+
+# 1.0.11
 
 -   Better PDB handling
 

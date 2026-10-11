@@ -1,6 +1,8 @@
 Release notes for Bodoconsult.Wpf.Documents
 ==========================
 
+With each release all the repository internal references are updated.
+
 ## 1.0.5
 
 -   First draft
@@ -19,10 +21,11 @@ Release notes for Bodoconsult.Wpf.Documents
 
 # 1.0.9
 
-Uses Bodoconsult.App.Abstractions 1.0.9
 
 # 1.0.10
 
-Uses Bodoconsult.App.Abstractions 1.0.10
+NOT intended for public use
 
-Better PDB handling
+# 1.0.11
+
+-   Better PDB handling

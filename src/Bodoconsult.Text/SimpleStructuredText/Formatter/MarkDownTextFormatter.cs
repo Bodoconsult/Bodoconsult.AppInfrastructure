@@ -429,7 +429,7 @@ public class MarkDownTextFormatter : ITextFormatter
         return erg.ToString();
     }
 
-    private StringBuilder GetTable(TableTextItem ti)
+    private static StringBuilder GetTable(TableTextItem ti)
     {
         var data = new DataTable();
 
@@ -451,20 +451,16 @@ public class MarkDownTextFormatter : ITextFormatter
 
         foreach (DataColumn col in data.Columns)
         {
-            string s;
-
             var css = ":--";
 
-            var dt = col.DataType.ToString().ToLower().Replace("system.", string.Empty);
+            var dt = col.DataType.ToString().ToLowerInvariant().Replace("system.", string.Empty);
 
             switch (dt)
             {
                 case "boolean":
                     css = "---";
-                    s = col.ColumnName;
                     break;
                 case "char":
-                    s = col.ColumnName;
                     break;
                 //case "sbyte":
 
@@ -473,12 +469,10 @@ public class MarkDownTextFormatter : ITextFormatter
                 case "double":
                 case "single":
                     css = "---:";
-                    s = col.ColumnName;
                     break;
                 case "datetime":
                 case "timespan":
                     css = "---";
-                    s = col.ColumnName;
                     break;
 
                 case "byte":
@@ -489,16 +483,12 @@ public class MarkDownTextFormatter : ITextFormatter
                 case "uint32":
                 case "uint64":
                     css = "---:";
-                    s = col.ColumnName;
-                    break;
-                default:
-                    s = col.ColumnName;
                     break;
             }
 
-            erg.Append($"{WebUtility.HtmlEncode(s)} |");
+            erg.Append($"{WebUtility.HtmlEncode(col.ColumnName)} |");
 
-            divider.Append(css + " |");
+            divider.Append($"{css} |");
         }
 
         erg.Append("\r\n");
@@ -511,7 +501,7 @@ public class MarkDownTextFormatter : ITextFormatter
             foreach (DataColumn col in data.Columns)
             {
                 string s;
-                var dt = col.DataType.ToString().ToLower().Replace("system.", string.Empty);
+                var dt = col.DataType.ToString().ToLowerInvariant().Replace("system.", string.Empty );
 
                 switch (dt)
                 {
@@ -570,7 +560,6 @@ public class MarkDownTextFormatter : ITextFormatter
 
     private static string BeautifyXml(string xml)
     {
-
         try
         {
             var doc = new XmlDocument();

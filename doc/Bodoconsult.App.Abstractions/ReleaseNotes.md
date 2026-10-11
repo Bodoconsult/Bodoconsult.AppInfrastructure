@@ -1,6 +1,8 @@
 Release notes for Bodoconsult.App.Abstractions
 ==========================
 
+With each release all the repository internal references are updated.
+
 # 1.0.5 
 
 -	Extracted abstractions to Bodoconsult.App.Abstractions
@@ -31,10 +33,14 @@ Release notes for Bodoconsult.App.Abstractions
 
 # 1.0.10
 
--   Uses Bodoconsult.App.Abstractions 1.0.9
+NOT intended for public use
+
+# 1.0.11
 
 -   Better PDB handling
 
 -   Added Args property to IAppStartParameter to store command line args
 
 -   Added ErrorMailAddress property to IAppStartParameter to email address for sending mail to in case of exceptions
+
+-   IMailAccount, IO365MailAcccount, SmtpMailAccount and O365MailAccount moved from Bodoconsult.Web.Mail to Bodoconsult.App.Abstractions.Interfaces
