@@ -119,7 +119,7 @@ public abstract class BaseBackupManager : IBackupManager
         {
             var value = Convert.ToInt32(c);
             if (value > 127)
-                result.AppendFormat("&#{0};", value);
+                result.Append($"&#{value};");
             else
                 result.Append(c);
         }

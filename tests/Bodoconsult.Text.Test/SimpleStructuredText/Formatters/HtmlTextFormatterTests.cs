@@ -1,6 +1,5 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System.Diagnostics;
 using System.IO;
 using Bodoconsult.Text.Formatter;
@@ -13,7 +12,7 @@ using NUnit.Framework;
 namespace Bodoconsult.Text.Test.SimpleStructuredText.Formatters;
 
 [TestFixture]
-public class HtmlTextFormatterTests
+internal class HtmlTextFormatterTests
 {
     private const string MassText = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
 
@@ -23,9 +22,8 @@ public class HtmlTextFormatterTests
 
     [Test]
         
-    public void TestGetFormattedText_NoTemplate()
+    public void GetFormattedText_NoTemplate_TextCreatedSuccessfully()
     {
-
         var sr = new StructuredText();
         sr.AddHeader1("Überschrift 1 '& &&&' ");
         sr.AddParagraph(MassText, "CssTestFixture");
@@ -67,18 +65,16 @@ public class HtmlTextFormatterTests
         var f = new HtmlTextFormatter { StructuredText = sr };
         var result = f.GetFormattedText();
 
-
+        Assert.That(result, Is.Not.Null);
         Debug.Print(result);
         Assert.That(!string.IsNullOrEmpty(result));
         Assert.That(result.Contains("<h1"));
         Assert.That(result.Contains("<h2"));
-
     }
 
     [Test]
-    public void TestGetFormattedText_MoveHeaderlevel1_NoTemplate()
+    public void GetFormattedText_MoveHeaderlevel1NoTemplate_TextCreatedSuccessfully()
     {
-
         var sr = new StructuredText();
         sr.AddHeader1("Überschrift 1 '& &&&' ");
 
@@ -128,21 +124,19 @@ public class HtmlTextFormatterTests
         var f = new HtmlTextFormatter { StructuredText = sr, MoveHeaderLevel = 1};
         var result = f.GetFormattedText();
 
-
+        Assert.That(result, Is.Not.Null);
         Debug.Print(result);
         Assert.That(!string.IsNullOrEmpty(result));
         Assert.That(!result.Contains("<h1"));
         Assert.That(result.Contains("<h2"));
         Assert.That(result.Contains("<h3"));
-
     }
 
 
 
     [Test]
-    public void TestGetFormattedText_MoveHeaderlevel1_NoTemplateSynthaxHighLighting()
+    public void GetFormattedText_MoveHeaderlevel1NoTemplateSynthaxHighLighting_TextCreatedSuccessfully()
     {
-
         var sr = new StructuredText();
         sr.AddHeader1("Überschrift 1 '& &&&' ");
 
@@ -194,22 +188,17 @@ public class HtmlTextFormatterTests
         var f = new HtmlTextFormatter { StructuredText = sr, MoveHeaderLevel = 1, CssCode = "prettyprint" };
         var result = f.GetFormattedText();
 
-
+        Assert.That(result, Is.Not.Null);
         Debug.Print(result);
         Assert.That(!string.IsNullOrEmpty(result));
         Assert.That(!result.Contains("<h1"));
         Assert.That(result.Contains("<h2"));
         Assert.That(result.Contains("<h3"));
-
     }
 
-
-
     [Test]
-    public void TestGetFormattedText_WithTemplate()
+    public void GetFormattedText_WithTemplate_TextCreatedSuccessfully()
     {
-
-
         var sr = new StructuredText();
         sr.AddHeader1("Überschrift 'Databanka'");
         sr.AddParagraph(MassText);
@@ -252,12 +241,10 @@ public class HtmlTextFormatterTests
 
         Debug.Print(result);
         Assert.That(!string.IsNullOrEmpty(result));
-
     }
 
-
     [Test]
-    public void TestGetFormattedText_WithTable()
+    public void GetFormattedText_WithTable_TextCreatedSuccessfully()
     {
         var sr = new StructuredText();
         sr.AddHeader1("Überschrift 1");
@@ -304,12 +291,10 @@ public class HtmlTextFormatterTests
 
         Debug.Print(result);
         Assert.That(!string.IsNullOrEmpty(result));
-
     }
 
-
     [Test]
-    public void RealLifeGetFormattedText()
+    public void GetFormattedText_RealLife_TextCreatedSuccessfully()
     {
         var fileName = Path.Combine(TestHelper.TestDataPath, "StructuredText.json");
 
@@ -325,7 +310,5 @@ public class HtmlTextFormatterTests
 
         Debug.Print(result);
         Assert.That(!string.IsNullOrEmpty(result));
-
     }
-
 }

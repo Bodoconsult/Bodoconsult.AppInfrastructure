@@ -24,3 +24,5 @@ Release notes for Bodoconsult.Text
 -   Uses Bodoconsult.App.Abstractions 1.0.10
 
 -   Better PDB handling
+
+-   Added MarkDownTextFormatter to format simple text based on IStructuredText as Markdwon

@@ -26,6 +26,8 @@ public class HtmlTextFormatter : ITextFormatter
 
     private int _rowCount;
 
+    private IList<ITextItem> TextItems { get; set; }
+
     #endregion
 
     /// <summary>
@@ -163,8 +165,6 @@ public class HtmlTextFormatter : ITextFormatter
     public IStructuredText StructuredText { get; set; }
 
 
-    private IList<ITextItem> TextItems { get; set; }
-
     /// <inheritdoc />
     /// <summary>
     /// Template to place the structered text. Must contain placeholder {0} for the structured text
@@ -177,14 +177,12 @@ public class HtmlTextFormatter : ITextFormatter
     /// 
     /// </summary>
     public int MoveHeaderLevel { get; set; }
-
-
+    
     /// <inheritdoc />
     public string Title { get; set; }
 
     /// <inheritdoc />
     public string DateString { get; set; }
-
 
     /// <inheritdoc />
     public string GetFormattedText()
@@ -221,7 +219,6 @@ public class HtmlTextFormatter : ITextFormatter
 
         foreach (var ti in StructuredText.TextItems)
         {
-
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (ti.LogicalType)
             {
@@ -260,7 +257,7 @@ public class HtmlTextFormatter : ITextFormatter
                         TextItems.Add(new TextItem
                         {
                             Content = string.Format("<p class=\"{2}\"><a href=\"#H{1}\">{0}</a></p>\r\n",
-                                ti.Content, row + _rowCount + 1,
+                                WebUtility.HtmlEncode(ti.Content), row + _rowCount + 1,
                                 CssToc1),
                             LogicalType = TextItemType.Plain
                         });
@@ -272,7 +269,7 @@ public class HtmlTextFormatter : ITextFormatter
                     if (TocLevel > 1) TextItems.Add(new TextItem
                     {
                         Content = string.Format("<p class=\"{2}\"><a href=\"#H{1}\">{0}</a></p>\r\n",
-                            ti.Content, row + _rowCount + 1,
+                            WebUtility.HtmlEncode(ti.Content), row + _rowCount + 1,
                             CssToc2),
                         LogicalType = TextItemType.Plain
                     });
@@ -281,7 +278,7 @@ public class HtmlTextFormatter : ITextFormatter
                     if (TocLevel > 2) TextItems.Add(new TextItem
                     {
                         Content = string.Format("<p class=\"{2}\"><a href=\"#H{1}\">{0}</a></p>\r\n",
-                            ti.Content, row + _rowCount + 1,
+                            WebUtility.HtmlEncode(ti.Content), row + _rowCount + 1,
                             CssToc3),
                         LogicalType = TextItemType.Plain
                     });
@@ -290,7 +287,7 @@ public class HtmlTextFormatter : ITextFormatter
                     if (TocLevel > 3) TextItems.Add(new TextItem
                     {
                         Content = string.Format("<p class=\"{2}\"><a href=\"#H{1}\">{0}</a></p>\r\n",
-                            ti.Content, row + _rowCount + 1,
+                            WebUtility.HtmlEncode(ti.Content), row + _rowCount + 1,
                             CssToc4),
                         LogicalType = TextItemType.Plain
                     });
@@ -321,7 +318,7 @@ public class HtmlTextFormatter : ITextFormatter
 
         if (!string.IsNullOrEmpty(DateString))
         {
-            erg.AppendFormat("<p>{0}</p>", WebUtility.HtmlEncode(DateString));
+            erg.Append($"<p>{WebUtility.HtmlEncode(DateString)}</p>");
         }
 
         // Add rest of text
@@ -404,7 +401,7 @@ public class HtmlTextFormatter : ITextFormatter
 
                     var content2 = HtmlHelper.GetContentAsHtmlParagraph(dl.Content2);
 
-                    erg.AppendFormat("<dt>{0}</dt><dd>{1}</dd>\r\n", content, content2);
+                    erg.Append($"<dt>{content}</dt><dd>{content2}</dd>\r\n");
 
                     if (row == count) // Letzte Zeile: beende DL nachher
                     {
@@ -427,7 +424,7 @@ public class HtmlTextFormatter : ITextFormatter
 
                     // c = "Hallo";
 
-                    erg.AppendFormat("<div class=\"code\"><code{0}>{1}</code></div>\r\n", className, c);
+                    erg.Append($"<div class=\"code\"><code{className}>{c}</code></div>\r\n");
                     break;
                 case TextItemType.Code:
 
@@ -455,8 +452,6 @@ public class HtmlTextFormatter : ITextFormatter
 
     private StringBuilder GetTable(TableTextItem ti)
     {
-
-
         var data = new DataTable();
 
         using (var stream = new MemoryStream())
@@ -471,11 +466,11 @@ public class HtmlTextFormatter : ITextFormatter
         var erg = new StringBuilder();
         string css;
 
-        erg.AppendFormat("<table class=\"{0}\">\r\n", CssTable);
+        erg.Append($"<table class=\"{CssTable}\">\r\n");
 
         if (!string.IsNullOrEmpty(ti.Content))
         {
-            erg.AppendFormat("<caption>{0}</caption>\r\n", ti.Content);
+            erg.Append($"<caption>{ti.Content}</caption>\r\n");
         }
 
         erg.Append("<tr>\r\n");
@@ -602,7 +597,6 @@ public class HtmlTextFormatter : ITextFormatter
 
     private static string BeautifyXml(string xml)
     {
-
         try
         {
             var doc = new XmlDocument();

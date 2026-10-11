@@ -10,14 +10,14 @@ using Bodoconsult.Text.Test.Helpers;
 using NUnit.Framework;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;
 
-namespace Bodoconsult.Text.Test.SimpleStructuredText;
+namespace Bodoconsult.Text.Test.SimpleStructuredText.Formatters;
 
 [SupportedOSPlatform("windows")]
 [TestFixture]
-public class PdfTextFormatterTests
+internal class PdfTextFormatterTests
 {
     [Test]
-    public void TestCreatePdf()
+    public void SaveAsFile_ValidInput_PdfSaved()
     {
 
         var fileName = Path.Combine(TestHelper.TempPath, "TextPdf.pdf");
@@ -66,9 +66,12 @@ public class PdfTextFormatterTests
 
         };
         f.GetFormattedText();
+
+        // Act
         f.SaveAsFile(fileName);
 
-        FileAssert.Exists(fileName);
+        // Assert
+        Assert.That(File.Exists(fileName));
 
         FileSystemHelper.RunInDebugMode(fileName);
     }

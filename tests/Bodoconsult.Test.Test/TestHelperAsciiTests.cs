@@ -12,10 +12,10 @@ namespace Bodoconsult.Test.Test;
 #pragma warning disable 1591
 public class TestHelperAsciiTests
 {
-    private readonly string _path = Path.Combine(TestHelper.TempPath, @"ProtocolUnitTesting.txt");
+    private readonly string _path = Path.Combine(TestHelper.TempPath, "ProtocolUnitTesting.txt");
 
     [Test]
-    public void TestDiverseMethoden()
+    public void DiverseMethods_ValidInput_AsciiOutputCreated()
     {
 
         var x = new DerivedClass
@@ -25,8 +25,7 @@ public class TestHelperAsciiTests
             Field1 = "Field1Value",
             Property1 = "PropertyValue1"
         };
-
-
+        
         var y = new BaseClass
         {
             Field1 = "Field1Value",
@@ -59,5 +58,8 @@ public class TestHelperAsciiTests
 
         helper.PrintClassHeader("2 Print double array", "UnitTestTestHelperAscii");
         helper.PrintTable(TestData.GetDoubleArray());
+
+        // Assert
+        Assert.That(File.Exists(_path));
     }
 }

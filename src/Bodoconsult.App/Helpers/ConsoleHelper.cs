@@ -76,4 +76,16 @@ public static class ConsoleHelper
         Console.WriteLine("Press any key to proceed...");
         Console.ReadLine();
     }
+
+    /// <summary>
+    /// Ask the user for a string input
+    /// </summary>
+    /// <param name="message">Message for the user what type of string is asked for</param>
+    /// <returns>User input as string</returns>
+    public static string? AskUserForStringValue(string message)
+    {
+        Console.WriteLine(message);
+        var value = Console.ReadLine();
+        return value;
+    }
 }

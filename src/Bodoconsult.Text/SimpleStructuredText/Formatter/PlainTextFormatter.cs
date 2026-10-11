@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,8 +22,7 @@ public class PlainTextFormatter : ITextFormatter
     /// Structured text to format
     /// </summary>
     public IStructuredText StructuredText { get; set; }
-
-
+    
     /// <summary>
     /// Template to place the structered text. Must contain placeholder {0} for the structured text
     /// </summary>
@@ -45,7 +43,6 @@ public class PlainTextFormatter : ITextFormatter
         return string.IsNullOrEmpty(Template) ? GetBody(StructuredText.TextItems) : Template.Replace("{0}", GetBody(StructuredText.TextItems));
     }
 
-
     private string GetBody(IEnumerable<ITextItem> body)
     {
         var erg = new StringBuilder();
@@ -60,7 +57,7 @@ public class PlainTextFormatter : ITextFormatter
 
         if (!string.IsNullOrEmpty(DateString))
         {
-            erg.AppendFormat("\r\n{0}\r\n", WebUtility.HtmlEncode(DateString));
+            erg.Append($"\r\n{WebUtility.HtmlEncode(DateString)}\r\n");
         }
 
         // Add rest of text
@@ -72,33 +69,34 @@ public class PlainTextFormatter : ITextFormatter
             switch (ti.LogicalType)
             {
                 case TextItemType.H1:
-                    erg.AppendFormat("\r\n\r\n\r\n***************\r\n{0}\r\n***************\r\n", content);
+                    erg.Append($"\r\n\r\n\r\n***************\r\n{content}\r\n***************\r\n");
 
                     break;
                 case TextItemType.H2:
-                    erg.AppendFormat("\r\n\r\n************\r\n{0}\r\n************\r\n", content);
+                    erg.Append($"\r\n\r\n************\r\n{content}\r\n************\r\n");
                     break;
                 case TextItemType.H3:
-                    erg.AppendFormat("\r\n\r\n******\r\n{0}", content);
+                    erg.Append($"\r\n\r\n******\r\n{content}");
                     break;
                 case TextItemType.H4:
-                    erg.AppendFormat("\r\n\r\n***\r\n{0}", content);
+                    erg.Append($"\r\n\r\n***\r\n{content}");
                     break;
                 case TextItemType.ListItem:
-                    erg.AppendFormat("  - {0}", content);
+                    erg.Append($"  - {content}");
                     break;
                 case TextItemType.DefinitionListLine:
 
                     var dl = (DefinitionListTextItem)ti;
 
-                    erg.AppendFormat("\r\n{0} {1}", dl.Content.PadRight(25), dl.Content2?.Replace("<para>", string.Empty).Replace("</para>", string.Empty));
+                    erg.Append(
+                        $"\r\n{dl.Content.PadRight(25)} {dl.Content2?.Replace("<para>", string.Empty).Replace("</para>", string.Empty)}");
 
                     break;
                 case TextItemType.Xml:
                     erg.Append(BeautifyXml(content));
                     break;
                 case TextItemType.Code:
-                    erg.AppendFormat("\r\n{0}\r\n", GetCode(content));
+                    erg.Append($"\r\n{GetCode(content)}\r\n");
                     break;
                 case TextItemType.Table:
                     erg.Append(GetTable((TableTextItem)ti));
@@ -242,7 +240,7 @@ public class PlainTextFormatter : ITextFormatter
         var data = content.Split(["\r\n"], StringSplitOptions.None);
         foreach (var row in data)
         {
-            erg.AppendFormat("\r\n    {0}", row);
+            erg.Append($"\r\n    {row}");
         }
 
         return erg.ToString();
