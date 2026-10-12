@@ -33,6 +33,11 @@ public interface IAppGlobals: IDisposable
     IAppLoggerProxy? Logger { get; set; }
 
     /// <summary>
+    /// Current log data entry factory
+    /// </summary>
+    ILogDataFactory LogDataFactory { get; set; }
+
+    /// <summary>
     /// Current dependency injection (DI) container
     /// </summary>
     DiContainer DiContainer { get; set; }

@@ -147,6 +147,80 @@ internal class BasicConsoleStarterTests
         Assert.That(File.Exists(starter.SmtpMailAccountImportFileName), Is.False);
     }
 
+    [Test]
+    public void LoadO365Config_ValidFile_FileLoaded()
+    {
+        // Arrange 
+        var ma = new O365MailAccount();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.O365MailAccountFileName);
+
+        starter.SaveO365MailAccount(ma);
+
+        // Act and assert
+        Assert.DoesNotThrow(starter.LoadO365Config);
+    }
+
+    [Test]
+    public void LoadO365Config_ValidImport_FileLoaded()
+    {
+        // Arrange 
+        var ma = new O365MailAccount();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.O365MailAccountFileName);
+        DeleteFile(starter.O365MailAccountImportFileName);
+
+        JsonHelper.SaveAsFile(starter.O365MailAccountImportFileName, ma);
+
+        Assert.That(File.Exists(starter.O365MailAccountImportFileName), Is.True);
+
+        // Act  
+        Assert.DoesNotThrow(starter.LoadO365Config);
+
+        // Assert
+        Assert.That(File.Exists(starter.O365MailAccountImportFileName), Is.False);
+    }
+
+    [Test]
+    public void SaveO365MailAccount_ValidMailAccount_FileSaved()
+    {
+        // Arrange 
+        var ma = new O365MailAccount();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.O365MailAccountFileName);
+
+        // Act  
+        starter.SaveO365MailAccount(ma);
+
+        // Assert
+        Assert.That(File.Exists(starter.O365MailAccountFileName));
+    }
+
+    [Test]
+    public void LoadO365MailAccount_ValidMailAccount_FileLoaded()
+    {
+        // Arrange 
+        var ma = new O365MailAccount();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.O365MailAccountFileName);
+
+        starter.SaveO365MailAccount(ma);
+
+        // Act  
+        var result = starter.LoadO365MailAccount();
+
+        // Assert
+        Assert.That(result, Is.Not.Null);
+    }
+
     private static void DeleteFile(string fileName)
     {
         if (File.Exists(fileName))

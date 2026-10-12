@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System;
 using Bodoconsult.App;
-using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
@@ -24,18 +24,29 @@ namespace BodoWebMailer.DiContainerProvider;
 [SupportedOSPlatform("windows10.0.17763")]
 public class BodoWebMailerAllServicesContainerServiceProvider : IDiContainerServiceProvider
 {
-
-    private readonly string _benchmarkFileName = Path.Combine("C:\\ProgramData\\BodoWebMailer", "BodoWebMailer_Benchmark.csv");
+    private readonly string _benchmarkFileName;
+    private readonly IBodoWebMailerAppGlobals _appGlobals;
 
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="appStartParameter"></param>
-    /// <param name="licenseMissingDelegate"></param>
-    public BodoWebMailerAllServicesContainerServiceProvider(IAppStartParameter appStartParameter, LicenseMissingDelegate licenseMissingDelegate)
+    /// <param name="appGlobals">Current app globals</param>
+    public BodoWebMailerAllServicesContainerServiceProvider(IAppGlobals appGlobals)
     {
-        AppStartParameter = appStartParameter;
-        LicenseMissingDelegate = licenseMissingDelegate;
+        AppStartParameter = appGlobals.AppStartParameter;
+
+        if (appGlobals is IBodoWebMailerAppGlobals globals)
+        {
+            _appGlobals = globals;
+        }
+        else
+        {
+            throw new ArgumentException("appGlobals is not IBodoWebMailerAppGlobals");
+        }
+        
+        ArgumentNullException.ThrowIfNull(appGlobals.AppStartParameter.DataPath);
+
+        _benchmarkFileName = Path.Combine(appGlobals.AppStartParameter.DataPath, "BodoWebMailer_Benchmark.csv");
     }
 
     /// <summary>
@@ -44,22 +55,17 @@ public class BodoWebMailerAllServicesContainerServiceProvider : IDiContainerServ
     public IAppStartParameter AppStartParameter { get; }
 
     /// <summary>
-    /// Current <see cref="LicenseMissingDelegate"/>
-    /// </summary>
-    public LicenseMissingDelegate LicenseMissingDelegate { get; set; }
-
-    /// <summary>
     /// Add DI container services to a DI container
     /// </summary>
     /// <param name="diContainer">Current DI container</param>
     public void AddServices(DiContainer diContainer)
     {
         // Factories to create tower instance related objects (should be singletons)
-        diContainer.AddSingletonInstance(Globals.Instance.LogDataFactory);
+        diContainer.AddSingletonInstance(_appGlobals.LogDataFactory);
         diContainer.AddSingleton<IAppLoggerProxyFactory, AppLoggerProxyFactory>();
 
         // benchmark
-        var benchProxy = AppBenchProxy.CreateAppBenchProxy(_benchmarkFileName, Globals.Instance.LogDataFactory);
+        var benchProxy = AppBenchProxy.CreateAppBenchProxy(_benchmarkFileName, _appGlobals.LogDataFactory);
         diContainer.AddSingletonInstance(benchProxy);
 
         // General app management
@@ -68,7 +74,16 @@ public class BodoWebMailerAllServicesContainerServiceProvider : IDiContainerServ
 
         // Services
         diContainer.AddSingleton<IMailStorageService, SqlServerMailStorageService>();
-        diContainer.AddSingleton<IMailer, O365Mailer>();
+
+        if (_appGlobals.UseSmtp)
+        {
+            diContainer.AddSingleton<IMailer, SmtpMailer>();
+        }
+        else
+        {
+            diContainer.AddSingleton<IMailer, O365Mailer>();
+        }
+        
         diContainer.AddSingleton<IMailHandler, MailHandler>();
 
         // Load all other services required for the app now

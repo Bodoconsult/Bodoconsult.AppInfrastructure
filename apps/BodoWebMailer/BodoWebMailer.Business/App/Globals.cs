@@ -4,6 +4,7 @@ using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
+using BodoWebMailer.Business.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading;
@@ -13,7 +14,7 @@ namespace BodoWebMailer.Business.App;
 /// <summary>
 /// App global values
 /// </summary>
-public class Globals : IAppGlobals
+public class Globals : IBodoWebMailerAppGlobals
 {
 
     #region Singleton factory
@@ -125,4 +126,14 @@ public class Globals : IAppGlobals
     /// The current configuration loaded from appsettings.json
     /// </summary>
     public IConfigurationRoot ConfigurationRoot { get; set; }
+
+    /// <summary>
+    /// Use SMTP for mailing. If false O365 MS Graph is used. Default: false meaning I365 is used
+    /// </summary>
+    public bool UseSmtp { get; set; }
+
+    /// <summary>
+    /// Current data protection service
+    /// </summary>
+    public IDataProtectionService DataProtectionService { get; set; }
 }

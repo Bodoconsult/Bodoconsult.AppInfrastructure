@@ -3,7 +3,9 @@
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Interfaces;
 using BodoWebMailer.DiContainerProvider;
+using System;
 using System.Runtime.Versioning;
+using BodoWebMailer.Business.Interfaces;
 
 namespace BodoWebMailer;
 
@@ -25,42 +27,32 @@ public class BodoWebMailerAppBuilder: BaseAppBuilder
         var factory = new BodoWebMailerProductionDiContainerServiceProviderPackageFactory(AppGlobals);
         DiContainerServiceProviderPackage = factory.CreateInstance();
     }
-    
-    ///// <summary>
-    ///// Process the configuration from <see cref="IAppStartParameter.ConfigFile"/>
-    ///// </summary>
-    //public override void ProcessConfiguration()
-    //{
-    //    // Load basic config
-    //    base.ProcessConfiguration();
 
-    //    ArgumentNullException.ThrowIfNull(AppStartProvider?.AppConfigurationProvider);
+    /// <summary>
+    /// Process the configuration from <see cref="IAppStartParameter.ConfigFile"/>
+    /// </summary>
+    public override void ProcessConfiguration()
+    {
+        // Load basic config
+        base.ProcessConfiguration();
 
-    //    // Now get the root configuration element
-    //    var root = AppStartProvider.AppConfigurationProvider.Configuration;
+        ArgumentNullException.ThrowIfNull(AppStartProvider?.AppConfigurationProvider);
 
-    //    if (root is null)
-    //    {
-    //        return;
-    //    }
+        // Now get the root configuration element
+        var root = AppStartProvider.AppConfigurationProvider.Configuration;
 
-    //    var section = root.GetSection("CurrentMailAccount");
+        if (root is null)
+        {
+            return;
+        }
 
-    //    // Get your derived IAppGlobals instance here to access added properties
-    //    var ma = new SmtpMailAccount();
+        var section = root.GetSection("BodoWebMailer");
 
-    //    // Now get the requested config elements out of the root config element
-    //    ma.SmtpServer = DefaultAppStartProvider.ReadStringProperty(section, "SmtpServer", string.Empty);
-    //    ma.SmtpAccountName = DefaultAppStartProvider.ReadStringProperty(section, "SmtpAccountName", string.Empty);
-    //    ma.MailAddressSender = DefaultAppStartProvider.ReadStringProperty(section, "MailAddressSender", string.Empty);
-    //    ma.SmtpPassword = DefaultAppStartProvider.ReadStringProperty(section, "SmtpPassword", string.Empty);
-    //    ma.UseSecureConnection = DefaultAppStartProvider.ReadBoolProperty(section, "UseSecureConnection", true);
+        if (AppGlobals is not IBodoWebMailerAppGlobals globals)
+        {
+            throw new ArgumentException("AppGlobals is not IBodoWebMailerAppGlobals");
+        }
 
-    //    if (AppGlobals is not IBodoWebMailerGlobals bodoWebMailerGlobals)
-    //    {
-    //        throw new ArgumentException("AppGlobals is not IBodoWebMailerGlobals");
-    //    }
-
-    //    bodoWebMailerGlobals.CurrentMailAccount = ma;
-    //}
+        globals.UseSmtp = DefaultAppStartProvider.ReadBoolProperty(section, "UseSmtp", globals.UseSmtp);
+    }
 }

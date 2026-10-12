@@ -1,11 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Abstractions.Interfaces;
-using BodoWebMailer.Business.App;
-using System;
-using System.Diagnostics;
 using System.Runtime.Versioning;
-using Bodoconsult.App.Extensions;
 
 namespace BodoWebMailer;
 
@@ -14,88 +9,90 @@ internal class Program
 {
     private static int Main(string[] args)
     {
-        if (args.Length > 0)
-        {
-            switch (args[0])
-            {
-                case "/p": // Ask user for token, encrypt it and copy it to clipboard
-                    ConsoleHelper.EncryptToken();
-                    return 0;
-                default:
-                    break;
-            }
-        }
+        var starter = new BodoWebMailerConsoleStarter(args);
+        return starter.Start();
 
-        Debug.Print("Hello, World!");
 
-        Console.WriteLine("ConsoleApp1 initiation starts...");
+        //if (args.Length > 0)
+        //{
+        //    switch (args[0])
+        //    {
+        //        case "/p": // Ask user for token, encrypt it and copy it to clipboard
+        //            ConsoleHelper.EncryptToken();
+        //            return 0;
+        //        default:
+        //            break;
+        //    }
+        //}
 
-        var globals = Globals.Instance;
-        globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForConsoleApp();
+//        Console.WriteLine("ConsoleApp1 initiation starts...");
 
-        // Set additional app start parameters as required
-        var param = globals.AppStartParameter;
-        param.SoftwareTeam = "Robert Leisner";
+//        var globals = Globals.Instance;
+//        globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForConsoleApp();
 
-        const string performanceToken = "--PERF";
+//        // Set additional app start parameters as required
+//        var param = globals.AppStartParameter;
+//        param.SoftwareTeam = "Robert Leisner";
 
-        if (args.Contains(performanceToken))
-        {
-            param.IsPerformanceLoggingActivated = true;
-        }
+//        const string performanceToken = "--PERF";
 
-        // Now start app buiding process
-        IAppBuilder builder = new BodoWebMailerAppBuilder(globals);
-#if !DEBUG
-        AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
-#endif
+//        if (args.Contains(performanceToken))
+//        {
+//            param.IsPerformanceLoggingActivated = true;
+//        }
 
-        // Load basic app metadata
-        builder.LoadBasicSettings();
+//        // Now start app buiding process
+//        IAppBuilder builder = new BodoWebMailerAppBuilder(globals);
+//#if !DEBUG
+//        AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
+//#endif
 
-        // Process the config file
-        builder.ProcessConfiguration();
+//        // Load basic app metadata
+//        builder.LoadBasicSettings();
 
-        // Now load the globally needed settings
-        builder.LoadGlobalSettings();
+//        // Process the config file
+//        builder.ProcessConfiguration();
 
-        // Write first log entry with default logger
-        ArgumentNullException.ThrowIfNull(globals.Logger);
-        globals.Logger.LogInformation($"{param.AppName} {param.AppVersion} starts...");
-        globals.StatusMessageDelegate = ShowStatus;
+//        // Now load the globally needed settings
+//        builder.LoadGlobalSettings();
 
-        Console.WriteLine("Logging started...");
+//        // Write first log entry with default logger
+//        ArgumentNullException.ThrowIfNull(globals.Logger);
+//        globals.Logger.LogInformation($"{param.AppName} {param.AppVersion} starts...");
+//        globals.StatusMessageDelegate = ShowStatus;
 
-        // App is ready now for doing something
-        Console.WriteLine($"Connection string loaded: {param.DefaultConnectionString}");
+//        Console.WriteLine("Logging started...");
 
-        //Console.WriteLine("");
-        //Console.WriteLine("");
+//        // App is ready now for doing something
+//        Console.WriteLine($"Connection string loaded: {param.DefaultConnectionString}");
 
-        //Console.WriteLine($"App name loaded: {param.AppName}");
-        //Console.WriteLine($"App version loaded: {param.AppVersion}");
-        //Console.WriteLine($"App path loaded: {param.AppPath}");
+//        //Console.WriteLine("");
+//        //Console.WriteLine("");
 
-        //Console.WriteLine("");
-        //Console.WriteLine("");
+//        //Console.WriteLine($"App name loaded: {param.AppName}");
+//        //Console.WriteLine($"App version loaded: {param.AppVersion}");
+//        //Console.WriteLine($"App path loaded: {param.AppPath}");
 
-        //Console.WriteLine($"Logging config: {ObjectHelper.GetObjectPropertiesAsString(Globals.Instance.LoggingConfig)}");
+//        //Console.WriteLine("");
+//        //Console.WriteLine("");
 
-        // Prepare the DI container package
-        builder.LoadDiContainerServiceProviderPackage();
-        builder.RegisterDiServices();
-        builder.FinalizeDiContainerSetup();
+//        //Console.WriteLine($"Logging config: {ObjectHelper.GetObjectPropertiesAsString(Globals.Instance.LoggingConfig)}");
 
-        // Now finally start the app and wait
-        builder.StartApplication();
+//        // Prepare the DI container package
+//        builder.LoadDiContainerServiceProviderPackage();
+//        builder.RegisterDiServices();
+//        builder.FinalizeDiContainerSetup();
 
-        Environment.Exit(0);
-        return 0;
+//        // Now finally start the app and wait
+//        builder.StartApplication();
+
+//        Environment.Exit(0);
+//        return 0;
     }
 
-    internal static void ShowStatus(string message)
-    {
-        Console.WriteLine(message);
-        //Logger.Info(message);
-    }
+    //internal static void ShowStatus(string message)
+    //{
+    //    Console.WriteLine(message);
+    //    //Logger.Info(message);
+    //}
 }

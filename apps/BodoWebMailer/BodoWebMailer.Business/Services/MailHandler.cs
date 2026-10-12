@@ -160,7 +160,6 @@ public sealed class MailHandler : IMailHandler
 
     public void PrepareQueries(MailItem item)
     {
-
         if (string.IsNullOrEmpty(item.Queries))
         {
             return;

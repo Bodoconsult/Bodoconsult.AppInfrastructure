@@ -17,11 +17,10 @@ public class BodoWebMailerAllServicesDiContainerServiceProviderPackage : BaseDiC
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="appGlobals"></param>
+    /// <param name="appGlobals">Current app globals</param>
     /// <param name="statusMessageDelegate"></param>
-    /// <param name="licenseMissingDelegate"></param>
     public BodoWebMailerAllServicesDiContainerServiceProviderPackage(IAppGlobals appGlobals,
-        StatusMessageDelegate statusMessageDelegate, LicenseMissingDelegate licenseMissingDelegate) : base(appGlobals)
+        StatusMessageDelegate statusMessageDelegate) : base(appGlobals)
     {
         ArgumentNullException.ThrowIfNull(appGlobals.Logger);
 
@@ -34,7 +33,7 @@ public class BodoWebMailerAllServicesDiContainerServiceProviderPackage : BaseDiC
         ServiceProviders.Add(provider);
 
         // BodoWebMailer specific services
-        provider = new BodoWebMailerAllServicesContainerServiceProvider(appGlobals.AppStartParameter, licenseMissingDelegate);
+        provider = new BodoWebMailerAllServicesContainerServiceProvider(appGlobals);
         ServiceProviders.Add(provider);
     }
 }

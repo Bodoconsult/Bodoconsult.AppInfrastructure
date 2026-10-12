@@ -19,7 +19,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <summary>
     /// The current app of the app
     /// </summary>
-    protected readonly string? Path;
+    protected readonly string? AppPath;
 
     /// <summary>
     /// The current path in C:\ProgrammData for the data of the app
@@ -38,14 +38,14 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <param name="args">Args the app was started with</param>
     protected BaseConsoleStarter(string appName, string[] args)
     {
-        DataProtectionService = Bodoconsult.App.Windows.DataProtection.DataProtectionService.CreateInstance(appName, DataProtectionScope.LocalMachine);
+        DataProtectionService = DataProtection.DataProtectionService.CreateInstance(appName, DataProtectionScope.LocalMachine);
         Args = args;
 
-        Path = Environment.ProcessPath;
-        ArgumentNullException.ThrowIfNull(Path);
+        AppPath = Environment.ProcessPath;
+        ArgumentNullException.ThrowIfNull(AppPath);
 
-        Path = new FileInfo(Path).DirectoryName;
-        ArgumentNullException.ThrowIfNull(Path);
+        AppPath = new FileInfo(AppPath).DirectoryName;
+        ArgumentNullException.ThrowIfNull(AppPath);
 
         DataPath = global::System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), appName);
 
@@ -56,22 +56,22 @@ public abstract class BaseConsoleStarter : IConsoleStarter
 
         HashFileName = global::System.IO.Path.Combine(DataPath, "data0.dat");
 
-        SmtpMailAccountFileName = global::System.IO.Path.Combine(Path, "data1.dat");
-        SmtpMailAccountImportFileName = global::System.IO.Path.Combine(Path, "smtp.json");
+        SmtpMailAccountFileName = global::System.IO.Path.Combine(AppPath, "data1.dat");
+        SmtpMailAccountImportFileName = global::System.IO.Path.Combine(AppPath, "smtp.json");
 
-        O365MailAccountFileName = global::System.IO.Path.Combine(Path, "data2.dat");
-        O365MailAccountImportFileName = global::System.IO.Path.Combine(Path, "0365.json");
+        O365MailAccountFileName = global::System.IO.Path.Combine(AppPath, "data2.dat");
+        O365MailAccountImportFileName = global::System.IO.Path.Combine(AppPath, "0365.json");
     }
 
     /// <summary>
     /// Current <see cref="Bodoconsult.App.DataProtection.Hashing.Hasher"/> instance for hashing data
     /// </summary>
-    protected readonly Hasher Hasher = new();
+    public Hasher Hasher { get; set; } = new();
 
     /// <summary>
     /// Current data protection service instance to use for protecting secrets
     /// </summary>
-    protected readonly IDataProtectionService DataProtectionService;
+    public IDataProtectionService DataProtectionService { get; set; }
 
     /// <summary>
     /// A delegate for running the main app thread from the starter
@@ -81,7 +81,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <summary>
     /// Command line args
     /// </summary>
-    public string[] Args { get; }
+    public string[]? Args { get; }
 
     /// <summary>
     /// Filename of the SMTP mail account storage file
@@ -141,14 +141,6 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <param name="message">Message to show in the console</param>
     protected static void SetStatus(string message)
     {
-        if (message.EndsWith("\r\n"))
-        {
-            message = message[..^2];
-        }
-        if (message.EndsWith("\r\n"))
-        {
-            message = message[..^2];
-        }
         Console.WriteLine(message);
     }
 

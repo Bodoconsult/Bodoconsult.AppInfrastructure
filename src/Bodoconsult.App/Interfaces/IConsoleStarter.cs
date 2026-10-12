@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.DataProtection.Hashing;
 
 namespace Bodoconsult.App.Interfaces;
 
@@ -15,6 +16,16 @@ public delegate int MainAppRunnerDelegate(IConsoleStarter consoleStarter);
 /// </summary>
 public interface IConsoleStarter
 {
+    /// <summary>
+    /// Current <see cref="Bodoconsult.App.DataProtection.Hashing.Hasher"/> instance for hashing data
+    /// </summary>
+    Hasher Hasher { get; set; }
+
+    /// <summary>
+    /// Current data protection service instance to use for protecting secrets
+    /// </summary>
+    IDataProtectionService DataProtectionService { get; set; }
+
     /// <summary>
     /// A delegate for running the main app thread from the starter
     /// </summary>

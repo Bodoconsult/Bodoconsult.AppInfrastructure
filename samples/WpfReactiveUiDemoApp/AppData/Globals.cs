@@ -69,6 +69,11 @@ public class Globals : IAppGlobals
     public IAppLoggerProxy? Logger { get; set; }
 
     /// <summary>
+    /// Current log data entry factory
+    /// </summary>
+    public ILogDataFactory LogDataFactory { get; set; } = new LogDataFactory();
+
+    /// <summary>
     /// Current dependency injection (DI) container
     /// </summary>
     public DiContainer DiContainer { get; set; } = new();

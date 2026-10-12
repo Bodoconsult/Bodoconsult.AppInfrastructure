@@ -87,8 +87,6 @@ public class O365Mailer: BaseMailer
         //SendMail("robert.leisner@bodoconsult.de", "Test", "Blubb");
         //return false;
 
-        string content;
-
         var message = new Message
         {
             Subject = mailItem.Subject,
@@ -98,14 +96,9 @@ public class O365Mailer: BaseMailer
         var receips = mailItem.To.Split([';']).Select(GetRecipient).ToList();
         message.ToRecipients = receips;
 
-        if (!string.IsNullOrEmpty(mailItem.Logo))
-        {
-            content = AddLogoToContent(mailItem, message, _htmlMailTemplate);
-        }
-        else
-        {
-            content = MailHelper.FormatBody(mailItem.Body, mailItem.Subject, mailItem.SignatureTemplate, string.Empty, _htmlMailTemplate);
-        }
+        var content = !string.IsNullOrEmpty(mailItem.Logo) ? 
+            AddLogoToContent(mailItem, message, _htmlMailTemplate) : 
+            MailHelper.FormatBody(mailItem.Body, mailItem.Subject, mailItem.SignatureTemplate, string.Empty, _htmlMailTemplate);
 
         message.Body = new ItemBody
         {
@@ -151,7 +144,7 @@ public class O365Mailer: BaseMailer
             var attachment = new FileAttachment
             {
                 ContentType = MimeTypeHelper.GetMimeTypeFromFilePath(mailItem.Logo),
-                ContentBytes = System.IO.File.ReadAllBytes(mailItem.Logo),
+                ContentBytes = File.ReadAllBytes(mailItem.Logo),
                 ContentId = "i0",
                 IsInline = true,
                 Name = "Logo"
@@ -210,7 +203,7 @@ public class O365Mailer: BaseMailer
                 {
                     ContentType = MimeTypeHelper.GetMimeTypeFromFilePath(file),
                     ContentId = $"i{i}",
-                    ContentBytes = System.IO.File.ReadAllBytes(file),
+                    ContentBytes = File.ReadAllBytes(file),
                     Name = Path.GetFileName(file)
                 };
 
@@ -278,7 +271,7 @@ public class O365Mailer: BaseMailer
             {
                 ContentType = MimeTypeHelper.GetMimeTypeFromFilePath(file),
                 ContentId = $"i{i}",
-                ContentBytes = System.IO.File.ReadAllBytes(file),
+                ContentBytes = File.ReadAllBytes(file),
                 Name = Path.GetFileName(file)
             };
 
@@ -297,7 +290,7 @@ public class O365Mailer: BaseMailer
             {
                 ContentType = MimeTypeHelper.GetMimeTypeFromFilePath(image.Url),
                 ContentId = image.ContentId,
-                ContentBytes = System.IO.File.ReadAllBytes(image.Url),
+                ContentBytes = File.ReadAllBytes(image.Url),
                 IsInline = true,
                 Name = Path.GetFileName(image.Url)
             };

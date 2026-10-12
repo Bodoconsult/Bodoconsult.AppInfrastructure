@@ -85,7 +85,7 @@ public class JsonHelper
 
         var jsonSerializer = new JsonSerializer
         {
-            Formatting = Newtonsoft.Json.Formatting.Indented,
+            Formatting = Formatting.Indented,
             TypeNameHandling = TypeNameHandling.Objects,
             TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
         };
@@ -93,7 +93,7 @@ public class JsonHelper
         jsonSerializer.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
         using (var jsonWriter = new JsonTextWriter(sw))
         {
-            jsonWriter.Formatting = Newtonsoft.Json.Formatting.Indented;
+            jsonWriter.Formatting = Formatting.Indented;
             jsonWriter.IndentChar = '\t';
             jsonWriter.Indentation = 1;
 
