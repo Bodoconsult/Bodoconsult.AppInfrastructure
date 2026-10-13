@@ -1,4 +1,4 @@
 REM Kopieren
-robocopy %~dp0bin\Release\net10.0-windows\ \\192.168.10.122\software$\BodoFileTransfer\ /s /XF appSettings.json
+robocopy %~dp0bin\Release\net10.0-windows10.0.17763\ \\192.168.10.122\software$\BodoFileTransfer\ /s /XF appSettings.json
 
 pause

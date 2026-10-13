@@ -1,13 +1,17 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Versioning;
+using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
 using Bodoconsult.App.Windows.ConsoleTools;
+using Bodoconsult.App.Windows.System;
 using Bodoconsult.Web.Mail.Helpers;
 using BodoFileTransfer.Business.App;
 using BodoFileTransfer.Business.Helpers;
@@ -18,13 +22,13 @@ namespace BodoFileTransfer;
 /// Console starter for BodoWebMailer
 /// </summary>
 [SupportedOSPlatform("windows10.0.17763")]
-public class BodoWebMailerConsoleStarter : BaseConsoleStarter
+public class BodoFileTransferConsoleStarter : BaseConsoleStarter
 {
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="args">Current command line args</param>
-    public BodoWebMailerConsoleStarter(string[] args) : base("BodoWebMailer", args)
+    public BodoFileTransferConsoleStarter(string[] args) : base("BodoFileTransfer", args)
     {
         MainAppRunnerDelegate = StartInternal;
 
@@ -40,12 +44,37 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
 
         switch (Args[0])
         {
+            case "0":
+                return RunMainTask(consoleStarter);
             case "/p": // Encrypt mail account data in smtp.json or o365.json to use it in settings table in the database 
+            case "--p":
                 EncryptMailAccountData();
+                return 0;
+            case "/c":
+            case "--c":
+                EncryptSingleValue();
                 return 0;
             default:
                 return 0;
         }
+    }
+
+    public void EncryptSingleValue()
+    {
+        var value = ConsoleHelper.AskUserForStringValue("Please insert value to encrypt for usage with BodoFileTransfer:");
+
+        if (string.IsNullOrEmpty(value))
+        {
+            return;
+        }
+
+        var crypted = PasswordHandler.Encrypt(value);
+        
+        Debug.Print(crypted);
+
+        Clipboard.SetText(crypted);
+
+        ConsoleHelper.WaitUntilAnyKeyPressed("Crypted value was copied to clipboard!");
     }
 
     /// <summary>
@@ -77,33 +106,55 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
 
         var crypted = MailHelper.GetEncryptedAccountFromJson(json, useSmtp);
 
-        
+        var newfileName = Path.Combine(AppPath, "mail.txt");
 
-        var newfileName = Path.Combine(AppPath, "mail.json");
+        var s = new StringBuilder();
 
         if (useSmtp)
         {
-            SimpleJsonHelper.SerializeAsFile(newfileName, (SmtpMailAccount)crypted);
+            var x = (SmtpMailAccount)crypted;
+            s.AppendLine($"Server: {x.SmtpServer}");
+            s.AppendLine($"AccountName: {x.SmtpAccountName}");
+            s.AppendLine($"Password: {x.SmtpPassword}");
+            s.AppendLine($"MailAddressSender: {x.MailAddressSender}");
+            s.AppendLine($"Port: {x.SmtpPort}");
+            s.AppendLine($"UseSecureConnection: {x.UseSecureConnection}");
         }
         else
         {
-            SimpleJsonHelper.SerializeAsFile(newfileName, (O365MailAccount)crypted);
+            var x = (O365MailAccount)crypted;
+            s.AppendLine($"Instance: {x.Instance}");
+            s.AppendLine($"Scope: {x.Scope}");
+            s.AppendLine($"Tenant: {x.Tenant}");
+            s.AppendLine($"ClientId: {x.ClientId}");
+            s.AppendLine($"ClientSecret: {x.ClientSecret}");
+            s.AppendLine($"UserName: {x.UserName}");
+            s.AppendLine($"MailAddressSender: {x.MailAddressSender}");
         }
 
+        File.WriteAllText(newfileName, s.ToString());
+
         DeleteFile(fileName);
+
+        ConsoleHelper.WaitUntilAnyKeyPressed("Created encrypted file mail.txt!");
     }
 
+    /// <summary>
+    /// Run the main application mask
+    /// </summary>
+    /// <returns>Error code or 0 in case of successful</returns>
 #pragma warning disable CA1822
     public int RunMainTask(IConsoleStarter consoleStarter)
 #pragma warning restore CA1822
     {
         var globals = Globals.Instance;
-
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForConsoleApp();
 
         // Set additional app start parameters as required
         var param = globals.AppStartParameter;
         param.SoftwareTeam = "Robert Leisner";
+
+        globals.AppStartParameter.Args = Args;
 
         // Now start app buiding process
         IAppBuilder builder = new BodoFileTransferAppBuilder(globals);
@@ -136,6 +187,7 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
         builder.FinalizeDiContainerSetup();
 
         // Now finally start the app and wait
+        // See BodoFileTransferService.StartApplication() for the relevante parts of app start
         builder.StartApplication();
 
         return 0;

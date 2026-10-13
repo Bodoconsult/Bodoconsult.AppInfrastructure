@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BodoFileTransfer": {
+      "commandName": "Project",
+      "commandLineArgs": "/c"
+    }
+  }
+}

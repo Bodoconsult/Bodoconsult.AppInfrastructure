@@ -18,9 +18,7 @@ public class BodoFileTransferAppBuilder : BaseAppBuilder
     /// </summary>
     /// <param name="appGlobals">Global app settings</param>
     public BodoFileTransferAppBuilder(IAppGlobals appGlobals) : base(appGlobals)
-    {
-        AppHelper.LoadPasswordData();
-    }
+    { }
 
     /// <summary>
     /// Load the <see cref="IAppBuilder.DiContainerServiceProviderPackage"/>

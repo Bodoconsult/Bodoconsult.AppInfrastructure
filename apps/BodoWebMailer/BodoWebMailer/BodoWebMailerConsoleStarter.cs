@@ -41,7 +41,10 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
 
         switch (Args[0])
         {
+            case "0":
+                return RunMainTask(consoleStarter);
             case "/p": // Encrypt mail account data in smtp.json or o365.json to use it in settings table in the database 
+            case "--p":
                 EncryptMailAccountData();
                 return 0;
             default:
@@ -92,8 +95,14 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
         }
 
         DeleteFile(fileName);
+
+        ConsoleHelper.WaitUntilAnyKeyPressed("Created encrypted file mail.json!");
     }
 
+    /// <summary>
+    /// Run the main application mask
+    /// </summary>
+    /// <returns>Error code or 0 in case of successful</returns>
 #pragma warning disable CA1822
     public int RunMainTask(IConsoleStarter consoleStarter)
 #pragma warning restore CA1822
