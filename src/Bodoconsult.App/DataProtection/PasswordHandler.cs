@@ -1,4 +1,4 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Security.Cryptography;
 
@@ -9,30 +9,48 @@ namespace Bodoconsult.App.DataProtection;
 /// </summary>
 public static class PasswordHandler
 {
+    private static byte[] _key1 = [];
+    private static byte[] _key2 = [];
+    private static byte[] _key3 = [];
+
+
+    private static byte[] _salt = [];
+
     /// <summary>
     /// Key 1 used for symmetric data encryption 
     /// </summary>
-    public static string Key1 { get; set; } = string.Empty;
+    public static string Key1
+    {
+        get => Convert.ToBase64String(_key1);
+        set => _key1 = Convert.FromBase64String(value);
+    }
 
     /// <summary>
     /// Key 2 used for symmetric data encryption 
     /// </summary>
-    public static string Key2 { get; set; } = string.Empty;
+    public static string Key2
+    {
+        get => Convert.ToBase64String(_key2);
+        set => _key2 = Convert.FromBase64String(value);
+    }
 
     /// <summary>
     /// Key 3 used for symmetric data encryption 
     /// </summary>
-    public static string Key3 { get; set; } = string.Empty;
+    public static string Key3
+    {
+        get => Convert.ToBase64String(_key3);
+        set => _key3 = Convert.FromBase64String(value);
+    }
 
     /// <summary>
-    /// Requested length of the salt
+    /// Salt used for symmetric data encryption 
     /// </summary>
-    public static int SaltLength { get; set; } = 20;
-
-    /// <summary>
-    /// Salt
-    /// </summary>
-    public static byte[] Salt { get; set; } = [0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x63, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76];
+    public static string Salt
+    {
+        get => Convert.ToBase64String(_salt);
+        set => _salt = Convert.FromBase64String(value);
+    }
 
     /// <summary>
     /// Number of iterations
@@ -45,26 +63,18 @@ public static class PasswordHandler
     public static void CreateKeys()
     {
         var aes = Aes.Create();
-        
-        aes.GenerateKey();
-        Key1 = Convert.ToBase64String(aes.Key);
 
         aes.GenerateKey();
-        Key2 = Convert.ToBase64String(aes.Key);
+        _key1 = aes.Key;
 
         aes.GenerateKey();
-        Key3 = Convert.ToBase64String(aes.Key);
+        _key2 = aes.Key;
+
+        aes.GenerateKey();
+        _key3 = aes.Key;
 
         aes.GenerateIV();
-        Salt = aes.IV;
-    }
-
-    /// <summary>
-    /// Create AES salt and save it in <see cref="Salt"/>
-    /// </summary>
-    public static void CreateSalt()
-    {
-
+        _salt = aes.IV;
     }
 
     /// <summary>
@@ -74,15 +84,9 @@ public static class PasswordHandler
     /// <returns>Encrypted string</returns>
     public static string Encrypt(string originalString)
     {
-        if (string.IsNullOrEmpty(originalString))
-        {
-            throw new ArgumentNullException
-                // ReSharper disable NotResolvedInText
-                ("The string which needs to be encrypted can not be null.");
-            // ReSharper restore NotResolvedInText
-        }
-
-        return EncryptInternal(originalString, Key1);
+        return string.IsNullOrEmpty(originalString) ? 
+            throw new ArgumentNullException(nameof(originalString)) : 
+            EncryptInternal(originalString, Key1);
     }
 
     /// <summary>
@@ -92,14 +96,9 @@ public static class PasswordHandler
     /// <returns>Encrypted string</returns>
     public static string Encrypt2(string originalString)
     {
-        if (string.IsNullOrEmpty(originalString))
-        {
-            throw new ArgumentNullException
-                // ReSharper disable NotResolvedInText
-                ("The string which needs to be encrypted can not be null.");
-            // ReSharper restore NotResolvedInText
-        }
-        return EncryptInternal(originalString, Key2);
+        return string.IsNullOrEmpty(originalString) ? 
+            throw new ArgumentNullException(nameof(originalString)) : 
+            EncryptInternal(originalString, Key2);
     }
 
     /// <summary>
@@ -109,14 +108,9 @@ public static class PasswordHandler
     /// <returns>Encrypted string</returns>
     public static string Encrypt3(string originalString)
     {
-        if (string.IsNullOrEmpty(originalString))
-        {
-            throw new ArgumentNullException
-                // ReSharper disable NotResolvedInText
-                ("The string which needs to be encrypted can not be null.");
-            // ReSharper restore NotResolvedInText
-        }
-        return EncryptInternal(originalString, Key3);
+        return string.IsNullOrEmpty(originalString) ? 
+            throw new ArgumentNullException(nameof(originalString)) : 
+            EncryptInternal(originalString, Key3);
     }
 
     /// <summary>
@@ -135,7 +129,7 @@ public static class PasswordHandler
         using (var aesAlg = Aes.Create())
         {
             aesAlg.Key = keyBytes;
-            aesAlg.IV = Salt;
+            aesAlg.IV = _salt;
 
             // Create an encryptor to perform the stream transform.
             var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
@@ -159,8 +153,6 @@ public static class PasswordHandler
         // Return the encrypted bytes from the memory stream.
         return Convert.ToBase64String(encrypted);
     }
-
-
 
     /// <summary>
     /// Decrypt as string
@@ -205,7 +197,7 @@ public static class PasswordHandler
 
         using var aesAlg = Aes.Create();
         aesAlg.Key = keyBytes;
-        aesAlg.IV = Salt;
+        aesAlg.IV = _salt;
 
         // Create a decryptor to perform the stream transform.
         var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
@@ -221,27 +213,26 @@ public static class PasswordHandler
         return plaintext;
     }
 
-    /// <summary>
-    /// Compare two hash values a and b: if a equals b return true else false
-    /// </summary>
-    /// <param name="a">hash value a</param>
-    /// <param name="b">hash value b</param>
-    /// <returns></returns>
-    private static bool SlowEquals(byte[] a, byte[] b)
-    {
-        var diff = (uint)a.Length ^ (uint)b.Length;
-        for (var i = 0; i < a.Length && i < b.Length; i++)
-        {
-            diff |= (uint)(a[i] ^ b[i]);
-        }
-        return diff == 0;
-    }
+    ///// <summary>
+    ///// Compare two hash values a and b: if a equals b return true else false
+    ///// </summary>
+    ///// <param name="a">hash value a</param>
+    ///// <param name="b">hash value b</param>
+    ///// <returns></returns>
+    //private static bool SlowEquals(byte[] a, byte[] b)
+    //{
+    //    var diff = (uint)a.Length ^ (uint)b.Length;
+    //    for (var i = 0; i < a.Length && i < b.Length; i++)
+    //    {
+    //        diff |= (uint)(a[i] ^ b[i]);
+    //    }
+    //    return diff == 0;
+    //}
 
-    private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
-    {
-        var pbkdf2 = Rfc2898DeriveBytes.Pbkdf2(password, salt, iterations, HashAlgorithmName.SHA256, outputBytes);
-        return pbkdf2;
-    }
-
-
+    //private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
+    //{
+    //    var pbkdf2 = Rfc2898DeriveBytes.Pbkdf2(password, salt, iterations, HashAlgorithmName.SHA256, outputBytes);
+    //    return pbkdf2;
+    //}
+    
 }

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using BodoFileTransfer.Business.Interfaces;
 
 namespace BodoFileTransfer.Business.Services;
@@ -10,8 +9,6 @@ namespace BodoFileTransfer.Business.Services;
 /// </summary>
 public class SmtpMailService : BaseMailService
 {
-
-
     /// <summary>
     /// Default ctor
     /// </summary>

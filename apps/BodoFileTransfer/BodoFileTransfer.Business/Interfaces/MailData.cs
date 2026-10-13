@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using System.Collections.Generic;
 using BodoFileTransfer.Business.Model;
 
-namespace BodoFileTransfer.Business.Services;
+namespace BodoFileTransfer.Business.Interfaces;
 
 /// <summary>
 /// Holds mail component data
 /// </summary>
 public class MailData
 {
-
     /// <summary>
     /// Current subject of the mail
     /// </summary>

@@ -1,28 +1,41 @@
 ﻿//// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-//using System;
 //using System.Collections;
 //using System.Globalization;
-//using System.IO;
-//using System.Linq;
 //using System.Security.Cryptography;
 //using System.Text;
 
-//namespace BodoWebMailer.Business.Helpers;
+//namespace Bodoconsult.App.DataProtection;
 
 ///// <summary>
 ///// Encrypts und decrypts passwords for console application start parameters
 ///// </summary>
-//public class PasswordHandler
+//public class PasswordHandlerOld
 //{
-
+//    /// <summary>
+//    /// Key 1 used for symmetric data encryption 
+//    /// </summary>
+//    public static string Key1 { get; set; } = "abc";
 
 //    /// <summary>
-//    /// Keys used for symmetric data encryption 
+//    /// Key 2 used for symmetric data encryption 
 //    /// </summary>
-//    private static readonly byte[] KeyBytes = Encoding.ASCII.GetBytes("Bodo1967");
-//    private static readonly byte[] KeyBytes2 = Encoding.ASCII.GetBytes("1967Bodo");
-//    private static readonly byte[] KeyBytes3 = Encoding.ASCII.GetBytes("19Bodo67");
+//    public static string Key2 { get; set; } = "def";
+
+//    /// <summary>
+//    /// Key 3 used for symmetric data encryption 
+//    /// </summary>
+//    public static string Key3 { get; set; } = "ghi";
+
+//    /// <summary>
+//    /// Salt
+//    /// </summary>
+//    public static byte[] Salt { get; set; } = [0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x63, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76];
+
+//    /// <summary>
+//    /// Number of iterations
+//    /// </summary>
+//    public static int Iterations { get; set; } = 255;
 
 //    /// <summary>
 //    /// Encrypt as string with 
@@ -38,19 +51,32 @@
 //                ("The string which needs to be encrypted can not be null.");
 //            // ReSharper restore NotResolvedInText
 //        }
-//        var cryptoProvider = DES.Create();
-//        var memoryStream = new MemoryStream();
-//        var cryptoStream = new CryptoStream(memoryStream,
-//            cryptoProvider.CreateEncryptor(KeyBytes, KeyBytes), CryptoStreamMode.Write);
-//        var writer = new StreamWriter(cryptoStream);
-//        writer.Write(originalString);
-//        writer.Flush();
-//        cryptoStream.FlushFinalBlock();
-//        writer.Flush();
-//        return Convert.ToBase64String(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+
+//        return EncryptInternal(originalString, Key1);
 //    }
 
+//    /// <summary>
+//    /// Encrypt as string with 
+//    /// </summary>
+//    /// <param name="originalString">Original string</param>
+//    /// <param name="key">Key to use for encryption</param>
+//    /// <returns>Encrypted string</returns>
+//    private static string EncryptInternal(string originalString, string key)
+//    {
+//        var clearBytes = Encoding.Unicode.GetBytes(originalString);
 
+//        using var encryptor = Aes.Create();
+//        var pdb = new Rfc2898DeriveBytes(key, Salt, Iterations, HashAlgorithmName.SHA256);
+//        encryptor.Key = pdb.GetBytes(32);
+//        encryptor.IV = pdb.GetBytes(16);
+//        using var ms = new MemoryStream();
+//        using (var cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+//        {
+//            cs.Write(clearBytes, 0, clearBytes.Length);
+//            cs.Close();
+//        }
+//        return Convert.ToBase64String(ms.ToArray());
+//    }
 
 //    /// <summary>
 //    /// Encrypt as string with 
@@ -66,18 +92,8 @@
 //                ("The string which needs to be encrypted can not be null.");
 //            // ReSharper restore NotResolvedInText
 //        }
-//        var cryptoProvider = DES.Create();
-//        var memoryStream = new MemoryStream();
-//        var cryptoStream = new CryptoStream(memoryStream,
-//            cryptoProvider.CreateEncryptor(KeyBytes2, KeyBytes2), CryptoStreamMode.Write);
-//        var writer = new StreamWriter(cryptoStream);
-//        writer.Write(originalString);
-//        writer.Flush();
-//        cryptoStream.FlushFinalBlock();
-//        writer.Flush();
-//        return Convert.ToBase64String(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+//        return EncryptInternal(originalString, Key2);
 //    }
-
 
 //    /// <summary>
 //    /// Encrypt as string with 
@@ -93,81 +109,63 @@
 //                ("The string which needs to be encrypted can not be null.");
 //            // ReSharper restore NotResolvedInText
 //        }
-//        var cryptoProvider = DES.Create();
-//        var memoryStream = new MemoryStream();
-//        var cryptoStream = new CryptoStream(memoryStream,
-//            cryptoProvider.CreateEncryptor(KeyBytes3, KeyBytes3), CryptoStreamMode.Write);
-//        var writer = new StreamWriter(cryptoStream);
-//        writer.Write(originalString);
-//        writer.Flush();
-//        cryptoStream.FlushFinalBlock();
-//        writer.Flush();
-//        return Convert.ToBase64String(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+//        return EncryptInternal(originalString, Key3);
 //    }
-
-
 
 //    /// <summary>
 //    /// Decrypt as string
 //    /// </summary>
 //    /// <param name="cryptedString">Crypted string</param>
 //    /// <returns>Original string</returns>
-//    public static string Decrypt(string cryptedString)
+//    public static string? Decrypt(string cryptedString)
 //    {
-//        if (string.IsNullOrEmpty(cryptedString))
-//        {
-//            return null;
-//        }
-//        var cryptoProvider = DES.Create();
-//        var memoryStream = new MemoryStream
-//            (Convert.FromBase64String(cryptedString));
-//        var cryptoStream = new CryptoStream(memoryStream,
-//            cryptoProvider.CreateDecryptor(KeyBytes, KeyBytes), CryptoStreamMode.Read);
-//        var reader = new StreamReader(cryptoStream);
-//        return reader.ReadToEnd();
+//        return string.IsNullOrEmpty(cryptedString) ? null : DecryptInternal(cryptedString, Key1);
 //    }
-
-
 
 //    /// <summary>
 //    /// Decrypt as string
 //    /// </summary>
 //    /// <param name="cryptedString">Crypted string</param>
 //    /// <returns>Original string</returns>
-//    public static string Decrypt2(string cryptedString)
+//    public static string? Decrypt2(string cryptedString)
 //    {
-//        if (string.IsNullOrEmpty(cryptedString))
-//        {
-//            return null;
-//        }
-//        var cryptoProvider = DES.Create();
-//        var memoryStream = new MemoryStream
-//            (Convert.FromBase64String(cryptedString));
-//        var cryptoStream = new CryptoStream(memoryStream,
-//            cryptoProvider.CreateDecryptor(KeyBytes2, KeyBytes2), CryptoStreamMode.Read);
-//        var reader = new StreamReader(cryptoStream);
-//        return reader.ReadToEnd();
+//        return string.IsNullOrEmpty(cryptedString) ? null : DecryptInternal(cryptedString, Key2);
 //    }
-
 
 //    /// <summary>
 //    /// Decrypt as string
 //    /// </summary>
 //    /// <param name="cryptedString">Crypted string</param>
 //    /// <returns>Original string</returns>
-//    public static string Decrypt3(string cryptedString)
+//    public static string? Decrypt3(string cryptedString)
 //    {
-//        if (string.IsNullOrEmpty(cryptedString))
+//        return string.IsNullOrEmpty(cryptedString) ? null : DecryptInternal(cryptedString, Key3);
+//    }
+
+//    /// <summary>
+//    /// Decrypt as string
+//    /// </summary>
+//    /// <param name="cryptedString">Crypted string</param>
+//    /// <param name="key">Key to use for decryption</param>
+//    /// <returns>Original string</returns>
+//    private static string DecryptInternal(string cryptedString, string key)
+//    {
+//        var cipherBytes = Convert.FromBase64String(cryptedString.Replace(" ", "+"));
+
+//        using var encryptor = Aes.Create();
+
+//        var pdb = new Rfc2898DeriveBytes(key, Salt, Iterations, HashAlgorithmName.SHA256);
+//        encryptor.Key = pdb.GetBytes(32);
+//        encryptor.IV = pdb.GetBytes(16);
+//        using var ms = new MemoryStream();
+//        using (var cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
 //        {
-//            return null;
+//            cs.Write(cipherBytes, 0, cipherBytes.Length);
+//            cs.Close();
 //        }
-//        var cryptoProvider = DES.Create();
-//        var memoryStream = new MemoryStream
-//            (Convert.FromBase64String(cryptedString));
-//        var cryptoStream = new CryptoStream(memoryStream,
-//            cryptoProvider.CreateDecryptor(KeyBytes3, KeyBytes3), CryptoStreamMode.Read);
-//        var reader = new StreamReader(cryptoStream);
-//        return reader.ReadToEnd();
+//        cryptedString = Encoding.Unicode.GetString(ms.ToArray());
+
+//        return cryptedString;
 //    }
 
 //    /// <summary>
@@ -180,15 +178,18 @@
 //    {
 //        var diff = (uint)a.Length ^ (uint)b.Length;
 //        for (var i = 0; i < a.Length && i < b.Length; i++)
+//        {
 //            diff |= (uint)(a[i] ^ b[i]);
+//        }
 //        return diff == 0;
 //    }
 
 //    private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
 //    {
-//        var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.MD5);
+//        var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.SHA256);
 //        return pbkdf2.GetBytes(outputBytes);
 //    }
+
 //    /// <summary>
 //    /// 
 //    /// </summary>
@@ -199,7 +200,6 @@
 //    /// <returns>Base64 encoded string</returns>
 //    public static string CreateHash(string value, string salt, int hashBytes, int pbkdf2Iterations)
 //    {
-
 //        var saltBytes = Convert.FromBase64String(salt);
 
 //        // Hash the value and encode the parameters
@@ -216,11 +216,12 @@
 //    public static string CreateSalt(int saltBytes)
 //    {
 //        // Generate a random salt
-//        var salt = RandomNumberGenerator.GetBytes(saltBytes);
+//        var salt = new byte[saltBytes];
+
+//        var rng = RandomNumberGenerator.Create();
+//        rng.GetBytes(salt);
 //        return Convert.ToBase64String(salt);
 //    }
-
-
 
 //    /// <summary>
 //    /// Hashes a value and compares with another hashed value
@@ -246,7 +247,6 @@
 //        }
 //    }
 
-
 //    /// <summary>
 //    /// Read a password from console
 //    /// </summary>
@@ -259,7 +259,10 @@
 //        {
 //            if (cki.Key == ConsoleKey.Backspace)
 //            {
-//                if (passbits.Count <= 0) continue;
+//                if (passbits.Count <= 0)
+//                {
+//                    continue;
+//                }
 //                Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
 //                Console.Write(" ");
 //                Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);

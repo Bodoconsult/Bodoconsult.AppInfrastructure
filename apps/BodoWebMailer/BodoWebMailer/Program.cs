@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Runtime.Versioning;
+using Bodoconsult.App.DataProtection;
 
 namespace BodoWebMailer;
 
@@ -9,7 +10,8 @@ internal class Program
 {
     private static int Main(string[] args)
     {
-        var starter = new BodoWebMailerConsoleStarter(args);
+
+    var starter = new BodoWebMailerConsoleStarter(args);
         return starter.Start();
 
 

@@ -19,7 +19,7 @@ namespace BodoFileTransfer.Test.Helper;
 
 internal class TestHelper
 {
-    private static PwdKeys pwdKeys;
+    //private static PwdKeys pwdKeys;
 
     public static readonly string SecretsPath = "c:\\Daten\\Projekte\\_work\\Data\\";
 
@@ -190,49 +190,7 @@ internal class TestHelper
         };
     }
 
-    public static string GetStringFromArray(byte[] ba)
-    {
-        var value = "";
-        foreach (var b in ba)
-        {
-            if (b <= 33 || b >= 127)
-            {
-                value += $"[{b:X2}]";
-            }
-            else
-            {
-                value += Convert.ToChar(b);
-            }
-        }
-        return value;
-    }
-
-    /// <summary>
-    /// Get a string from a byte array in C# style (for copying it to unit tests)
-    /// </summary>
-    /// <param name="data">Byte array</param>
-    /// <returns>Byte array as string</returns>
-    public static string GetStringFromArrayCsharpStyle(byte[] data)
-    {
-
-        var result = new StringBuilder();
-
-        result.AppendLine(GetStringFromArray(data));
-
-        result.Append("{ ");
-
-        foreach (var b in data)
-        {
-            result.Append($"0x{b:x}, ");
-        }
-
-        var s = result.ToString();
-
-        return s.EndsWith(", ", StringComparison.OrdinalIgnoreCase) ?
-            $"{s.Substring(0, s.Length - 2)} }}" :
-            $"{s} }}";
-    }
-
+    
     public static O365SenderAccount GetTestO365Account()
     {
         //Debug.Print(PasswordHandler.Key1);
@@ -245,12 +203,12 @@ internal class TestHelper
 
         var o365 = new O365SenderAccount
         {
-            Tenant = PasswordHandler.Decrypt(account.Tenant),
-            Instance = PasswordHandler.Decrypt(account.Instance),
-            ClientId = PasswordHandler.Decrypt(account.ClientId),
-            ClientSecret = PasswordHandler.Decrypt(account.ClientSecret),
-            Scope = PasswordHandler.Decrypt(account.Scope),
-            UserName = PasswordHandler.Decrypt(account.UserName)
+            Tenant = PasswordHandler.Decrypt(account.Tenant ?? string.Empty),
+            Instance = PasswordHandler.Decrypt(account.Instance ?? string.Empty),
+            ClientId = PasswordHandler.Decrypt(account.ClientId ?? string.Empty),
+            ClientSecret = PasswordHandler.Decrypt(account.ClientSecret ?? string.Empty),
+            Scope = PasswordHandler.Decrypt(account.Scope ?? string.Empty),
+            UserName = PasswordHandler.Decrypt(account.UserName ?? string.Empty)
         };
 
         return o365;

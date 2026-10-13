@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reflection;
 using Bodoconsult.App.Abstractions.Helpers;
+using System.Reflection;
 
 namespace Bodoconsult.App.Test.HelperTests;
 

@@ -35,7 +35,8 @@ internal class SimpleJsonHelperTests
         // Arrange 
         var data = new O365MailAccount
         {
-            MailAddressSender = "robert.leisner@bodoconsult.de"
+            MailAddressSender = "robert.leisner@bodoconsult.de",
+            Tenant = "Tenant"
         };
 
         var path = Path.Combine(Path.GetTempPath(), "test.json");
@@ -51,5 +52,6 @@ internal class SimpleJsonHelperTests
         // Assert
         Assert.That(data2, Is.Not.Null);
         Assert.That(data2.MailAddressSender, Is.EqualTo(data.MailAddressSender));
+        Assert.That(data2.Tenant, Is.EqualTo(data.Tenant));
     }
 }

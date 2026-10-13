@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using Bodoconsult.Web.Mail.Interfaces;
 using Bodoconsult.Web.Mail.Models;
+using Bodoconsult.Web.Mail.Helpers;
 
 namespace BodoWebMailer.Business.Services;
 
@@ -22,6 +23,8 @@ public sealed class MailHandler : IMailHandler
     private readonly IMailer _mailer;
     private readonly IMailStorageService _service;
     private readonly List<string> _tempFiles = [];
+
+    private readonly IBodoWebMailerAppGlobals _appGlobals;
 
     /// <summary>
     /// Delegate for handling status messages for console
@@ -39,15 +42,22 @@ public sealed class MailHandler : IMailHandler
     /// <param name="service">Mail provider service</param>
     /// <param name="mailer">Mailer</param>
     /// <param name="logger">Current app logger</param>
-    /// <param name="globals">Current app globals</param>
-    public MailHandler(IMailStorageService service, IMailer mailer, IAppLoggerProxy logger, IAppGlobals globals)
+    /// <param name="appGlobals">Current app globals</param>
+    public MailHandler(IMailStorageService service, IMailer mailer, IAppLoggerProxy logger, IAppGlobals appGlobals)
     {
         _service = service;
         _mailer = mailer;
         _logger = logger;
-        StatusChanged = globals.StatusMessageDelegate;
+        StatusChanged = appGlobals.StatusMessageDelegate;
 
-        AdminMailAddress = globals.AppStartParameter.ErrorMailAddress;
+        AdminMailAddress = appGlobals.AppStartParameter.ErrorMailAddress;
+
+        if (appGlobals is not IBodoWebMailerAppGlobals globals)
+        {
+            throw new ArgumentException("appGlobals is not IBodoWebMailerAppGlobals");
+        }
+
+        _appGlobals = globals;
     }
 
     /// <summary>
@@ -58,7 +68,10 @@ public sealed class MailHandler : IMailHandler
         Status("Open database...");
 
         var json = _service.GetMailAccontData();
-        _mailer.LoadMailAccount(json);
+
+        var account = MailHelper.GetDecryptedAccountFromJson(json, _appGlobals.UseSmtp);
+
+        _mailer.LoadMailAccount(account);
         Status("Mail config loaded...");
 
 

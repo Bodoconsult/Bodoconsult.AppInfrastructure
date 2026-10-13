@@ -20,7 +20,7 @@ public class O365SenderAccount: O365MailAccount
     public int NumberOfAttachments { get; set; } = 50;
 
     /// <summary>
-    /// Thetotal size of ll attachments in MB
+    /// The total size of all attachments in MB
     /// </summary>
     public int SizeOfAttachments { get; set; } = 20;
 

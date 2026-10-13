@@ -53,12 +53,6 @@ public interface IMailer : IDisposable
     void SendMails(MassMailItem massMailItem);
 
     /// <summary>
-    /// Load mail account data from a JSON string
-    /// </summary>
-    /// <param name="json">JSON string with fail account data</param>
-    void LoadMailAccount(string json);
-
-    /// <summary>
     /// Load mail account
     /// </summary>
     /// <param name="mailAccount">Mail account instance</param>

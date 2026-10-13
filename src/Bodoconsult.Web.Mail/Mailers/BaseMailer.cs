@@ -86,15 +86,6 @@ public abstract class BaseMailer: IMailer
     }
 
     /// <summary>
-    /// Load mail account data from a JSON string with encrypted values
-    /// </summary>
-    /// <param name="json">JSON string with mail account data</param>
-    public virtual void LoadMailAccount(string json)
-    {
-        throw new NotSupportedException("Override in derived classes");
-    }
-
-    /// <summary>
     /// Load mail account
     /// </summary>
     /// <param name="mailAccount">Mail account instance</param>

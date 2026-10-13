@@ -1,11 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System;
-using System.Runtime.Versioning;
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Interfaces;
+using BodoFileTransfer.Business.Helpers;
 using BodoFileTransfer.Business.Interfaces;
 using BodoFileTransfer.DiContainerProvider;
+using System;
+using System.Runtime.Versioning;
 
 namespace BodoFileTransfer;
 
@@ -17,7 +18,9 @@ public class BodoFileTransferAppBuilder : BaseAppBuilder
     /// </summary>
     /// <param name="appGlobals">Global app settings</param>
     public BodoFileTransferAppBuilder(IAppGlobals appGlobals) : base(appGlobals)
-    { }
+    {
+        AppHelper.LoadPasswordData();
+    }
 
     /// <summary>
     /// Load the <see cref="IAppBuilder.DiContainerServiceProviderPackage"/>

@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using BodoFileTransfer.Business.Interfaces;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using System.Collections.Generic;
 using BodoFileTransfer.Business.Model;
 
-namespace BodoFileTransfer.Business.Services;
+namespace BodoFileTransfer.Business.Interfaces;
 
 /// <summary>
 /// Interface for SMTP mail of document files to email receiver
 /// </summary>
 public interface ISmtpMailService
 {
-
     /// <summary>
     /// The maximum number of attachments to be added to the email
     /// </summary>
@@ -20,38 +20,30 @@ public interface ISmtpMailService
     /// </summary>
     int SizeOfAttachments { get; set; }
 
-
     /// <summary>
     /// Current account handler
     /// </summary>
     IAccountHandler AccountHandler { get; }
-
 
     /// <summary>
     /// Current document files to send
     /// </summary>
     IList<DocumentFile> DocumentFiles { get;  }
 
-
-
     /// <summary>
     /// Get all document files to send
     /// </summary>
     void GetDocumentFiles();
-
-
 
     /// <summary>
     /// Create all mails for an account
     /// </summary>
     void CreateMails();
 
-
     /// <summary>
     /// Create the subject for the mail
     /// </summary>
     void CreateSubject();
-
 
     /// <summary>
     /// Send mails to receivers
@@ -70,7 +62,6 @@ public interface ISmtpMailService
 
     void SendMail(string mailAddress, string subject, string body, string attachments, bool zip = false, string zipPassword = null);
 
-
     /// <summary>
     /// Mail subject
     /// </summary>
@@ -80,6 +71,4 @@ public interface ISmtpMailService
     /// Current mails to send
     /// </summary>
     IList<MailData> Mails { get; }
-
-
 }

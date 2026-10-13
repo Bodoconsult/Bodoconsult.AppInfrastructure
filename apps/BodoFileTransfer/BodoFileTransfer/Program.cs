@@ -14,6 +14,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        
+
         var globals = Globals.Instance;
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForConsoleApp();
 

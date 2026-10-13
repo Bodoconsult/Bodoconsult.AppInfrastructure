@@ -707,7 +707,6 @@ public class DataHandler : IDataHandler
     /// <returns>List with all O365 accounts used to sent mails</returns>
     public IList<O365SenderAccount> GetAllO365SenderAccounts()
     {
-
         if (_allO365SenderAccounts != null)
         {
             return _allO365SenderAccounts;
@@ -718,16 +717,15 @@ public class DataHandler : IDataHandler
         var dt = _db.GetDataTable("EXEC dbo.spO365MailSender_GetAllAccounts");
         foreach (DataRow r in dt.Rows)
         {
-
             var a = new O365SenderAccount
             {
                 Id = Convert.ToInt32(r["OS_ID"].ToString()),
-                Instance = PasswordHandler.Decrypt(r["OS_Instance"].ToString()),
-                Tenant = PasswordHandler.Decrypt(r["OS_Tenant"].ToString()),
-                ClientId = PasswordHandler.Decrypt(r["OS_ClientId"].ToString()),
-                ClientSecret = PasswordHandler.Decrypt(r["OS_ClientSecret"].ToString()),
-                Scope = PasswordHandler.Decrypt(r["OS_Scope"].ToString()),
-                UserName = PasswordHandler.Decrypt(r["OS_UserName"].ToString()),
+                Instance = PasswordHandler.Decrypt(r["OS_Instance"].ToString() ?? string.Empty),
+                Tenant = PasswordHandler.Decrypt(r["OS_Tenant"].ToString() ?? string.Empty),
+                ClientId = PasswordHandler.Decrypt(r["OS_ClientId"].ToString() ?? string.Empty),
+                ClientSecret = PasswordHandler.Decrypt(r["OS_ClientSecret"].ToString() ?? string.Empty),
+                Scope = PasswordHandler.Decrypt(r["OS_Scope"].ToString() ?? string.Empty),
+                UserName = PasswordHandler.Decrypt(r["OS_UserName"].ToString() ?? string.Empty),
                 Name = r["OS_Name"].ToString(),
                 SizeOfAttachments = Convert.ToInt32(r["OS_SizeOfAttachments"].ToString()),
                 NumberOfAttachments = Convert.ToInt32(r["OS_NumberOfAttachments"].ToString())

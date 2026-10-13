@@ -291,17 +291,6 @@ public sealed class SmtpMailer : BaseMailer
     }
 
     /// <summary>
-    /// Load mail account data from a JSON string
-    /// </summary>
-    /// <param name="json">JSON string with fail account data</param>
-    public override void LoadMailAccount(string json)
-    {
-        var ad = JsonHelper.LoadJsonFromString<SmtpMailAccount>(json);
-        CurrentMailAccount = ad;
-        _currentMailAccount = ad;
-    }
-
-    /// <summary>
     /// Load mail account
     /// </summary>
     /// <param name="mailAccount">Mail account instance</param>

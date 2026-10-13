@@ -11,10 +11,15 @@ namespace BodoWebMailer.Test;
 [TestFixture]
 public class PasswordHandlerTests
 {
+    //public PasswordHandlerTests()
+    //{
+    //    DataHelper.LoadPasswordData();
+    //}
+
     [Test]
     public void Decrypt_ValidPassword_PasswordDecrypted()
     {
-        const string password = "rechnung@bodoconsult.de";
+        const string password = "blubb";
 
         var encryptedPassword = PasswordHandler.Encrypt(password);
 

@@ -40,7 +40,7 @@ public class BasicAppServicesConfig1ContainerServiceProvider : IDiContainerServi
 
         var fi = new FileInfo(_appGlobals.AppStartParameter.AppExe);
 
-        _benchmarkFileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"{fi.Name}_Benchmark.csv");
+        _benchmarkFileName = Path.Combine(_appGlobals.AppStartParameter.DataPath, $"{fi.Name.Replace(fi.Extension, string.Empty, StringComparison.OrdinalIgnoreCase)}_Benchmark.csv");
     }
 
     /// <summary>

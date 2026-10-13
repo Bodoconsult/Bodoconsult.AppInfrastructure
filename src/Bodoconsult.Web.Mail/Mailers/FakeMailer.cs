@@ -65,15 +65,6 @@ public sealed class FakeMailer : BaseMailer
     }
 
     /// <summary>
-    /// Load mail account data from a JSON string with encrypted values
-    /// </summary>
-    /// <param name="json">JSON string with mail account data</param>
-    public override void LoadMailAccount(string json)
-    {
-        // Do nothing
-    }
-
-    /// <summary>
     /// Load mail account
     /// </summary>
     /// <param name="mailAccount">Mail account instance</param>

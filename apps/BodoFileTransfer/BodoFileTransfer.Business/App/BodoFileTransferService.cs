@@ -9,7 +9,6 @@ using BodoFileTransfer.Business.Interfaces;
 using System;
 using System.Diagnostics;
 using System.Threading;
-using Bodoconsult.App.DataProtection;
 
 namespace BodoFileTransfer.Business.App;
 
@@ -72,7 +71,6 @@ public class BodoFileTransferService : IApplicationService
         _isStarting = false;
 
         // Do start your workload here
-        BasicConfig();
         Start();
 
         // Stop app now
@@ -83,14 +81,6 @@ public class BodoFileTransferService : IApplicationService
 
         // Fire app stop now if workload is done
         AsyncHelper.FireAndForget(RequestApplicationStopDelegate.Invoke);
-    }
-
-    private static void BasicConfig()
-    {
-        PasswordHandler.Key1 = "Mail2020";
-        PasswordHandler.Key2 = "2020Mail";
-        PasswordHandler.Key3 = "20Mail20";
-        PasswordHandler.Salt = [0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76];
     }
 
     private void Start()

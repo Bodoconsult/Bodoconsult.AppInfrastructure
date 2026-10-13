@@ -225,6 +225,26 @@ public class DefaultAppStartProvider : IAppStartProvider
         AppGlobals.Logger = DefaultAppLoggerProvider.DefaultLogger;
         AppGlobals.LoggingConfig = DefaultAppLoggerProvider.LoggingConfig;
         AppGlobals.AppStartParameter.DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), AppGlobals.AppStartParameter.AppFolderName ?? "MyApp");
+
+        CheckFolder(AppGlobals.AppStartParameter.DataPath);
+        
         AppGlobals.AppStartParameter.LogfilePath = AppGlobals.AppStartParameter.DataPath;
+    }
+
+    private static void CheckFolder(string path)
+    {
+        if (Directory.Exists(path))
+        {
+            return;
+        }
+
+        try
+        {
+            Directory.CreateDirectory(path);
+        }
+        catch //(Exception e)
+        {
+            // Do nothing
+        }
     }
 }

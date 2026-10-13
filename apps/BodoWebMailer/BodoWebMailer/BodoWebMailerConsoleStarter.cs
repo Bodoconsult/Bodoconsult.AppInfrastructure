@@ -9,6 +9,8 @@ using System.IO;
 using System.Runtime.Versioning;
 using Bodoconsult.App.Extensions;
 using Bodoconsult.App.Helpers;
+using Bodoconsult.Web.Mail.Helpers;
+using BodoWebMailer.Business.Helpers;
 using BodoWebMailer.Business.Interfaces;
 
 namespace BodoWebMailer;
@@ -26,6 +28,8 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
     public BodoWebMailerConsoleStarter(string[] args) : base("BodoWebMailer", args)
     {
         MainAppRunnerDelegate = StartInternal;
+
+        AppHelper.LoadPasswordData();
     }
 
     private int StartInternal(IConsoleStarter consoleStarter)
@@ -55,6 +59,8 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
 
         var fileName = Path.Combine(AppPath, "o365.json");
 
+        var useSmtp = false;
+
         if (!File.Exists(fileName))
         {
             fileName = Path.Combine(AppPath, "smtp.json");
@@ -62,15 +68,30 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
             {
                 Console.WriteLine("No file to encrypt found.");
                 ConsoleHelper.WaitUntilAnyKeyPressed();
+                return;
             }
+
+            useSmtp = true;
         }
 
         var json = File.ReadAllText(fileName);
 
-        var crypted = DataProtectionService.Protect("MailAccount", json);
+        var crypted = MailHelper.GetEncryptedAccountFromJson(json, useSmtp);
+
+        
 
         var newfileName = Path.Combine(AppPath, "mail.json");
-        File.WriteAllText(newfileName , crypted);
+
+        if (useSmtp)
+        {
+            SimpleJsonHelper.SerializeAsFile(newfileName, (SmtpMailAccount)crypted);
+        }
+        else
+        {
+            SimpleJsonHelper.SerializeAsFile(newfileName, (O365MailAccount)crypted);
+        }
+
+        DeleteFile(fileName);
     }
 
 #pragma warning disable CA1822

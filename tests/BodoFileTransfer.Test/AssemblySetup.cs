@@ -4,7 +4,6 @@ using Bodoconsult.App.Extensions;
 using BodoFileTransfer.Test.App;
 using NUnit.Framework;
 using System;
-using Bodoconsult.App.DataProtection;
 
 namespace BodoFileTransfer.Test;
 
@@ -20,11 +19,6 @@ public static class AssemblySetup
     [OneTimeSetUp]
     public static void AssemblyStartUp()
     {
-        PasswordHandler.Key1 = "Mail2020";
-        PasswordHandler.Key2 = "2020Mail";
-        PasswordHandler.Key3 = "20Mail20";
-        PasswordHandler.Salt = [0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76];
-
         var globals = Globals.Instance;
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
 

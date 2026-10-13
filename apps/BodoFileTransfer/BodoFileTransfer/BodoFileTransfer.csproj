@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net10.0-windows</TargetFramework>
+		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Deterministic>false</Deterministic>
 		<AssemblyName>BodoFileTransfer</AssemblyName>
@@ -28,6 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
 	  <ProjectReference Include="..\BodoFileTransfer.Business\BodoFileTransfer.Business.csproj" />
 	</ItemGroup>
 

@@ -2,71 +2,61 @@
 
 using System.Diagnostics;
 using Bodoconsult.App.DataProtection;
+using BodoFileTransfer.Business.Helpers;
 using NUnit.Framework;
 
 namespace BodoFileTransfer.Test;
 
+[TestFixture]
 public class PasswordHandlerTests
 {
-    [Test]
-    public void TestEncrypt()
+    public PasswordHandlerTests()
     {
-        // Arrange 
-        var s = "blubb";
-
-        // Act  
-        var result1 = PasswordHandler.Encrypt(s);
-
-        // Assert
-        Assert.That(result1, Is.Not.Null);
-        Assert.That(s, Is.Not.EqualTo( result1));
-
+        AppHelper.LoadPasswordData();
     }
 
-
     [Test]
-    public void TestDecrypt()
+    public void Decrypt_ValidPassword_PasswordDecrypted()
     {
-        // Arrange 
-        var s = "robert.leisner@bodoconsult.de";
+        const string password = "blubb";
 
-        // Act  
-        var result1 = PasswordHandler.Encrypt(s);
+        var encryptedPassword = PasswordHandler.Encrypt(password);
 
-        // Assert
-        Assert.That(result1, Is.Not.Null);
-        Assert.That(s, Is.EqualTo( result1));
+        Debug.Print(encryptedPassword);
 
-        // Act
-        var result2 = PasswordHandler.Decrypt(result1);
+        var decryptedPassword = PasswordHandler.Decrypt(encryptedPassword);
 
-        Assert.That(result2, Is.EqualTo(s));
-
+        Assert.That(!string.IsNullOrEmpty(encryptedPassword));
+        Assert.That(password == decryptedPassword);
     }
 
-
-    [Explicit]
     [Test]
-    public void Test1()
+    public void Decrypt2_ValidPassword_PasswordDecrypted()
     {
+        const string password = "Blubb";
 
-        var s = "4b322d2f-23f9-46f2-b96f-449cb994bce7";
+        var encryptedPassword = PasswordHandler.Encrypt2(password);
 
-        s = PasswordHandler.Encrypt(s);
+        Debug.Print(encryptedPassword);
 
-        Assert.That(string.IsNullOrEmpty(s), Is.False);
+        var decryptedPassword = PasswordHandler.Decrypt2(encryptedPassword);
 
-        Debug.Print(s);
+        Assert.That(!string.IsNullOrEmpty(encryptedPassword));
+        Assert.That(password == decryptedPassword);
+    }
 
-        //var s = new AppSettings
-        //{
-        //    ConnectionString =
-        //        "Data Source=192.168.10.125;Initial Catalog=BodoFileTransfer;Integrated Security=SSPI;",
-        //    ErrorMailer = "test@bodoconsult.de",
-        //};
+    [Test]
+    public void Decrypt3_ValidPassword_PasswordDecrypted()
+    {
+        const string password = "Blubb";
 
-        //JsonHelper.SaveAsFile(@"D:\temp\appSettings.json", s);
+        var encryptedPassword = PasswordHandler.Encrypt3(password);
 
-        //Assert.That(true);
+        Debug.Print(encryptedPassword);
+
+        var decryptedPassword = PasswordHandler.Decrypt3(encryptedPassword);
+
+        Assert.That(!string.IsNullOrEmpty(encryptedPassword));
+        Assert.That(password == decryptedPassword);
     }
 }

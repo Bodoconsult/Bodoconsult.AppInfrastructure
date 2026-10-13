@@ -50,7 +50,6 @@ public static class DataHelper
         return doc;
     }
 
-
     /// <summary>
     /// Map a data row to a TraceEntry entity
     /// </summary>

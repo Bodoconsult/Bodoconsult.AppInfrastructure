@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Bodoconsult.App.DataProtection;
 using Attachment = Microsoft.Graph.Models.Attachment;
 
 namespace Bodoconsult.Web.Mail.Mailers;
@@ -248,7 +247,6 @@ public class O365Mailer: BaseMailer
                 }
             };
 
-
             // Add inline images
             AddImages(massMailItem.Images, msg);
 
@@ -327,28 +325,6 @@ public class O365Mailer: BaseMailer
 
         // Send the mail
         SendMail(msg);
-    }
-
-    /// <summary>
-    /// Load mail account data from a JSON string with encrypted values
-    /// </summary>
-    /// <param name="json">JSON string with mail account data</param>
-    public override void LoadMailAccount(string json)
-    {
-        var ad = JsonHelper.LoadJsonFromString<O365MailAccount>(json);
-
-        var ma = new O365MailAccount
-        {
-            UserName = PasswordHandler.Decrypt(ad.UserName ?? string.Empty),
-            Tenant = PasswordHandler.Decrypt(ad.Tenant ?? string.Empty),
-            ClientId = PasswordHandler.Decrypt(ad.ClientId ?? string.Empty),
-            ClientSecret = PasswordHandler.Decrypt(ad.ClientSecret ?? string.Empty),
-            Instance = PasswordHandler.Decrypt(ad.Instance ?? string.Empty),
-            Scope = PasswordHandler.Decrypt(ad.Scope ?? string.Empty)
-        };
-
-        CurrentMailAccount = ma;
-        _mailAccount = ma;
     }
 
     /// <summary>
