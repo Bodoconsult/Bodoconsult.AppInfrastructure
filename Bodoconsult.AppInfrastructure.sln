@@ -229,6 +229,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobExecuter.Test", "tests\J
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobExecuter.GpoPlugIn.Test", "tests\JobExecuter.GpoPlugIn.Test\JobExecuter.GpoPlugIn.Test.csproj", "{14FAE1E8-9611-97F7-599B-000E16DF9963}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodoconsult.Database.Dbase.Ef", "src\Bodoconsult.Database.Dbase.Ef\Bodoconsult.Database.Dbase.Ef.csproj", "{37BD52F2-ECC7-B704-DC30-A3C6DCDF4D0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -619,6 +621,10 @@ Global
 		{14FAE1E8-9611-97F7-599B-000E16DF9963}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14FAE1E8-9611-97F7-599B-000E16DF9963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14FAE1E8-9611-97F7-599B-000E16DF9963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37BD52F2-ECC7-B704-DC30-A3C6DCDF4D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37BD52F2-ECC7-B704-DC30-A3C6DCDF4D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37BD52F2-ECC7-B704-DC30-A3C6DCDF4D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37BD52F2-ECC7-B704-DC30-A3C6DCDF4D0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -728,6 +734,7 @@ Global
 		{80AEFB15-D0F5-A990-EBDE-0C660BDED166} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
 		{27FB6437-785E-F541-FE0F-18C85E885979} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
 		{14FAE1E8-9611-97F7-599B-000E16DF9963} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
+		{37BD52F2-ECC7-B704-DC30-A3C6DCDF4D0C} = {68310C5A-62F2-40F4-A5C6-0314FDAC28E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEB92BC2-1DB4-4057-8D49-2E995AA1F80B}

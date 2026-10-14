@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using System.Data;
-using Bodoconsult.App.Interfaces;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Database.Dbase.FileImport;
 using Bodoconsult.Database.Dbase.Interfaces;
 using Bodoconsult.Database.Ef.Interfaces;
@@ -15,9 +15,11 @@ namespace Bodoconsult.Database.Dbase.Ef.ImportTasks
     /// <typeparam name="TData">Target entity type</typeparam>
     public class DbfImportTaskEf<TData> : DbfImportBaseTask<TData> where TData : class, IEntityRequirements, new()
     {
-
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Current repository
+        /// </summary>
         protected IRepository<TData> Repository;
 
         /// <summary>

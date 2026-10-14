@@ -87,6 +87,7 @@
         <article data-uid="">
 <h1 id="release-notes-for-bodoconsultappabstractions">Release notes for Bodoconsult.App.Abstractions</h1>
 
+<p>With each release all the repository internal references are updated.</p>
 <h1 id="105">1.0.5</h1>
 <ul>
 <li>Extracted abstractions to Bodoconsult.App.Abstractions</li>
@@ -118,14 +119,16 @@
 </li>
 </ul>
 <h1 id="1010">1.0.10</h1>
+<p>NOT intended for public use</p>
+<h1 id="1011">1.0.11</h1>
 <ul>
-<li><p>Uses Bodoconsult.App.Abstractions 1.0.9</p>
-</li>
 <li><p>Better PDB handling</p>
 </li>
 <li><p>Added Args property to IAppStartParameter to store command line args</p>
 </li>
 <li><p>Added ErrorMailAddress property to IAppStartParameter to email address for sending mail to in case of exceptions</p>
+</li>
+<li><p>IMailAccount, IO365MailAcccount, SmtpMailAccount and O365MailAccount moved from Bodoconsult.Web.Mail to Bodoconsult.App.Abstractions.Interfaces</p>
 </li>
 </ul>
 

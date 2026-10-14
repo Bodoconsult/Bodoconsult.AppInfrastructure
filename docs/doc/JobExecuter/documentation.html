@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>JobExecuter documentaion | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="JobExecuter documentaion | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/JobExecuter/documentation.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="jobexecuter-documentaion">JobExecuter documentaion</h1>
+
+<p>JobExecuter documentation</p>
+<p>**********Date created: 14.10.2026 09:47:03</p>
+<h1 id="table-of-content-h0">Table of content {#H0}</h1>
+<blockquote>
+<p><a href="#H47">About JobExecuter</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H50">What is JobExecuter</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H58">Security related issues with JobExecuter</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H67">Setting up JobExecuter</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H68">JobExecuter installation</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H76">JobExecuter: create your own password to secure jobs</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H83">Overview over the available logging facilities in JobExecuter</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H89">Configuration of JobExecuter for sending SMTP mails</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H97">Setting up a JobExecuter job</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H98">What is JSON and how to edit JSON files for JobExecuter jobs</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H115">Setting up a test job</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H124">Command line parameters for JobExecuter</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H125">CJsonFileName</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H131">/p (Encrypt password)</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H134">/c (Encrypt job file)</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H144">Overview JobTask classes</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H169">Documentation JobTask classes</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H170">ActiveDirectoryJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H184">BackupBatchJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H203">CmdBatchJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H215">DhcpJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H229">DiskSizeJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H238">DnsJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H253">DocumentationJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H265">FolderBackupJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H280">FolderCleanJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H290">FolderComplianceJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H305">JobDocuJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H320">PingCheckJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H330">PsBatchJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H340">RunAppJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H351">SqlBackupAllDatabasesJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H365">SqlBackupLogSingleDatabaseJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H380">SqlBackupSingleDatabaseJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H395">SqlBatchJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H408">SqlComplianceAllDatabasesJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H423">SqlComplianceSingleDatabaseJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H438">SqlDocuAllDatabasesJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H454">SqlDocuSingleDatabaseJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H471">SqlMaintenanceJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H488">TaskSchedulerDocuJobTask</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H504">Advanced features</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H505">Using Readme.txt</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H519">Legal notes</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H521">Registered and unregistered trademarks</a></p>
+</blockquote>
+<blockquote>
+<p><a href="#H523">Licence information</a></p>
+</blockquote>
+<h1 id="about-jobexecuter-h47">About JobExecuter {#H47}</h1>
+<p>JobExecuter is a software by Bodoconsult EDV-Dienstleistungen GmbH.</p>
+<p>Bodoconsult EDV-Dienstleistungen GmbH<br>Ostring 45a<br>85591 Vaterstetten<br>http://www.bodoconsult.de<br>info@bodoconsult.de</p>
+<h2 id="what-is-jobexecuter-h50">What is JobExecuter {#H50}</h2>
+<p>JobExecuter fulfills helpful tasks especially for small Windows based IT enviroments but it is not limited on them. In such small environments often important features like database backup or file backup are missed and have to be implemented with some effort.</p>
+<p>JobExecuter is a software to run different types of administrative jobs like database backup, file copying, running apps and others. It is used used in conjunction with Windows Task Scheduler (WTS). The WTS provides the job scheduling infrastructure. JobExecuter provides the functionality of the jobs in an supervised environment.</p>
+<p>JobExecuter supports self-documentation: each job can be documented automatically and all such job documentations can be added to a complete documentation of all JobExecuter based jobs running on diverse server systems.</p>
+<p>A JobExecuter job consists of one or more JobTasks. A job and its JobTasks is defined in a UTF8 encoded JSON file. The JSON file must be encrypted to a CJSON file before running the job. To run a job call JobExecuter.exe with the CJSON file with the job definition as parameter. The command line call for JobExecuter looks like:</p>
+<pre><code>JobExecuter.exe CJsonFileName
+</code></pre>
+<p>Or more general:</p>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe %PathToJobJsonFile%\%JsonFileName%.cjson
+</code></pre>
+<h2 id="security-related-issues-with-jobexecuter-h58">Security related issues with JobExecuter {#H58}</h2>
+<p>Some of the JobTasks provided by JobExecuter need credentials to be provided. In that case the passwords do not have to be provide as clear text but as encrpyted string.</p>
+<p>JobExecuter provides the command line parameter /p to encrypt passwords. Please see below in the section on command line parameters for JobExecuter.</p>
+<p>Run JobExecuter always under an account with minimal required permission.</p>
+<p>To encrypt your job file run the following command line:</p>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe /c %PathToJobJsonFile%\%JsonFileName%.cjson
+</code></pre>
+<p>You have to provide a password that must be equal to the one stored (encrypted) in the JobExecuter.exe.config file. See below how to encrpyt a password for JobExecuter (command line argument /j).</p>
+<p>The result of this command line will be a file %PathToJobJsonFile%%JsonFileName%.cjson. Run the job with the encrypted password use:</p>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe %PathToJobJsonFile%\%JsonFileName%.cjson
+</code></pre>
+<h1 id="setting-up-jobexecuter-h67">Setting up JobExecuter {#H67}</h1>
+<h2 id="jobexecuter-installation-h68">JobExecuter installation {#H68}</h2>
+<p>Create the folder structure for JobExcuter via Windows Explorer starting with the TargetFolder. The TargetFolder may be any local folder on the machine running the Windows Task Scheduler to use.</p>
+<p>TargetFolder
+: Target path for JobExecuter environment</p>
+<p>TargetFolder\JobExecuter
+: Application install path</p>
+<p>TargetFolder\Jobs
+: Folder with subfolders for each job</p>
+<p>Then copy the Samples folder in the JobExecuter's installation path to the TargetFolder\Jobs folder and renamed it to Test.</p>
+<p>The Test folder will contain a test job not running from Windows Taslk Scheduler for building and testing new JobTasks.</p>
+<p>Use the Test folder as template for creating new jobs.</p>
+<h2 id="jobexecuter-create-your-own-password-to-secure-jobs-h76">JobExecuter: create your own password to secure jobs {#H76}</h2>
+<p>To secure JobExecuter jobs you have to create your own salt and then to encrypt your password.</p>
+<p>Go to JobExecuter's installation path TargetFolder\JobExecuter.</p>
+<p>Then run Salt.bat to create a new salt. It will be copied to clipboard.</p>
+<p>Then go edit JobExecuter.config and replace the JobSalt setting value with the just created salt from clipboard. Save JobExecuter.config.</p>
+<p>Then run Password.bat to encrypt your password. It will be copied to clipboard.</p>
+<p>Then go edit JobExecuter.config again and replace the JobPassword setting value with the just created password from clipboard. Save JobExecuter.config.</p>
+<h2 id="overview-over-the-available-logging-facilities-in-jobexecuter-h83">Overview over the available logging facilities in JobExecuter {#H83}</h2>
+<p>JobExcuter provides the following logging facilities:</p>
+<p>Log file
+: By default JobExecuter creates always a log file in the job JSON file's directory with the the file name but the file extension .log.</p>
+<p>SMTP summary
+: JobExecuter can send a summary of the job's runtime results via SMTP to a job's SummaryMailReceiver. SMTP must be configured for JobExecuter. See section below.</p>
+<p>SMTP errors
+: JobExecuter can send error messages resulting from the job's runtime via SMTP to a job's ErrorMailReceiver or to a separate JobTask's ErrorMailReceiver. SMTP must be configured for JobExecuter. See section below.</p>
+<p>Windows Event log
+: If needed you can enable JobExecuter to log errors to the Windows Event log. You have to set the Jobs' property WriteToEventLog to true. You can find the log entries under the application log there.</p>
+<h2 id="configuration-of-jobexecuter-for-sending-smtp-mails-h89">Configuration of JobExecuter for sending SMTP mails {#H89}</h2>
+<p>To enable JobExecuter to send SMTP mails you need the SMTP address to use, the username and password to login to the SMTP server and a email address you want to send on behalf of.</p>
+<p>!!!! JobExecuter uses only secure SMTP servers !!!!</p>
+<p>To configure JobExecuter you must edit the JobExecuter.config located in the install directory of JobExecuter. Here the settings to edit:</p>
+<p>SmtpServer:
+: SMTP server address like smtp.1und1.de</p>
+<p>SmtpAccount:
+: account name to login on the SMTP server</p>
+<p>SmtpPassword:
+: Encrypted password  to login on the SMTP server (use command line parameter /p to encrypt a password. See section above!)</p>
+<p>SmtpSendAs:
+: email address you send on behalf on, i.e. noreply@test.de</p>
+<h1 id="setting-up-a-jobexecuter-job-h97">Setting up a JobExecuter job {#H97}</h1>
+<h2 id="what-is-json-and-how-to-edit-json-files-for-jobexecuter-jobs-h98">What is JSON and how to edit JSON files for JobExecuter jobs {#H98}</h2>
+<p>JSON is common plain text data format to transfer or store data. It is lightweight and relatively easy understandable compared to the alternative XML. JSON makes it easily possible to store object data outside a software and load it from a file in a software. Here a sample of a JobExecuter's Job object stored a JSON:</p>
+<pre><code>&amp;lt;&amp;lt;Error:File not found: D:\Daten\Projekte\OwnProjects\JobExecuter\JobExecuter\Samples\SqlBackupSingleDatabaseJobTask.json&amp;gt;&amp;gt;
+</code></pre>
+<p>To edit JSON files you generally need only a good text editor. We recommend Notepad++. Copy and paste is a favourable way for creating new job files for JobExecuter.</p>
+<p>JSON itself is formatted plain text with UTF8 encoding in case of JobExecuter. If you edit JSON files you will have to escape certain characters in the text. Please see the list of critical chararcters to escape in JSON:</p>
+<p>\b
+: Backspace (ascii code 08)</p>
+<p>\f
+: Form feed (ascii code 0C)</p>
+<p>\n
+: New line</p>
+<p>\r
+: Carriage return</p>
+<p>\t
+: Tab</p>
+<p>&amp;quot;
+: Double quote</p>
+<p>\
+: Backslash character</p>
+<p>Example: Especially if you edit directory or file paths you have to escape the backslash. Instead of the directory path</p>
+<pre><code>C:\Test\Jobs\backup\
+</code></pre>
+<p>you have to write</p>
+<pre><code>C:\\Test\\Jobs\\backup\\
+</code></pre>
+<p>in the JSON file.</p>
+<h2 id="setting-up-a-test-job-h115">Setting up a test job {#H115}</h2>
+<p>In the JobExecuter's installation path there is a folder Samples with  an subfolder SampleJobFolder. This folder contains a sample job with all necessary steps to work with JobExecuter.</p>
+<p>You can use this sample folder to create new jobs by copying the folder to a target folder for jobs and adjust the content of the JSON and BAT to your conrete situation.</p>
+<h3 id="folder-content-">Folder content {#}</h3>
+<p>job.json:
+: Job definition file</p>
+<p>job.cjson:
+: Encrypted job definition file</p>
+<p>prepare.bat:
+: Encrypt JSON job file to CJSON</p>
+<p>test.bat:
+: Start job for testing purposes</p>
+<p>start.bat:
+: Start job from Windows task scheduler</p>
+<h1 id="command-line-parameters-for-jobexecuter-h124">Command line parameters for JobExecuter {#H124}</h1>
+<h2 id="cjsonfilename-h125">CJsonFileName {#H125}</h2>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe %PathToJobJsonFile%\%JsonFileName%.cjson
+</code></pre>
+<p>Runs a job defined in the CJSON file %PathToJobJsonFile%%JsonFileName%.cjson</p>
+<p>JSON files to execute with JobExecuter should be UTF8 encoded and must be encrypted via command line parameter /c to a CJSON file. We recommend using Notepad++ as editor for JSON files. Encrypted JSON files must have the extension .cjson.</p>
+<p>Each job should have an own folder.</p>
+<p>If there is a readme.txt in the same folder as the JSON job file, the JobDocuJobTask documenting the job will add the content of readme.txt to the job documentation.</p>
+<h2 id="p-encrypt-password-h131">/p (Encrypt password) {#H131}</h2>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe /p
+</code></pre>
+<p>If you run JobExecuter with this parameter you will be ask to insert a clear text password. This password will be encrypted by JobExecuter and copied to the clipboard. From there you can paste it to a JSON job definition file where a password is required in encrypted form.</p>
+<h2 id="c-encrypt-job-file-h134">/c (Encrypt job file) {#H134}</h2>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe /c %PathToJobJsonFile%\%JsonFileName%.json
+</code></pre>
+<p>Encrypt a job's JSON file to a CJSON file. Password required for that transaction! See below.</p>
+<h3 id="j-setting-app-password-for-encrypting-job-files-">/j (setting app password for encrypting job files) {#}</h3>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe /j
+</code></pre>
+<p>If you run JobExecuter with this parameter you will be ask to insert a clear text password. This password will be encrypted by JobExecuter and stored internally.</p>
+<p>This password is valid only on the machine you run this command.</p>
+<h3 id="t-synthax-check-for-job-json-file-">/t (synthax check for job JSON file) {#}</h3>
+<pre><code>%PathToJobExcuterExe%\JobExecuter.exe /t %PathToJobJsonFile%\%JsonFileName%.json
+</code></pre>
+<p>Checks if the JSON synthax of the given file is valid.</p>
+<h1 id="overview-jobtask-classes-h144">Overview JobTask classes {#H144}</h1>
+<p>ActiveDirectoryJobTask
+:             Creates a report of the current Windows domain's Active Directory structure.<br></p>
+<p>BackupBatchJobTask
+:             Task to run a backup of the file system.  <br></p>
+<p>CmdBatchJobTask
+:             Task to run a cmd.exe batch from a file or a string.  <br></p>
+<p>DhcpJobTask
+:             Creates a report of the current Windows domain's DHCP infrastructure<br></p>
+<p>DiskSizeJobTask
+:             Checks the disk size and places an error if free space is below a certain percentage or below a certain absolute value<br></p>
+<p>DnsJobTask
+:             Creates a report for a Microsoft DNS server<br></p>
+<p>DocumentationJobTask
+:             Creates a HTML documentation from diverse JSON files as input.<br>            May be used i.e. for combining database compliance reports from different database servers to one compliance report HTML file.<br></p>
+<p>FolderBackupJobTask
+:             Backup of a folder based on robocopy.exe by Microsoft.<br></p>
+<p>FolderCleanJobTask
+:             Task to clean a folder from old files<br></p>
+<p>FolderComplianceJobTask
+:             Task to create a compliance report for a folder. <br></p>
+<p>JobDocuJobTask
+:             Task to document the current JobExecuter job<br></p>
+<p>PingCheckJobTask
+:             Check successful ping to certain network addresses<br></p>
+<p>PsBatchJobTask
+:             Run a PowerShell script file<br></p>
+<p>RunAppJobTask
+:             Run an app with or without parameters<br></p>
+<p>SqlBackupAllDatabasesJobTask
+:             Task to take a full backup for all SQL databases (with exception of TempDb) on a Microsoft® SqlServer starting with version 2008.<br></p>
+<p>SqlBackupLogSingleDatabaseJobTask
+:             Task to take a log file backup for a single SQL database on Microsoft® SqlServer starting with version 2008.<br></p>
+<p>SqlBackupSingleDatabaseJobTask
+:             Task to take a full backup for a single SQL database on Microsoft® SqlServer starting with version 2008.<br></p>
+<p>SqlBatchJobTask
+:             Task to run a SQL batch from a file or from a string against a Microsoft® SqlServer <br></p>
+<p>SqlComplianceAllDatabasesJobTask
+:             Task to collect compliance relevante information for all SQL databases on a Microsoft® SqlServer <br></p>
+<p>SqlComplianceSingleDatabaseJobTask
+:             Task to collect compliance relevante information for a single SQL database on a Microsoft® SqlServer <br></p>
+<p>SqlDocuAllDatabasesJobTask
+:             Task to take a documentation for all SQL databases on a Microsoft® SqlServer with exception of databases Master, Msdb, Model and TempDb. <br></p>
+<p>SqlDocuSingleDatabaseJobTask
+:              Task to take a documentation for a single SQL database on a Microsoft® SqlServer.<br></p>
+<p>SqlMaintenanceJobTask
+:             Job to perfrom maintenance on a Microsoft® SqlServer instance<br></p>
+<p>TaskSchedulerDocuJobTask
+:             Task to save TaskScheduler tasks as XML and document it<br></p>
+<h1 id="documentation-jobtask-classes-h169">Documentation JobTask classes {#H169}</h1>
+<h2 id="activedirectoryjobtask-h170">ActiveDirectoryJobTask {#H170}</h2>
+<p><br>            Creates a report of the current Windows domain's Active Directory structure.<br></p>
+<p>Work only for single domain networks. Domain forest are not supported. Delivers a report over the structure of the AD with Organizational Units (OU),  users, groups and computers.</p>
+<h3 id="properties-">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for ActiveDirectoryJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.ActiveDirectoryJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.ActiveDirectoryJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ActiveDirectory.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Report Active Directory&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;Report the current domain&amp;#39;s Active Directory structure with organisation units (OU), users, groups and computers.&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="backupbatchjobtask-h184">BackupBatchJobTask {#H184}</h2>
+<p><br>            Task to run a backup of the file system.  <br></p>
+<h3 id="properties--1">Properties {#}</h3>
+<p>BackupTargets
+:             Current list of backup targets<br></p>
+<p>Command
+:             Backup command to run or null if the default should be used<br></p>
+<p>Days
+:             Number of days the backups are backup after date TagDatum before being deleted<br></p>
+<p>DaysOffset
+:             Offset in days<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>Errors
+:             Current list of errors<br></p>
+<p>GetAliveFolder
+:             A folder path called to get the storage media alive before starting backup<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>ShadowingSourceDrive
+:             The source drive used for disk shadowing or null. I.e.: C:<br></p>
+<p>ShadowingTargetDrive
+:             The target drive used for disk shadowing or null. I.e.: H:<br></p>
+<p>StatusChanged
+:             Status changed event<br></p>
+<p>SummaryFile
+:             Name of the summary file to be created<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Weeks
+:             Number of weeks the backups are kept before being deleted in weekly backup mode. Default: 5<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for BackupBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.BackupBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.BackupBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ShadowingSourceDrive&amp;quot;: &amp;quot;C:&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ShadowingTargetDrive&amp;quot;: &amp;quot;H:&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Command&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Weeks&amp;quot;: 5,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;GetAliveFolder&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Days&amp;quot;: 14,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DaysOffset&amp;quot;: 0,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BackupTargets&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;Bodoconsult.App.Backup.BackupTargetSettings, Bodoconsult.App&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Command&amp;quot;: &amp;quot;robocopy ??source?? ??target??  *.* /FFT /S /E /log:??log?? /COPY:DT /B /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Source&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup1&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Target&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2\\&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Logfile&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\logfile.log&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ExcludeDirs&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BackupMode&amp;quot;: &amp;quot;Simple&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Thread&amp;quot;: 1,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Count&amp;quot;: 5,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DaysOffset&amp;quot;: 0,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Errors&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;StatusChanged&amp;quot;: null&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryFile&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Errors&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;StatusChanged&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Backup file system&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;Take a backup of a filesystem folder using diskshadowing if needed and keeping old backups for a certain amount of time depending on the backup mode&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="cmdbatchjobtask-h203">CmdBatchJobTask {#H203}</h2>
+<p><br>            Task to run a cmd.exe batch from a file or a string.  <br></p>
+<p>Set either CmdBatchJobTask.Filename or CmdBatchJobTask.BatchFileContent. In doubt CmdBatchJobTask.BatchFileContent wins!<br>            The advantage of running a batch in mode CmdBatchRunType.LineByLine that the batch runs line per line as separated processes. <br>            The lines must be independent from each other.<br></p>
+<h3 id="properties--2">Properties {#}</h3>
+<p>BatchFileContent
+:             Batch commands as string (like in a .bat or .cmd file). Commands in the string run always in mode CmdBatchRunType.LineByLine.  Set either CmdBatchJobTask.Filename or CmdBatchJobTask.BatchFileContent. In doubt CmdBatchJobTask.BatchFileContent wins!<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>Filename
+:             Filename of .bat or .cmd file to run. Set either CmdBatchJobTask.Filename or CmdBatchJobTask.BatchFileContent. In doubt CmdBatchJobTask.BatchFileContent wins!<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>RunType
+:             Type of how to run a cmd batch file<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for CmdBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.CmdBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filename&amp;quot;: &amp;quot;testbackup.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RunType&amp;quot;: &amp;quot;WholeFile&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BatchFileContent&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Run a batch (*.bat or *.cmd) with cmd.exe&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 110&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filename&amp;quot;: &amp;quot;testbackup.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RunType&amp;quot;: &amp;quot;LineByLine&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BatchFileContent&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Run a batch (*.bat or *.cmd) with cmd.exe&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 110&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filename&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RunType&amp;quot;: &amp;quot;LineByLine&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BatchFileContent&amp;quot;: &amp;quot;REm dfgsfd\r\ncopy d:\\tmp\\FolderBackup1\\*.* d:\\tmp\\FolderBackup2\\*.* /y\r\nREM fghdfg\r\ncopy d:\\tmp\\FolderBackup2\\*.* d:\\tmp\\FolderBackup1\\*.* /y\r\nREM fghfsd\r\n&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Run a batch commands from a string&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 110&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="dhcpjobtask-h215">DhcpJobTask {#H215}</h2>
+<p><br>            Creates a report of the current Windows domain's DHCP infrastructure<br></p>
+<p>User running that job needs to be member of security group DHCP Administrators on the DHCP server</p>
+<h3 id="properties--3">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for DhcpJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DhcpJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.DhcpJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\DHCP.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Report Dhcp infrastructure&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;Report the current domain&amp;#39;s DHCP infrastructure&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="disksizejobtask-h229">DiskSizeJobTask {#H229}</h2>
+<p><br>            Checks the disk size and places an error if free space is below a certain percentage or below a certain absolute value<br></p>
+<h3 id="properties--4">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>Drives
+:             Drives to check for disk space<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for DiskSizeJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DiskSizeJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.DiskSizeJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Drives&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Drive, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;C:&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MinimumPercentageOfFreeSpace&amp;quot;: 0.3,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;IpAddress&amp;quot;: null&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Drive, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;\\\\bododata\\data$&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MinimumPercentageOfFreeSpace&amp;quot;: 0.7,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;IpAddress&amp;quot;: null&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Drive, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;C:&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MinimumPercentageOfFreeSpace&amp;quot;: 0.3,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;IpAddress&amp;quot;: &amp;quot;192.168.12.219&amp;quot;&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Drive, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;C:&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MinimumPercentageOfFreeSpace&amp;quot;: 0.3,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;IpAddress&amp;quot;: &amp;quot;192.168.12.15&amp;quot;&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample for DiskSizeJobTask job task&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="dnsjobtask-h238">DnsJobTask {#H238}</h2>
+<p><br>            Creates a report for a Microsoft DNS server<br></p>
+<p>User running that job needs to be member of security group DNS administrators on the DNS server</p>
+<h3 id="properties--5">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Server
+:             FQDN of the DNS server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for DnsJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DnsJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.DnsJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;BCGS02DC.BCG-AD.DE&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\DNS.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Report a DNS server&amp;#39;s structure&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;Report DNS server&amp;#39;s structure&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="documentationjobtask-h253">DocumentationJobTask {#H253}</h2>
+<p><br>            Creates a HTML documentation from diverse JSON files as input.<br>            May be used i.e. for combining database compliance reports from different database servers to one compliance report HTML file.<br></p>
+<h3 id="properties--6">Properties {#}</h3>
+<p>AppendHelpFile
+:             Append the JobExecuter help file to documentation<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFiles
+:             Filenames for HTML documentation as result of the job<br></p>
+<p>JsonFiles
+:             message to deliver for testing purposes<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for DocumentationJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DocumentationJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.DocumentationJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonFiles&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;d_:\\tmp\\test.jsonSample.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;d:\\tmp\\test.jsonSample.json&amp;quot;&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFiles&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;d:\\tmp\\FolderBackup2\\documentation.htm&amp;quot;&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: &amp;quot;Full documentation&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;AppendHelpFile&amp;quot;: false,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Full documentation&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="folderbackupjobtask-h265">FolderBackupJobTask {#H265}</h2>
+<p><br>            Backup of a folder based on robocopy.exe by Microsoft.<br></p>
+<p>Robocopy.exe is installed automatically starting with Windows 7 and Windows 2008 Server.</p>
+<h3 id="properties--7">Properties {#}</h3>
+<p>BackupType
+:             Defines how backup works. Default is FolderBackupType.PlainCopy.<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>ExcludeDirectories
+:             Directories to exclude from backup<br>            Syntax: C:\ToExclude1 &quot;C:\To Exclude2&quot; c:\ToExclude3<br></p>
+<p>IncludeSubDirectories
+:             Include subdirectories in the folder backup. Default: true<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>ShowProgress
+:             Show progress of backup. May reduce performance. Default: false<br></p>
+<p>SourcePath
+:             Folder to backup<br></p>
+<p>TargetPath
+:             Target folder for the backup<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for FolderBackupJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderBackupJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SourcePath&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup1&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;TargetPath&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ExcludeDirectories&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BackupType&amp;quot;: &amp;quot;CopyOnlyNewerFiles&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ShowProgress&amp;quot;: false,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;IncludeSubDirectories&amp;quot;: true,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Backup a folder to a local or network share target&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="foldercleanjobtask-h280">FolderCleanJobTask {#H280}</h2>
+<p><br>            Task to clean a folder from old files<br></p>
+<h3 id="properties--8">Properties {#}</h3>
+<p>Days
+:             Clean folder from files older then X days<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>FolderPath
+:             Path to clean<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for FolderCleanJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderCleanJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.FolderCleanJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FolderPath&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Days&amp;quot;: 7,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Clean a folder from files older than 7 days&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="foldercompliancejobtask-h290">FolderComplianceJobTask {#H290}</h2>
+<p><br>            Task to create a compliance report for a folder. <br></p>
+<p>FolderComplianceJobTask requires running under administrative privileges due to accessing file system access control list.</p>
+<h3 id="properties--9">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>FolderPaths
+:             Path to create compiance reporting for<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for FolderComplianceJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderComplianceJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.FolderComplianceJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FolderPaths&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.ComplianceFolder, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Path&amp;quot;: &amp;quot;c:\\daten\\projekte&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;IncludeSubFolders&amp;quot;: true,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ShowPermissionsOfPredefinedAccounts&amp;quot;: true&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: &amp;quot;test@test123.de&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\Compliance2.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Create a compliance report for file system folders&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="jobdocujobtask-h305">JobDocuJobTask {#H305}</h2>
+<p><br>            Task to document the current JobExecuter job<br></p>
+<h3 id="properties--10">Properties {#}</h3>
+<p>CurrentJob
+:             Current job (will be used if JobDocuJobTask.JobJsonFileName is empty.<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JobJsonFileName
+:             Full path of the CJSON file with JobExecuter job to document<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for JobDocuJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.JobDocuJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.JobDocuJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobJsonFileName&amp;quot;: &amp;quot;&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: &amp;quot;&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Document the current JobExecuter job&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;If JobJsonFileName and DocuJsonFileName left empty, JobExecuter will insert current job file path and as docu file name the current job file path with the suffix _docu.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.JobDocuJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobJsonFileName&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2\\job.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2\\job.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Document the a JobExecuter job&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;Set JobJsonFileName and DocuJsonFileName to a spezific path if needed&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="pingcheckjobtask-h320">PingCheckJobTask {#H320}</h2>
+<p><br>            Check successful ping to certain network addresses<br></p>
+<h3 id="properties--11">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>IpAdresses
+:             IP-addresses separated by semicolon<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PingTimeout
+:             Timeout in milliseconds for Ping. Default: 15.000 <br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for PingCheckJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.PingCheckJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.PingCheckJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;IpAdresses&amp;quot;: &amp;quot;192.168.12.15;192.168.12.20;192.168.12.1;8.8.8.8&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PingTimeout&amp;quot;: 15000,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample task for ping check&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="psbatchjobtask-h330">PsBatchJobTask {#H330}</h2>
+<p><br>            Run a PowerShell script file<br></p>
+<h3 id="properties--12">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>Filename
+:             Full path to a powershell script file to run. Path may contain blanks<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PowerShellVersion
+:             The version of PowerShell to run the Model.PsBatchJobTask on<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for PsBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.PsBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.PsBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filename&amp;quot;: &amp;quot;PowerShellScript.ps1.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PowerShellVersion&amp;quot;: &amp;quot;V01&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Running a PowerShell batch file with PowerShell V01&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.PsBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filename&amp;quot;: &amp;quot;PowerShellScript.ps1.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PowerShellVersion&amp;quot;: &amp;quot;V03&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Running a PowerShell batch file with PowerShell V03&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="runappjobtask-h340">RunAppJobTask {#H340}</h2>
+<p><br>            Run an app with or without parameters<br></p>
+<h3 id="properties--13">Properties {#}</h3>
+<p>Arguments
+:             Arguments to start the app with<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>Filename
+:             Full path to app to run. Path may contain blanks<br></p>
+<p>InteractiveMode
+:             Run app in interactive mode. default: false<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for RunAppJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.RunAppJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.RunAppJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filename&amp;quot;: &amp;quot;robocopy.exe&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Arguments&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;InteractiveMode&amp;quot;: false,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample for running a app without parmeters&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.RunAppJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filename&amp;quot;: &amp;quot;robocopy.exe&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Arguments&amp;quot;: &amp;quot;/?&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;InteractiveMode&amp;quot;: false,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample for running a app with parameters&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqlbackupalldatabasesjobtask-h351">SqlBackupAllDatabasesJobTask {#H351}</h2>
+<p><br>            Task to take a full backup for all SQL databases (with exception of TempDb) on a Microsoft® SqlServer starting with version 2008.<br></p>
+<p>Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N'JobExecuter documentation' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'</p>
+<h3 id="properties--14">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>FileName
+:             File name schema for the backup file. ;ust contain placeholders. <br>            Otherwise all backups are made to the same file (and overwrite it with each backup)<br>            Must contain placeholders:<br>            ??server?? = Server name or Server and instance name<br>            ??database?? = database name<br>            Optional placeholders are:<br>            ??date?? = date in format yyyymmdd<br>            ??time?? = date and time in format yyyymmddhhnn<br></p>
+<p>LocalTarget
+:             Local target folder to backup database in<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>NetworkTarget
+:             Target folder for the backup on a network share (if requested).<br></p>
+<p>RemoveLocalBackup
+:             Remove local backup files after copying to network. Default: false<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlBackupAllDatabasesJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBackupAllDatabasesJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlBackupAllDatabasesJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;LocalTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;NetworkTarget&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FileName&amp;quot;: &amp;quot;??server??_??database??.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RemoveLocalBackup&amp;quot;: false,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Local backup of all databases on a SqlServer instance&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlBackupAllDatabasesJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;LocalTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;NetworkTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FileName&amp;quot;: &amp;quot;testbackup.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RemoveLocalBackup&amp;quot;: false,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Network share backup of all databases on a SqlServer instance&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqlbackuplogsingledatabasejobtask-h365">SqlBackupLogSingleDatabaseJobTask {#H365}</h2>
+<p><br>            Task to take a log file backup for a single SQL database on Microsoft® SqlServer starting with version 2008.<br></p>
+<p>Uses the following SQl statement: BACKUP LOG [{0}] TO DISK = N'JobExecuter documentation' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'</p>
+<h3 id="properties--15">Properties {#}</h3>
+<p>DatabaseName
+:             Name of the database to backup<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>FileName
+:             File name for the backup file<br>            May contain placeholders:<br>            ??server?? = Server name or Server and instance name<br>            ??database?? = database name<br>            ??date?? = date in format yyyymmdd<br>            ??time?? = date and time in format yyyymmddhhnn<br></p>
+<p>LocalTarget
+:             Local target folder to backup database in<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>NetworkTarget
+:             Target folder for the backup on a network share (if requested).<br></p>
+<p>RemoveLocalBackup
+:             Remove local backup files after copying to network. Default: false<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlBackupLogSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DatabaseName&amp;quot;: &amp;quot;MediaDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;LocalTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;NetworkTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FileName&amp;quot;: &amp;quot;testbackup.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RemoveLocalBackup&amp;quot;: true,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Backup database to a network path&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqlbackupsingledatabasejobtask-h380">SqlBackupSingleDatabaseJobTask {#H380}</h2>
+<p><br>            Task to take a full backup for a single SQL database on Microsoft® SqlServer starting with version 2008.<br></p>
+<p>Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N'JobExecuter documentation' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'</p>
+<h3 id="properties--16">Properties {#}</h3>
+<p>DatabaseName
+:             Name of the database to backup<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>FileName
+:             File name for the backup file<br>            May contain placeholders:<br>            ??server?? = Server name or Server and instance name<br>            ??database?? = database name<br>            ??date?? = date in format yyyymmdd<br>            ??time?? = date and time in format yyyymmddhhnn<br></p>
+<p>LocalTarget
+:             Local target folder to backup database in<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>NetworkTarget
+:             Target folder for the backup on a network share (if requested).<br></p>
+<p>RemoveLocalBackup
+:             Remove local backup files after copying to network. Default: false<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlBackupSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DatabaseName&amp;quot;: &amp;quot;MediaDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;LocalTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;NetworkTarget&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FileName&amp;quot;: &amp;quot;testbackup.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RemoveLocalBackup&amp;quot;: false,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Backup database to local file only&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DatabaseName&amp;quot;: &amp;quot;MediaDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;LocalTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;NetworkTarget&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FileName&amp;quot;: &amp;quot;testbackup.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;RemoveLocalBackup&amp;quot;: true,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Backup database to a network path&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqlbatchjobtask-h395">SqlBatchJobTask {#H395}</h2>
+<p><br>            Task to run a SQL batch from a file or from a string against a Microsoft® SqlServer <br></p>
+<p>SQL statements must be separated by GO. The SQL statements must address database correctly, i.e EXEC testdb.dbo.TestProc.<br>            All SQL statements are running on the same connection. This makes it possible to use temporary tables in SQL statements.</p>
+<h3 id="properties--17">Properties {#}</h3>
+<p>BatchContent
+:             Direct batch SQL to run<br></p>
+<p>DatabaseName
+:             Name of the database to run the batch file in<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>FileName
+:             Path to the SQL batch file to run<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBatchJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DatabaseName&amp;quot;: &amp;quot;MediaDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FileName&amp;quot;: &amp;quot;testbackup.bak&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BatchContent&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Run a SQL batch file&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DatabaseName&amp;quot;: &amp;quot;MediaDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;BatchContent&amp;quot;: &amp;quot;exec spTest 1\r\nGO\r\nexec spTest 2\r\nGO\r\nexec spTest 3&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Run SQL batch directly from string&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqlcompliancealldatabasesjobtask-h408">SqlComplianceAllDatabasesJobTask {#H408}</h2>
+<p><br>            Task to collect compliance relevante information for all SQL databases on a Microsoft® SqlServer <br></p>
+<p>Databases Master, Msdb, Model and TempDb are excluded by this task. Requires the job running user to be member of the sysadmin or securityadmin server roles.</p>
+<h3 id="properties--18">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlComplianceAllDatabasesJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: &amp;quot;info@bodoconsult.de&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseComplianceReport.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Create compliance information for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqlcompliancesingledatabasejobtask-h423">SqlComplianceSingleDatabaseJobTask {#H423}</h2>
+<p><br>            Task to collect compliance relevante information for a single SQL database on a Microsoft® SqlServer <br></p>
+<h3 id="properties--19">Properties {#}</h3>
+<p>DatabaseName
+:             Name of the database to backup<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlComplianceSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlComplianceSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlComplianceSingleDatabaseJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DatabaseName&amp;quot;: &amp;quot;DatabaseXY&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: &amp;quot;info@bodoconsult.de&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseXY_ComplianceReport.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Create compliance information for a single database&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqldocualldatabasesjobtask-h438">SqlDocuAllDatabasesJobTask {#H438}</h2>
+<p><br>            Task to take a documentation for all SQL databases on a Microsoft® SqlServer with exception of databases Master, Msdb, Model and TempDb. <br></p>
+<p>A database may contain stored procs under the schema dbo and names beginning with spDbDocu_ for adding database specific content to the docmentation.</p>
+<p>For parts of the documentation the user running the job needs certain permissions. To give least possible permissions, this user should  be part of a user defined server role on the SqlServer with the permissions VIEW ANY DEFINITION and GRANT VIEW SERVER STATE. You should avoid making the user a sysadmin for security reasons. User must have access to each database with least possible permissions!</p>
+<pre><code>&lt;br /&gt;             CREATE SERVER ROLE NameOfNewServerRole&lt;br /&gt;            &lt;br /&gt;            GO&lt;br /&gt;            &lt;br /&gt;            GRANT VIEW ANY DEFINITION TO NameOfNewServerRole&lt;br /&gt;            &lt;br /&gt;            GO&lt;br /&gt;            &lt;br /&gt;            GRANT VIEW SERVER STATE TO NameOfNewServerRole&lt;br /&gt;            &lt;br /&gt;            GO&lt;br /&gt;            &lt;br /&gt;            EXEC sp_addsrvrolemember &amp;#39;domain\SG-SqlKeyUsers&amp;#39;, &amp;#39;NameOfNewServerRole&amp;#39;&lt;br /&gt;            &lt;br /&gt;             
+</code></pre>
+<h3 id="properties--20">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlDocuAllDatabasesJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlDocuAllDatabasesJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlDocuAllDatabasesJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\testbackup.bak.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\testbackup.bak.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Create a documentation for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqldocusingledatabasejobtask-h454">SqlDocuSingleDatabaseJobTask {#H454}</h2>
+<p><br>             Task to take a documentation for a single SQL database on a Microsoft® SqlServer.<br></p>
+<p>A database may contain stored procs under the schema dbo and names beginning with spDbDocu_ foradding database specific content to the docmentation.</p>
+<p>For parts of the documentation the user running the job needs certain permissions.<br>             To give least possible permissions, this user should be part of a user defined server role on the SqlServer with the permissions VIEW ANY DEFINITION and GRANT VIEW SERVER STATE.<br>             You should avoid making the user a sysadmin for security reasons. User must have access to each database with least possible permissions!</p>
+<pre><code>&lt;br /&gt;             CREATE SERVER ROLE NameOfNewServerRole&lt;br /&gt;            &lt;br /&gt;            GO&lt;br /&gt;            &lt;br /&gt;            GRANT VIEW ANY DEFINITION TO NameOfNewServerRole&lt;br /&gt;            &lt;br /&gt;            GO&lt;br /&gt;            &lt;br /&gt;            GRANT VIEW SERVER STATE TO NameOfNewServerRole&lt;br /&gt;            &lt;br /&gt;            GO&lt;br /&gt;            &lt;br /&gt;            EXEC sp_addsrvrolemember &amp;#39;domain\SG-SqlKeyUsers&amp;#39;, &amp;#39;NameOfNewServerRole&amp;#39;&lt;br /&gt;            &lt;br /&gt;             
+</code></pre>
+<h3 id="properties--21">Properties {#}</h3>
+<p>DatabaseName
+:             Name of the database to backup<br></p>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlDocuSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;DatabaseName&amp;quot;: &amp;quot;MediaDb&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Create a documentation for a single database&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 60&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="sqlmaintenancejobtask-h471">SqlMaintenanceJobTask {#H471}</h2>
+<p><br>            Job to perfrom maintenance on a Microsoft® SqlServer instance<br></p>
+<p>Needs sysadmin permissions to run successfully on the instance of SqlServer</p>
+<h3 id="properties--22">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>FragmentationLevel1
+:             Fragmentation level 1 (low -&amp;gt;medium) in percent. 50 means 50 percent. Default: 5<br></p>
+<p>FragmentationLevel2
+:             Fragmentation level 2 (medium -&amp;gt; high) in percent. 50 means 50 percent. Default: 30<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to PDF<br></p>
+<p>Server
+:             server name or server and instance name of a database server<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for SqlMaintenanceJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlMaintenanceJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.SqlMaintenanceJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: &amp;quot;test@test123.de&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\Maintenance.htm&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FragmentationLevel1&amp;quot;: 5,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;FragmentationLevel2&amp;quot;: 30,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Server&amp;quot;: &amp;quot;.\\sqlexpress&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Runs a maintenance job on a SqlServer instance&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 600&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h2 id="taskschedulerdocujobtask-h488">TaskSchedulerDocuJobTask {#H488}</h2>
+<p><br>            Task to save TaskScheduler tasks as XML and document it<br></p>
+<h3 id="properties--23">Properties {#}</h3>
+<p>Description
+:             Description of the job used for documentation<br></p>
+<p>ErrorMailReceiver
+:             Mail addresses separarted with semicolon to send an error mail to<br></p>
+<p>Filter
+:             Filters task by the filter expression added here. Seperated values with semicolon. Task name has to start with filter expression<br></p>
+<p>HtmlTargetFileName
+:             Export documentation to HTML<br></p>
+<p>JsonTargetFileName
+:             Export documentation as Model.StructuredText object to JSON.<br>            If empty, the file will be placed in app subfolder docu with the name &quot;job_docu.json&quot; <br></p>
+<p>MailTo
+:             Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner<br></p>
+<p>Name
+:             Name of the job<br></p>
+<p>PdfTargetFileName
+:             Export documentation to Pdf<br></p>
+<p>TargetServer
+:             Target server to access for windows task scheduler. Default: null = localhost<br></p>
+<p>Timeout
+:             Timeout in seconds the job will be terminated after start<br></p>
+<p>Title
+:             Title for documentation<br></p>
+<p>XmlTargetPath
+:             Folder to export the tasks in<br></p>
+<pre><code>{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.Job, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Sample job for TaskSchedulerDocuJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.TaskSchedulerDocuJobTask&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: &amp;quot;errorreceiver1@test.xxx;errorreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;SummaryMailReceiver&amp;quot;: &amp;quot;summaryreceiver1@test.xxx;summaryreceiver2@test.xxx&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JobTasks&amp;quot;: [&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.TaskSchedulerDocuJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;XmlTargetPath&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filter&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;TargetServer&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2\\docu.html&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2\\docu.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Getting all task scheduler tasks from local computer&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;$type&amp;quot;: &amp;quot;JobExecuter.Dal.Model.TaskSchedulerDocuJobTask, JobExecuter.Dal&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;XmlTargetPath&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Filter&amp;quot;: &amp;quot;Adobe;Microsoft&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;TargetServer&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Title&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;MailTo&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;HtmlTargetFileName&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2\\docu.html&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;PdfTargetFileName&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;JsonTargetFileName&amp;quot;: &amp;quot;d:\\tmp\\FolderBackup2\\docu.json&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Name&amp;quot;: &amp;quot;Getting task scheduler data from local computer with use of filter expressions&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Description&amp;quot;: &amp;quot;Filters only tasks starting with Adobe or Microsoft&amp;quot;,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;ErrorMailReceiver&amp;quot;: null,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 30&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;],&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;Timeout&amp;quot;: 500,&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;quot;WriteToEventLog&amp;quot;: true&lt;br /&gt;}
+</code></pre>
+<h1 id="advanced-features-h504">Advanced features {#H504}</h1>
+<h2 id="using-readmetxt-h505">Using Readme.txt {#H505}</h2>
+<p>If in the directory of a JobExecuter job - there where the JSON file of job is located - is Readme.txt placed, this file will be included in the job's documentation.</p>
+<h3 id="tags-usable-in-the-readmetxt-">Tags usable in the Readme.txt {#}</h3>
+<p>In such a Readme.txt you can use the following tags to format the readme.txt if it is processed to the job documentation. The following tags are interpreted:</p>
+<p>H1
+: Header level 1</p>
+<p>H2
+: Header level 2</p>
+<p>H3
+: Header level 3</p>
+<p>DL
+: Definition list (must be followed by a DD tag)</p>
+<p>LI
+: List items</p>
+<p>All tags will be finished at the next carriage return+line feed (char(13)+char(10)).</p>
+<h3 id="comments-in-readmetxt-">Comments in Readme.txt {#}</h3>
+<p>Comments made of asterikses (*) will be removed when formatting Readme.txt to plain text or HTML</p>
+<h3 id="sample-">Sample {#}</h3>
+<p>The HTML result of processing such a Readme.txt you can find in the file Readme.htm</p>
+<h1 id="legal-notes-h519">Legal notes {#H519}</h1>
+<p>Date this documentation was created: 14.10.2026 09:47</p>
+<h2 id="registered-and-unregistered-trademarks-h521">Registered and unregistered trademarks {#H521}</h2>
+<p>All other registered and unregistered trademarks are the property of their respective owners.</p>
+<h2 id="licence-information-h523">Licence information {#H523}</h2>
+<p> </p>
+<h3 id="licence-for-newtonsoftjson-">Licence for Newtonsoft.Json {#}</h3>
+<p> </p>
+<p>Used in JobExecuter to provide JSON support</p>
+<p> </p>
+<p>URL: <a href="https://www.newtonsoft.com/json">https://www.newtonsoft.com/json</a></p>
+<p> </p>
+<p>MIT License</p>
+<p>MIT Copyright (c) 2003-2010 David Hall</p>
+<p> </p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this</p>
+<p>software and associated documentation files (the &quot;Software&quot;), to deal in the Software</p>
+<p>without restriction, including without limitation the rights to use, copy, modify, merge,</p>
+<p>publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons</p>
+<p>to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p> </p>
+<p>The above copyright notice and this permission notice shall be included in all copies or</p>
+<p>substantial portions of the Software.</p>
+<p> </p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,</p>
+<p>INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR</p>
+<p>PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE</p>
+<p>FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,</p>
+<p>ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<p> </p>
+<p> </p>
+<h3 id="licence-for-dahalltaskscheduler-">Licence for dahall/TaskScheduler {#}</h3>
+<p> </p>
+<p>Used in JobExecuter to provide TaskScheduler documentation</p>
+<p> </p>
+<p>URL: <a href="https://github.com/dahall/TaskScheduler">https://github.com/dahall/TaskScheduler</a></p>
+<p> </p>
+<p>MIT License</p>
+<p>MIT Copyright (c) 2003-2010 David Hall</p>
+<p> </p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this</p>
+<p>software and associated documentation files (the &quot;Software&quot;), to deal in the Software</p>
+<p>without restriction, including without limitation the rights to use, copy, modify, merge,</p>
+<p>publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons</p>
+<p>to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p> </p>
+<p>The above copyright notice and this permission notice shall be included in all copies</p>
+<p>or substantial portions of the Software.</p>
+<p> </p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,</p>
+<p>INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE</p>
+<p>AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,</p>
+<p>DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</p>
+<p>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<p> </p>
+<p> </p>
+<h3 id="licence-for-garysharpdhcpserverapi-">Licence for garysharp/DhcpServerApi {#}</h3>
+<p> </p>
+<p>Used in JobExecuter to provide DHCP documentation</p>
+<p> </p>
+<p>URL: <a href="https://github.com/garysharp/DhcpServerApi/">https://github.com/garysharp/DhcpServerApi/</a></p>
+<p> </p>
+<p>MIT License</p>
+<p>Copyright (c) 2015 Gary Sharp</p>
+<p> </p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy</p>
+<p>of this software and associated documentation files (the &quot;Software&quot;), to deal</p>
+<p>in the Software without restriction, including without limitation the rights</p>
+<p>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</p>
+<p>copies of the Software, and to permit persons to whom the Software is</p>
+<p>furnished to do so, subject to the following conditions:</p>
+<p> </p>
+<p>The above copyright notice and this permission notice shall be included in</p>
+<p>all copies or substantial portions of the Software.</p>
+<p> </p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</p>
+<p>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</p>
+<p>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</p>
+<p>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</p>
+<p>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</p>
+<p>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</p>
+<p>THE SOFTWARE.</p>
+<p> </p>
+<h3 id="licence-for-olahallengrensql-server-maintenance-solution-">Licence for olahallengren/sql-server-maintenance-solution {#}</h3>
+<p> </p>
+<p>Used in JobExecuter to provide Microsoft (R) SqlServer maintenance</p>
+<p> </p>
+<p>URL: <a href="https://github.com/olahallengren/sql-server-maintenance-solution">https://github.com/olahallengren/sql-server-maintenance-solution</a></p>
+<p> </p>
+<p>MIT License</p>
+<p>Copyright (c) 2019 Ola Hallengren</p>
+<p> </p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy</p>
+<p>of this software and associated documentation files (the &quot;Software&quot;), to deal</p>
+<p>in the Software without restriction, including without limitation the rights</p>
+<p>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</p>
+<p>copies of the Software, and to permit persons to whom the Software is</p>
+<p>furnished to do so, subject to the following conditions:</p>
+<p> </p>
+<p>The above copyright notice and this permission notice shall be included in all</p>
+<p>copies or substantial portions of the Software.</p>
+<p> </p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</p>
+<p>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</p>
+<p>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</p>
+<p>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</p>
+<p>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</p>
+<p>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</p>
+<p>SOFTWARE.</p>
+<p> </p>
+<p> </p>
+<h3 id="licence-for-google-prettify-">Licence for Google prettify {#}</h3>
+<p> </p>
+<p>Used in JobExecuter to create HTML pages</p>
+<p> </p>
+<p>URL: <a href="https://github.com/google/code-prettify">https://github.com/google/code-prettify</a></p>
+<p> </p>
+<p>@license</p>
+<p>Copyright (C) 2015 Google Inc.</p>
+<p> </p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</p>
+<p>you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at</p>
+<p> </p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p> </p>
+<p>Unless required by applicable law or agreed to in writing, software</p>
+<p>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</p>
+<p>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</p>
+<p>See the License for the specific language governing permissions and</p>
+<p>limitations under the License.</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<h1 id="about-us">About us</h1>
+<p>Bodoconsult <a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a> is a Munich based software company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/JobExecuter/documentation.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

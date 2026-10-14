@@ -1,38 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
 	  <ImplicitUsings>disable</ImplicitUsings>
 	  <Nullable>disable</Nullable>
-	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <PackageOutputPath>..\..\nuget\</PackageOutputPath>
-	  <Copyright>Bodoconsult EDV-Dienstleistungen GmbH</Copyright>
-	  <Authors>Robert Leisner</Authors>
-	  <Company>Bodoconsult EDV-Dienstleistungen GmbH</Company>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <RepositoryType>git</RepositoryType>
-	  <NeutralLanguage>en</NeutralLanguage>
-	  <PackageReadmeFile>README.md</PackageReadmeFile>
 
-	  <VersionPrefix>1.0.0</VersionPrefix>
-	  <Version />
-	  <RepositoryUrl>https://github.com/RobertLeisner/Bodoconsult.Database</RepositoryUrl>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <PackageId>Bodoconsult.Database.Dbase.Ef</PackageId>
 	  <PackageTags>dbase;dbf;migration</PackageTags>
-	  <Description>Tools for reading DBF files from .NET 8 or later with Bodoconsult.Database.Dbase and Entity Framework</Description>
+	  <Description>Tools for reading DBF files from .NET 10 or later with Bodoconsult.Database.Dbase and Entity Framework</Description>
 	  <PackageReleaseNotes>New implementation</PackageReleaseNotes>
 	  <PackageProjectUrl>https://github.com/RobertLeisner/Bodoconsult.Database</PackageProjectUrl>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
 
+	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+	  <!-- PDB Configuration -->
+	  <DebugType>portable</DebugType>
+	  <DebugSymbols>true</DebugSymbols>
+	  <EmbedAllSources>false</EmbedAllSources>
+
+	  <!-- Allow PDBs in the main package -->
+	  <!--
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+	  <!-- Generate symbols package (.snupkg) -->
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	  <!-- Modern symbols package format -->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bodoconsult.App" Version="1.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Bodoconsult.App\Bodoconsult.App.csproj" />
     <ProjectReference Include="..\Bodoconsult.Database.Dbase\Bodoconsult.Database.Dbase.csproj" />
     <ProjectReference Include="..\Bodoconsult.Database.Ef\Bodoconsult.Database.Ef.csproj" />
   </ItemGroup>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Readme for JobExecuter | Bodoconsult.AppInfrastructure </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Readme for JobExecuter | Bodoconsult.AppInfrastructure ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/JobExecuter/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Bodoconsult.AppInfrastructure">
+            Bodoconsult.AppInfrastructure
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="readme-for-jobexecuter">Readme for JobExecuter</h1>
+
+<h1 id="overview">Overview</h1>
+<p>JobExecuter fulfills helpful tasks especially for small Windows based IT enviroments but it is not limited on them. In such small environments often important features like database backup or file backup are missed and have to be implemented with some effort.</p>
+<p>JobExecuter is a software to run different types of administrative jobs like database backup, file copying, running apps and others. It is used used in conjunction with Windows Task Scheduler (WTS). The WTS provides the job scheduling infrastructure. JobExecuter provides the functionality of the jobs in an supervised environment.</p>
+<p>JobExecuter supports self-documentation: each job can be documented automatically and all job documentations can be added to a complete documentation of all JobExecuter based jobs running on diverse server systems.</p>
+<p>See the <a href="documentation.html">JobExecuter documentation</a> for more details of how to use JobExecuter.</p>
+<h1 id="why-you-should-use-jobexecuter">Why You Should Use JobExecuter</h1>
+<p>Windows’built-in Task Scheduler offers a very stable way to execute scheduled tasks (jobs). However, from a professional administrator's perspective, the monitoring capabilities are somewhat limited.
+While the system can notify the admin if a job fails completely, issues arising within individual task steps often go unnoticed because the Task Scheduler typically does not react to them.</p>
+<p>Why use JobExecuter? While everything JobExecuter does can technically be achieved using standard Windows or SQL Server tools, doing so requires significantly more effort for setup and system monitoring.</p>
+<p>JobExecuter can greatly simplify administration, particularly when used with the free Express editions of Microsoft SQL Server. Tasks such as backups, database documentation, and access rights monitoring become much easier to manage.</p>
+<p>It also simplifies other routine jobs, such as backing up application and file servers or handling data imports and exports.</p>
+<p>Best of all, JobExecuter runs all jobs in a fully monitored environment. Detailed logging and automated email notifications to the responsible administrator help detect issues early on.
+JobExecuter also handles the backup of the scheduled job configurations themselves. This can save a great deal of time when re-establishing scheduled tasks during system recovery.</p>
+<p>Documenting scheduled jobs is often a tedious task that administrators tend to neglect. JobExecuter assists by enabling automated documentation.</p>
+<p>Once set up, the administrator simply needs to add proper comments for any new or modified job steps. JobExecuter then automatically generates documentation that meets professional standards.
+This significantly reduces the time administrators spend on documentation.</p>
+<p>JobExecuter can thus contribute to a significant professionalization of IT, particularly in smaller networks—and without major financial outlay.</p>
+<p>See the <a href="documentation.html">JobExecuter documentation</a> for more details of how to use JobExecuter.</p>
+<h1 id="features-missing-currently">Features missing currently</h1>
+<h1 id="about-us">About us</h1>
+<p>Bodoconsult <a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a> is a Munich based software company from Germany.</p>
+<p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure/blob/main/doc/JobExecuter/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
