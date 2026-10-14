@@ -1,4 +1,4 @@
-﻿JobExecuter documentaion
+﻿JobExecuter documentation
 ======================
 
 {0}

@@ -157,14 +157,10 @@ public class MarkDownTextFormatter : ITextFormatter
     /// </summary>
     public string TocCaption { get; set; }
 
-
     /// <summary>
     /// Structured text to format
     /// </summary>
     public IStructuredText StructuredText { get; set; }
-
-
-
 
     /// <inheritdoc />
     /// <summary>
@@ -184,7 +180,6 @@ public class MarkDownTextFormatter : ITextFormatter
 
     /// <inheritdoc />
     public string DateString { get; set; }
-
 
     /// <inheritdoc />
     public string GetFormattedText()
@@ -209,7 +204,6 @@ public class MarkDownTextFormatter : ITextFormatter
             Template.Replace("{0}", GetBody(TextItems)).Replace("{1}", WebUtility.HtmlEncode(title)).Replace("{2}", WebUtility.HtmlEncode(dateString));
     }
 
-
     private void AddTocToHtm()
     {
 
@@ -226,27 +220,39 @@ public class MarkDownTextFormatter : ITextFormatter
             switch (ti.LogicalType)
             {
                 case TextItemType.H1:
-                    if (TocLevel > 0) { _rowCount++; }
+                    if (TocLevel > 0)
+                    {
+                        {
+                            _rowCount++;
+                        }
+                    }
                     break;
                 case TextItemType.H2:
-                    if (TocLevel > 1) _rowCount++;
+                    if (TocLevel > 1)
+                    {
+                        _rowCount++;
+                    }
                     break;
                 case TextItemType.H3:
-                    if (TocLevel > 2) _rowCount++;
+                    if (TocLevel > 2)
+                    {
+                        _rowCount++;
+                    }
                     break;
                 case TextItemType.H4:
-                    if (TocLevel > 3) _rowCount++;
+                    if (TocLevel > 3)
+                    {
+                        _rowCount++;
+                    }
                     break;
             }
         }
 
         _rowCount++;
 
-        var row = -1;
-
         foreach (var ti in StructuredText.TextItems)
         {
-            row++;
+            string s;
 
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (ti.LogicalType)
@@ -254,9 +260,11 @@ public class MarkDownTextFormatter : ITextFormatter
                 case TextItemType.H1:
                     if (TocLevel > 0)
                     {
+                        s = ">".Repeat(MoveHeaderLevel + 1);
+
                         TextItems.Add(new TextItem
                         {
-                            Content = $">\t[{WebUtility.HtmlEncode(ti.Content)}](#H{row + _rowCount + 1})\r\n\r\n",
+                            Content = $"{s}\t[**{WebUtility.HtmlEncode(ti.Content)}**]({GenerateId(ti.Content)})\r\n\r\n",
                             LogicalType = TextItemType.Plain
                         });
                     }
@@ -265,9 +273,11 @@ public class MarkDownTextFormatter : ITextFormatter
                 case TextItemType.H2:
                     if (TocLevel > 1)
                     {
+                        s = ">".Repeat(MoveHeaderLevel + 2);
+
                         TextItems.Add(new TextItem
                         {
-                            Content = $">\t[{WebUtility.HtmlEncode(ti.Content)}](#H{row + _rowCount + 1})\r\n\r\n",
+                            Content = $"{s}\t[{WebUtility.HtmlEncode(ti.Content)}]({GenerateId(ti.Content)})\r\n\r\n",
                             LogicalType = TextItemType.Plain
                         });
                     }
@@ -275,9 +285,11 @@ public class MarkDownTextFormatter : ITextFormatter
                 case TextItemType.H3:
                     if (TocLevel > 2)
                     {
+                        s = ">".Repeat(MoveHeaderLevel + 3);
+
                         TextItems.Add(new TextItem
                         {
-                            Content = $">\t[{WebUtility.HtmlEncode(ti.Content)}](#H{row + _rowCount + 1})\r\n\r\n",
+                            Content = $"{s}\t[{WebUtility.HtmlEncode(ti.Content)}]({GenerateId(ti.Content)})\r\n\r\n",
                             LogicalType = TextItemType.Plain
                         });
                     }
@@ -285,9 +297,11 @@ public class MarkDownTextFormatter : ITextFormatter
                 case TextItemType.H4:
                     if (TocLevel > 3)
                     {
+                        s = ">".Repeat(MoveHeaderLevel + 4);
+
                         TextItems.Add(new TextItem
                         {
-                            Content = $">\t[{WebUtility.HtmlEncode(ti.Content)}](#H{row + _rowCount + 1})\r\n\r\n",
+                            Content = $"{s}\t[{WebUtility.HtmlEncode(ti.Content)}]({GenerateId(ti.Content)})\r\n\r\n",
                             LogicalType = TextItemType.Plain
                         });
                     }
@@ -299,6 +313,18 @@ public class MarkDownTextFormatter : ITextFormatter
         {
             TextItems.Add(ti);
         }
+    }
+
+    private static string GenerateId(string content)
+    {
+        return $"#{WebUtility.HtmlEncode(content.ToLowerInvariant()
+            .Replace(" ", "-", StringComparison.OrdinalIgnoreCase)
+            .Replace("(", string.Empty, StringComparison.OrdinalIgnoreCase))}"
+            .Replace(")", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("/", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace("\\", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace(".", string.Empty, StringComparison.OrdinalIgnoreCase)
+            .Replace(":", string.Empty, StringComparison.OrdinalIgnoreCase);
     }
 
     private string GetBody(IList<ITextItem> body)
@@ -327,9 +353,8 @@ public class MarkDownTextFormatter : ITextFormatter
 
             var className = string.IsNullOrEmpty(ti.ClassName) ? string.Empty : $" class=\"{ti.ClassName}\"";
 
-            var content = HtmlHelper.GetContentAsHtml(ti.Content);
+            var content = ti.Content;
 
-            string id;
             string s;
             string c;
 
@@ -337,23 +362,19 @@ public class MarkDownTextFormatter : ITextFormatter
             {
                 case TextItemType.H1:
                     s = "#".Repeat(MoveHeaderLevel + 1);
-                    id = AddTableOfContent && TocLevel > 0 ? $"H{row}" : string.Empty;
-                    erg.Append($"\r\n{s} {content} {{#{id}}}\r\n\r\n");
+                    erg.Append($"\r\n{s} {GetContentAsHtml(content)}\r\n\r\n");
                     break;
                 case TextItemType.H2:
                     s = "#".Repeat(MoveHeaderLevel + 2);
-                    id = AddTableOfContent && TocLevel > 1 ? $"H{row}" : string.Empty;
-                    erg.Append($"\r\n{s} {content} {{#{id}}}\r\n\r\n");
+                    erg.Append($"\r\n{s} {GetContentAsHtml(content)}\r\n\r\n");
                     break;
                 case TextItemType.H3:
                     s = "#".Repeat(MoveHeaderLevel + 3);
-                    id = AddTableOfContent && TocLevel > 2 ? $"H{row}" : string.Empty;
-                    erg.Append($"\r\n{s} {content} {{#{id}}}\r\n\r\n");
+                    erg.Append($"\r\n{s} {GetContentAsHtml(content)}\r\n\r\n");
                     break;
                 case TextItemType.H4:
                     s = "#".Repeat(MoveHeaderLevel + 4);
-                    id = AddTableOfContent && TocLevel > 3 ? $"H{row}" : string.Empty;
-                    erg.Append($"\r\n{s} {content} {{#{id}}}\r\n\r\n");
+                    erg.Append($"\r\n{s} {GetContentAsHtml(content)}\r\n\r\n");
                     break;
                 case TextItemType.ListItem:
                     //if (row == 0) // 1. Zeile: starte UL vorher
@@ -369,7 +390,7 @@ public class MarkDownTextFormatter : ITextFormatter
                     //    }
                     //}
 
-                    erg.Append($"- {content}\r\n");
+                    erg.Append($"- {HtmlHelper.GetContentAsHtml(content)}\r\n");
 
                     if (row == count) // Letzte Zeile: beende UL nachher
                     {
@@ -389,7 +410,7 @@ public class MarkDownTextFormatter : ITextFormatter
 
                     var content2 = MarkdownHelper.GetContentAsMarkdownParagraphForDefinitionList(dl.Content2);
 
-                    erg.Append($"{content}\r\n{content2}\r\n");
+                    erg.Append($"**{GetContentAsHtml(content)}**\r\n{GetContentAsHtml(content2)}\r\n");
 
                     break;
                 case TextItemType.Xml:
@@ -413,7 +434,7 @@ public class MarkDownTextFormatter : ITextFormatter
                     erg.Append($"\r\n\r\n```\r\n{c}\r\n```\r\n\r\n");
                     break;
                 case TextItemType.Plain:
-                    erg.Append(ti.Content);
+                    erg.Append(GetContentAsHtml(ti.Content));
                     break;
                 case TextItemType.Table:
                     erg.Append(GetTable((TableTextItem)ti));
@@ -426,6 +447,11 @@ public class MarkDownTextFormatter : ITextFormatter
         }
 
         return erg.ToString();
+    }
+
+    private static string GetContentAsHtml(string content)
+    {
+        return content.Replace("<BR />", "  \r\n", StringComparison.OrdinalIgnoreCase).Replace("<BR/>", "  \r\n", StringComparison.OrdinalIgnoreCase);
     }
 
     private static StringBuilder GetTable(TableTextItem ti)
@@ -485,7 +511,7 @@ public class MarkDownTextFormatter : ITextFormatter
                     break;
             }
 
-            erg.Append($"{WebUtility.HtmlEncode(col.ColumnName)} |");
+            erg.Append($"**{WebUtility.HtmlEncode(col.ColumnName)}** |");
 
             divider.Append($"{css} |");
         }

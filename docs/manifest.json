@@ -35360,6 +35360,26 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef/20250401171019_V1_00.Designer.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/20250401171019_V1_00.Designer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef/20250401171019_V1_00.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/20250401171019_V1_00.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Database.Ef/README.md",
       "output": {
         ".html": {
@@ -35374,6 +35394,16 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.Database.Ef/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef/SqlServerExampleDbContextModelSnapshot.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/SqlServerExampleDbContextModelSnapshot.html"
         }
       },
       "version": ""
@@ -36035,6 +36065,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/DbLayer.drawio",
+      "output": {
+        "resource": {
+          "relative_path": "images/DbLayer.drawio"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/DbLayer.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/DbLayer.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/DocumentBuilder.drawio",
       "output": {
         "resource": {
@@ -36109,6 +36159,26 @@
       "output": {
         "resource": {
           "relative_path": "images/StackedColumnChart.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/UnitOfWork.drawio",
+      "output": {
+        "resource": {
+          "relative_path": "images/UnitOfWork.drawio"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/UnitOfWork.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/UnitOfWork.png"
         }
       },
       "version": ""

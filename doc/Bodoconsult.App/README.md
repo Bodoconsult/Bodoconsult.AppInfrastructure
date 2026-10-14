@@ -24,7 +24,6 @@ It delivers the following main functionality:
 
 > [More tools for developers](#more-tools-for-developers)
 
-
 ## Prerequisites
 
 If you get an exception "Could not load file or assembly 'Microsoft.Extensions.Logging.Console, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. ..." you need to add the following packages to your app.
@@ -98,7 +97,7 @@ Data export services based on IDataExportService<T>/DataExportServiceBase<T> are
 
 Typical scenario is a network device sending communication data to a client. Client is intended to save the received data into files for later usage.
 
-See page [](DataExportService.md) for details.
+See page [DataExportService](DataExportService.md) for details.
 
 # More tools for developers
 

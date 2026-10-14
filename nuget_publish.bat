@@ -53,6 +53,9 @@ dotnet nuget push packages\Bodoconsult.Database.Sqlite.%version%.snupkg --source
 REM dotnet nuget push packages\Bodoconsult.Database.Dbase.%version%.nupkg --source https://api.nuget.org/v3/index.json
 REM dotnet nuget push packages\Bodoconsult.Database.Dbase.%version%.snupkg --source https://api.nuget.org/v3/index.json
 
+REM dotnet nuget push packages\Bodoconsult.Database.Dbase.Ef.%version%.nupkg --source https://api.nuget.org/v3/index.json
+REM dotnet nuget push packages\Bodoconsult.Database.Dbase.Ef.%version%.snupkg --source https://api.nuget.org/v3/index.json
+
 REM dotnet nuget push packages\Bodoconsult.Database.Ef.%version%.nupkg --source https://api.nuget.org/v3/index.json
 REM dotnet nuget push packages\Bodoconsult.Database.Ef.%version%.snupkg --source https://api.nuget.org/v3/index.json
 

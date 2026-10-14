@@ -1402,6 +1402,28 @@
             Add info about database content
             </p><h4>AddDocumentation</h4><p>
             Search for stored procs beginning with spDbDocu_ and call them to add their data to the documentation
+            </p><h2>Dal.Helpers.SqlHelper</h2>
+            <p>
+            Helepr class to handle SQL related tasks
+            </p>
+        <h3>Properties</h3><h4>Status</h4>
+            <p>
+            Get status messages from database stored procs
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Helpers.SqlHelper(System.String, Bodoconsult.Database.Interfaces.SqlStatus)</h4><p>
+            default ctor
+            </p><h5>Parameters</h5><dl><dt><strong>connectionString:
+      </strong></dt><dd>Current connection string</dd><dt><strong>status:
+      </strong></dt><dd>SQL status</dd></dl><h4>Exec(System.String)</h4><p>
+            Execute SQL statement with not returning values
+            </p><h5>Parameters</h5><dl><dt><strong>sql:
+      </strong></dt><dd>SQL statement to execute</dd></dl><h4>ExecWithResult(System.String)</h4><p>
+            Execute SQL statement and return one value
+            </p><h5>Parameters</h5><dl><dt><strong>sql:
+      </strong></dt><dd>SQL to execute</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>Result of the executed SQL statement as string</dd>Result of the executed SQL statement as string</dl><h4>Close</h4><p>
+            Close the connection
             </p><h2>Dal.Helpers.VirtualDesktop</h2>
             <p>
             Provides a virtual desktop
@@ -1580,11 +1602,7 @@
             <p>
             Current job to handle
             </p>
-        <h3>Methods</h3><h4>
-              Constructor:
-              Dal.JobHandler</h4><p>
-            default ctor
-            </p><h4>RunTask(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+        <h3>Methods</h3><h4>RunTask(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
             Run a single <em>
       See: T:JobExecuter.Base.Interfaces.IJobTask</em>
             </p><h5>Parameters</h5><dl><dt><strong>jobTask:
@@ -2112,6 +2130,10 @@
             <p>
             Write the error messages to the Windows eventlog
             </p>
+        <h4>JobJsonFileName</h4>
+            <p>
+            Full path of the CJSON file with JobExecuter job to document
+            </p>
         <h3>Methods</h3><h4>
               Constructor:
               Dal.Model.Job</h4><p>
@@ -2161,7 +2183,7 @@
             </p>
         <h4>CurrentJob</h4>
             <p>
-            Current job (will be used if <em>
+            Current job. Will be used if <em>
       See: P:JobExecuter.Dal.Model.JobDocuJobTask.JobJsonFileName</em> is empty.
             </p>
         <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.PingCheckJobTask</h2>

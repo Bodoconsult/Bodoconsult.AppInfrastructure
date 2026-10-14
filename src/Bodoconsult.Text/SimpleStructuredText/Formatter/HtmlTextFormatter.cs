@@ -21,7 +21,6 @@ namespace Bodoconsult.Text.Formatter;
 /// </summary>
 public class HtmlTextFormatter : ITextFormatter
 {
-
     #region Internal values
 
     private int _rowCount;

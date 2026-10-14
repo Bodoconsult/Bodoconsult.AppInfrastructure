@@ -42,7 +42,7 @@ The source code contains NUnit test classes the following source code is extract
 
 > >  [Enhance database context for target database type](#enhance-database-context-for-target-database-type)
 
->  >  [Create a DbContext factory](#create-a-dbcontext-factory)
+>  >  [Create a DbContext factory for production or testing](#create-a-production-or-testing-dbcontext-factory-idbcontextwithconfigfactory)
 
 >  >  [Create a unit of work based on SqlServerUnitOfWork](#create-a-unit-of-work-based-on-sqlserverunitofwork)
 
@@ -175,7 +175,7 @@ using (uow.GetReadOnlyContextScope())   // Opening connection and closing it on 
 
 The following chart shows the intended (uncomplete) database related layering of an app using Bodoconsult.Database.Ef:
 
-![Database layer](DbLayer.png)
+![Database layer](../../images/DbLayer.png)
 
 ## The entity interfaces IEntityRequirementsGuid and IEntityRequirements
 
@@ -586,7 +586,7 @@ public interface IRepository<TEntity> where TEntity : class, IEntityRequirements
 
 The unit of work should be loaded as a singleton instance on app start. During instanciation the DbContext is created, the necessary migrations are executed and if needed existing data are migrated or a fresh database is seeded.
 
-![Unit of work](UnitOfWork.png)
+![Unit of work](../../images/UnitOfWork.png)
 
 
 ## Entities 
@@ -1041,11 +1041,11 @@ A migration 20250401171019_V1_00 consists of two file 20250401171019_V1_00.cs an
 All migrations applied to a database already are stored in a table called _EFMigrationsHistory. The EF Core migration process checks this table before running existing migrations. If no entries are found all migrations are executed sorted by timestamp ascending. If there are entries in the table only the missing migrations are executed sorted by timestamp ascending.
 
 
-The [20250401171019_V1_00.cs](../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/20250401171019_V1_00.cs) file contains the migration commands to come to the next schema version of the DB schema. This file contains a method Up() for upward migration and Down() for downward migration. Downward migration have been evolved as tricky in real world scenarios with existing data. Bringing already migrated data to the old state may be demanding! Our recommendation is: do NOT use it at least in more complex database scenarios.
+The [20250401171019_V1_00.cs](20250401171019_V1_00.md) file contains the migration commands to come to the next schema version of the DB schema. This file contains a method Up() for upward migration and Down() for downward migration. Downward migration have been evolved as tricky in real world scenarios with existing data. Bringing already migrated data to the old state may be demanding! Our recommendation is: do NOT use it at least in more complex database scenarios.
 
-The [20250401171019_V1_00.Designer.cs](../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/20250401171019_V1_00.Designer.cs) is containing a definition of the current schema as metadata for usage by EF Core.
+The [20250401171019_V1_00.Designer.cs](20250401171019_V1_00.Designer.md) is containing a definition of the current schema as metadata for usage by EF Core.
 
-There is another file important for the migrations: the model snapshot. [StSysDbEntitiesSqlServerModelSnapshot](../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/StSysDbEntitiesSqlServerModelSnapshot.cs)  contains a snapshot after the last existing migration has been running. The content in the method BuildModel() is the same as in the method BuildTargetModel in the Designer file of the last migration. If you use EFCore tools the model snapshot is update after each add of a new migration. It is possible and maybe the only way of working in complex scenarios to edit this file manually.
+There is another file important for the migrations: the model snapshot. [SqlServerExampleDbContextModelSnapshot](SqlServerExampleDbContextModelSnapshot.md)  contains a snapshot after the last existing migration has been running. The content in the method BuildModel() is the same as in the method BuildTargetModel in the Designer file of the last migration. If you use EFCore tools the model snapshot is update after each add of a new migration. It is possible and maybe the only way of working in complex scenarios to edit this file manually.
 
 ## Entity Framework Core tools (EFCore tools)
 

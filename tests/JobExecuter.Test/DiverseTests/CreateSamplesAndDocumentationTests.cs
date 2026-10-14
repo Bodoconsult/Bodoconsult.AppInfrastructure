@@ -66,7 +66,7 @@ public class CreateSamplesAndDocumentationTests
         localPath = TestDataHelper.LocalPath;
         targetPath = Path.Combine(localPath,  "network");
 
-        var dirSolution1 = Path.Combine(TestDataHelper.SolutionPath,  "src");
+        var dirSolution1 = Path.Combine(TestDataHelper.SolutionPath,  "apps\\JobExecuter");
         //dirJe = Path.Combine(dirSolution1, @"JobExecuter\");
         dirJeDal = Path.Combine(dirSolution1, @"JobExecuter.Dal\");
         dirNameJeSamples = Path.Combine(dirSolution1, @"JobExecuter\Samples\");

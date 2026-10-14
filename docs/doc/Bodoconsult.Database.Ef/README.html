@@ -159,7 +159,7 @@
 </blockquote>
 <blockquote>
 <blockquote>
-<p><a href="#create-a-dbcontext-factory">Create a DbContext factory</a></p>
+<p><a href="#create-a-production-or-testing-dbcontext-factory-idbcontextwithconfigfactory">Create a DbContext factory for production or testing</a></p>
 </blockquote>
 </blockquote>
 <blockquote>
@@ -304,7 +304,7 @@ using (uow.GetReadOnlyContextScope())   // Opening connection and closing it on 
 }
 </code></pre>
 <p>The following chart shows the intended (uncomplete) database related layering of an app using Bodoconsult.Database.Ef:</p>
-<p><img src="DbLayer.png" alt="Database layer"></p>
+<p><img src="../../images/DbLayer.png" alt="Database layer"></p>
 <h2 id="the-entity-interfaces-ientityrequirementsguid-and-ientityrequirements">The entity interfaces IEntityRequirementsGuid and IEntityRequirements</h2>
 <p>Entities to be used with Bodoconsult.Database.Ef have to implement interface IEntityRequirements or IEntityRequirementsGuid.</p>
 <p>Entities having an integer primary key field have to implement IEntityRequirements interface:</p>
@@ -699,7 +699,7 @@ public interface IRepository&lt;TEntity&gt; where TEntity : class, IEntityRequir
 <h1 id="setting-up-the-database-context-with-bodoconsultdatabaseef">Setting up the database context with Bodoconsult.Database.Ef</h1>
 <h2 id="process-of-setting-up-the-database-context">Process of setting up the database context</h2>
 <p>The unit of work should be loaded as a singleton instance on app start. During instanciation the DbContext is created, the necessary migrations are executed and if needed existing data are migrated or a fresh database is seeded.</p>
-<p><img src="UnitOfWork.png" alt="Unit of work"></p>
+<p><img src="../../images/UnitOfWork.png" alt="Unit of work"></p>
 <h2 id="entities">Entities</h2>
 <p>If talking about Entity Framework an entity is a simple class representing a table in the database. Sometimes entities are named <em>plain old code objects</em> (POCO) too.</p>
 <pre><code class="lang-csharp">/// &lt;summary&gt;
@@ -1105,9 +1105,9 @@ public class SqlServerExampleDbUnitOfWork: SqlServerUnitOfWork&lt;SqlServerExamp
 <p>Migrations define how to reach the defined database (DB) schema in the DbContext instance with database tools. A migration is bound to a certain database schema version.</p>
 <p>A migration 20250401171019_V1_00 consists of two file 20250401171019_V1_00.cs and 20250401171019_V1_00.Designer.cs. The name of a migration always start with a timestamp the migration was created and an additional name (V1_00).</p>
 <p>All migrations applied to a database already are stored in a table called _EFMigrationsHistory. The EF Core migration process checks this table before running existing migrations. If no entries are found all migrations are executed sorted by timestamp ascending. If there are entries in the table only the missing migrations are executed sorted by timestamp ascending.</p>
-<p>The <a href="../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/20250401171019_V1_00.cs">20250401171019_V1_00.cs</a> file contains the migration commands to come to the next schema version of the DB schema. This file contains a method Up() for upward migration and Down() for downward migration. Downward migration have been evolved as tricky in real world scenarios with existing data. Bringing already migrated data to the old state may be demanding! Our recommendation is: do NOT use it at least in more complex database scenarios.</p>
-<p>The <a href="../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/20250401171019_V1_00.Designer.cs">20250401171019_V1_00.Designer.cs</a> is containing a definition of the current schema as metadata for usage by EF Core.</p>
-<p>There is another file important for the migrations: the model snapshot. <a href="../../samples/EntityFramework/EfConsoleApp1.Model/DatabaseModel/Migrations/StSysDbEntitiesSqlServerModelSnapshot.cs">StSysDbEntitiesSqlServerModelSnapshot</a>  contains a snapshot after the last existing migration has been running. The content in the method BuildModel() is the same as in the method BuildTargetModel in the Designer file of the last migration. If you use EFCore tools the model snapshot is update after each add of a new migration. It is possible and maybe the only way of working in complex scenarios to edit this file manually.</p>
+<p>The <a href="20250401171019_V1_00.html">20250401171019_V1_00.cs</a> file contains the migration commands to come to the next schema version of the DB schema. This file contains a method Up() for upward migration and Down() for downward migration. Downward migration have been evolved as tricky in real world scenarios with existing data. Bringing already migrated data to the old state may be demanding! Our recommendation is: do NOT use it at least in more complex database scenarios.</p>
+<p>The <a href="20250401171019_V1_00.Designer.html">20250401171019_V1_00.Designer.cs</a> is containing a definition of the current schema as metadata for usage by EF Core.</p>
+<p>There is another file important for the migrations: the model snapshot. <a href="SqlServerExampleDbContextModelSnapshot.html">SqlServerExampleDbContextModelSnapshot</a>  contains a snapshot after the last existing migration has been running. The content in the method BuildModel() is the same as in the method BuildTargetModel in the Designer file of the last migration. If you use EFCore tools the model snapshot is update after each add of a new migration. It is possible and maybe the only way of working in complex scenarios to edit this file manually.</p>
 <h2 id="entity-framework-core-tools-efcore-tools">Entity Framework Core tools (EFCore tools)</h2>
 <p>The proposed way by MS is to let the migrations be created by the integrated EFCore tools.</p>
 <p>In more complex scenarios in real world i.e. coming from existing databases it is sometimes much easier to create or adjust the migration files manually.</p>

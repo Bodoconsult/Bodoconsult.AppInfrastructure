@@ -12,9 +12,9 @@ See the following implementations for specific database systems:
 
 >   **[Bodoconsult.Database.SqlClient](../Bodoconsult.Database.SqlClient/README.md)** for Microsoft SqlServer, Microsoft SqlServer Express or LocalDb based databases (Nuget: <https://www.nuget.org/packages/Bodoconsult.Database.SqlClient/>)
 
->   **[Bodoconsult.Database.Postgres](doc/Bodoconsult.Database.Postgres/README.md)** for PostgreSQL based databases (Nuget: <https://www.nuget.org/packages/Bodoconsult.Database.Postgres/>)
+>   **[Bodoconsult.Database.Postgres](../Bodoconsult.Database.Postgres/README.md)** for PostgreSQL based databases (Nuget: <https://www.nuget.org/packages/Bodoconsult.Database.Postgres/>)
 
->   **[Bodoconsult.Database.Sqlite](doc/Bodoconsult.Database.Sqlite/README.md)** for SqLite based databases (Nuget: <https://www.nuget.org/packages/Bodoconsult.Database.Sqlite/>)
+>   **[Bodoconsult.Database.Sqlite](../Bodoconsult.Database.Sqlite/README.md)** for SqLite based databases (Nuget: <https://www.nuget.org/packages/Bodoconsult.Database.Sqlite/>)
 
 # How to use the library
 
