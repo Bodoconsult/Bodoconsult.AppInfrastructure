@@ -1,0 +1,236 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>{1}</title>
+<style type="text/css">
+
+<!--
+html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+}
+
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+body {
+	width: 700px;
+}
+
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+p.little {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+
+    table {
+        margin: 15px 0 15px 0;
+    }
+
+    th {
+        vertical-align: top;
+        text-align: left;
+        padding: 5px 10px 0 0;
+    }
+
+    td {
+        vertical-align: top;
+        padding: 5px 10px 0 0;
+    }
+
+	p.Title {
+        font-size: 16pt;
+        font-weight: bold;
+        margin-left: 0;
+        margin-bottom: 1.5em;
+        padding-top: 0.5em;
+        margin-right: 0;
+        text-align: center;
+        width: 100%;
+        line-height: 1.1em;
+    }
+
+        p.Toc1 {
+            margin-left: 50px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-top: 2px;
+            margin-bottom: 0;
+        }
+
+            p.Toc1 a::before {
+                content: '→ ';
+            }
+
+        p.Toc2 {
+            margin-left: 65px;
+            font-size: 0.8em;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+            p.Toc2 a::before {
+                content: '→ ';
+            }
+
+
+        p.Toc3 {
+            margin-left: 80px;
+            font-size: 0.8em;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+            p.Toc3 a::before {
+                content: '→ ';
+            }
+
+        p.Toc4 {
+            margin-left: 95px;
+            font-size: 0.8em;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+            p.Toc4 a::before {
+                content: '→ ';
+            }
+
+.wr_table {
+        background-color: #ffffff;
+        font-family: "Arial Narrow", "Arial", "Helvetica Narrow", "Helvetica", "Calibri", sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #D3DFF0;
+        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        page-break-inside: avoid;
+    }
+
+    .wr_header {
+        padding: 2px;
+        border: 1px solid #D3DFF0;
+        margin: 0;
+        background-color: #D3DFF0;
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .wr_header_right {
+        padding: 2px;
+        border: 1px solid #D3DFF0;
+        margin: 0;
+        background-color: #D3DFF0;
+        text-align: right;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+
+    .wr_header_center {
+        padding: 2px;
+        border: 1px solid #D3DFF0;
+        margin: 0;
+        background-color: #D3DFF0;
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+
+    .wr_cell {
+        padding: 2px;
+        border: 1px solid #D3DFF0;
+        margin: 0;
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .wr_cell_right {
+        padding: 2px;
+        border: 1px solid #D3DFF0;
+        margin: 0;
+        text-align: right;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .wr_cell_center {
+        padding: 2px;
+        border: 1px solid #D3DFF0;
+        margin: 0;
+        text-align: right;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .wr_cell_alt {
+        padding: 2px;
+        border: 1px solid #D0DFFF;
+        margin: 0;
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+        background-color: #E4EDFF;
+        vertical-align: top;
+    }
+
+    .wr_cell_right_alt {
+        padding: 2px;
+        border: 1px solid #D0DFFF;
+        margin: 0;
+        text-align: right;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+        background-color: #E4EDFF;
+        vertical-align: top;
+    }
+
+    .wr_cell_center_alt {
+        padding: 2px;
+        border: 1px solid #D0DFFF;
+        margin: 0;
+        text-align: right;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 0.9em;
+        background-color: #E4EDFF;
+        vertical-align: top;
+    }
+
+-->
+</style>
+</head>
+<body>
+{0}
+</body>
+</html>

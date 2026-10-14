@@ -1,0 +1,27 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for DocumentationJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DocumentationJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.DocumentationJobTask, JobExecuter.Dal",
+			"JsonFiles": [
+				"d_:\\tmp\\test.jsonSample.json",
+				"d:\\tmp\\test.jsonSample.json"
+			],
+			"HtmlTargetFiles": [
+				"d:\\tmp\\FolderBackup2\\documentation.htm"
+			],
+			"Title": "Full documentation",
+			"AppendHelpFile": false,
+			"Name": "Full documentation",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

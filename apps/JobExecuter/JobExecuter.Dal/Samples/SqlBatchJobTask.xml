@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for SqlBatchJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBatchJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal",
+			"DatabaseName": "MediaDb",
+			"FileName": "testbackup.bak",
+			"BatchContent": null,
+			"Server": ".\\sqlexpress",
+			"Name": "Run a SQL batch file",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal",
+			"DatabaseName": "MediaDb",
+			"FileName": null,
+			"BatchContent": "exec spTest 1\r\nGO\r\nexec spTest 2\r\nGO\r\nexec spTest 3",
+			"Server": ".\\sqlexpress",
+			"Name": "Run SQL batch directly from string",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

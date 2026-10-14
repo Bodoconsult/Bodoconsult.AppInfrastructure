@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for SqlComplianceAllDatabasesJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask, JobExecuter.Dal",
+			"Server": ".\\sqlexpress",
+			"Title": null,
+			"MailTo": "info@bodoconsult.de",
+			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseComplianceReport.htm",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": null,
+			"Name": "Create compliance information for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

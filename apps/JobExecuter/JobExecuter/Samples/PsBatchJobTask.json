@@ -1,0 +1,29 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for PsBatchJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.PsBatchJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.PsBatchJobTask, JobExecuter.Dal",
+			"Filename": "PowerShellScript.ps1.bak",
+			"PowerShellVersion": "V01",
+			"Name": "Running a PowerShell batch file with PowerShell V01",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.PsBatchJobTask, JobExecuter.Dal",
+			"Filename": "PowerShellScript.ps1.bak",
+			"PowerShellVersion": "V03",
+			"Name": "Running a PowerShell batch file with PowerShell V03",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

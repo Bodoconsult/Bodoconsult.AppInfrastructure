@@ -1,0 +1,1 @@
+﻿select count(*) from master.sys.procedures where schema_id=1 and name='IndexOptimize'

@@ -1,0 +1,7 @@
+﻿d:\Daten\Projekte\OwnProjects\JobExecuter\JobExecuter\Samples\DiskSizeJobTask.json
+
+/p
+
+/c d:\Daten\Projekte\OwnProjects\JobExecuter\JobExecuter\Samples\DiskSizeJobTask.json
+
+d:\Daten\Projekte\OwnProjects\JobExecuter\JobExecuter\Samples\DiskSizeJobTask.json

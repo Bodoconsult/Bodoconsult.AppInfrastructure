@@ -1,0 +1,18 @@
+﻿using Microsoft.GroupPolicy;
+
+var guid = new Guid("A7DE85DE-1234-F34D-99AD-5AFEDF7D7B4A");
+var gpo = new GPDomain("Centoso.local");
+var gpoData = gpo.GetGpo(guid);
+var gpoXmlReport = gpoData.GenerateReport(ReportType.Xml).ToString();
+
+using (XmlReader reader = XmlReader.Create(new StringReader(gpoXmlReport)))
+{
+    string field;
+    while (reader.MoveToNextAttribute())
+    {
+        foreach (string attr in attributes)
+        {
+            // do something
+        }
+    }            
+}

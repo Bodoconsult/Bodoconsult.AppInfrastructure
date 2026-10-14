@@ -1,0 +1,25 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for SqlDocuSingleDatabaseJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask, JobExecuter.Dal",
+			"Server": ".\\sqlexpress",
+			"DatabaseName": "MediaDb",
+			"Title": null,
+			"MailTo": null,
+			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.htm",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.json",
+			"Name": "Create a documentation for a single database",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
+		<RootNamespace>JobExecuter.Dal</RootNamespace>
+		<AssemblyName>JobExecuter.Dal</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>JobExecuter.Dal.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Executer\SqlMailUserAccessAllDatabasesExecuter.cs" />
+		<Compile Remove="Executer\SqlMailUserAccessSingleDatabaseExecuter.cs" />
+		<Compile Remove="Factories\SqlMailUserAccessAllDatabasesExecuterFactory.cs" />
+		<Compile Remove="Factories\SqlMailUserAccessSingleDatabaseExecuterFactory.cs" />
+		<Compile Remove="Model\SqlMailUserAccessAllDatabasesJobTask.cs" />
+		<Compile Remove="Model\SqlMailuserAccessSingleDatabaseJobTask.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="JobExecuter.Dal.xml" />
+		<None Remove="Resources\Backup.cab" />
+		<None Remove="Resources\ControlServerPermission.sql" />
+		<None Remove="Resources\DatabasesCompatibility.sql" />
+		<None Remove="Resources\DatabasesDocuStoredProcs.sql" />
+		<None Remove="Resources\DatabasesNotMultiuser.sql" />
+		<None Remove="Resources\DatabasesNotOnline.sql" />
+		<None Remove="Resources\DatabasesReadOnly.sql" />
+		<None Remove="Resources\Diskshadow.txt" />
+		<None Remove="Resources\Files.sql" />
+		<None Remove="Resources\FilesNotOnline.sql" />
+		<None Remove="Resources\HelpFile.json" />
+		<None Remove="Resources\HelpFile.txt" />
+		<None Remove="Resources\Logins.sql" />
+		<None Remove="Resources\OrphanedLogins.sql" />
+		<None Remove="Resources\OrphanedLoginsObjects.sql" />
+		<None Remove="Resources\RoleMembers.sql" />
+		<None Remove="Resources\RoleMembersIndirect.sql" />
+		<None Remove="Resources\Roles.sql" />
+		<None Remove="Resources\SqlDatabaseOverview.sql" />
+		<None Remove="Resources\SqlInstance.sql" />
+		<None Remove="Resources\SqlMaintenanceAdminTools.sql" />
+		<None Remove="Resources\SqlMaintenanceAdminToolsExist.sql" />
+		<None Remove="Resources\SqlMaintenanceIndexOptimize.sql" />
+		<None Remove="Resources\SqlMaintenanceIntegrityCheck.sql" />
+		<None Remove="Resources\SqlMaintenanceUpdateStatistics.sql" />
+		<None Remove="Resources\SqlServer1.sql" />
+		<None Remove="Resources\SqlServerLevel.sql" />
+		<None Remove="Resources\SqlVersion.sql" />
+		<None Remove="Resources\TableInfo.sql" />
+		<None Remove="Resources\UserDatabaseAccess.sql" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Resources\HelpFile.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Backup.cab" />
+		<EmbeddedResource Include="Resources\ControlServerPermission.sql" />
+		<EmbeddedResource Include="Resources\DatabasesCompatibility.sql" />
+		<EmbeddedResource Include="Resources\DatabasesDocuStoredProcs.sql" />
+		<EmbeddedResource Include="Resources\DatabasesNotMultiuser.sql" />
+		<EmbeddedResource Include="Resources\DatabasesNotOnline.sql" />
+		<EmbeddedResource Include="Resources\DatabasesReadOnly.sql" />
+		<EmbeddedResource Include="Resources\Diskshadow.txt" />
+		<EmbeddedResource Include="Resources\Files.sql" />
+		<EmbeddedResource Include="Resources\FilesNotOnline.sql" />
+		<EmbeddedResource Include="Resources\HelpFile.json" />
+		<EmbeddedResource Include="Resources\Logins.sql" />
+		<EmbeddedResource Include="Resources\OrphanedLogins.sql" />
+		<EmbeddedResource Include="Resources\OrphanedLoginsObjects.sql" />
+		<EmbeddedResource Include="Resources\RoleMembers.sql" />
+		<EmbeddedResource Include="Resources\RoleMembersIndirect.sql" />
+		<EmbeddedResource Include="Resources\Roles.sql" />
+		<EmbeddedResource Include="Resources\SqlDatabaseOverview.sql" />
+		<EmbeddedResource Include="Resources\SqlInstance.sql" />
+		<EmbeddedResource Include="Resources\SqlMaintenanceAdminTools.sql" />
+		<EmbeddedResource Include="Resources\SqlMaintenanceAdminToolsExist.sql" />
+		<EmbeddedResource Include="Resources\SqlMaintenanceIndexOptimize.sql" />
+		<EmbeddedResource Include="Resources\SqlMaintenanceIntegrityCheck.sql" />
+		<EmbeddedResource Include="Resources\SqlMaintenanceUpdateStatistics.sql" />
+		<EmbeddedResource Include="Resources\SqlServer1.sql" />
+		<EmbeddedResource Include="Resources\SqlServerLevel.sql" />
+		<EmbeddedResource Include="Resources\SqlVersion.sql" />
+		<EmbeddedResource Include="Resources\TableInfo.sql" />
+		<EmbeddedResource Include="Resources\UserDatabaseAccess.sql" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="log4net" Version="3.5.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="10.0.13" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="System.Management.Automation" Version="7.6.7" />
+		<PackageReference Include="TaskScheduler" Version="2.12.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.Database.SqlClient\Bodoconsult.Database.SqlClient.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.Database\Bodoconsult.Database.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.Network.Windows\Bodoconsult.Network.Windows.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.Web.Mail\Bodoconsult.Web.Mail.csproj" />
+		<ProjectReference Include="..\JobExecuter.Base\JobExecuter.Base.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,31 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for RunAppJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.RunAppJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.RunAppJobTask, JobExecuter.Dal",
+			"Filename": "robocopy.exe",
+			"Arguments": null,
+			"InteractiveMode": false,
+			"Name": "Sample for running a app without parmeters",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.RunAppJobTask, JobExecuter.Dal",
+			"Filename": "robocopy.exe",
+			"Arguments": "/?",
+			"InteractiveMode": false,
+			"Name": "Sample for running a app with parameters",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JobExecuter.Base</name>
+    </assembly>
+    <members>
+        <member name="T:JobExecuter.Base.BaseExecuter">
+            <inheritdoc />
+            <summary>
+            Base class for <see cref="T:ITaskExecuter" /> implementations
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.BaseExecuter.#ctor(JobExecuter.Base.Interfaces.IJobTask)">
+            <summary>
+            ctor to initialize task with job data
+            </summary>
+            <param name="jobTask">job task to run</param>
+        </member>
+        <member name="P:JobExecuter.Base.BaseExecuter.StatusChanged">
+            <summary>
+            Status changed event
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseExecuter.MailSend">
+            <summary>
+            Mail sent event
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseExecuter.SaveAsHtml">
+            <summary>
+            Save HTML as delegate
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseExecuter.SaveAsPdf">
+            <summary>
+            Save HTML as delegate
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseExecuter.SaveAsJson">
+            <summary>
+            Save text as JSON
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.BaseExecuter.Run">
+            <summary>
+            Run job task
+            </summary>
+            <returns>true in case of success</returns>
+        </member>
+        <member name="M:JobExecuter.Base.BaseExecuter.Kill">
+            <summary>
+            Kill task when timed out
+            </summary>
+            <returns>true on success</returns>
+        </member>
+        <member name="P:JobExecuter.Base.BaseExecuter.Errors">
+            <summary>
+            Contains error messages resulting from errors in single task steps for example in batch processes
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseExecuter.LogPrefix">
+            <summary>
+            Prefix used for logging
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.BaseExecuter.SetStatus(System.String)">
+            <summary>
+            Send status changed message
+            </summary>
+            <param name="message">message to show</param>
+        </member>
+        <member name="M:JobExecuter.Base.BaseExecuter.SetStatusApp(System.String)">
+            <summary>
+            Send status changed message from an external app
+            </summary>
+            <param name="message">message to show</param>
+        </member>
+        <member name="M:JobExecuter.Base.BaseExecuter.SendMail(System.String,System.String,Bodoconsult.Text.Interfaces.IStructuredText)">
+            <summary>
+            Send mail sent message
+            </summary>
+            <param name="mailTo">Mail receiver</param>
+            <param name="subject">Subject of the mail</param>
+            <param name="body">Body of the mail</param>
+        </member>
+        <member name="M:JobExecuter.Base.BaseExecuter.SetStatus(System.String,System.Object[])">
+            <summary>
+            Send status changed message
+            </summary>
+            <param name="message">message to show</param>
+            <param name="data">data parameters to show in message</param>
+        </member>
+        <member name="T:JobExecuter.Base.BaseJobTask">
+            <summary>
+            Task to be done in a <see cref="T:JobExecuter.Base.Interfaces.IJob"/>
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.BaseJobTask.#ctor">
+            <summary>
+            default ctor
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseJobTask.Name">
+            <summary>
+            Name of the job
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseJobTask.Description">
+            <summary>
+            Description of the job used for documentation
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseJobTask.ErrorMailReceiver">
+            <summary>
+            Send an error mail to mail addresses. Mail addresses separated by semicolon
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.BaseJobTask.Timeout">
+            <summary>
+            Timeout in seconds the job will be terminated after start
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.BaseJobTask.GetFactory">
+            <inheritdoc />
+        </member>
+        <member name="T:JobExecuter.Base.JobHandlerMailDelegate">
+            <summary>
+            Delegate for email message handling
+            </summary>
+        </member>
+        <member name="T:JobExecuter.Base.SaveAsHtmlDelegate">
+            <summary>
+            Delegate for saving a text as HTML
+            </summary>
+            <param name="fileName">HTML filename</param>
+            <param name="text">Text to save</param>
+            <param name="title">Title for the HTML file</param>
+            <returns>filename in case of success</returns>
+        </member>
+        <member name="T:JobExecuter.Base.SaveAsPdfDelegate">
+            <summary>
+            Delegate for saving a text as PDF
+            </summary>
+            <param name="fileName">HTML filename</param>
+            <param name="text">Text to save</param>
+            <param name="title">Title for the HTML file</param>
+            <returns>filename in case of success</returns>
+        </member>
+        <member name="T:JobExecuter.Base.SaveAsJsonDelegate`1">
+            <summary>
+            Delegate for saving (text) data to a JSON 
+            </summary>
+            <typeparam name="T">type to serialize</typeparam>
+            <param name="fileName">JSON filename</param>
+            <param name="data">data to serialize</param>
+            <returns>filename in case of success</returns>
+        </member>
+        <member name="T:JobExecuter.Base.Interfaces.IJob">
+            <summary>
+            Defines the basic information required for a job to be executed
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.Name">
+            <summary>
+            Name of the job
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.Description">
+            <summary>
+            Description of the job used for documentation
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.ErrorMailReceiver">
+            <summary>
+            Mail addresses separarted with semicolon to send an error mail to
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.SummaryMailReceiver">
+            <summary>
+            Mail addresses separarted with semicolon to send an summary mail to
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.JobTasks">
+            <summary>
+            All tasks to be done in the job
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.Timeout">
+            <summary>
+            Timeout in seconds the job will be terminated after start
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.WriteToEventLog">
+            <summary>
+            Write the error messages to the Windows eventlog
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJob.JobJsonFileName">
+            <summary>
+            Full path of the CJSON file with JobExecuter job to document
+            </summary>
+        </member>
+        <member name="T:JobExecuter.Base.Interfaces.IJobTask">
+            <summary>
+            Task to be done in a <see cref="T:JobExecuter.Base.Interfaces.IJob"/>
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJobTask.Name">
+            <summary>
+            Name of the job
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJobTask.Description">
+            <summary>
+            Description of the job used for documentation
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJobTask.ErrorMailReceiver">
+            <summary>
+            Mail addresses separarted with semicolon to send an error mail to
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.IJobTask.Timeout">
+            <summary>
+            Timeout in seconds the job will be terminated after start
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.Interfaces.IJobTask.GetFactory">
+            <summary>
+            Get the factory for the task's executer class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JobExecuter.Base.Interfaces.ITaskExecuter">
+            <summary>
+            Runs a single task
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.ITaskExecuter.StatusChanged">
+            <summary>
+            Status changed event
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.ITaskExecuter.MailSend">
+            <summary>
+            Mail sent event
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.ITaskExecuter.SaveAsHtml">
+            <summary>
+            Save HTML as delegate
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.ITaskExecuter.SaveAsPdf">
+            <summary>
+            Save HTML as delegate
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.ITaskExecuter.SaveAsJson">
+            <summary>
+            Save text as JSON
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.Interfaces.ITaskExecuter.Run">
+            <summary>
+            Run job task
+            </summary>
+            <returns>true in case of success</returns>
+        </member>
+        <member name="M:JobExecuter.Base.Interfaces.ITaskExecuter.Kill">
+            <summary>
+            Kill task when timed out
+            </summary>
+            <returns>true on success</returns>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.ITaskExecuter.Errors">
+            <summary>
+            Contains error messages resulting from errors in single task steps for example in batch processes
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Base.Interfaces.ITaskExecuter.LogPrefix">
+            <summary>
+            Prefix used for logging
+            </summary>
+        </member>
+        <member name="T:JobExecuter.Base.Interfaces.ITaskExecuterFactory">
+            <summary>
+            Factory for <see cref="T:JobExecuter.Base.Interfaces.ITaskExecuter"/> objects
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Base.Interfaces.ITaskExecuterFactory.New(JobExecuter.Base.Interfaces.IJobTask)">
+            <summary>
+            Create new executer
+            </summary>
+            <returns>New job task executer</returns>
+        </member>
+    </members>
+</doc>

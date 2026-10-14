@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for ActiveDirectoryJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.ActiveDirectoryJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.ActiveDirectoryJobTask, JobExecuter.Dal",
+			"Title": null,
+			"MailTo": null,
+			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ActiveDirectory.htm",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": null,
+			"Name": "Report Active Directory",
+			"Description": "Report the current domain's Active Directory structure with organisation units (OU), users, groups and computers.",
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

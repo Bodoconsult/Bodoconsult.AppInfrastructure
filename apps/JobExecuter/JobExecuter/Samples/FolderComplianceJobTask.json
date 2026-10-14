@@ -1,0 +1,31 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for FolderComplianceJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderComplianceJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.FolderComplianceJobTask, JobExecuter.Dal",
+			"FolderPaths": [
+				{
+					"$type": "JobExecuter.Dal.Model.ComplianceFolder, JobExecuter.Dal",
+					"Path": "c:\\daten\\projekte",
+					"IncludeSubFolders": true,
+					"ShowPermissionsOfPredefinedAccounts": true
+				}
+			],
+			"Title": null,
+			"MailTo": "test@test123.de",
+			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\Compliance2.htm",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": null,
+			"Name": "Create a compliance report for file system folders",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

@@ -15,7 +15,7 @@ public static class OpenGraphHelper
     /// <summary>
     /// Filename of the OpenGraph image
     /// </summary>
-    public const string OpenGraphFileName = @"opengraph.png";
+    public const string OpenGraphFileName = "opengraph.png";
 
     /// <summary>
     /// Header

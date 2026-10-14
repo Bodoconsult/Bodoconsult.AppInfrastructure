@@ -1,0 +1,41 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for CmdBatchJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.CmdBatchJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal",
+			"Filename": "testbackup.bak",
+			"RunType": "WholeFile",
+			"BatchFileContent": null,
+			"Name": "Run a batch (*.bat or *.cmd) with cmd.exe",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 110
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal",
+			"Filename": "testbackup.bak",
+			"RunType": "LineByLine",
+			"BatchFileContent": null,
+			"Name": "Run a batch (*.bat or *.cmd) with cmd.exe",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 110
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal",
+			"Filename": null,
+			"RunType": "LineByLine",
+			"BatchFileContent": "REm dfgsfd\r\ncopy d:\\tmp\\FolderBackup1\\*.* d:\\tmp\\FolderBackup2\\*.* /y\r\nREM fghdfg\r\ncopy d:\\tmp\\FolderBackup2\\*.* d:\\tmp\\FolderBackup1\\*.* /y\r\nREM fghfsd\r\n",
+			"Name": "Run a batch commands from a string",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 110
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

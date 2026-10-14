@@ -1,0 +1,55 @@
+﻿
+https://riptutorial.com/csharp/example/10258/pbkdf2-for-password-hashing
+
+using System.Security.Cryptography;
+
+    ...
+
+    public const int SALT_SIZE = 24; // size in bytes
+    public const int HASH_SIZE = 24; // size in bytes
+    public const int ITERATIONS = 100000; // number of pbkdf2 iterations
+
+    public static byte[] CreateHash(string input)
+    {
+        // Generate a salt
+        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+        byte[] salt = new byte[SALT_SIZE];
+        provider.GetBytes(salt);
+
+        // Generate the hash
+        Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(input, salt, ITERATIONS);
+        return pbkdf2.GetBytes(HASH_SIZE);
+    }
+
+
+var descriptions = (DescriptionAttribute[])
+
+  type.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+if (descriptions.Length == 0) {
+
+  return null;
+
+}...
+
+
+var property = typeof(Group).GetProperty("UserExistsInGroup");
+var attribute = property.GetCustomAttributes(typeof(DescriptionAttribute), true)[0];
+var description = (DescriptionAttribute)attribute;
+var text = description.Description;
+
+
+RESTORE DATABASE [AdventureWorksNew] 
+	FROM  DISK = N'\\nas\Backup\L40\SQL2005\AdventureWorks_backup_200702120215.bak' 
+	WITH  FILE = 1,  
+	MOVE N'AdventureWorks_Data' TO N'C:\Data\MSSQL.1\MSSQL\Data\AdventureWorksNew_Data.mdf',  
+	MOVE N'AdventureWorks_Log' TO N'C:\Data\MSSQL.1\MSSQL\Data\AdventureWorksNew_Log.ldf',  
+	NOUNLOAD,  STATS = 10
+
+
+	PrincipalContext 
+Install-Package System.DirectoryServices.AccountManagement -Version 4.5.0-preview2-26406-04
+https://www.nuget.org/packages/System.DirectoryServices.AccountManagement/
+ConnectionOptions, ManagementPath, ManagementObjectSearcher, ManagementObject
+Install-Package System.Management -Version 4.5.0-preview2-26406-04
+https://www.nuget.org/packages/System.Management/4.5.0-preview2-26406-04

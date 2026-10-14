@@ -1,0 +1,221 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
+		<AssemblyName>JobExecuter</AssemblyName>
+		<RootNamespace>JobExecuter</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Properties\Settings.Designer.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="appSettings.json" />
+		<None Remove="log4net.config" />
+		<None Remove="password.bat" />
+		<None Remove="Prepare.bat" />
+		<None Remove="Properties\Settings.settings" />
+		<None Remove="readme.txt" />
+		<None Remove="salt.bat" />
+		<None Remove="Samples\ActiveDirectoryJobTask.json" />
+		<None Remove="Samples\BackupBatchJobTask.json" />
+		<None Remove="Samples\CmdBatchJobTask.json" />
+		<None Remove="Samples\DhcpJobTask.json" />
+		<None Remove="Samples\DiskSizeJobTask.json" />
+		<None Remove="Samples\DiskSizeJobTask.log" />
+		<None Remove="Samples\DnsJobTask.json" />
+		<None Remove="Samples\documentation.html" />
+		<None Remove="Samples\DocumentationJobTask.json" />
+		<None Remove="Samples\FolderBackupJobTask.json" />
+		<None Remove="Samples\FolderCleanJobTask.json" />
+		<None Remove="Samples\FolderComplianceJobTask.json" />
+		<None Remove="Samples\JobDocuJobTask.json" />
+		<None Remove="Samples\JobExecuter_Help.htm" />
+		<None Remove="Samples\PingCheckJobTask.json" />
+		<None Remove="Samples\PsBatchJobTask.json" />
+		<None Remove="Samples\Readme.htm" />
+		<None Remove="Samples\Readme.txt" />
+		<None Remove="Samples\RunAppJobTask.json" />
+		<None Remove="Samples\Sample.json" />
+		<None Remove="Samples\SampleJobFolder\job.json" />
+		<None Remove="Samples\SampleJobFolder\job.log" />
+		<None Remove="Samples\SampleJobFolder\prepare.bat" />
+		<None Remove="Samples\SampleJobFolder\readme.txt" />
+		<None Remove="Samples\SampleJobFolder\start.bat" />
+		<None Remove="Samples\SampleJobFolder\test.bat" />
+		<None Remove="Samples\SqlBackupAllDatabasesJobTask.json" />
+		<None Remove="Samples\SqlBackupLogSingleDatabaseJobTask.json" />
+		<None Remove="Samples\SqlBackupSingleDatabaseJobTask.json" />
+		<None Remove="Samples\SqlBatchJobTask.json" />
+		<None Remove="Samples\SqlComplianceAllDatabasesJobTask.json" />
+		<None Remove="Samples\SqlComplianceSingleDatabaseJobTask.json" />
+		<None Remove="Samples\SqlDocuAllDatabasesJobTask.json" />
+		<None Remove="Samples\SqlDocuSingleDatabaseJobTask.json" />
+		<None Remove="Samples\SqlMaintenanceJobTask.json" />
+		<None Remove="Samples\TaskSchedulerDocuJobTask.json" />
+		<None Remove="Templates\XmlDocumentation.xslt" />
+		<None Remove="testmail.bat" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\JobExecuter.Dal\Templates\HtmlFile.txt" Link="Templates\HtmlFile.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\JobExecuter.Dal\Templates\HtmlMail.txt" Link="Templates\HtmlMail.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\JobExecuter.Dal\Templates\printer.css" Link="Templates\printer.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="appSettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="log4net.config">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="password.bat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Prepare.bat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="readme.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="salt.bat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\ActiveDirectoryJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\BackupBatchJobTask.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\CmdBatchJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\DhcpJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\DiskSizeJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\DiskSizeJobTask.log">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\DnsJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\documentation.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\DocumentationJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\FolderBackupJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\FolderCleanJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\FolderComplianceJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\JobDocuJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\JobExecuter_Help.htm">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\PingCheckJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\PsBatchJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\Readme.htm">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\Readme.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\RunAppJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\Sample.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SampleJobFolder\job.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SampleJobFolder\job.log">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SampleJobFolder\prepare.bat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SampleJobFolder\readme.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SampleJobFolder\start.bat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SampleJobFolder\test.bat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlBackupAllDatabasesJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlBackupLogSingleDatabaseJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlBackupSingleDatabaseJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlBatchJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlComplianceAllDatabasesJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlComplianceSingleDatabaseJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlDocuAllDatabasesJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlDocuSingleDatabaseJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\SqlMaintenanceJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Samples\TaskSchedulerDocuJobTask.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Templates\XmlDocumentation.xslt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="testmail.bat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<None Include="..\..\..\doc\JobExecuter\README.md" Link="README.md" />
+		<None Include="..\..\..\LICENSE.md" Link="LICENSE.md">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="log4net" Version="3.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\JobExecuter.Base\JobExecuter.Base.csproj" />
+		<ProjectReference Include="..\JobExecuter.Dal\JobExecuter.Dal.csproj" />
+	</ItemGroup>
+
+</Project>

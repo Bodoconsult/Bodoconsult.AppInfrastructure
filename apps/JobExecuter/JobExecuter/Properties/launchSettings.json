@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "JobExecuter": {
+      "commandName": "Project",
+      "commandLineArgs": "/m"
+    }
+  }
+}

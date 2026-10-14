@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for BackupBatchJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.BackupBatchJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.BackupBatchJobTask, JobExecuter.Dal",
+			"ShadowingSourceDrive": "C:",
+			"ShadowingTargetDrive": "H:",
+			"Command": null,
+			"Weeks": 5,
+			"GetAliveFolder": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\",
+			"Days": 14,
+			"DaysOffset": 0,
+			"BackupTargets": [
+				{
+					"$type": "Bodoconsult.App.Backup.BackupTargetSettings, Bodoconsult.App",
+					"Command": "robocopy ??source?? ??target??	*.* /FFT /S /E /log:??log?? /COPY:DT /B /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy",
+					"Source": "d:\\tmp\\FolderBackup1",
+					"Target": "d:\\tmp\\FolderBackup2\\",
+					"Logfile": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\logfile.log",
+					"ExcludeDirs": null,
+					"BackupMode": "Simple",
+					"Thread": 1,
+					"Count": 5,
+					"DaysOffset": 0,
+					"Errors": null,
+					"StatusChanged": null
+				}
+			],
+			"SummaryFile": null,
+			"Errors": null,
+			"StatusChanged": null,
+			"Name": "Backup file system",
+			"Description": "Take a backup of a filesystem folder using diskshadowing if needed and keeping old backups for a certain amount of time depending on the backup mode",
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

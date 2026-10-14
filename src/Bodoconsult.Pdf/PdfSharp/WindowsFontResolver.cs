@@ -55,7 +55,7 @@ public class WindowsFontResolver : IFontResolver
 
 
             if (!string.Equals( myvalue[^4..], ".TTF", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(myvalue.Substring(1, 2),  @":", StringComparison.OrdinalIgnoreCase))
+                string.Equals(myvalue.Substring(1, 2),  ":", StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }

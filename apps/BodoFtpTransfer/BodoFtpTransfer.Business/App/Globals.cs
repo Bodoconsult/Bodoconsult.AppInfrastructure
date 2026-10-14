@@ -61,7 +61,7 @@ public class Globals : IBodoFtpTransferAppGlobals
     /// <summary>
     /// Current log data entry factory
     /// </summary>
-    public ILogDataFactory? LogDataFactory { get; set; } = new LogDataFactory();
+    public ILogDataFactory LogDataFactory { get; set; } = new LogDataFactory();
 
     /// <summary>
     /// Current logging config

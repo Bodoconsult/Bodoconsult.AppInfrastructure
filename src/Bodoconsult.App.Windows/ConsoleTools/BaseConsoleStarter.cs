@@ -47,20 +47,20 @@ public abstract class BaseConsoleStarter : IConsoleStarter
         AppPath = new FileInfo(AppPath).DirectoryName;
         ArgumentNullException.ThrowIfNull(AppPath);
 
-        DataPath = global::System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), appName);
+        DataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), appName);
 
         if (!Directory.Exists(DataPath))
         {
             Directory.CreateDirectory(DataPath);
         }
 
-        HashFileName = global::System.IO.Path.Combine(DataPath, "data0.dat");
+        HashFileName = Path.Combine(DataPath, "data0.dat");
 
-        SmtpMailAccountFileName = global::System.IO.Path.Combine(AppPath, "data1.dat");
-        SmtpMailAccountImportFileName = global::System.IO.Path.Combine(AppPath, "smtp.json");
+        SmtpMailAccountFileName = Path.Combine(AppPath, "data1.dat");
+        SmtpMailAccountImportFileName = Path.Combine(AppPath, "smtp.json");
 
-        O365MailAccountFileName = global::System.IO.Path.Combine(AppPath, "data2.dat");
-        O365MailAccountImportFileName = global::System.IO.Path.Combine(AppPath, "0365.json");
+        O365MailAccountFileName = Path.Combine(AppPath, "data2.dat");
+        O365MailAccountImportFileName = Path.Combine(AppPath, "0365.json");
     }
 
     /// <summary>
@@ -289,9 +289,9 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     #region App password
 
     /// <summary>
-    /// Ask the user for a JSON encryption password and hash it
+    /// Ask the user for an app password and hash it
     /// </summary>
-    public void UiHashJsonPassword()
+    public void UiHashAppPassword()
     {
         var pwd = UiAskTheUserForAppPassword();
 

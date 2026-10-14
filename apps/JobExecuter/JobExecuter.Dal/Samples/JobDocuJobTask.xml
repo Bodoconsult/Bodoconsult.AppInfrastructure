@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for JobDocuJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.JobDocuJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.JobDocuJobTask, JobExecuter.Dal",
+			"JobJsonFileName": "",
+			"Title": null,
+			"MailTo": null,
+			"HtmlTargetFileName": null,
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": "",
+			"Name": "Document the current JobExecuter job",
+			"Description": "If JobJsonFileName and DocuJsonFileName left empty, JobExecuter will insert current job file path and as docu file name the current job file path with the suffix _docu.json",
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.JobDocuJobTask, JobExecuter.Dal",
+			"JobJsonFileName": "d:\\tmp\\FolderBackup2\\job.json",
+			"Title": null,
+			"MailTo": null,
+			"HtmlTargetFileName": null,
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": "d:\\tmp\\FolderBackup2\\job.json",
+			"Name": "Document the a JobExecuter job",
+			"Description": "Set JobJsonFileName and DocuJsonFileName to a spezific path if needed",
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for DnsJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DnsJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.DnsJobTask, JobExecuter.Dal",
+			"Server": "BCGS02DC.BCG-AD.DE",
+			"Title": null,
+			"MailTo": null,
+			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\DNS.htm",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": null,
+			"Name": "Report a DNS server's structure",
+			"Description": "Report DNS server's structure",
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

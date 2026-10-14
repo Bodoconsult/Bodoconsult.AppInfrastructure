@@ -55,7 +55,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="10.0.12" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="10.0.13" />
 		<!--<PackageReference Include="PDFsharp" Version="6.2.2" />-->
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />

@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
+
+using System.IO;
+using Bodoconsult.App.DataProtection;
 using Bodoconsult.App.Windows.Test.Helpers;
 using Bodoconsult.App.Windows.Test.Model;
 using NUnit.Framework;

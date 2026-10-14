@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for FolderBackupJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderBackupJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal",
+			"SourcePath": "d:\\tmp\\FolderBackup1",
+			"TargetPath": "d:\\tmp\\FolderBackup2",
+			"ExcludeDirectories": null,
+			"BackupType": "CopyOnlyNewerFiles",
+			"ShowProgress": false,
+			"IncludeSubDirectories": true,
+			"Name": "Backup a folder to a local or network share target",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

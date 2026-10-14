@@ -1,0 +1,2497 @@
+﻿<!DOCTYPE html SYSTEM "about:blank"><html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><link href="printer.css" rel="stylesheet" type="text/css"></head><body><div id="LeftColumn">&nbsp;</div><div id="MiddleColumn"><div class="page"><h1>JobExecuter.Dal</h1><h2>Dal.App.GlobalValues</h2>
+            <p>
+            Application global values
+            </p>
+        <h3>Properties</h3><h4>CurrentAppSettings</h4>
+            <p>
+            Current app settings
+            </p>
+        <h3>Methods</h3><h4>LoadAppSettings</h4><p>
+            Load app settings from app directory
+            </p><h2>Dal.App.JobExcuterStarter</h2>
+            <p>
+            Console starter for JobExecuter app
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.App.JobExcuterStarter(System.String[])</h4><p>
+            Default ctor
+            </p><h5>Parameters</h5><dl><dt><strong>args:
+      </strong></dt><dd>Command line args</dd></dl><h4>LoadPlugIns</h4><p>
+            Load plug ins
+            </p><h4>StartInternal(Bodoconsult.App.Interfaces.IConsoleStarter)</h4><p>
+            Do the requested start action
+            </p><h4>RunJobTask(System.String)</h4><p>
+            Run a job task
+            </p><h5>Parameters</h5><dl><dt><strong>cjsonFile:
+      </strong></dt><dd>Filename of a CJSON file with the job task definition</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>Error code. If 0 job was executed without error</dd>Error code. If 0 job was executed without error</dl><h4>UiCryptJson(System.String)</h4><p>
+            Crypt a JSON file (extension .json) to a crypted JSON file (.cjson)
+            </p><h5>Parameters</h5><dl><dt><strong>jsonFile:
+      </strong></dt><dd>JSON file to crypt</dd></dl><h4>CryptJson(System.String)</h4><p>
+            Crypt a JSON file (extension .json) to a crypted JSON file (.cjson)
+            </p><h5>Parameters</h5><dl><dt><strong>jsonFile:
+      </strong></dt><dd>JSON file to crypt</dd></dl><h4>DecryptJson(System.String)</h4><p>
+            Decrypt a JSON file (extension .json) to a crypted JSON file (.cjson)
+            </p><h5>Parameters</h5><dl><dt><strong>cjsonFile:
+      </strong></dt><dd>JSON file to crypt</dd></dl><h4>ShowHelp</h4><p>
+            Show a help for the program
+            </p><h4>CheckJson(System.String)</h4><p>
+            Check if a JSON file is a valid JobExecuter job
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>JSON file to check</dd></dl><h4>SendTestMail</h4><p>
+            Send an SMTP test mail
+            </p><h4>SaveCryptedJson``1(``0, System.String, System.String)</h4><p>
+            Save an entity in a crypted JSON file
+            </p><h5>Parameters</h5><dl><dt><strong>entityToStore:
+      </strong></dt><dd>Entity to store</dd><dt><strong>key:
+      </strong></dt><dd>Key</dd><dt><strong>fileName:
+      </strong></dt><dd>Filename to save the crypted JSON string in</dd></dl><h4>LoadCryptedJson``1(System.String, System.String)</h4><p>
+            Load a crypted json file
+            </p><h5>Parameters</h5><dl><dt><strong>key:
+      </strong></dt><dd>Key</dd><dt><strong>cjsonFile:
+      </strong></dt><dd>Fillename of the crypted JSON file</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>Deserialized entity</dd>Deserialized entity</dl><h2>Dal.Enums.CmdBatchRunType</h2>
+            <p>
+            Type of how to run a cmd batch from a file or a string
+            </p>
+        <h3>Fields</h3><h4>WholeFile</h4>
+            <p>
+            Run the complete batch file as one process (like calling it at the command prompt)
+            </p>
+        <h4>LineByLine</h4>
+            <p>
+            Run the batch file or the batch string line per line as separated processes (lines must be independent from each other)
+            </p>
+        <h2>Dal.Enums.FolderBackupType</h2>
+            <p>
+            Type of the folder backup based on robocopy.exe by Microsoft
+            </p>
+        <h3>Fields</h3><h4>PlainCopy</h4>
+            <p>
+            Copy source files to target with overwriting existing files
+            </p>
+        <h4>CopyOnlyNewerFiles</h4>
+            <p>
+            Copy source files to target but only if the source file is newer or the target file does not exist
+            </p>
+        <h4>Mirror</h4>
+            <p>
+            Mirror source to target. Files at target not existing in the source will be removed!
+            </p>
+        <h2>Dal.Enums.PowerShellVersion</h2>
+            <p>
+            The version of PowerShell to run the <em>
+      See: T:JobExecuter.Dal.Model.PsBatchJobTask</em> on
+            </p>
+        <h3>Fields</h3><h4>V01</h4>
+            <p>
+            Runs on PowerShell version 01 or 02
+            </p>
+        <h4>V03</h4>
+            <p>
+            Runs on PowerShell version 03
+            </p>
+        <h2>Dal.Executer.ActiveDirectoryExecuter</h2>
+            
+            <p>
+            Executer for creating a report of the domains's active dirctory structure
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.ActiveDirectoryExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.BackupBatchExecuter</h2>
+            <p>
+            Backup batch executer for running advanced file system backups
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Executer.BackupBatchExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h2>Dal.Executer.CmdBatchExecuter</h2>
+            <p>
+            Cmd.exe batch executer for testing purposes
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>Kill</h4><p>
+            Kill task when timed out
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>
+              Constructor:
+              Dal.Executer.CmdBatchExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.DhcpExecuter</h2>
+            
+            <p>
+            Executer for reporting DHCP servers
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.DhcpExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.DiskSizeExecuter</h2>
+            
+            <p>
+            Executer checks the disk size and places an error if free space is below a certain percentage
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.DiskSizeExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.DnsExecuter</h2>
+            
+            <p>
+            Executer for reporting DNS servers
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.DnsExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.DocuBaseExecuter</h2>
+            
+            <p>
+            Base executer class for documentation job tasks
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Executer.DocuBaseExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h4>Save(System.String)</h4><p>
+            Save result as JSON / HTML or send mail
+            </p><h4>AddMetaData</h4><p>
+            Add meta data like date, user, computername tec. to the text
+            </p><h2>Dal.Executer.DocumentationExecuter</h2>
+            
+            <p>
+            Create a HTML documentation from diverse JSON files with <em>
+      See: T:Bodoconsult.Text.Interfaces.IStructuredText</em> objects
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>SaveAsHtmlIntern</h4><p>
+            Save test <em>
+      See: F:JobExecuter.Dal.Executer.DocumentationExecuter._result</em> as HTML
+            </p><h4>AddTextFromJson(System.String)</h4><p>
+            Add a <em>
+      See: T:Bodoconsult.Text.Interfaces.IStructuredText</em> object from a JSON file
+            </p><h5>Parameters</h5><dl><dt><strong>jsonFile:
+      </strong></dt><dd>JSON file to add</dd></dl><h4>
+              Constructor:
+              Dal.Executer.DocumentationExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.DummyErrorExecuter</h2>
+            
+            <p>
+            Dummy executer for error testing purposes
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.DummyErrorExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.DummyExecuter</h2>
+            
+            <p>
+            Dummy executer for testing purposes
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.DummyExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.FolderBackupExecuter</h2>
+            
+            <p>
+            Take a backup of a folder with robocopy.exe. Use the follow command lines:
+            CopyOnlyNewerFiles: robocopy.exe {0} {1}  /XO {4} /MT:12 /fft  /R:1 /W:1 /IPG:0  /XA:SH /nodcopy {2} {3}
+            PlainCopy: robocopy.exe {0} {1}  {4} /MT:12 /fft /np /R:1 /W:1 /IPG:0  /XA:SH /nodcopy {2} {3}
+            Mirroring: robocopy.exe {0} {1}  /MIR {4} /MT:12 /fft /np /R:1 /W:1 /IPG:0  /XA:SH /nodcopy {2} {3}
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>Kill</h4><p>
+            Kill task when timed out
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>
+              Constructor:
+              Dal.Executer.FolderBackupExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.FolderCleanExecuter</h2>
+            
+            <p>
+            Dummy executer for testing purposes
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.FolderCleanExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.FolderComplianceExecuter</h2>
+            <p>
+            Executer for sending a mail with suer access information of a Sql database on Ms SqlServer
+            </p>
+        <h3>Methods</h3><h4>Run</h4><h4>
+              Constructor:
+              Dal.Executer.FolderComplianceExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.JobDocuExecuter</h2>
+            
+            <p>
+            Creates documentation of current job
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for JobDocuJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.JobDocuJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.JobDocuJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JobJsonFileName": "",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": "",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Document the current JobExecuter job",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "If JobJsonFileName and DocuJsonFileName left empty, JobExecuter will insert current job file path and as docu file name the current job file path with the suffix _docu.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.JobDocuJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JobJsonFileName": "d:\\tmp\\FolderBackup2\\job.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": "d:\\tmp\\FolderBackup2\\job.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Document the a JobExecuter job",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "Set JobJsonFileName and DocuJsonFileName to a spezific path if needed",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.JobDocuExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.PingCheckExecuter</h2>
+            
+            <p>
+            Executer for checking successful ping to certain network addresses
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>CheckPing(System.String)</h4><p>
+            Check ping for a IP address
+            </p><h5>Parameters</h5><dl><dt><strong>ipAddress:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>
+              Constructor:
+              Dal.Executer.PingCheckExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.PsBatchExecuter</h2>
+            
+            <p>
+            Run a PowerShell script from a file
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>RunPsV03</h4><p>
+            Run PowerShell V3.0
+            </p><h4>RunPsV01</h4><p>
+            Run PowerShell V1.0 and V2.0
+            </p><h4>Kill</h4><p>
+            Kill task when timed out
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>
+              Constructor:
+              Dal.Executer.PsBatchExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.RunAppExecuter</h2>
+            
+            <p>
+            Run a app with or without parameters
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>Kill</h4><p>
+            Kill task when timed out
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>
+              Constructor:
+              Dal.Executer.RunAppExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlBackupAllDatabasesExecuter</h2>
+            
+            <p>
+            Executer for taking a full backup of all SQL database on Ms SqlServer with exception of TempDB. Uses the following SQL statement:
+            BACKUP DATABASE [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.SqlBackupAllDatabasesExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlBackupLogSingleDatabaseExecuter</h2>
+            
+            <p>
+            Executer for taking a log file backup of a SQL database on Ms SqlServer. Uses the following SQL statement:
+            BACKUP LOG [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} log backup'
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.SqlBackupLogSingleDatabaseExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlBackupSingleDatabaseExecuter</h2>
+            
+            <p>
+            Executer for taking a full backup of a SQL database on Ms SqlServer. Uses the following SQL statement:
+            BACKUP DATABASE [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.SqlBackupSingleDatabaseExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlBatchExecuter</h2>
+            
+            <p>
+            Run a SQL batch from a file or from a string
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.SqlBatchExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlComplianceAllDatabasesExecuter</h2>
+            
+            <p>
+            Executer for sending a mail with suer access information of a all Sql databases on Ms SqlServer with exception of databases Master, Msdb, Model and TempDb
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>AddServerInfo</h4><p>
+            Add info on users and groups with server level permissions
+            </p><h4>
+              Constructor:
+              Dal.Executer.SqlComplianceAllDatabasesExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlComplianceSingleDatabaseExecuter</h2>
+            
+            <p>
+            Executer for sending a mail with suer access information of a Sql database on Ms SqlServer
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.SqlComplianceSingleDatabaseExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlDocuAllDatabasesExecuter</h2>
+            <p>
+            Executer for taking a documentation of a all Sql databases on Ms SqlServer with exception of databases Master, Msdb, Model and TempDb
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>AddOtherDatabaseInfo</h4><p>
+            Add some general important infos of databases like read-only mode, single-user mode
+            </p><h4>AddServerInfo</h4><p>
+            Add info on users and groups with server level permissions
+            </p><h4>AddControlServerPermissions</h4><p>
+            Add info on users and groups with server level permissions
+            </p><h4>
+              Constructor:
+              Dal.Executer.SqlDocuAllDatabasesExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlDocuSingleDatabaseExecuter</h2>
+            
+            <p>
+            Executer for taking a documentation of a Sql database on Ms SqlServer
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>
+              Constructor:
+              Dal.Executer.SqlDocuSingleDatabaseExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.SqlMaintenanceExecuter</h2>
+            
+            <p>
+            Executer for running a maintenance job on Ms SqlServer
+            </p>
+            <p>Should run only on daily, weekly or monthly base dedending on the system work load. The heavier the work load the more often it should run.</p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>Status(System.String)</h4><p>
+            
+            </p><h5>Parameters</h5><dl><dt><strong>message:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>
+              Constructor:
+              Dal.Executer.SqlMaintenanceExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Executer.TaskSchedulerDocuExecuter</h2>
+            
+            <p>
+            Executer for saving Windows task scheduler task´s as XML and their documentation
+            See https://github.com/dahall/TaskScheduler/wiki/Examples
+            </p>
+        <h3>Methods</h3><h4>Run</h4><p>
+            Run job task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true in case of success</dd>true in case of success</dl><h4>ExportTaskAsXml(Microsoft.Win32.TaskScheduler.Task)</h4><p>
+            Export Xml to folder
+            </p><h5>Parameters</h5><dl><dt><strong>t:
+      </strong></dt><dd>task to export</dd></dl><h4>GetTaskTriggers(Microsoft.Win32.TaskScheduler.TaskDefinition)</h4><p>
+            Add the triggers of a task
+            </p><h5>Parameters</h5><dl><dt><strong>td:
+      </strong></dt><dd>task definition</dd></dl><h4>GetTaskActions(Microsoft.Win32.TaskScheduler.TaskDefinition)</h4><p>
+            Add the actions of a task
+            </p><h5>Parameters</h5><dl><dt><strong>td:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>
+              Constructor:
+              Dal.Executer.TaskSchedulerDocuExecuter(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            ctor to initialize task with job data
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>job task to run</dd></dl><h2>Dal.Factories.ActiveDirectoryExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.ActiveDirectoryExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.BackupBatchExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.BackupBatchExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.CmdBatchExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.CmdBatchExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.DhcpExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.DhcpExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.DiskSizeExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.DiskSizeExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.DnsExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.DnsExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.DocumentationExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.DocumentationExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.DummyErrorExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.DummyErrorExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.DummyExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.DummyExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.FolderBackupExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.FolderBackupExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.FolderCleanExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.FolderCleanExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.FolderComplianceExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.FolderComplianceExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.JobDocuExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.JobDocuExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.MasterFactory</h2>
+            <p>
+            Create the factory needed for a certain <em>
+      See: T:JobExecuter.Base.Interfaces.IJobTask</em> object
+            </p>
+        <h3>Methods</h3><h4>NewFactory(System.Type)</h4><p>
+            Create the factory needed for a certain <em>
+      See: T:JobExecuter.Base.Interfaces.IJobTask</em> object
+            </p><h2>Dal.Factories.PingCheckExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.PingCheckExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.PsBatchExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.PsBatchExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.RunAppExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.RunAppExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlBackupAllDatabasesExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlBackupAllDatabasesExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlBackupLogSingleDatabaseExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlBackupLogSingleDatabaseExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlBackupSingleDatabaseExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlBackupSingleDatabaseExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlBatchExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlBatchExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlComplianceAllDatabasesExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlComplianceAllDatabasesExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlComplianceSingleDatabaseExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlComplianceSingleDatabaseExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlDocuAllDatabasesExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlDocuAllDatabasesExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlDocuSingleDatabaseExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlDocuSingleDatabaseExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.SqlMaintenanceExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.SqlMaintenanceExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Factories.TaskSchedulerDocuExecuterFactory</h2>
+            <p>
+            Factory for <em>
+      See: T:JobExecuter.Dal.Executer.TaskSchedulerDocuExecuter</em>
+            </p>
+        <h3>Methods</h3><h4>New(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Create new executer
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>New job task executer</dd>New job task executer</dl><h2>Dal.Helpers.ActiveDirectoryHelper</h2>
+            <p>
+            Helper functions for Active Directory access
+            </p>
+        <h3>Methods</h3><h4>GetAdUser(System.String, System.Boolean)</h4><p>
+            Get user information for account name
+            </p><h5>Parameters</h5><dl><dt><strong>accountName:
+      </strong></dt><dd>Account name written as domain\username</dd><dt><strong>includeAccountName:
+      </strong></dt><dd>Include the account name in the the result string: Default false.</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>GetUsernames(System.String, System.String)</h4><p>
+            Get AD users for a AD security group
+            </p><h5>Parameters</h5><dl><dt><strong>domainName:
+      </strong></dt><dd>name of the AD domain</dd><dt><strong>groupName:
+      </strong></dt><dd>Group name of AD security group</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>List of all users in the group</dd>List of all users in the group</dl><h4>GetUsernames(System.String)</h4><p>
+            Full domain group name written as domain\groupname
+            </p><h5>Parameters</h5><dl><dt><strong>groupName:
+      </strong></dt><dd>group name</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>List of all users in the group</dd>List of all users in the group</dl><h2>Dal.Helpers.FileHelper</h2>
+            <p>
+            Helper class for file handling in JobExecuter
+            </p>
+        <h3>Methods</h3><h4>GetTemplate(System.String)</h4><p>
+            Get template file as string
+            </p><h5>Parameters</h5><dl><dt><strong>templateName:
+      </strong></dt><dd>template file name with extension</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>template content</dd>template content</dl><h4>GetTextFile(System.String)</h4><p>
+            Get the content of a text file
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>Full path to a text file</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>CopyTemplate(System.String, System.String)</h4><p>
+            Copy a template file to a target path
+            </p><h5>Parameters</h5><dl><dt><strong>templateName:
+      </strong></dt><dd>template name with extension</dd><dt><strong>targetPath:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>SaveAsHtml(System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.String)</h4><p>
+            Save text as HTML file
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>full filename of the HTML file</dd><dt><strong>text:
+      </strong></dt><dd>content to format as HTML</dd><dt><strong>title:
+      </strong></dt><dd>Document title</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>filename on success otherwise null</dd>filename on success otherwise null</dl><h4>GetAppPath</h4><p>
+            Get path of current application
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>current application path</dd>current application path</dl><h4>GetTextResource(System.String)</h4><p>
+            Get a text from an embedded resource file
+            </p><h5>Parameters</h5><dl><dt><strong>resourceName:
+      </strong></dt><dd>resource name = file name</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>SaveBinaryResource(System.String, System.String)</h4><p>
+            Save an embedded resource file to an external file
+            </p><h5>Parameters</h5><dl><dt><strong>resourceName:
+      </strong></dt><dd>resource name = file name</dd><dt><strong>fileName:
+      </strong></dt><dd>File path to save the binary ressource</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>SaveAsPdf(System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.String)</h4><p>
+            Save text as PDF file
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>full filename of the PDF file</dd><dt><strong>text:
+      </strong></dt><dd>content to format as PDF</dd><dt><strong>title:
+      </strong></dt><dd>Document title</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>filename on success otherwise null</dd>filename on success otherwise null</dl><h4>SaveAsMarkdown(System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.String)</h4><p>
+            Save text as Markdown file
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>full filename of the Markdown file</dd><dt><strong>text:
+      </strong></dt><dd>content to format as Markdown</dd><dt><strong>title:
+      </strong></dt><dd>Document title</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>filename on success otherwise null</dd>filename on success otherwise null</dl><h2>Dal.Helpers.HelpHelper</h2>
+            <p>
+            Helper class for JobExecuter help
+            </p>
+        <h3>Methods</h3><h4>GetHelp</h4><p>
+            Get the help file as string
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>AppendHelpToText(Bodoconsult.Text.Interfaces.IStructuredText)</h4><p>
+            Add the general help to a text
+            </p><h2>Dal.Helpers.JsonHelper</h2>
+            <p>
+            Helper class to handle JSON in JobExecuter
+            </p>
+        <h3>Methods</h3><h4>LoadJsonFile``1(System.String)</h4><p>
+            Load an object from a JSON file
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>LoadJson``1(System.String)</h4><p>
+            Load an object from a JSON string
+            </p><h5>Parameters</h5><dl><dt><strong>json:
+      </strong></dt><dd>JSON string to deserialize</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>Deserialize entity</dd>Deserialize entity</dl><h4>LoadJsonFromResource``1(System.String)</h4><p>
+            Load a object from a JSON resource
+            </p><h5>Parameters</h5><dl><dt><strong>resourceName:
+      </strong></dt><dd>Fully qualified resource name</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>object of type T or null</dd>object of type T or null</dl><h4>SerializeObject``1(``0)</h4><p>
+            Serialize a object to JSON
+            </p><h5>Parameters</h5><dl><dt><strong>value:
+      </strong></dt><dd>object to convert</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>SerializeAsFile``1(System.String, ``0)</h4><p>
+            Serialize an object of type T as JSON and save it to a file
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>full path for the JSON file</dd><dt><strong>data:
+      </strong></dt><dd>object to serialize to JSON</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>JSON string</dd>JSON string</dl><h2>Dal.Helpers.NamingHelper</h2>
+            <p>
+            Helper class for naming issues
+            </p>
+        <h3>Methods</h3><h4>GetComputerName</h4><p>
+            Get the computer name
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>ClearPath(System.String, System.String, System.String)</h4><p>
+            Clear a path from possible placeholders
+            </p><h5>Parameters</h5><dl><dt><strong>path:
+      </strong></dt><dd>path to clear from placeholders</dd><dt><strong>server:
+      </strong></dt><dd>server namme or server and instance name</dd><dt><strong>database:
+      </strong></dt><dd>databse name</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h2>Dal.Helpers.NetworkHelper</h2>
+            <p>
+            Helper class for network related stuff
+            </p>
+        <h3>Methods</h3><h4>GetLocalIpAddress</h4><p>
+            Get the local IP address
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>GetIpAddress(System.String)</h4><p>
+            Get the IP address for a hostname
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>GetHostNameByIp(System.String)</h4><p>
+            Resolves the host name from the given IP address.
+            </p><h5>Parameters</h5><dl><dt><strong>ipAddress:
+      </strong></dt><dd>The ip address for getting the host name.</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>The host name if exists else "no entry"</dd>The host name if exists else "no entry"</dl><h4>Ping(System.String)</h4><p>
+            Ip-Adresse anpingen
+            </p><h5>Parameters</h5><dl><dt><strong>ipAddress:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h2>Dal.Helpers.OsHelper</h2>
+            <p>
+            OS helper class
+            </p>
+        <h3>Methods</h3><h4>IsWindowsServer</h4><p>
+            Is the current OS a server version?
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true if server version</dd>true if server version</dl><h2>Dal.Helpers.PipelineExecutor</h2>
+            <p>
+            Class that assists in asynchronously executing and retrieving the results of a powershell script pipeline.
+            </p>
+        <h3>Fields</h3><h4>_synchDataReady</h4>
+            <p>
+            Local delegate to a private method
+            </p>
+        <h4>_synchDataEnd</h4>
+            <p>
+            Local delegate to a private method
+            </p>
+        <h4>_synchErrorReady</h4>
+            <p>
+            Local delegate to a private method
+            </p>
+        <h4>_stopEvent</h4>
+            <p>
+            Event set when the user wants to stop script execution.
+            </p>
+        <h4>_waitHandles</h4>
+            <p>
+            Array of waithandles, used in the StoppableInvoke() method.
+            </p>
+        <h3>Properties</h3><h4>Pipeline</h4>
+            <p>
+            Gets the powershell Pipeline associated with this PipelineExecutor
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Helpers.PipelineExecutor(System.Management.Automation.Runspaces.Runspace, System.String)</h4><p>
+            Constructor, creates a new PipelineExecutor for the given powershell script.
+            </p><h5>Parameters</h5><dl><dt><strong>runSpace:
+      </strong></dt><dd>Powershell runspace to use for creating and executing the script.
+            Normally you'd pass the form or component here.</dd><dt><strong>command:
+      </strong></dt><dd>The script to run</dd></dl><h4>Start</h4><p>
+            Start executing the script in the background.
+            </p><h4>Stop</h4><p>
+            Stop executing the script.
+            </p><h4>OutputDataReady(System.Object, System.EventArgs)</h4><p>
+            Event handler for the DataReady event of the powershell script pipeline.
+            </p><h5>Parameters</h5><dl><dt><strong>sender:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>e:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>SynchDataReady(System.Collections.Generic.ICollection{System.Management.Automation.PSObject})</h4><p>
+            private DataReady handling method that will pass the call on to any event handlers that are
+            attached to the OnDataReady event of this <em>
+      See: T:JobExecuter.Dal.Helpers.PipelineExecutor</em> instance.
+            </p><h5>Parameters</h5><dl><dt><strong>data:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>SynchDataEnd</h4><p>
+            private DataEnd handling method that will pass the call on to any handlers that are
+            attached to the OnDataEnd event of this <em>
+      See: T:JobExecuter.Dal.Helpers.PipelineExecutor</em> instance.
+            </p><h4>SynchErrorReady(System.Collections.Generic.ICollection{System.Object})</h4><p>
+            private ErrorReady handling method that will pass the call on to any event handlers that are
+            attached to the OnErrorReady event of this <em>
+      See: T:JobExecuter.Dal.Helpers.PipelineExecutor</em> instance.
+            </p><h5>Parameters</h5><dl><dt><strong>data:
+      </strong></dt><dd>
+        -
+      </dd></dl><h3>Events</h3><h4>OnDataReady</h4><p>
+            Occurs when there is new data available from the powershell script.
+            </p><h4>OnDataEnd</h4><p>
+            Occurs when powershell script completed its execution.
+            </p><h4>OnErrorReady</h4><p>
+            Occurs when there is new errordata available from the powershell script.
+            </p><h2>Dal.Helpers.PlugInHelper</h2>
+            <p>
+            Functionaltity to load and handle plug-in assemblies
+            </p>
+            <p>Plug-ins must be placed in a subdirectory called 'PlugIns' in the application path. There every plug-in must have its one subfolder. Plug-in assemblies  must be named *PlugIn.dll.</p>
+        <h3>Methods</h3><h4>LoadPlugIns</h4><p>
+            Load plug-ins from default folder appPath\PlugIns
+            </p><h4>LoadPlugIn(System.String)</h4><p>
+            Load a plug-in by its file path
+            </p><h5>Parameters</h5><dl><dt><strong>assemblyPath:
+      </strong></dt><dd>Full path to the plug-ins assembly path</dd></dl><h2>Dal.Helpers.ProcessHelper</h2>
+            <p>
+            Helper class for Windows process handling
+            </p>
+        <h3>Methods</h3><h4>KillProcessAndChildrens(System.Int32)</h4><p>
+            Kill a process with all its child processes
+            </p><h5>Parameters</h5><dl><dt><strong>processId:
+      </strong></dt><dd>process ID</dd></dl><h2>Dal.Helpers.Share</h2>
+            <p>
+            Information about a local share
+            </p>
+        <h3>Fields</h3><h3>Properties</h3><h4>Server</h4>
+            <p>
+            The name of the computer that this share belongs to
+            </p>
+        <h4>NetName</h4>
+            <p>
+            Share name
+            </p>
+        <h4>Path</h4>
+            <p>
+            Local path
+            </p>
+        <h4>ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h4>Remark</h4>
+            <p>
+            Comment
+            </p>
+        <h4>IsFileSystem</h4>
+            <p>
+            Returns true if this is a file system share
+            </p>
+        <h4>Root</h4>
+            <p>
+            Get the root of a disk-based share
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Helpers.Share(System.String, System.String, System.String, JobExecuter.Dal.Helpers.ShareType, System.String)</h4><p>
+            Constructor
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>Server name or IP address</dd><dt><strong>netName:
+      </strong></dt><dd>Net name</dd><dt><strong>path:
+      </strong></dt><dd>Local path</dd><dt><strong>shareType:
+      </strong></dt><dd>Share type</dd><dt><strong>remark:
+      </strong></dt><dd>Bemerkung</dd></dl><h4>ToString</h4><p>
+            Returns the path to this share
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>MatchesPath(System.String)</h4><p>
+            Returns true if this share matches the local path
+            </p><h5>Parameters</h5><dl><dt><strong>path:
+      </strong></dt><dd>Local path</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>
+              Constructor:
+              Dal.Helpers.Share</h4><p>
+            Default constructor - local machine
+            </p><h4>
+              Constructor:
+              Dal.Helpers.Share(System.String)</h4><p>
+            Constructor
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>Server name or IP address</dd></dl><h4></h4><p>
+            Add a share to the collection
+            </p><h5>Parameters</h5><dl><dt><strong>share:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4></h4><p>
+            Add a share to the collection by details
+            </p><h5>Parameters</h5><dl><dt><strong>netName:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>path:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>shareType:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>remark:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4></h4><p>
+            Copy this collection to an array
+            </p><h5>Parameters</h5><dl><dt><strong>array:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>index:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4></h4><p>
+            Returns true if fileName is a valid local file-name of the form:
+            X:\, where X is a drive letter from A-Z
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>The filename to check</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4></h4><p>Get a UNC name</p><h4></h4><p>Get a UNC name</p><h4></h4><p>Enumerate shares (NT)</p><h4></h4><p>Enumerate shares (9x)</p><h4></h4><p>Free the buffer (NT)</p><h4></h4><p>
+            Enumerates the shares on Windows NT
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>The server name</dd><dt><strong>shares:
+      </strong></dt><dd>The ShareCollection</dd></dl><h4></h4><p>
+            Enumerates the shares on Windows 9x
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>The server name</dd><dt><strong>shares:
+      </strong></dt><dd>The ShareCollection</dd></dl><h4></h4><p>
+            Enumerates the shares
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>The server name</dd><dt><strong>shares:
+      </strong></dt><dd>The ShareCollection</dd></dl><h4></h4><p>
+            Returns the UNC path for a mapped drive or local share.
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>The path to map</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>The UNC path (if available)</dd>The UNC path (if available)</dl><h4></h4><p>
+            Returns the local <em>
+      See: T:JobExecuter.Dal.Helpers.Share</em> object with the best match
+            to the specified path.
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4></h4><p>
+            Return the shares for a specified machine
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h2>Dal.Helpers.ShareCollection</h2>
+            
+            <p>
+            A collection of shares
+            </p>
+        <h3>Fields</h3><h4>_server</h4>
+            <p>The name of the server this collection represents</p>
+        <h3>Properties</h3><h4>Server</h4>
+            <p>
+            Returns the name of the server this collection represents
+            </p>
+        <h4>Item(System.Int32)</h4>
+            <p>
+            Returns the <em>
+      See: T:JobExecuter.Dal.Helpers.Share</em> at the specified index.
+            </p>
+        <h4>Item(System.String)</h4>
+            <p>
+            Returns the <em>
+      See: T:JobExecuter.Dal.Helpers.Share</em> which matches a given local path
+            </p>
+            <dt><strong>path:
+      </strong></dt><dd>The path to match</dd>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Helpers.ShareCollection</h4><p>
+            Default constructor - local machine
+            </p><h4>
+              Constructor:
+              Dal.Helpers.ShareCollection(System.String)</h4><p>
+            Constructor
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>Server name or IP address</dd></dl><h4>Add(JobExecuter.Dal.Helpers.Share)</h4><p>
+            Add a share to the collection
+            </p><h5>Parameters</h5><dl><dt><strong>share:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>Add(System.String, System.String, JobExecuter.Dal.Helpers.ShareType, System.String)</h4><p>
+            Add a share to the collection by details
+            </p><h5>Parameters</h5><dl><dt><strong>netName:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>path:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>shareType:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>remark:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>CopyTo(JobExecuter.Dal.Helpers.Share[], System.Int32)</h4><p>
+            Copy this collection to an array
+            </p><h5>Parameters</h5><dl><dt><strong>array:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>index:
+      </strong></dt><dd>
+        -
+      </dd></dl><h2>Dal.Helpers.ShareHelper</h2>
+            <p>
+            Class with helper functionality for network shares
+            </p>
+        <h3>Fields</h3><h4>MaxPath</h4>
+            <p>Maximum path length</p>
+        <h4>NoError</h4>
+            <p>No error</p>
+        <h4>ErrorAccessDenied</h4>
+            <p>Access denied</p>
+        <h4>ErrorWrongLevel</h4>
+            <p>Access denied</p>
+        <h4>ErrorMoreData</h4>
+            <p>More data available</p>
+        <h4>ErrorNotConnected</h4>
+            <p>Not connected</p>
+        <h4>UniversalNameInfoLevel</h4>
+            <p>Level 1</p>
+        <h4>MaxSi50Entries</h4>
+            <p>Max extries (9x)</p>
+        <h4>UniversalNameInfo.lpUniversalName</h4>
+            <p>
+            Universal name
+            </p>
+        <h4>ShareInfo2.NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>ShareInfo2.ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h4>ShareInfo2.Remark</h4>
+            <p>
+            Remark
+            </p>
+        <h4>ShareInfo2.Permissions</h4>
+            <p>
+            Permissions
+            </p>
+        <h4>ShareInfo2.MaxUsers</h4>
+            <p>
+            Maximum number of users
+            </p>
+        <h4>ShareInfo2.CurrentUsers</h4>
+            <p>
+            Current users
+            </p>
+        <h4>ShareInfo2.Path</h4>
+            <p>
+            Local Path
+            </p>
+        <h4>ShareInfo2.Password</h4>
+            <p>
+            Password
+            </p>
+        <h4>ShareInfo1.NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>ShareInfo1.ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h4>ShareInfo1.Remark</h4>
+            <p>
+            Remark
+            </p>
+        <h4>ShareInfo50.NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>ShareInfo50.bShareType</h4>
+            <p>
+            Share type byte
+            </p>
+        <h4>ShareInfo50.Flags</h4>
+            <p>
+            Flags
+            </p>
+        <h4>ShareInfo50.Remark</h4>
+            <p>
+            Remarks
+            </p>
+        <h4>ShareInfo50.Path</h4>
+            <p>
+            Local Path
+            </p>
+        <h4>ShareInfo50.PasswordRW</h4>
+            <p>
+            Password read / write
+            </p>
+        <h4>ShareInfo50.PasswordRO</h4>
+            <p>
+            Password read-only
+            </p>
+        <h4>ShareInfo1_9X.NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>ShareInfo1_9X.Padding</h4>
+            <p>
+            Padding
+            </p>
+        <h4>ShareInfo1_9X.bShareType</h4>
+            <p>
+            Share type byte
+            </p>
+        <h4>ShareInfo1_9X.Remark</h4>
+            <p>
+            Remark
+            </p>
+        <h4>_local</h4>
+            <p>The local shares</p>
+        <h3>Properties</h3><h4>ShareInfo50.ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h4>ShareInfo1_9X.ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h4>IsNt</h4>
+            <p>
+            Is this an NT platform?
+            </p>
+        <h4>IsW2KUp</h4>
+            <p>
+            Returns true if this is Windows 2000 or higher
+            </p>
+        <h4>LocalShares</h4>
+            <p>
+            Return the local shares
+            </p>
+        <h3>Methods</h3><h4>IsValidFilePath(System.String)</h4><p>
+            Returns true if fileName is a valid local file-name of the form:
+            X:\, where X is a drive letter from A-Z
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>The filename to check</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>WNetGetUniversalName(System.String, System.Int32, JobExecuter.Dal.Helpers.ShareHelper.UniversalNameInfo@, System.Int32@)</h4><p>Get a UNC name</p><h4>WNetGetUniversalName(System.String, System.Int32, System.IntPtr, System.Int32@)</h4><p>Get a UNC name</p><h4>NetShareEnum(System.String, System.Int32, System.IntPtr@, System.Int32, System.Int32@, System.Int32@, System.Int32@)</h4><p>Enumerate shares (NT)</p><h4>NetShareEnum(System.String, System.Int32, System.IntPtr, System.UInt16, System.UInt16@, System.UInt16@)</h4><p>Enumerate shares (9x)</p><h4>NetApiBufferFree(System.IntPtr)</h4><p>Free the buffer (NT)</p><h4>EnumerateSharesNt(System.String, JobExecuter.Dal.Helpers.ShareCollection)</h4><p>
+            Enumerates the shares on Windows NT
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>The server name</dd><dt><strong>shares:
+      </strong></dt><dd>The ShareCollection</dd></dl><h4>EnumerateShares9X(System.String, JobExecuter.Dal.Helpers.ShareCollection)</h4><p>
+            Enumerates the shares on Windows 9x
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>The server name</dd><dt><strong>shares:
+      </strong></dt><dd>The ShareCollection</dd></dl><h4>EnumerateShares(System.String, JobExecuter.Dal.Helpers.ShareCollection)</h4><p>
+            Enumerates the shares
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>The server name</dd><dt><strong>shares:
+      </strong></dt><dd>The ShareCollection</dd></dl><h4>PathToUnc(System.String)</h4><p>
+            Returns the UNC path for a mapped drive or local share.
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>The path to map</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>The UNC path (if available)</dd>The UNC path (if available)</dl><h4>PathToShare(System.String)</h4><p>
+            Returns the local <em>
+      See: T:JobExecuter.Dal.Helpers.Share</em> object with the best match
+            to the specified path.
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>GetShares(System.String)</h4><p>
+            Return the shares for a specified machine
+            </p><h5>Parameters</h5><dl><dt><strong>server:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h2>Dal.Helpers.ShareHelper.UniversalNameInfo</h2>
+            <p>Unc name</p>
+        <h3>Fields</h3><h4>lpUniversalName</h4>
+            <p>
+            Universal name
+            </p>
+        <h2>Dal.Helpers.ShareHelper.ShareInfo2</h2>
+            <p>Share information, NT, level 2</p>
+            <p>
+            Requires admin rights to work. 
+            </p>
+        <h3>Fields</h3><h4>NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h4>Remark</h4>
+            <p>
+            Remark
+            </p>
+        <h4>Permissions</h4>
+            <p>
+            Permissions
+            </p>
+        <h4>MaxUsers</h4>
+            <p>
+            Maximum number of users
+            </p>
+        <h4>CurrentUsers</h4>
+            <p>
+            Current users
+            </p>
+        <h4>Path</h4>
+            <p>
+            Local Path
+            </p>
+        <h4>Password</h4>
+            <p>
+            Password
+            </p>
+        <h2>Dal.Helpers.ShareHelper.ShareInfo1</h2>
+            <p>Share information, NT, level 1</p>
+            <p>
+            Fallback when no admin rights.
+            </p>
+        <h3>Fields</h3><h4>NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h4>Remark</h4>
+            <p>
+            Remark
+            </p>
+        <h3>Properties</h3><h2>Dal.Helpers.ShareHelper.ShareInfo50</h2>
+            <p>Share information, Win9x</p>
+        <h3>Fields</h3><h4>NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>bShareType</h4>
+            <p>
+            Share type byte
+            </p>
+        <h4>Flags</h4>
+            <p>
+            Flags
+            </p>
+        <h4>Remark</h4>
+            <p>
+            Remarks
+            </p>
+        <h4>Path</h4>
+            <p>
+            Local Path
+            </p>
+        <h4>PasswordRW</h4>
+            <p>
+            Password read / write
+            </p>
+        <h4>PasswordRO</h4>
+            <p>
+            Password read-only
+            </p>
+        <h3>Properties</h3><h4>ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h2>Dal.Helpers.ShareHelper.ShareInfo1_9X</h2>
+            <p>Share information level 1, Win9x</p>
+        <h3>Fields</h3><h4>NetName</h4>
+            <p>
+            Net name
+            </p>
+        <h4>Padding</h4>
+            <p>
+            Padding
+            </p>
+        <h4>bShareType</h4>
+            <p>
+            Share type byte
+            </p>
+        <h4>Remark</h4>
+            <p>
+            Remark
+            </p>
+        <h3>Properties</h3><h4>ShareType</h4>
+            <p>
+            Share type
+            </p>
+        <h2>Dal.Helpers.ShareType</h2>
+            <p>
+            Type of share
+            </p>
+        <h3>Fields</h3><h4>Disk</h4>
+            <p>Disk share</p>
+        <h4>Printer</h4>
+            <p>Printer share</p>
+        <h4>Device</h4>
+            <p>Device share</p>
+        <h4>IPC</h4>
+            <p>IPC share</p>
+        <h4>Special</h4>
+            <p>Special share</p>
+        <h2>Dal.Helpers.SqlDocuDatabaseHelper</h2>
+            <p>
+            Get docu text for a single SQLServer database
+            </p>
+        <h3>Properties</h3><h4>ConnectionString</h4>
+            <p>
+            Get the current connection string used
+            </p>
+        <h4>Header1Type</h4>
+            <p>
+            Type of header level 1 text. Default is <em>
+      See: F:Bodoconsult.Text.Enums.TextItemType.H1</em>
+            </p>
+        <h4>Header2Type</h4>
+            <p>
+            Type of header level 2 text. Default is <em>
+      See: F:Bodoconsult.Text.Enums.TextItemType.H2</em>
+            </p>
+        <h4>Header3Type</h4>
+            <p>
+            Type of header level 3 text. Default is <em>
+      See: F:Bodoconsult.Text.Enums.TextItemType.H2</em>
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Helpers.SqlDocuDatabaseHelper(Bodoconsult.Text.Model.StructuredText, System.String, System.String, System.Collections.Generic.IList{System.Exception}, Bodoconsult.Database.Interfaces.SqlStatus)</h4><p>
+            default ctor
+            </p><h5>Parameters</h5><dl><dt><strong>structuredText:
+      </strong></dt><dd>text to documentation in</dd><dt><strong>server:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>errors:
+      </strong></dt><dd>list of errors</dd><dt><strong>status:
+      </strong></dt><dd>delegate for status messages</dd><dt><strong>databaseName:
+      </strong></dt><dd>name of database (and server)</dd></dl><h4>AddGeneralInfo</h4><p>
+            Add general info on the server
+            </p><h4>AddGeneralDatabaseInfos</h4><p>
+            Add general database infos to the documentation
+            </p><h4>AddSecurityRoles</h4><p>
+            Add database roles to documentation
+            </p><h4>AddSecurityLogins</h4><p>
+            Add database logins to documentation
+            </p><h4>AddSecurityLoginsRoles</h4><p>
+            Add roles and related logins to documentation
+            </p><h4>AddServerInfo</h4><p>
+            Add info about the server
+            </p><h4>AddDatabaseInfo</h4><p>
+            Add info about database content
+            </p><h4>AddDocumentation</h4><p>
+            Search for stored procs beginning with spDbDocu_ and call them to add their data to the documentation
+            </p><h2>Dal.Helpers.VirtualDesktop</h2>
+            <p>
+            Provides a virtual desktop
+            </p>
+        <h3>Fields</h3><h4>DesktopPtr</h4>
+            <p>
+            This will point to the current desktop we are using.
+            </p>
+        <h4>_sMyDesk</h4>
+            <p>
+            This will hold the name for the desktop object we created.
+            </p>
+        <h4>_hOrigDesktop</h4>
+            <p>
+            // This will remember the very first desktop we spawned on.
+            </p>
+        <h3>Methods</h3><h4>CloseDesktop(System.IntPtr)</h4><p>
+            Close the desktop
+            </p><h5>Parameters</h5><dl><dt><strong>handle:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>CreateDesktop(System.String, System.IntPtr, System.IntPtr, System.Int32, System.Int64, System.IntPtr)</h4><p>
+            Create a desktop session
+            </p><h5>Parameters</h5><dl><dt><strong>lpszDesktop:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>lpszDevice:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>pDevmode:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>dwFlags:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>dwDesiredAccess:
+      </strong></dt><dd>
+        -
+      </dd><dt><strong>lpsa:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>GetCurrentThreadId</h4><p>
+            Get the ID of the current thread
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>GetThreadDesktop(System.Int32)</h4><p>
+            Get the desktop thread as pointer
+            </p><h5>Parameters</h5><dl><dt><strong>dwThreadId:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>SetThreadDesktop(System.IntPtr)</h4><p>
+            Set a thread as desktop
+            </p><h5>Parameters</h5><dl><dt><strong>hDesktop:
+      </strong></dt><dd>Pointer to the desktop</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>True on success else false</dd>True on success else false</dl><h4>SwitchDesktop(System.IntPtr)</h4><p>
+            Swicth to another desktop
+            </p><h5>Parameters</h5><dl><dt><strong>hDesktop:
+      </strong></dt><dd>Pointer of the desktop to switch to</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>True on success else false</dd>True on success else false</dl><h4>Dispose</h4><p>
+            Switch to the desktop we were on before.
+            </p><h4>Dispose(System.Boolean)</h4><p>
+            Delete our custom one.
+            </p><h5>Parameters</h5><dl><dt><strong>disposing:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>System#IDisposable#Dispose</h4><p>
+            ... flush!
+            </p><h4>GetCurrentDesktopPtr</h4><p>
+            Get the pointer for the desktop thread
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>LaunchDesktop</h4><p>
+            Launch a desktop session
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>Pointer to the desktop session</dd>Pointer to the desktop session</dl><h4>ShowDesktop</h4><p>
+            Show the desktop
+            </p><h4>SwitchToOrginal</h4><p>
+            Switch to the orginial desktop
+            </p><h4>
+              Constructor:
+              Dal.Helpers.VirtualDesktop</h4><p>
+            Ctor
+            </p><h4>
+              Constructor:
+              Dal.Helpers.VirtualDesktop(System.String)</h4><p>
+            Ctor with desktop name
+            </p><h5>Parameters</h5><dl><dt><strong>sDesktopName:
+      </strong></dt><dd>
+        -
+      </dd></dl><h2>Dal.Helpers.VirtualDesktop.DESKTOP_ACCESS_MASK</h2>
+            <p>
+            These security descriptors below are required to let us manipulate the desktop objects.
+            </p>
+        <h2>Dal.Helpers.WmiHelper</h2>
+            <p>
+            Helper class for WMI functionality
+            </p>
+        <h3>Fields</h3><h4>BytesPerMb</h4>
+            <p>
+            Number of Bytes per Megabyte
+            </p>
+        <h3>Properties</h3><h4>IpAddress</h4>
+            <p>
+            IP address
+            </p>
+        <h4>Drive</h4>
+            <p>
+            Drive name to check disk size
+            </p>
+        <h4>TotalSize</h4>
+            <p>
+            Total size of the drive
+            </p>
+        <h4>FreeSize</h4>
+            <p>
+            Total size of the drive
+            </p>
+        <h3>Methods</h3><h4>GetDiskData</h4><p>
+            Get disk size from remote computer
+            </p><h2>Dal.Interfaces.IBackupTarget</h2>
+            <p>
+            Interface for backup targets. A backup target is a system of backups of a source keeping backups of the source from different timepoints
+            </p>
+        <h3>Methods</h3><h4>ClearBackups</h4><p>
+            Clear the existing backup target from depricated backups
+            </p><h4>StartBackupProcess</h4><p>
+            Run the backup process for the backup target now
+            </p><h2>Dal.Interfaces.IDocuBaseJobTask</h2>
+            <p>
+            Basic interface for job tasks creating reports as mail, HTML or JSON
+            </p>
+        <h3>Properties</h3><h4>HtmlTargetFileName</h4>
+            <p>
+            Export documentation to HTML
+            </p>
+        <h4>PdfTargetFileName</h4>
+            <p>
+            Export documentation to Pdf
+            </p>
+        <h4>JsonTargetFileName</h4>
+            <p>
+            Export documentation as <em>
+      See: T:Bodoconsult.Text.Model.StructuredText</em> object to JSON.
+            If empty, the file will be placed in app subfolder docu with the name "job_docu.json" 
+            </p>
+        <h4>MailTo</h4>
+            <p>
+            Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner
+            </p>
+        <h4>Title</h4>
+            <p>
+            Title for documentation
+            </p>
+        <h2>Dal.Interfaces.IJobMailer</h2>
+            <p>
+            Interface for mailing service
+            </p>
+        <h3>Methods</h3><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h2>Dal.JobHandler</h2>
+            <p>
+            Class to handle a complete job
+            </p>
+        <h3>Properties</h3><h4>Mailers</h4>
+            <p>
+            All <em>
+      See: T:JobExecuter.Dal.Interfaces.IJobMailer</em> objects to send error messages and summary to
+            </p>
+        <h4>ErrorItems</h4>
+            <p>
+            All error items that happened in the current job
+            </p>
+        <h4>CurrentJob</h4>
+            <p>
+            Current job to handle
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.JobHandler</h4><p>
+            default ctor
+            </p><h4>RunTask(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Run a single <em>
+      See: T:JobExecuter.Base.Interfaces.IJobTask</em>
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail to all mailers
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receivers</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the message</dd><dt><strong>body:
+      </strong></dt><dd>body of the message</dd><dt><strong>priority:
+      </strong></dt><dd>priority of the message</dd></dl><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText)</h4><p>
+            Send a mail to all mailers
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receivers</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the message</dd><dt><strong>body:
+      </strong></dt><dd>body of the message</dd></dl><h4>SendEventlog(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a message to the windows eventlog
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receivers</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the message</dd><dt><strong>body:
+      </strong></dt><dd>body of the message</dd><dt><strong>priority:
+      </strong></dt><dd>priority of the message</dd></dl><h4>ResolveException(System.Exception)</h4><p>
+            Resolve all inner exceptions
+            </p><h5>Parameters</h5><dl><dt><strong>ex:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>SendStatus(System.String)</h4><p>
+            Send status changed message
+            </p><h5>Parameters</h5><dl><dt><strong>message:
+      </strong></dt><dd>message to send</dd></dl><h4>SendStatus(System.String, System.Object[])</h4><p>
+            Send status changed message
+            </p><h5>Parameters</h5><dl><dt><strong>message:
+      </strong></dt><dd>message to send</dd><dt><strong>data:
+      </strong></dt><dd>objects for formatting message</dd></dl><h4>SendStatus(System.String, Bodoconsult.Text.Enums.TextItemType, System.Object[])</h4><p>
+            Send status changed message
+            </p><h5>Parameters</h5><dl><dt><strong>message:
+      </strong></dt><dd>true on success</dd><dt><strong>textItemType:
+      </strong></dt><dd>logical level of the text item</dd><dt><strong>data:
+      </strong></dt><dd>objects for formatting message</dd></dl><h4>SaveJob(System.String)</h4><p>
+            Save current job as JSON to a file 
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>Path for the JSON file to save</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>LoadJob(JobExecuter.Dal.Model.Job, System.String)</h4><p>
+            Load current job from JSON file 
+            </p><h5>Parameters</h5><dl><dt><strong>job:
+      </strong></dt><dd>Job to run</dd><dt><strong>jsonJobFile:
+      </strong></dt><dd>Filename of the CJSON file</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>RunJob</h4><p>
+            Run the current job
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true if no job task caused an error</dd>true if no job task caused an error</dl><h4>CheckJob</h4><p>
+            Make some plausibility checks for the job
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>
+        - </dd></dl><h4>SendErrorsToEventlog</h4><p>
+            Write errors into Windows eventlog
+            </p><h4>SendErrorMailsForTasks</h4><p>
+            Send error mails for single task errors
+            </p><h4>SendErrorMail</h4><p>
+            Send an error mail to job error mail receivers
+            </p><h4>GetErrorMessage(Bodoconsult.Text.Interfaces.IStructuredText, Bodoconsult.Text.Enums.TextItemType)</h4><p>
+            Format all error messages
+            </p><h5>Parameters</h5><dl><dt><strong>sr:
+      </strong></dt><dd>Error messages</dd><dt><strong>headerLevel:
+      </strong></dt><dd>Header level for the headline of the error part</dd></dl><h4>RunJobInternal</h4><p>
+            Internal function to run job in a separate task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true if success</dd>true if success</dl><h4>SendSummary</h4><p>
+            Send a summary to mail receivers
+            </p><h4>SetJobJsonFileName(System.String)</h4><p>
+            Only for testing purposes: set JobJson file name (without loading the file)
+            </p><h5>Parameters</h5><dl><dt><strong>jobJson:
+      </strong></dt><dd>
+        -
+      </dd></dl><h2>Dal.JobMailer.ConsoleJobMailer</h2>
+            <p>
+            Sends mail to console window
+            </p>
+        <h3>Methods</h3><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><h2>Dal.JobMailer.EventlogJobMailer</h2>
+            <p>
+            Sends mail to Windows event log. Log entries will be placed under Windows protocols in the log file Application.
+            The source is "Bodoconsult.JobExecuter".
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.JobMailer.EventlogJobMailer</h4><p>
+            default ctor
+            </p><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><h2>Dal.JobMailer.FakeJobMailer</h2>
+            <p>
+            Sends mail to debug window
+            </p>
+        <h3>Methods</h3><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><h2>Dal.JobMailer.FileJobMailer</h2>
+            
+            <p>
+            Sends mail to log file
+            </p>
+        <h3>Properties</h3><h4>LogFileName</h4>
+            <p>
+            Full path of the log file
+            </p>
+        <h3>Methods</h3><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><h2>Dal.JobMailer.NetSendJobMailer</h2>
+            <p>
+            Send a message via msg.exe (formerly net send)
+            </p>
+        <h3>Methods</h3><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h2>Dal.JobMailer.O365JobMailer</h2>
+            <p>
+            Sends mails via secure SMTP server
+            </p>
+        <h3>Properties</h3><h4>HtmlTemplate</h4>
+            <p>
+            HTML template for mail body
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.JobMailer.O365JobMailer(Bodoconsult.App.Abstractions.Interfaces.O365MailAccount)</h4><p>
+            Default ctor
+            </p><h5>Parameters</h5><dl><dt><strong>o365MailAccount:
+      </strong></dt><dd>Current mail account</dd></dl><h4>LoadDefaultHtmlTemplate</h4><p>
+            Load default template for HTML mails
+            </p><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>SendDummyMail(System.String)</h4><p>
+            Send a test mail for checking the SMTP account
+            </p><h5>Parameters</h5><dl><dt><strong>email:
+      </strong></dt><dd>
+        -
+      </dd></dl><h2>Dal.JobMailer.SmtpJobMailer</h2>
+            <p>
+            Sends mails via secure SMTP server
+            </p>
+        <h3>Properties</h3><h4>HtmlTemplate</h4>
+            <p>
+            HTML template for mail body
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.JobMailer.SmtpJobMailer(Bodoconsult.App.Abstractions.Interfaces.SmtpMailAccount)</h4><p>
+            Default ctor
+            </p><h5>Parameters</h5><dl><dt><strong>smtpMailAccount:
+      </strong></dt><dd>Current mail account</dd></dl><h4>LoadDefaultHtmlTemplate</h4><p>
+            Load default template for HTML mails
+            </p><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+            Send a mail 
+            </p><h5>Parameters</h5><dl><dt><strong>mailTo:
+      </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
+      </strong></dt><dd>subject of the mail</dd><dt><strong>body:
+      </strong></dt><dd>mail body</dd><dt><strong>priority:
+      </strong></dt><dd>true=high priority</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>SendDummyMail(System.String)</h4><p>
+            Send a test mail for checking the SMTP account
+            </p><h5>Parameters</h5><dl><dt><strong>email:
+      </strong></dt><dd>
+        -
+      </dd></dl><h2>Dal.Model.ActiveDirectoryJobTask</h2>
+            <p>
+            Creates a report of the current Windows domain's Active Directory structure.
+            </p>
+            <p>Work only for single domain networks. Domain forest are not supported. Delivers a report over the structure of the AD with Organizational Units (OU),  users, groups and computers.</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for ActiveDirectoryJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.ActiveDirectoryJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.ActiveDirectoryJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ActiveDirectory.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Report Active Directory",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "Report the current domain's Active Directory structure with organisation units (OU), users, groups and computers.",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.AppSettings</h2>
+            <p>
+            Application settings
+            </p>
+        <h3>Properties</h3><h4>JobSalt</h4>
+            <p>
+            Job salt
+            </p>
+        <h4>JobPassword</h4>
+            <p>
+            Job password
+            </p>
+        <h2>Dal.Model.BackupBatchJobTask</h2>
+            <p>
+            Task to run a backup of the file system.  
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for BackupBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.BackupBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.BackupBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ShadowingSourceDrive": "C:",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ShadowingTargetDrive": "H:",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Command": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Weeks": 5,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"GetAliveFolder": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Days": 14,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DaysOffset": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BackupTargets": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "Bodoconsult.App.Backup.BackupTargetSettings, Bodoconsult.App",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Command": "robocopy ??source?? ??target??&nbsp;&nbsp;&nbsp;*.* /FFT /S /E /log:??log?? /COPY:DT /B /NP /MT:48 /R:1 /W:1 /XF thumbs.db /xd ??xd?? /NoDCopy",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Source": "d:\\tmp\\FolderBackup1",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Target": "d:\\tmp\\FolderBackup2\\",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Logfile": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\logfile.log",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ExcludeDirs": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BackupMode": "Simple",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Thread": 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Count": 5,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DaysOffset": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Errors": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"StatusChanged": null<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"SummaryFile": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Errors": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"StatusChanged": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Backup file system",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "Take a backup of a filesystem folder using diskshadowing if needed and keeping old backups for a certain amount of time depending on the backup mode",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>ShadowingSourceDrive</h4>
+            <p>
+            The source drive used for disk shadowing or null. I.e.: C:
+            </p>
+        <h4>ShadowingTargetDrive</h4>
+            <p>
+            The target drive used for disk shadowing or null. I.e.: H:
+            </p>
+        <h4>Command</h4>
+            <p>
+            Backup command to run or null if the default should be used
+            </p>
+        <h4>Weeks</h4>
+            <p>
+            Number of weeks the backups are kept before being deleted in weekly backup mode. Default: 5
+            </p>
+        <h4>GetAliveFolder</h4>
+            <p>
+            A folder path called to get the storage media alive before starting backup
+            </p>
+        <h4>Days</h4>
+            <p>
+            Number of days the backups are backup after date TagDatum before being deleted
+            </p>
+        <h4>DaysOffset</h4>
+            <p>
+            Offset in days
+            </p>
+        <h4>BackupTargets</h4>
+            <p>
+            Current list of backup targets
+            </p>
+        <h4>SummaryFile</h4>
+            <p>
+            Name of the summary file to be created
+            </p>
+        <h4>Errors</h4>
+            <p>
+            Current list of errors
+            </p>
+        <h4>StatusChanged</h4>
+            <p>
+            Status changed event
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.CmdBatchJobTask</h2>
+            <p>
+            Task to run a cmd.exe batch from a file or a string.  
+            </p>
+            <p>Set either <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.Filename</em> or <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.BatchFileContent</em>. In doubt <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.BatchFileContent</em> wins!
+            The advantage of running a batch in mode <em>
+      See: F:JobExecuter.Dal.Enums.CmdBatchRunType.LineByLine</em> that the batch runs line per line as separated processes. 
+            The lines must be independent from each other.
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for CmdBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.CmdBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filename": "testbackup.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RunType": "WholeFile",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BatchFileContent": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Run a batch (*.bat or *.cmd) with cmd.exe",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 110<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filename": "testbackup.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RunType": "LineByLine",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BatchFileContent": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Run a batch (*.bat or *.cmd) with cmd.exe",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 110<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.CmdBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filename": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RunType": "LineByLine",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BatchFileContent": "REm dfgsfd\r\ncopy d:\\tmp\\FolderBackup1\\*.* d:\\tmp\\FolderBackup2\\*.* /y\r\nREM fghdfg\r\ncopy d:\\tmp\\FolderBackup2\\*.* d:\\tmp\\FolderBackup1\\*.* /y\r\nREM fghfsd\r\n",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Run a batch commands from a string",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 110<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>Filename</h4>
+            <p>
+            Filename of .bat or .cmd file to run. Set either <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.Filename</em> or <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.BatchFileContent</em>. In doubt <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.BatchFileContent</em> wins!
+            </p>
+        <h4>RunType</h4>
+            <p>
+            Type of how to run a cmd batch file
+            </p>
+        <h4>BatchFileContent</h4>
+            <p>
+            Batch commands as string (like in a .bat or .cmd file). Commands in the string run always in mode <em>
+      See: F:JobExecuter.Dal.Enums.CmdBatchRunType.LineByLine</em>.  Set either <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.Filename</em> or <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.BatchFileContent</em>. In doubt <em>
+      See: P:JobExecuter.Dal.Model.CmdBatchJobTask.BatchFileContent</em> wins!
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.ComplianceFolder</h2>
+            <p>
+            Folder information for folder compliance reporting
+            </p>
+            <p>Show all permissions on file system folders for users and groups.</p>
+        <h3>Properties</h3><h4>Path</h4>
+            <p>
+            Full path to the folder
+            </p>
+        <h4>IncludeSubFolders</h4>
+            <p>
+            Include the direct subfolders of the folder
+            </p>
+        <h4>ShowPermissionsOfPredefinedAccounts</h4>
+            <p>
+            Show the permissions of predefined Windows accounts. Default: false
+            </p>
+        <h2>Dal.Model.DhcpJobTask</h2>
+            <p>
+            Creates a report of the current Windows domain's DHCP infrastructure
+            </p>
+            <p>User running that job needs to be member of security group DHCP Administrators on the DHCP server</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for DhcpJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DhcpJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.DhcpJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\DHCP.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Report Dhcp infrastructure",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "Report the current domain's DHCP infrastructure",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.DiskSizeJobTask</h2>
+            <p>
+            Checks the disk size and places an error if free space is below a certain percentage or below a certain absolute value
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for DiskSizeJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DiskSizeJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.DiskSizeJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Drives": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Drive, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "C:",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MinimumPercentageOfFreeSpace": 0.3,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"IpAddress": null<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Drive, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "\\\\bododata\\data$",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MinimumPercentageOfFreeSpace": 0.7,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"IpAddress": null<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Drive, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "C:",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MinimumPercentageOfFreeSpace": 0.3,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"IpAddress": "192.168.12.219"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Drive, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "C:",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MinimumPercentageOfFreeSpace": 0.3,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"IpAddress": "192.168.12.15"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Sample for DiskSizeJobTask job task",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>Drives</h4>
+            <p>
+            Drives to check for disk space
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.DiskSizeJobTask</h4><p>
+            default ctor
+            </p><h4>GetFactory</h4><h2>Dal.Model.DnsJobTask</h2>
+            <p>
+            Creates a report for a Microsoft DNS server
+            </p>
+            <p>User running that job needs to be member of security group DNS administrators on the DNS server</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for DnsJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DnsJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.DnsJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": "BCGS02DC.BCG-AD.DE",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\DNS.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Report a DNS server's structure",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "Report DNS server's structure",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>Server</h4>
+            <p>
+            FQDN of the DNS server
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.DocuBaseJobTask</h2>
+            <p>
+            Base class for documentation job tasks
+            </p>
+        <h3>Properties</h3><h4>Title</h4>
+            <p>
+            Title for documentation
+            </p>
+        <h4>MailTo</h4>
+            <p>
+            Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner
+            </p>
+        <h4>HtmlTargetFileName</h4>
+            <p>
+            Export documentation to HTML
+            </p>
+        <h4>PdfTargetFileName</h4>
+            <p>
+            Export documentation to Pdf
+            </p>
+        <h4>JsonTargetFileName</h4>
+            <p>
+            Export documentation as <em>
+      See: T:Bodoconsult.Text.Model.StructuredText</em> object to JSON.
+            If empty, the file will be placed in app subfolder docu with the name "job_docu.json" 
+            </p>
+        <h2>Dal.Model.DocumentationJobTask</h2>
+            <p>
+            Creates a HTML documentation from diverse JSON files as input.
+            May be used i.e. for combining database compliance reports from different database servers to one compliance report HTML file.
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            JSON files must contain an object implementing the  interface.<br>            Use in conjunction with<br>              - ,<br>              - <br>              - <br>              - <br>              - <br>              - ,<br>              - ,<br>              - ,<br>              - ,<br>              - <br>              - .<br>            Let all this JobTasks create JSON files as output and combine them with  to HTML reports as required.<br>            <br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for DocumentationJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.DocumentationJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.DocumentationJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonFiles": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"d_:\\tmp\\test.jsonSample.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"d:\\tmp\\test.jsonSample.json"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFiles": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"d:\\tmp\\FolderBackup2\\documentation.htm"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": "Full documentation",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"AppendHelpFile": false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Full documentation",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>JsonFiles</h4>
+            <p>
+            message to deliver for testing purposes
+            </p>
+        <h4>HtmlTargetFiles</h4>
+            <p>
+            Filenames for HTML documentation as result of the job
+            </p>
+        <h4>Title</h4>
+            <p>
+            Title for documentation
+            </p>
+        <h4>AppendHelpFile</h4>
+            <p>
+            Append the JobExecuter help file to documentation
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.DocumentationJobTask</h4><p>
+            Default ctor
+            </p><h4>GetFactory</h4><h2>Dal.Model.Drive</h2>
+            <p>
+            Drive information for <em>
+      See: T:JobExecuter.Dal.Model.DiskSizeJobTask</em>
+            </p>
+        <h3>Properties</h3><h4>Name</h4>
+            <p>
+            Drive name
+            </p>
+        <h4>MinimumPercentageOfFreeSpace</h4>
+            <p>
+            Minimum  percentage of free disk space required
+            </p>
+        <h4>IpAddress</h4>
+            <p>
+            IP address (if disk size of a remote computer is to be calculated)
+            </p>
+        <h2>Dal.Model.DummyErrorJobTask</h2>
+            <p>
+            Dummy task for error testing purposes
+            </p>
+        <h3>Properties</h3><h4>Message</h4>
+            <p>
+            message to deliver for testing purposes
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.DummyJobTask</h2>
+            <p>
+            Dummy task for testing purposes
+            </p>
+        <h3>Properties</h3><h4>Message</h4>
+            <p>
+            message to deliver for testing purposes
+            </p>
+        <h4>WaitTime</h4>
+            <p>
+            simulated run time
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.ErrorItem</h2>
+            <p>
+            Contains errors and the job tasks they happened
+            </p>
+        <h3>Properties</h3><h4>JobTask</h4>
+            <p>
+            The <em>
+      See: T:JobExecuter.Base.Interfaces.IJobTask</em>, the exception that happened in
+            </p>
+        <h4>Exception</h4>
+            <p>
+            The <em>
+      See: P:JobExecuter.Dal.Model.ErrorItem.Exception</em> that happened
+            </p>
+        <h2>Dal.Model.FolderBackupJobTask</h2>
+            <p>
+            Backup of a folder based on robocopy.exe by Microsoft.
+            </p>
+            <p>Robocopy.exe is installed automatically starting with Windows 7 and Windows 2008 Server.</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for FolderBackupJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderBackupJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"SourcePath": "d:\\tmp\\FolderBackup1",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"TargetPath": "d:\\tmp\\FolderBackup2",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ExcludeDirectories": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BackupType": "CopyOnlyNewerFiles",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ShowProgress": false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"IncludeSubDirectories": true,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Backup a folder to a local or network share target",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>SourcePath</h4>
+            <p>
+            Folder to backup
+            </p>
+        <h4>TargetPath</h4>
+            <p>
+            Target folder for the backup
+            </p>
+        <h4>ExcludeDirectories</h4>
+            <p>
+            Directories to exclude from backup
+            Syntax: C:\ToExclude1 "C:\To Exclude2" c:\ToExclude3
+            </p>
+        <h4>BackupType</h4>
+            <p>
+            Defines how backup works. Default is <em>
+      See: F:JobExecuter.Dal.Enums.FolderBackupType.PlainCopy</em>.
+            </p>
+        <h4>ShowProgress</h4>
+            <p>
+            Show progress of backup. May reduce performance. Default: false
+            </p>
+        <h4>IncludeSubDirectories</h4>
+            <p>
+            Include subdirectories in the folder backup. Default: true
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.FolderBackupJobTask</h4><p>
+            default ctor
+            </p><h4>GetFactory</h4><h2>Dal.Model.FolderCleanJobTask</h2>
+            <p>
+            Task to clean a folder from old files
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for FolderCleanJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderCleanJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.FolderCleanJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FolderPath": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Days": 7,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Clean a folder from files older than 7 days",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>FolderPath</h4>
+            <p>
+            Path to clean
+            </p>
+        <h4>Days</h4>
+            <p>
+            Clean folder from files older then X days
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.FolderComplianceJobTask</h2>
+            
+            <p>
+            Task to create a compliance report for a folder. 
+            </p>
+            <p>FolderComplianceJobTask requires running under administrative privileges due to accessing file system access control list.</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for FolderComplianceJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.FolderComplianceJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.FolderComplianceJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FolderPaths": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.ComplianceFolder, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Path": "c:\\daten\\projekte",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"IncludeSubFolders": true,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ShowPermissionsOfPredefinedAccounts": true<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": "test@test123.de",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\Compliance2.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Create a compliance report for file system folders",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>FolderPaths</h4>
+            <p>
+            Path to create compiance reporting for
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.FolderComplianceJobTask</h4><p>
+            Default ctor
+            </p><h4>GetFactory</h4><h2>Dal.Model.Job</h2>
+            <p>
+            Defines the basic information required for a job to be executed
+            </p>
+        <h3>Properties</h3><h4>Name</h4>
+            <p>
+            Name of the job
+            </p>
+        <h4>Description</h4>
+            <p>
+            Description of the job used for documentation
+            </p>
+        <h4>ErrorMailReceiver</h4>
+            <p>
+            Send an error mail to mail addresses. Mail addresses separated by semicolon
+            </p>
+        <h4>SummaryMailReceiver</h4>
+            <p>
+            Send an summary mail to mail addresses. Mail addresses separated by semicolon
+            </p>
+        <h4>JobTasks</h4>
+            <p>
+            All tasks to be done in the job
+            </p>
+        <h4>Timeout</h4>
+            <p>
+            Timeout in seconds the job will be terminated after start
+            </p>
+        <h4>WriteToEventLog</h4>
+            <p>
+            Write the error messages to the Windows eventlog
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.Job</h4><p>
+            default ctor
+            </p><h4>
+              Constructor:
+              Dal.Model.Job</h4><p>
+            default ctor
+            </p><h4></h4><p>
+            Get the factory for the current task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>A factory for tasks</dd>A factory for tasks</dl><h5>Exceptions</h5><p><strong>System.NotImplementedException:
+      </strong></p><h4></h4><h2>Dal.Model.JobBaseTask</h2>
+            <p>
+            Task to be done in a <em>
+      See: T:JobExecuter.Base.Interfaces.IJob</em>
+            </p>
+        <h3>Properties</h3><h4>Name</h4>
+            <p>
+            Name of the job
+            </p>
+        <h4>Description</h4>
+            <p>
+            Description of the job used for documentation
+            </p>
+        <h4>ErrorMailReceiver</h4>
+            <p>
+            Send an error mail to mail addresses. Mail addresses separated by semicolon
+            </p>
+        <h4>Timeout</h4>
+            <p>
+            Timeout in seconds the job will be terminated after start
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.JobBaseTask</h4><p>
+            default ctor
+            </p><h4>GetFactory</h4><p>
+            Get the factory for the current task
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>A factory for tasks</dd>A factory for tasks</dl><h5>Exceptions</h5><p><strong>System.NotImplementedException:
+      </strong></p><h2>Dal.Model.JobDocuJobTask</h2>
+            <p>
+            Task to document the current JobExecuter job
+            </p>
+        <h3>Properties</h3><h4>JobJsonFileName</h4>
+            <p>
+            Full path of the CJSON file with JobExecuter job to document
+            </p>
+        <h4>CurrentJob</h4>
+            <p>
+            Current job (will be used if <em>
+      See: P:JobExecuter.Dal.Model.JobDocuJobTask.JobJsonFileName</em> is empty.
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.PingCheckJobTask</h2>
+            <p>
+            Check successful ping to certain network addresses
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for PingCheckJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.PingCheckJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.PingCheckJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"IpAdresses": "192.168.12.15;192.168.12.20;192.168.12.1;8.8.8.8",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PingTimeout": 15000,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Sample task for ping check",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>IpAdresses</h4>
+            <p>
+            IP-addresses separated by semicolon
+            </p>
+        <h4>PingTimeout</h4>
+            <p>
+            Timeout in milliseconds for Ping. Default: 15.000 
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.PingCheckJobTask</h4><p>
+            default ctor
+            </p><h4>GetFactory</h4><h2>Dal.Model.PsBatchJobTask</h2>
+            <p>
+            Run a PowerShell script file
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for PsBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.PsBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.PsBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filename": "PowerShellScript.ps1.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PowerShellVersion": "V01",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Running a PowerShell batch file with PowerShell V01",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.PsBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filename": "PowerShellScript.ps1.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PowerShellVersion": "V03",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Running a PowerShell batch file with PowerShell V03",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>Filename</h4>
+            <p>
+            Full path to a powershell script file to run. Path may contain blanks
+            </p>
+        <h4>PowerShellVersion</h4>
+            <p>
+            The version of PowerShell to run the <em>
+      See: T:JobExecuter.Dal.Model.PsBatchJobTask</em> on
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.PsBatchJobTask</h4><p>
+            default ctor
+            </p><h4>GetFactory</h4><h2>Dal.Model.RunAppJobTask</h2>
+            <p>
+            Run an app with or without parameters
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for RunAppJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.RunAppJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.RunAppJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filename": "robocopy.exe",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Arguments": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"InteractiveMode": false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Sample for running a app without parmeters",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.RunAppJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filename": "robocopy.exe",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Arguments": "/?",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"InteractiveMode": false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Sample for running a app with parameters",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>Filename</h4>
+            <p>
+            Full path to app to run. Path may contain blanks
+            </p>
+        <h4>Arguments</h4>
+            <p>
+            Arguments to start the app with
+            </p>
+        <h4>InteractiveMode</h4>
+            <p>
+            Run app in interactive mode. default: false
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlBackupAllDatabasesJobTask</h2>
+            <p>
+            Task to take a full backup for all SQL databases (with exception of TempDb) on a Microsoft® SqlServer starting with version 2008.
+            </p>
+            <p>Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlBackupAllDatabasesJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBackupAllDatabasesJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlBackupAllDatabasesJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NetworkTarget": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FileName": "??server??_??database??.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RemoveLocalBackup": false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Local backup of all databases on a SqlServer instance",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlBackupAllDatabasesJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FileName": "testbackup.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RemoveLocalBackup": false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Network share backup of all databases on a SqlServer instance",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>LocalTarget</h4>
+            <p>
+            Local target folder to backup database in
+            </p>
+            <p>SqlServer runs backup under the service account of SqlServer service. This account doesn't have network access. 
+            Therefore a direct backup to a network location is not possible normally. 
+            Backup to local target and then moving the backup file to a network location is possible.</p>
+        <h4>NetworkTarget</h4>
+            <p>
+            Target folder for the backup on a network share (if requested).
+            </p>
+            <p>SqlServer runs backup under the service account of SqlServer service. This account doesn't have network access. 
+            Therefore a direct backup to a network location is not possible normally. 
+            Backup to local target and then moving the backup file to a network location is possible.</p>
+        <h4>FileName</h4>
+            <p>
+            File name schema for the backup file. ;ust contain placeholders. 
+            Otherwise all backups are made to the same file (and overwrite it with each backup)
+            Must contain placeholders:
+            ??server?? = Server name or Server and instance name
+            ??database?? = database name
+            Optional placeholders are:
+            ??date?? = date in format yyyymmdd
+            ??time?? = date and time in format yyyymmddhhnn
+            </p>
+        <h4>RemoveLocalBackup</h4>
+            <p>
+            Remove local backup files after copying to network. Default: false
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlBackupLogSingleDatabaseJobTask</h2>
+            <p>
+            Task to take a log file backup for a single SQL database on Microsoft® SqlServer starting with version 2008.
+            </p>
+            <p>Uses the following SQl statement: BACKUP LOG [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlBackupLogSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DatabaseName": "MediaDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FileName": "testbackup.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RemoveLocalBackup": true,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Backup database to a network path",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>DatabaseName</h4>
+            <p>
+            Name of the database to backup
+            </p>
+        <h4>LocalTarget</h4>
+            <p>
+            Local target folder to backup database in
+            </p>
+            <p>SqlServer runs backup under the service account of SqlServer service. This account doesn't have network access. 
+            Therefore a direct backup to a network location is not possible normally. 
+            Backup to local target and then moving the backup file to a network location is possible.</p>
+        <h4>NetworkTarget</h4>
+            <p>
+            Target folder for the backup on a network share (if requested).
+            </p>
+            <p>SqlServer runs backup under the service account of SqlServer service. This account doesn't have network access. 
+            Therefore a direct backup to a network location is not possible normally. 
+            Backup to local target and then moving the backup file to a network location is possible.</p>
+        <h4>FileName</h4>
+            <p>
+            File name for the backup file
+            May contain placeholders:
+            ??server?? = Server name or Server and instance name
+            ??database?? = database name
+            ??date?? = date in format yyyymmdd
+            ??time?? = date and time in format yyyymmddhhnn
+            </p>
+        <h4>RemoveLocalBackup</h4>
+            <p>
+            Remove local backup files after copying to network. Default: false
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlBackupSingleDatabaseJobTask</h2>
+            <p>
+            Task to take a full backup for a single SQL database on Microsoft® SqlServer starting with version 2008.
+            </p>
+            <p>Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlBackupSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DatabaseName": "MediaDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NetworkTarget": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FileName": "testbackup.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RemoveLocalBackup": false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Backup database to local file only",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DatabaseName": "MediaDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FileName": "testbackup.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"RemoveLocalBackup": true,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Backup database to a network path",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>DatabaseName</h4>
+            <p>
+            Name of the database to backup
+            </p>
+        <h4>LocalTarget</h4>
+            <p>
+            Local target folder to backup database in
+            </p>
+            <p>SqlServer runs backup under the service account of SqlServer service. This account doesn't have network access. 
+            Therefore a direct backup to a network location is not possible normally. 
+            Backup to local target and then moving the backup file to a network location is possible.</p>
+        <h4>NetworkTarget</h4>
+            <p>
+            Target folder for the backup on a network share (if requested).
+            </p>
+            <p>SqlServer runs backup under the service account of SqlServer service. This account doesn't have network access. 
+            Therefore a direct backup to a network location is not possible normally. 
+            Backup to local target and then moving the backup file to a network location is possible.</p>
+        <h4>FileName</h4>
+            <p>
+            File name for the backup file
+            May contain placeholders:
+            ??server?? = Server name or Server and instance name
+            ??database?? = database name
+            ??date?? = date in format yyyymmdd
+            ??time?? = date and time in format yyyymmddhhnn
+            </p>
+        <h4>RemoveLocalBackup</h4>
+            <p>
+            Remove local backup files after copying to network. Default: false
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlBaseJobTask</h2>
+            <p>
+            Base class for Microsoft® SqlServer related job tasks
+            </p>
+        <h3>Properties</h3><h4>Server</h4>
+            <p>
+            server name or server and instance name of a database server
+            </p>
+        <h2>Dal.Model.SqlBatchJobTask</h2>
+            <p>
+            Task to run a SQL batch from a file or from a string against a Microsoft® SqlServer 
+            </p>
+            <p>SQL statements must be separated by GO. The SQL statements must address database correctly, i.e EXEC testdb.dbo.TestProc.
+            All SQL statements are running on the same connection. This makes it possible to use temporary tables in SQL statements.</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBatchJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DatabaseName": "MediaDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FileName": "testbackup.bak",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BatchContent": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Run a SQL batch file",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DatabaseName": "MediaDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"BatchContent": "exec spTest 1\r\nGO\r\nexec spTest 2\r\nGO\r\nexec spTest 3",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Run SQL batch directly from string",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>DatabaseName</h4>
+            <p>
+            Name of the database to run the batch file in
+            </p>
+        <h4>FileName</h4>
+            <p>
+            Path to the SQL batch file to run
+            </p>
+        <h4>BatchContent</h4>
+            <p>
+            Direct batch SQL to run
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlComplianceAllDatabasesJobTask</h2>
+            <p>
+            Task to collect compliance relevante information for all SQL databases on a Microsoft® SqlServer 
+            </p>
+            <p>Databases Master, Msdb, Model and TempDb are excluded by this task. Requires the job running user to be member of the sysadmin or securityadmin server roles.</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlComplianceAllDatabasesJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": "info@bodoconsult.de",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseComplianceReport.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Create compliance information for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>Server</h4>
+            <p>
+            server name or server and instance name of a database server
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlComplianceSingleDatabaseJobTask</h2>
+            <p>
+            Task to collect compliance relevante information for a single SQL database on a Microsoft® SqlServer 
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlComplianceSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlComplianceSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlComplianceSingleDatabaseJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DatabaseName": "DatabaseXY",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": "info@bodoconsult.de",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseXY_ComplianceReport.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Create compliance information for a single database",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>Server</h4>
+            <p>
+            server name or server and instance name of a database server
+            </p>
+        <h4>DatabaseName</h4>
+            <p>
+            Name of the database to backup
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlDocuAllDatabasesJobTask</h2>
+             <p>
+            Task to take a documentation for all SQL databases on a Microsoft® SqlServer with exception of databases Master, Msdb, Model and TempDb. 
+             </p>
+            <p><p>A database may contain stored procs under the schema dbo and names beginning with spDbDocu_ for adding database specific content to the docmentation.</p>
+             <p>For parts of the documentation the user running the job needs certain permissions. To give least possible permissions, this user should  be part of a user defined server role on the SqlServer with the permissions VIEW ANY DEFINITION and GRANT VIEW SERVER STATE. You should avoid making the user a sysadmin for security reasons. User must have access to each database with least possible permissions!</p>
+             </p>
+             <pre>
+             CREATE SERVER ROLE NameOfNewServerRole
+            
+            GO
+            
+            GRANT VIEW ANY DEFINITION TO NameOfNewServerRole
+            
+            GO
+            
+            GRANT VIEW SERVER STATE TO NameOfNewServerRole
+            
+            GO
+            
+            EXEC sp_addsrvrolemember 'domain\SG-SqlKeyUsers', 'NameOfNewServerRole'
+            
+             </pre>
+             <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>             {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlDocuAllDatabasesJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlDocuAllDatabasesJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlDocuAllDatabasesJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\testbackup.bak.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\testbackup.bak.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Create a documentation for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>              </code>
+        <h3>Properties</h3><h4>Server</h4>
+            <p>
+            server name or server and instance name of a database server
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlDocuSingleDatabaseJobTask</h2>
+             <p>
+             Task to take a documentation for a single SQL database on a Microsoft® SqlServer.
+             </p>
+             <p><p>A database may contain stored procs under the schema dbo and names beginning with spDbDocu_ foradding database specific content to the docmentation.</p>
+             <p>For parts of the documentation the user running the job needs certain permissions.
+             To give least possible permissions, this user should be part of a user defined server role on the SqlServer with the permissions VIEW ANY DEFINITION and GRANT VIEW SERVER STATE.
+             You should avoid making the user a sysadmin for security reasons. User must have access to each database with least possible permissions!</p></p>
+             <pre>
+             CREATE SERVER ROLE NameOfNewServerRole
+            
+            GO
+            
+            GRANT VIEW ANY DEFINITION TO NameOfNewServerRole
+            
+            GO
+            
+            GRANT VIEW SERVER STATE TO NameOfNewServerRole
+            
+            GO
+            
+            EXEC sp_addsrvrolemember 'domain\SG-SqlKeyUsers', 'NameOfNewServerRole'
+            
+             </pre>
+             <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>             {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlDocuSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"DatabaseName": "MediaDb",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Create a documentation for a single database",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 60<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>              </code>
+        <h3>Properties</h3><h4>Server</h4>
+            <p>
+            server name or server and instance name of a database server
+            </p>
+        <h4>DatabaseName</h4>
+            <p>
+            Name of the database to backup
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.SqlMaintenanceJobTask</h2>
+            <p>
+            Job to perfrom maintenance on a Microsoft® SqlServer instance
+            </p>
+            <p>Needs sysadmin permissions to run successfully on the instance of SqlServer</p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for SqlMaintenanceJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlMaintenanceJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.SqlMaintenanceJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": "test@test123.de",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\Maintenance.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FragmentationLevel1": 5,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"FragmentationLevel2": 30,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Server": ".\\sqlexpress",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Runs a maintenance job on a SqlServer instance",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 600<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>MailTo</h4>
+            <p>
+            Mail receiver(s) separated by semicolon. Intended to use for mail compliance report to compliance process owner
+            </p>
+        <h4>Title</h4>
+            <p>
+            Title for documentation
+            </p>
+        <h4>HtmlTargetFileName</h4>
+            <p>
+            Export documentation to HTML
+            </p>
+        <h4>PdfTargetFileName</h4>
+            <p>
+            Export documentation to PDF
+            </p>
+        <h4>JsonTargetFileName</h4>
+            <p>
+            Export documentation as <em>
+      See: T:Bodoconsult.Text.Model.StructuredText</em> object to JSON.
+            If empty, the file will be placed in app subfolder docu with the name "job_docu.json" 
+            </p>
+        <h4>FragmentationLevel1</h4>
+            <p>
+            Fragmentation level 1 (low -&gt;medium) in percent. 50 means 50 percent. Default: 5
+            </p>
+        <h4>FragmentationLevel2</h4>
+            <p>
+            Fragmentation level 2 (medium -&gt; high) in percent. 50 means 50 percent. Default: 30
+            </p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.Model.SqlMaintenanceJobTask</h4><p>
+            Default ctor
+            </p><h4>GetFactory</h4><h2>Dal.Model.TaskSchedulerDocuJobTask</h2>
+            <p>
+            Task to save TaskScheduler tasks as XML and document it
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for TaskSchedulerDocuJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.TaskSchedulerDocuJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.TaskSchedulerDocuJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"XmlTargetPath": "d:\\tmp\\FolderBackup2",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filter": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"TargetServer": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "d:\\tmp\\FolderBackup2\\docu.html",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": "d:\\tmp\\FolderBackup2\\docu.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Getting all task scheduler tasks from local computer",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.TaskSchedulerDocuJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"XmlTargetPath": "d:\\tmp\\FolderBackup2",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Filter": "Adobe;Microsoft",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"TargetServer": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "d:\\tmp\\FolderBackup2\\docu.html",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": "d:\\tmp\\FolderBackup2\\docu.json",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Getting task scheduler data from local computer with use of filter expressions",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "Filters only tasks starting with Adobe or Microsoft",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
+        <h3>Properties</h3><h4>XmlTargetPath</h4>
+            <p>
+            Folder to export the tasks in
+            </p>
+        <h4>Filter</h4>
+            <p>
+            Filters task by the filter expression added here. Seperated values with semicolon. Task name has to start with filter expression
+            </p>
+            <h5>Example</h5><code class="prettyprint linenums lang-cs">Test;Produktiv;System</code>
+        <h4>TargetServer</h4>
+            <p>
+            Target server to access for windows task scheduler. Default: null = localhost
+            </p>
+        <h3>Methods</h3><h4>GetFactory</h4></div></div><div id="RightColumn">&nbsp;</div><p>&nbsp;</p><script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script></body></html>

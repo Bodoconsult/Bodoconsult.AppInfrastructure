@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageId>Bodoconsult.Network.Windows</PackageId>
+		<PackageTags>Network, DNS, DHCP, Active Directory</PackageTags>
+		<Description>MS Windows related tools for getting metadata from DNS or DHCP or Active Directory</Description>
+		<PackageReleaseNotes>Migration to .Net 8 and new namespace</PackageReleaseNotes>
+		<PackageProjectUrl>https://github.com/RobertLeisner/Bodoconsult.Network</PackageProjectUrl>
+
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+		<!-- PDB Configuration -->
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<EmbedAllSources>false</EmbedAllSources>
+
+		<!-- Allow PDBs in the main package -->
+		<!--
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+		<!-- Generate symbols package (.snupkg) -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<!-- Modern symbols package format -->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Management.Infrastructure" Version="3.0.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="10.0.13" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE.md" Link="LICENSE.md" />
+		<None Include="..\..\doc\Bodoconsult.Network.Windows\README.md" Link="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+</Project>

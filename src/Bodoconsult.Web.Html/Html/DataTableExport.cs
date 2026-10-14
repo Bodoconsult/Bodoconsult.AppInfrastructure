@@ -150,7 +150,7 @@ public class DataTableExport
                 {
                     case "datetime":
                         cssCell = string.IsNullOrEmpty(CssTableCell) ? string.Empty : $" class=\"{cssTableCell}_center{(alternating && cssTableCell == CssTableCell ? CssAlternatingRows : string.Empty)}\"";
-                        value = Convert.ToDateTime(value).ToString(@"dd.MM.yyyy");
+                        value = Convert.ToDateTime(value).ToString("dd.MM.yyyy");
                         break;
                     case "decimal":
                     case "double":
@@ -164,7 +164,7 @@ public class DataTableExport
                     case "int32":
                     case "int64":
                         //column.Format.Alignment = ParagraphAlignment.Right;
-                        value = Convert.ToInt32(value).ToString(@"#,##0");
+                        value = Convert.ToInt32(value).ToString("#,##0");
                         cssCell = string.IsNullOrEmpty(CssTableCell) ? string.Empty : $" class=\"{cssTableCell}_right{(alternating && cssTableCell == CssTableCell ? CssAlternatingRows : string.Empty)}\"";
                         break;
                     default:

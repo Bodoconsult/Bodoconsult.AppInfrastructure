@@ -1,0 +1,41 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for TaskSchedulerDocuJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.TaskSchedulerDocuJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.TaskSchedulerDocuJobTask, JobExecuter.Dal",
+			"XmlTargetPath": "d:\\tmp\\FolderBackup2",
+			"Filter": null,
+			"TargetServer": null,
+			"Title": null,
+			"MailTo": null,
+			"HtmlTargetFileName": "d:\\tmp\\FolderBackup2\\docu.html",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": "d:\\tmp\\FolderBackup2\\docu.json",
+			"Name": "Getting all task scheduler tasks from local computer",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.TaskSchedulerDocuJobTask, JobExecuter.Dal",
+			"XmlTargetPath": "d:\\tmp\\FolderBackup2",
+			"Filter": "Adobe;Microsoft",
+			"TargetServer": null,
+			"Title": null,
+			"MailTo": null,
+			"HtmlTargetFileName": "d:\\tmp\\FolderBackup2\\docu.html",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": "d:\\tmp\\FolderBackup2\\docu.json",
+			"Name": "Getting task scheduler data from local computer with use of filter expressions",
+			"Description": "Filters only tasks starting with Adobe or Microsoft",
+			"ErrorMailReceiver": null,
+			"Timeout": 30
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

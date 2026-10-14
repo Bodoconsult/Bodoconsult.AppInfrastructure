@@ -1,0 +1,24 @@
+﻿{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for SqlBackupLogSingleDatabaseJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask, JobExecuter.Dal",
+			"DatabaseName": "MediaDb",
+			"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",
+			"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",
+			"FileName": "testbackup.bak",
+			"RemoveLocalBackup": true,
+			"Server": ".\\sqlexpress",
+			"Name": "Backup database to a network path",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}

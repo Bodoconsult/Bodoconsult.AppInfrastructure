@@ -131,7 +131,7 @@ public interface IConsoleStarter
     /// <summary>
     /// Ask the user for a JSON encryption password and hash it
     /// </summary>
-    void UiHashJsonPassword();
+    void UiHashAppPassword();
 
     /// <summary>
     /// Hash the app password

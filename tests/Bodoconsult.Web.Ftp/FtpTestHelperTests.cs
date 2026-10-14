@@ -23,8 +23,10 @@ internal class FtpTestHelperTests
         var c = new SshCredentials
         {
             Url = "YourFtpServerUrl", // www.test.de
-            Password = PasswordHelper.Encrypt("YourUsername"), 
-            Username = PasswordHelper.Encrypt("Password")
+
+            // ToDo
+            //Password = PasswordHelper.Encrypt("YourUsername"), 
+            //Username = PasswordHelper.Encrypt("Password")
         };
 
         JsonHelper.SaveAsFile(filename, c);

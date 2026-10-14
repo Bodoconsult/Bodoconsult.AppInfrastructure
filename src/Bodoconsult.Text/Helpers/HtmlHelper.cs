@@ -22,12 +22,12 @@ public class HtmlHelper
     {
         //return html;
 
-        if (!html.Contains("[") || !html.Contains("](")) return html;
+        if (!html.Contains('[') || !html.Contains("](")) return html;
 
-        var i = html.IndexOf("[", StringComparison.Ordinal);
+        var i = html.IndexOf('[');
         var j = html.IndexOf("](", i + 1, StringComparison.Ordinal);
-        var k = html.IndexOf("]", i + 1, StringComparison.Ordinal);
-        var e = html.IndexOf(")", j + 1, StringComparison.Ordinal);
+        var k = html.IndexOf(']', i + 1);
+        var e = html.IndexOf(')', j + 1);
 
         while (i >= 0 && j >= 0)
         {
@@ -44,7 +44,7 @@ public class HtmlHelper
 
                 var link = $"<a href=\"{url}\" alt=\"{name}\">{name}</a>";
 
-                html = html[..pos1] + link + html.Substring(e + 1, html.Length - e - 1);
+                html = html[..pos1] + link + html[(e + 1)..];
             }
             else
             {

@@ -55,7 +55,7 @@ public class ImageToolsTests
 
         const int width = 500;
 
-        var target = Path.Combine(TestHelper.TargetFolder, @"DSC_0187.jpg");
+        var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
         if (File.Exists(target))
         {
@@ -91,7 +91,7 @@ public class ImageToolsTests
         const int width = 500;
         const int maxSize = 1000000;
 
-        var target = Path.Combine(TestHelper.TargetFolder, @"DSC_0187.jpg");
+        var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
         if (File.Exists(target))
         {

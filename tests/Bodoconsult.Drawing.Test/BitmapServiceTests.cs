@@ -34,7 +34,7 @@ public class BitmapServiceTests
         // Arrange
         var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
 
-        var target = Path.Combine(TestHelper.TargetFolder, @"DSC_0187.jpg");
+        var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
         if (File.Exists(target))
         {
@@ -62,7 +62,7 @@ public class BitmapServiceTests
         // Arrange
         var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
 
-        var target = Path.Combine(TestHelper.TargetFolder, @"DSC_0187.jpg");
+        var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
         if (File.Exists(target))
         {
@@ -99,7 +99,7 @@ public class BitmapServiceTests
         // Arrange
         var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
 
-        var target = Path.Combine(TestHelper.TargetFolder, @"DSC_0187.jpg");
+        var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
         if (File.Exists(target))
         {
@@ -131,7 +131,7 @@ public class BitmapServiceTests
         // Arrange
         var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
 
-        var target = Path.Combine( TestHelper.TargetFolder, @"DSC_0187.jpg");
+        var target = Path.Combine( TestHelper.TargetFolder, "DSC_0187.jpg");
 
         if (File.Exists(target))
         {
@@ -170,7 +170,7 @@ public class BitmapServiceTests
         // Arrange
         var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
 
-        var target = Path.Combine(TestHelper.TargetFolder, @"DSC_0187.jpg");
+        var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
         if (File.Exists(target))
         {

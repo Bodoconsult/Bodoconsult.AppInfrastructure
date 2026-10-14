@@ -1,0 +1,74 @@
+﻿{
+  "$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+  "Name": "Test job",
+  "Description": "Test job zum Einrichten von Job-Komponenten",
+  "ErrorMailReceiver": "robert.leisner@bodoconsult.de",
+  "SummaryMailReceiver": "",
+  "JobTasks": [{
+			"$type": "JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal",
+			"SourcePath": "\\\\192.168.10.123\\data$\\bodoconsult\\002_Finanzen\\013_KontoauszugArchivOriginale\\70169619_16527",
+			"TargetPath": "\\\\192.168.10.121\\data$\\privat\\003_Finanzen\\Kontoauszüge\\CW_RL_16527",
+			"ExcludeDirectories": null,
+			"BackupType": "CopyOnlyNewerFiles",
+			"ShowProgress": false,
+			"IncludeSubDirectories": true,
+			"Name": "Copy account statements for account 16527 to private folder",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal",
+			"SourcePath": "\\\\192.168.10.121\\data$\\bodoconsult\\002_Finanzen\\013_KontoauszugArchivOriginale\\70169619_57029",
+			"TargetPath": "\\\\192.168.10.121\\data$\\privat\\003_Finanzen\\Kontoauszüge\\RL_57029",
+			"ExcludeDirectories": null,
+			"BackupType": "CopyOnlyNewerFiles",
+			"ShowProgress": false,
+			"IncludeSubDirectories": true,
+			"Name": "Copy account statements for account 57029 to private folder",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal",
+			"SourcePath": "\\\\192.168.10.121\\data$\\bodoconsult\\002_Finanzen\\013_KontoauszugArchivOriginale\\70169619_700118",
+			"TargetPath": "\\\\192.168.10.121\\data$\\privat\\003_Finanzen\\Kontoauszüge\\AW_700118",
+			"ExcludeDirectories": null,
+			"BackupType": "CopyOnlyNewerFiles",
+			"ShowProgress": false,
+			"IncludeSubDirectories": true,
+			"Name": "Copy account statements for account 700118 to private folder",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal",
+			"SourcePath": "\\\\192.168.10.121\\data$\\bodoconsult\\002_Finanzen\\013_KontoauszugArchivOriginale\\70169619_82708",
+			"TargetPath": "\\\\192.168.10.121\\data$\\privat\\003_Finanzen\\Kontoauszüge\\JW_82708",
+			"ExcludeDirectories": null,
+			"BackupType": "CopyOnlyNewerFiles",
+			"ShowProgress": false,
+			"IncludeSubDirectories": true,
+			"Name": "Copy account statements for account 82708 to private folder",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		},
+		{
+			"$type": "JobExecuter.Dal.Model.FolderBackupJobTask, JobExecuter.Dal",
+			"SourcePath": "\\\\192.168.10.121\\data$\\bodoconsult\\002_Finanzen\\013_KontoauszugArchivOriginale\\70169619_42374",
+			"TargetPath": "\\\\192.168.10.121\\data$\\privat\\003_Finanzen\\Kontoauszüge\\CW_42374",
+			"ExcludeDirectories": null,
+			"BackupType": "CopyOnlyNewerFiles",
+			"ShowProgress": false,
+			"IncludeSubDirectories": true,
+			"Name": "Copy account statements for account 42374 to private folder",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+  ],
+  "Timeout": 45200
+}

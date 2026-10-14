@@ -1,0 +1,225 @@
+*****************************************
+H1 About JobExecuter
+*****************************************
+JobExecuter is a software by Bodoconsult EDV-Dienstleistungen GmbH.
+
+Bodoconsult EDV-Dienstleistungen GmbH??br??Ostring 45a??br??85591 Vaterstetten??br??http://www.bodoconsult.de??br??info@bodoconsult.de
+
+
+***************************
+H2 What is JobExecuter
+***************************
+
+JobExecuter fulfills helpful tasks especially for small Windows based IT enviroments but it is not limited on them. In such small environments often important features like database backup or file backup are missed and have to be implemented with some effort.
+
+JobExecuter is a software to run different types of administrative jobs like database backup, file copying, running apps and others. It is used used in conjunction with Windows Task Scheduler (WTS). The WTS provides the job scheduling infrastructure. JobExecuter provides the functionality of the jobs in an supervised environment. 
+
+JobExecuter supports self-documentation: each job can be documented automatically and all such job documentations can be added to a complete documentation of all JobExecuter based jobs running on diverse server systems.
+
+A JobExecuter job consists of one or more JobTasks. A job and its JobTasks is defined in a UTF8 encoded JSON file. The JSON file must be encrypted to a CJSON file before running the job. To run a job call JobExecuter.exe with the CJSON file with the job definition as parameter. The command line call for JobExecuter looks like:
+
+Code JobExecuter.exe CJsonFileName
+
+Or more general:
+
+Code %PathToJobExcuterExe%\JobExecuter.exe %PathToJobJsonFile%\%JsonFileName%.cjson
+
+
+***************************
+H2 Security related issues with JobExecuter
+***************************
+
+Some of the JobTasks provided by JobExecuter need credentials to be provided. In that case the passwords do not have to be provide as clear text but as encrpyted string.
+
+JobExecuter provides the command line parameter /p to encrypt passwords. Please see below in the section on command line parameters for JobExecuter.
+
+Run JobExecuter always under an account with minimal required permission.
+
+To encrypt your job file run the following command line:
+
+Code %PathToJobExcuterExe%\JobExecuter.exe /c %PathToJobJsonFile%\%JsonFileName%.cjson
+
+You have to provide a password that must be equal to the one stored (encrypted) in the JobExecuter.exe.config file. See below how to encrpyt a password for JobExecuter (command line argument /j).
+
+The result of this command line will be a file %PathToJobJsonFile%\%JsonFileName%.cjson. Run the job with the encrypted password use:
+
+Code %PathToJobExcuterExe%\JobExecuter.exe %PathToJobJsonFile%\%JsonFileName%.cjson
+
+
+
+
+
+
+
+
+
+*******************
+H1 Setting up JobExecuter
+*******************
+
+*******************
+H2 JobExecuter installation
+*******************
+
+Create the folder structure for JobExcuter via Windows Explorer starting with the TargetFolder. The TargetFolder may be any local folder on the machine running the Windows Task Scheduler to use.
+
+DL TargetFolder DD Target path for JobExecuter environment 
+DL TargetFolder\JobExecuter DD Application install path
+DL TargetFolder\Jobs DD Folder with subfolders for each job
+
+Then copy the Samples folder in the JobExecuter's installation path to the TargetFolder\Jobs folder and renamed it to Test.
+
+The Test folder will contain a test job not running from Windows Taslk Scheduler for building and testing new JobTasks.
+
+Use the Test folder as template for creating new jobs.
+
+*******************
+H2 JobExecuter: create your own password to secure jobs
+*******************
+
+To secure JobExecuter jobs you have to create your own salt and then to encrypt your password.
+
+Go to JobExecuter's installation path TargetFolder\JobExecuter. 
+
+Then run Salt.bat to create a new salt. It will be copied to clipboard. 
+
+Then go edit JobExecuter.config and replace the JobSalt setting value with the just created salt from clipboard. Save JobExecuter.config.
+
+Then run Password.bat to encrypt your password. It will be copied to clipboard.
+
+Then go edit JobExecuter.config again and replace the JobPassword setting value with the just created password from clipboard. Save JobExecuter.config.
+
+
+
+***************************
+H2 Overview over the available logging facilities in JobExecuter
+***************************
+
+JobExcuter provides the following logging facilities:
+
+DL Log file DD By default JobExecuter creates always a log file in the job JSON file's directory with the the file name but the file extension .log.
+DL SMTP summary DD JobExecuter can send a summary of the job's runtime results via SMTP to a job's SummaryMailReceiver. SMTP must be configured for JobExecuter. See section below.
+DL SMTP errors DD JobExecuter can send error messages resulting from the job's runtime via SMTP to a job's ErrorMailReceiver or to a separate JobTask's ErrorMailReceiver. SMTP must be configured for JobExecuter. See section below.
+DL Windows Event log DD If needed you can enable JobExecuter to log errors to the Windows Event log. You have to set the Jobs' property WriteToEventLog to true. You can find the log entries under the application log there.
+
+
+***************************
+H2 Configuration of JobExecuter for sending SMTP mails
+***************************
+
+To enable JobExecuter to send SMTP mails you need the SMTP address to use, the username and password to login to the SMTP server and a email address you want to send on behalf of. 
+
+!!!! JobExecuter uses only secure SMTP servers !!!!
+
+To configure JobExecuter you must edit the JobExecuter.config located in the install directory of JobExecuter. Here the settings to edit:
+
+DL SmtpServer: DD SMTP server address like smtp.1und1.de
+DL SmtpAccount: DD account name to login on the SMTP server
+DL SmtpPassword: DD Encrypted password  to login on the SMTP server (use command line parameter /p to encrypt a password. See section above!)
+DL SmtpSendAs: DD email address you send on behalf on, i.e. noreply@test.de
+
+
+*******************
+H1 Setting up a JobExecuter job
+*******************
+
+*******************
+H2 What is JSON and how to edit JSON files for JobExecuter jobs
+*******************
+
+JSON is common plain text data format to transfer or store data. It is lightweight and relatively easy understandable compared to the alternative XML. JSON makes it easily possible to store object data outside a software and load it from a file in a software. Here a sample of a JobExecuter's Job object stored a JSON:
+
+CODE ??include:D:\Daten\Projekte\OwnProjects\JobExecuter\JobExecuter\Samples\SqlBackupSingleDatabaseJobTask.json??
+
+To edit JSON files you generally need only a good text editor. We recommend Notepad++. Copy and paste is a favourable way for creating new job files for JobExecuter. 
+
+JSON itself is formatted plain text with UTF8 encoding in case of JobExecuter. If you edit JSON files you will have to escape certain characters in the text. Please see the list of critical chararcters to escape in JSON:
+
+DL \b   DD Backspace (ascii code 08)
+DL \f   DD Form feed (ascii code 0C)
+DL \n   DD New line
+DL \r   DD Carriage return
+DL \t   DD Tab
+DL \"   DD Double quote
+DL \\   DD Backslash character
+
+Example: Especially if you edit directory or file paths you have to escape the backslash. Instead of the directory path
+
+CODE C:\Test\Jobs\backup\
+
+you have to write
+
+CODE C:\\Test\\Jobs\\backup\\
+
+in the JSON file.
+
+
+*******************
+H2 Setting up a test job
+*******************
+
+In the JobExecuter's installation path there is a folder Samples with  an subfolder SampleJobFolder. This folder contains a sample job with all necessary steps to work with JobExecuter. 
+
+You can use this sample folder to create new jobs by copying the folder to a target folder for jobs and adjust the content of the JSON and BAT to your conrete situation.
+
+
+H3 Folder content
+
+DL job.json: DD Job definition file
+DL job.cjson: DD Encrypted job definition file
+DL prepare.bat: DD Encrypt JSON job file to CJSON
+DL test.bat: DD Start job for testing purposes
+DL start.bat: DD Start job from Windows task scheduler
+
+
+***************************
+H1 Command line parameters for JobExecuter
+***************************
+
+*****
+H2 CJsonFileName
+*****
+
+Code %PathToJobExcuterExe%\JobExecuter.exe %PathToJobJsonFile%\%JsonFileName%.cjson
+
+Runs a job defined in the CJSON file %PathToJobJsonFile%\%JsonFileName%.cjson
+
+JSON files to execute with JobExecuter should be UTF8 encoded and must be encrypted via command line parameter /c to a CJSON file. We recommend using Notepad++ as editor for JSON files. Encrypted JSON files must have the extension .cjson.
+
+Each job should have an own folder. 
+
+If there is a readme.txt in the same folder as the JSON job file, the JobDocuJobTask documenting the job will add the content of readme.txt to the job documentation.
+
+*****
+H2 /p (Encrypt password)
+*****
+
+Code %PathToJobExcuterExe%\JobExecuter.exe /p
+
+If you run JobExecuter with this parameter you will be ask to insert a clear text password. This password will be encrypted by JobExecuter and copied to the clipboard. From there you can paste it to a JSON job definition file where a password is required in encrypted form.
+
+*****
+H2 /c (Encrypt job file)
+*****
+
+Code %PathToJobExcuterExe%\JobExecuter.exe /c %PathToJobJsonFile%\%JsonFileName%.json
+
+Encrypt a job's JSON file to a CJSON file. Password required for that transaction! See below.
+
+
+*****
+H3 /j (setting app password for encrypting job files)
+*****
+
+Code %PathToJobExcuterExe%\JobExecuter.exe /j
+
+If you run JobExecuter with this parameter you will be ask to insert a clear text password. This password will be encrypted by JobExecuter and stored internally. 
+This password is valid only on the machine you run this command.
+
+*****
+H3 /t (synthax check for job JSON file)
+*****
+
+Code %PathToJobExcuterExe%\JobExecuter.exe /t %PathToJobJsonFile%\%JsonFileName%.json
+
+Checks if the JSON synthax of the given file is valid.

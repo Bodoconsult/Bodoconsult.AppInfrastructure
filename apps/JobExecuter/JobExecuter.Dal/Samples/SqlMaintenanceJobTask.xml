@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sample>{
+	"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+	"Name": "Sample job for SqlMaintenanceJobTask",
+	"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.SqlMaintenanceJobTask",
+	"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",
+	"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",
+	"JobTasks": [
+		{
+			"$type": "JobExecuter.Dal.Model.SqlMaintenanceJobTask, JobExecuter.Dal",
+			"MailTo": "test@test123.de",
+			"Title": null,
+			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\Maintenance.htm",
+			"PdfTargetFileName": null,
+			"JsonTargetFileName": null,
+			"FragmentationLevel1": 5,
+			"FragmentationLevel2": 30,
+			"Server": ".\\sqlexpress",
+			"Name": "Runs a maintenance job on a SqlServer instance",
+			"Description": null,
+			"ErrorMailReceiver": null,
+			"Timeout": 600
+		}
+	],
+	"Timeout": 500,
+	"WriteToEventLog": true
+}</sample>

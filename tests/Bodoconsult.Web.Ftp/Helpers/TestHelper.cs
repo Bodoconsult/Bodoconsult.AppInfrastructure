@@ -26,8 +26,9 @@ public static class TestHelper
         var c2 = new SshCredentials
         {
             Url = c1.Url,
-            Password = PasswordHelper.Decrypt(c1.Password),
-            Username = PasswordHelper.Decrypt(c1.Username)
+            // ToDo
+            //Password = PasswordHelper.Decrypt(c1.Password),
+            //Username = PasswordHelper.Decrypt(c1.Username)
         };
 
         return c2;

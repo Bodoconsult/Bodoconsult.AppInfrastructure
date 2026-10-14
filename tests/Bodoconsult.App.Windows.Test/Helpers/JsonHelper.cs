@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using Bodoconsult.App.DataProtection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -53,7 +54,7 @@ public class JsonHelper
 
 
     /// <summary>
-    /// Load a object from a JSON resource
+    /// Load an object from a JSON resource
     /// </summary>
     /// <param name="resourceName">Fully qualified resource name</param>
     /// <returns>object of type T or null</returns>
@@ -64,7 +65,10 @@ public class JsonHelper
         var ass = Assembly.GetExecutingAssembly();
         var str = ass.GetManifestResourceStream(resourceName);
 
-        if (str is null) return default(T);
+        if (str is null)
+        {
+            return default;
+        }
 
         using var file = new StreamReader(str);
         var serializer = new JsonSerializer

@@ -1,0 +1,21 @@
+{
+  "$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",
+  "Name": "Test job",
+  "Description": "Test job zum Einrichten von Job-Komponenten",
+  "ErrorMailReceiver": "",
+  "SummaryMailReceiver": "",
+  "JobTasks": [
+  {
+			"$type": "JobExecuter.Dal.Model.TaskSchedulerDocuJobTask, JobExecuter.Dal",
+			"XmlTargetPath": "C:\\bodoconsult\\Dokumentation\\Jobs\\Xml",
+			"HtmlTargetPath": "C:\\bodoconsult\\Dokumentation\\Jobs\\jobs.html",
+			"TargetServer": null,
+			"JsonTargetPath": "C:\\bodoconsult\\Dokumentation\\Jobs\\jobs.json",
+			"Name": "Create docmentation for task scheduler",
+			"Description": "Getting task scheduler data from local computer",
+			"ErrorMailReceiver": null,
+			"Timeout": 60
+		}
+  ],
+  "Timeout": 45200
+}

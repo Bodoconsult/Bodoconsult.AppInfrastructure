@@ -60,16 +60,16 @@
 
 	<ItemGroup>
 		<PackageReference Include="log4net" Version="3.5.0" />
-		<PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="10.0.12" />
-		<PackageReference Include="Microsoft.AspNetCore.DataProtection.Extensions" Version="10.0.12" />
-		<PackageReference Include="Microsoft.Diagnostics.NETCore.Client" Version="0.2.745401" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="10.0.13" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.Extensions" Version="10.0.13" />
+		<PackageReference Include="Microsoft.Diagnostics.NETCore.Client" Version="0.2.750501" />
 		<PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.2.8" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.12" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.12" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.12" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.12" />
-		<PackageReference Include="Microsoft.Extensions.Logging.EventSource" Version="10.0.12" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.13" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.13" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.13" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.13" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.13" />
+		<PackageReference Include="Microsoft.Extensions.Logging.EventSource" Version="10.0.13" />
 		<!--<PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.333">
 			<PrivateAssets>all</PrivateAssets>

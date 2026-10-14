@@ -1,0 +1,9 @@
+﻿{
+	"$type": "Bodoconsult.Web.Mail.Models.SmtpMailAccount, Bodoconsult.Web.Mail",
+	"SmtpServer": ">>Your mail server<<",
+	"SmtpAccountName": ">>Your mail addresse for SMTP<<",
+	"SmtpPassword": ">>Your password for the SMTP account<<",
+	"MailAddressSender": ">>Your mail addresse for SMTP<<",
+	"UseSecureConnection": true,
+	"SmtpPort": 587
+}

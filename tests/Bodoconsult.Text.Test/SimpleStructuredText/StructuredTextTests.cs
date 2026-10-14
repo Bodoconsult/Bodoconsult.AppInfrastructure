@@ -48,7 +48,7 @@ public class StructuredTextTests
         masterText.AddParagraph(MassText);
         masterText.AddParagraph(MassText);
 
-        var fileName = Path.Combine(Path.GetTempPath(), @"datatable.json");
+        var fileName = Path.Combine(Path.GetTempPath(), "datatable.json");
         if (File.Exists(fileName))
         {
             File.Delete(fileName);
