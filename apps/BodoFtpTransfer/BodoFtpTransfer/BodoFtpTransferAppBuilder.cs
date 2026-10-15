@@ -56,5 +56,7 @@ public class BodoFtpTransferAppBuilder : BaseAppBuilder
         globals.ExcludeFiles= DefaultAppStartProvider.ReadStringProperty(section, "ExcludeFiles", globals.ExcludeFiles) ?? string.Empty;
         globals.ExcludeDirs = DefaultAppStartProvider.ReadStringProperty(section, "ExcludeDirs", globals.ExcludeDirs) ?? string.Empty;
         globals.BaseDirectory = DefaultAppStartProvider.ReadStringProperty(section, "BaseDirectory", globals.BaseDirectory) ?? string.Empty;
+
+        Console.WriteLine(globals.RemoteDirectory);
     }
 }

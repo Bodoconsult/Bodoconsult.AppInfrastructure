@@ -44,13 +44,9 @@ public class FtpTransferService : IFtpTransferService
         _ftpBatch = ftpBatchService;
         Modus = 0;
 
-        var fileName = Assembly.GetExecutingAssembly().Location;
-        if (fileName == null)
-        {
-            throw new Exception("No application directory found (1)");
-        }
-
+        var fileName = Assembly.GetExecutingAssembly().Location ?? throw new Exception("No application directory found (1)");
         var curDir = new FileInfo(fileName).DirectoryName;
+        
         if (curDir != null)
         {
             _batch = Path.Combine(curDir, "ftp.txt");
@@ -118,7 +114,7 @@ public class FtpTransferService : IFtpTransferService
         _ftpBatch.LoadAllFilePaths();
         _ftpBatch.StartCommandCollecting();
         _ftpBatch.GetRemoteData(
-            $"{RemoteDirectory}{_baseDir.Substring(_baseLen, _baseDir.Length - _baseLen).Replace(@"\", "/", StringComparison.OrdinalIgnoreCase)}/");
+            $"{RemoteDirectory}{_baseDir[_baseLen..].Replace(@"\", "/", StringComparison.OrdinalIgnoreCase)}/");
         SetMessage("Save results to database...");
         _ftpBatch.RunCommandsFromCollection();
 
@@ -146,7 +142,7 @@ public class FtpTransferService : IFtpTransferService
         _ftpBatch.RemoveRemoteFiles();
         _ftpBatch.RemoveRemoteDirectory();
 
-
+        // Quit
         _ftpBatch.Quit();
 
         SetMessage("Transfer done!");

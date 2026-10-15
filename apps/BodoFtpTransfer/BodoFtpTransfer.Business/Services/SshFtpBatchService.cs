@@ -624,8 +624,6 @@ public class SshFtpBatchService : IFtpBatchService
         }
         catch (Exception ex) //(Tamir.SharpSsh.jsch.SftpException Ex)
         {
-
-
             SetMessage($"Put:Error: {localPath} to {remotePath}:{ex.Message}");
             return false;
         }
