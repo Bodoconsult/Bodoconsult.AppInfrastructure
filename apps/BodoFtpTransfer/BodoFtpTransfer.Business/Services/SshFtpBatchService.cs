@@ -29,7 +29,6 @@ public class SshFtpBatchService : IFtpBatchService
     private int _baseLen;
     private string _file = string.Empty;
 
-
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -45,7 +44,7 @@ public class SshFtpBatchService : IFtpBatchService
 
         ArgumentNullException.ThrowIfNull(globals.Credentials);
 
-        var sshCredentials = DataHelper.MapBasicCredentialsToSshCredentials(globals.Credentials);
+        var sshCredentials = globals.Credentials;
 
         _sftp =  new SshHandler(sshCredentials);
 
@@ -202,12 +201,9 @@ public class SshFtpBatchService : IFtpBatchService
 
     public void CheckDirectory(string localPath)
     {
-        var remotePath = _remoteDir + localPath.Substring(_baseLen, localPath.Length - _baseLen);
+        var remotePath = _remoteDir + localPath[_baseLen..];
         CheckObject(localPath, remotePath.Replace(@"\", "/", StringComparison.OrdinalIgnoreCase), 'L', 'D', 0);
     }
-
-
-
 
     /// <summary>
     /// Status-Nachricht setzen
@@ -218,6 +214,9 @@ public class SshFtpBatchService : IFtpBatchService
         StatusMessageDelegate.Invoke(msg);
     }
 
+    /// <summary>
+    /// Quit the connection to the server
+    /// </summary>
     public void Quit()
     {
         // Wird jetzt pro übertragenem File erledigt!!
@@ -227,19 +226,26 @@ public class SshFtpBatchService : IFtpBatchService
         _sftp.Disconnect();
     }
 
+    /// <summary>
+    /// Check if remote file is existing by size in bytes
+    /// </summary>
+    /// <param name="remotePath">Remote file path</param>
+    /// <param name="size">Current size in bytes</param>
     public void CheckRemoteFile(string remotePath, long size)
     {
         var localPath = _base + remotePath[_remoteLen..].Replace("/", @"\", StringComparison.OrdinalIgnoreCase);
         CheckObject(HelperCheckLocalPath(localPath), remotePath, 'R', 'F', size);
     }
 
-
+    /// <summary>
+    /// Check if a remote directory is existing
+    /// </summary>
+    /// <param name="remotePath">Remote directory path</param>
     public void CheckRemoteDir(string remotePath)
     {
         var localPath = _base + remotePath[_remoteLen..].Replace("/", @"\", StringComparison.OrdinalIgnoreCase);
         CheckObject(HelperCheckLocalPath(localPath[..^1]), remotePath, 'R', 'D', 0);
     }
-
 
     private static string HelperCheckLocalPath(string localPath)
     {
@@ -301,6 +307,9 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
+    /// <summary>
+    /// Get the hash codes
+    /// </summary>
     public void GetHashCodes()
     {
         try
@@ -409,12 +418,17 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
-    public void SetzeHashcodesFürRemoteFiles()
+    /// <summary>
+    /// Set the hash codes for remote files
+    /// </summary>
+    public void SetzeHashcodesForRemoteFiles()
     {
         _db.SetHashForRemoteFiles();
     }
 
-
+    /// <summary>
+    /// Create a directory on the remote server
+    /// </summary>
     public void CreateRemoteDirectory()
     {
         var files = _db.GetRemoteFilePathToCreate();
@@ -431,6 +445,9 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
+    /// <summary>
+    /// Remove a directory on the remote server
+    /// </summary>
     public void RemoveRemoteDirectory()
     {
         var files = _db.GetRemoteFilePathToRemove();
@@ -447,6 +464,9 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
+    /// <summary>
+    /// Remove a files on the remote server not needed any more
+    /// </summary>
     public void RemoveRemoteFiles()
     {
 
@@ -495,7 +515,9 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
-
+    /// <summary>
+    /// Open the connection to the server
+    /// </summary>
     public void Open()
     {
         //if (!_sftp.IsConnected)
@@ -504,18 +526,20 @@ public class SshFtpBatchService : IFtpBatchService
         //if (!_sftp.IsConnected) return;
     }
 
-
+    /// <summary>
+    /// Get the remote files
+    /// </summary>
+    /// <param name="remotePath">Remote directory path</param>
     public void GetRemoteData(string remotePath)
     {
-
         if (_excludeRemoteDirs.Contains($"{{{remotePath}}}", StringComparison.OrdinalIgnoreCase))
         {
             SetMessage($"RemoteDir: {remotePath} skipped");
             return;
         }
+
         CheckRemoteDir(remotePath);
         SetMessage($"RemoteDir: {remotePath}");
-
 
         try
         {
@@ -554,6 +578,10 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
+    /// <summary>
+    /// Remove a remote directory
+    /// </summary>
+    /// <param name="remotePath">Remote directory path</param>
     public void RmDir(string remotePath)
     {
         try
@@ -567,6 +595,12 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
+    /// <summary>
+    /// Put a local file to the remote server
+    /// </summary>
+    /// <param name="localPath">Local file path</param>
+    /// <param name="remotePath">Remote file path</param>
+    /// <returns>True on success else false</returns>
     public bool Put(string localPath, string remotePath)
     {
         try
@@ -598,6 +632,10 @@ public class SshFtpBatchService : IFtpBatchService
 
     }
 
+    /// <summary>
+    /// Make a remote directory
+    /// </summary>
+    /// <param name="remotePath">Remote directory path</param>
     public void MkDir(string remotePath)
     {
         try
@@ -616,6 +654,10 @@ public class SshFtpBatchService : IFtpBatchService
         }
     }
 
+    /// <summary>
+    /// Delete a remote file
+    /// </summary>
+    /// <param name="remotePath">Remote file path</param>
     public void Del(string remotePath)
     {
         try
@@ -666,6 +708,5 @@ public class SshFtpBatchService : IFtpBatchService
     {
         _allFiles.Clear();
         _db.LoadAllFilePaths(_allFiles);
-
     }
 }

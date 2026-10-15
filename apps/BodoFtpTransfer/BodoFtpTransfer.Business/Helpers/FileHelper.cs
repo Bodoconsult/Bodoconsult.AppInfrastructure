@@ -22,6 +22,7 @@ public static class FileHelper
         var fi = new FileStream(fileName, FileMode.Open);
         var hashcode = Hasher.ComputeHash(fi);
         fi.Close();
+        fi.Dispose();
 
         return hashcode;
     }

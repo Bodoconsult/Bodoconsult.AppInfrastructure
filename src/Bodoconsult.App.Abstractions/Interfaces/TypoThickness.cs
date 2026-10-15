@@ -13,7 +13,6 @@ public class TypoThickness
     /// <summary>
     /// Line width 1pt (in cm)
     /// </summary>
-
     public const double LineWidth1Pt = 0.0352775;
 
     /// <summary>

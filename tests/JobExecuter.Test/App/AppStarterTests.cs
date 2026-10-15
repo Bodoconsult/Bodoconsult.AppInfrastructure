@@ -3,7 +3,6 @@
 using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Web.Mail.Helpers;
-using Bodoconsult.Web.Mail.Models;
 using JobExecuter.Dal.App;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;

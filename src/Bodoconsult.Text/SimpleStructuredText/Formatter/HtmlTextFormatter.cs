@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml;
@@ -25,7 +24,7 @@ public class HtmlTextFormatter : ITextFormatter
 
     private int _rowCount;
 
-    private IList<ITextItem> TextItems { get; set; }
+    private List<ITextItem> TextItems { get; set; }
 
     #endregion
 
@@ -53,7 +52,7 @@ public class HtmlTextFormatter : ITextFormatter
         CssTdCenterAlt = "wr_cell_center_alt";
 
 
-        TextItems = new List<ITextItem>();
+        TextItems = [];
         TocLevel = 2;
     }
 
@@ -199,7 +198,7 @@ public class HtmlTextFormatter : ITextFormatter
         }
         else
         {
-            TextItems = StructuredText.TextItems.ToList();
+            TextItems = [.. StructuredText.TextItems];
         }
 
         return string.IsNullOrEmpty(Template) ? GetBody(TextItems) :
@@ -209,7 +208,6 @@ public class HtmlTextFormatter : ITextFormatter
 
     private void AddTocToHtm()
     {
-
         TextItems.Add(new TextItem
         {
             Content = TocCaption,
@@ -300,7 +298,7 @@ public class HtmlTextFormatter : ITextFormatter
         }
     }
 
-    private string GetBody(IList<ITextItem> body)
+    private string GetBody(List<ITextItem> body)
     {
         var erg = new StringBuilder();
         var count = body.Count - 1;

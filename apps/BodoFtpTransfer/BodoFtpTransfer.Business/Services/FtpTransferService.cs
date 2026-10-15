@@ -7,6 +7,9 @@ using System.Reflection;
 
 namespace BodoFtpTransfer.Business.Services;
 
+/// <summary>
+/// Current implementation of <see cref="IFtpTransferService"/>
+/// </summary>
 public class FtpTransferService : IFtpTransferService
 { 
     private readonly string _batch = string.Empty;
@@ -129,7 +132,7 @@ public class FtpTransferService : IFtpTransferService
         // Get file hashcodes to know updated files
         _ftpBatch.GetHashCodes();
 
-        _ftpBatch.SetzeHashcodesFürRemoteFiles();
+        _ftpBatch.SetzeHashcodesForRemoteFiles();
 
         _ftpBatch.Open();
 

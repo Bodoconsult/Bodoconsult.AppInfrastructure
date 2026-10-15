@@ -33,6 +33,9 @@ namespace Bodoconsult.Database.Dbase.Ef.ImportTasks
 
         #region Public Methods
 
+        /// <summary>
+        /// Store the read data from file into target. This method should be called batchwise by <see cref="IFileImportTask{TData}.Execute"/> 
+        /// </summary>
         public override void StoreData(List<TData> data)
         {
             using (var scope = _unitOfWork.GetContextScope(false, true, IsolationLevel.Serializable))

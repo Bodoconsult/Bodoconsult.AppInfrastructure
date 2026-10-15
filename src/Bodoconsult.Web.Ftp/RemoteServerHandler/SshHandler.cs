@@ -1,7 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Web.Ftp.Interfaces;
 using Bodoconsult.Web.Ftp.Models;
 using Renci.SshNet;
@@ -15,13 +17,13 @@ public class SshHandler : IRemoteServerHandler
 {
     private SftpClient _sftp;
 
-    private readonly SshCredentials _credentials;
+    private readonly WebCredentials _credentials;
 
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="credentials">FTP server credentials</param>
-    public SshHandler(SshCredentials credentials)
+    public SshHandler(WebCredentials credentials)
     {
         _credentials = credentials;
     }
@@ -31,6 +33,10 @@ public class SshHandler : IRemoteServerHandler
     /// </summary>
     public void Connect()
     {
+        ArgumentNullException.ThrowIfNull(_credentials.Url);
+        ArgumentNullException.ThrowIfNull(_credentials.Username);
+        ArgumentNullException.ThrowIfNull(_credentials.Password);
+
         _sftp = new SftpClient(_credentials.Url, _credentials.Username, _credentials.Password);
         _sftp.Connect();
     }
@@ -39,7 +45,6 @@ public class SshHandler : IRemoteServerHandler
     /// Is SFTP server connected?
     /// </summary>
     public bool IsConnected => _sftp is { IsConnected: true };
-
 
     /// <summary>
     /// Disconnect from SFTP-Server

@@ -178,16 +178,17 @@ public class SqliteConnManager : AdapterConnManager
 
         cmd.Connection.Open();
         var reader = cmd.ExecuteReader();
-        if (reader.HasRows)
+        if (!reader.HasRows)
         {
-            reader.Read();
-            var values = new object[reader.FieldCount];
-            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
-            reader.GetValues(values);
-            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
-            return values;
+            return null;
         }
-        return null;
+
+        reader.Read();
+        var values = new object[reader.FieldCount];
+        // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+        reader.GetValues(values);
+        // ReSharper restore ReturnValueOfPureMethodIsNotUsed
+        return values;
     }
 
     /// <summary>
@@ -233,10 +234,9 @@ public class SqliteConnManager : AdapterConnManager
         cmd.Connection.Open();
         var value = cmd.ExecuteScalar();
         conn.Close();
-        var val = (value != null) ? value.ToString() : "";
+        var val = value != null ? value.ToString() : string.Empty;
         return val;
     }
-
 
     /// <summary>
     /// Exec a SQL command and return a scalar value as string
@@ -245,7 +245,6 @@ public class SqliteConnManager : AdapterConnManager
     /// <returns>Scalar value as string</returns>
     public override string ExecWithResult(DbCommand cmd)
     {
-
         try
         {
             using var conn = new SqliteConnection(ConnectionString);
@@ -258,7 +257,7 @@ public class SqliteConnManager : AdapterConnManager
             cmd.Connection.Open();
             var value = cmd.ExecuteScalar();
             conn.Close();
-            var val = (value != null) ? value.ToString() : "";
+            var val = value != null ? value.ToString() : string.Empty;
             return val;
         }
         catch (Exception ex)
@@ -267,7 +266,6 @@ public class SqliteConnManager : AdapterConnManager
             throw new Exception($"ExecWithResult:{ConnectionString}:Sql:{cmd.CommandText}", ex);
         }
     }
-
 
     /// <summary>
     /// Run SQL statement directly against database
@@ -301,8 +299,6 @@ public class SqliteConnManager : AdapterConnManager
             conn.Open();
 
             var transaction = conn.BeginTransaction();
-
-
 
             //using (var transaction = conn.BeginTransaction())
             //{
@@ -349,7 +345,6 @@ public class SqliteConnManager : AdapterConnManager
             return index;
         }
     }
-
 
     /// <summary>
     /// Get a data table from an SQL statement

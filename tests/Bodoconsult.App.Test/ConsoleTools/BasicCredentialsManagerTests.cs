@@ -6,9 +6,9 @@ using Bodoconsult.App.Helpers;
 namespace Bodoconsult.App.Test.ConsoleTools;
 
 [TestFixture]
-internal class BasicCredentialsManagerTests
+internal class WebCredentialsManagerTests
 {
-    private void CheckFile(string filePath)
+    private static void CheckFile(string filePath)
     {
         if (File.Exists(filePath))
         {
@@ -22,7 +22,7 @@ internal class BasicCredentialsManagerTests
         // Arrange 
 
         // Act  
-        var m = new BasicCredentialsManager();
+        var m = new WebCredentialsManager();
 
         // Assert
         Assert.That(m.Credentials, Is.Null);
@@ -32,7 +32,7 @@ internal class BasicCredentialsManagerTests
     public void Init_NoDataSaved_DoesNotThrow()
     {
         // Arrange 
-        var m = new BasicCredentialsManager
+        var m = new WebCredentialsManager
         {
             FolderPath = Path.GetTempPath()
         };
@@ -53,7 +53,7 @@ internal class BasicCredentialsManagerTests
     public void Init_NoDataSaved_Throws()
     {
         // Arrange 
-        var m = new BasicCredentialsManager();
+        var m = new WebCredentialsManager();
 
         // Act  
         Assert.Throws<ArgumentNullException>(() =>
@@ -69,7 +69,7 @@ internal class BasicCredentialsManagerTests
     public void Protect_NoDataSaved_DoesNotThrow()
     {
         // Arrange 
-        var m = new BasicCredentialsManager
+        var m = new WebCredentialsManager
         {
             FolderPath = Path.GetTempPath()
         };
@@ -105,7 +105,7 @@ internal class BasicCredentialsManagerTests
     public void Init_LoadExistingFile_DoesNotThrow()
     {
         // Arrange 
-        var m = new BasicCredentialsManager
+        var m = new WebCredentialsManager
         {
             FolderPath = Path.GetTempPath()
         };
@@ -130,7 +130,7 @@ internal class BasicCredentialsManagerTests
         //Assert.That(File.Exists(m.FilePath), Is.True);
 
         // Act. next app start  
-        var m1 = new BasicCredentialsManager
+        var m1 = new WebCredentialsManager
         {
             FolderPath = Path.GetTempPath()
         };
@@ -150,7 +150,7 @@ internal class BasicCredentialsManagerTests
     public void SaveAsTransferFile_DataSaved_FileSaved()
     {
         // Arrange 
-        var m = new BasicCredentialsManager
+        var m = new WebCredentialsManager
         {
             FolderPath = Path.GetTempPath()
         };
@@ -185,7 +185,7 @@ internal class BasicCredentialsManagerTests
     public void LoadFromTransferFile_DataSaved_FileLoaded()
     {
         // Arrange 
-        var m = new BasicCredentialsManager
+        var m = new WebCredentialsManager
         {
             FolderPath = Path.GetTempPath()
         };

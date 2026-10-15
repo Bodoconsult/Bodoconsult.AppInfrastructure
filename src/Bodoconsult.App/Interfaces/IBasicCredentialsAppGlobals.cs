@@ -1,17 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.DataProtection;
 
 namespace Bodoconsult.App.Interfaces;
 
 /// <summary>
 /// App globals with basic credentials
 /// </summary>
-public interface IBasicCredentialsAppGlobals: IAppGlobals
+public interface IWebCredentialsAppGlobals: IAppGlobals
 {
     /// <summary>
     /// Basic credentials
     /// </summary>
-    BasicCredentials? Credentials { get; set; }
+    WebCredentials? Credentials { get; set; }
 }

@@ -112,7 +112,7 @@ public class PlainTextFormatter : ITextFormatter
         return erg.ToString();
     }
 
-    private StringBuilder GetTable(TableTextItem ti)
+    private static StringBuilder GetTable(TableTextItem ti)
     {
 
         var erg = new StringBuilder();

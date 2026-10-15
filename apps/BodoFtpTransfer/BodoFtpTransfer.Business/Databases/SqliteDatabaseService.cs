@@ -4,7 +4,6 @@ using System.Collections.Concurrent;
 using System.Data.Common;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.Sqlite;
 using BodoFtpTransfer.Business.Helpers;
 using BodoFtpTransfer.Business.Interfaces;
@@ -15,10 +14,15 @@ namespace BodoFtpTransfer.Business.Databases;
 
 public class SqliteDatabaseService : IDatabaseService
 {
-    private readonly IConnManager _db;
+    private readonly SqliteConnManager _db;
     private readonly ConcurrentQueue<DbCommand> _commands = new();
     private bool _isCollecting;
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="connectionString">Current conenction string</param>
+    /// <param name="appGlobals">Current app globals</param>
     public SqliteDatabaseService(string connectionString, IAppGlobals appGlobals)
     {
         ConnectionString = connectionString;
@@ -73,7 +77,7 @@ public class SqliteDatabaseService : IDatabaseService
     }
 
     /// <summary>
-    /// Status-Nachricht setzen
+    /// Set a status message
     /// </summary>
     /// <param name="msg">Anzuzeigende Nachricht</param>
     private void SetMessage(string msg)
@@ -270,6 +274,10 @@ public class SqliteDatabaseService : IDatabaseService
         return Convert.ToInt32(result);
     }
 
+    /// <summary>
+    /// Get file paths
+    /// </summary>
+    /// <returns>List with <see cref="FilePathItem"/> items</returns>
     public IList<FilePathItem> GetFilePaths()
     {
         var result = new List<FilePathItem>();
@@ -317,11 +325,12 @@ public class SqliteDatabaseService : IDatabaseService
     //    return Convert.ToInt32(erg);
     //}
 
+
     /// <summary>
     /// Update an existing remote file with its size
     /// </summary>
-    /// <param name="file"></param>
-    /// <param name="size"></param>
+    /// <param name="file">File path</param>
+    /// <param name="size">Current size in bytes</param>
     public void UpdateExistingRemoteFile(FilePathItem file, in long size)
     {
         SqliteCommand cmd;
@@ -368,16 +377,14 @@ public class SqliteDatabaseService : IDatabaseService
             {
                 _db.Exec(cmd);
             }
-
         }
-
     }
 
     /// <summary>
     /// Update an existing local file with its size
     /// </summary>
     /// <param name="file">File data in the database</param>
-    /// <param name="size">New size of the file</param>
+    /// <param name="size">New size of the file in bytes</param>
     public void UpdateExistingLocalFile(FilePathItem file, in long size)
     {
         SqliteCommand cmd;
@@ -431,7 +438,6 @@ public class SqliteDatabaseService : IDatabaseService
         }
 
         // Command 3
-
         if (size != file.Size)
         {
             cmd = new SqliteCommand("UPDATE \"FtpFiles\" SET \"Size\"=@Size WHERE \"Path\"=@Path");
@@ -465,6 +471,12 @@ public class SqliteDatabaseService : IDatabaseService
     //}
 
 
+    /// <summary>
+    /// Command to set a hash value for a file
+    /// </summary>
+    /// <param name="path">Filepath</param>
+    /// <param name="hash">Hash value</param>
+    /// <returns>Command to execute</returns>
     public DbCommand SetHashForFileCmd(string path, string hash)
     {
         var cmd = new SqliteCommand("UPDATE \"FtpFiles\" SET \"HashCodeNew\"=@Hash WHERE \"Path\"=@Path");
@@ -477,17 +489,21 @@ public class SqliteDatabaseService : IDatabaseService
         return cmd;
     }
 
-
-
+    /// <summary>
+    /// Set a hash value for a remote
+    /// </summary>
     public void SetHashForRemoteFiles()
     {
-        var cmd = new SqliteCommand("UPDATE \"FtpFiles\" SET \"HashCode\"=\"HashCodeNew\" WHERE \"Type=\"='F' AND \"Source\"='B' AND \"HashCode\"=''");
+        var cmd = new SqliteCommand("UPDATE \"FtpFiles\" SET \"HashCode\"='HashCodeNew' WHERE \"Type\"='F' AND \"Source\"='B' AND \"HashCode\"=''");
         _db.Exec(cmd);
     }
 
+    /// <summary>
+    /// Get remote file paths to create
+    /// </summary>
+    /// <returns>List with file items</returns>
     public IList<FilePathItem> GetRemoteFilePathToCreate()
     {
-
         var result = new List<FilePathItem>();
 
         var dr = _db.GetDataReader(
@@ -507,7 +523,7 @@ public class SqliteDatabaseService : IDatabaseService
     }
 
     /// <summary>
-    /// 
+    /// Cler files
     /// </summary>
     public void ClearFiles()
     {
@@ -516,9 +532,9 @@ public class SqliteDatabaseService : IDatabaseService
     }
 
     /// <summary>
-    /// 
+    /// Get files on remote server to be removed 
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with file items</returns>
     public IList<FilePathItem> GetRemoteFilePathRemoveFiles()
     {
         var result = new List<FilePathItem>();
@@ -537,13 +553,14 @@ public class SqliteDatabaseService : IDatabaseService
         }
 
         return result;
-
     }
 
-
+    /// <summary>
+    /// Get files on remote server to be removed
+    /// </summary>
+    /// <returns>List with file items</returns>
     public IList<FilePathItem> GetRemoteFilePathToRemove()
     {
-
         var result = new List<FilePathItem>();
 
         var dr = _db.GetDataReader(
@@ -560,13 +577,12 @@ public class SqliteDatabaseService : IDatabaseService
         }
 
         return result;
-
     }
 
     /// <summary>
-    /// 
+    /// Get all local files to copy
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with file items</returns>
     public IList<FilePathItem> GetLocalFilesToCopy()
     {
         var result = new List<FilePathItem>();
@@ -589,9 +605,12 @@ public class SqliteDatabaseService : IDatabaseService
         }
 
         return result;
-
     }
 
+    /// <summary>
+    /// Set a hash code for a remote file
+    /// </summary>
+    /// <param name="path">Remote file path</param>
     public void SetHashCodeForRemoteFile(string path)
     {
         var update = new SqliteCommand("UPDATE \"FtpFiles\" SET \"HashCode\"=\"HashCodeNew\", \"HashCodeNew\"='', \"SizeRemote\"=\"Size\" WHERE \"Path\"=@Path");
@@ -601,11 +620,19 @@ public class SqliteDatabaseService : IDatabaseService
         _db.Exec(update);
     }
 
+    /// <summary>
+    /// Execute a list of commands
+    /// </summary>
+    /// <param name="cmds">List with commands to execute</param>
     public void Exec(List<DbCommand> cmds)
     {
         _db.ExecMultiple(cmds);
     }
 
+    /// <summary>
+    /// Load all file paths
+    /// </summary>
+    /// <param name="allFiles">List with file itemsto load</param>
     public void LoadAllFilePaths(IList<FilePathItem> allFiles)
     {
         const string sql = "SELECT \"Path\", \"PathRemote\", \"Source\", \"Size\", \"SizeRemote\" FROM \"FtpFiles\" ORDER BY \"Path\"";

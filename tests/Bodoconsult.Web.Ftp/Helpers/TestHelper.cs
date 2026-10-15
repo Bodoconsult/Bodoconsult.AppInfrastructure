@@ -1,6 +1,8 @@
-﻿using Bodoconsult.Web.Ftp.Models;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
 using System.IO;
 using System.Reflection;
+using Bodoconsult.App.Abstractions.Interfaces;
 
 namespace Bodoconsult.Web.Ftp.Test.Helpers;
 
@@ -17,13 +19,13 @@ public static class TestHelper
     }
 
 
-    public static SshCredentials GetCredentials()
+    public static WebCredentials GetCredentials()
     {
         var path = @"D:\Daten\Projekte\_work\Data\FtpCredentials.json";
 
-        var c1 = JsonHelper.LoadJsonFile<SshCredentials>(path);
+        var c1 = JsonHelper.LoadJsonFile<WebCredentials>(path);
 
-        var c2 = new SshCredentials
+        var c2 = new WebCredentials
         {
             Url = c1.Url,
             // ToDo

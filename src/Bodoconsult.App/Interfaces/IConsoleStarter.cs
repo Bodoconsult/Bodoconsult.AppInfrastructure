@@ -129,6 +129,38 @@ public interface IConsoleStarter
     O365MailAccount LoadO365MailAccount();
 
     /// <summary>
+    /// Filename of the webcredentials storage file
+    /// </summary>
+    string WebCredentialsFileName { get; }
+
+    /// <summary>
+    /// Filename of the WebCredentials storage import file. To be deleted after import
+    /// </summary>
+    string WebCredentialsImportFileName { get; }
+
+    /// <summary>
+    /// The current WebCredentials or null if no web access is used
+    /// </summary>
+    WebCredentials? WebCredentials { get; }
+
+    /// <summary>
+    /// Load an existing WebCredentials config
+    /// </summary>
+    void LoadWebCredentialsConfig();
+
+    /// <summary>
+    /// Save WebCredentials data in a crypted file
+    /// </summary>
+    /// <param name="webCredentials">WebCredentials data</param>
+    void SaveWebCredentials(WebCredentials webCredentials);
+
+    /// <summary>
+    /// Load WebCredentials data from a crypted file
+    /// </summary>
+    /// <returns>WebCredentials data</returns>
+    WebCredentials LoadWebCredentials();
+
+    /// <summary>
     /// Ask the user for a JSON encryption password and hash it
     /// </summary>
     void UiHashAppPassword();

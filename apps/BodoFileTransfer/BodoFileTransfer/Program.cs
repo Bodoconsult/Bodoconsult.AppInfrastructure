@@ -1,9 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Extensions;
-using BodoFileTransfer.Business.App;
-using System;
 using System.Runtime.Versioning;
 
 namespace BodoFileTransfer;

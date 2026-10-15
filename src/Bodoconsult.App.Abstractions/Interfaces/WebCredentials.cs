@@ -2,12 +2,12 @@
 
 using Bodoconsult.App.Abstractions.DataProtection;
 
-namespace Bodoconsult.App.DataProtection;
+namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
 /// Basic class for credentials for accessing websites etc.
 /// </summary>
-public class BasicCredentials
+public class WebCredentials
 {
     /// <summary>
     /// Name of the credential set
@@ -32,4 +32,9 @@ public class BasicCredentials
     /// </summary>
     [DataProtectionSecret]
     public string? Url { get; set; }
+
+    /// <summary>
+    /// Port to use
+    /// </summary>
+    public int Port { get; set; }
 }

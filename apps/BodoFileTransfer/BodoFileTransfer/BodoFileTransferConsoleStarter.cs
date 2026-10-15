@@ -59,7 +59,10 @@ public class BodoFileTransferConsoleStarter : BaseConsoleStarter
         }
     }
 
-    public void EncryptSingleValue()
+    /// <summary>
+    /// Encrypt a single value. Public only for unit testing
+    /// </summary>
+    public static void EncryptSingleValue()
     {
         var value = ConsoleHelper.AskUserForStringValue("Please insert value to encrypt for usage with BodoFileTransfer:");
 
@@ -78,7 +81,7 @@ public class BodoFileTransferConsoleStarter : BaseConsoleStarter
     }
 
     /// <summary>
-    /// Encrypt mail account data in smtp.json or o365.json into file mail.json to use it in settings table in the database 
+    /// Encrypt mail account data in smtp.json or o365.json into file mail.json to use it in settings table in the database. Public only for unit testing 
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
     public void EncryptMailAccountData()
@@ -143,9 +146,7 @@ public class BodoFileTransferConsoleStarter : BaseConsoleStarter
     /// Run the main application mask
     /// </summary>
     /// <returns>Error code or 0 in case of successful</returns>
-#pragma warning disable CA1822
     public int RunMainTask(IConsoleStarter consoleStarter)
-#pragma warning restore CA1822
     {
         var globals = Globals.Instance;
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForConsoleApp();

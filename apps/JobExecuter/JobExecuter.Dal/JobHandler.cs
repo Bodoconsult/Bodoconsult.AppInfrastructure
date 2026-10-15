@@ -25,21 +25,18 @@ namespace JobExecuter.Dal;
 public class JobHandler
 {
     private int _counter;
-
     private string _jsonJobFile;
-
     private string _logPrefix;
 
     /// <summary>
     /// All <see cref="IJobMailer"/> objects to send error messages and summary to
     /// </summary>
-    public IList<IJobMailer> Mailers { get; set; } = new List<IJobMailer>();
-
+    public IList<IJobMailer> Mailers { get; set; } = [];
 
     /// <summary>
     /// All error items that happened in the current job
     /// </summary>
-    public IList<ErrorItem> ErrorItems { get; set; } = new List<ErrorItem>();
+    public IList<ErrorItem> ErrorItems { get; set; } = [];
 
     ///// <summary>
     ///// default ctor
@@ -101,9 +98,8 @@ public class JobHandler
             {
                 AddErrorsToErrorItems(executer, jobTask);
                 stopwatch.Stop();
-#pragma warning disable IDE0004
-                var seconds = (float)stopwatch.ElapsedTicks / (float)Stopwatch.Frequency;
-#pragma warning restore IDE0004
+
+                var seconds = stopwatch.ElapsedTicks / (float)Stopwatch.Frequency;
 
                 SendStatus(task.Result
                     ? $"{_logPrefix}:{DateTime.Now:yyyyMMdd HHmm}:JobTask{_counter}: done (Time: {seconds:#,##0.0}s)!\r\n"
@@ -582,7 +578,7 @@ public class JobHandler
     /// </summary>
     /// <param name="sr">Error messages</param>
     /// <param name="headerLevel">Header level for the headline of the error part</param>
-    private void GetErrorMessage(IStructuredText sr, TextItemType headerLevel)
+    private void GetErrorMessage(StructuredText sr, TextItemType headerLevel)
     {
         foreach (var ei in ErrorItems)
         {

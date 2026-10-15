@@ -7,6 +7,7 @@ using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
 using System.Diagnostics;
+using BodoFtpTransfer.Business.Interfaces;
 
 namespace BodoFtpTransfer.Business.App;
 
@@ -92,11 +93,33 @@ public class BodoFtpTransferService : IApplicationService
 
     private void Start()
     {
-        int modus;
+        if (AppGlobals is not IBodoFtpTransferAppGlobals globals)
+        {
+            throw new ArgumentException("AppGlobals is not IBodoFtpTransferAppGlobals");
+        }
 
-        var args = AppGlobals.AppStartParameter.Args ?? [];
+        var modus = 0;
 
+        var args = globals.AppStartParameter.Args ?? [];
 
+        if (args.Length > 0)
+        {
+            modus = Convert.ToInt16(args[0]);
+        }
+
+        var ftp = globals.DiContainer.Get<IFtpTransferService>();
+        ftp.Modus = modus;
+
+        //var ftp = new FtpTransferService(globals, Status)
+        //{
+        //    BaseDirectory = globals.BaseDirectory,
+        //    ExcludedFiles = globals.ExcludedFiles,
+        //    ExcludeDirs = globals.ExcludeDirs,
+        //    RemoteDirectory = globals.RemoteDirectory,
+        //    Modus = modus,
+        //};
+
+        ftp.CreateBatch();
 
         Status("Init BodoFileTransfer done!");
 

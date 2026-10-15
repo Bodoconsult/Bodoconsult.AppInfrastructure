@@ -1,6 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.Web.Ftp.Models;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Web.Ftp.Test.Helpers;
 using NUnit.Framework;
 
@@ -20,7 +20,7 @@ internal class FtpTestHelperTests
 
         const string filename = @"D:\temp\FtpCredentials.json";
 
-        var c = new SshCredentials
+        var c = new WebCredentials
         {
             Url = "YourFtpServerUrl", // www.test.de
 

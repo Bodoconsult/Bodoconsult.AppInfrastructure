@@ -75,40 +75,63 @@ public interface IDatabaseService
     /// <summary>
     /// Update an existing remote file with its size
     /// </summary>
-    /// <param name="file"></param>
-    /// <param name="size"></param>
+    /// <param name="file">File path</param>
+    /// <param name="size">Current size in bytes</param>
     void UpdateExistingRemoteFile(FilePathItem file, in long size);
 
     /// <summary>
     /// Update an existing local file with its size
     /// </summary>
     /// <param name="file">File data in the database</param>
-    /// <param name="size">New size of the file</param>
+    /// <param name="size">New size of the file in bytes</param>
     void UpdateExistingLocalFile(FilePathItem file, in long size);
 
+    /// <summary>
+    /// Command to set a hash value for a file
+    /// </summary>
+    /// <param name="path">Filepath</param>
+    /// <param name="hash">Hash value</param>
+    /// <returns>Command to execute</returns>
     DbCommand SetHashForFileCmd(string path, string hash);
+
+    /// <summary>
+    /// Set a hash value for a remote
+    /// </summary>
     void SetHashForRemoteFiles();
+
+    /// <summary>
+    /// Get remote file paths to create
+    /// </summary>
+    /// <returns>List with file items</returns>
     IList<FilePathItem> GetRemoteFilePathToCreate();
 
     /// <summary>
-    /// 
+    /// Cler files
     /// </summary>
     void ClearFiles();
 
     /// <summary>
-    /// 
+    /// Get files on remote server to be removed 
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with file items</returns>
     IList<FilePathItem> GetRemoteFilePathRemoveFiles();
 
+    /// <summary>
+    /// Get files on remote server to be removed
+    /// </summary>
+    /// <returns>List with file items</returns>
     IList<FilePathItem> GetRemoteFilePathToRemove();
 
     /// <summary>
-    /// 
+    /// Get all local files to copy
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with file items</returns>
     IList<FilePathItem> GetLocalFilesToCopy();
 
+    /// <summary>
+    /// Set a hash code for a remote file
+    /// </summary>
+    /// <param name="path">Remote file path</param>
     void SetHashCodeForRemoteFile(string path);
 
     /// <summary>
@@ -116,5 +139,10 @@ public interface IDatabaseService
     /// </summary>
     /// <param name="cmds">List with commands to execute</param>
     void Exec(List<DbCommand> cmds);
+
+    /// <summary>
+    /// Load all file paths
+    /// </summary>
+    /// <param name="allFiles">List with file itemsto load</param>
     void LoadAllFilePaths(IList<FilePathItem> allFiles);
 }

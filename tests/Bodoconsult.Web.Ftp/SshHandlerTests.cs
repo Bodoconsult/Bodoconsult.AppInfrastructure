@@ -2,7 +2,7 @@
 
 using System.IO;
 using System.Linq;
-using Bodoconsult.Web.Ftp.Models;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Web.Ftp.RemoteServerHandler;
 using Bodoconsult.Web.Ftp.Test.Helpers;
 using NUnit.Framework;
@@ -12,7 +12,7 @@ namespace Bodoconsult.Web.Ftp.Test;
 [TestFixture]
 internal class SshHandlerTests
 {
-    private readonly SshCredentials _credentials = TestHelper.GetCredentials();
+    private readonly WebCredentials _credentials = TestHelper.GetCredentials();
 
     [Test]
     public void TestConnect()
@@ -200,7 +200,7 @@ internal class SshHandlerTests
 
         // Assert
         Assert.That(erg1);
-        Assert.That(erg2.Any());
+        Assert.That(erg2.Count != 0);
         Assert.That(erg2.Any(x => x.IsDirectory));
         Assert.That(erg2.Any(x => !x.IsDirectory));
     }
@@ -234,7 +234,7 @@ internal class SshHandlerTests
 
         // Assert
         Assert.That(erg1);
-        Assert.That(erg2.Any());
+        Assert.That(erg2.Count != 0);
         Assert.That(erg2.Any(x => x.IsDirectory));
         Assert.That(erg2.Any(x => !x.IsDirectory));
     }

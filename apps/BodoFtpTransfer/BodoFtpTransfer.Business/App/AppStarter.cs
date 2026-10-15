@@ -1,23 +1,25 @@
-﻿namespace BodoFtpTransfer.Business.App;
+﻿//// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-public static class AppStarter
-{
-    public static void Start(in int modus)
-    {
+//namespace BodoFtpTransfer.Business.App;
+
+//public static class AppStarter
+//{
+//    public static void Start(in int modus)
+//    {
 
             
-        //var appSettings = GlobalValues.CurrentAppSettings;
+//        //var appSettings = GlobalValues.CurrentAppSettings;
 
-        //var ftp = new FtpTransferService(appSettings.Credentials, statusHandler)
-        //{
-        //    BaseDirectory = appSettings.BaseDirectory,
-        //    ExcludedFiles = appSettings.ExcludedFiles,
-        //    ExcludeDirs = appSettings.ExcludeDirs,
-        //    RemoteDirectory = appSettings.RemoteDirectory,
-        //    Modus = modus,
-        //};
+//        //var ftp = new FtpTransferService(appSettings.Credentials, statusHandler)
+//        //{
+//        //    BaseDirectory = appSettings.BaseDirectory,
+//        //    ExcludedFiles = appSettings.ExcludedFiles,
+//        //    ExcludeDirs = appSettings.ExcludeDirs,
+//        //    RemoteDirectory = appSettings.RemoteDirectory,
+//        //    Modus = modus,
+//        //};
 
-        //ftp.CreateBatch();
+//        //ftp.CreateBatch();
 
-    }
-}
+//    }
+//}

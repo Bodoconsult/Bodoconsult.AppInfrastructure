@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Runtime.Versioning;
-using Bodoconsult.App.DataProtection;
 
 namespace BodoWebMailer;
 

@@ -11,7 +11,7 @@
 ///// <summary>
 ///// Encrypts und decrypts passwords for console application start parameters
 ///// </summary>
-//internal class PasswordHandler
+//public class PasswordHandler
 //{
 
 //    /// <summary>
@@ -183,7 +183,7 @@
 
 //    private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
 //    {
-//        var pbkdf2 = new Rfc2898DeriveBytes(password, salt) {IterationCount = iterations};
+//        var pbkdf2 = new Rfc2898DeriveBytes(password, salt) { IterationCount = iterations };
 //        return pbkdf2.GetBytes(outputBytes);
 //    }
 //    /// <summary>
@@ -201,7 +201,7 @@
 
 //        // Hash the value and encode the parameters
 //        var hash = Pbkdf2(value, saltBytes, pbkdf2Iterations, hashBytes);
-   
+
 //        return Convert.ToBase64String(hash);
 //    }
 
@@ -239,7 +239,7 @@
 //            var testHash = Pbkdf2(pureVal, salt, pbkdf2Iterations, hash.Length);
 //            return SlowEquals(hash, testHash);
 //        }
-//        catch 
+//        catch
 //        {
 //            return false;
 //        }

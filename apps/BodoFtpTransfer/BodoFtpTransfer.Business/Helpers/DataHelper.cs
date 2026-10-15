@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Data;
-using Bodoconsult.App.DataProtection;
-using Bodoconsult.Web.Ftp.Models;
 using BodoFtpTransfer.Business.Model;
 
 namespace BodoFtpTransfer.Business.Helpers;
@@ -31,20 +29,5 @@ public static class DataHelper
         };
 
         return dto;
-    }
-
-    /// <summary>
-    /// Map <see cref="BasicCredentials"/> to <see cref="SshCredentials"/>
-    /// </summary>
-    /// <param name="credentials">Basic credentials</param>
-    /// <returns>SSH credentials</returns>
-    public static SshCredentials MapBasicCredentialsToSshCredentials(BasicCredentials credentials)
-    {
-        return new SshCredentials
-        {
-            Password = credentials.Password,
-            Username = credentials.Username,
-            Url = credentials.Url
-        };
     }
 }

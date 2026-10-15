@@ -3,7 +3,6 @@
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.DataProtection;
 using BodoFtpTransfer.Business.Interfaces;
 using Microsoft.Extensions.Configuration;
 
@@ -146,5 +145,5 @@ public class Globals : IBodoFtpTransferAppGlobals
     /// <summary>
     /// SSH credentials to access FTP server
     /// </summary>
-    public BasicCredentials? Credentials { get; set; }
+    public WebCredentials? Credentials { get; set; }
 }

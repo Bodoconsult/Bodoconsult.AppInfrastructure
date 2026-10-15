@@ -10,9 +10,9 @@ using System.Text.Json;
 namespace Bodoconsult.App.DataProtection.ConsoleTools;
 
 /// <summary>
-/// Manage <see cref="BasicCredentials"/> for an app
+/// Manage <see cref="WebCredentials"/> for an app
 /// </summary>
-public class BasicCredentialsManager
+public class WebCredentialsManager
 {
     private IDataProtectionManager _dpm = new DoNothingDataProtectionManager();
     private string? _folderPath;
@@ -21,7 +21,7 @@ public class BasicCredentialsManager
     /// <summary>
     /// Default ctor
     /// </summary>
-    public BasicCredentialsManager()
+    public WebCredentialsManager()
     {
         TransferTargetPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         ReadStringDelegate = ReadFromConsole; 
@@ -105,7 +105,7 @@ public class BasicCredentialsManager
     /// <summary>
     /// Current credentials
     /// </summary>
-    public BasicCredentials? Credentials { get; set; }
+    public WebCredentials? Credentials { get; set; }
 
     /// <summary>
     /// Delegate to read a string input from console, UI, etc.. Default is reading from console. If needed implement your own <see cref="ReadStringDelegate "/> method
@@ -122,7 +122,7 @@ public class BasicCredentialsManager
         ArgumentNullException.ThrowIfNull(FilePath);
 
         // Basic setup of data protection
-        Credentials = new BasicCredentials
+        Credentials = new WebCredentials
         {
             Name = Name
         };
@@ -130,9 +130,11 @@ public class BasicCredentialsManager
         var instance = DataProtectionService.CreateInstance(FolderPath, AppName);
 
         var fs = new SimpleFileProtectionService();
-        _dpm = new DataProtectionManager(instance, fs, FilePath);
-        _dpm.ReadStringDelegate = ReadStringDelegate;
-        
+        _dpm = new DataProtectionManager(instance, fs, FilePath)
+        {
+            ReadStringDelegate = ReadStringDelegate
+        };
+
         // Load the values from an existing file
         _dpm.LoadValues();
 
@@ -155,7 +157,7 @@ public class BasicCredentialsManager
     {
         ArgumentNullException.ThrowIfNull(Credentials);
 
-        var cr = new BasicCredentials
+        var cr = new WebCredentials
         {
             Name = Credentials.Name,
             Password = Credentials.Password,
@@ -196,7 +198,7 @@ public class BasicCredentialsManager
 
         var json = File.ReadAllText(TransferFileName, Encoding.UTF8);
 
-        Credentials = JsonSerializer.Deserialize<BasicCredentials>(json);
+        Credentials = JsonSerializer.Deserialize<WebCredentials>(json);
 
         if (File.Exists(TransferFileName))
         {

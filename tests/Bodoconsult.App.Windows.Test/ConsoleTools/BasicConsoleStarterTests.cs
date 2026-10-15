@@ -221,6 +221,80 @@ internal class BasicConsoleStarterTests
         Assert.That(result, Is.Not.Null);
     }
 
+    [Test]
+    public void LoadWebCredentialsConfig_ValidFile_FileLoaded()
+    {
+        // Arrange 
+        var ma = new WebCredentials();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.WebCredentialsFileName);
+
+        starter.SaveWebCredentials(ma);
+
+        // Act and assert
+        Assert.DoesNotThrow(starter.LoadWebCredentialsConfig);
+    }
+
+    [Test]
+    public void LoadWebCredentialsConfig_ValidImport_FileLoaded()
+    {
+        // Arrange 
+        var ma = new WebCredentials();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.WebCredentialsFileName);
+        DeleteFile(starter.WebCredentialsImportFileName);
+
+        JsonHelper.SaveAsFile(starter.WebCredentialsImportFileName, ma);
+
+        Assert.That(File.Exists(starter.WebCredentialsImportFileName), Is.True);
+
+        // Act  
+        Assert.DoesNotThrow(starter.LoadWebCredentialsConfig);
+
+        // Assert
+        Assert.That(File.Exists(starter.WebCredentialsImportFileName), Is.False);
+    }
+
+    [Test]
+    public void SaveWebCredentials_ValidMailAccount_FileSaved()
+    {
+        // Arrange 
+        var ma = new WebCredentials();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.WebCredentialsFileName);
+
+        // Act  
+        starter.SaveWebCredentials(ma);
+
+        // Assert
+        Assert.That(File.Exists(starter.WebCredentialsFileName));
+    }
+
+    [Test]
+    public void LoadWebCredentials_ValidMailAccount_FileLoaded()
+    {
+        // Arrange 
+        var ma = new WebCredentials();
+        string[] args = [];
+        var starter = new BasicConsoleStarter("Basic", args);
+
+        DeleteFile(starter.WebCredentialsFileName);
+
+        starter.SaveWebCredentials(ma);
+
+        // Act  
+        var result = starter.LoadWebCredentials();
+
+        // Assert
+        Assert.That(result, Is.Not.Null);
+    }
+
     private static void DeleteFile(string fileName)
     {
         if (File.Exists(fileName))

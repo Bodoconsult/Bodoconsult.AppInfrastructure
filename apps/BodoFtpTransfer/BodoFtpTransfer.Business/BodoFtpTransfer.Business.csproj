@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
+		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>
 		<AssemblyName>BodoFtpTransfer.Business</AssemblyName>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,6 +26,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\src\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
 		<ProjectReference Include="..\..\..\src\Bodoconsult.App.DataProtection\Bodoconsult.App.DataProtection.csproj" />
+		<ProjectReference Include="..\..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
 		<ProjectReference Include="..\..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
 		<ProjectReference Include="..\..\..\src\Bodoconsult.Database.Sqlite\Bodoconsult.Database.Sqlite.csproj" />
 		<ProjectReference Include="..\..\..\src\Bodoconsult.Web.Ftp\Bodoconsult.Web.Ftp.csproj" />

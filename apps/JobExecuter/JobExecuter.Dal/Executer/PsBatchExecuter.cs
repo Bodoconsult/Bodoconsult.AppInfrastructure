@@ -7,7 +7,6 @@ using System.Threading;
 using JobExecuter.Base;
 using JobExecuter.Base.Interfaces;
 using JobExecuter.Dal.Enums;
-using JobExecuter.Dal.Helpers;
 using JobExecuter.Dal.Model;
 
 // https://blogs.msdn.microsoft.com/kebab/2014/04/28/executing-powershell-scripts-from-c/
@@ -22,7 +21,7 @@ internal class PsBatchExecuter : BaseExecuter
 {
     private readonly PsBatchJobTask _jobTask;
 
-    private PipelineExecutor _pipelineExecutor;
+    //private PipelineExecutor _pipelineExecutor;
     private PowerShell _powerShellInstance;
     private IAsyncResult _asyncResult;
 
@@ -53,7 +52,8 @@ internal class PsBatchExecuter : BaseExecuter
         }
         catch (Exception ex)
         {
-            SetStatus("PsBatch:Error: {0}\r\n{1}r\n{2}", _jobTask.Filename, ex.Message, _pipelineExecutor.Pipeline.PipelineStateInfo.Reason);
+            SetStatus("PsBatch:Error: {0}\r\n{1}", _jobTask.Filename, ex.Message);
+            //SetStatus("PsBatch:Error: {0}\r\n{1}r\n{2}", _jobTask.Filename, ex.Message, _pipelineExecutor.Pipeline.PipelineStateInfo.Reason);
             Errors.Add(ex);
             return false;
         }
@@ -236,7 +236,7 @@ internal class PsBatchExecuter : BaseExecuter
         try
         {
             _waitToken = true;
-            _pipelineExecutor?.Stop();
+            //_pipelineExecutor?.Stop();
             if (_powerShellInstance != null)
             {                  
                 if (_asyncResult !=null) _powerShellInstance.EndInvoke(_asyncResult);

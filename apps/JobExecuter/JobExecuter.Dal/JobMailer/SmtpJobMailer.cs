@@ -4,7 +4,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Text.Formatter;
 using Bodoconsult.Text.Interfaces;
 using Bodoconsult.Text.Model;
-using Bodoconsult.Web.Mail.Models;
 using JobExecuter.Dal.Helpers;
 using JobExecuter.Dal.Interfaces;
 

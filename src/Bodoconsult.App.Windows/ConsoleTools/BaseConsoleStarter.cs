@@ -16,6 +16,10 @@ namespace Bodoconsult.App.Windows.ConsoleTools;
 /// </summary>
 public abstract class BaseConsoleStarter : IConsoleStarter
 {
+    private const string KeyNameWebCredentials = "WEB";
+    private const string KeyNameSmtp = "SMTP";
+    private const string KeyNameO365 = "O365";
+
     /// <summary>
     /// The current app of the app
     /// </summary>
@@ -61,6 +65,9 @@ public abstract class BaseConsoleStarter : IConsoleStarter
 
         O365MailAccountFileName = Path.Combine(AppPath, "data2.dat");
         O365MailAccountImportFileName = Path.Combine(AppPath, "0365.json");
+
+        WebCredentialsFileName = Path.Combine(AppPath, "data3.dat");
+        WebCredentialsImportFileName = Path.Combine(AppPath, "web.json");
     }
 
     /// <summary>
@@ -203,7 +210,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
         {
             return;
         }
-        var ma = SimpleJsonHelper .LoadJsonFile<SmtpMailAccount>(SmtpMailAccountImportFileName);
+        var ma = SimpleJsonHelper.LoadJsonFile<SmtpMailAccount>(SmtpMailAccountImportFileName);
 
         ArgumentNullException.ThrowIfNull(ma);
 
@@ -220,7 +227,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <param name="mailAccount">SMTP mail account data</param>
     public void SaveSmtpMailAccount(SmtpMailAccount mailAccount)
     {
-        SaveCryptedSimpleJson(mailAccount, "SMTP", SmtpMailAccountFileName);
+        SaveCryptedSimpleJson(mailAccount, KeyNameSmtp, SmtpMailAccountFileName);
     }
 
     /// <summary>
@@ -229,7 +236,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <returns>SMTP mail account data</returns>
     public SmtpMailAccount LoadSmtpMailAccount()
     {
-        SmtpMailAccount = LoadCryptedSimpleJson<SmtpMailAccount>("SMTP", SmtpMailAccountFileName);
+        SmtpMailAccount = LoadCryptedSimpleJson<SmtpMailAccount>(KeyNameSmtp, SmtpMailAccountFileName);
         return SmtpMailAccount;
     }
 
@@ -271,7 +278,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <param name="mailAccount">O365 mail account data</param>
     public void SaveO365MailAccount(O365MailAccount mailAccount)
     {
-        SaveCryptedSimpleJson(mailAccount, "O365", O365MailAccountFileName);
+        SaveCryptedSimpleJson(mailAccount, KeyNameO365, O365MailAccountFileName);
     }
 
     /// <summary>
@@ -280,8 +287,70 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <returns>O365 mail account data</returns>
     public O365MailAccount LoadO365MailAccount()
     {
-        O365MailAccount = LoadCryptedSimpleJson<O365MailAccount>("O365", O365MailAccountFileName);
+        O365MailAccount = LoadCryptedSimpleJson<O365MailAccount>(KeyNameO365, O365MailAccountFileName);
         return O365MailAccount;
+    }
+
+    /// <summary>
+    /// Filename of the webcredentials storage file
+    /// </summary>
+    public string WebCredentialsFileName { get; }
+
+    /// <summary>
+    /// Filename of the WebCredentials storage import file. To be deleted after import
+    /// </summary>
+    public string WebCredentialsImportFileName { get; }
+
+    /// <summary>
+    /// The current WebCredentials or null if no web access is used
+    /// </summary>
+    public WebCredentials? WebCredentials { get; private set; }
+
+    /// <summary>
+    /// Load an existing WebCredentials config
+    /// </summary>
+    public void LoadWebCredentialsConfig()
+    {
+        if (File.Exists(WebCredentialsFileName))
+        {
+            LoadWebCredentials();
+
+            ArgumentNullException.ThrowIfNull(WebCredentials);
+            return;
+        }
+
+        if (!File.Exists(WebCredentialsImportFileName))
+        {
+            return;
+        }
+        var ma = SimpleJsonHelper.LoadJsonFile<WebCredentials>(WebCredentialsImportFileName);
+
+        ArgumentNullException.ThrowIfNull(ma);
+
+        SaveWebCredentials(ma);
+
+        LoadWebCredentials();
+
+        DeleteFile(WebCredentialsImportFileName);
+    }
+
+    /// <summary>
+    /// Save WebCredentials data in a crypted file
+    /// </summary>
+    /// <param name="webCredentials">WebCredentials data</param>
+    public void SaveWebCredentials(WebCredentials webCredentials)
+    {
+        SaveCryptedSimpleJson(webCredentials, KeyNameWebCredentials, WebCredentialsFileName);
+    }
+
+    /// <summary>
+    /// Load WebCredentials data from a crypted file
+    /// </summary>
+    /// <returns>WebCredentials data</returns>
+    public WebCredentials LoadWebCredentials()
+    {
+        WebCredentials = LoadCryptedSimpleJson<WebCredentials>(KeyNameWebCredentials, WebCredentialsFileName);
+        return WebCredentials;
     }
 
     #endregion

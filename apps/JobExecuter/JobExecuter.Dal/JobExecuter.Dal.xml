@@ -2265,7 +2265,7 @@
             Send an error mail to job error mail receivers
             </summary>
         </member>
-        <member name="M:JobExecuter.Dal.JobHandler.GetErrorMessage(Bodoconsult.Text.Interfaces.IStructuredText,Bodoconsult.Text.Enums.TextItemType)">
+        <member name="M:JobExecuter.Dal.JobHandler.GetErrorMessage(Bodoconsult.Text.Model.StructuredText,Bodoconsult.Text.Enums.TextItemType)">
             <summary>
             Format all error messages
             </summary>

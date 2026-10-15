@@ -4,7 +4,10 @@ using Bodoconsult.App.Interfaces;
 
 namespace BodoFtpTransfer.Business.Interfaces;
 
-public interface IBodoFtpTransferAppGlobals: IBasicCredentialsAppGlobals
+/// <summary>
+/// App globals for BodoFtpTransfer
+/// </summary>
+public interface IBodoFtpTransferAppGlobals: IWebCredentialsAppGlobals
 {
     /// <summary>
     /// Directory names to exclude from transfer

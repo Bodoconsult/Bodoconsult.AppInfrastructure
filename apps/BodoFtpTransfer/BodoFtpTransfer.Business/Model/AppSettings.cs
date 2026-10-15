@@ -1,29 +1,27 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.Web.Ftp.Models;
-
 namespace BodoFtpTransfer.Business.Model;
 
-/// <summary>
-/// App settings class
-/// </summary>
-public class AppSettings
-{
+///// <summary>
+///// App settings class
+///// </summary>
+//public class AppSettings
+//{
 
-    public SshCredentials? Credentials { get; set; }
+//    public WebCredentials? Credentials { get; set; }
 
-    public string ExcludeDirs { get; set; } = string.Empty;
+//    public string ExcludeDirs { get; set; } = string.Empty;
 
-    public string ExcludedFiles { get; set; } = string.Empty;
+//    public string ExcludedFiles { get; set; } = string.Empty;
 
-    /// <summary>
-    /// Remote directory relative to Credentials.Url
-    /// </summary>
-    public string RemoteDirectory { get; set; } = string.Empty;
+//    /// <summary>
+//    /// Remote directory relative to Credentials.Url
+//    /// </summary>
+//    public string RemoteDirectory { get; set; } = string.Empty;
 
-    /// <summary>
-    /// Zu übertragendes lokales Verzeichnis
-    /// </summary>
-    public string BaseDirectory { get; set; } = string.Empty;
+//    /// <summary>
+//    /// Zu übertragendes lokales Verzeichnis
+//    /// </summary>
+//    public string BaseDirectory { get; set; } = string.Empty;
 
-}
+//}
