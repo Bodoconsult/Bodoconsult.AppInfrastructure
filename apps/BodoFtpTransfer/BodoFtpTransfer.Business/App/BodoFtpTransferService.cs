@@ -2,7 +2,6 @@
 
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.BusinessTransactions.Replies;
 using Bodoconsult.App.BusinessTransactions.RequestData;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
@@ -198,14 +197,11 @@ public class BodoFtpTransferService : IApplicationService
         var gms = di.Get<IGeneralAppManagementManager>();
         var request = new EmptyBusinessTransactionRequestData();
 
-        DefaultBusinessTransactionReply result;
-
         // Create log dump on app stop
         try
         {
-
             // ToDo: fill request with useful information for logging
-            result = gms.CreateLogDump(request);
+            var result = gms.CreateLogDump(request);
 
             //if (result != null)
             //{

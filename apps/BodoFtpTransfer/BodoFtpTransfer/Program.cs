@@ -1,9 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Diagnostics;
 using System.Runtime.Versioning;
-using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Helpers;
 
 namespace BodoFtpTransfer;
 

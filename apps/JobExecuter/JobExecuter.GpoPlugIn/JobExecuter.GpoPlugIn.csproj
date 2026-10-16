@@ -9,13 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bodoconsult.Text" Version="1.0.10" />
     <PackageReference Include="Microsoft.Management.Infrastructure" Version="3.0.0" />
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="10.0.13" />
     <PackageReference Include="System.Management.Automation" Version="7.6.7" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Bodoconsult.Text\Bodoconsult.Text.csproj" />
     <ProjectReference Include="..\JobExecuter.Base\JobExecuter.Base.csproj" />
   </ItemGroup>
 

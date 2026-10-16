@@ -693,6 +693,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.DefaultPageStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.DefaultPageStyle.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.DefaultPageStyle",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.DefaultPageStyle.yml\" sourcestartlinenumber=\"1\">Default page style</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.DummyI18N.yml",
       "output": {
         ".html": {
@@ -2219,6 +2233,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.PaperFormats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.PaperFormats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.PaperFormats",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.PaperFormats.yml\" sourcestartlinenumber=\"1\">Predefined paper formats</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.PortableLanguage.yml",
       "output": {
         ".html": {
@@ -2426,6 +2454,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Abstractions.Interfaces.WatchDogRunnerDelegateAsync",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.WatchDogRunnerDelegateAsync.yml\" sourcestartlinenumber=\"1\">Delegate fired by <xref href=\"Bodoconsult.App.Abstractions.Interfaces.IWatchDogAsync\" data-throw-if-not-resolved=\"false\"></xref> implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.WebCredentials.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Abstractions.Interfaces.WebCredentials.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Abstractions.Interfaces.WebCredentials",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Abstractions.Interfaces.WebCredentials.yml\" sourcestartlinenumber=\"1\">Basic class for credentials for accessing websites etc.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5761,6 +5803,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.DataProtection.ConsoleTools.WebCredentialsManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.DataProtection.ConsoleTools.WebCredentialsManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.DataProtection.ConsoleTools.WebCredentialsManager",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.DataProtection.ConsoleTools.WebCredentialsManager.yml\" sourcestartlinenumber=\"1\">Manage <xref href=\"Bodoconsult.App.Abstractions.Interfaces.WebCredentials\" data-throw-if-not-resolved=\"false\"></xref> for an app</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.App.DataProtection.ConsoleTools.yml",
       "output": {
         ".html": {
@@ -8222,6 +8278,20 @@
       "IsMRef": true,
       "Title": "Bodoconsult.App.Interfaces.IGeneralAppManagementService",
       "Summary": "<p sourcefile=\"api/Bodoconsult.App.Interfaces.IGeneralAppManagementService.yml\" sourcestartlinenumber=\"1\">Interface for general app features like database backup</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.App.Interfaces.IWebCredentialsAppGlobals.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.App.Interfaces.IWebCredentialsAppGlobals.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.App.Interfaces.IWebCredentialsAppGlobals",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.App.Interfaces.IWebCredentialsAppGlobals.yml\" sourcestartlinenumber=\"1\">App globals with basic credentials</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -34625,6 +34695,19 @@
       "version": ""
     },
     {
+      "type": "Toc",
+      "source_relative_path": "doc/BodoFileTransfer/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFileTransfer/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/BodoFileTransfer/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "doc/BodoFtpTransfer/README.md",
       "output": {
@@ -34645,6 +34728,19 @@
       "version": ""
     },
     {
+      "type": "Toc",
+      "source_relative_path": "doc/BodoFtpTransfer/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFtpTransfer/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/BodoFtpTransfer/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "doc/BodoWebMailer/README.md",
       "output": {
@@ -34660,6 +34756,19 @@
       "output": {
         ".html": {
           "relative_path": "doc/BodoWebMailer/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/BodoWebMailer/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoWebMailer/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/BodoWebMailer/toc.json"
         }
       },
       "version": ""
@@ -34822,16 +34931,6 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.App.DataProtection/ReleaseNotes.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "doc/Bodoconsult.App.DataProtection/Typography.md",
-      "output": {
-        ".html": {
-          "relative_path": "doc/Bodoconsult.App.DataProtection/Typography.html"
         }
       },
       "version": ""
@@ -35858,6 +35957,19 @@
       "version": ""
     },
     {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Web.Ftp/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Ftp/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Web.Ftp/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Web.Html/README.md",
       "output": {
@@ -35878,6 +35990,19 @@
       "version": ""
     },
     {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Web.Html/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Html/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Web.Html/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Web.Mail/README.md",
       "output": {
@@ -35893,6 +36018,19 @@
       "output": {
         ".html": {
           "relative_path": "doc/Bodoconsult.Web.Mail/ReleaseNotes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "doc/Bodoconsult.Web.Mail/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Mail/toc.html"
+        },
+        ".json": {
+          "relative_path": "doc/Bodoconsult.Web.Mail/toc.json"
         }
       },
       "version": ""

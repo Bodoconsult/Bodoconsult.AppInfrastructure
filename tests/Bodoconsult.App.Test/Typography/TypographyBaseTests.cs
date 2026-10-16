@@ -1,16 +1,16 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Reflection;
-using System.Text;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.App.Test.Helpers;
 using Newtonsoft.Json;
+using System.Reflection;
+using System.Text;
 
 namespace Bodoconsult.App.Test.Typography;
 
 [TestFixture]
-public class TypographyBaseTests
+internal class TypographyBaseTests
 {
     /// <summary>
     /// Value used for float is equal to 0 comparisons
@@ -32,7 +32,6 @@ public class TypographyBaseTests
         }
     }
 
-
     [Test]
     public void SetMargins_BaseSettings_Successful()
     {
@@ -49,7 +48,6 @@ public class TypographyBaseTests
         Assert.That(Math.Abs(t.TypoMargins.Right - 1.75) < Tolerance);
         Assert.That(Math.Abs(t.TypoMargins.Top - 0.875) < Tolerance);
         Assert.That(Math.Abs(t.TypoMargins.Bottom - 1.75) < Tolerance);
-
 
         //var erg = t.GetPixelHeight(4);
 

@@ -6,8 +6,6 @@
 		<Nullable>enable</Nullable>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageOutputPath>..\..\packages\</PackageOutputPath>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageId>Bodoconsult.App</PackageId>
 		<PackageTags>Layered app basic tools</PackageTags>

@@ -55,7 +55,6 @@ public class ElegantTypographyPageHeader : TypographyBase
         TitleFontSize = HeadingFontSize1 + 4;
         SubTitleFontSize = HeadingFontSize1 + 2;
 
-
         MarginLeftFactor = 2.5;
         MarginRightFactor = 2.5;
         MarginTopFactor = 3;
@@ -86,6 +85,5 @@ public class ElegantTypographyPageHeader : TypographyBase
         TableCornerRadius = 0.3;
         TableBorderWidth = 0.05;
         TableBorderColor = TypoColor.FromArgb(178, 204, 255);
-
     }
 }
