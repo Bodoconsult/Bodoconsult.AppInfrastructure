@@ -45,11 +45,9 @@ public class PdfCreatorTests
 
     }
 
-
     private void CreateFile(string fileName, bool landscape = false)
     {
         var code = ResourceHelper.GetTextResource("code1.txt").Replace("\\t", "\t");
-
 
         if (File.Exists(fileName))
         {

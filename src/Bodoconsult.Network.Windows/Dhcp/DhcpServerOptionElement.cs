@@ -1,16 +1,28 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System.Runtime.InteropServices;
 using Bodoconsult.Network.Windows.Dhcp.Native;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// DHCP server option element
+/// </summary>
 public abstract class DhcpServerOptionElement : IDhcpServerOptionElement
 {
+    /// <summary>
+    /// Type of the option element
+    /// </summary>
     public abstract DhcpServerOptionElementType Type { get; }
 
+    /// <summary>
+    /// Option value
+    /// </summary>
     public abstract object Value { get; }
+
+    /// <summary>
+    /// Option value formatted
+    /// </summary>
     public abstract string ValueFormatted { get; }
 
     internal static List<DhcpServerOptionElement> CreateElement(byte value) => [new DhcpServerOptionElementByte(value)];
@@ -87,312 +99,40 @@ public abstract class DhcpServerOptionElement : IDhcpServerOptionElement
 
     internal abstract DhcpOptionDataElementManaged ToNative();
 
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString() => $"{Type}: {ValueFormatted}";
 
+    /// <summary>Serves as the default hash function.</summary>
+    /// <returns>A hash code for the current object.</returns>
     public override int GetHashCode()
     {
         // GetHashCode must be overridden by all implementing classes
         return base.GetHashCode();
     }
 
+    /// <summary>Determines whether the specified object is equal to the current object.</summary>
+    /// <param name="obj">The object to compare with the current object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the specified object  is equal to the current object; otherwise, <see langword="false" />.</returns>
     public override bool Equals(object obj)
     {
         if (obj is null)
+        {
             return false;
+        }
 
         if (obj is DhcpServerOptionElement oe)
+        {
             return Equals(oe);
+        }
 
         return false;
     }
 
+    /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+    /// <param name="other">An object to compare with this object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
     public abstract bool Equals(IDhcpServerOptionElement other);
-}
-
-public class DhcpServerOptionElementByte : DhcpServerOptionElement
-{
-    public override DhcpServerOptionElementType Type => DhcpServerOptionElementType.Byte;
-    public override object Value => RawValue;
-    public override string ValueFormatted => BitHelper.ReadHexString(RawValue);
-
-    public byte RawValue { get; }
-
-    internal DhcpServerOptionElementByte(byte value)
-    {
-        RawValue = value;
-    }
-
-    internal static DhcpServerOptionElementByte ReadNative(DhcpOptionDataElement native) => new(native.ByteOption);
-
-    internal override DhcpOptionDataElementManaged ToNative() => new(RawValue);
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementByte oe)
-            return RawValue == oe.RawValue;
-
-        return false;
-    }
-
-    public override int GetHashCode()
-        => RawValue;
-}
-
-public class DhcpServerOptionElementWord : DhcpServerOptionElement
-{
-    public override DhcpServerOptionElementType Type => DhcpServerOptionElementType.Word;
-    public override object Value => RawValue;
-    public override string ValueFormatted => RawValue.ToString("N0");
-
-    public short RawValue { get; }
-
-    internal DhcpServerOptionElementWord(short value)
-    {
-        RawValue = value;
-    }
-
-    internal static DhcpServerOptionElementWord ReadNative(DhcpOptionDataElement native) => new(native.WordOption);
-
-    internal override DhcpOptionDataElementManaged ToNative() => new(RawValue);
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementWord oe)
-            return RawValue == oe.RawValue;
-
-        return false;
-    }
-
-    public override int GetHashCode()
-        => RawValue;
-}
-
-public class DhcpServerOptionElementDWord : DhcpServerOptionElement
-{
-    public override DhcpServerOptionElementType Type => DhcpServerOptionElementType.DWord;
-    public override object Value => RawValue;
-    public override string ValueFormatted => RawValue.ToString("N0");
-
-    public int RawValue { get; }
-
-    internal DhcpServerOptionElementDWord(int value)
-    {
-        RawValue = value;
-    }
-
-    internal static DhcpServerOptionElementDWord ReadNative(DhcpOptionDataElement native) => new(native.DWordOption);
-
-    internal override DhcpOptionDataElementManaged ToNative() => new(RawValue);
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementDWord oe)
-            return RawValue == oe.RawValue;
-
-        return false;
-    }
-
-    public override int GetHashCode()
-        => RawValue;
-}
-
-public class DhcpServerOptionElementDWordDWord : DhcpServerOptionElement
-{
-    public override DhcpServerOptionElementType Type => DhcpServerOptionElementType.DWordDWord;
-    public override object Value => RawValue;
-    public override string ValueFormatted => RawValue.ToString("N0");
-
-    public long RawValue { get; }
-
-    internal DhcpServerOptionElementDWordDWord(long value)
-    {
-        RawValue = value;
-    }
-
-    internal static DhcpServerOptionElementDWordDWord ReadNative(DhcpOptionDataElement native) =>
-        new(native.DWordDWordOption);
-
-    internal override DhcpOptionDataElementManaged ToNative() => new(RawValue);
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementDWordDWord oe)
-            return RawValue == oe.RawValue;
-
-        return false;
-    }
-
-    public override int GetHashCode()
-        => ((int)(RawValue >> 32) * 397) ^ ((int)RawValue);
-}
-
-public class DhcpServerOptionElementIpAddress : DhcpServerOptionElement
-{
-    public override DhcpServerOptionElementType Type => DhcpServerOptionElementType.IpAddress;
-    public override object Value => RawValue;
-    public override string ValueFormatted => _address;
-
-    private readonly DhcpServerIpAddress _address;
-
-    public uint RawValue => _address.Native;
-
-    internal DhcpServerOptionElementIpAddress(DhcpServerIpAddress value)
-    {
-        _address = value;
-    }
-    internal DhcpServerOptionElementIpAddress(DhcpIpAddress value)
-        : this(value.AsNetworkToIpAddress()) { }
-
-    internal static DhcpServerOptionElementIpAddress ReadNative(DhcpOptionDataElement native) =>
-        new(native.IpAddressOption);
-
-    internal override DhcpOptionDataElementManaged ToNative() => new(new DhcpIpAddress(RawValue));
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementIpAddress oe)
-            return _address == oe._address;
-
-        return false;
-    }
-
-    public override int GetHashCode()
-        => _address.GetHashCode();
-}
-
-public class DhcpServerOptionElementString : DhcpServerOptionElement
-{
-    public override DhcpServerOptionElementType Type => DhcpServerOptionElementType.StringData;
-    public override object Value => RawValue;
-    public override string ValueFormatted => RawValue;
-
-    public string RawValue { get; }
-
-    internal DhcpServerOptionElementString(string value)
-    {
-        RawValue = value;
-    }
-
-    internal static DhcpServerOptionElementString ReadNative(DhcpOptionDataElement native) =>
-        new(Marshal.PtrToStringUni(native.StringDataOption));
-
-    internal override DhcpOptionDataElementManaged ToNative() => new((DhcpOptionDataType)Type, RawValue);
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementString oe)
-            return string.Equals(RawValue, oe.RawValue, StringComparison.Ordinal);
-
-        return false;
-    }
-
-    public override int GetHashCode()
-        => RawValue.GetHashCode();
-}
-
-public class DhcpServerOptionElementBinary : DhcpServerOptionElement
-{
-    private readonly DhcpServerOptionElementType _type;
-
-    public override DhcpServerOptionElementType Type => _type;
-    public override object Value => RawValue;
-    public override string ValueFormatted => (RawValue is null) ? null : BitHelper.ReadHexString(RawValue, ' ');
-
-    public byte[] RawValue { get; }
-
-    internal DhcpServerOptionElementBinary(DhcpServerOptionElementType type, byte[] value)
-    {
-        _type = type;
-        RawValue = value;
-    }
-
-    internal static DhcpServerOptionElementBinary ReadNative(DhcpOptionDataElement native)
-        => new((DhcpServerOptionElementType)native.OptionType, native.BinaryDataOption.Data);
-
-    internal override DhcpOptionDataElementManaged ToNative()
-        => new((DhcpOptionDataType)Type, new DhcpBinaryDataManaged(RawValue));
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementBinary oe)
-        {
-            if (RawValue is null && oe.RawValue is null)
-                return true;
-
-            if (RawValue is null || oe.RawValue is null)
-                return false;
-
-            if (RawValue.Length == 0 && oe.RawValue.Length == 0)
-                return true;
-
-            return RawValue.SequenceEqual(oe.RawValue);
-        }
-
-        return false;
-    }
-
-    public override int GetHashCode()
-    {
-        var result = 0;
-        if (RawValue != null && RawValue.Length > 0)
-        {
-            foreach (var b in RawValue)
-                result = (result * 397) ^ b;
-        }
-        return result;
-    }
-}
-
-public class DhcpServerOptionElementIpv6Address : DhcpServerOptionElement
-{
-    public override DhcpServerOptionElementType Type => DhcpServerOptionElementType.Ipv6Address;
-    public override object Value => RawValue;
-    public override string ValueFormatted => RawValue;
-
-    public string RawValue { get; }
-
-    internal DhcpServerOptionElementIpv6Address(string value)
-    {
-        RawValue = value;
-    }
-
-    internal static DhcpServerOptionElementIpv6Address ReadNative(DhcpOptionDataElement native)
-        => new(Marshal.PtrToStringUni(native.Ipv6AddressDataOption));
-
-    internal override DhcpOptionDataElementManaged ToNative() => new((DhcpOptionDataType)Type, RawValue);
-
-    public override bool Equals(IDhcpServerOptionElement other)
-    {
-        if (other is null)
-            return false;
-
-        if (other is DhcpServerOptionElementIpv6Address oe)
-            return string.Equals(RawValue, oe.RawValue, StringComparison.Ordinal);
-
-        return false;
-    }
-
-    public override int GetHashCode()
-        => RawValue.GetHashCode();
 }

@@ -3,6 +3,9 @@
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// API protocol usd for DHCP servers
+/// </summary>
 [Flags]
 public enum DhcpServerApiProtocol
 {

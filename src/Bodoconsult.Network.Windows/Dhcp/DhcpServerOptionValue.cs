@@ -5,15 +5,34 @@ using Bodoconsult.Network.Windows.Dhcp.Native;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// Option value
+/// </summary>
 public class DhcpServerOptionValue : IDhcpServerOptionValue
 {
     /// <summary>
     /// The associated DHCP Server
     /// </summary>
     public DhcpServer Server { get; }
+
+    /// <summary>
+    /// The associated DHCP Server
+    /// </summary>
     IDhcpServer IDhcpServerOptionValue.Server => Server;
+
+    /// <summary>
+    /// Option ID
+    /// </summary>
     public int OptionId { get; }
+
+    /// <summary>
+    /// Class name
+    /// </summary>
     public string ClassName { get; }
+
+    /// <summary>
+    /// Vendor name
+    /// </summary>
     public string VendorName { get; }
 
     private DhcpServerOption _option;
@@ -552,6 +571,8 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             throw new DhcpServerException(nameof(Api.DhcpRemoveOptionValueV5), result);
     }
 
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString()
         => $"{VendorName ?? ClassName ?? Server.SpecificStrings.DefaultVendorClassName}: {OptionId} [{Option.Name}]: {string.Join("; ", Values)}";
 }

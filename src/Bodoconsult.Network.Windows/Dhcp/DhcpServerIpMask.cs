@@ -1,11 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System.Runtime.InteropServices;
 using Bodoconsult.Network.Windows.Dhcp.Native;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// IP mask
+/// </summary>
 [Serializable]
 public struct DhcpServerIpMask
 {
@@ -16,10 +18,19 @@ public struct DhcpServerIpMask
     private readonly uint _mask;
 #pragma warning restore IDE0032 // Use auto property
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="mask">IP Mask stored in big-endian (network) order</param>
     public DhcpServerIpMask(uint mask)
     {
         _mask = mask;
     }
+
+    /// <summary>
+    /// Ctor providing an IP mask as string
+    /// </summary>
+    /// <param name="mask">IP mask as string</param>
     public DhcpServerIpMask(string mask)
     {
         _mask = BitHelper.StringToIpAddress(mask);

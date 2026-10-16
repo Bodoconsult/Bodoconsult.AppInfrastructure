@@ -28,8 +28,10 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
         var metaData = document.DocumentMetaData;
 
         PdfTextRendererElementFactory = (IPdfTextRendererElementFactory)textRendererElementFactory;
-        IStyleSet styleSet = new DefaultStyleSet();
-        styleSet.DocumentMetaData = metaData;
+        var styleSet = new DefaultStyleSet
+        {
+            DocumentMetaData = metaData
+        };
 
         styleSet.CreatePageSetup();
 
@@ -43,7 +45,6 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
 
             styleSet.ColumnWidth = Unit.FromCentimeter(style.NumberOfColumns > 1 ? style.ColumnWidth : style.TypeAreaWidth);
         }
-
 
         styleSet.CalculateMeasures();
         styleSet.InitializeStyles();

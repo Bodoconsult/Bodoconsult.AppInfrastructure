@@ -92,6 +92,9 @@
 - name: Bodoconsult.Web.Mail
   href: Bodoconsult.Web.Mail/toc.yml
   topicHref: Bodoconsult.Web.Mail/README.md
+- name: Bodoconsult.Network.Windows
+  href: Bodoconsult.Network.Windows/toc.yml
+  topicHref: Bodoconsult.Network.Windows/README.md
 - name: BodoFileTransfer
   href: BodoFileTransfer/toc.yml
   topicHref: BodoFileTransfer/README.md

@@ -5,6 +5,9 @@ using Bodoconsult.Network.Windows.Dhcp.Native;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// Audit log on a DHCP server
+/// </summary>
 public class DhcpServerAuditLog : IDhcpServerAuditLog
 {
     /// <summary>
@@ -50,9 +53,8 @@ public class DhcpServerAuditLog : IDhcpServerAuditLog
             maxLogFilesSize: out var maxLogFilesSize,
             minSpaceOnDisk: out var minSpaceOnDisk);
 
-        if (result != DhcpErrors.Success)
-            throw new DhcpServerException(nameof(Api.DhcpAuditLogGetParams), result);
-
-        return new DhcpServerAuditLog(server, auditLogDir, diskCheckInterval, maxLogFilesSize, minSpaceOnDisk);
+        return result != DhcpErrors.Success ? 
+            throw new DhcpServerException(nameof(Api.DhcpAuditLogGetParams), result) : 
+            new DhcpServerAuditLog(server, auditLogDir, diskCheckInterval, maxLogFilesSize, minSpaceOnDisk);
     }
 }

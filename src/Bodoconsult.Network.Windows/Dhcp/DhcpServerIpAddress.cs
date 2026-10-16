@@ -8,6 +8,9 @@ using Bodoconsult.Network.Windows.Dhcp.Native;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// The IP address of a DHCP server
+/// </summary>
 [Serializable]
 public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<IPAddress>
 {
@@ -18,16 +21,28 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
     private readonly uint _address;
 #pragma warning restore IDE0032 // Use auto property
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="nativeAddress">Native address</param>
     public DhcpServerIpAddress(uint nativeAddress)
     {
         _address = nativeAddress;
     }
 
+    /// <summary>
+    /// Ctor providing an IP address as string
+    /// </summary>
+    /// <param name="address">IP address as string</param>
     public DhcpServerIpAddress(string address)
     {
         _address = BitHelper.StringToIpAddress(address);
     }
 
+    /// <summary>
+    /// Ctor providing an IP address as object
+    /// </summary>
+    /// <param name="address">IP address</param>
     public DhcpServerIpAddress(IPAddress address)
     {
         if (address.AddressFamily != AddressFamily.InterNetwork)
@@ -92,14 +107,26 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
         return false;
     }
 
+    /// <summary>Returns the hash code for this instance.</summary>
+    /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
     public override int GetHashCode() => (int)_address;
 
+    /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+    /// <param name="other">An object to compare with this object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
     public bool Equals(DhcpServerIpAddress other) => _address == other._address;
 
+    /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+    /// <param name="other">An object to compare with this object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
     public bool Equals(IPAddress other)
     {
         if (other is null || other.AddressFamily != AddressFamily.InterNetwork)
+        {
             return false;
+        }
 
 #pragma warning disable CS0618 // Type or member is obsolete
         var otherIp = (uint)other.Address;

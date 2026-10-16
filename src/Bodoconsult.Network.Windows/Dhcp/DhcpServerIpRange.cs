@@ -19,8 +19,19 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
     private readonly int _maxBootpAllowed;
 #pragma warning restore IDE0032 // Use auto property
 
+    /// <summary>
+    /// Start IP address
+    /// </summary>
     public DhcpServerIpAddress StartAddress => _startAddress;
+
+    /// <summary>
+    /// End IP address
+    /// </summary>
     public DhcpServerIpAddress EndAddress => _endAddress;
+
+    /// <summary>
+    /// Type of IP address reange
+    /// </summary>
     public DhcpServerIpRangeType Type => _type;
 
     /// <summary>
@@ -35,7 +46,10 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
     private DhcpServerIpRange(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress, DhcpServerIpRangeType type, int bootpClientsAllocated, int maxBootpAllowed)
     {
         if (startAddress > endAddress)
-            throw new ArgumentOutOfRangeException(nameof(endAddress), "The ip range start address cannot be greater than the end address");
+        {
+            throw new ArgumentOutOfRangeException(nameof(endAddress),
+                "The ip range start address cannot be greater than the end address");
+        }
 
         _startAddress = startAddress;
         _endAddress = endAddress;
@@ -199,8 +213,12 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
 
     internal DhcpIpRange ToNativeIpRange() => new(StartAddress.ToNativeAsNetwork(), EndAddress.ToNativeAsNetwork());
 
+    /// <summary>Returns the fully qualified type name of this instance.</summary>
+    /// <returns>The fully qualified type name.</returns>
     public override string ToString() => $"{_startAddress} - {_endAddress} [{_type}]";
 
+    /// <summary>Returns the hash code for this instance.</summary>
+    /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
     public override int GetHashCode()
     {
         var result = _startAddress.GetHashCode();
@@ -211,17 +229,29 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
         return result;
     }
 
+    /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+    /// <param name="obj">The object to compare with the current instance.</param>
+    /// <returns>
+    /// <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
     public override bool Equals(object obj)
     {
         if (obj is null)
+        {
             return false;
+        }
 
         if (obj is DhcpServerIpRange ha)
+        {
             return Equals(ha);
+        }
 
         return false;
     }
 
+    /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+    /// <param name="other">An object to compare with this object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
     public bool Equals(DhcpServerIpRange other)
     {
         return

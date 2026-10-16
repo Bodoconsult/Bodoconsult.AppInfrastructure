@@ -347,8 +347,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
         styleSet.PageSetup.TopMargin = Unit.FromCentimeter(style.TypoMargins.Top);
         styleSet.PageSetup.RightMargin = Unit.FromCentimeter(style.TypoMargins.Right);
         styleSet.PageSetup.BottomMargin = Unit.FromCentimeter(style.TypoMargins.Bottom);
-
-
     }
 
     /// <summary>

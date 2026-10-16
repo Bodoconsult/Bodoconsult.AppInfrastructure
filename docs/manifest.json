@@ -18693,7 +18693,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerApiProtocol",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerApiProtocol.yml\" sourcestartlinenumber=\"1\">API protocol usd for DHCP servers</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -18707,7 +18707,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerAuditLog",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerAuditLog.yml\" sourcestartlinenumber=\"1\">Audit log on a DHCP server</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19001,7 +19001,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerHardwareType",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerHardwareType.yml\" sourcestartlinenumber=\"1\">DHCP server hardware type</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19015,7 +19015,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerHost",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerHost.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.Network.Windows.Dhcp.IDhcpServerHost\" data-throw-if-not-resolved=\"false\"></xref> representing a DHCP server host</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19029,7 +19029,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerIpAddress",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerIpAddress.yml\" sourcestartlinenumber=\"1\">The IP address of a DHCP server</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19743,7 +19743,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.IDhcpServerHost",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.IDhcpServerHost.yml\" sourcestartlinenumber=\"1\">Interface for DHCP server hosts</p>\n"
     },
     {
       "type": "ManagedReference",
