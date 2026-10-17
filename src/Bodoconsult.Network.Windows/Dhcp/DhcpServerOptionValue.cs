@@ -270,7 +270,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
 
         using var scopeInfoPtr = BitHelper.StructureToPtr(scopeInfo);
         foreach (var value in GetAllOptionValues(server, scopeInfoPtr))
+        {
             yield return value;
+        }
     }
 
     internal static IEnumerable<DhcpServerOptionValue> GetAllScopeOptionValues(DhcpServerScope scope)
@@ -279,7 +281,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
 
         using var scopeInfoPtr = BitHelper.StructureToPtr(scopeInfo);
         foreach (var value in GetAllOptionValues(scope.Server, scopeInfoPtr))
+        {
             yield return value;
+        }
     }
 
     internal static IEnumerable<DhcpServerOptionValue> GetAllScopeReservationOptionValues(DhcpServerScopeReservation reservation)
@@ -288,7 +292,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
 
         using var scopeInfoPtr = BitHelper.StructureToPtr(scopeInfo);
         foreach (var value in GetAllOptionValues(reservation.Server, scopeInfoPtr))
+        {
             yield return value;
+        }
     }
 
     private static IEnumerable<DhcpServerOptionValue> GetAllOptionValues(DhcpServer server, IntPtr scopeInfo)
@@ -299,7 +305,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             values: out var valuesPtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpGetAllOptionValues), result);
+        }
 
         try
         {
@@ -310,7 +318,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
                 {
                     // Ignore OptionID 81 (Used for DNS Settings - has no matching Option)
                     if (!(value.OptionID == 81 && optionClass.ClassName is null && optionClass.VendorName is null))
+                    {
                         yield return FromNative(server, in value, optionClass.ClassName, optionClass.VendorName);
+                    }
                 }
             }
         }
@@ -358,9 +368,14 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
     private static IEnumerable<DhcpServerOptionValue> EnumOptionValues(DhcpServer server, IntPtr scopeInfo, string className, string vendorName)
     {
         if (server.IsCompatible(DhcpServerVersions.Windows2008R2))
+        {
             return EnumOptionValuesV5(server, scopeInfo, className, vendorName);
+        }
         if (vendorName != null || className != null)
-            throw new PlatformNotSupportedException($"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+        {
+            throw new PlatformNotSupportedException(
+                $"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+        }
 
         return EnumOptionValuesV0(server, scopeInfo);
     }
@@ -377,13 +392,19 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             optionsTotal: out _);
 
         if (result == DhcpErrors.ErrorNoMoreItems || result == DhcpErrors.EptSNotRegistered)
+        {
             yield break;
+        }
 
         if (result != DhcpErrors.Success && result != DhcpErrors.ErrorMoreData)
+        {
             throw new DhcpServerException(nameof(Api.DhcpEnumOptionValues), result);
+        }
 
         if (elementsRead == 0)
+        {
             yield break;
+        }
 
         try
         {
@@ -391,7 +412,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             foreach (var value in valueArray.Values)
             {
                 if (value.OptionID != 81)
+                {
                     yield return FromNative(server, in value, null, null);
+                }
             }
         }
         finally
@@ -415,13 +438,19 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             optionsTotal: out _);
 
         if (result == DhcpErrors.ErrorNoMoreItems || result == DhcpErrors.EptSNotRegistered)
+        {
             yield break;
+        }
 
         if (result != DhcpErrors.Success && result != DhcpErrors.ErrorMoreData)
+        {
             throw new DhcpServerException(nameof(Api.DhcpEnumOptionValuesV5), result);
+        }
 
         if (elementsRead == 0)
+        {
             yield break;
+        }
 
         try
         {
@@ -429,7 +458,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             foreach (var value in valueArray.Values)
             {
                 if (value.OptionID != 81)
+                {
                     yield return FromNative(server, in value, className, vendorName);
+                }
             }
         }
         finally
@@ -441,9 +472,15 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
     private static DhcpServerOptionValue GetOptionValue(DhcpServer server, IntPtr scopeInfo, int optionId, string className, string vendorName)
     {
         if (server.IsCompatible(DhcpServerVersions.Windows2008R2))
+        {
             return GetOptionValueV5(server, scopeInfo, optionId, className, vendorName);
+        }
+
         if (vendorName != null || className != null)
-            throw new PlatformNotSupportedException($"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+        {
+            throw new PlatformNotSupportedException(
+                $"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+        }
 
         return GetOptionValueV0(server, scopeInfo, optionId);
     }
@@ -456,7 +493,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             optionValue: out var valuePtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpGetOptionValue), result);
+        }
 
         try
         {
@@ -480,7 +519,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             optionValue: out var valuePtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpGetOptionValueV5), result);
+        }
 
         try
         {
@@ -496,11 +537,16 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
     private static void SetOptionValue(DhcpServer server, IntPtr scopeInfo, int optionId, string className, string vendorName, IEnumerable<IDhcpServerOptionElement> values)
     {
         if (server.IsCompatible(DhcpServerVersions.Windows2008R2))
+        {
             SetOptionValueV5(server, scopeInfo, optionId, className, vendorName, values);
+        }
         else
         {
             if (vendorName != null || className != null)
-                throw new PlatformNotSupportedException($"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+            {
+                throw new PlatformNotSupportedException(
+                    $"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+            }
 
             SetOptionValueV0(server, scopeInfo, optionId, values);
         }
@@ -516,7 +562,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             optionValue: valueNativePtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpSetOptionValue), result);
+        }
     }
 
     private static void SetOptionValueV5(DhcpServer server, IntPtr scopeInfo, int optionId, string className, string vendorName, IEnumerable<IDhcpServerOptionElement> values)
@@ -532,17 +580,24 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             optionValue: valueNativePtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpSetOptionValueV5), result);
+        }
     }
 
     private static void RemoveOptionValue(DhcpServer server, IntPtr scopeInfo, int optionId, string className, string vendorName)
     {
         if (server.IsCompatible(DhcpServerVersions.Windows2008R2))
+        {
             RemoveOptionValueV5(server, scopeInfo, optionId, className, vendorName);
+        }
         else
         {
             if (vendorName != null || className != null)
-                throw new PlatformNotSupportedException($"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+            {
+                throw new PlatformNotSupportedException(
+                    $"DHCP Server v{server.VersionMajor}.{server.VersionMinor} does not support this feature");
+            }
 
             RemoveOptionValueV0(server, scopeInfo, optionId);
         }
@@ -555,7 +610,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             scopeInfo: scopeInfo);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpRemoveOptionValue), result);
+        }
     }
 
     private static void RemoveOptionValueV5(DhcpServer server, IntPtr scopeInfo, int optionId, string className, string vendorName)
@@ -568,7 +625,9 @@ public class DhcpServerOptionValue : IDhcpServerOptionValue
             scopeInfo: scopeInfo);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpRemoveOptionValueV5), result);
+        }
     }
 
     /// <summary>Returns a string that represents the current object.</summary>

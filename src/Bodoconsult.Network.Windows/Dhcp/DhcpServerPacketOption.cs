@@ -7,6 +7,9 @@ using System.Text;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// Packet options
+/// </summary>
 [Serializable]
 public struct DhcpServerPacketOption
 {
@@ -16,7 +19,14 @@ public struct DhcpServerPacketOption
     private readonly ulong _dataLong;
     private readonly byte[] _dataArray;
 
+    /// <summary>
+    /// Option ID
+    /// </summary>
     public DhcpServerOptionIds Id => _id;
+
+    /// <summary>
+    /// Data length
+    /// </summary>
     public int DataLength => _length;
 
     internal DhcpServerPacketOption(DhcpServerOptionIds optionId)
@@ -67,66 +77,135 @@ public struct DhcpServerPacketOption
         }
     }
 
+    /// <summary>
+    /// Type of option ID
+    /// </summary>
     public DhcpServerOptionIdTypes Type
     {
         get
         {
             if (_optionIdTypesCache is null)
+            {
                 EnsureTypesCache();
+            }
+
+            ArgumentNullException.ThrowIfNull(_optionIdTypesCache);
 
             return _optionIdTypesCache[(byte)_id];
         }
     }
 
+    /// <summary>
+    /// Get data as byte array
+    /// </summary>
+    /// <param name="index">Start index</param>
+    /// <param name="length">Requested length</param>
+    /// <returns>Data as byte array</returns>
     public byte[] DataAsBytes(int index, int length)
     {
         if (index + length > _length || index < 0)
+        {
             throw new ArgumentOutOfRangeException(nameof(length));
+        }
+
+        byte[] data;
 
         if (_dataArray != null)
         {
             if (index == 0 && length == _dataArray.Length)
+            {
                 return _dataArray;
+            }
+
             if (length == 0)
+            {
                 return BitHelper.EmptyByteArray;
-            var data = new byte[length];
+            }
+
+            data = new byte[length];
             Array.Copy(_dataArray, index, data, 0, length);
             return data;
         }
 
         if (length == 0)
-            return BitHelper.EmptyByteArray;
         {
-            var data = new byte[length];
-            BitHelper.Write(data, 0, _dataLong, index, length);
-            return data;
+            return BitHelper.EmptyByteArray;
         }
+
+        data = new byte[length];
+        BitHelper.Write(data, 0, _dataLong, index, length);
+        return data;
+
     }
 
+    /// <summary>
+    /// Get data as byte array
+    /// </summary>
+    /// <returns>Data as byte array</returns>
     public byte[] DataAsBytes() => DataAsBytes(0, _length);
 
+    /// <summary>
+    /// Get data as ASCII string
+    /// </summary>
+    /// <param name="index">Start index</param>
+    /// <param name="length">Requested length</param>
+    /// <returns>Data as ASCII string</returns>
     public string DataAsAsciiString(int index, int length)
     {
         var data = DataAsBytes(index, length);
         return BitHelper.ReadAsciiString(data, 0, data.Length);
     }
 
+    /// <summary>
+    /// Get data as ASCII string
+    /// </summary>
+    /// <returns>Data as ASCII string</returns>
     public string DataAsAsciiString() => DataAsAsciiString(0, _length);
 
+    /// <summary>
+    /// Get data as UTF8 string
+    /// </summary>
+    /// <param name="index">Start index</param>
+    /// <param name="length">Requested length</param>
+    /// <returns>Data as UTF8 string</returns>
     public string DataAsUtf8String(int index, int length)
     {
         var data = DataAsBytes(index, length);
         return BitHelper.ReadUtf8String(data, 0, data.Length);
     }
 
+    /// <summary>
+    /// Get data as UTF8 string
+    /// </summary>
+    /// <returns>Data as UTF8 string</returns>
     public string DataAsUtf8String() => DataAsUtf8String(0, _length);
 
+    /// <summary>
+    /// Get data as string with DNS labels
+    /// </summary>
+    /// <param name="index">Start index</param>
+    /// <returns>Data as string with DNS labels</returns>
     public string DataAsDnsLabelsString(int index) => BitHelper.ReadDnsLabelsString(_dataArray, index);
 
+    /// <summary>
+    /// Get data as string with DNS labels
+    /// </summary>
+    /// <returns>Data as string with DNS labels</returns>
     public string DataAsDnsLabelsString() => DataAsDnsLabelsString(0);
 
+    /// <summary>
+    /// Get list with string with DNS labels
+    /// </summary>
+    /// <param name="index">Start index</param>
+    /// <param name="length">Requested length</param>
+    /// <returns>Data list with strings with DNS labels</returns>
     public IEnumerable<string> DataAsDnsLabelsStrings(int index, int length) => BitHelper.ReadDnsLabelsStrings(_dataArray, index, length);
 
+    /// <summary>
+    /// Get data as long value
+    /// </summary>
+    /// <param name="index">Index</param>
+    /// <returns>Value</returns>
     public long DataAsInt64(int index)
     {
         if (_length < index + BitHelper.Int64Size)
@@ -137,6 +216,10 @@ public struct DhcpServerPacketOption
         return BitHelper.ReadInt64(_dataArray, index);
     }
 
+    /// <summary>
+    /// Get data as long value
+    /// </summary>
+    /// <returns>Value</returns>
     public long DataAsInt64()
     {
         if (_length != BitHelper.Int64Size)
@@ -145,6 +228,11 @@ public struct DhcpServerPacketOption
         return DataAsInt64(0);
     }
 
+    /// <summary>
+    /// Get data as Int32 value
+    /// </summary>
+    /// <param name="index">Index</param>
+    /// <returns>Value</returns>
     public int DataAsInt32(int index)
     {
         if (_length < index + BitHelper.Int32Size)
@@ -155,82 +243,168 @@ public struct DhcpServerPacketOption
         return BitHelper.ReadInt32(_dataArray, index);
     }
 
+    /// <summary>
+    /// Get data as Int32 value
+    /// </summary>
+    /// <returns>Value</returns>
     public int DataAsInt32()
     {
         if (_length != BitHelper.Int32Size)
+        {
             throw new InvalidOperationException("Invalid option length for this data type");
+        }
 
         return DataAsInt32(0);
     }
 
+    /// <summary>
+    /// Get data as Int16 value
+    /// </summary>
+    /// <param name="index">Index</param>
+    /// <returns>Value</returns>
     public short DataAsInt16(int index)
     {
         if (_length < index + BitHelper.Int16Size)
+        {
             throw new ArgumentOutOfRangeException(nameof(index));
+        }
 
         if (_dataArray is null)
+        {
             return (short)(_dataLong >> (48 - (index * 8)));
+        }
+
         return BitHelper.ReadInt16(_dataArray, index);
     }
 
+    /// <summary>
+    /// Get data as Int16 value
+    /// </summary>
+    /// <returns>Value</returns>
     public short DataAsInt16()
     {
         if (_length != BitHelper.Int16Size)
+        {
             throw new InvalidOperationException("Invalid option length for this data type");
+        }
 
         return DataAsInt16(0);
     }
 
+    /// <summary>
+    /// Get data as byte value
+    /// </summary>
+    /// <param name="index">Index</param>
+    /// <returns>Value</returns>
     public byte DataAsByte(int index)
     {
         if (_length < index + BitHelper.ByteSize)
+        {
             throw new ArgumentOutOfRangeException(nameof(index));
+        }
 
         if (_dataArray is null)
+        {
             return (byte)(_dataLong >> (56 - (index * 8)));
+        }
+
         return _dataArray[index];
     }
 
+    /// <summary>
+    /// Get data as byte value
+    /// </summary>
+    /// <returns>Value</returns>
     public byte DataAsByte()
     {
         if (_length != BitHelper.ByteSize)
+        {
             throw new InvalidOperationException("Invalid option length for this data type");
+        }
 
         return DataAsByte(0);
     }
 
+    /// <summary>
+    /// Get data as encapsulated options
+    /// </summary>
+    /// <returns>E</returns>
     public IList<DhcpServerPacketOption> DataAsEncapsulatedOptions()
     {
         var data = DataAsBytes();
         return ParseAll(data, 0, data.Length);
     }
 
+    /// <summary>
+    /// Get data as IP address
+    /// </summary>
+    /// <param name="index">Index</param>
+    /// <returns>IP address</returns>
     public DhcpServerIpAddress DataAsIpAddress(int index) => DhcpServerIpAddress.FromNative(DataAsInt32(index));
 
+    /// <summary>
+    /// Get data as IP address
+    /// </summary>
+    /// <returns>IP address</returns>
     public DhcpServerIpAddress DataAsIpAddress() => DhcpServerIpAddress.FromNative(DataAsInt32());
 
+    /// <summary>
+    /// Get data as hex value
+    /// </summary>
+    /// <param name="index">Index</param>
+    /// <param name="length">Requested length</param>
+    /// <returns>Hex value</returns>
     public string DataAsHexString(int index, int length)
     {
         if (length == 0)
+        {
             return string.Empty;
+        }
         if (_dataArray is null)
+        {
             return BitHelper.ReadHexString(_dataLong, index, length);
+        }
         return BitHelper.ReadHexString(_dataArray, index, length);
     }
 
+    /// <summary>
+    /// Get data as hex value
+    /// </summary>
+    /// <returns>Hex value</returns>
     public string DataAsHexString() => DataAsHexString(0, _length);
 
+    /// <summary>
+    /// Get data as hex value
+    /// </summary>
+    /// <param name="index">Index</param>
+    /// <param name="length">Requested length</param>
+    /// <param name="seperator">Separator char</param>
+    /// <returns>Hex value</returns>
     public string DataAsHexString(int index, int length, char seperator)
     {
         if (length == 0)
+        {
             return string.Empty;
+        }
+
         if (_dataArray is null)
+        {
             return BitHelper.ReadHexString(_dataLong, index, length, seperator);
+        }
         return BitHelper.ReadHexString(_dataArray, index, length, seperator);
     }
 
+    /// <summary>
+    /// Get data as hex value
+    /// </summary>
+    /// <param name="seperator">Separator char</param>
+    /// <returns>Hex value</returns>
     public string DataAsHexString(char seperator) => DataAsHexString(0, _length, seperator);
 
+    /// <summary>
+    /// Get data as formatted value
+    /// </summary>
+    /// <returns>Formatted value</returns>
     public string DataAsFormatted()
     {
         var builder = new StringBuilder();
@@ -238,6 +412,10 @@ public struct DhcpServerPacketOption
         return builder.ToString();
     }
 
+    /// <summary>
+    /// Get data as formatted value
+    /// </summary>
+    /// <returns>Formatted value</returns>
     public void DataAsFormatted(StringBuilder builder)
     {
         var isExpected = false;
@@ -407,22 +585,42 @@ public struct DhcpServerPacketOption
                     {
                         builder.Append("[flags: ");
                         builder.Append(Convert.ToString(flags, 2).Substring(0, 4));
+
                         if ((flags & 0b1000) != 0)
+                        {
                             builder.Append('N');
+                        }
                         else
+                        {
                             builder.Append('n');
+                        }
+
                         if ((flags & 0b0100) != 0)
+                        {
                             builder.Append('E');
+                        }
                         else
+                        {
                             builder.Append('e');
+                        }
+
                         if ((flags & 0b0010) != 0)
+                        {
                             builder.Append('O');
+                        }
                         else
+                        {
                             builder.Append('o');
+                        }
+
                         if ((flags & 0b0001) != 0)
+                        {
                             builder.Append('S');
+                        }
                         else
+                        {
                             builder.Append('s');
+                        }
                         builder.Append(']');
                     }
 
@@ -614,12 +812,14 @@ public struct DhcpServerPacketOption
         return results.AsReadOnly();
     }
 
+    /// <summary>Returns the fully qualified type name of this instance.</summary>
+    /// <returns>The fully qualified type name.</returns>
     public override string ToString()
     {
         var sb = new StringBuilder();
 
         sb.Append(_id.ToString());
-        sb.Append("[");
+        sb.Append('[');
         sb.Append((byte)_id);
         sb.Append("]: ");
 

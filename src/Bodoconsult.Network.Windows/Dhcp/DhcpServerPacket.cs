@@ -7,14 +7,38 @@ using System.Text;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// Packet
+/// </summary>
 public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServerPacketRaw
 {
     internal const int MaxBufferLength = 4000;
+
+    /// <summary>
+    /// Packet pointer
+    /// </summary>
     protected internal readonly IntPtr Pointer;
+
+    /// <summary>
+    /// Packet size
+    /// </summary>
     protected internal readonly int Size;
+
+    /// <summary>
+    /// Length
+    /// </summary>
     protected internal int Length;
+
+    /// <summary>
+    /// Internal buffer
+    /// </summary>
     protected internal byte[] BufferInternal;
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="pointer">Packet pointer</param>
+    /// <param name="size">Packet size</param>
     public DhcpServerPacket(IntPtr pointer, int size)
     {
         // lazy-marshal the buffer as in most cases this will never be used
@@ -64,69 +88,122 @@ public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServ
 
     #region Packet Fields
 
+    /// <summary>
+    /// OP offset
+    /// </summary>
     protected const int OpOffset = 0;
+
     /// <inheritdoc />
     public DhcpServerMessageTypes MessageType => (DhcpServerMessageTypes)Buffer[OpOffset];
 
+    /// <summary>
+    /// HType offset
+    /// </summary>
     protected const int HtypeOffset = OpOffset + 1; // 1
     /// <inheritdoc />
     public DhcpServerHardwareType HardwareAddressType => (DhcpServerHardwareType)Buffer[HtypeOffset];
 
+    /// <summary>
+    /// Hlen offset
+    /// </summary>
     protected const int HlenOffset = HtypeOffset + 1; // 2
     /// <inheritdoc />
     public byte HardwareAddressLength => Buffer[HlenOffset];
 
+    /// <summary>
+    /// HOps offset
+    /// </summary>
     protected const int HopsOffset = HlenOffset + 1; // 3
     /// <inheritdoc />
     public byte GatewayHops => Buffer[HopsOffset];
 
+    /// <summary>
+    /// XID offset
+    /// </summary>
     protected const int XidOffset = HopsOffset + 1; // 4
     /// <inheritdoc />
     public int TransactionId => BitHelper.ReadInt32(Buffer, XidOffset);
 
+    /// <summary>
+    /// Secs offset
+    /// </summary>
     protected const int SecsOffset = XidOffset + 4; // 8
     /// <inheritdoc />
     public ushort SecondsElapsed => BitHelper.ReadUInt16(Buffer, SecsOffset);
 
+    /// <summary>
+    /// Flags offset
+    /// </summary>
     protected const int FlagsOffset = SecsOffset + 2; // 10
     /// <inheritdoc />
     public DhcpServerPacketFlags Flags => (DhcpServerPacketFlags)BitHelper.ReadInt16(Buffer, FlagsOffset);
 
+    /// <summary>
+    /// CiAddress offset
+    /// </summary>
     protected const int CiaddrOffset = FlagsOffset + 2; // 12
     /// <inheritdoc />
     public DhcpServerIpAddress ClientIpAddress => BitHelper.ReadIpAddress(Buffer, CiaddrOffset);
 
+    /// <summary>
+    /// YiAddress offset
+    /// </summary>
     protected const int YiaddrOffset = CiaddrOffset + 4; // 16
     /// <inheritdoc />
     public DhcpServerIpAddress YourIpAddress => BitHelper.ReadIpAddress(Buffer, YiaddrOffset);
 
+    /// <summary>
+    /// SiAddress offset
+    /// </summary>
     protected const int SiaddrOffset = YiaddrOffset + 4; // 20
     /// <inheritdoc />
     public DhcpServerIpAddress NextServerIpAddress => BitHelper.ReadIpAddress(Buffer, SiaddrOffset);
 
+    /// <summary>
+    /// GiAddress offset
+    /// </summary>
     protected const int GiaddrOffset = SiaddrOffset + 4; // 24
     /// <inheritdoc />
     public DhcpServerIpAddress RelayAgentIpAddress => BitHelper.ReadIpAddress(Buffer, SiaddrOffset);
 
+    /// <summary>
+    /// ChAddress offset
+    /// </summary>
     protected const int ChaddrOffset = GiaddrOffset + 4; // 28
     /// <inheritdoc />
     public DhcpServerHardwareAddress ClientHardwareAddress
         => DhcpServerHardwareAddress.FromNative(HardwareAddressType, Buffer, ChaddrOffset, HardwareAddressLength);
 
+    /// <summary>
+    /// SName offset
+    /// </summary>
     protected const int SnameOffset = ChaddrOffset + 16; // 44
     /// <inheritdoc />
     public string ServerHostName => BitHelper.ReadAsciiString(Buffer, SnameOffset, 64);
 
+    /// <summary>
+    /// File offset
+    /// </summary>
     protected const int FileOffset = SnameOffset + 64; // 108
     /// <inheritdoc />
     public string FileName => BitHelper.ReadAsciiString(Buffer, FileOffset, 128);
 
+    /// <summary>
+    /// Magic cookie offset
+    /// </summary>
     protected const int MagicCookieOffset = FileOffset + 128; // 236
+
+    /// <summary>
+    /// Cookie for options magic
+    /// </summary>
     public int OptionsMagicCookie =>
         BitHelper.ReadInt32(Buffer, MagicCookieOffset); // Should be [99, 130 (-126), 83, 99] or 0x63825363
 
     #endregion
 
+    /// <summary>
+    /// Type of packet message
+    /// </summary>
     public DhcpServerPacketMessageTypes DhcpMessageType
     {
         get
@@ -140,8 +217,22 @@ public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServ
         }
     }
 
+    /// <summary>
+    /// Options offset
+    /// </summary>
     protected const int OptionsOffset = MagicCookieOffset + 4;
+
+    /// <summary>
+    /// Packet options
+    /// </summary>
     public ReadOnlyCollection<DhcpServerPacketOption> Options => DhcpServerPacketOption.ParseAll(Buffer, OptionsOffset, GetLength());
+
+    /// <summary>
+    /// Try to get options
+    /// </summary>
+    /// <param name="optionId">Requested option ID</param>
+    /// <param name="option">Option or null</param>
+    /// <returns>True on success else false</returns>
     public bool TryGetOption(DhcpServerOptionIds optionId, out DhcpServerPacketOption option)
     {
         if (TryGetOptionIndex(optionId, out var optionIndex))
@@ -153,7 +244,21 @@ public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServ
         option = default;
         return false;
     }
+
+    /// <summary>
+    /// Try to get options
+    /// </summary>
+    /// <param name="optionId">Requested option ID</param>
+    /// <param name="option">Option or null</param>
+    /// <returns>True on success else false</returns>
     public bool TryGetOption(byte optionId, out DhcpServerPacketOption option) => TryGetOption((DhcpServerOptionIds)optionId, out option);
+
+    /// <summary>
+    /// Try to get options
+    /// </summary>
+    /// <param name="optionId">Requested option ID</param>
+    /// <param name="optionIndex">Option index or 0</param>
+    /// <returns>True on success else false</returns>
 
     protected bool TryGetOptionIndex(DhcpServerOptionIds optionId, out int optionIndex)
     {
@@ -170,7 +275,9 @@ public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServ
             }
 
             if (optionTag == DhcpServerOptionIds.End)
+            {
                 break;
+            }
 
             switch (optionTag)
             {
@@ -196,6 +303,8 @@ public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServ
         return false;
     }
 
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
         var sb = new StringBuilder();
@@ -236,7 +345,7 @@ public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServ
                 sb.AppendLine();
                 sb.Append("    ");
                 sb.Append(((byte)option.Id).ToString("000"));
-                sb.Append(" ");
+                sb.Append(' ');
                 sb.Append(option.Id.ToString());
                 sb.Append(" [");
                 sb.Append(option.Type.ToString());

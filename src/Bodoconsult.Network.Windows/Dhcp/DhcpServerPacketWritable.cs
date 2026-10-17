@@ -37,7 +37,10 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         var length = GetLength();
 
         if (adjustmentAmount == 0)
+        {
             return true; // do nothing
+        }
+
         if (adjustmentAmount < 0)
         {
             // shrink buffer

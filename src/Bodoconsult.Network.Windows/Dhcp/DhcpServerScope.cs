@@ -5,6 +5,9 @@ using Bodoconsult.Network.Windows.Dhcp.Native;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// DHCP server scope
+/// </summary>
 public class DhcpServerScope : IDhcpServerScope
 {
     /// <summary>
@@ -16,46 +19,94 @@ public class DhcpServerScope : IDhcpServerScope
     /// </summary>
     public static TimeSpan DefaultLeaseDuration => TimeSpan.FromDays(8);
 
-
+    /// <summary>
+    /// Associated DHCP server IP address
+    /// </summary>
     public DhcpServer Server { get; }
+
+    /// <summary>
+    /// Associated DHCP server IP address
+    /// </summary>
     IDhcpServer IDhcpServerScope.Server => Server;
+
+    /// <summary>
+    /// Associated DHCP server IP address
+    /// </summary>
     public DhcpServerIpAddress Address { get; }
 
     private SubnetInfo _info;
     private SubnetInfo Info => _info ??= GetInfo(Server, Address);
+
+    /// <summary>
+    /// IP mask
+    /// </summary>
     public DhcpServerIpMask Mask => Info.Mask;
+
+    /// <summary>
+    /// Scope name
+    /// </summary>
     public string Name
     {
         get => Info.Name;
         set => SetName(value);
     }
+
+    /// <summary>
+    /// Comment
+    /// </summary>
     public string Comment
     {
         get => Info.Comment;
         set => SetComment(value);
     }
+
+    /// <summary>
+    /// The current state of the scope
+    /// </summary>
     public DhcpServerScopeState State => Info.State;
     private DhcpServerIpRange? _ipRange;
+
+    /// <summary>
+    /// Current IP range
+    /// </summary>
     public DhcpServerIpRange IpRange
     {
         get => (_ipRange ??= GetIpRange());
         set => SetIpRange(value);
     }
 
+    /// <summary>
+    /// Lease duration
+    /// </summary>
     public TimeSpan? LeaseDuration
     {
         get => GetLeaseDuration(Server, Address);
         set => SetLeaseDuration(Server, Address, value);
     }
+
+    /// <summary>
+    /// Time delay offer
+    /// </summary>
     public TimeSpan TimeDelayOffer
     {
         get => GetTimeDelayOffer(Server, Address);
         set => SetTimeDelayOffer(Server, Address, value);
     }
 
+    /// <summary>
+    /// The primary host
+    /// </summary>
     public IDhcpServerHost PrimaryHost => Info.PrimaryHost;
     private DhcpServerDnsSettings _dnsSettings;
+
+    /// <summary>
+    /// DNS settings
+    /// </summary>
     public IDhcpServerDnsSettings DnsSettings => _dnsSettings ??= DhcpServerDnsSettings.GetScopeDnsSettings(this);
+
+    /// <summary>
+    /// Is quarantine on
+    /// </summary>
     public bool QuarantineOn => Info.QuarantineOn;
 
     /// <summary>
@@ -95,6 +146,9 @@ public class DhcpServerScope : IDhcpServerScope
         _info = info;
     }
 
+    /// <summary>
+    /// Activate the scope
+    /// </summary>
     public void Activate()
     {
         if (Info.State != DhcpServerScopeState.Enabled)
@@ -104,6 +158,9 @@ public class DhcpServerScope : IDhcpServerScope
         }
     }
 
+    /// <summary>
+    /// Deactivate the scope
+    /// </summary>
     public void Deactivate()
     {
         if (Info.State != DhcpServerScopeState.Disabled)
@@ -129,12 +186,23 @@ public class DhcpServerScope : IDhcpServerScope
             throw new DhcpServerException(nameof(Api.DhcpDeleteSubnet), result);
     }
 
+    /// <summary>
+    /// Get DHCP failover relationship
+    /// </summary>
+    /// <returns>DHCP failover relationship</returns>
     public IDhcpServerFailoverRelationship GetFailoverRelationship()
         => DhcpServerFailoverRelationship.GetFailoverRelationship(Server, Address);
 
+    /// <summary>
+    /// Get DHCP failover statistics
+    /// </summary>
+    /// <returns>DHCP failover statistics</returns>
     public IDhcpServerScopeFailoverStatistics GetFailoverStatistics()
         => DhcpServerScopeFailoverStatistics.GetScopeFailoverStatistics(Server, this);
 
+    /// <summary>
+    /// Replicate a DHCP failover partner server
+    /// </summary>
     public void ReplicateFailoverPartner()
         => DhcpServerFailoverRelationship.ReplicateScopeRelationship((DhcpServerFailoverRelationship)GetFailoverRelationship(), this);
 
@@ -186,7 +254,6 @@ public class DhcpServerScope : IDhcpServerScope
     /// Configures a failover relationship for this scope
     /// </summary>
     /// <param name="partnerServer">The failover partner server</param>
-    /// <param name="name">Name of the failover relationship</param>
     /// <param name="sharedSecret">Secret used by the relationship</param>
     /// <param name="mode">Failover mode to configure</param>
     /// <param name="modePercentage">Percentage argument for the failover mode</param>
@@ -255,25 +322,30 @@ public class DhcpServerScope : IDhcpServerScope
 
     private void SetIpRange(DhcpServerIpRange ipRange)
     {
-        if (IpRange != ipRange)
+        if (IpRange == ipRange)
         {
-            var scopeRange = Mask.GetDhcpIpRange(Address);
-
-            if (!scopeRange.Contains(ipRange))
-                throw new ArgumentOutOfRangeException(nameof(ipRange), "The supplied range is invalid for this subnet");
-
-            AddSubnetScopeIpRangeElement(Server, Address, ipRange);
-
-            // update cache
-            _ipRange = ipRange;
+            return;
         }
+        var scopeRange = Mask.GetDhcpIpRange(Address);
+
+        if (!scopeRange.Contains(ipRange))
+        {
+            throw new ArgumentOutOfRangeException(nameof(ipRange), "The supplied range is invalid for this subnet");
+        }
+
+        AddSubnetScopeIpRangeElement(Server, Address, ipRange);
+
+        // update cache
+        _ipRange = ipRange;
     }
 
     internal void ReplicateTo(DhcpServerScope destinationScope)
     {
         // can only replicate identical subnets
         if (Address != destinationScope.Address)
+        {
             throw new ArgumentException("Scopes are incompatible and cannot be replicated", nameof(destinationScope));
+        }
 
         // replicate properties
         if (!Name.Equals(destinationScope.Name, StringComparison.Ordinal) || !Comment.Equals(destinationScope.Comment, StringComparison.Ordinal) || QuarantineOn != destinationScope.QuarantineOn)
@@ -284,34 +356,49 @@ public class DhcpServerScope : IDhcpServerScope
 
         // replicate address
         if (IpRange != destinationScope.IpRange)
+        {
             destinationScope.IpRange = IpRange;
+        }
 
         // replicate exclusions
         var destExclusions = destinationScope.ExcludedIpRanges.ToList();
         var srcExclusions = ExcludedIpRanges.ToList();
         // remove exclusions
         foreach (var range in destExclusions.Except(srcExclusions))
+        {
             destinationScope.ExcludedIpRanges.RemoveExcludedIpRange(range);
+        }
+
         // add exclusions
         foreach (var range in srcExclusions.Except(destExclusions))
+        {
             destinationScope.ExcludedIpRanges.AddExcludedIpRange(range);
+        }
 
         // replicate option values
         var destOptions = destinationScope.Options.ToDictionary(o => o.OptionId);
         var srcOptions = Options.ToDictionary(o => o.OptionId);
         // remove option values
         foreach (var optionId in destOptions.Keys.Except(srcOptions.Keys))
+        {
             destinationScope.Options.RemoveOptionValue(optionId);
+        }
+
         // add option values
         foreach (var optionId in srcOptions.Keys.Except(destOptions.Keys))
+        {
             destinationScope.Options.AddOrSetOptionValue(srcOptions[optionId]);
+        }
+
         // update option values
         foreach (var optionId in srcOptions.Keys.Intersect(destOptions.Keys))
         {
             var srcOption = srcOptions[optionId];
             var dstOption = destOptions[optionId];
             if (!srcOption.Values.SequenceEqual(dstOption.Values))
+            {
                 destinationScope.Options.AddOrSetOptionValue(srcOption);
+            }
         }
 
         // replicate reservations
@@ -321,23 +408,30 @@ public class DhcpServerScope : IDhcpServerScope
         foreach (var address in srcReservations.Keys.Intersect(destReservations.Keys))
         {
             // remove from destination (and re-create later)
-            if (srcReservations[address].HardwareAddress != destReservations[address].HardwareAddress)
+            if (srcReservations[address].HardwareAddress == destReservations[address].HardwareAddress)
             {
-                var destReservation = destReservations[address];
-                destReservation.Delete();
-                destReservations.Remove(address);
+                continue;
             }
+
+            var destReservation = destReservations[address];
+            destReservation.Delete();
+            destReservations.Remove(address);
         }
         // remove reservations
         foreach (var address in destReservations.Keys.Except(srcReservations.Keys))
+        {
             destReservations[address].Delete();
+        }
+
         // add reservations
         foreach (var address in srcReservations.Keys.Except(destReservations.Keys))
         {
             var srcReservation = srcReservations[address];
             var destReservation = destinationScope.Reservations.AddReservation(srcReservation.Address, srcReservation.HardwareAddress, srcReservation.AllowedClientTypes);
             foreach (var optionValue in srcReservation.Options.ToList())
+            {
                 destReservation.Options.AddOrSetOptionValue(optionValue);
+            }
         }
         // update reservation options
         foreach (var address in srcReservations.Keys.Intersect(destReservations.Keys))
@@ -349,17 +443,25 @@ public class DhcpServerScope : IDhcpServerScope
 
             // remove option values
             foreach (var optionId in destResOptions.Keys.Except(srcResOptions.Keys))
+            {
                 destRes.Options.RemoveOptionValue(optionId);
+            }
+
             // add option values
             foreach (var optionId in srcResOptions.Keys.Except(destResOptions.Keys))
+            {
                 destRes.Options.AddOrSetOptionValue(srcResOptions[optionId]);
+            }
+
             // update option values
             foreach (var optionId in srcResOptions.Keys.Intersect(destResOptions.Keys))
             {
                 var srcResOption = srcResOptions[optionId];
                 var destResOption = destResOptions[optionId];
                 if (!srcResOption.Values.SequenceEqual(destResOption.Values))
+                {
                     destRes.Options.AddOrSetOptionValue(srcResOption);
+                }
             }
         }
     }
@@ -410,14 +512,18 @@ public class DhcpServerScope : IDhcpServerScope
             subnetInfo: in scopeInfo);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpCreateSubnet), result);
+        }
 
         // add ip range
         AddSubnetScopeIpRangeElement(server, subnetAddress, ipRange);
 
         // set time delay offer
         if (timeDelayOffer.TotalMilliseconds != 0)
+        {
             SetTimeDelayOffer(server, subnetAddress, timeDelayOffer);
+        }
 
         // set lease duration
         SetLeaseDuration(server, subnetAddress, leaseDuration);
@@ -436,19 +542,27 @@ public class DhcpServerScope : IDhcpServerScope
             elementsTotal: out _);
 
         if (result == DhcpErrors.ErrorNoMoreItems || result == DhcpErrors.EptSNotRegistered)
+        {
             yield break;
+        }
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpEnumSubnets), result);
+        }
 
         try
         {
             if (elementsRead == 0)
+            {
                 yield break;
+            }
 
             using var enumInfo = enumInfoPtr.MarshalToStructure<DhcpIpArray>();
             foreach (var scopeAddress in enumInfo.Elements)
+            {
                 yield return new DhcpServerScope(server, scopeAddress.AsNetworkToIpAddress());
+            }
         }
         finally
         {
@@ -466,7 +580,9 @@ public class DhcpServerScope : IDhcpServerScope
     internal static IEnumerable<DhcpServerIpRange> EnumSubnetElements(DhcpServer server, DhcpServerIpAddress address, DhcpSubnetElementType enumElementType)
     {
         if (server.IsCompatible(DhcpServerVersions.Windows2008))
+        {
             return EnumSubnetElementsV5(server, address, enumElementType);
+        }
         return EnumSubnetElementsV0(server, address, enumElementType);
     }
 
@@ -483,19 +599,27 @@ public class DhcpServerScope : IDhcpServerScope
             elementsTotal: out _);
 
         if (result == DhcpErrors.ErrorNoMoreItems)
+        {
             yield break;
+        }
 
         if (result != DhcpErrors.Success && result != DhcpErrors.ErrorMoreData)
+        {
             throw new DhcpServerException(nameof(Api.DhcpEnumSubnetElements), result);
+        }
 
         try
         {
             if (elementsRead == 0)
+            {
                 yield break;
+            }
 
             using var elements = elementsPtr.MarshalToStructure<DhcpSubnetElementInfoArray>();
             foreach (var element in elements.Elements)
+            {
                 yield return DhcpServerIpRange.FromNative(element);
+            }
         }
         finally
         {

@@ -76,13 +76,36 @@ public interface IDhcpServerPacket
     /// Boot file name; "generic" name or null in DHCPDISCOVER, fully qualified directory-path name in DHCPOFFER (FILE)
     /// </summary>
     string FileName { get; }
-        
+    
+    /// <summary>
+    /// Cookie for options magic
+    /// </summary>
     int OptionsMagicCookie { get; }
         
+    /// <summary>
+    /// Type of packet message
+    /// </summary>
     DhcpServerPacketMessageTypes DhcpMessageType { get; }
 
+    /// <summary>
+    /// Packet options
+    /// </summary>
     ReadOnlyCollection<DhcpServerPacketOption> Options { get; }
+
+    /// <summary>
+    /// Try to get options
+    /// </summary>
+    /// <param name="optionId">Requested option ID</param>
+    /// <param name="option">Option or null</param>
+    /// <returns>True on success else false</returns>
     bool TryGetOption(DhcpServerOptionIds optionId, out DhcpServerPacketOption option);
+
+    /// <summary>
+    /// Try to get options
+    /// </summary>
+    /// <param name="optionId">Requested option ID</param>
+    /// <param name="option">Option or null</param>
+    /// <returns>True on success else false</returns>
     bool TryGetOption(byte optionId, out DhcpServerPacketOption option);
 
 }
