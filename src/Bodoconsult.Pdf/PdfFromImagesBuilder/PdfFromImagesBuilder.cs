@@ -14,21 +14,19 @@ namespace Bodoconsult.Pdf.PdfFromImagesBuilder
     /// </summary>
     public class PdfFromImagesBuilder
     {
+        //public void AddBackgroundImageFromByteArray(PdfPage page, byte[] imgfile)
+        //{
+        //    if (!ximageLoaded)
+        //    {
+        //        MemoryStream ms = new System.IO.MemoryStream(imgfile);
+        //        ms.Position = 0;
+        //        backimg = XImage.FromStream(() => ms);
+        //        ms.Dispose();
+        //        ximageLoaded = true;
+        //    }
 
-
-        public void AddBackgroundImageFromByteArray(PdfPage page, byte[] imgfile)
-        {
-            if (!ximageLoaded)
-            {
-                MemoryStream ms = new System.IO.MemoryStream(imgfile);
-                ms.Position = 0;
-                backimg = XImage.FromStream(() => ms);
-                ms.Dispose();
-                ximageLoaded = true;
-            }
-
-            XGraphics gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
-            gfx.DrawImage(backimg, 0, 0, page.Width, page.Height);
-        }
+        //    XGraphics gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
+        //    gfx.DrawImage(backimg, 0, 0, page.Width, page.Height);
+        //}
     }
 }
