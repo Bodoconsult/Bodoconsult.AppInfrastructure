@@ -113,9 +113,6 @@ public class AdTree
         BuildAdTree().Wait();
     }
 
-
-
-
     /// <summary>
     /// Add users to <see cref="AdTree"/>
     /// </summary>

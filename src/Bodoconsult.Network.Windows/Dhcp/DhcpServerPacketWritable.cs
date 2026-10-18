@@ -8,18 +8,35 @@ using System.Runtime.InteropServices;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
-public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWritable, IDhcpServerPacketRawWritable
+/// <summary>
+/// Write packet
+/// </summary>
+public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketRawWritable
 {
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="pointer">Pointer</param>
+    /// <param name="size">Size</param>
     public DhcpServerPacketWritable(IntPtr pointer, int size) : base(pointer, size)
     {
-        BufferModified = false;
+        IsBufferModified = false;
     }
 
-    public bool BufferModified { get; private set; }
+    /// <summary>
+    /// Is buffer modified
+    /// </summary>
+    public bool IsBufferModified { get; private set; }
 
+    /// <summary>
+    /// Write the bugffer
+    /// </summary>
+    /// <param name="packet">Packet</param>
+    /// <param name="packetSize">Packet size</param>
+    /// <exception cref="OutOfMemoryException"></exception>
     public void WriteBuffer(IntPtr packet, ref uint packetSize)
     {
-        if (BufferInternal is null || !BufferModified)
+        if (BufferInternal is null || !IsBufferModified)
         {
             return;
         }
@@ -59,7 +76,7 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
                 Array.Copy(buffer, index + shrinkBytes, buffer, index, length - index);
             Array.Clear(buffer, length, shrinkBytes);
 
-            BufferModified = true;
+            IsBufferModified = true;
         }
         else
         {
@@ -76,7 +93,7 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
             Length = length + adjustmentAmount;
             Array.Clear(buffer, index, adjustmentAmount);
 
-            BufferModified = true;
+            IsBufferModified = true;
         }
         return true;
     }
@@ -211,12 +228,27 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
 
     #region TryAddOption
 
+    /// <summary>
+    /// Try to add an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added else false</returns>
     public bool TryAddOption(DhcpServerOptionIds optionId, byte[] data)
     {
         if (!TryGetOptionIndex(DhcpServerOptionIds.End, out var endIndex))
+        {
             endIndex = GetLength();
+        }
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
+
+    /// <summary>
+    /// Try to add an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added else false</returns>
 
     public bool TryAddOption(DhcpServerOptionIds optionId, long data)
     {
@@ -225,6 +257,12 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added else false</returns>
     public bool TryAddOption(DhcpServerOptionIds optionId, int data)
     {
         if (!TryGetOptionIndex(DhcpServerOptionIds.End, out var endIndex))
@@ -232,6 +270,12 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added else false</returns>
     public bool TryAddOption(DhcpServerOptionIds optionId, short data)
     {
         if (!TryGetOptionIndex(DhcpServerOptionIds.End, out var endIndex))
@@ -239,12 +283,25 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added else false</returns>
     public bool TryAddOption(DhcpServerOptionIds optionId, byte data)
     {
         if (!TryGetOptionIndex(DhcpServerOptionIds.End, out var endIndex))
             endIndex = GetLength();
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
+
+    /// <summary>
+    /// Try to add an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added else false</returns>
 
     public bool TryAddOption(DhcpServerOptionIds optionId, string data)
     {
@@ -253,13 +310,25 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
-    public bool TryAddOption(DhcpServerOptionIds optionId, DhcpServerIpAddress data) 
+    /// <summary>
+    /// Try to add an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added else false</returns>
+    public bool TryAddOption(DhcpServerOptionIds optionId, DhcpServerIpAddress data)
         => TryAddOption(optionId, (int)data.Native);
 
     #endregion
 
     #region TryAddOrUpdateOption
 
+    /// <summary>
+    /// Try to add or update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added or updated else false</returns>
     public bool TryAddOrUpdateOption(DhcpServerOptionIds optionId, byte[] data)
     {
         if (TryGetOptionIndex(optionId, out var index))
@@ -269,6 +338,12 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add or update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added or updated else false</returns>
     public bool TryAddOrUpdateOption(DhcpServerOptionIds optionId, long data)
     {
         if (TryGetOptionIndex(optionId, out var index))
@@ -278,6 +353,12 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add or update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added or updated else false</returns>
     public bool TryAddOrUpdateOption(DhcpServerOptionIds optionId, int data)
     {
         if (TryGetOptionIndex(optionId, out var index))
@@ -287,6 +368,12 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add or update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added or updated else false</returns>
     public bool TryAddOrUpdateOption(DhcpServerOptionIds optionId, short data)
     {
         if (TryGetOptionIndex(optionId, out var index))
@@ -296,24 +383,53 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add or update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added or updated else false</returns>
     public bool TryAddOrUpdateOption(DhcpServerOptionIds optionId, byte data)
     {
         if (TryGetOptionIndex(optionId, out var index))
+        {
             return TryWriteOption(optionId, data, index, isUpdate: true);
+        }
+
         if (!TryGetOptionIndex(DhcpServerOptionIds.End, out var endIndex))
+        {
             endIndex = GetLength();
+        }
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add or update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added or updated else false</returns>
     public bool TryAddOrUpdateOption(DhcpServerOptionIds optionId, string data)
     {
         if (TryGetOptionIndex(optionId, out var index))
+        {
             return TryWriteOption(optionId, data, index, isUpdate: true);
+        }
+
         if (!TryGetOptionIndex(DhcpServerOptionIds.End, out var endIndex))
+        {
             endIndex = GetLength();
+        }
+
         return TryWriteOption(optionId, data, endIndex, isUpdate: false);
     }
 
+    /// <summary>
+    /// Try to add or update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was added or updated else false</returns>
     public bool TryAddOrUpdateOption(DhcpServerOptionIds optionId, DhcpServerIpAddress data)
         => TryAddOrUpdateOption(optionId, (int)data.Native);
 
@@ -321,54 +437,79 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
 
     #region TryUpdateOption
 
+    /// <summary>
+    /// Try to update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was updated else false</returns>
     public bool TryUpdateOption(DhcpServerOptionIds optionId, byte[] data)
     {
-        if (TryGetOptionIndex(optionId, out var index))
-            return TryWriteOption(optionId, data, index, true);
-
-        return false;
+        return TryGetOptionIndex(optionId, out var index) && TryWriteOption(optionId, data, index, true);
     }
 
+    /// <summary>
+    /// Try to update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was updated else false</returns>
     public bool TryUpdateOption(DhcpServerOptionIds optionId, long data)
     {
-        if (TryGetOptionIndex(optionId, out var index))
-            return TryWriteOption(optionId, data, index, true);
-
-        return false;
+        return TryGetOptionIndex(optionId, out var index) && TryWriteOption(optionId, data, index, true);
     }
+
+    /// <summary>
+    /// Try to update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was updated else false</returns>
 
     public bool TryUpdateOption(DhcpServerOptionIds optionId, int data)
     {
-        if (TryGetOptionIndex(optionId, out var index))
-            return TryWriteOption(optionId, data, index, true);
-
-        return false;
+        return TryGetOptionIndex(optionId, out var index) && TryWriteOption(optionId, data, index, true);
     }
 
+    /// <summary>
+    /// Try to update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was updated else false</returns>
     public bool TryUpdateOption(DhcpServerOptionIds optionId, short data)
     {
-        if (TryGetOptionIndex(optionId, out var index))
-            return TryWriteOption(optionId, data, index, true);
-
-        return false;
+        return TryGetOptionIndex(optionId, out var index) && TryWriteOption(optionId, data, index, true);
     }
 
+    /// <summary>
+    /// Try to update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was updated else false</returns>
     public bool TryUpdateOption(DhcpServerOptionIds optionId, byte data)
     {
-        if (TryGetOptionIndex(optionId, out var index))
-            return TryWriteOption(optionId, data, index, true);
-
-        return false;
+        return TryGetOptionIndex(optionId, out var index) && TryWriteOption(optionId, data, index, true);
     }
 
+    /// <summary>
+    /// Try to update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was updated else false</returns>
     public bool TryUpdateOption(DhcpServerOptionIds optionId, string data)
     {
-        if (TryGetOptionIndex(optionId, out var index))
-            return TryWriteOption(optionId, data, index, true);
-
-        return false;
+        return TryGetOptionIndex(optionId, out var index) && TryWriteOption(optionId, data, index, true);
     }
 
+    /// <summary>
+    /// Try to update an option
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
+    /// <param name="data">Option data</param>
+    /// <returns>True if the option was updated else false</returns>
     public bool TryUpdateOption(DhcpServerOptionIds optionId, DhcpServerIpAddress data)
         => TryUpdateOption(optionId, (int)data.Native);
 
@@ -387,12 +528,16 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
             case DhcpServerOptionIds.End:
                 // 0-byte fixed length
                 if (dataLength != 0)
+                {
                     return false;
+                }
 
                 if (!isUpdate)
                 {
                     if (!TryAdjustBuffer(index, 1))
+                    {
                         return false;
+                    }
 
                     buffer[index] = (byte)optionId;
                 }
@@ -403,18 +548,22 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
             case DhcpServerOptionIds.TimeOffset:
                 // 4-byte fixed length
                 if (dataLength != 4)
+                {
                     return false;
+                }
 
                 if (!isUpdate)
                 {
                     if (!TryAdjustBuffer(index, 5))
+                    {
                         return false;
+                    }
 
                     buffer[index] = (byte)optionId;
                 }
 
                 dataIndex = ++index;
-                BufferModified = true;
+                IsBufferModified = true;
                 return true;
             default:
                 // variable length
@@ -422,33 +571,38 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
                 if (!isUpdate)
                 {
                     if (dataLength > byte.MaxValue)
+                    {
                         return false;
+                    }
 
                     if (!TryAdjustBuffer(index, 2 + dataLength))
+                    {
                         return false;
+                    }
 
                     buffer[index++] = (byte)optionId;
                     buffer[index++] = (byte)dataLength;
                     dataIndex = index;
-                    BufferModified = true;
+                    IsBufferModified = true;
                     return true;
                 }
 
                 var existingLength = buffer[++index];
 
-                if (dataLength == 0)
+                switch (dataLength)
                 {
-                    if (existingLength == 0)
-                        return true; // no update
-                    return TryAdjustBuffer(++index, -existingLength); // remove data
+                    case 0:
+                        return existingLength == 0 ||
+                               // no update
+                               TryAdjustBuffer(++index, -existingLength); // remove data
+                    case > byte.MaxValue:
+                        return false;
                 }
 
-                if (dataLength > byte.MaxValue)
-                    return false;
                 if (existingLength == dataLength)
                 {
                     dataIndex = ++index;
-                    BufferModified = true;
+                    IsBufferModified = true;
                     return true;
                 }
 
@@ -456,7 +610,9 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
                 buffer[index++] = (byte)dataLength;
 
                 if (!TryAdjustBuffer(index, dataLength - existingLength))
+                {
                     return false;
+                }
 
                 dataIndex = index;
                 return true;
@@ -467,70 +623,75 @@ public class DhcpServerPacketWritable : DhcpServerPacket, IDhcpServerPacketWrita
     {
         var dataLength = data?.Length ?? 0;
 
-        if (TryPrepWriteOption(optionId, dataLength, index, isUpdate, out var dataIndex))
+        if (!TryPrepWriteOption(optionId, dataLength, index, isUpdate, out var dataIndex))
         {
-            if (dataLength > 0)
-                Array.Copy(data, 0, BufferInternal ?? Buffer, dataIndex, dataLength);
+            return false;
+        }
 
+        if (dataLength <= 0)
+        {
             return true;
         }
 
-        return false;
+        ArgumentNullException.ThrowIfNull(data);
+        Array.Copy(data, 0, BufferInternal ?? Buffer, dataIndex, dataLength);
+
+        return true;
     }
 
     private bool TryWriteOption(DhcpServerOptionIds optionId, long data, int index, bool isUpdate)
     {
-        if (TryPrepWriteOption(optionId, BitHelper.Int64Size, index, isUpdate, out var dataIndex))
+        if (!TryPrepWriteOption(optionId, BitHelper.Int64Size, index, isUpdate, out var dataIndex))
         {
-            BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
-            return true;
+            return false;
         }
 
-        return false;
+        BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
+        return true;
     }
 
     private bool TryWriteOption(DhcpServerOptionIds optionId, int data, int index, bool isUpdate)
     {
-        if (TryPrepWriteOption(optionId, BitHelper.Int32Size, index, isUpdate, out var dataIndex))
+        if (!TryPrepWriteOption(optionId, BitHelper.Int32Size, index, isUpdate, out var dataIndex))
         {
-            BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
-            return true;
+            return false;
         }
 
-        return false;
+        BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
+        return true;
     }
 
     private bool TryWriteOption(DhcpServerOptionIds optionId, short data, int index, bool isUpdate)
     {
-        if (TryPrepWriteOption(optionId, BitHelper.Int16Size, index, isUpdate, out var dataIndex))
+        if (!TryPrepWriteOption(optionId, BitHelper.Int16Size, index, isUpdate, out var dataIndex))
         {
-            BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
-            return true;
+            return false;
         }
 
-        return false;
+        BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
+        return true;
     }
 
     private bool TryWriteOption(DhcpServerOptionIds optionId, byte data, int index, bool isUpdate)
     {
-        if (TryPrepWriteOption(optionId, BitHelper.ByteSize, index, isUpdate, out var dataIndex))
+        if (!TryPrepWriteOption(optionId, BitHelper.ByteSize, index, isUpdate, out var dataIndex))
         {
-            BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
-            return true;
+            return false;
         }
 
-        return false;
+        BitHelper.Write(BufferInternal ?? Buffer, dataIndex, data);
+        return true;
     }
 
     private bool TryWriteOption(DhcpServerOptionIds optionId, string data, int index, bool isUpdate)
     {
-        if (TryPrepWriteOption(optionId, data.Length, index, isUpdate, out var dataIndex))
+        if (!TryPrepWriteOption(optionId, data.Length, index, isUpdate, out var dataIndex))
         {
-            BitHelper.WriteAscii(BufferInternal ?? Buffer, dataIndex, data);
-            return true;
+            return false;
         }
 
-        return false;
+        BitHelper.WriteAscii(BufferInternal ?? Buffer, dataIndex, data);
+        return true;
     }
 
     #endregion

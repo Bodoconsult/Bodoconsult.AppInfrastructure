@@ -6,6 +6,9 @@ using System.Collections;
 
 namespace Bodoconsult.Network.Windows.Dhcp.Scope;
 
+/// <summary>
+/// Reservation related options value collections
+/// </summary>
 public class DhcpServerScopeReservationOptionValueCollection : IDhcpServerScopeReservationOptionValueCollection
 {
     /// <summary>
@@ -27,7 +30,15 @@ public class DhcpServerScopeReservationOptionValueCollection : IDhcpServerScopeR
     /// The associated DHCP scope
     /// </summary>
     IDhcpServerScope IDhcpServerScopeReservationOptionValueCollection.Scope => Scope;
+
+    /// <summary>
+    ///  The associated reservation
+    /// </summary>
     public DhcpServerScopeReservation Reservation { get; }
+
+    /// <summary>
+    ///  The associated reservation
+    /// </summary>
     IDhcpServerScopeReservation IDhcpServerScopeReservationOptionValueCollection.Reservation => Reservation;
 
     internal DhcpServerScopeReservationOptionValueCollection(DhcpServerScopeReservation reservation)
@@ -55,9 +66,19 @@ public class DhcpServerScopeReservationOptionValueCollection : IDhcpServerScopeR
     public IEnumerable<IDhcpServerOptionValue> GetDefaultOptionValues()
         => DhcpServerOptionValue.EnumScopeReservationDefaultOptionValues(Reservation);
 
+    /// <summary>
+    /// Get the vendore option values
+    /// </summary>
+    /// <param name="className">Class name</param>
+    /// <returns>Option values</returns>
     public IEnumerable<IDhcpServerOptionValue> GetUserOptionValues(string className)
         => DhcpServerOptionValue.EnumScopeReservationUserOptionValues(Reservation, className);
 
+    /// <summary>
+    /// Get the user option values
+    /// </summary>
+    /// <param name="vendorName">Class name</param>
+    /// <returns>Option values</returns>
     public IEnumerable<IDhcpServerOptionValue> GetVendorOptionValues(string vendorName)
         => DhcpServerOptionValue.EnumScopeReservationVendorOptionValues(Reservation, vendorName);
 
@@ -117,8 +138,17 @@ public class DhcpServerScopeReservationOptionValueCollection : IDhcpServerScopeR
     public IDhcpServerOptionValue GetVendorOptionValue(string vendorName, DhcpServerOptionIds optionId)
         => DhcpServerOptionValue.GetScopeReservationVendorOptionValue(Reservation, (int)optionId, vendorName);
 
+    /// <summary>
+    /// Set an option value
+    /// </summary>
+    /// <param name="value">Value to set</param>
     public void SetOptionValue(IDhcpServerOptionValue value)
         => DhcpServerOptionValue.SetScopeReservationOptionValue(Reservation, (DhcpServerOptionValue)value);
+
+    /// <summary>
+    /// Add or set an option value
+    /// </summary>
+    /// <param name="value">Option value</param>
     public void AddOrSetOptionValue(IDhcpServerOptionValue value)
         => DhcpServerOptionValue.SetScopeReservationOptionValue(Reservation, (DhcpServerOptionValue)value);
 
@@ -151,10 +181,25 @@ public class DhcpServerScopeReservationOptionValueCollection : IDhcpServerScopeR
     /// <param name="optionId">The identifier for the option value to retrieve</param>
     public void RemoveVendorOptionValue(string vendorName, DhcpServerOptionIds optionId)
         => DhcpServerOptionValue.DeleteScopeReservationVendorOptionValue(Reservation, (int)optionId, vendorName);
+
+    /// <summary>
+    /// Remove option value
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
     public void RemoveOptionValue(int optionId)
         => DhcpServerOptionValue.DeleteScopeReservationOptionValue(Reservation, optionId);
+
+    /// <summary>
+    /// Remove option value
+    /// </summary>
+    /// <param name="optionId">Option ID</param>
     public void RemoveOptionValue(DhcpServerOptionIds optionId)
         => DhcpServerOptionValue.DeleteScopeReservationOptionValue(Reservation, (int)optionId);
+
+    /// <summary>
+    /// Remove option value
+    /// </summary>
+    /// <param name="value">Option value</param>
     public void RemoveOptionValue(IDhcpServerOptionValue value)
         => DhcpServerOptionValue.DeleteScopeReservationOptionValue(Reservation, (DhcpServerOptionValue)value);
 

@@ -1,5 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+// <c> Based on http://www.nullify.net/Article/304 by Simon Soanes.
+//
+// (c) 2008 Simon Soanes, All Rights Reserved.  No warranties express or implied.
+// DO NOT redistribute this source code publically without a link to the origin and this copyright
+// notice fully intact, also please send any modifications back to me at simon@nullifynetwork.com
+// Including in your software is fine although attribution would be nice. </c>
+// 
 
 using System.Security;
 using Bodoconsult.Network.Windows.Cim;
@@ -16,20 +23,14 @@ namespace Bodoconsult.Network.Windows.Dns;
 /// System.Management Documentation: 
 /// http://msdn.microsoft.com/en-us/library/system.management.managementobjectcollection%28VS.71%29.aspx
 /// </remarks>
-/// <c> Based on http://www.nullify.net/Article/304 by Simon Soanes.
-///
-/// (c) 2008 Simon Soanes, All Rights Reserved.  No warranties express or implied.
-/// DO NOT redistribute this source code publically without a link to the origin and this copyright
-/// notice fully intact, also please send any modifications back to me at simon@nullifynetwork.com
-/// Including in your software is fine although attribution would be nice. </c>
-/// 
 public class DnsServer
 {
-
-    public string WmiPath { get; private set; }
-
     private readonly CimSession _cimSession;
 
+    /// <summary>
+    /// WMI path of the DNS server
+    /// </summary>
+    public string WmiPath { get; private set; }
 
     /// <summary>
     /// Create a new DNS Server connection
@@ -50,17 +51,14 @@ public class DnsServer
     /// <param name="password">The users password</param>
     public DnsServer(string server, string domain, string username, SecureString password)
     {
-        WmiPath = $@"\\{server}\Root\MicrosoftDNS"; 
+        WmiPath = $@"\\{server}\Root\MicrosoftDNS";
         _cimSession = WmiCimHelper.GetSession(domain, server, username, password);
-
-        //_cimSession = WmiCimHelper.GetSession("BCG-AD.DE", "BCGS02DC.BCG-AD.DE", "AdAdminRL", password);
     }
 
     /// <summary>
     /// The server this connection applies to
     /// </summary>
-    public string Server { get; } = "";
-
+    public string Server { get; } = string.Empty;
 
     /// <summary>
     /// Return a list of domains managed by this instance of MS DNS Server
@@ -68,11 +66,9 @@ public class DnsServer
     /// <returns></returns>
     public IList<DnsDomain> GetListOfDomains()
     {
-
-        var wql = "SELECT * FROM MicrosoftDNS_Zone";
+        const string wql = "SELECT * FROM MicrosoftDNS_Zone";
 
         var allDomains = WmiCimHelper.ExecuteQuery(_cimSession, WmiPath, wql);
-
 
         var domains = new List<DnsDomain>();
         foreach (var item in allDomains)
@@ -103,8 +99,6 @@ public class DnsServer
         }
 
         return records.ToArray();
-
-        ;
     }
 
 
@@ -133,7 +127,9 @@ public class DnsServer
     //    return null;
     //}
 
-        
+
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
         return Server;

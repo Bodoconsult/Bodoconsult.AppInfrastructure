@@ -6,9 +6,19 @@ using System.Collections;
 
 namespace Bodoconsult.Network.Windows.Dhcp.Scope;
 
+/// <summary>
+/// Collection of scopes for a DHCP server
+/// </summary>
 public class DhcpServerScopeCollection : IDhcpServerScopeCollection
 {
+    /// <summary>
+    /// The associated DHCP server
+    /// </summary>
     public DhcpServer Server { get; }
+
+    /// <summary>
+    /// The associated DHCP server
+    /// </summary>
     IDhcpServer IDhcpServerScopeCollection.Server => Server;
 
     internal DhcpServerScopeCollection(DhcpServer server)
@@ -30,8 +40,8 @@ public class DhcpServerScopeCollection : IDhcpServerScopeCollection
     /// <summary>
     /// Gets the DHCP scope with the associated scope address
     /// </summary>
-    /// <param name="scopeAddress"></param>
-    /// <returns></returns>
+    /// <param name="scopeAddress">IP address</param>
+    /// <returns>Scope instance or null</returns>
     public IDhcpServerScope GetScope(DhcpServerIpAddress scopeAddress)
         => DhcpServerScope.GetScope(Server, scopeAddress);
 
@@ -43,6 +53,7 @@ public class DhcpServerScopeCollection : IDhcpServerScopeCollection
     /// <returns>Newly created DHCP Scope</returns>
     public IDhcpServerScope AddScope(string name, DhcpServerIpRange ipRange)
         => DhcpServerScope.CreateScope(Server, name, ipRange);
+
     /// <summary>
     /// Creates a new DHCP Scope
     /// </summary>
@@ -52,6 +63,7 @@ public class DhcpServerScopeCollection : IDhcpServerScopeCollection
     /// <returns>Newly created DHCP Scope</returns>
     public IDhcpServerScope AddScope(string name, string comment, DhcpServerIpRange ipRange)
         => DhcpServerScope.CreateScope(Server, name, comment, ipRange);
+
     /// <summary>
     /// Creates a new DHCP Scope
     /// </summary>
@@ -61,6 +73,7 @@ public class DhcpServerScopeCollection : IDhcpServerScopeCollection
     /// <returns>Newly created DHCP Scope</returns>
     public IDhcpServerScope AddScope(string name, DhcpServerIpRange ipRange, DhcpServerIpMask mask)
         => DhcpServerScope.CreateScope(Server, name, ipRange, mask);
+
     /// <summary>
     /// Creates a new DHCP Scope
     /// </summary>
@@ -71,6 +84,7 @@ public class DhcpServerScopeCollection : IDhcpServerScopeCollection
     /// <returns>Newly created DHCP Scope</returns>
     public IDhcpServerScope AddScope(string name, string comment, DhcpServerIpRange ipRange, DhcpServerIpMask mask)
         => DhcpServerScope.CreateScope(Server, name, comment, ipRange, mask);
+
     /// <summary>
     /// Creates a new DHCP Scope
     /// </summary>
@@ -79,9 +93,10 @@ public class DhcpServerScopeCollection : IDhcpServerScopeCollection
     /// <param name="mask">Subnet mask to be associated with the DHCP Scope</param>
     /// <param name="timeDelayOffer">Milliseconds to wait before sending a lease offer (maximum 1 second)</param>
     /// <param name="leaseDuration">Number of seconds the lease is held for</param>
-    /// <returns></returns>
+    /// <returns>Newly created DHCP Scope</returns>
     public IDhcpServerScope AddScope(string name, DhcpServerIpRange ipRange, DhcpServerIpMask mask, TimeSpan timeDelayOffer, TimeSpan? leaseDuration)
         => DhcpServerScope.CreateScope(Server, name, ipRange, mask, timeDelayOffer, leaseDuration);
+    
     /// <summary>
     /// Creates a new DHCP Scope
     /// </summary>

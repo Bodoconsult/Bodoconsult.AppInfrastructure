@@ -116,5 +116,8 @@ public interface IDhcpServerClient
     /// Delete the client
     /// </summary>
     void Delete();
+
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
     string ToString();
 }

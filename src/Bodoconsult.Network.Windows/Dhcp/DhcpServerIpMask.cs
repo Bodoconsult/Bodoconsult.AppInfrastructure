@@ -145,6 +145,15 @@ public struct DhcpServerIpMask
     /// <returns>The fully qualified type name.</returns>
     public override string ToString() => BitHelper.IpAddressToString(_mask);
 
+    /// <summary>
+    /// Get an IP address from a subnet mask
+    /// </summary>
+    /// <param name="mask">Subnet mask</param>
     public static explicit operator DhcpServerIpAddress(DhcpServerIpMask mask) => new(mask._mask);
+
+    /// <summary>
+    /// Get a subnet mask from a mask
+    /// </summary>
+    /// <param name="mask">Subnet mask</param>
     public static explicit operator DhcpServerIpMask(string mask) => new(mask);
 }

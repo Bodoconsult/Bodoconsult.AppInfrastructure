@@ -19,6 +19,10 @@ public class DhcpServerOption : IDhcpServerOption
     /// The associated DHCP Server
     /// </summary>
     public DhcpServer Server { get; }
+
+    /// <summary>
+    /// The associated DHCP Server
+    /// </summary>
     IDhcpServer IDhcpServerOption.Server => Server;
 
     /// <summary>

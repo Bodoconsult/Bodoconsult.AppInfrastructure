@@ -766,9 +766,14 @@ public class DhcpServerScope : IDhcpServerScope
     private static void SetTimeDelayOffer(DhcpServer server, DhcpServerIpAddress address, TimeSpan timeDelayOffer)
     {
         if (timeDelayOffer.TotalMilliseconds < 0)
+        {
             throw new ArgumentOutOfRangeException(nameof(timeDelayOffer), "Time delay offer must be positive");
+        }
         if (timeDelayOffer.TotalMilliseconds > 1000)
-            throw new ArgumentOutOfRangeException(nameof(timeDelayOffer), "Time delay offer must be less than or equal to 1000");
+        {
+            throw new ArgumentOutOfRangeException(nameof(timeDelayOffer),
+                "Time delay offer must be less than or equal to 1000");
+        }
 
         var timeDelayOfferMilliseconds = (ushort)timeDelayOffer.TotalMilliseconds;
 
@@ -777,7 +782,9 @@ public class DhcpServerScope : IDhcpServerScope
             timeDelayInMilliseconds: timeDelayOfferMilliseconds);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpGetSubnetDelayOffer), result);
+        }
     }
 
     private static TimeSpan? GetLeaseDuration(DhcpServer server, DhcpServerIpAddress address)
@@ -788,7 +795,9 @@ public class DhcpServerScope : IDhcpServerScope
             var optionValue = (option.Values.FirstOrDefault() as DhcpServerOptionElementDWord)?.RawValue ?? -1;
 
             if (optionValue < 0)
+            {
                 return null;
+            }
             return TimeSpan.FromSeconds(optionValue);
         }
         catch (DhcpServerException ex) when (ex.ApiErrorId == (uint)DhcpErrors.ErrorFileNotFound)
@@ -800,7 +809,10 @@ public class DhcpServerScope : IDhcpServerScope
     private static void SetLeaseDuration(DhcpServer server, DhcpServerIpAddress address, TimeSpan? leaseDuration)
     {
         if (leaseDuration.HasValue && leaseDuration.Value.TotalMinutes < 1)
-            throw new ArgumentOutOfRangeException(nameof(leaseDuration), "Lease duration can be unlimited (null) or at least 1 minute");
+        {
+            throw new ArgumentOutOfRangeException(nameof(leaseDuration),
+                "Lease duration can be unlimited (null) or at least 1 minute");
+        }
 
         // lease duration in seconds (or -1 for unlimited/null)
         var leaseDurationSeconds = leaseDuration.HasValue ? (int)leaseDuration.Value.TotalSeconds : -1;
@@ -813,7 +825,9 @@ public class DhcpServerScope : IDhcpServerScope
     private static SubnetInfo GetInfo(DhcpServer server, DhcpServerIpAddress address)
     {
         if (server.IsCompatible(DhcpServerVersions.Windows2008R2))
+        {
             return GetInfoVq(server, address);
+        }
         return GetInfoV0(server, address);
     }
 
@@ -824,7 +838,9 @@ public class DhcpServerScope : IDhcpServerScope
             subnetInfo: out var subnetInfoPtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpGetSubnetInfo), result);
+        }
 
         try
         {
@@ -844,7 +860,9 @@ public class DhcpServerScope : IDhcpServerScope
             subnetInfo: out var subnetInfoPtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpGetSubnetInfoVQ), result);
+        }
 
         try
         {
@@ -860,9 +878,13 @@ public class DhcpServerScope : IDhcpServerScope
     private void SetInfo(SubnetInfo info)
     {
         if (Server.IsCompatible(DhcpServerVersions.Windows2008R2))
+        {
             SetInfoVq(info);
+        }
         else
+        {
             SetInfoV0(info);
+        }
 
         // update cache
         _info = info;
@@ -876,7 +898,9 @@ public class DhcpServerScope : IDhcpServerScope
             subnetInfo: in infoNative);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpSetSubnetInfo), result);
+        }
     }
 
     private void SetInfoVq(SubnetInfo info)
@@ -887,9 +911,13 @@ public class DhcpServerScope : IDhcpServerScope
             subnetInfo: in infoNative);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpSetSubnetInfoVQ), result);
+        }
     }
 
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString() => $"Scope [{Address}] {Name} ({Comment})";
 
     private class SubnetInfo

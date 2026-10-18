@@ -2,6 +2,9 @@
 
 namespace Bodoconsult.Network.Windows.Dhcp.Failover;
 
+/// <summary>
+/// Faliver over modes
+/// </summary>
 public enum DhcpServerFailoverMode
 {
     /// <summary>

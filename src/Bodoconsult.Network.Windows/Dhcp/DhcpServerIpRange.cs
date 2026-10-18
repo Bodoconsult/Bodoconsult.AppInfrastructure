@@ -54,7 +54,7 @@ public readonly struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
     /// </summary>
     public int MaxBootpAllowed => _maxBootpAllowed;
 
-    private DhcpServerIpRange(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress, DhcpServerIpRangeType type, int bootpClientsAllocated, int maxBootpAllowed)
+    private DhcpServerIpRange(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress, DhcpServerIpRangeType type, int bootpClientsAllocated = DefaultBootpClientsAllocated, int maxBootpAllowed = DefaultMaxBootpAllowed)
     {
         if (startAddress > endAddress)
         {
@@ -69,34 +69,120 @@ public readonly struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
         _maxBootpAllowed = maxBootpAllowed;
     }
 
-    private DhcpServerIpRange(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress, DhcpServerIpRangeType type)
-        : this(startAddress, endAddress, type, DefaultBootpClientsAllocated, DefaultMaxBootpAllowed) { }
+    /// <summary>
+    /// As DHCP and BOOTP scope
+    /// </summary>
+    /// <param name="startAddress">Start address</param>
+    /// <param name="endAddress">End address</param>
+    /// <param name="bootpClientsAllocated">BOOTP clients allowed?</param>
+    /// <param name="maxBootpAllowed">Maxmium BOOTP allwoed?</param>
+    /// <returns>IP addresse range</returns>
 
     public static DhcpServerIpRange AsDhcpAndBootpScope(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress, int bootpClientsAllocated = DefaultBootpClientsAllocated, int maxBootpAllowed = DefaultMaxBootpAllowed)
         => new(startAddress, endAddress, DhcpServerIpRangeType.ScopeDhcpAndBootp, bootpClientsAllocated, maxBootpAllowed);
+
+    /// <summary>
+    /// As DHCP and BOOTP scope
+    /// </summary>
+    /// <param name="address">Address</param>
+    /// <param name="mask">Subnet mask</param>
+    /// <param name="bootpClientsAllocated">BOOTP clients allowed?</param>
+    /// <param name="maxBootpAllowed">Maxmium BOOTP allwoed?</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsDhcpAndBootpScope(DhcpServerIpAddress address, DhcpServerIpMask mask, int bootpClientsAllocated = DefaultBootpClientsAllocated, int maxBootpAllowed = DefaultMaxBootpAllowed)
         => FromMask(address, mask, DhcpServerIpRangeType.ScopeDhcpAndBootp, bootpClientsAllocated, maxBootpAllowed);
+
+    /// <summary>
+    /// As DHCP and BOOTP scope
+    /// </summary>
+    /// <param name="cidrSubnet">CIDR subnet as string</param>
+    /// <param name="bootpClientsAllocated">BOOTP clients allowed?</param>
+    /// <param name="maxBootpAllowed">Maxmium BOOTP allwoed?</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsDhcpAndBootpScope(string cidrSubnet, int bootpClientsAllocated = DefaultBootpClientsAllocated, int maxBootpAllowed = DefaultMaxBootpAllowed)
         => FromCidr(cidrSubnet, DhcpServerIpRangeType.ScopeDhcpAndBootp, bootpClientsAllocated, maxBootpAllowed);
 
+    /// <summary>
+    /// As BOOTP scope
+    /// </summary>
+    /// <param name="startAddress">Start address</param>
+    /// <param name="endAddress">End address</param>
+    /// <param name="bootpClientsAllocated">BOOTP clients allowed?</param>
+    /// <param name="maxBootpAllowed">Maxmium BOOTP allwoed?</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsBootpScope(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress, int bootpClientsAllocated = DefaultBootpClientsAllocated, int maxBootpAllowed = DefaultMaxBootpAllowed)
         => new(startAddress, endAddress, DhcpServerIpRangeType.ScopeBootpOnly, bootpClientsAllocated, maxBootpAllowed);
+
+    /// <summary>
+    /// As DHCP and BOOTP scope
+    /// </summary>
+    /// <param name="address">Address</param>
+    /// <param name="mask">Subnet mask</param>
+    /// <param name="bootpClientsAllocated">BOOTP clients allowed?</param>
+    /// <param name="maxBootpAllowed">Maxmium BOOTP allwoed?</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsBootpScope(DhcpServerIpAddress address, DhcpServerIpMask mask, int bootpClientsAllocated = DefaultBootpClientsAllocated, int maxBootpAllowed = DefaultMaxBootpAllowed)
         => FromMask(address, mask, DhcpServerIpRangeType.ScopeBootpOnly, bootpClientsAllocated, maxBootpAllowed);
+
+    /// <summary>
+    /// As BOOTP scope
+    /// </summary>
+    /// <param name="cidrSubnet">CIDR subnet as string</param>
+    /// <param name="bootpClientsAllocated">BOOTP clients allowed?</param>
+    /// <param name="maxBootpAllowed">Maxmium BOOTP allwoed?</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsBootpScope(string cidrSubnet, int bootpClientsAllocated = DefaultBootpClientsAllocated, int maxBootpAllowed = DefaultMaxBootpAllowed)
         => FromCidr(cidrSubnet, DhcpServerIpRangeType.ScopeBootpOnly, bootpClientsAllocated, maxBootpAllowed);
 
+    /// <summary>
+    /// As DHCP scope
+    /// </summary>
+    /// <param name="startAddress">Start address</param>
+    /// <param name="endAddress">End address</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsDhcpScope(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress) =>
         new(startAddress, endAddress, DhcpServerIpRangeType.ScopeDhcpOnly);
+
+    /// <summary>
+    /// As DHCP scope
+    /// </summary>
+    /// <param name="address">Address</param>
+    /// <param name="mask">Subnet mask</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsDhcpScope(DhcpServerIpAddress address, DhcpServerIpMask mask)
         => FromMask(address, mask, DhcpServerIpRangeType.ScopeDhcpOnly);
+
+    /// <summary>
+    /// As DHCP scope
+    /// </summary>
+    /// <param name="cidrSubnet">CIDR subnet as string</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsDhcpScope(string cidrSubnet)
         => FromCidr(cidrSubnet, DhcpServerIpRangeType.ScopeDhcpOnly);
 
+    /// <summary>
+    /// As excluded range
+    /// </summary>
+    /// <param name="startAddress">Start address</param>
+    /// <param name="endAddress">End address</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsExcluded(DhcpServerIpAddress startAddress, DhcpServerIpAddress endAddress) =>
         new(startAddress, endAddress, DhcpServerIpRangeType.Excluded);
+
+    /// <summary>
+    /// As excluded range
+    /// </summary>
+    /// <param name="address">Address</param>
+    /// <param name="mask">Subnet mask</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsExcluded(DhcpServerIpAddress address, DhcpServerIpMask mask)
         => FromMask(address, mask, DhcpServerIpRangeType.Excluded);
+
+    /// <summary>
+    /// As excluded range
+    /// </summary>
+    /// <param name="cidrSubnet">CIDR subnet as string</param>
+    /// <returns>IP addresse range</returns>
     public static DhcpServerIpRange AsExcluded(string cidrSubnet)
         => FromCidr(cidrSubnet, DhcpServerIpRangeType.Excluded);
 

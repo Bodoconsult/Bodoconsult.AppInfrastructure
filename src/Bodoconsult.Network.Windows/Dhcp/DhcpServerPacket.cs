@@ -13,7 +13,7 @@ namespace Bodoconsult.Network.Windows.Dhcp;
 /// <summary>
 /// Packet
 /// </summary>
-public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacket, IDhcpServerPacketRaw
+public class DhcpServerPacket : MarshalByRefObject, IDhcpServerPacketRaw
 {
     internal const int MaxBufferLength = 4000;
 

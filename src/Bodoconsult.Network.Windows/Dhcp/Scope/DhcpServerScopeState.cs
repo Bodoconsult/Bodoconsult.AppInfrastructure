@@ -2,6 +2,9 @@
 
 namespace Bodoconsult.Network.Windows.Dhcp.Scope;
 
+/// <summary>
+/// Scope state enum
+/// </summary>
 public enum DhcpServerScopeState : uint
 {
     /// <summary>

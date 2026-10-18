@@ -222,11 +222,34 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
 
     internal DhcpIpAddress ToNativeAsNetwork() => new(_address);
 
+    /// <summary>
+    /// IP address as uint operator
+    /// </summary>
+    /// <param name="address">IP address</param>
     public static explicit operator uint(DhcpServerIpAddress address) => address._address;
+
+    /// <summary>
+    /// Uint as IP address operator
+    /// </summary>
+    /// <param name="address">Address</param>
     public static explicit operator DhcpServerIpAddress(uint address) => new(address);
+
+    /// <summary>
+    /// IP address as int operator
+    /// </summary>
+    /// <param name="address">IP address</param>
     public static explicit operator int(DhcpServerIpAddress address) => (int)address._address;
+
+    /// <summary>
+    /// Int as IP address operator
+    /// </summary>
+    /// <param name="address">Address</param>
     public static explicit operator DhcpServerIpAddress(int address) => new((uint)address);
 
+    /// <summary>
+    /// <see cref="IPAddress"/> as <see cref="DhcpServerIpAddress"/> operator
+    /// </summary>
+    /// <param name="address"></param>
     public static implicit operator DhcpServerIpAddress(IPAddress address) => new(address);
 
     /// <summary>
@@ -237,12 +260,53 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
         // IPAddress stores in host order; DhcpServerIpAddress always stores in network order
         => new(BitHelper.NetworkToHostOrder(address._address));
 
+    /// <summary>
+    /// IP address as subnet mask operator
+    /// </summary>
+    /// <param name="address">IP address</param>
     public static explicit operator DhcpServerIpMask(DhcpServerIpAddress address) => new(address._address);
+
+    /// <summary>
+    /// As string operator
+    /// </summary>
+    /// <param name="address">IP address</param>
     public static implicit operator string(DhcpServerIpAddress address) => address.ToString();
+
+    /// <summary>
+    /// From IP address to <see cref="DhcpServerIpAddress"/> operator
+    /// </summary>
+    /// <param name="address">IP address as string</param>
     public static implicit operator DhcpServerIpAddress(string address) => FromString(address);
 
+    /// <summary>
+    /// Is address a bigger than b
+    /// </summary>
+    /// <param name="a">Address a</param>
+    /// <param name="b">Address b</param>
+    /// <returns>True if a is bigger than b</returns>
     public static bool operator >(DhcpServerIpAddress a, DhcpServerIpAddress b) => a._address > b._address;
+
+    /// <summary>
+    /// Is address a bigger or equal than b
+    /// </summary>
+    /// <param name="a">Address a</param>
+    /// <param name="b">Address b</param>
+    /// <returns>True if a is bigger o equal than b</returns>
     public static bool operator >=(DhcpServerIpAddress a, DhcpServerIpAddress b) => a._address >= b._address;
+
+    /// <summary>
+    /// Is address a lower than b
+    /// </summary>
+    /// <param name="a">Address a</param>
+    /// <param name="b">Address b</param>
+    /// <returns>True if a is lower than b</returns>
     public static bool operator <(DhcpServerIpAddress a, DhcpServerIpAddress b) => a._address < b._address;
+
+    /// <summary>
+    /// Is address a lower or equal than b
+    /// </summary>
+    /// <param name="a">Address a</param>
+    /// <param name="b">Address b</param>
+    /// <returns>True if a is lower or equal than b</returns>
     public static bool operator <=(DhcpServerIpAddress a, DhcpServerIpAddress b) => a._address <= b._address;
 }

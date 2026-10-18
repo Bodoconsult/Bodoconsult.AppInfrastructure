@@ -2,9 +2,11 @@
 
 namespace Bodoconsult.Network.Windows.Interfaces;
 
+/// <summary>
+/// Raw writable packet interface
+/// </summary>
 public interface IDhcpServerPacketRawWritable : IDhcpServerPacketWritable, IDhcpServerPacketRaw
 {
-
     /// <summary>
     /// Attempts to increase or decrease the packet buffer at the <paramref name="index"/> by the <paramref name="adjustmentAmount"/>.
     /// </summary>
@@ -12,5 +14,4 @@ public interface IDhcpServerPacketRawWritable : IDhcpServerPacketWritable, IDhcp
     /// <param name="adjustmentAmount">The amount to adjust the buffer by. Positive numbers increase the buffer, negative numbers shrink the buffer.</param>
     /// <returns>true if the adjustment was successful</returns>
     bool TryAdjustBuffer(int index, int adjustmentAmount);
-
 }

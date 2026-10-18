@@ -19,7 +19,9 @@ public class DhcpServerFailoverRelationship : IDhcpServerFailoverRelationship
     /// </summary>
     public DhcpServer Server { get; }
 
-
+    /// <summary>
+    /// DHCP server instance
+    /// </summary>
     IDhcpServer IDhcpServerFailoverRelationship.Server => Server;
 
     /// <summary>
@@ -95,7 +97,7 @@ public class DhcpServerFailoverRelationship : IDhcpServerFailoverRelationship
     private readonly List<DhcpServerIpAddress> _scopeAddresses;
 
     /// <summary>
-    /// Scope
+    /// Scopes
     /// </summary>
     public IEnumerable<IDhcpServerScope> Scopes
     {
@@ -180,7 +182,6 @@ public class DhcpServerFailoverRelationship : IDhcpServerFailoverRelationship
     /// <summary>
     /// Redistribute free addresses
     /// </summary>
-    /// <exception cref="DhcpServerException"></exception>
     public void RedistributesFreeAddresses()
     {
         var result = Api.DhcpV4FailoverTriggerAddrAllocation(serverIpAddress: Server.Address,

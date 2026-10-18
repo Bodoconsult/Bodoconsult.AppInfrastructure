@@ -2,6 +2,9 @@
 
 namespace Bodoconsult.Network.Windows.Interfaces;
 
+/// <summary>
+/// Raw packet interface
+/// </summary>
 public interface IDhcpServerPacketRaw : IDhcpServerPacket
 {
     /// <summary>

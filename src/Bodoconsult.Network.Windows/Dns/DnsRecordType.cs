@@ -1,4 +1,13 @@
-﻿namespace Bodoconsult.Network.Windows.Dns;
+﻿
+// <c> Based on http://www.nullify.net/Article/304 by Simon Soanes.
+//
+// (c) 2008 Simon Soanes, All Rights Reserved.  No warranties express or implied.
+// DO NOT redistribute this source code publically without a link to the origin and this copyright
+// notice fully intact, also please send any modifications back to me at simon@nullifynetwork.com
+// Including in your software is fine although attribution would be nice. </c>
+// 
+
+namespace Bodoconsult.Network.Windows.Dns;
 
 /// <summary>
 /// The type of record in Microsoft (r) DNS server
@@ -25,6 +34,8 @@ public class DnsRecordType
     /// </summary>
     public string RecordMode { get; set; } = "IN";
 
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
         return $"{RecordMode} {_textRepresentation}";

@@ -8,10 +8,17 @@ using Bodoconsult.Network.Windows.Helpers;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// Packet options
+/// </summary>
 public class DhcpServerPacketOptions : MarshalByRefObject
 {
     private readonly DhcpServerOptions _options;
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="pointer">Pointer to the packet options</param>
     public DhcpServerPacketOptions(IntPtr pointer)
     {
         _options = pointer.MarshalToStructure<DhcpServerOptions>();

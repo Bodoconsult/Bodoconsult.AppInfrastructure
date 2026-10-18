@@ -1,12 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using Bodoconsult.Network.Windows.Dhcp;
 using Bodoconsult.Network.Windows.Dhcp.Options;
 using System.Collections.ObjectModel;
 
 namespace Bodoconsult.Network.Windows.Interfaces;
 
+/// <summary>
+/// Packet interface
+/// </summary>
 public interface IDhcpServerPacket
 {
     /// <summary>
@@ -109,5 +111,4 @@ public interface IDhcpServerPacket
     /// <param name="option">Option or null</param>
     /// <returns>True on success else false</returns>
     bool TryGetOption(byte optionId, out DhcpServerPacketOption option);
-
 }

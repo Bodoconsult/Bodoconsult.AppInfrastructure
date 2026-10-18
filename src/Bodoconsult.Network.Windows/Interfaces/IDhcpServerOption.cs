@@ -1,13 +1,18 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using Bodoconsult.Network.Windows.Dhcp;
 using Bodoconsult.Network.Windows.Dhcp.Options;
 
 namespace Bodoconsult.Network.Windows.Interfaces;
 
+/// <summary>
+/// DHCP server option
+/// </summary>
 public interface IDhcpServerOption
 {
+    /// <summary>
+    /// User Class associated with this Option
+    /// </summary>
     IDhcpServerClass Class { get; }
 
     /// <summary>

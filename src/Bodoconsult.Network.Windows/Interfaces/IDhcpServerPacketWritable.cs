@@ -5,6 +5,9 @@ using Bodoconsult.Network.Windows.Dhcp;
 
 namespace Bodoconsult.Network.Windows.Interfaces;
 
+/// <summary>
+/// Writeable packet interface
+/// </summary>
 public interface IDhcpServerPacketWritable : IDhcpServerPacket
 {
     /// <summary>
@@ -77,6 +80,8 @@ public interface IDhcpServerPacketWritable : IDhcpServerPacket
     /// </summary>
     new string FileName { get; set; }
 
+    /// <summary>
+    /// Cookie for options magic
+    /// </summary>
     new int OptionsMagicCookie { get; set; }
-
 }

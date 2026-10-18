@@ -2,6 +2,9 @@
 
 namespace Bodoconsult.Network.Windows.Dhcp.Failover;
 
+/// <summary>
+/// Failover state enums
+/// </summary>
 public enum DhcpServerFailoverState
 {
     /// <summary>
@@ -55,11 +58,11 @@ public enum DhcpServerFailoverState
     /// <summary>
     /// Reserved. Do not use.
     /// </summary>
-    [Obsolete]
+    [Obsolete("Reserved. Do not use.")]
     Paused,
     /// <summary>
     /// Reserved. Do not use.
     /// </summary>
-    [Obsolete]
+    [Obsolete("Reserved. Do not use.")]
     Shutdown
 }

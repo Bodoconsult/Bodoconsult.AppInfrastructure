@@ -2,6 +2,9 @@
 
 namespace Bodoconsult.Network.Windows.Dhcp.Options;
 
+/// <summary>
+/// DHCP server option IDs
+/// </summary>
 public enum DhcpServerOptionIds : byte
 {
     /// <summary>
