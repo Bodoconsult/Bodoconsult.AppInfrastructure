@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System.Diagnostics;
 using System.Runtime.Versioning;
 using Bodoconsult.Network.Windows.ActiveDirectory;
-using Bodoconsult.Network.Windows.ActiveDirectory.Helpers;
+using Bodoconsult.Network.Windows.Helpers;
 
 namespace Bodoconsult.Network.Windows.Tests;
 
@@ -15,7 +14,6 @@ public class AdTreeTests
     [Test]
     public void Ctor_ValidDefaultSetup_PropsSetCorrectlyCtor()
     {
-
         AdTree root = null;
 
         var buildOuStructure = Task.Factory.StartNew(() => { root = new AdTree(AdHelper.GetLdapDomainForCurrentUser(), false); });
@@ -35,14 +33,12 @@ public class AdTreeTests
             Debug.Print($"{prop.Key}: {prop.Value}");
         }
 
-
         Debug.Print("\r\n\r\nDHCP");
         foreach (var dhcp in domain.DhcpServers)
         {
             Debug.Print(dhcp.Name );
             Debug.Print(dhcp.DistinguishedName);
         }
-
 
         EnumerateTree(root, 0);
     }
@@ -51,7 +47,6 @@ public class AdTreeTests
 
     private static void EnumerateTree(AdTree node, int level)
     {
-
         var space = "".PadRight(level * 5);
         var space1 = "".PadRight((level + 1) * 5);
         var space2 = "".PadRight((level + 2) * 5);

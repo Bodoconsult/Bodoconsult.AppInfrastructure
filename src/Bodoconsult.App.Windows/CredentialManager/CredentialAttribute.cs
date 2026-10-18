@@ -2,6 +2,7 @@
 
 // Copyright (c) 2020 Widauer Patrick. All rights reserved.
 
+using Bodoconsult.App.Windows.CredentialManager.Win32.Types;
 using System;
 
 namespace Bodoconsult.App.Windows.CredentialManager;

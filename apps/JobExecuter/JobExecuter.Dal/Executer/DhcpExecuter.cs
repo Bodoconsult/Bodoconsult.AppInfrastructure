@@ -2,8 +2,9 @@
 
 using System;
 using System.Linq;
-using Bodoconsult.Network.Windows.ActiveDirectory.Helpers;
 using Bodoconsult.Network.Windows.Dhcp;
+using Bodoconsult.Network.Windows.Dhcp.Client;
+using Bodoconsult.Network.Windows.Helpers;
 using JobExecuter.Base.Interfaces;
 using JobExecuter.Dal.Model;
 

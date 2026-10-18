@@ -1,6 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
+using Bodoconsult.Network.Windows.Dhcp.Options;
+using Bodoconsult.Network.Windows.Helpers;
+using Bodoconsult.Network.Windows.Interfaces;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Text;

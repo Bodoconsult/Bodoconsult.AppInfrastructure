@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 using System.Runtime.Versioning;
-using Bodoconsult.Network.Windows.ActiveDirectory.Helpers;
+using Bodoconsult.Network.Windows.Helpers;
 
 namespace Bodoconsult.Network.Windows.Tests;
 

@@ -3,12 +3,23 @@
 
 using System.Net;
 using Bodoconsult.Network.Windows.Dhcp.Native;
+using Bodoconsult.Network.Windows.Helpers;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
-public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
+/// <summary>
+/// DHCP IP range
+/// </summary>
+public readonly struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
 {
+    /// <summary>
+    /// Default BOOTP clients allocated
+    /// </summary>
     public const int DefaultBootpClientsAllocated = 0;
+
+    /// <summary>
+    /// Default maxmimum BOOTP allowed
+    /// </summary>
     public const int DefaultMaxBootpAllowed = -1;
 
 #pragma warning disable IDE0032 // Use auto property
@@ -118,11 +129,15 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
     private static DhcpServerIpRange FromCidr(string cidrSubnet, DhcpServerIpRangeType type, int bootpClientsAllocated, int maxBootpAllowed)
     {
         if (string.IsNullOrEmpty(cidrSubnet))
+        {
             throw new ArgumentNullException(nameof(cidrSubnet));
+        }
 
         var slashIndex = cidrSubnet.IndexOf('/');
         if (slashIndex < 7 || !BitHelper.TryParseByteFromSubstring(cidrSubnet, ++slashIndex, cidrSubnet.Length - slashIndex, out var significantBits))
+        {
             throw new ArgumentException("Invalid CIDR subnet notation format");
+        }
 
         var address = DhcpServerIpAddress.FromNative(BitHelper.StringToIpAddress(cidrSubnet, 0, --slashIndex));
         var mask = DhcpServerIpMask.FromSignificantBits(significantBits);
@@ -130,6 +145,9 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
         return FromMask(address, mask, type, bootpClientsAllocated, maxBootpAllowed);
     }
 
+    /// <summary>
+    /// The smallest mask for the IP range
+    /// </summary>
     public DhcpServerIpMask SmallestMask
     {
         get
@@ -141,12 +159,46 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
         }
     }
 
+    /// <summary>
+    /// Check if the IP range contains the requested IP address
+    /// </summary>
+    /// <param name="address">IP address</param>
+    /// <returns>True if the range contains the IP address</returns>
     public bool Contains(IPAddress address) => Contains((DhcpServerIpAddress)address);
+
+    /// <summary>
+    /// Check if the IP range contains the requested IP address
+    /// </summary>
+    /// <param name="address">IP address as string</param>
+    /// <returns>True if the range contains the IP address</returns>
     public bool Contains(string address) => Contains(DhcpServerIpAddress.FromString(address));
+
+    /// <summary>
+    /// Check if the IP range contains the requested IP address
+    /// </summary>
+    /// <param name="address">IP address</param>
+    /// <returns>True if the range contains the IP address</returns>
     public bool Contains(int address) => Contains((DhcpServerIpAddress)address);
+
+    /// <summary>
+    /// Check if the IP range contains the requested IP address
+    /// </summary>
+    /// <param name="address">IP address</param>
+    /// <returns>True if the range contains the IP address</returns>
     public bool Contains(uint address) => Contains((DhcpServerIpAddress)address);
+
+    /// <summary>
+    /// Check if the IP range contains the requested IP range
+    /// </summary>
+    /// <param name="range">IP range</param>
+    /// <returns>True if the range contains the IP address</returns>
     public bool Contains(DhcpServerIpRange range) => range._endAddress >= range._startAddress && range._startAddress >= _startAddress && range._endAddress <= _endAddress;
 
+    /// <summary>
+    /// Check if the IP range contains the requested IP address
+    /// </summary>
+    /// <param name="address">IP address</param>
+    /// <returns>True if the range contains the IP address</returns>
     public bool Contains(DhcpServerIpAddress address) => address >= _startAddress && address <= _endAddress;
 
     internal static DhcpServerIpRange FromNative(DhcpSubnetElementData native)
@@ -262,7 +314,19 @@ public struct DhcpServerIpRange : IEquatable<DhcpServerIpRange>
             _maxBootpAllowed == other._maxBootpAllowed;
     }
 
+    /// <summary>
+    /// Equals operator
+    /// </summary>
+    /// <param name="lhs">Range 1</param>
+    /// <param name="rhs">Range 2</param>
+    /// <returns>True if both ranges are equal</returns>
     public static bool operator ==(DhcpServerIpRange lhs, DhcpServerIpRange rhs) => lhs.Equals(rhs);
 
+    /// <summary>
+    /// Not equal operator
+    /// </summary>
+    /// <param name="lhs">Range 1</param>
+    /// <param name="rhs">Range 2</param>
+    /// <returns>True if both ranges are not equal</returns>
     public static bool operator !=(DhcpServerIpRange lhs, DhcpServerIpRange rhs) => !lhs.Equals(rhs);
 }

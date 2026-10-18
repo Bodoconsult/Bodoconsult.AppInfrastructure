@@ -3,6 +3,8 @@
 
 using System.Runtime.InteropServices;
 using Bodoconsult.Network.Windows.Dhcp.Native;
+using Bodoconsult.Network.Windows.Dhcp.Options;
+using Bodoconsult.Network.Windows.Helpers;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 

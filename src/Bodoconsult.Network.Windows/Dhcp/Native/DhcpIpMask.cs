@@ -2,6 +2,7 @@
 
 
 using System.Runtime.InteropServices;
+using Bodoconsult.Network.Windows.Helpers;
 
 namespace Bodoconsult.Network.Windows.Dhcp.Native;
 

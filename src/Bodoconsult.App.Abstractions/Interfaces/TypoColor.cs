@@ -219,4 +219,20 @@ public class TypoColor: IEquatable<TypoColor>
     {
         return HashCode.Combine(A, R, G, B);
     }
+
+    /// <summary>
+    /// Equals operator
+    /// </summary>
+    /// <param name="lhs">Range 1</param>
+    /// <param name="rhs">Range 2</param>
+    /// <returns>True if both ranges are equal</returns>
+    public static bool operator ==(TypoColor lhs, TypoColor rhs) => lhs.Equals(rhs);
+
+    /// <summary>
+    /// Not equal operator
+    /// </summary>
+    /// <param name="lhs">Range 1</param>
+    /// <param name="rhs">Range 2</param>
+    /// <returns>True if both ranges are not equal</returns>
+    public static bool operator !=(TypoColor lhs, TypoColor rhs) => !lhs.Equals(rhs);
 }

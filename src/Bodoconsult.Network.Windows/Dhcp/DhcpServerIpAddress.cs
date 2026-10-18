@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using Bodoconsult.Network.Windows.Dhcp.Native;
+using Bodoconsult.Network.Windows.Helpers;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
@@ -64,6 +65,10 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
     /// </summary>
     public uint Native => _address;
 
+    /// <summary>
+    /// Get IP address as byte array
+    /// </summary>
+    /// <returns>IP address as byte array</returns>
     public byte[] GetBytes()
     {
         var buffer = new byte[4];
@@ -71,38 +76,84 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
         return buffer;
     }
 
+    /// <summary>
+    /// Get IP address as byte array
+    /// </summary>
+    /// <returns>IP address as byte array</returns>
     public byte GetByte(int index)
     {
         if (index < 0 || index > 3)
+        {
             throw new ArgumentOutOfRangeException(nameof(index));
+        }
 
         return (byte)(_address >> ((3 - index) * 8));
     }
 
+    /// <summary>
+    /// Get an empty IP address
+    /// </summary>
     public static DhcpServerIpAddress Empty => new(0);
+
+    /// <summary>
+    /// Get IP address from native address
+    /// </summary>
+    /// <param name="nativeAddress">Native address</param>
+    /// <returns>IP address</returns>
     public static DhcpServerIpAddress FromNative(uint nativeAddress) => new(nativeAddress);
+
+    /// <summary>
+    /// Get IP address from native address
+    /// </summary>
+    /// <param name="nativeAddress">Native address</param>
+    /// <returns>IP address</returns>
     public static DhcpServerIpAddress FromNative(int nativeAddress) => new((uint)nativeAddress);
+
+    /// <summary>
+    /// Get IP address from native address
+    /// </summary>
+    /// <param name="pointer">Native address as pointer</param>
+    /// <returns>IP address</returns>
     internal static DhcpServerIpAddress FromNative(IntPtr pointer)
     {
         if (pointer == IntPtr.Zero)
+        {
             throw new ArgumentNullException(nameof(pointer));
+        }
 
         return new DhcpServerIpAddress((uint)BitHelper.HostToNetworkOrder(Marshal.ReadInt32(pointer)));
     }
-
+    /// <summary>
+    /// Get IP address from native address
+    /// </summary>
+    /// <param name="address">String with IP address</param>
+    /// <returns>IP address</returns>
     public static DhcpServerIpAddress FromString(string address) => new(address);
 
+    /// <summary>Returns the fully qualified type name of this instance.</summary>
+    /// <returns>The fully qualified type name.</returns>
     public override string ToString() => BitHelper.IpAddressToString(_address);
 
+    /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+    /// <param name="obj">The object to compare with the current instance.</param>
+    /// <returns>
+    /// <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
     public override bool Equals(object obj)
     {
         if (obj is null)
+        {
             return false;
+        }
 
         if (obj is DhcpServerIpAddress sia)
+        {
             return Equals(sia);
+        }
+
         if (obj is IPAddress ia)
+        {
             return Equals(ia);
+        }
 
         return false;
     }
@@ -135,12 +186,36 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
         return _address == BitHelper.HostToNetworkOrder(otherIp);
     }
 
+    /// <summary>
+    /// Equals operator
+    /// </summary>
+    /// <param name="lhs">IP address 1</param>
+    /// <param name="rhs">IP address 2</param>
+    /// <returns>True if both IP addresses are equal</returns>
     public static bool operator ==(DhcpServerIpAddress lhs, DhcpServerIpAddress rhs) => lhs.Equals(rhs);
 
+    /// <summary>
+    /// Not equal operator
+    /// </summary>
+    /// <param name="lhs">IP address 1</param>
+    /// <param name="rhs">IP address 2</param>
+    /// <returns>True if both IP addresses are not equal</returns>
     public static bool operator !=(DhcpServerIpAddress lhs, DhcpServerIpAddress rhs) => !lhs.Equals(rhs);
 
+    /// <summary>
+    /// Equals operator
+    /// </summary>
+    /// <param name="lhs">IP address 1</param>
+    /// <param name="rhs">IP address 2</param>
+    /// <returns>True if both IP addresses are equal</returns>
     public static bool operator ==(DhcpServerIpAddress lhs, IPAddress rhs) => lhs.Equals(rhs);
 
+    /// <summary>
+    /// Not equal operator
+    /// </summary>
+    /// <param name="lhs">IP address 1</param>
+    /// <param name="rhs">IP address 2</param>
+    /// <returns>True if both IP addresses are not equal</returns>
     public static bool operator !=(DhcpServerIpAddress lhs, IPAddress rhs) => !lhs.Equals(rhs);
 
     internal DhcpIpAddress ToNativeAsHost() => new(BitHelper.NetworkToHostOrder(_address));
@@ -153,6 +228,11 @@ public struct DhcpServerIpAddress : IEquatable<DhcpServerIpAddress>, IEquatable<
     public static explicit operator DhcpServerIpAddress(int address) => new((uint)address);
 
     public static implicit operator DhcpServerIpAddress(IPAddress address) => new(address);
+
+    /// <summary>
+    /// As <see cref="IPAddress"/> operator
+    /// </summary>
+    /// <param name="address">IP address</param>
     public static implicit operator IPAddress(DhcpServerIpAddress address)
         // IPAddress stores in host order; DhcpServerIpAddress always stores in network order
         => new(BitHelper.NetworkToHostOrder(address._address));

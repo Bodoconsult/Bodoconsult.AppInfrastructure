@@ -2,7 +2,13 @@
 
 
 using System.Net.Sockets;
+using Bodoconsult.Network.Windows.Dhcp.Client;
+using Bodoconsult.Network.Windows.Dhcp.Failover;
 using Bodoconsult.Network.Windows.Dhcp.Native;
+using Bodoconsult.Network.Windows.Dhcp.Options;
+using Bodoconsult.Network.Windows.Dhcp.Scope;
+using Bodoconsult.Network.Windows.Helpers;
+using Bodoconsult.Network.Windows.Interfaces;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 

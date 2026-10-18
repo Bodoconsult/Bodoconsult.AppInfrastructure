@@ -4,6 +4,9 @@
 using System.Runtime.InteropServices;
 using System.Text;
 using Bodoconsult.Network.Windows.Dhcp.Native;
+using Bodoconsult.Network.Windows.Dhcp.Options;
+using Bodoconsult.Network.Windows.Helpers;
+using Bodoconsult.Network.Windows.Interfaces;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
@@ -16,6 +19,10 @@ public class DhcpServerClass : IDhcpServerClass
     /// The associated DHCP Server
     /// </summary>
     public DhcpServer Server { get; }
+
+    /// <summary>
+    /// The associated DHCP Server
+    /// </summary>
     IDhcpServer IDhcpServerClass.Server => Server;
 
     /// <summary>
@@ -50,15 +57,7 @@ public class DhcpServerClass : IDhcpServerClass
     /// <summary>
     /// Enumerates a list of all Options associated with this class
     /// </summary>
-    public IEnumerable<IDhcpServerOption> Options
-    {
-        get
-        {
-            if (IsVendorClass)
-                return DhcpServerOption.EnumVendorOptions(Server, Name);
-            return DhcpServerOption.EnumUserOptions(Server, Name);
-        }
-    }
+    public IEnumerable<IDhcpServerOption> Options => IsVendorClass ? DhcpServerOption.EnumVendorOptions(Server, Name) : DhcpServerOption.EnumUserOptions(Server, Name);
 
     /// <summary>
     /// Enumerates a list of all Global Option Values associated with this class

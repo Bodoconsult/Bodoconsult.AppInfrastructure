@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Bodoconsult.Network.Windows.ActiveDirectory;
-using Bodoconsult.Network.Windows.ActiveDirectory.Helpers;
+using Bodoconsult.Network.Windows.Helpers;
 using JobExecuter.Base.Interfaces;
 using JobExecuter.Dal.Model;
 

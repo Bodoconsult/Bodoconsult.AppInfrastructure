@@ -2,6 +2,7 @@
 
 
 using Bodoconsult.Network.Windows.Dhcp.Native;
+using Bodoconsult.Network.Windows.Interfaces;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 

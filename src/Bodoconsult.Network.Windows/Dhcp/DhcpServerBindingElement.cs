@@ -1,10 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using Bodoconsult.Network.Windows.Dhcp.Native;
+using Bodoconsult.Network.Windows.Helpers;
+using Bodoconsult.Network.Windows.Interfaces;
 
 namespace Bodoconsult.Network.Windows.Dhcp;
 
+/// <summary>
+/// Current implementation of <see cref="IDhcpServerBindingElement"/> for binding elements
+/// </summary>
 public class DhcpServerBindingElement : IDhcpServerBindingElement
 {
     private readonly byte[] _interfaceId;
@@ -42,16 +46,11 @@ public class DhcpServerBindingElement : IDhcpServerBindingElement
     /// <summary>
     /// Specifies the network interface device ID.
     /// </summary>
-    public byte[] InterfaceId
-    {
-        get
-        {
-            if (_interfaceId is null)
-                return InterfaceGuidId.ToByteArray();
-            return _interfaceId;
-        }
-    }
+    public byte[] InterfaceId => _interfaceId ?? InterfaceGuidId.ToByteArray();
 
+    /// <summary>
+    /// The interface ID as GUID
+    /// </summary>
     public Guid InterfaceGuidId { get; }
 
     private DhcpServerBindingElement(DhcpServer server, bool cantModify, bool isBound, DhcpServerIpAddress adapterPrimaryIpAddress, DhcpServerIpMask adapterSubnetAddress, string interfaceDescription, Guid interfaceGuidId, byte[] interfaceId)
@@ -73,13 +72,17 @@ public class DhcpServerBindingElement : IDhcpServerBindingElement
             bindElementsInfo: out var elementsPtr);
 
         if (result != DhcpErrors.Success)
+        {
             throw new DhcpServerException(nameof(Api.DhcpGetServerBindingInfo), result);
+        }
 
         try
         {
             using var elements = elementsPtr.MarshalToStructure<DhcpBindElementArray>();
             foreach (var element in elements.Elements)
+            {
                 yield return FromNative(server, in element);
+            }
         }
         finally
         {
