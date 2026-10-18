@@ -7,6 +7,7 @@
 		<Deterministic>False</Deterministic>
 		<AssemblyName>JobExecuter</AssemblyName>
 		<RootNamespace>JobExecuter</RootNamespace>
+		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -95,7 +96,7 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Samples\BackupBatchJobTask.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Samples\CmdBatchJobTask.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -200,10 +201,10 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Templates\o365.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Templates\smtp.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Templates\XmlDocumentation.xslt">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

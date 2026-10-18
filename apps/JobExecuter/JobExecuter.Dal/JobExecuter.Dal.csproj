@@ -6,6 +6,7 @@
 		<Deterministic>False</Deterministic>
 		<RootNamespace>JobExecuter.Dal</RootNamespace>
 		<AssemblyName>JobExecuter.Dal</AssemblyName>
+		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

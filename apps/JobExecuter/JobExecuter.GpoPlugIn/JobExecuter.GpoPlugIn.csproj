@@ -1,23 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0-windows10.0.17763</TargetFramework>
-            <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Deterministic>False</Deterministic>
-    <AssemblyName>JobExecuter.GpoPlugIn</AssemblyName>
-    <RootNamespace>JobExecuter.GpoPlugIn</RootNamespace>   
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
+		<AssemblyName>JobExecuter.GpoPlugIn</AssemblyName>
+		<RootNamespace>JobExecuter.GpoPlugIn</RootNamespace>
+		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Management.Infrastructure" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="10.0.13" />
-    <PackageReference Include="System.Management.Automation" Version="7.6.7" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Management.Infrastructure" Version="3.0.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="10.0.13" />
+		<PackageReference Include="System.Management.Automation" Version="7.6.7" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Bodoconsult.Text\Bodoconsult.Text.csproj" />
-    <ProjectReference Include="..\JobExecuter.Base\JobExecuter.Base.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Bodoconsult.Text\Bodoconsult.Text.csproj" />
+		<ProjectReference Include="..\JobExecuter.Base\JobExecuter.Base.csproj" />
+	</ItemGroup>
 
 
 </Project>

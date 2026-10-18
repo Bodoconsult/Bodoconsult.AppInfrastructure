@@ -5,6 +5,7 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>
 
+		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageId>Bodoconsult.Pdf</PackageId>
