@@ -1,6 +1,7 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.Pdf.Stylesets;
+using PdfSharp;
 using PdfSharp.Fonts;
 
 namespace Bodoconsult.Pdf.PdfSharp;
@@ -19,6 +20,8 @@ public class PdfBuilder : PdfBuilderBase
     /// <param name="fontResolver">Font resolver to load</param>
     public PdfBuilder(IStyleSet styleSet, IFontResolver fontResolver)
     {
+        PdfSharpLicense.SetAgplLicense();
+
         LoadDefaults();
 
         GlobalFontSettings.FontResolver ??= fontResolver;

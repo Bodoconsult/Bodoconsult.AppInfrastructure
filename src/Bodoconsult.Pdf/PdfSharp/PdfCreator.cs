@@ -1,10 +1,11 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
-using System.Runtime.Versioning;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
+using PdfSharp;
 using PdfSharp.Fonts;
+using System;
+using System.Runtime.Versioning;
 
 namespace Bodoconsult.Pdf.PdfSharp;
 
@@ -22,6 +23,8 @@ public class PdfCreator : PdfBuilderBase
     /// </summary>
     public PdfCreator()
     {
+        PdfSharpLicense.SetAgplLicense();
+
         LoadDefaults();
 
         GlobalFontSettings.FontResolver ??= new WindowsFontResolver();
@@ -47,6 +50,8 @@ public class PdfCreator : PdfBuilderBase
     /// <param name="fontSize">Default font size to use</param>
     public PdfCreator(string fontName, Unit fontSize)
     {
+        PdfSharpLicense.SetAgplLicense();
+
         LoadDefaults();
 
         GlobalFontSettings.FontResolver ??= new WindowsFontResolver();
@@ -72,6 +77,8 @@ public class PdfCreator : PdfBuilderBase
     /// <param name="styleSet">Styleset to use</param>
     public PdfCreator(IStyleSet styleSet)
     {
+        PdfSharpLicense.SetAgplLicense();
+
         LoadDefaults();
 
         GlobalFontSettings.FontResolver ??= new WindowsFontResolver();

@@ -46,7 +46,7 @@ Microsoft Graph Client Library allows you to call Office 365, Azure AD and other
 
 License: LICENSE.txt
 
-License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.7.0/License
+License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.8.0/License
 
 Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
 

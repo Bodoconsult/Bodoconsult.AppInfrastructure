@@ -14,6 +14,12 @@
 
 >	[BodoWebMailer](#referenced-libraries-for-bodowebmailer)
 
+>	[JobExecuter.Dal](#referenced-libraries-for-jobexecuterdal)
+
+>	[JobExecuter.GpoPlugIn](#referenced-libraries-for-jobexecutergpoplugin)
+
+>	[JobExecuter](#referenced-libraries-for-jobexecuter)
+
 >	[AvaloniaApp1](#referenced-libraries-for-avaloniaapp1)
 
 >	[AvaloniaConsoleApp1](#referenced-libraries-for-avaloniaconsoleapp1)
@@ -70,8 +76,6 @@
 
 >	[Bodoconsult.Charting](#referenced-libraries-for-bodoconsultcharting)
 
->	[Bodoconsult.Database.Dbase.Ef](#referenced-libraries-for-bodoconsultdatabasedbaseef)
-
 >	[Bodoconsult.Database.Ef.SqlServer](#referenced-libraries-for-bodoconsultdatabaseefsqlserver)
 
 >	[Bodoconsult.Database.Ef](#referenced-libraries-for-bodoconsultdatabaseef)
@@ -87,6 +91,8 @@
 >	[Bodoconsult.Drawing](#referenced-libraries-for-bodoconsultdrawing)
 
 >	[Bodoconsult.I18N](#referenced-libraries-for-bodoconsulti18n)
+
+>	[Bodoconsult.Network.Windows](#referenced-libraries-for-bodoconsultnetworkwindows)
 
 >	[Bodoconsult.Office](#referenced-libraries-for-bodoconsultoffice)
 
@@ -134,6 +140,8 @@
 
 >	[Bodoconsult.I18N.Test](#referenced-libraries-for-bodoconsulti18ntest)
 
+>	[Bodoconsult.Network.Windows.Tests](#referenced-libraries-for-bodoconsultnetworkwindowstests)
+
 >	[Bodoconsult.Office.Test](#referenced-libraries-for-bodoconsultofficetest)
 
 >	[Bodoconsult.Pdf.Test](#referenced-libraries-for-bodoconsultpdftest)
@@ -157,6 +165,10 @@
 >	[BodoFtpTransferBusiness.Test](#referenced-libraries-for-bodoftptransferbusinesstest)
 
 >	[BodoWebMailer.Test](#referenced-libraries-for-bodowebmailertest)
+
+>	[JobExecuter.GpoPlugIn.Test](#referenced-libraries-for-jobexecutergpoplugintest)
+
+>	[JobExecuter.Test](#referenced-libraries-for-jobexecutertest)
 
 # Referenced libraries for BodoFileTransfer.Business
 
@@ -312,7 +324,7 @@ Microsoft Graph Client Library allows you to call Office 365, Azure AD and other
 
 License: LICENSE.txt
 
-License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.7.0/License
+License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.8.0/License
 
 Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
 
@@ -458,29 +470,57 @@ Project-Url: https://github.com/apache/logging-log4net
 
 # Referenced libraries for BodoWebMailer.Business
 
-## Nuget package library Bodoconsult.Database by Robert Leisner
+## Nuget package library Microsoft.Windows.Compatibility by Microsoft
 
-Copyright: Bodoconsult EDV-Dienstleistungen GmbH
+Copyright: © Microsoft Corporation. All rights reserved.
 
-Simple .NET database layer based on System.Data intended for mainly read-only data access i.e. for reporting purposes
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/RobertLeisner/Bodoconsult.Database
-
-## Nuget package library Bodoconsult.Database.SqlClient by Robert Leisner
-
-Copyright: Bodoconsult EDV-Dienstleistungen GmbH
-
-Simple .NET database layer for Microsoft(r) SqlServer(r) or LocalDb based on Microsoft.Data.SqlClient intended for mainly read-only data access i.e. for reporting purposes
+This Windows Compatibility Pack provides access to APIs that were previously available only for .NET Framework. It can be used from both .NET as well as .NET Standard.
 
 License: MIT
 
 License-Url: https://licenses.nuget.org/MIT
 
-Project-Url: https://github.com/RobertLeisner/Bodoconsult.Database
+Project-Url: https://github.com/dotnet/dotnet
+
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
+# Referenced libraries for BodoWebMailer
+
+## Nuget package library log4net by The Apache Software Foundation
+
+Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
+
+log4net is a tool to help the programmer output log statements to a variety of output targets.
+In case of problems with an application, it is helpful to enable logging so that the problem
+can be located. With log4net it is possible to enable logging at runtime without modifying the
+application binary. The log4net package is designed so that log statements can remain in
+shipped code without incurring a high performance cost. It follows that the speed of logging
+(or rather not logging) is crucial.
+
+At the same time, log output can be so voluminous that it quickly becomes overwhelming.
+One of the distinctive features of log4net is the notion of hierarchical loggers.
+Using these loggers it is possible to selectively control which log statements are output
+at arbitrary granularity.
+
+log4net is designed with two distinct goals in mind: speed and flexibility
+
+License: Apache-2.0
+
+License-Url: https://licenses.nuget.org/Apache-2.0
+
+Project-Url: https://github.com/apache/logging-log4net
+
+# Referenced libraries for JobExecuter.Dal
 
 ## Nuget package library log4net by The Apache Software Foundation
 
@@ -530,7 +570,69 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
-# Referenced libraries for BodoWebMailer
+## Nuget package library System.Management.Automation by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Runtime for hosting PowerShell
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: 
+
+## Nuget package library TaskScheduler by David Hall
+
+Copyright: Copyright © 2002-2025
+
+Provides a single assembly wrapper for the 1.0 and 2.0 versions of Task Scheduler found in all Microsoft operating systems post Windows 98. It simplifies the coding, aggregates the multiple versions and allows for localization support.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dahall/taskscheduler
+
+# Referenced libraries for JobExecuter.GpoPlugIn
+
+## Nuget package library Microsoft.Management.Infrastructure by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Runtime for Microsoft.Management.Infrastructure
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: 
+
+## Nuget package library Microsoft.Windows.Compatibility by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+This Windows Compatibility Pack provides access to APIs that were previously available only for .NET Framework. It can be used from both .NET as well as .NET Standard.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+## Nuget package library System.Management.Automation by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Runtime for hosting PowerShell
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: 
+
+# Referenced libraries for JobExecuter
 
 ## Nuget package library log4net by The Apache Software Foundation
 
@@ -1036,7 +1138,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -1634,7 +1736,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -1648,7 +1750,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 Additional APIs for ASP.NET Core data protection.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -1808,7 +1910,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -1822,7 +1924,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 Additional APIs for ASP.NET Core data protection.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -1836,7 +1938,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -1876,7 +1978,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -2219,7 +2321,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -2233,7 +2335,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 Additional APIs for ASP.NET Core data protection.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -2375,20 +2477,6 @@ License: MIT
 License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/ScottPlot/ScottPlot.git
-
-# Referenced libraries for Bodoconsult.Database.Dbase.Ef
-
-## Nuget package library Bodoconsult.App by Robert Leisner
-
-Copyright: Bodoconsult EDV-Dienstleistungen GmbH
-
-Package providing basic functionality like logging, application performance measuring etc. for layered apps in a client server scenario
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/RobertLeisner/Bodoconsult.AppInfrastructure
 
 # Referenced libraries for Bodoconsult.Database.Ef.SqlServer
 
@@ -2659,6 +2747,32 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
+# Referenced libraries for Bodoconsult.Network.Windows
+
+## Nuget package library Microsoft.Management.Infrastructure by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Runtime for Microsoft.Management.Infrastructure
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: 
+
+## Nuget package library Microsoft.Windows.Compatibility by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+This Windows Compatibility Pack provides access to APIs that were previously available only for .NET Framework. It can be used from both .NET as well as .NET Standard.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
 # Referenced libraries for Bodoconsult.Office
 
 ## Nuget package library DocumentFormat.OpenXml by Microsoft
@@ -2703,9 +2817,9 @@ MigraDoc is a .NET library that allows developers to create documents such as PD
 This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
 See https://docs.pdfsharp.net for details.
 
-License: MIT
+License: AGPL-3.0-only
 
-License-Url: https://licenses.nuget.org/MIT
+License-Url: https://licenses.nuget.org/AGPL-3.0-only
 
 Project-Url: https://github.com/empira/PDFsharp
 
@@ -2719,7 +2833,7 @@ Microsoft Graph Client Library allows you to call Office 365, Azure AD and other
 
 License: LICENSE.txt
 
-License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.7.0/License
+License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.8.0/License
 
 Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
 
@@ -2783,7 +2897,7 @@ Microsoft Graph Client Library allows you to call Office 365, Azure AD and other
 
 License: LICENSE.txt
 
-License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.7.0/License
+License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.8.0/License
 
 Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
 
@@ -3076,7 +3190,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -3335,7 +3449,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -3349,7 +3463,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 Additional APIs for ASP.NET Core data protection.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -3363,7 +3477,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 
@@ -4453,6 +4567,98 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
+# Referenced libraries for Bodoconsult.Network.Windows.Tests
+
+## Nuget package library coverlet.collector by tonerdo
+
+Copyright: (c) 2018 Toni Solarin-Sodara
+
+Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/coverlet-coverage/coverlet.git
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse,  Terje Sandstrom and contributors
+
+Copyright: Copyright (c) 2009-2019 Charlie Poole, 2014-2025 Rob Prouse, 2026 Terje Sandstrom and Contributors. MIT License.
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 5, is an upgrade from the groundbreaking NUnit 3 framework and its major update version 4. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+            If you're upgrading from NUnit 4, please check the release notes for version 5 (https://docs.nunit.org/articles/nunit/release-notes/framework.html).
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 8.0+
+            - .NET 10.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit.Analyzers by NUnit
+
+Copyright: Copyright (c) 2018-2026 NUnit project
+
+This package includes analyzers and code fixes for test projects using NUnit 3+. The analyzers will mark wrong usages when writing tests, and the code fixes can be used to used to correct these usages. They will also aid in the transition from NUnit 3 to NUnit 4.
+
+Version 3.0 and upwards works in Visual Studio 2019 (version 16.3) or newer and also enables supression of compiler errors such as errors arising from nullable reference types. For Visual Studio 2017 one must use versions below 3.0 - note that these versions are no longer updated, so version 2.10.0 is the last version that works in Visual Studio 2017.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit.analyzers
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
 # Referenced libraries for Bodoconsult.Office.Test
 
 ## Nuget package library coverlet.collector by tonerdo
@@ -4593,9 +4799,9 @@ MigraDoc is a .NET library that allows developers to create documents such as PD
 This package does not depend on Windows and can be used on any .NET compatible platform including Linux and macOS.
 See https://docs.pdfsharp.net for details.
 
-License: MIT
+License: AGPL-3.0-only
 
-License-Url: https://licenses.nuget.org/MIT
+License-Url: https://licenses.nuget.org/AGPL-3.0-only
 
 Project-Url: https://github.com/empira/PDFsharp
 
@@ -5199,6 +5405,162 @@ License-Url: https://licenses.nuget.org/MIT
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
 # Referenced libraries for BodoWebMailer.Test
+
+## Nuget package library log4net by The Apache Software Foundation
+
+Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
+
+log4net is a tool to help the programmer output log statements to a variety of output targets.
+In case of problems with an application, it is helpful to enable logging so that the problem
+can be located. With log4net it is possible to enable logging at runtime without modifying the
+application binary. The log4net package is designed so that log statements can remain in
+shipped code without incurring a high performance cost. It follows that the speed of logging
+(or rather not logging) is crucial.
+
+At the same time, log output can be so voluminous that it quickly becomes overwhelming.
+One of the distinctive features of log4net is the notion of hierarchical loggers.
+Using these loggers it is possible to selectively control which log statements are output
+at arbitrary granularity.
+
+log4net is designed with two distinct goals in mind: speed and flexibility
+
+License: Apache-2.0
+
+License-Url: https://licenses.nuget.org/Apache-2.0
+
+Project-Url: https://github.com/apache/logging-log4net
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse,  Terje Sandstrom and contributors
+
+Copyright: Copyright (c) 2009-2019 Charlie Poole, 2014-2025 Rob Prouse, 2026 Terje Sandstrom and Contributors. MIT License.
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 5, is an upgrade from the groundbreaking NUnit 3 framework and its major update version 4. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+            If you're upgrading from NUnit 4, please check the release notes for version 5 (https://docs.nunit.org/articles/nunit/release-notes/framework.html).
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 8.0+
+            - .NET 10.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+# Referenced libraries for JobExecuter.GpoPlugIn.Test
+
+## Nuget package library Microsoft.NET.Test.Sdk by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+The MSbuild targets and properties for building .NET test projects.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/microsoft/vstest
+
+## Nuget package library Microsoft.PowerShell.SDK by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Runtime for hosting PowerShell
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: 
+
+## Nuget package library NUnit by Charlie Poole,  Rob Prouse,  Terje Sandstrom and contributors
+
+Copyright: Copyright (c) 2009-2019 Charlie Poole, 2014-2025 Rob Prouse, 2026 Terje Sandstrom and Contributors. MIT License.
+
+NUnit is a unit-testing framework for all .NET languages.
+            It can run on macOS, Linux and Windows operating systems.
+            NUnit can be used for a wide range of testing, from unit testing with TDD to full-fledged system and integration testing.
+            It is a non-opinionated, broad and deep framework with multiple different ways to assert that your code behaves as expected. Many aspects of NUnit can be extended to suit your specific purposes.
+
+            The latest version, version 5, is an upgrade from the groundbreaking NUnit 3 framework and its major update version 4. It is a modernized version, aimed at taking advantage of the latest .NET features and C# language constructs.
+
+            If you are upgrading from NUnit 3, be aware of the breaking changes (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40). Please see the NUnit 4 Migration Guide (https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html) and take care to prepare your NUnit 3 code before you do the upgrade.
+            If you're upgrading from NUnit 4, please check the release notes for version 5 (https://docs.nunit.org/articles/nunit/release-notes/framework.html).
+
+            Supported platforms:
+            - .NET Framework 4.6.2+
+            - .NET 8.0+
+            - .NET 10.0+
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit
+
+## Nuget package library NUnit3TestAdapter by Charlie Poole,  Terje Sandstrom
+
+Copyright: Copyright (c) 2011-2021 Charlie Poole, 2014-2026 Terje Sandstrom
+
+The NUnit3 TestAdapter for Visual Studio, all versions from 2012 and onwards, and DotNet (incl. .Net core), versions .net framework 4.6.2 or higher, .net 8 or higher.
+
+      Note that this package ONLY contains the adapter, not the NUnit framework.
+      For VS 2017 and forward, you should add this package to every test project in your solution. (Earlier versions only require a single adapter package per solution.)
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/nunit/nunit3-vs-adapter
+
+## Nuget package library System.Management.Automation by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Runtime for hosting PowerShell
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: 
+
+# Referenced libraries for JobExecuter.Test
 
 ## Nuget package library log4net by The Apache Software Foundation
 

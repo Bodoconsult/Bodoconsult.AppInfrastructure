@@ -18,7 +18,7 @@ Copyright: © Microsoft Corporation. All rights reserved.
 
 ASP.NET Core web server for writing and running tests.
 
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/95017c711e6afc1085133d440e42b4bd78155701
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
 
 License: MIT
 

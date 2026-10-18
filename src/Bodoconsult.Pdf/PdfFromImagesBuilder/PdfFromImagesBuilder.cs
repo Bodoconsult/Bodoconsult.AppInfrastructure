@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System;
@@ -14,6 +15,14 @@ namespace Bodoconsult.Pdf.PdfFromImagesBuilder
     /// </summary>
     public class PdfFromImagesBuilder
     {
+        /// <summary>
+        /// Default ctor
+        /// </summary>
+        public PdfFromImagesBuilder()
+        {
+            PdfSharpLicense.SetAgplLicense();
+        }
+
         //public void AddBackgroundImageFromByteArray(PdfPage page, byte[] imgfile)
         //{
         //    if (!ximageLoaded)
