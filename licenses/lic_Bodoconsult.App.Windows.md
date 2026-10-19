@@ -1,4 +1,4 @@
-## WindowsCredentialManager by Widauer Patrick
+### WindowsCredentialManager by Widauer Patrick
 
 License-Url: https://github.com/a-ctor/WindowsCredentialManager?tab=MIT-1-ov-file#readme
 

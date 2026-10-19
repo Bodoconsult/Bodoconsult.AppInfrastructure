@@ -1,5 +1,6 @@
-License for BodoFtpTransfer
-==========================
+# BodoFtpTransfer
+
+## License for BodoFtpTransfer
 
 BodoFtpTransfer is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for BodoFtpTransfer
 
-## BodoFtpTransfer.Business
+### BodoFtpTransfer.Business
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-### Nuget package library Newtonsoft.Json by James Newton-King
+#### Nuget package library Newtonsoft.Json by James Newton-King
 
 Copyright: Copyright © James Newton-King 2008
 
@@ -47,9 +48,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
-# Referenced external libraries for BodoFtpTransfer
+## Referenced external libraries for BodoFtpTransfer
 
-## Nuget package library log4net by The Apache Software Foundation
+### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 

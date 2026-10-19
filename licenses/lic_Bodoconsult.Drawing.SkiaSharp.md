@@ -1,4 +1,4 @@
-## Helpful links with code parts taken from
+### Helpful links with code parts taken from
 
 Greyscale images and color manipulation: https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix
 

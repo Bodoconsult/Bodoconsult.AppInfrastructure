@@ -54,9 +54,9 @@
 
 	<ItemGroup>
 		<Content Include="..\..\doc\Bodoconsult.Database.Ef.SqlServer\LICENSE.md" Link="LICENSE.md" Pack="true" PackagePath="\" />
-		<None Include="..\..\doc\Bodoconsult.Database.Ef.SqlServer\README.md" Link="README.md" Pack="true" PackagePath="\">
+		<Content  Include="..\..\doc\Bodoconsult.Database.Ef.SqlServer\README.md" Link="README.md" Pack="true" PackagePath="\">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>

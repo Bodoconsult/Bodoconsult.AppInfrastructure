@@ -1,5 +1,6 @@
-License for Bodoconsult.Charting
-==========================
+# Bodoconsult.Charting
+
+## License for Bodoconsult.Charting
 
 Bodoconsult.Charting is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.Charting
 
-## Bodoconsult.App.Abstractions
+### Bodoconsult.App.Abstractions
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -23,7 +24,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Hosting by Microsoft
+#### Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -47,7 +48,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -59,7 +60,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -71,7 +72,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -83,7 +84,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -95,23 +96,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Bodoconsult.Charting.Base
+### Bodoconsult.Charting.Base
 
-### Nuget package library ScottPlot by Scott Harden
-
-Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC
-
-ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/ScottPlot/ScottPlot.git
-
-## Bodoconsult.Drawing.SkiaSharp
-
-### Nuget package library ScottPlot by Scott Harden
+#### Nuget package library ScottPlot by Scott Harden
 
 Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC
 
@@ -123,9 +110,23 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/ScottPlot/ScottPlot.git
 
-# Referenced external libraries for Bodoconsult.Charting
+### Bodoconsult.Drawing.SkiaSharp
 
-## Nuget package library ScottPlot by Scott Harden
+#### Nuget package library ScottPlot by Scott Harden
+
+Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC
+
+ScottPlot is a free and open-source plotting library for .NET. This package can be used to create static plots, and user controls for displaying plots interactively are available as separate NuGet packages.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/ScottPlot/ScottPlot.git
+
+## Referenced external libraries for Bodoconsult.Charting
+
+### Nuget package library ScottPlot by Scott Harden
 
 Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC
 

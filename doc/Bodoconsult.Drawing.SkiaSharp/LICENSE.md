@@ -1,5 +1,6 @@
-License for Bodoconsult.Drawing.SkiaSharp
-==========================
+# Bodoconsult.Drawing.SkiaSharp
+
+## License for Bodoconsult.Drawing.SkiaSharp
 
 Bodoconsult.Drawing.SkiaSharp is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.Drawing.SkiaSharp
 
-# Referenced external libraries for Bodoconsult.Drawing.SkiaSharp
+## Referenced external libraries for Bodoconsult.Drawing.SkiaSharp
 
-## Helpful links with code parts taken from
+### Helpful links with code parts taken from
 
 Greyscale images and color manipulation: https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix
 
@@ -25,7 +26,7 @@ Adjusting contrast: https://stackoverflow.com/questions/76831547/apply-contrast-
 
 Bitonal conversion: https://medium.com/@robert.cichielo/dithering-color-images-with-skiasharp-69de53207f8d
 
-## Nuget package library ScottPlot by Scott Harden
+### Nuget package library ScottPlot by Scott Harden
 
 Copyright: Copyright (c) Scott Harden / Harden Technologies, LLC
 

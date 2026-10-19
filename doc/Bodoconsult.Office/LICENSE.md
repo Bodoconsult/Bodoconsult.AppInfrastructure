@@ -1,5 +1,6 @@
-License for Bodoconsult.Office
-==========================
+# Bodoconsult.Office
+
+## License for Bodoconsult.Office
 
 Bodoconsult.Office is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.Office
 
-## Bodoconsult.App.Abstractions
+### Bodoconsult.App.Abstractions
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -23,7 +24,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Hosting by Microsoft
+#### Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -47,7 +48,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -59,7 +60,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -71,7 +72,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -83,7 +84,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -95,9 +96,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-# Referenced external libraries for Bodoconsult.Office
+## Referenced external libraries for Bodoconsult.Office
 
-## Nuget package library DocumentFormat.OpenXml by Microsoft
+### Nuget package library DocumentFormat.OpenXml by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -117,7 +118,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/Open-XML-SDK
 
-## Nuget package library Newtonsoft.Json by James Newton-King
+### Nuget package library Newtonsoft.Json by James Newton-King
 
 Copyright: Copyright © James Newton-King 2008
 

@@ -1,5 +1,6 @@
-License for Bodoconsult.App.Windows
-==========================
+# Bodoconsult.App.Windows
+
+## License for Bodoconsult.App.Windows
 
 Bodoconsult.App.Windows is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.App.Windows
 
-## Bodoconsult.App
+### Bodoconsult.App
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -49,7 +50,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -63,7 +64,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
+#### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -75,7 +76,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/diagnostics
 
-### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
+#### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -98,7 +99,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: 
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -110,7 +111,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -122,7 +123,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -134,7 +135,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -146,7 +147,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -158,7 +159,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -170,9 +171,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Bodoconsult.App.Abstractions
+### Bodoconsult.App.Abstractions
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -184,7 +185,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -196,7 +197,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Hosting by Microsoft
+#### Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -208,7 +209,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -220,7 +221,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -232,7 +233,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -244,7 +245,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -256,9 +257,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-# Referenced external libraries for Bodoconsult.App.Windows
+## Referenced external libraries for Bodoconsult.App.Windows
 
-## WindowsCredentialManager by Widauer Patrick
+### WindowsCredentialManager by Widauer Patrick
 
 License-Url: https://github.com/a-ctor/WindowsCredentialManager?tab=MIT-1-ov-file#readme
 
@@ -274,7 +275,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
-## Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft
+### Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -286,7 +287,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Nuget package library Microsoft.WindowsAppSDK by Microsoft
+### Nuget package library Microsoft.WindowsAppSDK by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -298,7 +299,7 @@ License-Url: https://www.nuget.org/packages/Microsoft.WindowsAppSDK/2.5.1/Licens
 
 Project-Url: 
 
-## Nuget package library System.Drawing.Common by Microsoft
+### Nuget package library System.Drawing.Common by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -320,7 +321,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Nuget package library System.Security.Cryptography.ProtectedData by Microsoft
+### Nuget package library System.Security.Cryptography.ProtectedData by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 

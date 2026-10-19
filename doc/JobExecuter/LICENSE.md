@@ -1,18 +1,19 @@
-License for JobExecuter
-==========================
+# JobExecuter
+
+## License for JobExecuter
 
 JobExecuter is licensed under the AGPL-3.0-only license.
 
 For the license text please see https://licenses.nuget.org/AGPL-3.0-only.
 
 
-# Repository internal library references
+## Repository internal library references for JobExecuter
 
-## JobExecuter.Base
+### JobExecuter.Base
 
-## JobExecuter.Dal
+### JobExecuter.Dal
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -36,7 +37,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-### Nuget package library Microsoft.Windows.Compatibility by Microsoft
+#### Nuget package library Microsoft.Windows.Compatibility by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -48,7 +49,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Newtonsoft.Json by James Newton-King
+#### Nuget package library Newtonsoft.Json by James Newton-King
 
 Copyright: Copyright © James Newton-King 2008
 
@@ -60,7 +61,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
-### Nuget package library System.Management.Automation by Microsoft
+#### Nuget package library System.Management.Automation by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -72,7 +73,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: 
 
-### Nuget package library TaskScheduler by David Hall
+#### Nuget package library TaskScheduler by David Hall
 
 Copyright: Copyright © 2002-2025
 
@@ -84,9 +85,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dahall/taskscheduler
 
-# Referenced external libraries for JobExecuter
+## Referenced external libraries for JobExecuter
 
-## Nuget package library log4net by The Apache Software Foundation
+### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 

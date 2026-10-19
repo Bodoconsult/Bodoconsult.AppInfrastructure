@@ -1,5 +1,6 @@
-License for BodoFileTransfer
-==========================
+# BodoFileTransfer
+
+## License for BodoFileTransfer
 
 BodoFileTransfer is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for BodoFileTransfer
 
-## Bodoconsult.App.Windows
+### Bodoconsult.App.Windows
 
-### Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -23,7 +24,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.WindowsAppSDK by Microsoft
+#### Nuget package library Microsoft.WindowsAppSDK by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -35,7 +36,7 @@ License-Url: https://www.nuget.org/packages/Microsoft.WindowsAppSDK/2.5.1/Licens
 
 Project-Url: 
 
-### Nuget package library System.Drawing.Common by Microsoft
+#### Nuget package library System.Drawing.Common by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -57,7 +58,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library System.Security.Cryptography.ProtectedData by Microsoft
+#### Nuget package library System.Security.Cryptography.ProtectedData by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -73,9 +74,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## BodoFileTransfer.Business
+### BodoFileTransfer.Business
 
-### Nuget package library Bodoconsult.Database by Robert Leisner
+#### Nuget package library Bodoconsult.Database by Robert Leisner
 
 Copyright: Bodoconsult EDV-Dienstleistungen GmbH
 
@@ -87,7 +88,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/RobertLeisner/Bodoconsult.Database
 
-### Nuget package library Bodoconsult.Database.SqlClient by Robert Leisner
+#### Nuget package library Bodoconsult.Database.SqlClient by Robert Leisner
 
 Copyright: Bodoconsult EDV-Dienstleistungen GmbH
 
@@ -99,7 +100,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/RobertLeisner/Bodoconsult.Database
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -123,7 +124,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -135,7 +136,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -147,7 +148,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -159,7 +160,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Configuration by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Configuration by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -171,7 +172,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -183,7 +184,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -195,7 +196,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventLog by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -207,7 +208,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -219,7 +220,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Graph by Microsoft
+#### Nuget package library Microsoft.Graph by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -231,7 +232,7 @@ License-Url: https://www.nuget.org/packages/Microsoft.Graph/6.8.0/License
 
 Project-Url: https://github.com/microsoftgraph/msgraph-sdk-dotnet
 
-### Nuget package library Microsoft.Identity.Web.TokenCache by Microsoft
+#### Nuget package library Microsoft.Identity.Web.TokenCache by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -243,7 +244,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AzureAD/microsoft-identity-web
 
-### Nuget package library Newtonsoft.Json by James Newton-King
+#### Nuget package library Newtonsoft.Json by James Newton-King
 
 Copyright: Copyright © James Newton-King 2008
 
@@ -255,9 +256,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
-# Referenced external libraries for BodoFileTransfer
+## Referenced external libraries for BodoFileTransfer
 
-## Nuget package library log4net by The Apache Software Foundation
+### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 

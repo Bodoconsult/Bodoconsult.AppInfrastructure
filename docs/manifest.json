@@ -18669,6 +18669,118 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClient",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClient.yml\" sourcestartlinenumber=\"1\">DHCP server client instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientAddressStates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientAddressStates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientAddressStates",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientAddressStates.yml\" sourcestartlinenumber=\"1\">DHCP client address states</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientCollection.yml\" sourcestartlinenumber=\"1\">DHCP client collection</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientDnsStates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientDnsStates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientDnsStates",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientDnsStates.yml\" sourcestartlinenumber=\"1\">DHCP client DNS states</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientNameProtectionStates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientNameProtectionStates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientNameProtectionStates",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientNameProtectionStates.yml\" sourcestartlinenumber=\"1\">Client Name Protection States</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientQuarantineStates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientQuarantineStates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientQuarantineStates",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientQuarantineStates.yml\" sourcestartlinenumber=\"1\">DHCP client quarantine states</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientTypes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientTypes",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Client.DhcpServerClientTypes.yml\" sourcestartlinenumber=\"1\">DHCP client type flags</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Client.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Client",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.DhcpServer.yml",
       "output": {
         ".html": {
@@ -18721,7 +18833,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerBindingElement",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerBindingElement.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElement\" data-throw-if-not-resolved=\"false\"></xref> for binding elements</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -18735,7 +18847,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerBindingElementCollection",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerBindingElementCollection.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElementCollection\" data-throw-if-not-resolved=\"false\"></xref> for a collection of binding elements</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -18763,7 +18875,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerClassCollection",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerClassCollection.yml\" sourcestartlinenumber=\"1\">A collection of server class instances</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19015,7 +19127,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerHost",
-      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerHost.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.Network.Windows.Dhcp.IDhcpServerHost\" data-throw-if-not-resolved=\"false\"></xref> representing a DHCP server host</p>\n"
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerHost.yml\" sourcestartlinenumber=\"1\">Current implementation of <xref href=\"Bodoconsult.Network.Windows.Interfaces.IDhcpServerHost\" data-throw-if-not-resolved=\"false\"></xref> representing a DHCP server host</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19043,7 +19155,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerIpMask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerIpMask.yml\" sourcestartlinenumber=\"1\">IP mask</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19057,7 +19169,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerIpRange",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerIpRange.yml\" sourcestartlinenumber=\"1\">DHCP IP range</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19071,7 +19183,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerIpRangeType",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerIpRangeType.yml\" sourcestartlinenumber=\"1\">IP range type enum</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19085,7 +19197,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerMessageTypes",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerMessageTypes.yml\" sourcestartlinenumber=\"1\">Message types</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19323,7 +19435,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerPacket.yml\" sourcestartlinenumber=\"1\">Packet</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19337,7 +19449,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketFlags",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketFlags.yml\" sourcestartlinenumber=\"1\">Packet flags</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19351,7 +19463,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketMessageTypes",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketMessageTypes.yml\" sourcestartlinenumber=\"1\">Packat message types</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19365,7 +19477,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketOption",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketOption.yml\" sourcestartlinenumber=\"1\">Packet options</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19379,7 +19491,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketOptions",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketOptions.yml\" sourcestartlinenumber=\"1\">Packet options</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19393,7 +19505,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketWritable",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerPacketWritable.yml\" sourcestartlinenumber=\"1\">Write packet</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19547,7 +19659,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerSpecificStrings",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerSpecificStrings.yml\" sourcestartlinenumber=\"1\">Specific strings</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -19561,6 +19673,90 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dhcp.DhcpServerVersions",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.DhcpServerVersions.yml\" sourcestartlinenumber=\"1\">Server versions enum</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverMode",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverMode.yml\" sourcestartlinenumber=\"1\">Faliver over modes</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationship.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationship.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationship",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationship.yml\" sourcestartlinenumber=\"1\">DHCP server failover relationship</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationshipCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationshipCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationshipCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverRelationshipCollection.yml\" sourcestartlinenumber=\"1\">Failover relationship collection</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverServerType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverServerType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverServerType",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverServerType.yml\" sourcestartlinenumber=\"1\">Failover server type enum</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverState",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Failover.DhcpServerFailoverState.yml\" sourcestartlinenumber=\"1\">Failover state enums</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Failover.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Failover",
       "Summary": null
     },
     {
@@ -19999,6 +20195,398 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOption.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOption",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOption.yml\" sourcestartlinenumber=\"1\">DHCP server options</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionCollection.yml\" sourcestartlinenumber=\"1\">Collection of DHCP server options</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElement.yml\" sourcestartlinenumber=\"1\">DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementBinary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementBinary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementBinary",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementBinary.yml\" sourcestartlinenumber=\"1\">Binary DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementByte.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementByte.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementByte",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementByte.yml\" sourcestartlinenumber=\"1\">Byte DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWord.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWord.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWord",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWord.yml\" sourcestartlinenumber=\"1\">DWord DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWordDWord.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWordDWord.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWordDWord",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementDWordDWord.yml\" sourcestartlinenumber=\"1\">DWordDWord DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpAddress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpAddress.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpAddress",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpAddress.yml\" sourcestartlinenumber=\"1\">IP address DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpv6Address.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpv6Address.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpv6Address",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementIpv6Address.yml\" sourcestartlinenumber=\"1\">IPv6 address DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementString.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementString.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementString",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementString.yml\" sourcestartlinenumber=\"1\">String DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementType",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementType.yml\" sourcestartlinenumber=\"1\">Defines the set of formats that represent DHCP option data</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementWord.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementWord.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementWord",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionElementWord.yml\" sourcestartlinenumber=\"1\">Word DHCP server option element</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypeAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypeAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypeAttribute",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypeAttribute.yml\" sourcestartlinenumber=\"1\">Option ID type attribute</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypes",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIdTypes.yml\" sourcestartlinenumber=\"1\">Option ID</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIds.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIds.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIds",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionIds.yml\" sourcestartlinenumber=\"1\">DHCP server option IDs</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionValue",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Options.DhcpServerOptionValue.yml\" sourcestartlinenumber=\"1\">Option value</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Options.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Options",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScope.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScope",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScope.yml\" sourcestartlinenumber=\"1\">DHCP server scope</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeClientCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeClientCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeClientCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeClientCollection.yml\" sourcestartlinenumber=\"1\">Scope client collection\nScope client collection</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeCollection.yml\" sourcestartlinenumber=\"1\">Collection of scopes for a DHCP server</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeExcludedIpRangeCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeExcludedIpRangeCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeExcludedIpRangeCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeExcludedIpRangeCollection.yml\" sourcestartlinenumber=\"1\">Collection with exclude IP addresses ranges</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeFailoverStatistics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeFailoverStatistics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeFailoverStatistics",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeFailoverStatistics.yml\" sourcestartlinenumber=\"1\">Failover statistics</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeOptionValueCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeOptionValueCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeOptionValueCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeOptionValueCollection.yml\" sourcestartlinenumber=\"1\">Collection of option values for a DHCP scope</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservation",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservation.yml\" sourcestartlinenumber=\"1\">DHCP reservation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationCollection.yml\" sourcestartlinenumber=\"1\">Collection of DHCP reservations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationOptionValueCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationOptionValueCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationOptionValueCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeReservationOptionValueCollection.yml\" sourcestartlinenumber=\"1\">Reservation related options value collections</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeState",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Dhcp.Scope.DhcpServerScopeState.yml\" sourcestartlinenumber=\"1\">Scope state enum</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Dhcp.Scope.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Dhcp.Scope",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Bodoconsult.Network.Windows.Dhcp.yml",
       "output": {
         ".html": {
@@ -20107,6 +20695,482 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Network.Windows.Dns",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Helpers.AdHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Helpers.AdHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Helpers.AdHelper",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Helpers.AdHelper.yml\" sourcestartlinenumber=\"1\">Helper class with AD functionality</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Helpers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Helpers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServer",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServer.yml\" sourcestartlinenumber=\"1\">Interface for DHCP server instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerAuditLog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerAuditLog.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerAuditLog",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerAuditLog.yml\" sourcestartlinenumber=\"1\">Interface for DHCP server autif logs</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElement.yml\" sourcestartlinenumber=\"1\">Interface for binding elements</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElementCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElementCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElementCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerBindingElementCollection.yml\" sourcestartlinenumber=\"1\">Interface for collections of binding elements</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClass.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerClass",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClass.yml\" sourcestartlinenumber=\"1\">DHCP option class</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClassCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClassCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerClassCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClassCollection.yml\" sourcestartlinenumber=\"1\">Interface for collections of server class instances</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerClient",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClient.yml\" sourcestartlinenumber=\"1\">DHCP server client</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClientCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClientCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerClientCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerClientCollection.yml\" sourcestartlinenumber=\"1\">Interface for DHCP client collections</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerConfiguration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerConfiguration",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerConfiguration.yml\" sourcestartlinenumber=\"1\">DHCP server configuration</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerDnsSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerDnsSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerDnsSettings",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerDnsSettings.yml\" sourcestartlinenumber=\"1\">Defines Dynamic DNS settings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationship.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationship.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationship",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationship.yml\" sourcestartlinenumber=\"1\">DHCP server failover relationship</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationshipCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationshipCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationshipCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerFailoverRelationshipCollection.yml\" sourcestartlinenumber=\"1\">Collection of failover relationships</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerHost.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerHost",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerHost.yml\" sourcestartlinenumber=\"1\">Interface for DHCP server hosts</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOption.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerOption",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOption.yml\" sourcestartlinenumber=\"1\">DHCP server option</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionCollection.yml\" sourcestartlinenumber=\"1\">Collection of DHCP server options</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionElement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionElement",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionElement.yml\" sourcestartlinenumber=\"1\">Interface for DHCP server option elements</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionValue",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerOptionValue.yml\" sourcestartlinenumber=\"1\">Interface for option value implementations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacket.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacket",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacket.yml\" sourcestartlinenumber=\"1\">Packet interface</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRaw.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRaw.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRaw",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRaw.yml\" sourcestartlinenumber=\"1\">Raw packet interface</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRawWritable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRawWritable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRawWritable",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketRawWritable.yml\" sourcestartlinenumber=\"1\">Raw writable packet interface</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketWritable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketWritable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketWritable",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerPacketWritable.yml\" sourcestartlinenumber=\"1\">Writeable packet interface</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScope.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScope",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScope.yml\" sourcestartlinenumber=\"1\">DHCP server scope</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeClientCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeClientCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeClientCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeClientCollection.yml\" sourcestartlinenumber=\"1\">Interface for scope client collections</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeCollection.yml\" sourcestartlinenumber=\"1\">Interface for collections of scopes for a DHCP server</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeExcludedIpRangeCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeExcludedIpRangeCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeExcludedIpRangeCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeExcludedIpRangeCollection.yml\" sourcestartlinenumber=\"1\">Collection with exclude IP addresses ranges</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeFailoverStatistics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeFailoverStatistics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeFailoverStatistics",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeFailoverStatistics.yml\" sourcestartlinenumber=\"1\">Interface for failover statistics</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeOptionValueCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeOptionValueCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeOptionValueCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeOptionValueCollection.yml\" sourcestartlinenumber=\"1\">A cllection of option values for DHCP scope</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservation",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservation.yml\" sourcestartlinenumber=\"1\">DHCP reservation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationCollection.yml\" sourcestartlinenumber=\"1\">Interface for collections of DHCP reservations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationOptionValueCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationOptionValueCollection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationOptionValueCollection",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerScopeReservationOptionValueCollection.yml\" sourcestartlinenumber=\"1\">Interface for reservation related options value collections</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerSpecificStrings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerSpecificStrings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces.IDhcpServerSpecificStrings",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Network.Windows.Interfaces.IDhcpServerSpecificStrings.yml\" sourcestartlinenumber=\"1\">Intrface for specific strings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Network.Windows.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Network.Windows.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Network.Windows.Interfaces",
       "Summary": null
     },
     {
@@ -20681,6 +21745,34 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bodoconsult.Pdf.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder",
+      "Summary": "<p sourcefile=\"api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.yml\" sourcestartlinenumber=\"1\">This class creates an PDF file from a list of images provide with images each filling a full page</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bodoconsult.Pdf.PdfFromImagesBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bodoconsult.Pdf.PdfFromImagesBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Bodoconsult.Pdf.PdfFromImagesBuilder",
       "Summary": null
     },
     {
@@ -34676,6 +35768,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/BodoFileTransfer/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFileTransfer/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/BodoFileTransfer/README.md",
       "output": {
         ".html": {
@@ -34703,6 +35805,16 @@
         },
         ".json": {
           "relative_path": "doc/BodoFileTransfer/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/BodoFtpTransfer/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoFtpTransfer/LICENSE.html"
         }
       },
       "version": ""
@@ -34742,6 +35854,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/BodoWebMailer/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/BodoWebMailer/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/BodoWebMailer/README.md",
       "output": {
         ".html": {
@@ -34769,6 +35891,16 @@
         },
         ".json": {
           "relative_path": "doc/BodoWebMailer/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Abstractions/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Abstractions/LICENSE.html"
         }
       },
       "version": ""
@@ -34818,6 +35950,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/README.md",
       "output": {
         ".html": {
@@ -34845,6 +35987,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.App.Avalonia.ReactiveUI/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Avalonia/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Avalonia/LICENSE.html"
         }
       },
       "version": ""
@@ -34884,6 +36036,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.BackgroundService/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.BackgroundService/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.BackgroundService/README.md",
       "output": {
         ".html": {
@@ -34911,6 +36073,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.App.BackgroundService/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.DataProtection/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.DataProtection/LICENSE.html"
         }
       },
       "version": ""
@@ -34950,6 +36122,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.GrpcBackgroundService/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.GrpcBackgroundService/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.GrpcBackgroundService/README.md",
       "output": {
         ".html": {
@@ -34977,6 +36159,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.App.GrpcBackgroundService/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.ReactiveUI/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.ReactiveUI/LICENSE.html"
         }
       },
       "version": ""
@@ -35016,6 +36208,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.WinForms/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.WinForms/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.WinForms/README.md",
       "output": {
         ".html": {
@@ -35043,6 +36245,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.App.WinForms/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Windows/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Windows/LICENSE.html"
         }
       },
       "version": ""
@@ -35082,6 +36294,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf.Documents/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf.Documents/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.Wpf.Documents/README.md",
       "output": {
         ".html": {
@@ -35115,6 +36337,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/README.md",
       "output": {
         ".html": {
@@ -35142,6 +36374,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.App.Wpf.ReactiveUI/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App.Wpf/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App.Wpf/LICENSE.html"
         }
       },
       "version": ""
@@ -35221,6 +36463,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.App/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.App/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.App/Logging.md",
       "output": {
         ".html": {
@@ -35294,6 +36546,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Charting.Base/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Charting.Base/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Charting.Base/README.md",
       "output": {
         ".html": {
@@ -35321,6 +36583,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Charting.Base/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Charting/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Charting/LICENSE.html"
         }
       },
       "version": ""
@@ -35360,6 +36632,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Dbase.Ef/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Dbase.Ef/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Database.Dbase.Ef/README.md",
       "output": {
         ".html": {
@@ -35393,6 +36675,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Dbase/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Dbase/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Database.Dbase/README.md",
       "output": {
         ".html": {
@@ -35420,6 +36712,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Database.Dbase/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef.SqlServer/LICENSE.html"
         }
       },
       "version": ""
@@ -35479,6 +36781,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Ef/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Ef/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Database.Ef/README.md",
       "output": {
         ".html": {
@@ -35522,6 +36834,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Postgres/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Postgres/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Database.Postgres/README.md",
       "output": {
         ".html": {
@@ -35549,6 +36871,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Database.Postgres/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.SqlClient/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.SqlClient/LICENSE.html"
         }
       },
       "version": ""
@@ -35588,6 +36920,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database.Sqlite/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database.Sqlite/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Database.Sqlite/README.md",
       "output": {
         ".html": {
@@ -35615,6 +36957,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Database.Sqlite/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Database/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Database/LICENSE.html"
         }
       },
       "version": ""
@@ -35654,6 +37006,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Drawing.SkiaSharp/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Drawing.SkiaSharp/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Drawing.SkiaSharp/README.md",
       "output": {
         ".html": {
@@ -35681,6 +37043,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Drawing.SkiaSharp/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Drawing/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Drawing/LICENSE.html"
         }
       },
       "version": ""
@@ -35720,6 +37092,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.I18N/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.I18N/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.I18N/README.md",
       "output": {
         ".html": {
@@ -35747,6 +37129,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.I18N/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Network.Windows/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Network.Windows/LICENSE.html"
         }
       },
       "version": ""
@@ -35786,6 +37178,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Office/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Office/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Office/README.md",
       "output": {
         ".html": {
@@ -35819,6 +37221,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Pdf/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Pdf/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Pdf/README.md",
       "output": {
         ".html": {
@@ -35846,6 +37258,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Pdf/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Test/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Test/LICENSE.html"
         }
       },
       "version": ""
@@ -35895,6 +37317,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Text/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Text/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Text/README.md",
       "output": {
         ".html": {
@@ -35938,6 +37370,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Ftp/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Ftp/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Web.Ftp/README.md",
       "output": {
         ".html": {
@@ -35965,6 +37407,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Web.Ftp/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Html/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Html/LICENSE.html"
         }
       },
       "version": ""
@@ -36004,6 +37456,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "doc/Bodoconsult.Web.Mail/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/Bodoconsult.Web.Mail/LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "doc/Bodoconsult.Web.Mail/README.md",
       "output": {
         ".html": {
@@ -36031,6 +37493,16 @@
         },
         ".json": {
           "relative_path": "doc/Bodoconsult.Web.Mail/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "doc/JobExecuter/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "doc/JobExecuter/LICENSE.html"
         }
       },
       "version": ""
@@ -36333,6 +37805,46 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "licenses/baselic.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/baselic.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/baselic_Bodoconsult.Pdf.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/baselic_Bodoconsult.Pdf.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/baselic_Bodoconsult.Text.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/baselic_Bodoconsult.Text.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/baselic_JobExecuter.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/baselic_JobExecuter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "licenses/lic.md",
       "output": {
         ".html": {
@@ -36383,6 +37895,26 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "licenses/lic_Bodoconsult.Database.Dbase.Ef.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/lic_Bodoconsult.Database.Dbase.Ef.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "licenses/lic_Bodoconsult.Database.Dbase.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/lic_Bodoconsult.Database.Dbase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "licenses/lic_Bodoconsult.Drawing.SkiaSharp.md",
       "output": {
         ".html": {
@@ -36413,840 +37945,20 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "licenses/lic_Bodoconsult.Network.Windows.md",
+      "output": {
+        ".html": {
+          "relative_path": "licenses/lic_Bodoconsult.Network.Windows.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "licenses/lic_Bodoconsult.Text.md",
       "output": {
         ".html": {
           "relative_path": "licenses/lic_Bodoconsult.Text.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_AvaloniaApp1.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_AvaloniaApp1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_AvaloniaConsoleApp1.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_AvaloniaConsoleApp1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_AvaloniaReactiveUiDemoApp.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_AvaloniaReactiveUiDemoApp.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoFileTransfer.Business.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoFileTransfer.Business.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoFileTransfer.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoFileTransfer.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoFileTransfer.Ui.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoFileTransfer.Ui.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoFileTransfer.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoFileTransfer.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoFtpTransfer.Business.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoFtpTransfer.Business.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoFtpTransfer.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoFtpTransfer.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoFtpTransferBusiness.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoFtpTransferBusiness.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoWebMailer.Business.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoWebMailer.Business.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoWebMailer.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoWebMailer.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_BodoWebMailer.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_BodoWebMailer.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Abstractions.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Abstractions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.ReactiveUI.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Avalonia.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Avalonia.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.BackgroundService.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.BackgroundService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.DataProtection.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.DataProtection.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.GrpcBackgroundService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Tests.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.Tests.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.ReactiveUI.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.WinForms.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.WinForms.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Windows.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Windows.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Windows.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Windows.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Wpf.Documents.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Wpf.ReactiveUI.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Wpf.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.Wpf.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.Wpf.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.App.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.App.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Charting.Base.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Charting.Base.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Charting.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Charting.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Charting.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Charting.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Dbase.Ef.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Dbase.Ef.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Dbase.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Dbase.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Ef.SqlServer.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Ef.SqlServer.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Ef.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Ef.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Ef.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Ef.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Postgres.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Postgres.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Postgres.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Postgres.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.SqlClient.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.SqlClient.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.SqlClient.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.SqlClient.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Sqlite.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Sqlite.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Sqlite.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Sqlite.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Test.Utilities.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Test.Utilities.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Database.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Database.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Drawing.SkiaSharp.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Drawing.SkiaSharp.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Drawing.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Drawing.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Drawing.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Drawing.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.I18N.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.I18N.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.I18N.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.I18N.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Office.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Office.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Office.Tests.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Office.Tests.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Office.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Office.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Pdf.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Pdf.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Pdf.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Pdf.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Test.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Test.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Text.Pdf.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Text.Pdf.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Text.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Text.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Typography.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Typography.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Web.Ftp.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Web.Ftp.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Web.Ftp.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Web.Ftp.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Web.Html.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Web.Html.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Web.Mail.Test.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Web.Mail.Test.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_Bodoconsult.Web.Mail.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_Bodoconsult.Web.Mail.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_ConsoleApp1.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_ConsoleApp1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_ConsoleWpfApp1.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_ConsoleWpfApp1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_EfConsoleApp1.Model.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_EfConsoleApp1.Model.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_EfConsoleApp1.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_EfConsoleApp1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_GrpcServerApp.Grpc.Common.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_GrpcServerApp.Grpc.Common.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_GrpcServerApp.Grpc.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_GrpcServerApp.Grpc.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_GrpcServerApp.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_GrpcServerApp.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_GrpcServerApps.Tests.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_GrpcServerApps.Tests.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_TestAvaloniaApplication1.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_TestAvaloniaApplication1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_WorkerService1.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_WorkerService1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_WpfReactiveDemoApp.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_WpfReactiveDemoApp.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "licenses/license_WpfReactiveUiDemoApp.md",
-      "output": {
-        ".html": {
-          "relative_path": "licenses/license_WpfReactiveUiDemoApp.html"
         }
       },
       "version": ""

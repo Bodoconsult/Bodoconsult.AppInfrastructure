@@ -77,10 +77,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\..\doc\Bodoconsult.App\LICENSE.md" Link="LICENSE.md">
+		<Content  Include="..\..\doc\Bodoconsult.App\LICENSE.md" Link="LICENSE.md">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Include="..\..\doc\Bodoconsult.App\README.md" Link="README.md" Pack="true" PackagePath="\" />
+		</Content>
+		<Content  Include="..\..\doc\Bodoconsult.App\README.md" Link="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>

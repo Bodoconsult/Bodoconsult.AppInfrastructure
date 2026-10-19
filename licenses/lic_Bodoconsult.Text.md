@@ -1,4 +1,5 @@
-## RTFExporter by B. Araujo ("brunurd")
+
+### RTFExporter by B. Araujo ("brunurd")
 
 Repository: https://github.com/brunurd/RTFExporter
 

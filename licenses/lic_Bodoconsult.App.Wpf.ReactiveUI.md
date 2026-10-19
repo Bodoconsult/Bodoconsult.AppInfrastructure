@@ -1,4 +1,4 @@
-# Entypo fonts by Daniel Bruce
+### Entypo fonts by Daniel Bruce
 
 Project uri: http://www.entypo.com/
 
@@ -6,7 +6,7 @@ License uri: http://creativecommons.org/licenses/by-sa/3.0/
 
 Entypo is created by Daniel Bruce and released under the Creative Commons, Share Alike/Attribution license.
 
-# License for icons
+### License for icons
 
 Bodoconsult.App.Wpf.Unity uses some ModernUIIcons.com icons. Therefore here the license info for ModernUIIcons.com:
 
@@ -16,7 +16,7 @@ License uri: http://creativecommons.org/licenses/by-nd/3.0/
 
 Please carefully understand the license and download the latest icons at ModernUIIcons.com.
 
-## Understand Your Rights
+#### Understand Your Rights
 No Attribution and No Derived Works
 http://creativecommons.org/licenses/by-nd/3.0/ *
 
@@ -28,10 +28,10 @@ http://creativecommons.org/licenses/by-nd/3.0/ *
 - Do not distribute the entire package (I've allowed this dozens of
   times for open source projects, but email me first).
 
-## Creator
+#### Creator
 - Austin Andrews (@templarian)
 
-## Contributor**
+#### Contributor**
 - Jay Zawrotny (@JayZawrotny)
   - A Bunch
 - Oren Nachman
@@ -40,11 +40,11 @@ http://creativecommons.org/licenses/by-nd/3.0/ *
   - appbar.chevron.left
   - appbar.chevron.right
 
-## Derived Works
+#### Derived Works
 - Alex Peattie
   - Social: http://www.alexpeattie.com/projects/justvector_icons/
 
-## Attribution***
+#### Attribution***
 - Kris Vandermotten (@kvandermotten)
   - appbar.medical.pulse
 - Constantin Kichinsky (@kichinsky)

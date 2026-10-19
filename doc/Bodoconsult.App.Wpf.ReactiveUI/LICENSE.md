@@ -1,5 +1,6 @@
-License for Bodoconsult.App.Wpf.ReactiveUI
-==========================
+# Bodoconsult.App.Wpf.ReactiveUI
+
+## License for Bodoconsult.App.Wpf.ReactiveUI
 
 Bodoconsult.App.Wpf.ReactiveUI is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.App.Wpf.ReactiveUI
 
-## Bodoconsult.App.Abstractions
+### Bodoconsult.App.Abstractions
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -23,7 +24,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Hosting by Microsoft
+#### Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -47,7 +48,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -59,7 +60,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -71,7 +72,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -83,7 +84,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -95,9 +96,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Bodoconsult.App.ReactiveUI
+### Bodoconsult.App.ReactiveUI
 
-### Nuget package library ReactiveUI by .NET Foundation and Contributors
+#### Nuget package library ReactiveUI by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors
 
@@ -109,7 +110,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/reactiveui/reactiveui
 
-### Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
+#### Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors
 
@@ -121,7 +122,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/reactiveui/reactiveui
 
-### Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+#### Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors
 
@@ -133,9 +134,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
 
-## Bodoconsult.App.Wpf
+### Bodoconsult.App.Wpf
 
-### Nuget package library CommunityToolkit.Mvvm by Microsoft
+#### Nuget package library CommunityToolkit.Mvvm by Microsoft
 
 Copyright: (c) .NET Foundation and Contributors. All rights reserved.
 
@@ -155,7 +156,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/CommunityToolkit/dotnet
 
-### Nuget package library Microsoft-WindowsAPICodePack-Core by rpastric, contre, dahall
+#### Nuget package library Microsoft-WindowsAPICodePack-Core by rpastric, contre, dahall
 
 Copyright: Copyright © 2020
 
@@ -167,7 +168,7 @@ License-Url: https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE
 
 Project-Url: https://github.com/contre/Windows-API-Code-Pack-1.1
 
-### Nuget package library Microsoft-WindowsAPICodePack-Shell by rpastric, contre, dahall
+#### Nuget package library Microsoft-WindowsAPICodePack-Shell by rpastric, contre, dahall
 
 Copyright: Copyright © 2020
 
@@ -179,7 +180,7 @@ License-Url: https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE
 
 Project-Url: https://github.com/contre/Windows-API-Code-Pack-1.1
 
-### Nuget package library Microsoft.WindowsAppSDK by Microsoft
+#### Nuget package library Microsoft.WindowsAppSDK by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -191,7 +192,7 @@ License-Url: https://www.nuget.org/packages/Microsoft.WindowsAppSDK/2.5.1/Licens
 
 Project-Url: 
 
-### Nuget package library Microsoft.Xaml.Behaviors.Wpf by Microsoft
+#### Nuget package library Microsoft.Xaml.Behaviors.Wpf by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -203,7 +204,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/microsoft/XamlBehaviorsWpf
 
-### Nuget package library System.Data.DataSetExtensions by Microsoft
+#### Nuget package library System.Data.DataSetExtensions by Microsoft
 
 Copyright: © Microsoft Corporation.  All rights reserved.
 
@@ -228,9 +229,9 @@ License-Url: https://github.com/dotnet/corefx/blob/master/LICENSE.TXT
 
 Project-Url: 
 
-## Bodoconsult.App
+### Bodoconsult.App
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -254,7 +255,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -268,7 +269,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -282,7 +283,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
+#### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -294,7 +295,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/diagnostics
 
-### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
+#### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -317,7 +318,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: 
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -329,7 +330,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -341,7 +342,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -353,7 +354,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -365,7 +366,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -377,7 +378,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -389,9 +390,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-# Referenced external libraries for Bodoconsult.App.Wpf.ReactiveUI
+## Referenced external libraries for Bodoconsult.App.Wpf.ReactiveUI
 
-# Entypo fonts by Daniel Bruce
+### Entypo fonts by Daniel Bruce
 
 Project uri: http://www.entypo.com/
 
@@ -399,7 +400,7 @@ License uri: http://creativecommons.org/licenses/by-sa/3.0/
 
 Entypo is created by Daniel Bruce and released under the Creative Commons, Share Alike/Attribution license.
 
-# License for icons
+### License for icons
 
 Bodoconsult.App.Wpf.Unity uses some ModernUIIcons.com icons. Therefore here the license info for ModernUIIcons.com:
 
@@ -409,7 +410,7 @@ License uri: http://creativecommons.org/licenses/by-nd/3.0/
 
 Please carefully understand the license and download the latest icons at ModernUIIcons.com.
 
-## Understand Your Rights
+#### Understand Your Rights
 No Attribution and No Derived Works
 http://creativecommons.org/licenses/by-nd/3.0/ *
 
@@ -421,10 +422,10 @@ http://creativecommons.org/licenses/by-nd/3.0/ *
 - Do not distribute the entire package (I've allowed this dozens of
   times for open source projects, but email me first).
 
-## Creator
+#### Creator
 - Austin Andrews (@templarian)
 
-## Contributor**
+#### Contributor**
 - Jay Zawrotny (@JayZawrotny)
   - A Bunch
 - Oren Nachman
@@ -433,11 +434,11 @@ http://creativecommons.org/licenses/by-nd/3.0/ *
   - appbar.chevron.left
   - appbar.chevron.right
 
-## Derived Works
+#### Derived Works
 - Alex Peattie
   - Social: http://www.alexpeattie.com/projects/justvector_icons/
 
-## Attribution***
+#### Attribution***
 - Kris Vandermotten (@kvandermotten)
   - appbar.medical.pulse
 - Constantin Kichinsky (@kichinsky)
@@ -468,7 +469,7 @@ Contact
 - Twitter
 - etc...
 
-## Nuget package library MahApps.Metro by Jan Karger,  Dennis Daume,  Brendan Forster,  Paul Jenkins,  Jake Ginnivan,  Alex Mitchell
+### Nuget package library MahApps.Metro by Jan Karger,  Dennis Daume,  Brendan Forster,  Paul Jenkins,  Jake Ginnivan,  Alex Mitchell
 
 Copyright: Copyright © 2025 .NET Foundation and Contributors. All rights reserved.
 
@@ -480,7 +481,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/MahApps/MahApps.Metro.git
 
-## Nuget package library MahApps.Metro.IconPacks by Jan Karger
+### Nuget package library MahApps.Metro.IconPacks by Jan Karger
 
 Copyright: Copyright © 2016 - 2025 MahApps.Metro
 
@@ -492,7 +493,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/MahApps/MahApps.Metro.IconPacks.git
 
-## Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
+### Nuget package library ReactiveUI.Routing by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors
 
@@ -504,7 +505,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/reactiveui/reactiveui
 
-## Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
+### Nuget package library ReactiveUI.SourceGenerators by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors
 
@@ -516,7 +517,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/reactiveui/reactiveui.sourcegenerators
 
-## Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors
+### Nuget package library ReactiveUI.WPF by .NET Foundation and Contributors
 
 Copyright: Copyright (c) .NET Foundation and Contributors
 

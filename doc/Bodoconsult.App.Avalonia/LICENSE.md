@@ -1,5 +1,6 @@
-License for Bodoconsult.App.Avalonia
-==========================
+# Bodoconsult.App.Avalonia
+
+## License for Bodoconsult.App.Avalonia
 
 Bodoconsult.App.Avalonia is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.App.Avalonia
 
-## Bodoconsult.App.Abstractions
+### Bodoconsult.App.Abstractions
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -23,7 +24,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Hosting by Microsoft
+#### Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -47,7 +48,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -59,7 +60,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -71,7 +72,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -83,7 +84,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -95,9 +96,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Bodoconsult.App
+### Bodoconsult.App
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -121,7 +122,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -135,7 +136,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -149,7 +150,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
+#### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -161,7 +162,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/diagnostics
 
-### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
+#### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -184,7 +185,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: 
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -196,7 +197,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -208,7 +209,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -220,7 +221,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -232,7 +233,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -244,7 +245,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -256,9 +257,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Bodoconsult.I18N
+### Bodoconsult.I18N
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -270,21 +271,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-# Referenced external libraries for Bodoconsult.App.Avalonia
+## Referenced external libraries for Bodoconsult.App.Avalonia
 
-## Nuget package library Avalonia by Avalonia Team
-
-Copyright: Copyright 2013-2026 © The AvaloniaUI Project
-
-Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/AvaloniaUI/Avalonia/
-
-## Nuget package library Avalonia.Desktop by Avalonia Team
+### Nuget package library Avalonia by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
@@ -296,7 +285,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Fonts.Inter by Avalonia Team
+### Nuget package library Avalonia.Desktop by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
@@ -308,7 +297,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Markup.Xaml.Loader by Avalonia Team
+### Nuget package library Avalonia.Fonts.Inter by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
@@ -320,7 +309,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library Avalonia.Themes.Fluent by Avalonia Team
+### Nuget package library Avalonia.Markup.Xaml.Loader by Avalonia Team
 
 Copyright: Copyright 2013-2026 © The AvaloniaUI Project
 
@@ -332,7 +321,19 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/AvaloniaUI/Avalonia/
 
-## Nuget package library CommunityToolkit.Mvvm by Microsoft
+### Nuget package library Avalonia.Themes.Fluent by Avalonia Team
+
+Copyright: Copyright 2013-2026 © The AvaloniaUI Project
+
+Avalonia is a cross-platform UI framework for .NET providing a flexible styling system and supporting a wide range of Operating Systems such as Windows, Linux, macOS and with experimental support for Android, iOS and WebAssembly.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/AvaloniaUI/Avalonia/
+
+### Nuget package library CommunityToolkit.Mvvm by Microsoft
 
 Copyright: (c) .NET Foundation and Contributors. All rights reserved.
 
@@ -352,7 +353,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/CommunityToolkit/dotnet
 
-## Nuget package library MessageBox.Avalonia by Lary
+### Nuget package library MessageBox.Avalonia by Lary
 
 Copyright: 
 
@@ -364,7 +365,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: messagebox.avalonia
 
-## Nuget package library System.Data.DataSetExtensions by Microsoft
+### Nuget package library System.Data.DataSetExtensions by Microsoft
 
 Copyright: © Microsoft Corporation.  All rights reserved.
 

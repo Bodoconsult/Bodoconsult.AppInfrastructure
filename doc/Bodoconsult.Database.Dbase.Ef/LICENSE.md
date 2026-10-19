@@ -1,5 +1,6 @@
-License for Bodoconsult.Database.Dbase.Ef
-==========================
+# Bodoconsult.Database.Dbase.Ef
+
+## License for Bodoconsult.Database.Dbase.Ef
 
 Bodoconsult.Database.Dbase.Ef is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.Database.Dbase.Ef
 
-## Bodoconsult.App
+### Bodoconsult.App
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -49,7 +50,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
+#### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -63,7 +64,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
+#### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -75,7 +76,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/diagnostics
 
-### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
+#### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -98,7 +99,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: 
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -110,7 +111,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -122,7 +123,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -134,7 +135,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -146,7 +147,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -158,7 +159,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -170,11 +171,11 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Bodoconsult.Database.Dbase
+### Bodoconsult.Database.Dbase
 
-## Bodoconsult.Database.Ef
+### Bodoconsult.Database.Ef
 
-### Nuget package library Microsoft.EntityFrameworkCore by Microsoft
+#### Nuget package library Microsoft.EntityFrameworkCore by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -190,7 +191,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.EntityFrameworkCore.Relational by Microsoft
+#### Nuget package library Microsoft.EntityFrameworkCore.Relational by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -202,7 +203,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Newtonsoft.Json by James Newton-King
+#### Nuget package library Newtonsoft.Json by James Newton-King
 
 Copyright: Copyright © James Newton-King 2008
 
@@ -214,11 +215,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
-# Referenced libraries for Bodoconsult.Database.Dbase.Ef
+## Referenced external libraries for Bodoconsult.Database.Dbase.Ef
 
-# Referenced external libraries for Bodoconsult.Database.Dbase.Ef
-
-## Social Explorer
+### Social Explorer
 
 Project:Url:    https://github.com/SocialExplorer/FastDBF
 

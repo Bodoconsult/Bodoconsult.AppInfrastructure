@@ -1,5 +1,6 @@
-License for Bodoconsult.Database.SqlClient
-==========================
+# Bodoconsult.Database.SqlClient
+
+## License for Bodoconsult.Database.SqlClient
 
 Bodoconsult.Database.SqlClient is licensed under the MIT License.
 
@@ -7,13 +8,13 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.Database.SqlClient
 
-## Bodoconsult.Database
+### Bodoconsult.Database
 
-# Referenced external libraries for Bodoconsult.Database.SqlClient
+## Referenced external libraries for Bodoconsult.Database.SqlClient
 
-## Nuget package library Microsoft.Data.SqlClient by Microsoft
+### Nuget package library Microsoft.Data.SqlClient by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 

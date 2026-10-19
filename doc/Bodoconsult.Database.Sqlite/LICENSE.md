@@ -1,5 +1,6 @@
-License for Bodoconsult.Database.Sqlite
-==========================
+# Bodoconsult.Database.Sqlite
+
+## License for Bodoconsult.Database.Sqlite
 
 Bodoconsult.Database.Sqlite is licensed under the MIT License.
 
@@ -7,13 +8,13 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.Database.Sqlite
 
-## Bodoconsult.Database
+### Bodoconsult.Database
 
-# Referenced external libraries for Bodoconsult.Database.Sqlite
+## Referenced external libraries for Bodoconsult.Database.Sqlite
 
-## Nuget package library Microsoft.Data.Sqlite by Microsoft
+### Nuget package library Microsoft.Data.Sqlite by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 

@@ -1,5 +1,6 @@
-License for Bodoconsult.Network.Windows
-==========================
+# Bodoconsult.Network.Windows
+
+## License for Bodoconsult.Network.Windows
 
 Bodoconsult.Network.Windows is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.Network.Windows
 
-# Referenced external libraries for Bodoconsult.Network.Windows
+## Referenced external libraries for Bodoconsult.Network.Windows
 
-## https://www.nullify.net/Article/304 by Simon Soanes
+### https://www.nullify.net/Article/304 by Simon Soanes
 
 Project-Url: https://www.nullify.net/Article/304by
 
@@ -24,18 +25,18 @@ DO NOT redistribute this source code publically without a link to the origin and
 notice fully intact, also please send any modifications back to me at simon@nullifynetwork.com
 Including in your software is fine although attribution would be nice. </c>
 
-## DhcpServerApi by GarySharp
+### DhcpServerApi by GarySharp
 
 Project-Url: [DhcpServerApi](https://github.com/garysharp/DhcpServerApi)
 
 License-Url: https://github.com/garysharp/DhcpServerApi/blob/master/COPYING
 
-## DnsServerApi by GarySharp
+### DnsServerApi by GarySharp
 
 Project-Url: [DnsServerApi](https://github.com/garysharp/DnsServerApi)
 
 License-Url: https://github.com/garysharp/DnsServerApi/blob/development/LICENSE
-## Nuget package library Microsoft.Management.Infrastructure by Microsoft
+### Nuget package library Microsoft.Management.Infrastructure by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -47,7 +48,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: 
 
-## Nuget package library Microsoft.Windows.Compatibility by Microsoft
+### Nuget package library Microsoft.Windows.Compatibility by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 

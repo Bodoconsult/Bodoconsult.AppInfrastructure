@@ -1,5 +1,6 @@
-License for Bodoconsult.App.WinForms
-==========================
+# Bodoconsult.App.WinForms
+
+## License for Bodoconsult.App.WinForms
 
 Bodoconsult.App.WinForms is licensed under the MIT License.
 
@@ -7,11 +8,11 @@ For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-# Repository internal library references
+## Repository internal library references for Bodoconsult.App.WinForms
 
-## Bodoconsult.App.Abstractions
+### Bodoconsult.App.Abstractions
 
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -23,7 +24,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -35,7 +36,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Hosting by Microsoft
+#### Nuget package library Microsoft.Extensions.Hosting by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -47,7 +48,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -59,7 +60,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -71,7 +72,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -83,7 +84,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -95,9 +96,9 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Bodoconsult.App
+### Bodoconsult.App
 
-### Nuget package library log4net by The Apache Software Foundation
+#### Nuget package library log4net by The Apache Software Foundation
 
 Copyright: Copyright © 2004 - 2026 The Apache Software Foundation
 
@@ -120,6 +121,143 @@ License: Apache-2.0
 License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
+
+#### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
+
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+#### Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Additional APIs for ASP.NET Core data protection.
+
+This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+#### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+.NET Core Diagnostics Client Library
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/diagnostics
+
+#### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Event Tracing for Windows (ETW) is a powerful logging mechanism built into the Windows OS and is used extensively in Windows. 
+      You can also log ETW events yourself code using the System.Diagnostics.Tracing.EventSource class.
+
+      The TraceEvent library conains the classes needed to control ETW providers (including .NET EventSources) 
+      and parse the events they emit.
+
+      The library includes
+      -- TraceEventSession which can enable ETW providers,
+      -- EtwTraceEventSource which lets you read the stream of ETW events, and
+      -- TraceLog which is is digested form of ETW events which include decoded stack traces associated with the events.
+    
+      See https://github.com/Microsoft/perfview/blob/master/documentation/TraceEvent/TraceEventLibrary.md for more.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: 
+
+#### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+JSON configuration provider implementation for Microsoft.Extensions.Configuration. This package enables you to read your application's settings from a JSON file. You can use JsonConfigurationExtensions.AddJsonFile extension method on IConfigurationBuilder to add the JSON configuration provider to the configuration builder.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+#### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+#### Nuget package library Microsoft.Extensions.Logging by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Logging infrastructure default implementation for Microsoft.Extensions.Logging.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+#### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Console logger provider implementation for Microsoft.Extensions.Logging.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+#### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Debug output logger provider implementation for Microsoft.Extensions.Logging. This logger logs messages to a debugger monitor by writing messages with System.Diagnostics.Debug.WriteLine().
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+#### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+EventSource/EventListener logger provider implementation for Microsoft.Extensions.Logging.
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/dotnet
+
+## Referenced external libraries for Bodoconsult.App.WinForms
 
 ### Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
 
@@ -149,144 +287,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-### Nuget package library Microsoft.Diagnostics.NETCore.Client by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-.NET Core Diagnostics Client Library
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/diagnostics
-
-### Nuget package library Microsoft.Diagnostics.Tracing.TraceEvent by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Event Tracing for Windows (ETW) is a powerful logging mechanism built into the Windows OS and is used extensively in Windows. 
-      You can also log ETW events yourself code using the System.Diagnostics.Tracing.EventSource class.
-
-      The TraceEvent library conains the classes needed to control ETW providers (including .NET EventSources) 
-      and parse the events they emit.
-
-      The library includes
-      -- TraceEventSession which can enable ETW providers,
-      -- EtwTraceEventSource which lets you read the stream of ETW events, and
-      -- TraceLog which is is digested form of ETW events which include decoded stack traces associated with the events.
-    
-      See https://github.com/Microsoft/perfview/blob/master/documentation/TraceEvent/TraceEventLibrary.md for more.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: 
-
-### Nuget package library Microsoft.Extensions.Configuration.Json by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-JSON configuration provider implementation for Microsoft.Extensions.Configuration. This package enables you to read your application's settings from a JSON file. You can use JsonConfigurationExtensions.AddJsonFile extension method on IConfigurationBuilder to add the JSON configuration provider to the configuration builder.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-### Nuget package library Microsoft.Extensions.DependencyInjection by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-### Nuget package library Microsoft.Extensions.Logging by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Logging infrastructure default implementation for Microsoft.Extensions.Logging.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-### Nuget package library Microsoft.Extensions.Logging.Console by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Console logger provider implementation for Microsoft.Extensions.Logging.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-### Nuget package library Microsoft.Extensions.Logging.Debug by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Debug output logger provider implementation for Microsoft.Extensions.Logging. This logger logs messages to a debugger monitor by writing messages with System.Diagnostics.Debug.WriteLine().
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-### Nuget package library Microsoft.Extensions.Logging.EventSource by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-EventSource/EventListener logger provider implementation for Microsoft.Extensions.Logging.
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-# Referenced external libraries for Bodoconsult.App.WinForms
-
-## Nuget package library Microsoft.AspNetCore.DataProtection by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-ASP.NET Core logic to protect and unprotect data, similar to DPAPI.
-
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-## Nuget package library Microsoft.AspNetCore.DataProtection.Extensions by Microsoft
-
-Copyright: © Microsoft Corporation. All rights reserved.
-
-Additional APIs for ASP.NET Core data protection.
-
-This package was built from the source code at https://github.com/dotnet/dotnet/tree/4099f83977f4d29604a9aeb971fb0a7bc1d5f699
-
-License: MIT
-
-License-Url: https://licenses.nuget.org/MIT
-
-Project-Url: https://github.com/dotnet/dotnet
-
-## Nuget package library Microsoft.AspNetCore.TestHost by Microsoft
+### Nuget package library Microsoft.AspNetCore.TestHost by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
@@ -300,7 +301,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/dotnet
 
-## Nuget package library Microsoft.WindowsAppSDK by Microsoft
+### Nuget package library Microsoft.WindowsAppSDK by Microsoft
 
 Copyright: © Microsoft Corporation. All rights reserved.
 
