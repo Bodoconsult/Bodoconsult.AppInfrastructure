@@ -5,7 +5,9 @@ using Bodoconsult.App.ReactiveUI.Extensions;
 using Bodoconsult.App.ReactiveUI.Interfaces;
 using Bodoconsult.App.ReactiveUI.Regions;
 using Avalonia.Controls;
+using ReactiveUI;
 using ReactiveUI.Avalonia;
+using ReactiveUI.Primitives;
 
 
 namespace Bodoconsult.App.Avalonia.ReactiveUI.Regions;
@@ -65,24 +67,22 @@ public class AvaloniaRegionManager : RegionManagerBase
         reactiveWindow.ViewModel = windowViewModel;
         reactiveWindow.Focus();
         reactiveWindow.Show();
+        
+        // Activate navigation to target region now
+        SubscribeExtensions.Subscribe(reactiveWindow.WhenAnyValueUnsafe(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
+                {
+                    var region = uiWindow.FindRegion(regionName);
+                    ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
 
+                    if (viewModel is not IUiRegionViewModel uvm)
+                    {
+                        throw new ArgumentException($"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
+                    }
 
+                    uvm.InjectScreen(region);
 
-        //// Activate navigation to target region now
-        //SubscribeExtensions.Subscribe(reactiveWindow.WhenAnyValue(x => x.IsLoaded).ObserveOn(RxSchedulers.MainThreadScheduler), x =>
-        //        {
-        //            var region = uiWindow.FindRegion(regionName);
-        //            ArgumentNullException.ThrowIfNull(region, $"Region {regionName} not found");
-
-        //            if (viewModel is not IUiRegionViewModel uvm)
-        //            {
-        //                throw new ArgumentException($"Viewmodel {viewModel.GetType().Name} does not implement IUiRegionViewModel as expected");
-        //            }
-
-        //            uvm.InjectScreen(region);
-
-        //            region.Router.Navigate.Execute(viewModel);
-        //        });
+                    region.Router.Navigate.Execute(viewModel);
+                });
 
         return uiWindow;
     }
