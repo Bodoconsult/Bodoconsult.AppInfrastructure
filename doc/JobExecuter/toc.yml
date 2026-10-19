@@ -1,5 +1,7 @@
 - name: Readme
   href: README.md
+- name: License
+  href: LICENSE.md
 - name: Documentation
   href: documentation.md
 - name: Release notes

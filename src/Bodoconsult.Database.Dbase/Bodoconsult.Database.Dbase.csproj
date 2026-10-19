@@ -9,7 +9,7 @@
 
 		<PackageId>Bodoconsult.Database.Dbase</PackageId>
 		<PackageTags>dbase;dbf;migration</PackageTags>
-		<Description>Tools for reading DBF files from .NET 8 or later</Description>
+		<Description>Tools for reading DBF files from .NET 10 or later</Description>
 		<PackageReleaseNotes>New implementation</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/RobertLeisner/Bodoconsult.Database</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -33,7 +33,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="..\..\LICENSE.md" Link="LICENSE.md" Pack="true" PackagePath="\" />
+		<Content Include="..\..\doc\Bodoconsult.Database.Dbase\LICENSE.md" Link="LICENSE.md" Pack="true" PackagePath="\" />
 		<None Include="..\..\doc\Bodoconsult.Database.Dbase\README.md" Link="README.md" Pack="true" PackagePath="\">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

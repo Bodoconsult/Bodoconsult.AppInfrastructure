@@ -12,3 +12,5 @@ With each release all the repository internal references are updated.
 -   Added new BackupBatchJobTask providing advanced file system backup features supporting diskshadowing, daily and weekly backups with keeping old backups for a certain time period etc.
 
 -   Improved security
+
+-   Had to change to AGPL-3.0-only license due to PdfSharp

@@ -1,5 +1,7 @@
 - name: Readme
   href: README.md
+- name: License
+  href: LICENSE.md
 - name: App start infrastructure
   href: AppStartInfrastructure.md
 - name: Business transactions

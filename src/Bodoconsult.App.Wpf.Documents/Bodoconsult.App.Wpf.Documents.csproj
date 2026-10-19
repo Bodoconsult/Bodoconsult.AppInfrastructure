@@ -83,7 +83,7 @@
 		<ProjectReference Include="..\Bodoconsult.Text\Bodoconsult.Text.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\..\LICENSE.md" Link="LICENSE.md" />
+		<None Include="..\..\doc\Bodoconsult.App.Wpf.Documents\LICENSE.md" Link="LICENSE.md" />
 		<None Include="..\..\doc\Bodoconsult.App.Wpf.Documents\README.md" Link="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>

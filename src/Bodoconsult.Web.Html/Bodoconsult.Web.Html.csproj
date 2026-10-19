@@ -38,7 +38,7 @@
 
 
 	<ItemGroup>
-		<Content Include="..\..\LICENSE.md" Link="LICENSE.md" />
+		<Content Include="..\..\doc\Bodoconsult.Web.Html\LICENSE.md" Link="LICENSE.md" />
 		<Content Include="..\..\doc\Bodoconsult.Web.Html\README.md" Link="README.md" Pack="true" PackagePath="\">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>

@@ -29,4 +29,6 @@ NOT intended for public use
 
 -   Better PDB handling
 
--   Added MarkDownTextFormatter to format simple text based on IStructuredText as Markdwon
+-   Added MarkDownTextFormatter to format simple text based on IStructuredText as Markdown
+
+-   Had to change to AGPL-3.0-only license due to PdfSharp

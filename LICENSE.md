@@ -20,7 +20,7 @@ The MIT License (https://licenses.nuget.org/MIT) applies for
 
 >   Bodoconsult.App.Windows, 
 
->   Bodoconsult.App.I18N.Bodoconsult.Text, 
+>   Bodoconsult.App.I18N, 
 
 >	Bodoconsult.Database
 
@@ -62,6 +62,7 @@ The MIT License (https://licenses.nuget.org/MIT) applies for
 
 For the license text see https://licenses.nuget.org/MIT.
 
+
 ## Packages using the AGPL-3.0-only license
 
 >   Bodoconsult.Pdf,
@@ -71,6 +72,7 @@ For the license text see https://licenses.nuget.org/MIT.
 >	JobExecuter
 
 For the license text see https://licenses.nuget.org/AGPL-3.0-only.    
+
 
 # Referenced libraries by projects / packages
 

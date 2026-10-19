@@ -20,3 +20,5 @@ NOT intended for public use
 # 1.0.11
 
 -   Better PDB handling
+
+-   Had to change to AGPL-3.0-only license due to PdfSharp

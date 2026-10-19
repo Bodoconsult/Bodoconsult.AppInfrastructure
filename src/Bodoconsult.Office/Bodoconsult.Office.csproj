@@ -44,7 +44,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\..\LICENSE.md" Link="LICENSE.md">
+		<None Include="..\..\doc\Bodoconsult.Office\LICENSE.md" Link="LICENSE.md">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Include="..\..\doc\Bodoconsult.Office\README.md" Link="README.md" Pack="true" PackagePath="\" />

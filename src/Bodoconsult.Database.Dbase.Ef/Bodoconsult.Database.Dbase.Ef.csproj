@@ -38,7 +38,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Content Include="..\..\LICENSE.md" Link="LICENSE.md" />
+		<Content Include="..\..\doc\Bodoconsult.Database.Dbase.Ef\LICENSE.md" Link="LICENSE.md" />
 		<None Include="..\..\doc\Bodoconsult.Database.Dbase.Ef\README.md" Link="README.md" Pack="true" PackagePath="\">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
