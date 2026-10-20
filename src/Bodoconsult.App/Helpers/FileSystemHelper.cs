@@ -98,4 +98,16 @@ public static class FileSystemHelper
         _appPath = s ?? string.Empty;
         return _appPath;
     }
+
+    /// <summary>
+    /// Check if a file is existing and if yes delete it
+    /// </summary>
+    /// <param name="fileName">File to be deleted</param>
+    public static void DeleteFile(string fileName)
+    {
+        if (File.Exists(fileName))
+        {
+            File.Delete(fileName);
+        }
+    }
 }

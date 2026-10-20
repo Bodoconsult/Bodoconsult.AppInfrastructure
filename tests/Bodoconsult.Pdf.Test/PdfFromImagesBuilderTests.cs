@@ -12,69 +12,53 @@ using NUnit.Framework;
 
 // https://github.com/ststeiger/PdfSharpCore/issues/203
 
-namespace Bodoconsult.Pdf.Test
+namespace Bodoconsult.Pdf.Test;
+
+[TestFixture]
+internal class PdfFromImagesBuilderTests
 {
-    [TestFixture]
-    internal class PdfFromImagesBuilderTests
+    private readonly byte[] _image = ResourceHelper.GetByteResource("Bodoconsult.Pdf.Test.Resources.page.jpg");
+    private readonly string _fileName = Path.Combine(Path.GetTempPath(), "test.pdf");
+
+    [Test]
+    public void ProcessImages_OneImage_PdfCreated()
     {
+        // Arrange 
+        var images = new List<byte[]> { _image };
 
-        private byte[] image;
-        private string _fileName = Path.Combine(Path.GetTempPath(), "test.pdf");
+        FileSystemHelper.DeleteFile(_fileName);
 
-        public PdfFromImagesBuilderTests()
-        {
-            image = ResourceHelper.GetByteResource("Bodoconsult.Pdf.Test.Resources.page.jpg");
-        }
+        var pdf = new PdfFromImagesBuilder.PdfFromImagesBuilder(images, "Blubb title", "Testauthor");
 
+        // Act  
+        pdf.ProcessImages();
+        pdf.SaveAs(_fileName);
 
+        // Assert
+        Assert.That(File.Exists(_fileName));
 
-        [Test]
-        public void ProcessImages_OneImage_PdfCreated()
-        {
-            // Arrange 
-            var images = new List<byte[]> { image };
-
-            CheckFile(_fileName);
-
-            var pdf = new PdfFromImagesBuilder.PdfFromImagesBuilder(images, "Blubb title", "Testauthor");
-
-            // Act  
-            pdf.ProcessImages();
-            pdf.SaveAs(_fileName);
-
-            // Assert
-            Assert.That(File.Exists(_fileName));
-
-            FileSystemHelper.RunInDebugMode(_fileName);
-        }
-
-        [Test]
-        public void ProcessImages_TwoImages_PdfCreated()
-        {
-            // Arrange 
-            var images = new List<byte[]> { image, image };
-
-            CheckFile(_fileName);
-
-            var pdf = new PdfFromImagesBuilder.PdfFromImagesBuilder(images, "Blubb title", "Testauthor");
-
-            // Act  
-            pdf.ProcessImages();
-            pdf.SaveAs(_fileName);
-
-            // Assert
-            Assert.That(File.Exists(_fileName));
-
-            FileSystemHelper.RunInDebugMode(_fileName);
-        }
-
-        private static void CheckFile(string fileName)
-        {
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-        }
-
+        FileSystemHelper.RunInDebugMode(_fileName);
     }
+
+    [Test]
+    public void ProcessImages_TwoImages_PdfCreated()
+    {
+        // Arrange 
+        var images = new List<byte[]> { _image, _image };
+
+        FileSystemHelper.DeleteFile(_fileName);
+
+        var pdf = new PdfFromImagesBuilder.PdfFromImagesBuilder(images, "Blubb title", "Testauthor");
+
+        // Act  
+        pdf.ProcessImages();
+        pdf.SaveAs(_fileName);
+
+        // Assert
+        Assert.That(File.Exists(_fileName));
+
+        FileSystemHelper.RunInDebugMode(_fileName);
+    }
+
+
 }

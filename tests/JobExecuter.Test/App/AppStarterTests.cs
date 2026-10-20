@@ -2,6 +2,7 @@
 
 using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Web.Mail.Helpers;
 using JobExecuter.Dal.App;
 using JobExecuter.Test.Helpers;
@@ -19,7 +20,7 @@ internal class AppStarterTests
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         const string pwd = "test";
 
@@ -38,7 +39,7 @@ internal class AppStarterTests
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         const string pwd = "test";
 
@@ -63,7 +64,7 @@ internal class AppStarterTests
 
         const string pwd = "test";
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         starter.HashAppPassword(pwd);
 
@@ -81,12 +82,12 @@ internal class AppStarterTests
         var jsonFile = Path.Combine(TestDataHelper.TestDataPath, "job.json");
         var cjsonFile = Path.Combine(TestDataHelper.TestDataPath, "job.cjson");
 
-        DeleteFile(cjsonFile);
+        FileSystemHelper.DeleteFile(cjsonFile);
 
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         const string pwd = "test";
 
@@ -108,12 +109,12 @@ internal class AppStarterTests
         var jsonFile = Path.Combine(TestDataHelper.TestDataPath, "job.json");
         var cjsonFile = Path.Combine(TestDataHelper.TestDataPath, "job.cjson");
 
-        DeleteFile(cjsonFile);
+        FileSystemHelper.DeleteFile(cjsonFile);
 
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         const string pwd = "test";
 
@@ -138,7 +139,7 @@ internal class AppStarterTests
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
 
         // Act  
         starter.SaveSmtpMailAccount(ma);
@@ -155,7 +156,7 @@ internal class AppStarterTests
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
 
         starter.SaveSmtpMailAccount(ma);
 
@@ -174,7 +175,7 @@ internal class AppStarterTests
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
 
         starter.SaveSmtpMailAccount(ma);
 
@@ -190,8 +191,8 @@ internal class AppStarterTests
         string[] args = [];
         var starter = new JobExcuterStarter(args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
-        DeleteFile(starter.SmtpMailAccountImportFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountImportFileName);
 
         JsonHelper.SaveAsFile(starter.SmtpMailAccountImportFileName, ma);
 
@@ -202,13 +203,5 @@ internal class AppStarterTests
 
         // Assert
         Assert.That(File.Exists(starter.SmtpMailAccountImportFileName), Is.False);
-    }
-
-    private static void DeleteFile(string fileName)
-    {
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
-        }
     }
 }

@@ -77,7 +77,7 @@ public sealed class SqlServerMailStorageService : IMailStorageService
         {
             MailGuid = row["M_ID"].ToString(),
             From = row["M_From"].ToString(),
-            To = row["M_To"].ToString(),
+            To = row["M_To"].ToString()?.Trim(),
             Subject = row["M_Subject"].ToString(),
             Body = row["M_Body"].ToString(),
             Logo = row["M_LogoPath"].ToString(),

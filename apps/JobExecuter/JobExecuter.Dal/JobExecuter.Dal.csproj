@@ -2,9 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>False</Deterministic>
-		<RootNamespace>JobExecuter.Dal</RootNamespace>
 		<AssemblyName>JobExecuter.Dal</AssemblyName>
 		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
 	</PropertyGroup>
@@ -110,5 +109,4 @@
 		<ProjectReference Include="..\..\..\src\Bodoconsult.Web.Mail\Bodoconsult.Web.Mail.csproj" />
 		<ProjectReference Include="..\JobExecuter.Base\JobExecuter.Base.csproj" />
 	</ItemGroup>
-
 </Project>

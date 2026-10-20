@@ -1,7 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
 using JobExecuter.Dal.App;
+using System;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("JobExecuter.Test")]
 
 namespace JobExecuter;
 

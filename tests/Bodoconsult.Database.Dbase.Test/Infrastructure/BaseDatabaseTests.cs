@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Helpers;
+using Bodoconsult.Database.Ef.SqlServer.DatabaseTools;
+using Bodoconsult.Database.Test.Utilities.App;
 using System;
 using System.Data;
 using System.IO;
-using Bodoconsult.Database.Ef.SqlServer.DatabaseTools;
-using Bodoconsult.Database.Test.Utilities.App;
 
 namespace Bodoconsult.Database.Dbase.Test.Infrastructure;
 
@@ -150,17 +151,6 @@ public abstract class BaseDatabaseTests
     private void DeleteFileIfExist(string fileName)
     {
         var filePath = Path.Combine(_userProfilePath, fileName);
-        if (!File.Exists(filePath))
-        {
-            return;
-        }
-        try
-        {
-            File.Delete(filePath);
-        }
-        catch
-        {
-            // Do nothing
-        }
+        FileSystemHelper.DeleteFile(filePath);
     }
 }

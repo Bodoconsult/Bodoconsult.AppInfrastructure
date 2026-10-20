@@ -16,8 +16,4 @@ public class DataHandlerTests: BaseTestDataHandler
         DataHandler = new DataHandler(Globals.Instance);
         DataHandler.DeleteFile(TestFilePath);
     }
-
-
-
-
 }

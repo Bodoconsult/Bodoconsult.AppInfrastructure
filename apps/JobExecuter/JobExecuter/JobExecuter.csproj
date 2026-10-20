@@ -3,10 +3,9 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<Deterministic>False</Deterministic>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>false</Deterministic>
 		<AssemblyName>JobExecuter</AssemblyName>
-		<RootNamespace>JobExecuter</RootNamespace>
 		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
 	</PropertyGroup>
 

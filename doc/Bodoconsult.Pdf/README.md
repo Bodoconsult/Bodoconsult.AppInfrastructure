@@ -7,11 +7,13 @@ Bodoconsult.Pdf
 
 >   [PdfBuilder class for more complex PDF files](#pdfbuilder-class-for-more-complex-pdf-files)
 
-> [Adjusting layout for PdfCreator and PdfBuilder](#adjusting-layout)
+>   [Adjusting layout for PdfCreator and PdfBuilder](#adjusting-layout)
 
 >   >   [Adjusting layout by altering the DefaultStyleSet](#adjusting-layout-by-altering-the-defaultstyleset)
 
 >   >   [Adjusting layout by creating an own StyleSet](#adjusting-layout-by-creating-an-own-styleset)
+
+>   [Creating PDF files from page images:PdfFromImagesBuilder class](#creating-pdf-files-from-page-images-pdffromimagesbuilder-class)
 
 ## What does the library
 
@@ -1007,6 +1009,38 @@ With exception of the Normal style all styles defined in a styleset are injected
 
 The Normal style exists in a MigraDoc PDF document by default. The Normal style from the styleset therefore has to cloned to the MigraDoc PDF document. 
 It may happen that not all properties are cloned correctly.
+
+# Creating PDF files from page images: PdfFromImagesBuilder class
+
+Imagine a situation where you create your pages as graphics (JPEG or PNG) and you want to create a PDF from this graphics.
+
+This is exactly the use case for PdfFromImagesBuilder class. Give a instance of this class a list of images as byte array and it produces a PDF for you with each image a separate page in the PDF filling the page fully.
+
+``` csharp
+private readonly byte[] _image = ResourceHelper.GetByteResource("Bodoconsult.Pdf.Test.Resources.page.jpg");
+private readonly string _fileName = Path.Combine(Path.GetTempPath(), "test.pdf");
+
+[Test]
+public void ProcessImages_TwoImages_PdfCreated()
+{
+    // Arrange 
+    var images = new List<byte[]> { _image, _image };
+
+    CheckFile(_fileName);
+
+    var pdf = new PdfFromImagesBuilder.PdfFromImagesBuilder(images, "Blubb title", "Testauthor");
+
+    // Act  
+    pdf.ProcessImages();
+    pdf.SaveAs(_fileName);
+
+    // Assert
+    Assert.That(File.Exists(_fileName));
+
+    FileSystemHelper.RunInDebugMode(_fileName);
+}
+```
+
 
 # About us
 

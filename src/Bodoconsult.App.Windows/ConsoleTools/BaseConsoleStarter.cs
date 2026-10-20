@@ -131,18 +131,6 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     public string? AppPasswordHash { get; private set; }
 
     /// <summary>
-    /// Delete a file
-    /// </summary>
-    /// <param name="fileName">Filename to delete</param>
-    protected static void DeleteFile(string fileName)
-    {
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
-        }
-    }
-
-    /// <summary>
     /// Show a status message
     /// </summary>
     /// <param name="message">Message to show in the console</param>
@@ -218,7 +206,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
 
         LoadSmtpMailAccount();
 
-        DeleteFile(SmtpMailAccountImportFileName);
+        FileSystemHelper.DeleteFile(SmtpMailAccountImportFileName);
     }
 
     /// <summary>
@@ -269,7 +257,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
 
         LoadO365MailAccount();
 
-        DeleteFile(O365MailAccountImportFileName);
+        FileSystemHelper.DeleteFile(O365MailAccountImportFileName);
     }
 
     /// <summary>
@@ -331,7 +319,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
 
         LoadWebCredentials();
 
-        DeleteFile(WebCredentialsImportFileName);
+        FileSystemHelper.DeleteFile(WebCredentialsImportFileName);
     }
 
     /// <summary>

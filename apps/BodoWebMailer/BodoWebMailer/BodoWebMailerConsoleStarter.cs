@@ -94,7 +94,7 @@ public class BodoWebMailerConsoleStarter : BaseConsoleStarter
             SimpleJsonHelper.SerializeAsFile(newfileName, (O365MailAccount)crypted);
         }
 
-        DeleteFile(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         ConsoleHelper.WaitUntilAnyKeyPressed("Created encrypted file mail.json!");
     }

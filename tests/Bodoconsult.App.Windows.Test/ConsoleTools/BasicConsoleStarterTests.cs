@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
-using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Windows.ConsoleTools;
 using Bodoconsult.App.Windows.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
 
 namespace Bodoconsult.App.Windows.Test.ConsoleTools;
 
@@ -18,7 +19,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         const string pwd = "test";
 
@@ -37,7 +38,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         const string pwd = "test";
 
@@ -62,7 +63,7 @@ internal class BasicConsoleStarterTests
 
         const string pwd = "test";
 
-        DeleteFile(starter.HashFileName);
+        FileSystemHelper.DeleteFile(starter.HashFileName);
 
         starter.HashAppPassword(pwd);
 
@@ -81,7 +82,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
 
         // Act  
         starter.SaveSmtpMailAccount(ma);
@@ -98,7 +99,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
 
         starter.SaveSmtpMailAccount(ma);
 
@@ -117,7 +118,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
 
         starter.SaveSmtpMailAccount(ma);
 
@@ -133,8 +134,8 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.SmtpMailAccountFileName);
-        DeleteFile(starter.SmtpMailAccountImportFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.SmtpMailAccountImportFileName);
 
         JsonHelper.SaveAsFile(starter.SmtpMailAccountImportFileName, ma);
 
@@ -155,7 +156,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.O365MailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.O365MailAccountFileName);
 
         starter.SaveO365MailAccount(ma);
 
@@ -171,8 +172,8 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.O365MailAccountFileName);
-        DeleteFile(starter.O365MailAccountImportFileName);
+        FileSystemHelper.DeleteFile(starter.O365MailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.O365MailAccountImportFileName);
 
         JsonHelper.SaveAsFile(starter.O365MailAccountImportFileName, ma);
 
@@ -193,7 +194,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.O365MailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.O365MailAccountFileName);
 
         // Act  
         starter.SaveO365MailAccount(ma);
@@ -210,7 +211,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.O365MailAccountFileName);
+        FileSystemHelper.DeleteFile(starter.O365MailAccountFileName);
 
         starter.SaveO365MailAccount(ma);
 
@@ -229,7 +230,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.WebCredentialsFileName);
+        FileSystemHelper.DeleteFile(starter.WebCredentialsFileName);
 
         starter.SaveWebCredentials(ma);
 
@@ -245,8 +246,8 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.WebCredentialsFileName);
-        DeleteFile(starter.WebCredentialsImportFileName);
+        FileSystemHelper.DeleteFile(starter.WebCredentialsFileName);
+        FileSystemHelper.DeleteFile(starter.WebCredentialsImportFileName);
 
         JsonHelper.SaveAsFile(starter.WebCredentialsImportFileName, ma);
 
@@ -267,7 +268,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.WebCredentialsFileName);
+        FileSystemHelper.DeleteFile(starter.WebCredentialsFileName);
 
         // Act  
         starter.SaveWebCredentials(ma);
@@ -284,7 +285,7 @@ internal class BasicConsoleStarterTests
         string[] args = [];
         var starter = new BasicConsoleStarter("Basic", args);
 
-        DeleteFile(starter.WebCredentialsFileName);
+        FileSystemHelper.DeleteFile(starter.WebCredentialsFileName);
 
         starter.SaveWebCredentials(ma);
 
@@ -293,13 +294,5 @@ internal class BasicConsoleStarterTests
 
         // Assert
         Assert.That(result, Is.Not.Null);
-    }
-
-    private static void DeleteFile(string fileName)
-    {
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
-        }
     }
 }

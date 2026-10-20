@@ -137,7 +137,7 @@ public class BodoFileTransferConsoleStarter : BaseConsoleStarter
 
         File.WriteAllText(newfileName, s.ToString());
 
-        DeleteFile(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         ConsoleHelper.WaitUntilAnyKeyPressed("Created encrypted file mail.txt!");
     }

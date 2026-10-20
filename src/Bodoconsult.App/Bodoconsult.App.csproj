@@ -12,7 +12,6 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Package providing basic functionality like logging, application performance measuring etc. for layered apps in a client server scenario</Description>
 		<PackageReleaseNotes>Enhancements, new features snd bugfixes</PackageReleaseNotes>
-		<PackageProjectUrl>https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -29,7 +28,6 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<!-- Modern symbols package format -->
-
 
 	</PropertyGroup>
 

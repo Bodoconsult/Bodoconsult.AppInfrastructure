@@ -6,6 +6,8 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System.Collections.Generic;
 using System.IO;
+using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.Pdf.Extensions;
 
 namespace Bodoconsult.Pdf.PdfFromImagesBuilder;
 
@@ -25,6 +27,7 @@ public class PdfFromImagesBuilder
     public PdfFromImagesBuilder(List<byte[]> images, string title, string author)
     {
         PdfSharpLicense.SetAgplLicense();
+
         _pdfDocument = new PdfDocument();
         _pdfDocument.Info.Author = author;
         _pdfDocument.Info.CreationDate = DateTime.Now;
@@ -49,12 +52,12 @@ public class PdfFromImagesBuilder
     /// <summary>
     /// Page size. Default: A4
     /// </summary>
-    public PageSize PageSize { get; set; } = PageSize.A4;
+    public TypoPaperFormat PageSize { get; set; } = PaperFormats.A4Format;
 
     /// <summary>
-    /// Page orientation. Default: Portait
+    /// Page orientation. Default: true = Portait
     /// </summary>
-    public PageOrientation Orientation { get; set; } = PageOrientation.Portrait;
+    public bool Orientation { get; set; } = true;
 
     /// <summary>
     /// Use the PDF/A standard. Default: true
@@ -76,8 +79,8 @@ public class PdfFromImagesBuilder
             // Add a page to the document
             var page = _pdfDocument.AddPage();
 
-            page.Size = PageSize;
-            page.Orientation = Orientation;
+            page.Size = PageSize.ToPageSize();
+            page.Orientation = Orientation ? PageOrientation.Portrait: PageOrientation.Landscape;
 
             ProcessImage(page, image);
         }
