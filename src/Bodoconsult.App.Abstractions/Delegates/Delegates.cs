@@ -7,11 +7,10 @@ namespace Bodoconsult.App.Abstractions.Delegates;
 /// <summary>
 /// Request application stop delegate
 /// </summary>
-
 public delegate void RequestApplicationStopDelegate();
 
 /// <summary>
-/// A delegate for "status message" method calls getting a string a input parameter
+/// A delegate for "status message" method calls getting a string an input parameter
 /// </summary>
 /// <param name="message">Input string</param>
 public delegate void StatusMessageDelegate(string message);

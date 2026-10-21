@@ -33,7 +33,6 @@ public class BaseAppStarterUi : IAppStarterUi
     /// </summary>
     public bool IsAnotherInstance
     {
-
         get
         {
             if (!AppBuilder.AppGlobals.AppStartParameter.IsSingletonApp)
@@ -67,10 +66,7 @@ public class BaseAppStarterUi : IAppStarterUi
             ConsoleService.ConsoleHandle = ConsoleService.CsGetConsoleWindow();
             ConsoleService.CsShowWindow(ConsoleService.ConsoleHandle, ConsoleService.ShowWindowShow);
             return true;
-
         }
-
-
     }
 
     /// <summary>

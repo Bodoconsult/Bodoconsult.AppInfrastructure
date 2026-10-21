@@ -17,7 +17,7 @@ public static class AssemblySetup
     [OneTimeSetUp]
     public static void AssemblyStartUp()
     {
-        GlobalValues.LoadAppSettings();
+        //GlobalValues.LoadAppSettings();
     }
 
     ///// <summary>

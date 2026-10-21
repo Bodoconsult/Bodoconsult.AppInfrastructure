@@ -4,21 +4,6 @@
         <name>JobExecuter.Dal</name>
     </assembly>
     <members>
-        <member name="T:JobExecuter.Dal.App.GlobalValues">
-            <summary>
-            Application global values
-            </summary>
-        </member>
-        <member name="P:JobExecuter.Dal.App.GlobalValues.CurrentAppSettings">
-            <summary>
-            Current app settings
-            </summary>
-        </member>
-        <member name="M:JobExecuter.Dal.App.GlobalValues.LoadAppSettings">
-            <summary>
-            Load app settings from app directory
-            </summary>
-        </member>
         <member name="T:JobExecuter.Dal.App.JobExcuterStarter">
             <summary>
             Console starter for JobExecuter app
@@ -2482,21 +2467,6 @@
         </member>
         <member name="M:JobExecuter.Dal.Model.ActiveDirectoryJobTask.GetFactory">
             <inheritdoc />
-        </member>
-        <member name="T:JobExecuter.Dal.Model.AppSettings">
-            <summary>
-            Application settings
-            </summary>
-        </member>
-        <member name="P:JobExecuter.Dal.Model.AppSettings.JobSalt">
-            <summary>
-            Job salt
-            </summary>
-        </member>
-        <member name="P:JobExecuter.Dal.Model.AppSettings.JobPassword">
-            <summary>
-            Job password
-            </summary>
         </member>
         <member name="T:JobExecuter.Dal.Model.BackupBatchJobTask">
             <summary>

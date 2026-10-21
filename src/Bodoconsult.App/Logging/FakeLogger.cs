@@ -11,7 +11,6 @@ namespace Bodoconsult.App.Logging;
 /// <param name="message">Message to log</param>
 public delegate void FakeLogDelegate(string message);
 
-
 /// <summary>
 /// Fake implementation for <see cref="ILogger"/>
 /// </summary>

@@ -29,8 +29,6 @@ internal class Program
 
         // /c D:\Tmp\job.json
 
-        GlobalValues.LoadAppSettings();
-
         var appStarter = new JobExcuterStarter(args);
         appStarter.LoadSmtpConfig();
         appStarter.LoadPlugIns();

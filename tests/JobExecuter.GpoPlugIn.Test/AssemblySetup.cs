@@ -6,21 +6,19 @@ using NUnit.Framework;
 namespace JobExecuter.GpoPlugIn.Test;
 
 /// <summary>
-/// Test app
+/// Setup for the assembly for all tests
 /// </summary>
 [SetUpFixture]
-public class AppSetup
+public static class AssemblySetup
 {
     /// <summary>
-    /// Load initial data for testing
+    /// At startup of the assembly
     /// </summary>
     [OneTimeSetUp]
-    public void LoadApp()
+    public static void AssemblyStartUp()
     {
-        GlobalValues.LoadAppSettings();
-
+       // GlobalValues.LoadAppSettings();
     }
-
 
     ///// <summary>
     ///// Unlooad app
@@ -30,5 +28,4 @@ public class AppSetup
     //{
 
     //}
-
 }
