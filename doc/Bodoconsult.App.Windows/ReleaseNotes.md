@@ -39,3 +39,5 @@ Enabled nullable for project
 Adjusting namespace for Clipboard class
 
 Implemented IDataProtectionService for DataProtectionService for usage with DataProtectionManager class
+
+Added TestCredentialManager to protect secrets for unit test environments (only Windows OS)

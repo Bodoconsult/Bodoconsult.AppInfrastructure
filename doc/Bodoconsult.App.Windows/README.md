@@ -17,6 +17,8 @@ Current features are:
 
 >   [Using DataProtectionService to protect critical string data](#using-dataprotectionservice-to-protect-sensible-string-data)
 
+>   [Using TestCredentialManager to protect secrets for unit test environments](#using-testcredentialmanager-to-protect-secrets-for-unit-test-environments)
+
 >   [Icon extraction as bitmap](#using-iconsasfileshelper-to-get-gif-images-from-an-app-icon)
 
 >   [Reading data from url files (get the included link address in file)](#using-filesystemurl-classes-extract-a-link-address)
@@ -120,8 +122,46 @@ public void ProtectUnprotect_LocalMachine_Successful()
 
     Assert.That(originalData, Is.EqualTo(secret));
 }
-``` csharp
+```
 
+# Using TestCredentialManager to protect secrets for unit test environments
+
+``` csharp
+[Test]
+public void LoadCredentials_ValidCredentials_CredentialsLoaded()
+{
+    // Arrange 
+    var cm = new TestCredentialManager<TestCredentials>("Bodoconsult.App.Windows.Test");
+
+    var cred = new TestCredentials
+    {
+        Password = "Blubb",
+        AppToken = "Blabb"
+    };
+
+    var json = SimpleJsonHelper.Serialize(cred);
+
+    var importFileName = Path.Combine(FileSystemHelper.GetAppPath(), "cred.json");
+
+    FileSystemHelper.DeleteFile(importFileName);
+    FileSystemHelper.DeleteFile(cm.CredentialFileName);
+
+    File.WriteAllText(importFileName, json);
+    
+    // Act  
+    cm.LoadCredentials();
+
+    // Assert
+    Assert.That(cm.Credentials, Is.Not.Null);
+    Assert.That(File.Exists(importFileName), Is.False);
+
+    // Act 2
+    var cm2 = new TestCredentialManager<TestCredentials>("Bodoconsult.App.Windows.Test");
+    cm2.LoadCredentials();
+
+    // Assert 2
+    Assert.That(cm2.Credentials, Is.Not.Null);
+}
 ```
 
 # Using FileSystemUrl classes: extract a link address
