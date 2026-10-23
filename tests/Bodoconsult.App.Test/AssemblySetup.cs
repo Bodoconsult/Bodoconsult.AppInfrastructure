@@ -22,10 +22,10 @@ public static class AssemblySetup
 
         // Set additional app start parameters as required
         var param = globals.AppStartParameter;
-        param.AppName = "WinAppTests: Demo app";
+        param.AppName = "Bodoconsult.App.Tests";
         param.SoftwareTeam = "Robert Leisner";
         //param.LogoRessourcePath = "WinFormsConsoleApp1.Resources.logo.jpg";
-        param.AppFolderName = "WinAppTests";
+        param.AppFolderName = "Bodoconsult.App.Tests";
 
         // Now start the app building process
         var builder = new MyDebugAppBuilder(globals);

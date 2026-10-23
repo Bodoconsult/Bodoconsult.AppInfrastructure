@@ -7,8 +7,24 @@ namespace Bodoconsult.App.Test.Extensions;
 [TestFixture]
 internal class StringExtensionsTests
 {
+    [Test]
+    public void ToSecureString_SecureStringToString_Blank_ReturnsRepeatedBlanks()
+    {
+        // Arrange 
+        const string value = "Blubb";
 
+        // Act  
+        var result = value.ToSecureString();
 
+        // Assert
+        Assert.That(result, Is.Not.Null);
+
+        // Act 2
+        var value2 = result.SecureStringToString();
+
+        // Assert 2
+        Assert.That(value2, Is.EqualTo(value));
+    }
 
     [Test]
     public void Repeat_Blank_ReturnsRepeatedBlanks()

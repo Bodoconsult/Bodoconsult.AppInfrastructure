@@ -142,6 +142,26 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Convert a string to a <see cref="SecureString"/>
+    /// </summary>
+    /// <param name="value">String to convert</param>
+    /// <returns><see cref="SecureString"/> instance created</returns>
+    public static SecureString ToSecureString(this string value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+
+        var secureValue = new SecureString();
+
+        foreach (var c in value)
+        {
+            secureValue.AppendChar(c);
+        }
+
+        secureValue.MakeReadOnly();
+        return secureValue;
+    }
+
+    /// <summary>
     /// Repeat a string
     /// </summary>
     /// <param name="text">String to repeat</param>

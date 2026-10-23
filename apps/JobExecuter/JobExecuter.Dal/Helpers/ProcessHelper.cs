@@ -18,12 +18,10 @@ public class ProcessHelper
     /// <param name="processId">process ID</param>
     public static void KillProcessAndChildrens(int processId)
     {
-
         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             throw new Exception("ProcessHelper.KillProcessAndChildrens: Works only on Windows OS.");
         }
-
 
         var processSearcher = new ManagementObjectSearcher
             ($"Select * From Win32_Process Where ParentProcessID={processId}");
@@ -53,6 +51,4 @@ public class ProcessHelper
             // Process already exited.
         }
     }
-
-
 }

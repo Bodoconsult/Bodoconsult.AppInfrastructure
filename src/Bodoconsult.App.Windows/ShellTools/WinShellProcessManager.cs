@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.ShellTools;
+using Bodoconsult.App.Extensions;
 
 namespace Bodoconsult.App.Windows.ShellTools;
 
@@ -60,7 +61,7 @@ public class WinShellProcessManager : IShellProcessManager
         {
             parameters.HandleExceptionDelegate?.Invoke(new ArgumentException($"Args {parameters.Args} must not be null or empty"));
             return;
-        } 
+        }
 
         RunInShellWait($"robocopy.exe {parameters.Args}", parameters);
     }
@@ -77,7 +78,14 @@ public class WinShellProcessManager : IShellProcessManager
             return;
         }
 
-        RunInShellWait(parameters.Command, parameters);
+        if (parameters.AdCredentials is null)
+        {
+            RunInShellWait(parameters.Command, parameters);
+        }
+        else
+        {
+            RunInShellWaitOtherUser(parameters.Command, parameters, parameters.AdCredentials);
+        }
     }
 
     /// <summary>
@@ -140,6 +148,74 @@ public class WinShellProcessManager : IShellProcessManager
             RedirectStandardError = true,
             WindowStyle = ProcessWindowStyle.Hidden,
             CreateNoWindow = true
+        };
+
+        var process = new Process
+        {
+            StartInfo = psi
+        };
+
+        //ArgumentNullException.ThrowIfNull(process);
+
+        process.OutputDataReceived += (_, e) =>
+        {
+            if (string.IsNullOrEmpty(e.Data))
+            {
+                return;
+            }
+            parameters.StatusMessageDelegate?.Invoke(e.Data);
+        };
+        process.ErrorDataReceived += (_, e) =>
+        {
+            parameters.HandleExceptionDelegate?.Invoke(new Exception(e.Data));
+        };
+
+        process.Start();
+        process.BeginOutputReadLine();
+        var processId = process.Id;
+
+        process.WaitForExit();
+
+        if (process.ExitCode > 0 && !parameters.DoNotCheckExitCode)
+        {
+            var msg = $"WinShellProcessManager:Error>>cmd.exe /C {strShellCmd}>>ExitCode {process.ExitCode}";
+            parameters.HandleExceptionDelegate?.Invoke(new Exception(msg));
+            parameters.StatusMessageDelegate?.Invoke(msg);
+        }
+        process.Close();
+
+        if (parameters.DoNotCheckExitCode)
+        {
+            return;
+        }
+
+        TaskKillInternal(processId, parameters);
+    }
+
+    /// <summary>
+    /// Run command in shell
+    /// </summary>
+    /// <param name="strShellCmd">Shell command to run</param>
+    /// <param name="parameters">Parameters to use for state and exception handling</param>
+    /// <param name="credentials">User credentials</param>
+    private static void RunInShellWaitOtherUser(string strShellCmd, BaseShellProcessParameters parameters, AdCredentials credentials)
+    {
+        if (string.IsNullOrEmpty(strShellCmd))
+        {
+            return;
+        }
+
+        var psi = new ProcessStartInfo("cmd.exe", $"/C {strShellCmd}")
+        {
+            WorkingDirectory = parameters.WorkingDirectory,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            WindowStyle = ProcessWindowStyle.Hidden,
+            CreateNoWindow = true,
+            UserName = credentials.Username,
+            Domain = credentials.Domain,
+            Password = credentials.Password?.ToSecureString(),
         };
 
         var process = new Process
