@@ -16,7 +16,6 @@ namespace BodoWebMailer.Business.App;
 /// </summary>
 public class Globals : IBodoWebMailerAppGlobals
 {
-
     #region Singleton factory
 
     // Thread-safe implementation of singleton pattern

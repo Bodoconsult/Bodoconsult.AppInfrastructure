@@ -54,7 +54,7 @@ The MIT License (https://licenses.nuget.org/MIT) applies for
 
 >   Bodoconsult.Web.Mail,
 
->	BodoWebMailer
+>	EmergencyShutdown
 
 >	BodoFileTransfer
 
@@ -86,9 +86,9 @@ For the license text see https://licenses.nuget.org/AGPL-3.0-only.
 
 >	[BodoFtpTransfer](#referenced-libraries-for-bodoftptransfer)
 
->	[BodoWebMailer.Business](#referenced-libraries-for-bodowebmailerbusiness)
+>	[EmergencyShutdown.Business](#referenced-libraries-for-EmergencyShutdownbusiness)
 
->	[BodoWebMailer](#referenced-libraries-for-bodowebmailer)
+>	[EmergencyShutdown](#referenced-libraries-for-EmergencyShutdown)
 
 >	[JobExecuter.Dal](#referenced-libraries-for-jobexecuterdal)
 
@@ -240,7 +240,7 @@ For the license text see https://licenses.nuget.org/AGPL-3.0-only.
 
 >	[BodoFtpTransferBusiness.Test](#referenced-libraries-for-bodoftptransferbusinesstest)
 
->	[BodoWebMailer.Test](#referenced-libraries-for-bodowebmailertest)
+>	[EmergencyShutdown.Test](#referenced-libraries-for-EmergencyShutdowntest)
 
 >	[JobExecuter.GpoPlugIn.Test](#referenced-libraries-for-jobexecutergpoplugintest)
 
@@ -544,7 +544,7 @@ License-Url: https://licenses.nuget.org/Apache-2.0
 
 Project-Url: https://github.com/apache/logging-log4net
 
-# Referenced libraries for BodoWebMailer.Business
+# Referenced libraries for EmergencyShutdown.Business
 
 ## Nuget package library Microsoft.Windows.Compatibility by Microsoft
 
@@ -570,7 +570,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
-# Referenced libraries for BodoWebMailer
+# Referenced libraries for EmergencyShutdown
 
 ## Nuget package library log4net by The Apache Software Foundation
 
@@ -5480,7 +5480,7 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/nunit/nunit3-vs-adapter
 
-# Referenced libraries for BodoWebMailer.Test
+# Referenced libraries for EmergencyShutdown.Test
 
 ## Nuget package library log4net by The Apache Software Foundation
 

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.ComponentModel.Design.Serialization;
 using EmergencyShutdown.Business.Interfaces;
 using EmergencyShutdown.Business.Servers;
 

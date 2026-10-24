@@ -15,6 +15,11 @@ public interface IShutdownHandler
     List<IServer> Servers { get; }
 
     /// <summary>
+    /// Servers processed
+    /// </summary>
+    int Processed { get; }
+
+    /// <summary>
     /// Status changed event
     /// </summary>
     StatusMessageDelegate StatusMessageDelegate { get; set; }
@@ -24,4 +29,9 @@ public interface IShutdownHandler
     /// </summary>
     /// <param name="workload">Current workload</param>
     void LoadWorkload(Workload workload);
+
+    /// <summary>
+    /// Process the current workload
+    /// </summary>
+    void ProcessWorkload();
 }

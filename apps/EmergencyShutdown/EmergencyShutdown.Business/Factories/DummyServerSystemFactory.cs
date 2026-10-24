@@ -14,15 +14,13 @@ public class DummyServerSystemFactory : IServerSystemFactory
     /// <summary>
     /// Create a server system instance dependent on the given
     /// </summary>
-    /// <param name="server"></param>
-    /// <returns></returns>
-    public IServerSystem CreateInstance(IServer server)
+    /// <param name="server">Server to shut down</param>
+    /// <param name="shutdownConfig">Current shutdown config</param>
+    /// <returns><see cref="IServerSystem"/> instance</returns>
+    public IServerSystem CreateInstance(IServer server, ShutdownConfig shutdownConfig)
     {
-        if (server is not DummyServer inst)
-        {
-            throw new ArgumentException("Server is not of type Dummy");
-        }
-
-        return new DummyServerSystem(inst);
+        return server is not DummyServer inst ? 
+            throw new ArgumentException("Server is not of type Dummy") : 
+            new DummyServerSystem(inst, shutdownConfig);
     }
 }

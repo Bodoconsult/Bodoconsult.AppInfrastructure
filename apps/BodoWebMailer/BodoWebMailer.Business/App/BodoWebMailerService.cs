@@ -20,14 +20,12 @@ public class BodoWebMailerService : IApplicationService
 {
     private bool _isStopped;
     private bool _isStarting;
-
     private readonly IAppLoggerProxy _appLogger;
 
     /// <summary>
     /// Default ctor
     /// </summary>
-    public BodoWebMailerService(IAppLoggerProxy appLogger,
-        IAppGlobals appGlobals)
+    public BodoWebMailerService(IAppLoggerProxy appLogger, IAppGlobals appGlobals)
     {
         _appLogger = appLogger;
         AppGlobals = appGlobals;

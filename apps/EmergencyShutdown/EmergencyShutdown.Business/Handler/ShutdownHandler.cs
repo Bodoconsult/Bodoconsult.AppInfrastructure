@@ -10,18 +10,30 @@ namespace EmergencyShutdown.Business.Handler
     /// </summary>
     public class ShutdownHandler : IShutdownHandler
     {
+        private readonly IMasterServerSystemFactory _masterServerSystemFactory;
+        private readonly ShutdownConfig _shutdownConfig;
+
         /// <summary>
         /// Default ctor
         /// </summary>
-        public ShutdownHandler()
+        /// <param name="masterServerSystemFactory">Master server system factory</param>
+        /// <param name="shutdownConfig">Current shutdown config</param>
+        public ShutdownHandler(IMasterServerSystemFactory masterServerSystemFactory, ShutdownConfig shutdownConfig)
         {
-            StatusMessageDelegate= StatusMessageDelegateInternal;
+            _masterServerSystemFactory = masterServerSystemFactory;
+            _shutdownConfig = shutdownConfig;
+            StatusMessageDelegate = StatusMessageDelegateInternal;
         }
 
         /// <summary>
         /// List of all servers to shut down
         /// </summary>
         public List<IServer> Servers { get; } = new();
+
+        /// <summary>
+        /// Servers processed
+        /// </summary>
+        public int Processed { get; private set; }
 
         /// <summary>
         /// Status changed event
@@ -34,13 +46,36 @@ namespace EmergencyShutdown.Business.Handler
         /// <param name="workload">Current workload</param>
         public void LoadWorkload(Workload workload)
         {
+            Processed = 0;
+            Servers.Clear();
             Servers.AddRange(workload.Servers);
+        }
+
+        /// <summary>
+        /// Process the current workload
+        /// </summary>
+        public void ProcessWorkload()
+        {
+            foreach (var server in Servers)
+            {
+                var serverSystem = _masterServerSystemFactory.CreateInstance(server, _shutdownConfig);
+
+                if (serverSystem is null)
+                {
+                    continue;
+
+                }
+
+                if (serverSystem.Shutdown())
+                {
+                    Processed++;
+                }
+            }
         }
 
         private void SendMessage(string message)
         {
-            var x = StatusMessageDelegate;
-            x(message);
+            StatusMessageDelegate.Invoke(message);
         }
 
         private void StatusMessageDelegateInternal(string message)

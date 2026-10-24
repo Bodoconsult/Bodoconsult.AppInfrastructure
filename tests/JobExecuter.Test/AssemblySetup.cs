@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using JobExecuter.Dal.App;
 using NUnit.Framework;
 
 namespace JobExecuter.Test;

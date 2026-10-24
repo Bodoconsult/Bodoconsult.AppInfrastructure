@@ -15,7 +15,7 @@ public class ShellCommandShellProcessParameter: BaseShellProcessParameters
     public string? Command { get; set; }
 
     /// <summary>
-    /// Current Acive Directory (AD) credentials
+    /// Current Active Directory (AD) credentials or null
     /// </summary>
     public AdCredentials? AdCredentials { get; set; }
 }
