@@ -449,4 +449,60 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     }
 
     #endregion
+
+    #region Custom entites to encrypt
+
+    /// <summary>
+    /// Load an entity from encrypted storage
+    /// </summary>
+    /// <param name="entity">Entity to save</param>
+    /// <param name="key">Key to use</param>
+    /// <param name="fileName">Target filename</param>
+    /// <param name="importFileName">Name of the import file</param>
+    public T? LoadCredentials<T>(string key, string fileName, string importFileName)
+    {
+        if (File.Exists(fileName))
+        {
+            var crypted = File.ReadAllText(fileName);
+
+            var json = DataProtectionService.Unprotect(key, crypted);
+
+            return SimpleJsonHelper.LoadJsonString<T>(json);
+        }
+        else
+        {
+            if (!File.Exists(importFileName))
+            {
+                return default;
+            }
+
+            var json = File.ReadAllText(importFileName);
+
+            var result = SimpleJsonHelper.LoadJsonString<T>(json);
+
+            SaveCredentials(result, key, fileName);
+
+            FileSystemHelper.DeleteFile(importFileName);
+
+            return result;
+        }
+    }
+
+    /// <summary>
+    /// Save an entity to encrypted storage
+    /// </summary>
+    /// <param name="entity">Entity to save</param>
+    /// <param name="key">Key to use</param>
+    /// <param name="fileName">Target filename</param>
+    public void SaveCredentials<T>(T entity, string key, string fileName)
+    {
+        var json = SimpleJsonHelper.Serialize(entity);
+
+        var crypted = DataProtectionService.Protect(key, json);
+
+        File.WriteAllText(fileName, crypted);
+    }
+
+    #endregion
+
 }

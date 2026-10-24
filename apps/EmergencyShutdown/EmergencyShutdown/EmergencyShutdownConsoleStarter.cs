@@ -1,13 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Interfaces;
-using EmergencyShutdown.Business.App;
-using System.Runtime.Versioning;
 using Bodoconsult.App.Extensions;
-using Bodoconsult.App.Helpers;
+using Bodoconsult.App.Interfaces;
 using Bodoconsult.App.Windows.ConsoleTools;
+using EmergencyShutdown.Business.App;
 using EmergencyShutdown.Business.Interfaces;
+using System.Runtime.Versioning;
 
 namespace EmergencyShutdown;
 
@@ -21,76 +20,51 @@ public class EmergencyShutdownConsoleStarter : BaseConsoleStarter
     /// Default ctor
     /// </summary>
     /// <param name="args">Current command line args</param>
-    public EmergencyShutdownConsoleStarter(string[] args) : base("EmergencyShutdown", args)
+    /// <param name="isTestEnvironment">Is running in test environment</param>
+    public EmergencyShutdownConsoleStarter(string[] args, bool isTestEnvironment = false) : base($"EmergencyShutdown{(isTestEnvironment ? "Test" : string.Empty)}", args)
     {
         MainAppRunnerDelegate = StartInternal;
-    }
 
-    private int StartInternal(IConsoleStarter consoleStarter)
-    {
-        if (Args is null || Args.Length == 0)
-        {
-            return RunMainTask(consoleStarter);
-        }
+        ArgumentNullException.ThrowIfNull(AppPath);
+        CredentialsImportFileName = Path.Combine(AppPath, "cred.json");
 
-        switch (Args[0])
-        {
-            case "0":
-                return RunMainTask(consoleStarter);
-            case "/p": // Encrypt mail account data in smtp.json or o365.json to use it in settings table in the database 
-            case "--p":
-                EncryptMailAccountData();
-                return 0;
-            default:
-                return 0;
-        }
+        ArgumentNullException.ThrowIfNull(DataPath);
+        CredentialsFileName = Path.Combine(DataPath, "data2.dat");
     }
 
     /// <summary>
-    /// Encrypt mail account data in smtp.json or o365.json into file mail.json to use it in settings table in the database 
+    /// Current workload
     /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public void EncryptMailAccountData()
+    public Workload? Workload { get; private set; }
+
+    /// <summary>
+    /// Filename of the SMTP mail account storage file
+    /// </summary>
+    public string CredentialsFileName { get; }
+
+    /// <summary>
+    /// Filename of the SMTP mail account storage import file. To be deleted after import
+    /// </summary>
+    public string CredentialsImportFileName { get; }
+
+    private int StartInternal(IConsoleStarter consoleStarter)
     {
-        //ArgumentNullException.ThrowIfNull(AppPath);
-
-        //var fileName = Path.Combine(AppPath, "o365.json");
-
-        //var useSmtp = false;
-
-        //if (!File.Exists(fileName))
+        //if (Args is null || Args.Length == 0)
         //{
-        //    fileName = Path.Combine(AppPath, "smtp.json");
-        //    if (!File.Exists(fileName))
-        //    {
-        //        Console.WriteLine("No file to encrypt found.");
-        //        ConsoleHelper.WaitUntilAnyKeyPressed();
-        //        return;
-        //    }
-
-        //    useSmtp = true;
+        return RunMainTask(consoleStarter);
         //}
 
-        //var json = File.ReadAllText(fileName);
-
-        //var crypted = MailHelper.GetEncryptedAccountFromJson(json, useSmtp);
-
-        
-
-        //var newfileName = Path.Combine(AppPath, "mail.json");
-
-        //if (useSmtp)
+        //switch (Args[0])
         //{
-        //    SimpleJsonHelper.SerializeAsFile(newfileName, (SmtpMailAccount)crypted);
+        //    case "0":
+        //        return RunMainTask(consoleStarter);
+        //    case "/p": // Encrypt mail account data in smtp.json or o365.json to use it in settings table in the database 
+        //    case "--p":
+        //        AskForPassword();
+        //        return 0;
+        //    default:
+        //        return 0;
         //}
-        //else
-        //{
-        //    SimpleJsonHelper.SerializeAsFile(newfileName, (O365MailAccount)crypted);
-        //}
-
-        //FileSystemHelper.DeleteFile(fileName);
-
-        //ConsoleHelper.WaitUntilAnyKeyPressed("Created encrypted file mail.json!");
     }
 
     /// <summary>
@@ -144,5 +118,13 @@ public class EmergencyShutdownConsoleStarter : BaseConsoleStarter
         builder.StartApplication();
 
         return 0;
+    }
+
+    /// <summary>
+    /// Load the workload
+    /// </summary>
+    public void LoadWorkload()
+    {
+        Workload = LoadCredentials<Workload>("Workload", CredentialsFileName, CredentialsImportFileName);
     }
 }
