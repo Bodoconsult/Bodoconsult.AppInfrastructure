@@ -158,27 +158,27 @@ public class EmergencyShutdownService : IApplicationService
         }
 
 
-        var gms = di.Get<IGeneralAppManagementManager>();
-        var request = new EmptyBusinessTransactionRequestData();
+        //var gms = di.Get<IGeneralAppManagementManager>();
+        //var request = new EmptyBusinessTransactionRequestData();
 
-        DefaultBusinessTransactionReply result;
+        //DefaultBusinessTransactionReply result;
 
-        // Create log dump on app stop
-        try
-        {
+        //// Create log dump on app stop
+        //try
+        //{
 
-            // ToDo: fill request with useful information for logging
-            result = gms.CreateLogDump(request);
+        //    // ToDo: fill request with useful information for logging
+        //    result = gms.CreateLogDump(request);
 
-            //if (result != null)
-            //{
-                _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
-            //}
-        }
-        catch
-        {
-            // Do nothing
-        }
+        //    //if (result != null)
+        //    //{
+        //        _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
+        //    //}
+        //}
+        //catch
+        //{
+        //    // Do nothing
+        //}
 
         // Stop logging now
         try

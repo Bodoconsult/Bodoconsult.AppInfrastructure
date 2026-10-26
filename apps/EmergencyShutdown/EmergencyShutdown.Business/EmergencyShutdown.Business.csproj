@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
     <ProjectReference Include="..\..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
+    <ProjectReference Include="..\..\..\src\Bodoconsult.Network.Windows\Bodoconsult.Network.Windows.csproj" />
   </ItemGroup>
 
 </Project>

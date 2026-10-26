@@ -4,7 +4,6 @@ using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Interfaces;
 using EmergencyShutdown.DiContainerProvider;
 using System.Runtime.Versioning;
-using EmergencyShutdown.Business.Interfaces;
 
 namespace EmergencyShutdown;
 
@@ -45,12 +44,12 @@ public class EmergencyShutdownAppBuilder: BaseAppBuilder
             return;
         }
 
-        var section = root.GetSection("EmergencyShutdown");
+        //var section = root.GetSection("EmergencyShutdown");
 
-        if (AppGlobals is not IEmergencyShutdownAppGlobals globals)
-        {
-            throw new ArgumentException("AppGlobals is not IEmergencyShutdownAppGlobals");
-        }
+        //if (AppGlobals is not IEmergencyShutdownAppGlobals globals)
+        //{
+        //    throw new ArgumentException("AppGlobals is not IEmergencyShutdownAppGlobals");
+        //}
 
         //globals.UseSmtp = DefaultAppStartProvider.ReadBoolProperty(section, "UseSmtp", globals.UseSmtp);
     }

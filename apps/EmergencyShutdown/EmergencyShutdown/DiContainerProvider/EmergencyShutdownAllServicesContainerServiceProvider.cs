@@ -1,11 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
 using Bodoconsult.App.Factories;
-using Bodoconsult.App.Interfaces;
 using EmergencyShutdown.Business.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Runtime.Versioning;
@@ -13,7 +11,6 @@ using Bodoconsult.App.Windows.ShellTools;
 using EmergencyShutdown.Business.App;
 using EmergencyShutdown.Business.Factories;
 using EmergencyShutdown.Business.Handler;
-
 
 namespace EmergencyShutdown.DiContainerProvider;
 
@@ -67,9 +64,9 @@ public class EmergencyShutdownAllServicesContainerServiceProvider : IDiContainer
         var benchProxy = AppBenchProxy.CreateAppBenchProxy(_benchmarkFileName, _appGlobals.LogDataFactory);
         diContainer.AddSingletonInstance(benchProxy);
 
-        // General app management
-        diContainer.AddSingleton<IGeneralAppManagementService, GeneralAppManagementService>();
-        diContainer.AddSingleton<IGeneralAppManagementManager, GeneralAppManagementManager>();
+        //// General app management
+        //diContainer.AddSingleton<IGeneralAppManagementService, GeneralAppManagementService>();
+        //diContainer.AddSingleton<IGeneralAppManagementManager, GeneralAppManagementManager>();
 
         // Services
         diContainer.AddSingletonInstance(_appGlobals.ShutdownConfig);

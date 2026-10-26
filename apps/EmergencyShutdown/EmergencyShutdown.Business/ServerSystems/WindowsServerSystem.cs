@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.ShellTools;
+using Bodoconsult.Network.Windows.Helpers;
 using EmergencyShutdown.Business.Interfaces;
 using EmergencyShutdown.Business.Servers;
 
@@ -15,7 +16,7 @@ public class WindowsServerSystem : BaseServerSystem
 {
     private readonly WindowsServer _server;
     private readonly IShellProcessManager _shellProcessManager;
-    private const string Cmd = @"shutdown /s /m \\{0} /t {1} /c ""{2}"" /f /d {3}";
+    private const string Cmd = @"shutdown /s /m \\\\{0} /t {1} /c ""{2}"" /f /d {3}";
 
     /// <summary>
     /// default ctor
@@ -56,33 +57,46 @@ public class WindowsServerSystem : BaseServerSystem
                 throw new ArgumentOutOfRangeException();
         }
 
-        var cmd = Cmd.Replace("{0}", Server.ServerNameOrIp, StringComparison.OrdinalIgnoreCase)
-            .Replace("{1}", Server.Timeout.ToString(), StringComparison.OrdinalIgnoreCase)
-            .Replace("{2}", comment, StringComparison.OrdinalIgnoreCase)
-            .Replace("{3}", reason, StringComparison.OrdinalIgnoreCase);
+        //var cmd = Cmd.Replace("{0}", Server.ServerNameOrIp, StringComparison.OrdinalIgnoreCase)
+        //    .Replace("{1}", Server.Timeout.ToString(), StringComparison.OrdinalIgnoreCase)
+        //    .Replace("{2}", comment, StringComparison.OrdinalIgnoreCase)
+        //    .Replace("{3}", reason, StringComparison.OrdinalIgnoreCase);
 
-        var shellCmd = new ShellCommandShellProcessParameter
-        {
-            Command = cmd,
-            AdCredentials = new AdCredentials
-            {
-                Name = "ShellCommand",
-                Username = _server.UserName,
-                Password = _server.Password,
-                Domain = _server.Domain
-            }
-        };
+
+        //Debug.Print(cmd);
+
+        //var shellCmd = new ShellCommandShellProcessParameter
+        //{
+        //    Command = cmd,
+        //    AdCredentials = new AdCredentials
+        //    {
+        //        Name = "ShellCommand",
+        //        Username = _server.UserName,
+        //        Password = _server.Password,
+        //        Domain = _server.Domain
+        //    }
+        //};
+
+        //try
+        //{
+        //    _shellProcessManager.RunShellCommand(shellCmd);
+        //}
+        //catch (Exception e)
+        //{
+        //    Debug.Print(e.ToString());
+        //    return false;
+        //}
+
 
         try
         {
-            _shellProcessManager.RunShellCommand(shellCmd);
+            return ServerHelper.RemoteShutdown(_server.UserName, _server.Password, _server.Domain, _server.ServerNameOrIp);
         }
         catch (Exception e)
         {
             Debug.Print(e.ToString());
             return false;
         }
-
-        return true;
     }
+
 }

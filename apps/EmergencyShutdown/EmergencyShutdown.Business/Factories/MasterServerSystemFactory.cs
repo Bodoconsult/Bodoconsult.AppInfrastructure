@@ -33,12 +33,6 @@ public class MasterServerSystemFactory : IMasterServerSystemFactory
     {
         var typeName = server.GetType().Name;
 
-        if (_factories.ContainsKey(typeName))
-        {
-            return null;
-        }
-
-        var factory = _factories[typeName];
-        return factory.CreateInstance(server, shutdownConfig);
+        return !_factories.TryGetValue(typeName, out var factory) ? null : factory.CreateInstance(server, shutdownConfig);
     }
 }
