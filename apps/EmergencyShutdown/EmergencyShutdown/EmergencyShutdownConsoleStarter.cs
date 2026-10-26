@@ -2,11 +2,13 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Extensions;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
 using Bodoconsult.App.Windows.ConsoleTools;
 using EmergencyShutdown.Business.App;
 using EmergencyShutdown.Business.Interfaces;
 using System.Runtime.Versioning;
+using EmergencyShutdown.Business.Helpers;
 
 namespace EmergencyShutdown;
 
@@ -76,6 +78,7 @@ public class EmergencyShutdownConsoleStarter : BaseConsoleStarter
 #pragma warning restore CA1822
     {
         var globals = (IEmergencyShutdownAppGlobals)Globals.Instance;
+        globals.Workload = Workload;
         globals.DataProtectionService = consoleStarter.DataProtectionService;
 
         globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForConsoleApp();
@@ -126,5 +129,55 @@ public class EmergencyShutdownConsoleStarter : BaseConsoleStarter
     public void LoadWorkload()
     {
         Workload = LoadCredentials<Workload>("Workload", CredentialsFileName, CredentialsImportFileName);
+    }
+
+    /// <summary>
+    /// Load an entity from encrypted storage. Uses Newtonsoft.Json to support interfaces
+    /// </summary>
+    /// <param name="key">Key to use</param>
+    /// <param name="fileName">Target filename</param>
+    /// <param name="importFileName">Name of the import file</param>
+    public override T? LoadCredentials<T>(string key, string fileName, string importFileName) where T : default
+    {
+        if (File.Exists(fileName))
+        {
+            var crypted = File.ReadAllText(fileName);
+
+            var json = DataProtectionService.Unprotect(key, crypted);
+
+            return JsonHelper.LoadJsonString<T>(json);
+        }
+        else
+        {
+            if (!File.Exists(importFileName))
+            {
+                return default;
+            }
+
+            var json = File.ReadAllText(importFileName);
+
+            var result = JsonHelper.LoadJsonString<T>(json);
+
+            SaveCredentials(result, key, fileName);
+
+            FileSystemHelper.DeleteFile(importFileName);
+
+            return result;
+        }
+    }
+
+    /// <summary>
+    /// Save an entity to encrypted storage. Uses Newtonsoft.Json to support interfaces
+    /// </summary>
+    /// <param name="entity">Entity to save</param>
+    /// <param name="key">Key to use</param>
+    /// <param name="fileName">Target filename</param>
+    public override void SaveCredentials<T>(T entity, string key, string fileName)
+    {
+        var json = JsonHelper.Serialize(entity);
+
+        var crypted = DataProtectionService.Protect(key, json);
+
+        File.WriteAllText(fileName, crypted);
     }
 }

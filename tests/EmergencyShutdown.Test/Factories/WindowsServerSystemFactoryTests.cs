@@ -1,35 +1,36 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Windows.ShellTools;
 using EmergencyShutdown.Business.Factories;
 using EmergencyShutdown.Business.Interfaces;
 using EmergencyShutdown.Business.Servers;
 
-namespace EmergencyShutdown.Test.Factories
+namespace EmergencyShutdown.Test.Factories;
+
+[TestFixture]
+internal class WindowsServerSystemFactoryTests
 {
-    [TestFixture]
-    internal class WindowsServerSystemFactoryTests
+    //[SetUp]
+    //public void Setup()
+    //{
+    //}
+
+    [Test]
+    public void CreateInstance_validSetup_InstanceCreated()
     {
-        //[SetUp]
-        //public void Setup()
-        //{
-        //}
+        // Arrange
+        var shellProcessManager = new WinShellProcessManager();
+        var factory = new WindowsServerSystemFactory(shellProcessManager);
+        var server = new WindowsServer();
 
-        [Test]
-        public void CreateInstance_validSetup_InstanceCreated()
-        {
-            // Arrange
-            var factory = new WindowsServerSystemFactory();
-            var server = new WindowsServer();
-
-            var config = new ShutdownConfig();
+        var config = new ShutdownConfig();
             
-            // Act
-            var result = factory.CreateInstance(server, config);
+        // Act
+        var result = factory.CreateInstance(server, config);
 
-            // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.ShutdownConfig, Is.EqualTo(config));
-            Assert.That(result.Server, Is.EqualTo(server));
-        }
+        // Assert
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result.ShutdownConfig, Is.EqualTo(config));
+        Assert.That(result.Server, Is.EqualTo(server));
     }
 }

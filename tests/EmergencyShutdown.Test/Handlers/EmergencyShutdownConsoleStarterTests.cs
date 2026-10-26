@@ -107,4 +107,36 @@ internal class EmergencyShutdownConsoleStarterTests
             Assert.That(result.CredentialsImportFileName, Is.Not.Null);
         }
     }
+
+    [Test]
+    public void Start_ValidImportFile_WorkloadProcessed()
+    {
+        // Arrange 
+        var starter = new EmergencyShutdownConsoleStarter([], true);
+
+        FileSystemHelper.DeleteFile(starter.CredentialsFileName);
+
+        var workload = new Workload();
+        workload.Servers.Add(new DummyServer());
+        workload.Servers.Add(new DummyServer());
+
+        // Assert
+        Assert.That(workload.Servers.Count, Is.Not.Zero);
+
+        var fileName = starter.CredentialsImportFileName;
+        JsonHelper.SerializeAsFile(fileName, workload);
+
+        Assert.That(File.Exists(fileName));
+
+        starter.LoadWorkload();
+
+        // Act  
+        var result = starter.Start();
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(result, Is.Zero);
+        }
+    }
 }

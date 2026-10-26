@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Windows.ShellTools;
 using EmergencyShutdown.Business.Factories;
 using EmergencyShutdown.Business.Handler;
 using EmergencyShutdown.Business.Interfaces;
@@ -11,7 +12,13 @@ namespace EmergencyShutdown.Test.Handlers;
 internal class ShutdownHandlerTests
 {
     private readonly ShutdownConfig _shutdownConfig = new();
-    private readonly MasterServerSystemFactory _masterServerSystemFactory = new();
+    private readonly WinShellProcessManager _shellProcessManager = new();
+    private readonly MasterServerSystemFactory _masterServerSystemFactory;
+
+    public ShutdownHandlerTests()
+    {
+        _masterServerSystemFactory = new(_shellProcessManager);
+    }
 
     [Test]
     public void Ctor_ValidDefaultSetup_PropsSetCorrectly()

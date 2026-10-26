@@ -6,4 +6,9 @@ namespace EmergencyShutdown.Business.Servers;
 /// Represents a Windows OS server (or a client)
 /// </summary>
 public class WindowsServer : BaseServer
-{ }
+{
+    /// <summary>
+    /// Current user domain
+    /// </summary>
+    public string? Domain { get; set; }
+}

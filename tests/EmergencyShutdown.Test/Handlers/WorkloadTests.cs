@@ -28,4 +28,23 @@ internal class WorkloadTests
 
         FileSystemHelper.RunInDebugMode(fileName);
     }
+    [Test]
+    public void LoadJson_ValidDefaultSetup_SerializedAndDeserializedCorrectly()
+    {
+        // Arrange
+        var workload = new Workload();
+        workload.Servers.Add(new WindowsServer());
+        workload.Servers.Add(new WindowsServer());
+
+        Assert.That(workload.Servers.Count, Is.Not.Zero);
+
+        var json = JsonHelper.Serialize(workload);
+
+        // Act
+        var result = JsonHelper.LoadJsonString<Workload>(json);
+
+        // Assert
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result.Servers.Count, Is.EqualTo(workload.Servers.Count));
+    }
 }

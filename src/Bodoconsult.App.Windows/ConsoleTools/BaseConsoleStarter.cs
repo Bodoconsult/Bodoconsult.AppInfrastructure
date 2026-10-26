@@ -453,13 +453,12 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     #region Custom entites to encrypt
 
     /// <summary>
-    /// Load an entity from encrypted storage
+    /// Load an entity from encrypted storage. Uses  <see cref="SimpleJsonHelper"/> not supporting interfaces. Override this method if you need to serialize and deserialize interfaces
     /// </summary>
-    /// <param name="entity">Entity to save</param>
     /// <param name="key">Key to use</param>
     /// <param name="fileName">Target filename</param>
     /// <param name="importFileName">Name of the import file</param>
-    public T? LoadCredentials<T>(string key, string fileName, string importFileName)
+    public virtual T? LoadCredentials<T>(string key, string fileName, string importFileName)
     {
         if (File.Exists(fileName))
         {
@@ -489,12 +488,12 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     }
 
     /// <summary>
-    /// Save an entity to encrypted storage
+    /// Save an entity to encrypted storage. Uses  <see cref="SimpleJsonHelper"/> not supporting interfaces. Override this method if you need to serialize and deserialize interfaces
     /// </summary>
     /// <param name="entity">Entity to save</param>
     /// <param name="key">Key to use</param>
     /// <param name="fileName">Target filename</param>
-    public void SaveCredentials<T>(T entity, string key, string fileName)
+    public virtual void SaveCredentials<T>(T entity, string key, string fileName)
     {
         var json = SimpleJsonHelper.Serialize(entity);
 

@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace EmergencyShutdown.Business
-{
-    public class Class1
-    {
+namespace EmergencyShutdown.Business;
 
-    }
+public class Class1
+{
+
 }

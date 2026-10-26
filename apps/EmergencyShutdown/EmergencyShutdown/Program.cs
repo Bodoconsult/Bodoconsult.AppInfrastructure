@@ -10,6 +10,7 @@ internal class Program
     private static int Main(string[] args)
     {
         var starter = new EmergencyShutdownConsoleStarter(args);
+        starter.LoadWorkload();
         return starter.Start();
     }
 }

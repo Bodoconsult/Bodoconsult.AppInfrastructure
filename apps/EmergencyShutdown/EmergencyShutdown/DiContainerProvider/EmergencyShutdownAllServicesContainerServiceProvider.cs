@@ -9,6 +9,7 @@ using Bodoconsult.App.Interfaces;
 using EmergencyShutdown.Business.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Runtime.Versioning;
+using Bodoconsult.App.Windows.ShellTools;
 using EmergencyShutdown.Business.App;
 using EmergencyShutdown.Business.Factories;
 using EmergencyShutdown.Business.Handler;
@@ -72,6 +73,7 @@ public class EmergencyShutdownAllServicesContainerServiceProvider : IDiContainer
 
         // Services
         diContainer.AddSingletonInstance(_appGlobals.ShutdownConfig);
+        diContainer.AddSingleton<IShellProcessManager, WinShellProcessManager>();
         diContainer.AddSingleton<IMasterServerSystemFactory, MasterServerSystemFactory>();
         diContainer.AddSingleton<IShutdownHandler, ShutdownHandler>();
 

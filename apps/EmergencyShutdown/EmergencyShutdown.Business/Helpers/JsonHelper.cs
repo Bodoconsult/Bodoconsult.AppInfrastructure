@@ -17,7 +17,7 @@ public class JsonHelper
     /// </summary>
     /// <param name="fileName"></param>
     /// <returns></returns>
-    public static T LoadJsonFile<T>(string fileName)
+    public static T? LoadJsonFile<T>(string fileName)
     {
 
         using var file = File.OpenText(fileName);
@@ -26,7 +26,7 @@ public class JsonHelper
             TypeNameHandling = TypeNameHandling.All
         };
 
-        var job = (T)serializer.Deserialize(file, typeof(T));
+        var job = (T?)serializer.Deserialize(file, typeof(T));
 
         return job;
     }
@@ -36,7 +36,7 @@ public class JsonHelper
     /// </summary>
     /// <param name="json">JSON string to deserialize</param>
     /// <returns>Deserialize entity</returns>
-    public static T LoadJson<T>(string json)
+    public static T? LoadJsonString<T>(string json)
     {
         var settings = new JsonSerializerSettings
         {
@@ -48,38 +48,12 @@ public class JsonHelper
     }
 
     /// <summary>
-    /// Load a object from a JSON resource
-    /// </summary>
-    /// <param name="resourceName">Fully qualified resource name</param>
-    /// <returns>object of type T or null</returns>
-    public static T LoadJsonFromResource<T>(string resourceName)
-    {
-        T job;
-
-        var ass = Assembly.GetExecutingAssembly();
-        var str = ass.GetManifestResourceStream(resourceName);
-
-        if (str == null) return default(T);
-
-        using var file = new StreamReader(str);
-        var serializer = new JsonSerializer
-        {
-            TypeNameHandling = TypeNameHandling.All
-        };
-
-        job = (T)serializer.Deserialize(file, typeof(T));
-
-        return job;
-    }
-
-
-    /// <summary>
     /// Serialize a object to JSON
     /// </summary>
     /// <param name="value">object to convert</param>
     /// <typeparam name="T">type of object to convert</typeparam>
     /// <returns></returns>
-    public static string SerializeObject<T>(T value)
+    public static string Serialize<T>(T value)
     {
         var sb = new StringBuilder(256);
         var sw = new StringWriter(sb, CultureInfo.InvariantCulture);
@@ -114,7 +88,7 @@ public class JsonHelper
     /// <returns>JSON string</returns>
     public static string SerializeAsFile<T>(string fileName, T data)
     {
-        var json = SerializeObject(data);
+        var json = Serialize(data);
 
         File.WriteAllText(fileName, json, Encoding.UTF8);
 

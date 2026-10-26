@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
 using EmergencyShutdown.Business.Interfaces;
 using EmergencyShutdown.Business.Servers;
 
@@ -15,10 +16,11 @@ public class MasterServerSystemFactory : IMasterServerSystemFactory
     /// <summary>
     /// Default ctor
     /// </summary>
-    public MasterServerSystemFactory()
+    /// <param name="windowsShellProcessManager">Shell process manager for Windows OS</param>
+    public MasterServerSystemFactory(IShellProcessManager windowsShellProcessManager)
     {
         _factories.Add(nameof(DummyServer), new DummyServerSystemFactory());
-        _factories.Add(nameof(WindowsServer), new WindowsServerSystemFactory());
+        _factories.Add(nameof(WindowsServer), new WindowsServerSystemFactory(windowsShellProcessManager));
     }
     
     /// <summary>
