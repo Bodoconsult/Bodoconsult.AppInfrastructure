@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace BodoFileTransfer.Test;
 
 [TestFixture]
-public class PasswordHandlerTests
+internal class PasswordHandlerTests
 {
     public PasswordHandlerTests()
     {

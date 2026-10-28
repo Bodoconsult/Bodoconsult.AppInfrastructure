@@ -48,4 +48,7 @@ dotnet nuget push packages\Bodoconsult.Office.%version%.snupkg --source \\BCGS03
 dotnet nuget push packages\Bodoconsult.Pdf.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.Pdf.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
 
+dotnet nuget push packages\Bodoconsult.Drawing.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Drawing.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
 pause

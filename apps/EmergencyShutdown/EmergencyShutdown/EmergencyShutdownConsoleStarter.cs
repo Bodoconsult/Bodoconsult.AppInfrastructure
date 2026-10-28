@@ -40,12 +40,12 @@ public class EmergencyShutdownConsoleStarter : BaseConsoleStarter
     public Workload? Workload { get; private set; }
 
     /// <summary>
-    /// Filename of the SMTP mail account storage file
+    /// Filename of the workload storage file
     /// </summary>
     public string CredentialsFileName { get; }
 
     /// <summary>
-    /// Filename of the SMTP mail account storage import file. To be deleted after import
+    /// Filename of the workload storage import file. To be deleted after import
     /// </summary>
     public string CredentialsImportFileName { get; }
 
