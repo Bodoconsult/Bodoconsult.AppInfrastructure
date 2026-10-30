@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using ABI.System.Collections.Generic;
 using Bodoconsult.App.Helpers;
 using NUnit.Framework;
 using OpenSourceConnectorBodoCms.Business.Helpers;
@@ -21,7 +22,7 @@ internal class JsonHelperTests
         var fileName = Path.Combine(Path.GetTempPath(), "test.json");
 
         // Act  
-        JsonHelper.SaveAsFile(fileName, list);
+        SimpleJsonHelper.SerializeAsFile(fileName, list);
 
         // Assert
         Assert.That(File.Exists(fileName));
@@ -32,18 +33,25 @@ internal class JsonHelperTests
     public void LoadJsonFile_ValidObject_SerializedAandSavedAsFile()
     {
         // Arrange 
-        var list = new List<OpenSourceMetaData> { new(), new() };
+        var m1 = new OpenSourceMetaData()
+        {
+            Category = "Blubb"
+        };
+
+        var list = new List<OpenSourceMetaData> { m1, new() };
 
         var fileName = Path.Combine(Path.GetTempPath(), "test.json");
 
-        JsonHelper.SaveAsFile(fileName, list);
+        SimpleJsonHelper.SerializeAsFile(fileName, list);
         Assert.That(File.Exists(fileName));
 
         // Act  
-        var result = JsonHelper.LoadJsonFile<List<OpenSourceMetaData>>(fileName);
+        var result = SimpleJsonHelper.LoadJsonFile<List<OpenSourceMetaData>>(fileName);
 
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result.Count, Is.Not.Zero);
+
+
     }
 }

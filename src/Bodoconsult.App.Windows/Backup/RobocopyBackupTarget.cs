@@ -368,7 +368,7 @@ public class RobocopyBackupTarget : IBackupTarget
 
             var dir = Path.Combine(_backupTargetSettings.Target, $"{d:yyyyMM}");
 
-            Status("ClearMonths: " + dir);
+            Status($"ClearMonths: {dir}");
 
             try
             {

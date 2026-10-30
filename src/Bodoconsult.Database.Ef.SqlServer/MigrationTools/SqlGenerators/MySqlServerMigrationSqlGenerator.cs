@@ -118,20 +118,8 @@ public sealed class MySqlServerMigrationSqlGenerator : SqlServerMigrationsSqlGen
     private void PerformDropDatabaseRoleOperation(DropDatabaseRoleOperation operation, MigrationCommandListBuilder builder)
     {
 
-        var sql = "DECLARE @RoleName sysname \r\n" + $"set @RoleName = N'{operation.RoleName}' \r\n" +
-                  "IF @RoleName<> N'public' and(select is_fixed_role from sys.database_principals where name = @RoleName) = 0 \r\n" +
-                  "BEGIN\r\n" + "\tDECLARE @RoleMemberName sysname\r\n" + "\tDECLARE Member_Cursor CURSOR FOR\r\n" +
-                  "\tselect[name]\r\n" + "\tfrom sys.database_principals\r\n" + "\twhere principal_id in (\r\n" +
-                  "\tselect member_principal_id\r\n" + "\tfrom sys.database_role_members\r\n" +
-                  "\twhere role_principal_id in (\r\n" + "\tselect principal_id\r\n" +
-                  "\tFROM sys.database_principals where[name] = @RoleName AND type = 'R'))\r\n" +
-                  "\tOPEN Member_Cursor;\r\n" + "\tFETCH NEXT FROM Member_Cursor\r\n" +
-                  "\tinto @RoleMemberName\r\n" + "\tDECLARE @SQL NVARCHAR(4000) \r\n" +
-                  "\tWHILE @@FETCH_STATUS = 0 \r\n" + "\tBEGIN \r\n" +
-                  "\t\tSET @SQL = 'ALTER ROLE ' + QUOTENAME(@RoleName, '[') + ' DROP MEMBER ' + QUOTENAME(@RoleMemberName, '[')\r\n" +
-                  "\t\tEXEC(@SQL) \r\n" + "\t\tFETCH NEXT FROM Member_Cursor \r\n" +
-                  "\t\tinto @RoleMemberName \r\n" + "\tEND;\r\n" + "\tCLOSE Member_Cursor;\r\n" +
-                  "\tDEALLOCATE Member_Cursor;\r\n" + "END\r\n";
+        var sql =
+            $"DECLARE @RoleName sysname \r\nset @RoleName = N'{operation.RoleName}' \r\nIF @RoleName<> N'public' and(select is_fixed_role from sys.database_principals where name = @RoleName) = 0 \r\nBEGIN\r\n\tDECLARE @RoleMemberName sysname\r\n\tDECLARE Member_Cursor CURSOR FOR\r\n\tselect[name]\r\n\tfrom sys.database_principals\r\n\twhere principal_id in (\r\n\tselect member_principal_id\r\n\tfrom sys.database_role_members\r\n\twhere role_principal_id in (\r\n\tselect principal_id\r\n\tFROM sys.database_principals where[name] = @RoleName AND type = 'R'))\r\n\tOPEN Member_Cursor;\r\n\tFETCH NEXT FROM Member_Cursor\r\n\tinto @RoleMemberName\r\n\tDECLARE @SQL NVARCHAR(4000) \r\n\tWHILE @@FETCH_STATUS = 0 \r\n\tBEGIN \r\n\t\tSET @SQL = 'ALTER ROLE ' + QUOTENAME(@RoleName, '[') + ' DROP MEMBER ' + QUOTENAME(@RoleMemberName, '[')\r\n\t\tEXEC(@SQL) \r\n\t\tFETCH NEXT FROM Member_Cursor \r\n\t\tinto @RoleMemberName \r\n\tEND;\r\n\tCLOSE Member_Cursor;\r\n\tDEALLOCATE Member_Cursor;\r\nEND\r\n";
 
         // Drop role members
         builder.Append(sql);

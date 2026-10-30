@@ -3,7 +3,7 @@
 using Bodoconsult.App.Abstractions.Delegates;
 using OpenSourceConnectorBodoCms.Business.Model;
 
-namespace OpenSourceConnectorBodoCms.Business.Services;
+namespace OpenSourceConnectorBodoCms.Business.Interfaces;
 
 /// <summary>
 /// Metadata export service to BodoCms
@@ -19,6 +19,11 @@ public interface IExportService
     /// Status message delelgate
     /// </summary>
     StatusMessageDelegate StatusMessageDelegate { get; }
+
+    /// <summary>
+    /// Prepare the data for the export
+    /// </summary>
+    void PrepareData();
 
     /// <summary>
     /// Create folders

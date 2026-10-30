@@ -1,117 +1,102 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System.Text;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Web.Html.Helpers;
 using Markdig;
 using OpenSourceConnectorBodoCms.Business.Model;
 
 namespace OpenSourceConnectorBodoCms.Business.Exporter;
 
+/// <summary>
+/// Create an HTML page from the packet data
+/// </summary>
 public class HtmlExporter
 {
-
     private readonly FolderData _folder;
-
     private readonly string _target;
+    private readonly StringBuilder _html = new();
+    private readonly string _packetName;
 
-
-    private readonly StringBuilder s = new StringBuilder();
-
-    public HtmlExporter(FolderData folder, string target)
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="packetName">Packet name</param>
+    /// <param name="folder">Current folder</param>
+    /// <param name="target"></param>
+    public HtmlExporter(string packetName, FolderData folder, string target)
     {
         _folder = folder;
         _target = target;
+        _packetName = packetName;
     }
 
-
+    /// <summary>
+    /// Add the link to the GitHub repo
+    /// </summary>
     public void AddGitHubLink()
     {
-
-        this.s.AppendLine(HtmlHelper.H2("Github repository"));
+        _html.AppendLine(HtmlHelper.H2("Github repository"));
 
         var link = HtmlHelper.A(_folder.GitUrl, _folder.GitUrl);
 
-        this.s.AppendLine(HtmlHelper.Paragraph(link));
-        s.AppendLine("");
-
-
+        _html.AppendLine(HtmlHelper.Paragraph(link));
+        _html.AppendLine(string.Empty);
     }
 
+    /// <summary>
+    /// Add the link to the Nuget package
+    /// </summary>
     public void AddNugetLink()
     {
+        var nugetUrl = $"https://www.nuget.org/packages/{_packetName}";
 
-        //if (string.IsNullOrEmpty(_folder.NugetUrl)) return;
+        _html.AppendLine(HtmlHelper.H2("Nuget package"));
 
-        //this.s.AppendLine(HtmlHelper.H2("Nuget package"));
+        var link = HtmlHelper.A(nugetUrl, nugetUrl);
 
-        //var link = HtmlHelper.A(_folder.NugetUrl, _folder.NugetUrl);
-
-        //this.s.AppendLine(HtmlHelper.Paragraph(link));
-        //s.AppendLine("");
+        _html.AppendLine(HtmlHelper.Paragraph(link));
+        _html.AppendLine(string.Empty);
     }
 
-
-    public void AddContent()
+    /// <summary>
+    /// Add the repo links for README.html and LICENSE.html
+    /// </summary>
+    public void AddContentLinks()
     {
+        _html.AppendLine(HtmlHelper.H2("Documentation"));
 
-        if (!string.IsNullOrEmpty(_folder.ReadMe))
-        {
-            s.AppendLine(HtmlHelper.H2("About the library "+_folder.Name));
-            s.Append(GetHtmlFromMarkdown(_folder.ReadMe.Replace("# ", "### ")));
-            s.AppendLine("");
-        }
+        var url = $"{_folder.GitUrl}/tree/main/doc/{_packetName}/README.md";
 
+        var link = HtmlHelper.A(url, url);
 
-        if (!string.IsNullOrEmpty(_folder.Licence))
-        {
-            s.AppendLine(HtmlHelper.H2("Licence for the library " + _folder.Name));
-            s.Append(GetHtmlFromMarkdown(_folder.Licence.Replace("# ", "### ")));
-            s.AppendLine("");
-        }
+        _html.AppendLine(HtmlHelper.Paragraph(link));
+        _html.AppendLine(string.Empty);
 
+        _html.AppendLine(HtmlHelper.H2("License"));
+
+        url = $"{_folder.GitUrl}/tree/main/doc/{_packetName}/LICENSE.md";
+
+        link = HtmlHelper.A(url, url);
+
+        _html.AppendLine(HtmlHelper.Paragraph(link));
+        _html.AppendLine(string.Empty);
     }
-
-
 
     private static string GetHtmlFromMarkdown(string markDown)
     {
-
-        //var s = markDown.Split('\r', '\n');
-
-        //var erg = new StringBuilder();
-
-        //foreach (var t in s)
-        //{
-        //    var line = t;
-        //    if (line.StartsWith("    ") || line.StartsWith('\t'))
-        //    {
-        //        if (!line.EndsWith("  "))
-        //        {
-        //            line+=  "  ";
-        //        }
-        //    }
-
-        //    erg.AppendLine(line);
-        //}
-
-
-
-        //var result = Markdown.ToHtml(erg.ToString());
-
         var result = Markdown.ToHtml(markDown);
-
-
-
         return result.Replace("<pre>","<div class=\"code\"><pre>").Replace("</pre>","</pre></div>");
     }
 
-
-
+    /// <summary>
+    /// Save the HTML as file
+    /// </summary>
     public void Save()
     {
-        var t = s.ToString();
+        var t = _html.ToString();
 
-        if (File.Exists(_target)) File.Delete(_target);
+        FileSystemHelper.DeleteFile(_target);
         File.WriteAllText(_target, t, Encoding.UTF8);
     }
 

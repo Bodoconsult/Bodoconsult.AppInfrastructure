@@ -35,7 +35,7 @@ public static class ValidationHelper
             var members = new StringBuilder();
             foreach (var member in result.MemberNames)
             {
-                members.AppendLine(member + ";");
+                members.AppendLine($"{member};");
             }
 
             var m = members.ToString();

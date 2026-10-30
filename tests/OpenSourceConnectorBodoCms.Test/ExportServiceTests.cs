@@ -22,7 +22,28 @@ internal class ExportServiceTests
     }
 
     [Test]
-    public void TestGetAllProjectFolders()
+    public void PrepareData_ValidSetup_PropsSetCorrectly()
+    {
+        // Arrange
+        _registerService.GetAllProjectFolders();
+
+        Assert.IsNotNull(_registerService.OpenSourceFolders);
+        Assert.IsTrue(_registerService.OpenSourceFolders.Any());
+        Assert.IsTrue(_registerService.OpenSourceFolders.Count > 0);
+
+        _service = new ExportService(Globals.Instance, _dbService);
+
+        // Act
+        _service.PrepareData();
+
+        // assert
+        Assert.That(_service.Categories.Count, Is.Not.Zero);
+        Assert.That(_service.Packages.Count, Is.Not.Zero);
+        Assert.That(_service.CategoriePackages.Count, Is.Not.Zero);
+    }
+
+    [Test]
+    public void CreateFolders_ValidSetup_FoldersCreated()
     {
         // Arrange
         _registerService.GetAllProjectFolders();
@@ -32,6 +53,7 @@ internal class ExportServiceTests
         Assert.IsTrue(_registerService.OpenSourceFolders.Count > 0);
 
         _service = new ExportService(Globals.Instance, _dbService);
+        _service.PrepareData();
 
         // Act
         _service.CreateFolders();
@@ -40,9 +62,8 @@ internal class ExportServiceTests
 
     }
 
-
     [Test]
-    public void TestCreateHtml()
+    public void CreateHtml_ValidSetup_PackageHtmlCreated()
     {
         // Arrange
         _registerService.GetAllProjectFolders();
@@ -52,6 +73,7 @@ internal class ExportServiceTests
         Assert.IsTrue(_registerService.OpenSourceFolders.Count > 0);
 
         _service = new ExportService(Globals.Instance, _dbService);
+        _service.PrepareData();
         _service.CreateFolders();
 
         // Act
@@ -61,22 +83,19 @@ internal class ExportServiceTests
 
     }
 
-
     [Test]
-    public void TestCreateStartPage()
+    public void CreateStartPage_ValidSetup_StartPageCreated()
     {
         // Arrange
         _registerService.GetAllProjectFolders();
-
 
         Assert.IsNotNull(_registerService.OpenSourceFolders);
         Assert.IsTrue(_registerService.OpenSourceFolders.Any());
         Assert.IsTrue(_registerService.OpenSourceFolders.Count > 0);
 
         _service = new ExportService(Globals.Instance, _dbService);
+        _service.PrepareData();
         _service.CreateFolders();
-
-            
         _service.CreateHtml();
 
         // Act
@@ -85,5 +104,4 @@ internal class ExportServiceTests
         // assert
 
     }
-
 }

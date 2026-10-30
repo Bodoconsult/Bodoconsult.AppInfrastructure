@@ -314,7 +314,7 @@ public class BaseRepositoryGuid<TEntity, TContext> : IRepositoryGuid<TEntity> wh
             }
 
 
-            _log.LogError("ScopedRepository:Update()" + entity.GetType().Name + " " + e.Message);
+            _log.LogError($"ScopedRepository:Update(){entity.GetType().Name} {e.Message}");
             throw new InvalidOperationException("ScopedRepository:Update()", e);
 
         }
@@ -581,7 +581,7 @@ public class BaseRepositoryGuid<TEntity, TContext> : IRepositoryGuid<TEntity> wh
         }
         catch (Exception e)
         {
-            var msg = "ScopedRepository:Attach()" + typeof(TEntity).Name + " ";
+            var msg = $"ScopedRepository:Attach(){typeof(TEntity).Name} ";
             _log.LogError(msg + e.Message);
             throw new InvalidOperationException(msg, e);
         }
@@ -667,7 +667,7 @@ public class BaseRepositoryGuid<TEntity, TContext> : IRepositoryGuid<TEntity> wh
         }
         catch (Exception e)
         {
-            var msg = "ScopedRepository:Delete(T)" + typeof(TEntity).Name + " " + e.Message;
+            var msg = $"ScopedRepository:Delete(T){typeof(TEntity).Name} {e.Message}";
             _log.LogError(msg);
             throw new InvalidOperationException(msg, e);
         }

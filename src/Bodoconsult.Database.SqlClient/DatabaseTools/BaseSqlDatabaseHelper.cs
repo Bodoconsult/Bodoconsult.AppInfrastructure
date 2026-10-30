@@ -130,7 +130,7 @@ public class BaseSqlDatabaseHelper : IDatabaseHelper
 
             DatabaseName = raw.Substring(i + 16, j - i - 16);
 
-            raw = raw.Substring(0, i + 16) + "Master" + raw.Substring(j);
+            raw = $"{raw.Substring(0, i + 16)}Master{raw.Substring(j)}";
 
             MasterConnectionString = raw;
 
@@ -758,11 +758,8 @@ public class BaseSqlDatabaseHelper : IDatabaseHelper
     /// <returns></returns>
     public bool TableExists(string schema, string tableName)
     {
-        var sql = "SET NOCOUNT ON IF (EXISTS (SELECT * " +
-                  "FROM INFORMATION_SCHEMA.TABLES " +
-                  $" WHERE TABLE_SCHEMA = '{schema}' " +
-                  $" AND TABLE_NAME = '{tableName}')) " +
-                  "select cast(1 as bit) as result else select cast(0 as bit) as result";
+        var sql =
+            $"SET NOCOUNT ON IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = '{schema}'  AND TABLE_NAME = '{tableName}')) select cast(1 as bit) as result else select cast(0 as bit) as result";
 
         try
         {

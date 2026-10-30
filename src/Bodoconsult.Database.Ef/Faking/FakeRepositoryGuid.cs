@@ -298,7 +298,7 @@ public class FakeRepositoryGuid<T> : IRepositoryGuid<T> where T : class, IEntity
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Error:Delete:" + ex.Message);
+            Debug.WriteLine($"Error:Delete:{ex.Message}");
             return false;
         }
 
@@ -336,7 +336,7 @@ public class FakeRepositoryGuid<T> : IRepositoryGuid<T> where T : class, IEntity
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Error:Delete:" + ex.Message);
+            Debug.WriteLine($"Error:Delete:{ex.Message}");
             return false;
         }
 

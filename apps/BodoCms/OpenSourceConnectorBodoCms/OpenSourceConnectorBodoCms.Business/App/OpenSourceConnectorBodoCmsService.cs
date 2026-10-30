@@ -6,6 +6,7 @@ using Bodoconsult.App.Helpers;
 using OpenSourceConnectorBodoCms.Business.Services;
 using System.Diagnostics;
 using System.Runtime.Versioning;
+using OpenSourceConnectorBodoCms.Business.Interfaces;
 
 namespace OpenSourceConnectorBodoCms.Business.App;
 
@@ -75,28 +76,15 @@ public class OpenSourceConnectorBodoCmsService : IApplicationService
         ArgumentException.ThrowIfNullOrEmpty(AppGlobals.AppStartParameter.DefaultConnectionString);
         ArgumentException.ThrowIfNullOrEmpty(AppGlobals.AppStartParameter.ErrorMailAddress);
 
-        //var h =AppGlobals.DiContainer.Get<IBodoCmsHandler>();
-        //h.CreateHomepage();
-        ////Console.ReadLine();
-
         var status = AppGlobals.StatusMessageDelegate;
         ArgumentNullException.ThrowIfNull(status);
 
         status.Invoke("OpenSourceConnectorToBodoCms: started...");
 
-        var registerService = new RegisterFolderService(AppGlobals);
-
-        registerService.GetAllProjectFolders();
-
-        //var service = new ExportService(AppGlobals);
-        //service.CreateFolders();
-
-        //service.CreateHtml();
-
-        //service.CreateStartpage();
-
-        //status.Invoke("OpenSourceConnectorToBodoCms: done!");
-
+        var main = AppGlobals.DiContainer.Get<IOpenSourcePackagesHandler>();
+        main.GetAllProjectFolders();
+        main.ExportPackageInfoToBodoCms();
+        
         _appLogger.LogInformation("OpenSourceConnectorToBodoCms has finished creating website");
 
         // Stop app now

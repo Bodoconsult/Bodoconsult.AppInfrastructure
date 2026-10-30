@@ -152,7 +152,7 @@ public class RemoteSqlDatabaseHelper : BaseSqlDatabaseHelper
             }
 
             // Create restore command with moving database files
-            sql = $"RESTORE DATABASE {dbName} FROM DISK = N'{remoteBackupFile}'" + move;
+            sql = $"RESTORE DATABASE {dbName} FROM DISK = N'{remoteBackupFile}'{move}";
 
             Debug.WriteLine(sql);
 

@@ -23,19 +23,9 @@ public class FolderData
     public string GitUrl { get; set; } = string.Empty;
 
     /// <summary>
-    /// Url of the Nuget package
+    /// Name of the Nuget package
     /// </summary>
-    public List<string> NugetUrls { get; } = new();
-
-    /// <summary>
-    /// Markdown of the readme file
-    /// </summary>
-    public string ReadMe { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Markdown of the licence file
-    /// </summary>
-    public string Licence { get; set; } = string.Empty;
+    public List<string> NugetPackets { get; } = new();
 
     /// <summary>
     /// Name of the target folder: replace . with _

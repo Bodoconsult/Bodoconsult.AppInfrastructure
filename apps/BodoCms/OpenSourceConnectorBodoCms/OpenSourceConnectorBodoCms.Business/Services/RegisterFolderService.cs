@@ -1,14 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
-using OpenSourceConnectorBodoCms.Business.Helpers;
+using Bodoconsult.App.Helpers;
 using OpenSourceConnectorBodoCms.Business.Interfaces;
 using OpenSourceConnectorBodoCms.Business.Model;
 
 namespace OpenSourceConnectorBodoCms.Business.Services;
 
-public class RegisterFolderService
+public class RegisterFolderService : IRegisterFolderService
 {
     public RegisterFolderService(IAppGlobals appGlobals)
     {
@@ -94,6 +95,12 @@ public class RegisterFolderService
                 continue;
             }
 
+            // Git repo
+            if (CheckIfFolderIsNoGitRepo(folder))
+            {
+                return;
+            }
+
             RegisterFolder(folder);
         }
     }
@@ -106,20 +113,10 @@ public class RegisterFolderService
     {
         Status($"Register {folder.Name}...");
 
-        // Check if there is a git directory
-        var gitPath = Path.Combine(folder.FullName, ".git");
-
-        var exists = Directory.Exists(gitPath);
-
-        if (!exists)
-        {
-            return;
-        }
-
         // Check if the git repository is public
-        gitPath = Path.Combine(folder.FullName, ".git", "config");
+        var gitPath = Path.Combine(folder.FullName, ".git", "config");
 
-        exists = File.Exists(gitPath);
+        var exists = File.Exists(gitPath);
 
         if (!exists)
         {
@@ -135,45 +132,51 @@ public class RegisterFolderService
             GitUrl = GetRepositoryUrl(content)
         };
 
-        gitPath = Path.Combine(folder.FullName, "nuget.txt");
-
-        exists = File.Exists(gitPath);
-
-        if (exists)
-        {
-            content = File.ReadAllText(gitPath).Replace("\r\n", "\r");
-
-            var packages = content.Split('\r', StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var package in packages)
-            {
-                item.NugetUrls.Add(package);
-            }
-        }
-
-        // Readme
-        gitPath = Path.Combine(folder.FullName, "readme.md");
-        exists = File.Exists(gitPath);
-        if (exists)
-        {
-            content = File.ReadAllText(gitPath);
-            item.ReadMe = content;
-        }
-
-        // Licence
-        gitPath = Path.Combine(folder.FullName, "license.md");
-        exists = File.Exists(gitPath);
-        if (exists)
-        {
-            content = File.ReadAllText(gitPath);
-            item.Licence = content;
-        }
+        GetPackages(folder, item);
 
         // Metadata
         GetMetaData(folder, item);
 
         // Add the item now to folders list
         OpenSourceFolders.Add(item);
+    }
+
+    private static bool CheckIfFolderIsNoGitRepo(DirectoryInfo folder)
+    {
+        var gitPath = Path.Combine(folder.FullName, ".git");
+
+        var exists = Directory.Exists(gitPath);
+        return !exists;
+    }
+
+    /// <summary>
+    /// Get the packages from nuget.txt
+    /// </summary>
+    /// <param name="folder">Current directory</param>
+    /// <param name="item">Current folder data</param>
+    private static void GetPackages(DirectoryInfo folder, FolderData item)
+    {
+        var gitPath = Path.Combine(folder.FullName, "nuget.txt");
+
+        var exists = File.Exists(gitPath);
+
+        if (!exists)
+        {
+            return;
+        }
+
+        var content = File.ReadAllText(gitPath).Replace("\r\n", "\r", StringComparison.OrdinalIgnoreCase);
+
+        var packages = content.Split('\r', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (var package in packages)
+        {
+            if (string.IsNullOrEmpty(package))
+            {
+                continue;
+            }
+            item.NugetPackets.Add(package);
+        }
     }
 
     private void GetMetaData(DirectoryInfo folder, FolderData item)
@@ -186,12 +189,37 @@ public class RegisterFolderService
         // A meta data file with potentially user updated info is existing
         if (exists)
         {
-            metas.AddRange(JsonHelper.LoadJsonFile<List<OpenSourceMetaData>>(path));
+            try
+            {
+                var list = SimpleJsonHelper.LoadJsonFile<List<OpenSourceMetaData>>(path);
+                if (list is not null)
+                {
+                    metas.AddRange(list);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.ToString());
+            }
+        }
+
+        // Now add missing packages from nuget.txt
+        foreach (var package in item.NugetPackets)
+        {
+            if (metas.Any(x => x.NugetPackage.Equals(package)))
+            {
+                continue;
+            }
+
+            metas.Add(new OpenSourceMetaData
+            {
+                NugetPackage = package
+            });
         }
 
         // Now try to find missing packages from solution folder \packages
         var packagesPath = Path.Combine(folder.FullName, "packages");
-        
+
         var packages = GetPackagesFromFolder(packagesPath);
 
         foreach (var package in packages)
@@ -206,15 +234,17 @@ public class RegisterFolderService
                 NugetPackage = package
             });
         }
-
+        
         // Save meta data
-        JsonHelper.SaveAsFile(path, metas);
+        SimpleJsonHelper.SerializeAsFile(path, metas);
 
         // Now handle the meta datas
         foreach (var meta in metas)
         {
-            item.NugetUrls.Add(meta.NugetPackage);
+            Debug.Print(meta.Category);
+            item.NugetPackets.Add(meta.NugetPackage);
             CheckCategorie(meta.Category);
+            item.MetaData.Add(meta);
         }
     }
 
@@ -227,11 +257,10 @@ public class RegisterFolderService
     {
         var result = new List<string>();
 
-        if (Directory.Exists(packagesPath))
+        if (!Directory.Exists(packagesPath))
         {
             return result;
         }
-
 
         var files = new DirectoryInfo(packagesPath).GetFiles("*.nupkg");
 
@@ -269,7 +298,7 @@ public class RegisterFolderService
         i = s.LastIndexOf('.', i - 1);
         i = s.LastIndexOf('.', i - 1);
 
-        return s.Substring(0, i);
+        return s[..i];
     }
 
 
@@ -283,21 +312,27 @@ public class RegisterFolderService
         Categories.Add(categorie);
     }
 
-
-
+    /// <summary>
+    /// Get a clean repository URL
+    /// </summary>
+    /// <param name="url">Raw URL</param>
+    /// <returns>Cleaned URL</returns>
     public string GetRepositoryUrl(string url)
     {
         var s = url.Split('\r', '\n');
 
-        var item = s.FirstOrDefault(x => x.Contains("url = "));
+        var item = s.FirstOrDefault(x => x.Contains("url = ", StringComparison.OrdinalIgnoreCase));
 
-        if (string.IsNullOrEmpty(item)) return "";
-
-        var erg = item.Trim().Replace("\t", "").Replace("url = ", "").Trim();
-
-        if (erg.EndsWith(".git"))
+        if (string.IsNullOrEmpty(item))
         {
-            erg = erg.Substring(0, erg.Length - 4);
+            return string.Empty;
+        }
+
+        var erg = item.Trim().Replace("\t", string.Empty).Replace("url = ", string.Empty, StringComparison.OrdinalIgnoreCase).Trim();
+
+        if (erg.EndsWith(".git", StringComparison.OrdinalIgnoreCase))
+        {
+            erg = erg[..^4];
         }
 
         return erg;

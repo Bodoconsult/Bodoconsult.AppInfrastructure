@@ -1,6 +1,7 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using NUnit.Framework;
 using OpenSourceConnectorBodoCms.Business;
@@ -68,6 +69,12 @@ internal class RegisterFolderServiceTests
         Assert.IsNotNull(_service.OpenSourceFolders);
         Assert.IsTrue(_service.OpenSourceFolders.Any());
         Assert.IsTrue(_service.OpenSourceFolders.Count > 0);
+
+        foreach (var folder in _service.OpenSourceFolders)
+        {
+            Debug.Print(folder.Name);
+            //Assert.That(folder.MetaData.Count, Is.Not.Zero);
+        }
     }
 
     [Test]

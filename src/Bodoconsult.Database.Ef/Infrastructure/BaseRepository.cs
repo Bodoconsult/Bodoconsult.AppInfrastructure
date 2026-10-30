@@ -313,7 +313,7 @@ public class BaseRepository<TEntity, TContext> : IRepository<TEntity> where TEnt
             }
 
 
-            _log.LogError("ScopedRepository:Update()" + entity.GetType().Name + " " + e.Message);
+            _log.LogError($"ScopedRepository:Update(){entity.GetType().Name} {e.Message}");
             throw new InvalidOperationException("ScopedRepository:Update()", e);
 
         }

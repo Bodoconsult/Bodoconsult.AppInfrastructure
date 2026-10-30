@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Runtime.Versioning;
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Interfaces;
+using OpenSourceConnectorBodoCms.Business.Interfaces;
 using OpenSourceConnectorBodoCms.DiContainerProvider;
+using System.Runtime.Versioning;
 
 namespace OpenSourceConnectorBodoCms;
 
@@ -44,13 +45,16 @@ public class OpenSourceConnectorOpenSourceConnectorBodoCmsAppBuilder : BaseAppBu
             return;
         }
 
-        //var section = root.GetSection("OpenSourceConnectorBodoCms");
+        var section = root.GetSection("OpenSourceConnectorBodoCms");
 
-        //if (AppGlobals is not IOpenSourceConnectorBodoCmsAppGlobals globals)
-        //{
-        //    throw new ArgumentException("AppGlobals is not IOpenSourceConnectorBodoCmsAppGlobals");
-        //}
+        if (AppGlobals is not IOpenSourceConnectorBodoCmsAppGlobals globals)
+        {
+            throw new ArgumentException("AppGlobals is not IBodoFileTransferAppGlobals");
+        }
 
-        //globals.UseSmtp = DefaultAppStartProvider.ReadBoolProperty(section, "UseSmtp", globals.UseSmtp);
+        globals.TargetPath = DefaultAppStartProvider.ReadStringProperty(section, "TargetPath", globals.TargetPath) ?? string.Empty;
+        globals.SourcePath = DefaultAppStartProvider.ReadStringProperty(section, "SourcePath", globals.SourcePath) ?? string.Empty;
+        globals.FolderFilter = DefaultAppStartProvider.ReadStringProperty(section, "FolderFilter", globals.FolderFilter) ?? string.Empty;
+        globals.FolderExcludeFilter = DefaultAppStartProvider.ReadStringProperty(section, "FolderExcludeFilter", globals.FolderExcludeFilter) ?? string.Empty;
     }
 }

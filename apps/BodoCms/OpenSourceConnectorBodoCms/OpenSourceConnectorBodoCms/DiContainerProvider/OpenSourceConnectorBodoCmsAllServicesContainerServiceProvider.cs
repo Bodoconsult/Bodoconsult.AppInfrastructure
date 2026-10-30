@@ -66,8 +66,8 @@ public class OpenSourceConnectorBodoCmsAllServicesContainerServiceProvider : IDi
 
         diContainer.AddSingletonInstance((IDatabaseService)db);
         diContainer.AddSingleton<IExportService, ExportService>();
-        //diContainer.AddSingleton<IWebsiteBuilder, WebsiteBuilder>();
-        //diContainer.AddSingleton<IOpenSourceConnectorBodoCmsHandler, OpenSourceConnectorBodoCmsHandler>();
+        diContainer.AddSingleton<IRegisterFolderService, RegisterFolderService>();
+        diContainer.AddSingleton<IOpenSourcePackagesHandler, OpenSourcePackagesHandler>();
 
         // Load all other services required for the app now
         diContainer.AddSingleton<IApplicationService, OpenSourceConnectorBodoCmsService>();

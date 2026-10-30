@@ -288,7 +288,7 @@ public class FakeRepository<T> : IRepository<T> where T : class, IEntityRequirem
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Error:Delete:" + ex.Message);
+            Debug.WriteLine($"Error:Delete:{ex.Message}");
             return false;
         }
     }
@@ -325,7 +325,7 @@ public class FakeRepository<T> : IRepository<T> where T : class, IEntityRequirem
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Error:Delete:" + ex.Message);
+            Debug.WriteLine($"Error:Delete:{ex.Message}");
             return false;
         }
 

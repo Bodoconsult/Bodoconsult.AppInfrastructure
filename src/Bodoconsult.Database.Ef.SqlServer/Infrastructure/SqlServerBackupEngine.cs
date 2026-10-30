@@ -32,7 +32,7 @@ public class SqlServerBackupEngine<TContext> : IBackupEngine where TContext : Db
 
 
     /// <summary>
-    /// Run a online backup from the database
+    /// Run an online backup from the database
     /// </summary>
     /// <param name="backupFileName">backup file name</param>
     public void RunBackup(string backupFileName)
@@ -178,7 +178,7 @@ public class SqlServerBackupEngine<TContext> : IBackupEngine where TContext : Db
 
         var j = connectionString.IndexOf(";", i, StringComparison.OrdinalIgnoreCase);
 
-        var result = connectionString[..(i + 16)] + "Master" + connectionString[j..];
+        var result = $"{connectionString[..(i + 16)]}Master{connectionString[j..]}";
 
         return result;
     }
