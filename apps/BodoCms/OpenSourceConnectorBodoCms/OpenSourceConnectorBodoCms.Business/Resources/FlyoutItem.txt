@@ -1,0 +1,15 @@
+﻿
+<div class="panel panel-default">
+	<div class="panel-heading"> 
+		<h3 class="panel-title">
+			<a class="black" data-toggle="collapse" data-parent="#accordion" href="#collapse{1}">
+				{2}
+			</a> 
+		</h3>
+	</div>
+	<div id="collapse{1}" class="panel-collapse in collapse" style="height: auto;"> 
+		<div class="panel-body"> 
+{0}
+		</div>
+	</div>
+</div>

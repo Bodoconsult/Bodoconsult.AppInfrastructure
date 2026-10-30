@@ -251,6 +251,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoCmsConsole.Business", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodoCmsConsole.Business.Test", "tests\BodoCmsConsole.Business.Test\BodoCmsConsole.Business.Test.csproj", "{4C415384-2768-FF10-17A2-0328169DDDB1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenSourceConnectorBodoCms", "OpenSourceConnectorBodoCms", "{31298F86-145C-4F56-AC45-3E985C732FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSourceConnectorBodoCms", "apps\BodoCms\OpenSourceConnectorBodoCms\OpenSourceConnectorBodoCms\OpenSourceConnectorBodoCms.csproj", "{6145D031-EF52-BC8C-AC16-F21C861DAFFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSourceConnectorBodoCms.Business", "apps\BodoCms\OpenSourceConnectorBodoCms\OpenSourceConnectorBodoCms.Business\OpenSourceConnectorBodoCms.Business.csproj", "{6A48AC1F-D746-8BC3-B4DC-5737E0D022BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSourceConnectorBodoCms.Test", "tests\OpenSourceConnectorBodoCms.Test\OpenSourceConnectorBodoCms.Test.csproj", "{F4B02B9B-CBB1-809E-DCD2-C400260019D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -673,6 +681,18 @@ Global
 		{4C415384-2768-FF10-17A2-0328169DDDB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C415384-2768-FF10-17A2-0328169DDDB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C415384-2768-FF10-17A2-0328169DDDB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6145D031-EF52-BC8C-AC16-F21C861DAFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6145D031-EF52-BC8C-AC16-F21C861DAFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6145D031-EF52-BC8C-AC16-F21C861DAFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6145D031-EF52-BC8C-AC16-F21C861DAFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A48AC1F-D746-8BC3-B4DC-5737E0D022BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A48AC1F-D746-8BC3-B4DC-5737E0D022BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A48AC1F-D746-8BC3-B4DC-5737E0D022BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A48AC1F-D746-8BC3-B4DC-5737E0D022BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4B02B9B-CBB1-809E-DCD2-C400260019D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B02B9B-CBB1-809E-DCD2-C400260019D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B02B9B-CBB1-809E-DCD2-C400260019D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B02B9B-CBB1-809E-DCD2-C400260019D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -793,6 +813,10 @@ Global
 		{9692B04F-B0A0-E448-78B9-D815C723F3FC} = {254CAB53-805F-4B80-9762-E03039114037}
 		{277286EC-996C-0D5D-3123-00942E34D26F} = {254CAB53-805F-4B80-9762-E03039114037}
 		{4C415384-2768-FF10-17A2-0328169DDDB1} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
+		{31298F86-145C-4F56-AC45-3E985C732FE0} = {9E0331F0-D517-487A-91F1-F92B594FA991}
+		{6145D031-EF52-BC8C-AC16-F21C861DAFFA} = {31298F86-145C-4F56-AC45-3E985C732FE0}
+		{6A48AC1F-D746-8BC3-B4DC-5737E0D022BD} = {31298F86-145C-4F56-AC45-3E985C732FE0}
+		{F4B02B9B-CBB1-809E-DCD2-C400260019D2} = {682A2D92-F409-43D5-9342-8DF5256F06CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEB92BC2-1DB4-4057-8D49-2E995AA1F80B}

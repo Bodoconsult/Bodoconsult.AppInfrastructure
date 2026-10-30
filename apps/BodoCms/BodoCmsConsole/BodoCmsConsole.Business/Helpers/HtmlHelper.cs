@@ -21,7 +21,7 @@ public static class HtmlHelper
     private static readonly Encoding DefaulEncoding = Encoding.GetEncoding("windows-1252");
 
 
-    public const string StartpageName = @"index.htm";
+    public const string StartpageName = "index.htm";
 
 
     /// <summary>
@@ -367,6 +367,13 @@ public static class HtmlHelper
 
         //  width=""75"" height=""75""
 
+        if (!f.Exists)
+        {
+            // ToDo: remove file in database
+            return string.Empty;
+        }
+
+
         var url =
             $@"<div class=""bildarchivlink""><a href=""{relativePath + f.Name.Replace(@"\", "/")}""><img src=""{ImageHelper.GenerateThumb(f, relativePath)}"" alt=""{f.Name.Replace(@"\", "/")}""></a></div>";
 
@@ -476,7 +483,7 @@ public static class HtmlHelper
 
         if (data.Count < 3)
         {
-            string link1 = "";
+            string link1 = string.Empty;
             foreach (var url in data)
             {
                 link1 += HtmlHelper.GetLinkBildarchiv(url.Url,
@@ -546,6 +553,12 @@ public static class HtmlHelper
 
     public static string HtmlImg(FileSystemInfo f, string relativePath)
     {
+        if (!f.Exists)
+        {
+            // ToDo: remove file in database
+            return string.Empty;
+        }
+
         try
         {
             var url =

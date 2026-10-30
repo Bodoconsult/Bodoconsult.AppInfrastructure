@@ -1,0 +1,49 @@
+﻿[
+{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.App/",
+	"Category": "General"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.App.Abstractions/",
+	"Category": "General"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.Charting.Base/",
+	"Category": "Graphics"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.Charting/",
+	"Category": "Graphics"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.Database/",
+	"Category": "Database"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.Database.SqlClient/",
+	"Category": "Database"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.Database.Postgres/",
+	"Category": "Database"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.Database.Sqlite/",
+	"Category": "Database"
+	},
+	{
+	"$type": "OpenSourceConnectorBodoCms.Business.Model.OpenSourceMetaData, OpenSourceConnectorBodoCms.Business",
+	"NugetPackage": "https://www.nuget.org/packages/Bodoconsult.Database/",
+	"Category": "Database"
+	},
+]
+
+

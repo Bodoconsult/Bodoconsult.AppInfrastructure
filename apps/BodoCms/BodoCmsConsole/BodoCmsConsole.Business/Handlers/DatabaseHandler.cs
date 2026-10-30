@@ -11,7 +11,7 @@ using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Drawing.Model;
 using Microsoft.Data.SqlClient;
 
-namespace BodoCmsConsole.Business.Handler;
+namespace BodoCmsConsole.Business.Handlers;
 
 /// <summary>
 /// Encapsulates database access
@@ -63,6 +63,8 @@ public class DatabaseHandler : IDatabaseHandler
 
         var sql = data[result];
 
+        _logger.LogError($"Error: SQL: {sql}");
+
         throw new Exception($"Error processing sql: {sql}");
     }
 
@@ -91,7 +93,7 @@ public class DatabaseHandler : IDatabaseHandler
 
             var i = new ImageData
             {
-                Path = s ?? string.Empty
+                Path = s
             };
 
             result.Add(i);
@@ -170,17 +172,17 @@ public class DatabaseHandler : IDatabaseHandler
         var cmd = new SqlCommand
         {
             CommandType = CommandType.StoredProcedure,
-            CommandText = "[dbo].[spFilesUpdate]" ?? string.Empty
+            CommandText = "[dbo].[spFilesUpdate]"
         };
 
         var p = cmd.Parameters.Add("@F", SqlDbType.VarChar);
-        p.Value = fri.FullName ?? string.Empty;
+        p.Value = fri.FullName;
 
         p = cmd.Parameters.Add("@D", SqlDbType.DateTime);
         p.Value = fri.LastWriteTime;
 
         p = cmd.Parameters.Add("@N", SqlDbType.VarChar);
-        p.Value = fri.Name.Replace(fri.Extension, "").Replace("_", " ") ?? string.Empty;
+        p.Value = fri.Name.Replace(fri.Extension, "").Replace("_", " ");
 
         //_db.Exec(cmd);
 
@@ -210,8 +212,7 @@ public class DatabaseHandler : IDatabaseHandler
     public void UpdateLastChanges(DateTime date)
     {
         var sql = $"update dbo.tLastChanges set o_date='{date:dd.MM.yyyy}' where o_date<'{date:dd.MM.yyyy}'";
-
-        _db.Exec(sql, false);
+        _db.Exec(sql);
     }
 
     /// <summary>
@@ -221,11 +222,11 @@ public class DatabaseHandler : IDatabaseHandler
     /// <param name="content">Content to place instead of the tag</param>
     public void PagesReplaceContentAll(string tag, string content)
     {
-        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spPagesReplaceContentAll" ?? string.Empty };
+        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spPagesReplaceContentAll" };
         cmd.Parameters.Add("@Was", SqlDbType.NVarChar);
-        cmd.Parameters[0].Value = tag ?? string.Empty;
+        cmd.Parameters[0].Value = tag;
         cmd.Parameters.Add("@Text", SqlDbType.NVarChar);
-        cmd.Parameters[1].Value = content ?? string.Empty;
+        cmd.Parameters[1].Value = content;
 
         if (_isCollecting)
         {
@@ -250,6 +251,7 @@ public class DatabaseHandler : IDatabaseHandler
         }
         catch
         {
+            _logger.LogError($"Error: Key: {key}");
             return string.Empty;
         }
     }
@@ -261,10 +263,10 @@ public class DatabaseHandler : IDatabaseHandler
     /// <returns>True if the image already exists else false</returns>
     public bool CheckImageExists(string fileName)
     {
-        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_Exists" ?? string.Empty };
+        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_Exists" };
 
         cmd.Parameters.Add("@TargetPath", SqlDbType.NVarChar);
-        cmd.Parameters[0].Value = fileName ?? string.Empty;
+        cmd.Parameters[0].Value = fileName;
 
         var erg = _db.ExecWithResult(cmd);
 
@@ -281,16 +283,16 @@ public class DatabaseHandler : IDatabaseHandler
     /// <param name="slideShow">Add the image to the slideshow?</param>
     public void CreateImage(FileSystemInfo f, string targetPath, ImageSize size, bool thumbnail, bool slideShow = true)
     {
-        var cmd1 = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_New" ?? string.Empty };
+        var cmd1 = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_New" };
 
         cmd1.Parameters.Add("@I_GUID", SqlDbType.UniqueIdentifier);
         cmd1.Parameters[0].Value = Guid.NewGuid();
 
         cmd1.Parameters.Add("@I_Name", SqlDbType.NVarChar);
-        cmd1.Parameters[1].Value = f.Name.Replace(f.Extension, "").Replace("_", " ") ?? string.Empty;
+        cmd1.Parameters[1].Value = f.Name.Replace(f.Extension, "").Replace("_", " ");
 
         cmd1.Parameters.Add("@I_Path", SqlDbType.NVarChar);
-        cmd1.Parameters[2].Value = f.FullName ?? string.Empty;
+        cmd1.Parameters[2].Value = f.FullName;
 
         cmd1.Parameters.Add("@I_Width", SqlDbType.Int);
         cmd1.Parameters[3].Value = size.Width;
@@ -299,7 +301,7 @@ public class DatabaseHandler : IDatabaseHandler
         cmd1.Parameters[4].Value = size.Height;
 
         cmd1.Parameters.Add("@I_TargetPath", SqlDbType.NVarChar);
-        cmd1.Parameters[5].Value = targetPath ?? string.Empty;
+        cmd1.Parameters[5].Value = targetPath;
 
 
         cmd1.Parameters.Add("@I_SlideShow", SqlDbType.Bit);
@@ -310,7 +312,7 @@ public class DatabaseHandler : IDatabaseHandler
         cmd1.Parameters[7].Value = thumbnail ? 1 : 0;
 
         cmd1.Parameters.Add("@I_SubTitle", SqlDbType.NVarChar);
-        cmd1.Parameters[8].Value = f.Name.Replace("_", "").Replace(".png", "").Replace(".jpg", "").Replace(".gif", "") ?? string.Empty;
+        cmd1.Parameters[8].Value = f.Name.Replace("_", "").Replace(".png", "").Replace(".jpg", "").Replace(".gif", "");
 
         _db.Exec(cmd1);
     }
@@ -339,7 +341,7 @@ public class DatabaseHandler : IDatabaseHandler
     /// </summary>
     public void PrepareImages()
     {
-        _db.Exec("EXEC dbo.spImages_Prepare", false);
+        _db.Exec("EXEC dbo.spImages_Prepare");
     }
 
     /// <summary>
@@ -373,7 +375,7 @@ public class DatabaseHandler : IDatabaseHandler
         var cmd = new SqlCommand
         {
             CommandType = CommandType.StoredProcedure,
-            CommandText = "dbo.spImages_NoThumbs" ?? string.Empty,
+            CommandText = "dbo.spImages_NoThumbs",
         };
 
         var dt = _db.GetDataTable(cmd);
@@ -386,7 +388,7 @@ public class DatabaseHandler : IDatabaseHandler
                 continue;
             }
 
-            var i = new ImageData { Path = s ?? string.Empty };
+            var i = new ImageData { Path = s };
             result.Add(i);
         }
 
@@ -412,7 +414,7 @@ public class DatabaseHandler : IDatabaseHandler
     /// <returns>Image data or null</returns>
     public ImageData? GetImageData(string targetPath)
     {
-        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_GetData" ?? string.Empty };
+        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_GetData" };
 
         cmd.Parameters.Add("@TargetPath", SqlDbType.NVarChar);
         cmd.Parameters[0].Value = targetPath;
@@ -430,7 +432,7 @@ public class DatabaseHandler : IDatabaseHandler
         var i = new ImageData
         {
             Name = row["I_name"].ToString() ?? string.Empty,
-            TargetPath = targetPath ?? string.Empty
+            TargetPath = targetPath
         };
 
         dt.Dispose();
@@ -443,12 +445,8 @@ public class DatabaseHandler : IDatabaseHandler
     /// <param name="homePath">Local homepage path</param>
     public void UpdateRootFolderNames(string homePath)
     {
-
-        var sql =
-            $"UPDATE tFolder SET FO_Name1 = d.D_NameHeader, FO_MainLinkName=d.D_Name FROM tFolder f INNER JOIN tDirectories d  ON f.FO_Name = '{homePath}'+d.D_Name WHERE isnull(d.D_NameHeader,'')<> '' AND FO_Name1 = d.D_Name;";
-
-        _db.Exec(sql, false);
-
+        var sql = $"UPDATE tFolder SET FO_Name1 = d.D_NameHeader, FO_MainLinkName=d.D_Name FROM tFolder f INNER JOIN tDirectories d  ON f.FO_Name = '{homePath}'+d.D_Name WHERE isnull(d.D_NameHeader,'')<> '' AND FO_Name1 = d.D_Name;";
+        _db.Exec(sql);
     }
 
     /// <summary>
@@ -458,10 +456,10 @@ public class DatabaseHandler : IDatabaseHandler
     /// <returns>Image data</returns>
     public ImageData? GetImageDataBySourcePath(string sourcePath)
     {
-        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_GetDataBySourcePath" ?? string.Empty };
+        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_GetDataBySourcePath" };
 
         cmd.Parameters.Add("@SourcePath", SqlDbType.NVarChar);
-        cmd.Parameters[0].Value = sourcePath ?? string.Empty;
+        cmd.Parameters[0].Value = sourcePath;
 
         var dt = _db.GetDataTable(cmd);
 
@@ -492,10 +490,9 @@ public class DatabaseHandler : IDatabaseHandler
     {
         var result = new List<ImageData>();
 
-
-        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_GetDataByFolder" ?? string.Empty };
+        var cmd = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.spImages_GetDataByFolder" };
         var p = cmd.Parameters.Add("@Path", SqlDbType.NVarChar);
-        p.Value = dirPath ?? string.Empty;
+        p.Value = dirPath;
 
         var dt = _db.GetDataTable(cmd);
 
@@ -512,7 +509,7 @@ public class DatabaseHandler : IDatabaseHandler
             {
                 Width = Convert.ToInt32(row["I_Width"].ToString()),
                 Height = Convert.ToInt32(row["I_Height"].ToString()),
-                TargetPath = s ?? string.Empty,
+                TargetPath = s,
                 Thumbnail = Convert.ToBoolean(row["I_Thumbnail"].ToString()),
                 SlideShow = Convert.ToBoolean(row["I_SlideShow"].ToString())
             };
@@ -566,6 +563,10 @@ public class DatabaseHandler : IDatabaseHandler
         return adSets;
     }
 
+    /// <summary>
+    /// Get all approved folders
+    /// </summary>
+    /// <returns>List with all approved folder paths</returns>
     public IList<string> GetFoldersWithApproval()
     {
         var result = new List<string>();
@@ -609,7 +610,7 @@ public class DatabaseHandler : IDatabaseHandler
             var imagefile = new ImageData
             {
                 Id = Convert.ToInt32(r["I_ID"].ToString()),
-                Path = s ?? string.Empty
+                Path = s
             };
 
             result.Add(imagefile);
@@ -620,6 +621,10 @@ public class DatabaseHandler : IDatabaseHandler
         return result;
     }
 
+    /// <summary>
+    /// Get data of all pages to be built
+    /// </summary>
+    /// <returns></returns>
     public IList<PageData> GetPagesToBuild()
     {
         var result = new List<PageData>();
@@ -649,6 +654,10 @@ public class DatabaseHandler : IDatabaseHandler
         return result;
     }
 
+    /// <summary>
+    /// Get the main links for all webpages
+    /// </summary>
+    /// <returns></returns>
     public IList<PageData> GetMainLinksForPage()
     {
 
@@ -676,12 +685,13 @@ public class DatabaseHandler : IDatabaseHandler
         dt.Dispose();
 
         return result;
-
-
-
     }
 
-    public IList<PageData> GetDownLinksForPages()
+    /// <summary>
+    /// Get all links at the bottom of a page
+    /// </summary>
+    /// <returns></returns>
+    public IList<PageData> GetBottomLinksForPages()
     {
         var result = new List<PageData>();
 
@@ -720,7 +730,6 @@ public class DatabaseHandler : IDatabaseHandler
         var dt = GetDataTable(query);
         foreach (DataRow r in dt.Rows)
         {
-
             var p = new PageData
             {
                 Id = Convert.ToInt32(r["P_Id"].ToString()),
@@ -753,11 +762,11 @@ public class DatabaseHandler : IDatabaseHandler
             var s = new SiteMapElement
             {
                 Id = (int)r["P_ID"],
-                Name = r["P_Name"].ToString()?.Trim() ?? string.Empty,
-                TitleUrl = r["P_TitleUrl"].ToString() ?? string.Empty,
-                Url = r["P_Url"].ToString()?.Trim() ?? string.Empty,
+                Name = r["P_Name"].ToString()?.Trim(),
+                TitleUrl = r["P_TitleUrl"].ToString(),
+                Url = r["P_Url"].ToString()?.Trim(),
                 Prio = (double)r["P_Sitemap_PRIO"],
-                Freq = r["P_Sitemap_FREQ"].ToString() ?? string.Empty
+                Freq = r["P_Sitemap_FREQ"].ToString()
             };
             sitemapItems.Add(s);
         }
@@ -765,6 +774,10 @@ public class DatabaseHandler : IDatabaseHandler
         dt.Dispose();
     }
 
+    /// <summary>
+    /// Get other directories
+    /// </summary>
+    /// <returns>List with data of other directories</returns>
     public IList<FolderData> GetOtherDirectories()
     {
 
@@ -791,7 +804,7 @@ public class DatabaseHandler : IDatabaseHandler
     /// <summary>
     /// Get all adsets
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with adsets</returns>
     public IList<AdSetData> GetAdsets()
     {
 
@@ -805,11 +818,11 @@ public class DatabaseHandler : IDatabaseHandler
             {
                 Id = Convert.ToInt32(r["AS_ID"].ToString()),
 
-                W1Url = r["AS_W1_Url"].ToString() ?? string.Empty,
-                W1Image = r["AS_W1_Image"].ToString() ?? string.Empty,
+                W1Url = r["AS_W1_Url"].ToString(),
+                W1Image = r["AS_W1_Image"].ToString(),
 
-                W2Url = r["AS_W2_Url"].ToString() ?? string.Empty,
-                W2Image = r["AS_W2_Image"].ToString() ?? string.Empty,
+                W2Url = r["AS_W2_Url"].ToString(),
+                W2Image = r["AS_W2_Image"].ToString(),
             };
 
             result.Add(ads);
@@ -819,7 +832,10 @@ public class DatabaseHandler : IDatabaseHandler
         return result;
     }
 
-
+    /// <summary>
+    /// Get a list of pages
+    /// </summary>
+    /// <returns>List with page data</returns>
     public IList<PageData> GetPagesList()
     {
 
@@ -846,7 +862,7 @@ public class DatabaseHandler : IDatabaseHandler
     }
 
     /// <summary>
-    /// 
+    /// Do an init
     /// </summary>
     public void DoInit()
     {
@@ -860,11 +876,10 @@ public class DatabaseHandler : IDatabaseHandler
         Exec(query3 + query2 + query4);
     }
 
-
     /// <summary>
     /// Get all images to check its existence
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with image data</returns>
     public IList<ImageData> GetImagesToCheck()
     {
         var result = new List<ImageData>();
@@ -902,14 +917,14 @@ public class DatabaseHandler : IDatabaseHandler
         var cmd = new SqlCommand
         {
             CommandType = CommandType.StoredProcedure,
-            CommandText = "[dbo].[spFolder_New]" ?? string.Empty
+            CommandText = "[dbo].[spFolder_New]"
         };
 
         var p = cmd.Parameters.Add("@F", SqlDbType.VarChar);
-        p.Value = dir.FullName ?? string.Empty;
+        p.Value = dir.FullName;
 
         p = cmd.Parameters.Add("@N", SqlDbType.VarChar);
-        p.Value = dir.Name ?? string.Empty;
+        p.Value = dir.Name;
 
         if (_isCollecting)
         {
@@ -927,7 +942,6 @@ public class DatabaseHandler : IDatabaseHandler
         //}
     }
 
-
     /// <summary>
     /// Get folder data
     /// </summary>
@@ -936,7 +950,10 @@ public class DatabaseHandler : IDatabaseHandler
     public FolderData? GetFolder(string path)
     {
         using var dt = _db.GetDataTable($"EXEC dbo.spFolder_Fetch '{path}'");
-        if (dt.Rows.Count == 0) return null;
+        if (dt.Rows.Count == 0)
+        {
+            return null;
+        }
 
         var r = dt.Rows[0];
         var fo = new FolderData
@@ -947,13 +964,19 @@ public class DatabaseHandler : IDatabaseHandler
             Keywords = r["FO_Keywords"].ToString() ?? string.Empty,
             Description = r["FO_Description"].ToString() ?? string.Empty,
             HeaderImage = r["HeaderImage"].ToString() ?? string.Empty,
-            Path = path ?? string.Empty,
+            Path = path,
         };
 
 
-        if (string.IsNullOrEmpty(fo.DisplayName)) fo.DisplayName = fo.Name ?? string.Empty;
+        if (string.IsNullOrEmpty(fo.DisplayName))
+        {
+            fo.DisplayName = fo.Name;
+        }
 
-        if (!string.IsNullOrEmpty(r["FO_AdSetId"].ToString())) fo.AdSetId = Convert.ToInt32(r["FO_AdSetId"].ToString());
+        if (!string.IsNullOrEmpty(r["FO_AdSetId"].ToString()))
+        {
+            fo.AdSetId = Convert.ToInt32(r["FO_AdSetId"].ToString());
+        }
 
         return fo;
     }
@@ -968,12 +991,21 @@ public class DatabaseHandler : IDatabaseHandler
         return _db.ExecWithResult($"EXEC dbo.spFiles_GetName1 '{path}'");
     }
 
-
+    /// <summary>
+    /// Check if a directory is not required anymore
+    /// </summary>
+    /// <param name="path">Directory path</param>
+    /// <returns>True if the directory is not required anymore</returns>
     public bool IsCheckDirectoryNotRequired(string path)
     {
         return ExecWithResult($"exec dbo.spDirectories_CheckDirectories '{path}'") == "1";
     }
 
+    /// <summary>
+    /// Check if an image is not required anymore
+    /// </summary>
+    /// <param name="path">Image path</param>
+    /// <returns>True if the image is not required anymore</returns>
     public bool IsImageCheckNotRequired(string path)
     {
         return ExecWithResult($"exec dbo.spImages_CheckNeeded '{path}'") == "1";
@@ -982,7 +1014,7 @@ public class DatabaseHandler : IDatabaseHandler
     /// <summary>
     /// Get the maximum page ID
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Maximum page ID</returns>
     public int GetPagesMaxId()
     {
         return Convert.ToInt32(ExecWithResult("dbo.spPages_MaxID"));
@@ -1018,9 +1050,12 @@ public class DatabaseHandler : IDatabaseHandler
         return _db.ExecWithResult($"EXEC dbo.spFolder_GetName2 '{path}'");
     }
 
+    /// <summary>
+    /// Update all change images in the database
+    /// </summary>
+    /// <param name="images">List with images to update</param>
     public void UpdateChangedImages(IEnumerable<ImageData> images)
     {
-
         var data = images.Where(x => x.IsChanged).ToList();
 
         if (!data.Any()) return;
@@ -1033,9 +1068,7 @@ public class DatabaseHandler : IDatabaseHandler
         }
 
         Exec(sql.ToString());
-
     }
-
 
     /// <summary>
     /// Send an error mail to the admin

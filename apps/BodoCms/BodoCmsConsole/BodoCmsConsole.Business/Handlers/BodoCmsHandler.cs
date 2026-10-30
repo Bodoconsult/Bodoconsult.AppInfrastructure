@@ -4,7 +4,7 @@ using System.Runtime.Versioning;
 using BodoCmsConsole.Business.Interfaces;
 using Bodoconsult.App.Abstractions.Interfaces;
 
-namespace BodoCmsConsole.Business;
+namespace BodoCmsConsole.Business.Handlers;
 
 /// <summary>
 /// Current implementaton of <see cref="IBodoCmsHandler"/> as top level business logic class

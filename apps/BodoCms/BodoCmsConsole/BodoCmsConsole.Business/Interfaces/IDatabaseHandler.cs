@@ -155,6 +155,10 @@ public interface IDatabaseHandler
     /// <returns></returns>
     IList<int> GetAdsetIds();
 
+    /// <summary>
+    /// Get all approved folders
+    /// </summary>
+    /// <returns>List with all approved folder paths</returns>
     IList<string> GetFoldersWithApproval();
 
     /// <summary>
@@ -163,9 +167,23 @@ public interface IDatabaseHandler
     /// <returns></returns>
     IList<ImageData> GetImagesToCopy();
 
+    /// <summary>
+    /// Get data of all pages to be built
+    /// </summary>
+    /// <returns></returns>
     IList<PageData> GetPagesToBuild();
+
+    /// <summary>
+    /// Get the main links for all webpages
+    /// </summary>
+    /// <returns></returns>
     IList<PageData> GetMainLinksForPage();
-    IList<PageData> GetDownLinksForPages();
+
+    /// <summary>
+    /// Get all links at the bottom of a page
+    /// </summary>
+    /// <returns></returns>
+    IList<PageData> GetBottomLinksForPages();
 
     /// <summary>
     /// Get page individual links
@@ -180,25 +198,33 @@ public interface IDatabaseHandler
     /// <param name="sitemapItems">List to fill with all sitemap items</param>
     void GetSitemapPages(List<SiteMapElement> sitemapItems);
 
+    /// <summary>
+    /// Get other directories
+    /// </summary>
+    /// <returns>List with data of other directories</returns>
     IList<FolderData> GetOtherDirectories();
 
     /// <summary>
     /// Get all adsets
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with adsets</returns>
     IList<AdSetData> GetAdsets();
 
+    /// <summary>
+    /// Get a list of pages
+    /// </summary>
+    /// <returns>List with page data</returns>
     IList<PageData> GetPagesList();
 
     /// <summary>
-    /// 
+    /// Do an init
     /// </summary>
     void DoInit();
 
     /// <summary>
     /// Get all images to check its existence
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List with image data</returns>
     IList<ImageData> GetImagesToCheck();
 
     /// <summary>

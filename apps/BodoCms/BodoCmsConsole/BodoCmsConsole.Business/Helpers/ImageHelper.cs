@@ -7,21 +7,44 @@ using Bodoconsult.Drawing.Model;
 
 namespace BodoCmsConsole.Business.Helpers;
 
+/// <summary>
+/// Helepr class for image related tasks
+/// </summary>
 public static class ImageHelper
 {
-
-    public const int MaxImageSize = 3000000;
-    public const int SmallPicWidth = 110;
-    public const int SmallPicHeight = 110;
-
-    public const int NormalPicWidth = 1200;
-    public const int NormalPicHeight = 1200;
-
-
     private static readonly IAppLoggerProxy? Logger = Globals.Instance.Logger;
 
+    /// <summary>
+    /// Maximum image size allowed in bytes
+    /// </summary>
+    public const int MaxImageSize = 3000000;
 
-    internal static ImageSize GenerateWebImage(FileInfo fi)
+    /// <summary>
+    /// Small picture width in pixels
+    /// </summary>
+    public const int SmallPicWidth = 110;
+
+    /// <summary>
+    /// Small picture height in pixels
+    /// </summary>
+    public const int SmallPicHeight = 110;
+
+    /// <summary>
+    /// Normal maximum picture width in pixels
+    /// </summary>
+    public const int NormalPicWidth = 1200;
+
+    /// <summary>
+    /// Normal maximum picture height in pixels
+    /// </summary>
+    public const int NormalPicHeight = 1200;
+
+    /// <summary>
+    /// Generate an image for a website from an existing image
+    /// </summary>
+    /// <param name="fi">Image file</param>
+    /// <returns>New image size</returns>
+    public static ImageSize GenerateWebImage(FileInfo fi)
     {
         try
         {
@@ -34,7 +57,12 @@ public static class ImageHelper
         }
     }
 
-    internal static ImageSize GetImageSize(string path)
+    /// <summary>
+    /// Get the image size of an image file
+    /// </summary>
+    /// <param name="path">Full path to the image file</param>
+    /// <returns>Image size</returns>
+    public static ImageSize GetImageSize(string path)
     {
         return ImageTools.GetImageSize(path);
     }

@@ -1,0 +1,1 @@
+﻿			<p class="Files"><a href="{1}/index.htm" style="text-decoration:none" onmouseover="window.status='{0}';return true" onmouseout="window.status='';return true" title="{0}"><img src="/images/ordner_zu.gif" class="icon">{0}</a></p>

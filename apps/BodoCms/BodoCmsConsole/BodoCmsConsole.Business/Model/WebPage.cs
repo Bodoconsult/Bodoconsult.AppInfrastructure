@@ -11,17 +11,11 @@ namespace BodoCmsConsole.Business.Model;
 /// </summary>
 public class WebPage
 {
-    //private readonly WebBasis _basis;
-
     private readonly PageData _page;
-
     private string _printerName = string.Empty;
-
     private readonly string _pageAuthor;
-
     private readonly WebPageSettings _webPageSettings;
-    private string _fileName =   string.Empty;
-
+    private string _fileName = string.Empty;
     private readonly IAppGlobals _appGlobals;
 
     /// <summary>
@@ -29,6 +23,12 @@ public class WebPage
     /// </summary>
     public List<ImageData> Images { get; set; } = new();
 
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="webPageSettings">Current webpage settings</param>
+    /// <param name="page">Current page data</param>
+    /// <param name="appGlobals">Current app globals</param>
     public WebPage(WebPageSettings webPageSettings, PageData page, IAppGlobals appGlobals)
     {
         _page = page;
@@ -37,7 +37,9 @@ public class WebPage
         _appGlobals = appGlobals;
     }
 
-
+    /// <summary>
+    /// Page filename
+    /// </summary>
     public string FileName
     {
         get => _fileName;
@@ -48,14 +50,53 @@ public class WebPage
         }
     }
 
-
+    /// <summary>
+    /// Header file link
+    /// </summary>
     public string HeaderFileLink { get; set; } = string.Empty;
 
-
+    /// <summary>
+    /// Links for the subnavigation bar
+    /// </summary>
     public string LinksSubNavi { get; set; } = string.Empty;
 
-
+    /// <summary>
+    /// Export the page as HTML
+    /// </summary>
     public void Export()
+    {
+        // Get the page content
+        var content =
+            HtmlHelper.CheckIncludeImages(HtmlHelper.CheckIncludes(_webPageSettings.PathHomepage, _page.Content),
+                $"{_webPageSettings.PathHomepage}images", Images);
+
+        // Create normal webpage
+        CreateNormalVersion(content);
+
+        // Print version required?
+        if (!_webPageSettings.IsPrintVersionRequired)
+        {
+            return;
+        }
+
+        // Create the print version
+        CreatePrintVersion(content);
+
+        // Summary required?
+        if (!_webPageSettings.IsSummaryRequired || _page.Id != 1)
+        {
+            return;
+        }
+
+        // Create summary
+        CreateSummary(content);
+    }
+
+    /// <summary>
+    /// Create the normal version of the webpage
+    /// </summary>
+    /// <param name="content">Site content</param>
+    private void CreateNormalVersion(string content)
     {
         var p = new HtmlPage(_appGlobals)
         {
@@ -68,10 +109,6 @@ public class WebPage
         var description = $"{_page.Description},{_webPageSettings.DefaultDescription}";
 
         var openGraphImageLink = FileName.Replace(".htm", "_og.png");
-
-        var content =
-            HtmlHelper.CheckIncludeImages(HtmlHelper.CheckIncludes(_webPageSettings.PathHomepage, _page.Content),
-                $"{_webPageSettings.PathHomepage}images", Images);
 
         //var content = _page.Content;
 
@@ -121,9 +158,15 @@ public class WebPage
         // Open Grapg Image erzeugen für diese Seite
         OpenGraphHelper.Save(_page.Title, $"{_page.Description},{_webPageSettings.DefaultDescription}",
             Path.Combine(_webPageSettings.PathHomepage, openGraphImageLink));
+    }
 
-        if (!_webPageSettings.IsPrintVersionRequired) return;
-
+    /// <summary>
+    /// Create the print version of the webpage
+    /// </summary>
+    /// <param name="content">Site content</param>
+    private void CreatePrintVersion(string content)
+    {
+        // Create print version now
         var pdf = new HtmlPagePrint(_webPageSettings.HtmlPdf)
         {
             Company = _webPageSettings.Company,
@@ -137,13 +180,11 @@ public class WebPage
         pdf.Add("<h1>??PageTitle??</h1>\r\n<p class=\"smallBlack marginbottom\" > Autor: ??Company??, ??Author??</p>");
         pdf.Add(content);
         pdf.Save();
+    }
 
-        if (!_webPageSettings.IsSummaryRequired || _page.Id != 1)
-        {
-            return;
-        }
-
-        pdf = new HtmlPagePrint(_webPageSettings.HtmlPdf)
+    private void CreateSummary(string content)
+    {
+        var pdf = new HtmlPagePrint(_webPageSettings.HtmlPdf)
         {
             Company = _webPageSettings.Company,
             CompanyShort = _webPageSettings.CompanyShort,
@@ -163,5 +204,4 @@ public class WebPage
 
         pdf.Save();
     }
-
 }

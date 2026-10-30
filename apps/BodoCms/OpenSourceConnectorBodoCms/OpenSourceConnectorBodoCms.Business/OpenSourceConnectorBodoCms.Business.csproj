@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.17763</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\FileUrl.txt" />
+    <None Remove="Resources\FlyoutGroup.txt" />
+    <None Remove="Resources\FlyoutItem.txt" />
+    <None Remove="Resources\Startpage.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\FlyoutGroup.txt" />
+    <EmbeddedResource Include="Resources\FlyoutItem.txt" />
+    <EmbeddedResource Include="Resources\FileUrl.txt" />
+    <EmbeddedResource Include="Resources\Startpage.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.37.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Bodoconsult.App.Windows\Bodoconsult.App.Windows.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Bodoconsult.App\Bodoconsult.App.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Bodoconsult.Database.SqlClient\Bodoconsult.Database.SqlClient.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Bodoconsult.Database\Bodoconsult.Database.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Bodoconsult.Web.Html\Bodoconsult.Web.Html.csproj" />
+  </ItemGroup>
+
+</Project>

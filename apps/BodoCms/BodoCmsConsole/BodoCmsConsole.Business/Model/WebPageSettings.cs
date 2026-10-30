@@ -46,12 +46,12 @@ public class WebPageSettings
             SitemapGz = $"{_pathMaster}sitemap.gz";
             SitemapGzElement = $"{_pathMaster}sitemap_element.gz";
 
-            HtmlMaster = HtmlHelper.ReadFile($@"{_pathMaster}basis.htm");
-            HtmlMasterH = HtmlHelper.ReadFile($@"{_pathMaster}basish.htm");
+            HtmlMaster = HtmlHelper.ReadFile($"{_pathMaster}basis.htm");
+            HtmlMasterH = HtmlHelper.ReadFile($"{_pathMaster}basish.htm");
 
-            if (File.Exists($@"{_pathMaster}pdf.htm"))
+            if (File.Exists($"{_pathMaster}pdf.htm"))
             {
-                HtmlPdf = HtmlHelper.ReadFile($@"{_pathMaster}pdf.htm");
+                HtmlPdf = HtmlHelper.ReadFile($"{_pathMaster}pdf.htm");
             }
 
             IsPrintVersionRequired = !string.IsNullOrEmpty(HtmlPdf);

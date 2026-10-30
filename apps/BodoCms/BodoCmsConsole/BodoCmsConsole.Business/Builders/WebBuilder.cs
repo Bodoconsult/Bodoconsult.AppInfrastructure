@@ -43,19 +43,6 @@ public class WebsiteBuilder : IWebsiteBuilder
         _appGlobals = appGlobals;
         _errorMailReceiver = appGlobals.AppStartParameter.ErrorMailAddress;
         DatabaseHandler = databaseHandler;
-
-        //try
-        //{
-        //    // ReSharper disable AssignNullToNotNullAttribute
-        //    //FileLog.CreateInstance(Path.Combine(new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName, "BodoCMS.log"), false);
-        //    // ReSharper restore AssignNullToNotNullAttribute
-        //    //Logger.InfoActive = false;
-        //}
-        //catch (Exception ex)
-        //{
-        //    Logger.LogError("Ctor", ex);
-
-        //}
     }
 
     /// <summary>
@@ -289,7 +276,7 @@ public class WebsiteBuilder : IWebsiteBuilder
         SetMessage($"{dir.FullName}: {files.Count}");
 
         //SetMessage(files.Count().ToString(CultureInfo.InvariantCulture));
-        if (files.Any())
+        if (files.Count != 0)
         {
             foreach (var f in files.AsParallel())
             {
@@ -348,21 +335,24 @@ public class WebsiteBuilder : IWebsiteBuilder
 
             if (f.Exists)
             {
-
-                if (f.Name.Contains("_og.png")) return;
+                if (f.Name.Contains("_og.png"))
+                {
+                    return;
+                }
 
                 //SetMessage("Bilder-Links einsetzen " + f.Name);
 
                 var text = !image.Thumbnail
                     ? $"<img src=\"images/pic{image.Id}{f.Extension}\" width={image.Width} height={image.Height} alt=\"{image.Name}\"/>"
-                    : HtmlHelper.HtmlImg(new FileInfo($@"{WebPageSettings.PathHomepage}images\pic{image.Id}{f.Extension}"), @"??rel??images/").Replace("'", "''");
+                    : HtmlHelper.HtmlImg(new FileInfo($@"{WebPageSettings.PathHomepage}images\pic{image.Id}{f.Extension}"), "??rel??images/").Replace("'", "''");
 
                 DatabaseHandler.PagesReplaceContentAll($"??PIC{image.Id}??", text);
             }
             else
             {
                 DatabaseHandler.DeleteImage(image.Id);
-                if (File.Exists(image.TargetPath)) File.Delete(image.TargetPath);
+                //if (File.Exists(image.TargetPath)) File.Delete(image.TargetPath);
+                FileSystemHelper.DeleteFile(image.TargetPath);
             }
         });
 
@@ -375,7 +365,6 @@ public class WebsiteBuilder : IWebsiteBuilder
     public void PrepareImages()
     {
         DatabaseHandler.PrepareImages();
-
     }
 
     /// <summary>
@@ -383,7 +372,6 @@ public class WebsiteBuilder : IWebsiteBuilder
     /// </summary>
     public void CopyImages()
     {
-
         //try
         //{
         SetMessage("Copy images...");
@@ -483,7 +471,7 @@ public class WebsiteBuilder : IWebsiteBuilder
         {
             return string.Empty;
         }
-        var i = $@"{WebPageSettings.PathHomepage}".Length;
+        var i = $"{WebPageSettings.PathHomepage}".Length;
         var path = relative + imgData.Path[i..].Replace("\\", "/");
 
         var headerFile = $@"<img src=""{path}"" alt=""{imgData.Name}"" >";
@@ -572,7 +560,7 @@ public class WebsiteBuilder : IWebsiteBuilder
 
             link.AppendLine("<li>Erstellt: ??LastChanged??</li>");
 
-            var pages = DatabaseHandler.GetDownLinksForPages();
+            var pages = DatabaseHandler.GetBottomLinksForPages();
 
             foreach (var page in pages)
             {
@@ -628,7 +616,6 @@ public class WebsiteBuilder : IWebsiteBuilder
             }
 
             menuUrls.Add(menuUrl);
-
         }
 
         var link = HtmlHelper.FormatLinks(menuUrls, WebPageSettings);
@@ -911,7 +898,7 @@ public class WebsiteBuilder : IWebsiteBuilder
             DatabaseHandler.RunCommandsFromCollection();
 
             result += CreateWebPageFolder(dir, folder.Subdomain ? WebPageSettings.HttpUrl : $"/{WebPageSettings.UrlRelZusatz}",
-                folder.HeaderRemoveNumbers, folder.Sitemap, WebPageSettings.HttpUrl, 0);
+                folder.HeaderRemoveNumbers, folder.Sitemap, 0);
         }
 
         CreateSummaries();
@@ -929,7 +916,6 @@ public class WebsiteBuilder : IWebsiteBuilder
 
     private void CheckSubFolders(DirectoryInfo dir)
     {
-
         var newDir = FileHelper.CheckDirName(ref dir);
 
         if (newDir == null)
@@ -982,12 +968,12 @@ public class WebsiteBuilder : IWebsiteBuilder
             {
                 var sub = detail.Path[len..].Replace(@"\", "/");
 
-                if (!sub.EndsWith("/"))
+                if (!sub.EndsWith('/'))
                 {
                     sub += "/";
                 }
 
-                if (sub.StartsWith("/"))
+                if (sub.StartsWith('/'))
                 {
                     sub = sub[1..];
                 }
@@ -1001,7 +987,7 @@ public class WebsiteBuilder : IWebsiteBuilder
     }
 
 
-    private int CreateWebPageFolder(DirectoryInfo dir, string relative, bool removeNumbers, bool sitemapVisible, string fullUrl, int level)
+    private int CreateWebPageFolder(DirectoryInfo dir, string relative, bool removeNumbers, bool sitemapVisible, int level)
     {
 
         //    try
@@ -1052,14 +1038,11 @@ public class WebsiteBuilder : IWebsiteBuilder
             {
                 continue;
             }
-            result += CreateWebPageFolder(new DirectoryInfo(folder.FullName), relative, removeNumbers, sitemapVisible,
-                $"{fullUrl}{dir.Name}/", level);
+            result += CreateWebPageFolder(new DirectoryInfo(folder.FullName), relative, removeNumbers, sitemapVisible, level);
         }
 
         x.AddDirToSitemap(sitemapVisible);
-
         x.Export(sitemapVisible);
-
 
         DatabaseHandler.UpdateChangedImages(x.Images);
 
@@ -1219,7 +1202,7 @@ public class WebsiteBuilder : IWebsiteBuilder
             }
 
             var fi = new FileInfo(file);
-            var target = Path.Combine($@"{WebPageSettings.PathHomepage}images", fi.Name);
+            var target = Path.Combine($"{WebPageSettings.PathHomepage}images", fi.Name);
 
             if (!File.Exists(target))
             {
@@ -1290,7 +1273,7 @@ public class WebsiteBuilder : IWebsiteBuilder
         var home = dir.Directory.FullName[WebPageSettings.PathHomepage.Length..];
         if (home.Substring(home.Length - 1, 1) == "\\")
         {
-            home = home[0..^1];
+            home = home[..^1];
             //home = home.Substring(0, home.Length - 1);
         }
 

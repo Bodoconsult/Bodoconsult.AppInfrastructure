@@ -1,0 +1,11 @@
+﻿<p>Unten finden Sie unsere Open Source Projekte, die wir auf <a href="https://github.com" title="GitHub">GitHub</a> und <a href="https://www.nuget.org" title ="Nuget">Nuget</a> veröffentlicht haben.</p>
+
+<h2>By category</h2>
+
+<div class="FilesArea">
+
+{0}
+
+</div>
+
+<h2>By alphabet</h2>
