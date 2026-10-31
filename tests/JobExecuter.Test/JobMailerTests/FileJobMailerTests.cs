@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.IO;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Text.Model;
 using JobExecuter.Dal.JobMailer;
+using JobExecuter.Test.App;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
@@ -13,18 +15,15 @@ namespace JobExecuter.Test.JobMailerTests;
 public class FileJobMailerTests
 {
     [Test]       
-    public void TestFileMailer_Basic()
+    public void SendMail_ValidSetup_LogFileWritten()
     {
         var logFile = Path.Combine(TestDataHelper.LocalPath, "logfile.log");
-        if (File.Exists(logFile))
-        {
-            File.Delete(logFile);
-        }
+        FileSystemHelper.DeleteFile(logFile);
 
         var sr = new StructuredText();
         sr.AddHeader1("Eine Testmail an mich!");
 
-        var s = new FileJobMailer
+        var s = new FileJobMailer(Globals.Instance)
         {
             LogFileName = logFile
         };

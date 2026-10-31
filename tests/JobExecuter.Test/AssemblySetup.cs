@@ -1,6 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using JobExecuter.Test.App;
 using NUnit.Framework;
+using System;
+using Bodoconsult.App.Extensions;
 
 namespace JobExecuter.Test;
 
@@ -16,15 +19,32 @@ public static class AssemblySetup
     [OneTimeSetUp]
     public static void AssemblyStartUp()
     {
-        //GlobalValues.LoadAppSettings();
+        var globals = Globals.Instance;
+        globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
+
+        // Set additional app start parameters as required
+        var param = globals.AppStartParameter;
+        param.AppName = "JobExecuter.Test";
+        param.SoftwareTeam = "Robert Leisner";
+        //param.LogoRessourcePath = "WinFormsConsoleApp1.Resources.logo.jpg";
+        param.AppFolderName = "JobExecuter.Test";
+
+        // Now start the app building process
+        var builder = new MyDebugAppBuilder(globals);
+#if !DEBUG
+        AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
+#endif
+
+        // Load basic app metadata
+        builder.LoadBasicSettings();
+
+        // Process the config file
+        builder.ProcessConfiguration();
+
+        // Now load the globally needed settings
+        builder.LoadGlobalSettings();
+
+        ArgumentNullException.ThrowIfNull(globals.Logger);
+        globals.Logger.LogInformation("Starting tests...");
     }
-
-    ///// <summary>
-    ///// Unlooad app
-    ///// </summary>
-    //[OneTimeTearDown]
-    //public void UnloadApp()
-    //{
-
-    //}
 }

@@ -1,23 +1,28 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
-using JobExecuter.Dal.Helpers;
-using System;
-using System.IO;
-using System.Text;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.App.Interfaces;
 using Bodoconsult.App.Windows.ConsoleTools;
 using Bodoconsult.App.Windows.Helpers;
+using JobExecuter.Dal.App;
+using JobExecuter.Dal.Helpers;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using System;
+using System.IO;
+using System.Text;
+using Bodoconsult.App.Extensions;
 
-namespace JobExecuter.Dal.App;
+namespace JobExecuter;
 
 /// <summary>
 /// Console starter for JobExecuter app
 /// </summary>
 public class JobExcuterStarter: BaseConsoleStarter
 {
+    private readonly Globals _globals;
+
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -26,6 +31,8 @@ public class JobExcuterStarter: BaseConsoleStarter
     {
         DiskShadowHelper.TempDir = DataPath ?? Path.GetTempPath();
         MainAppRunnerDelegate = StartInternal;
+        _globals = Globals.Instance;
+        _globals.StatusMessageDelegate = SetStatus;
     }
 
     /// <summary>
@@ -128,38 +135,54 @@ public class JobExcuterStarter: BaseConsoleStarter
             return 1;
         }
 
-        var logFile = fi.FullName.Replace(fi.Extension, ".log", StringComparison.OrdinalIgnoreCase);
-        SetStatus($"logFile: {logFile}");
-
-        var jh = new JobHandler();
-        jh.Mailers.Add(new ConsoleJobMailer());
-        jh.Mailers.Add(new FileJobMailer
-        {
-            LogFileName = logFile
-        });
-
-        if (SmtpMailAccount != null && !string.IsNullOrEmpty(SmtpMailAccount.SmtpServer))
-        {
-            SetStatus("Loading SMTP mailer...");
-
-            var smtp = new SmtpJobMailer(SmtpMailAccount);
-            smtp.LoadDefaultHtmlTemplate();
-
-            jh.Mailers.Add(smtp);
-        }
-
-        SetStatus("Loading job file...");
         var job = DecryptJson(cjsonFile);
-        jh.LoadJob(job, cjsonFile);
+        _globals.CurrentJob = job;
+        _globals.LogFileName = fi.FullName.Replace(fi.Extension, ".log", StringComparison.OrdinalIgnoreCase);
+        _globals.SmtpMailAccount = SmtpMailAccount;
+        _globals.CjsonFileName = cjsonFile;
 
-        if (jh.CurrentJob.WriteToEventLog)
-        {
-            SetStatus("Add eventlog handling...");
-            jh.Mailers.Add(new EventlogJobMailer());
-        }
+        var globals = Globals.Instance;
+        globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForConsoleApp();
 
-        SetStatus("Start processing job file...");
-        jh.RunJob();
+        // Set additional app start parameters as required
+        var param = globals.AppStartParameter;
+        param.SoftwareTeam = "Robert Leisner";
+
+        globals.AppStartParameter.Args = Args;
+
+        // Now start app buiding process
+        IAppBuilder builder = new JobExecuterAppBuilder(globals);
+#if !DEBUG
+        AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
+#endif
+
+        // Load basic app metadata
+        builder.LoadBasicSettings();
+
+        // Process the config file
+        builder.ProcessConfiguration();
+
+        // Now load the globally needed settings
+        builder.LoadGlobalSettings();
+
+        // Write first log entry with default logger
+        ArgumentNullException.ThrowIfNull(globals.Logger);
+        globals.Logger.LogInformation($"{param.AppName} {param.AppVersion} starts...");
+        globals.StatusMessageDelegate = SetStatus;
+
+        Console.WriteLine("Logging started...");
+
+        // App is ready now for doing something
+        Console.WriteLine($"Connection string loaded: {param.DefaultConnectionString}");
+
+        // Prepare the DI container package
+        builder.LoadDiContainerServiceProviderPackage();
+        builder.RegisterDiServices();
+        builder.FinalizeDiContainerSetup();
+
+        // Now finally start the app and wait
+        // See BodoFileTransferService.StartApplication() for the relevante parts of app start
+        builder.StartApplication();
 
         return 0;
     }

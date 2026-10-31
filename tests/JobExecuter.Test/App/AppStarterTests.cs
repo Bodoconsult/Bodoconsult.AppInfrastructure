@@ -204,4 +204,34 @@ internal class AppStarterTests
         // Assert
         Assert.That(File.Exists(starter.SmtpMailAccountImportFileName), Is.False);
     }
+
+
+    [Test]
+    public void RunJobTask_ValidJsonFile_CryptedFileCreated()
+    {
+        // Arrange 
+        var jsonFile = Path.Combine(TestDataHelper.TestDataPath, "job.json");
+        var cjsonFile = Path.Combine(TestDataHelper.TestDataPath, "job.cjson");
+
+        FileSystemHelper.DeleteFile(cjsonFile);
+
+        string[] args = [];
+        var starter = new JobExcuterStarter(args);
+
+        FileSystemHelper.DeleteFile(starter.HashFileName);
+
+        const string pwd = "test";
+
+        starter.HashAppPassword(pwd);
+
+        starter.ValidateAppPassword(pwd);
+
+        starter.CryptJson(jsonFile);
+
+        // Act  
+        var result = starter.RunJobTask(cjsonFile);
+
+        // Assert
+        Assert.That(result, Is.Zero);
+    }
 }

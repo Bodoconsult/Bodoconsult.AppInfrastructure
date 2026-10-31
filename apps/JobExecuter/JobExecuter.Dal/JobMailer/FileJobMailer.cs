@@ -1,10 +1,14 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
+using System;
+using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Logging;
 using Bodoconsult.Text.Formatter;
 using Bodoconsult.Text.Interfaces;
+using JobExecuter.Dal.App;
 using JobExecuter.Dal.Interfaces;
 using log4net;
+using System.IO;
 
 namespace JobExecuter.Dal.JobMailer;
 
@@ -15,8 +19,19 @@ namespace JobExecuter.Dal.JobMailer;
 public class FileJobMailer : IJobMailer
 {
     private string _logFileName;
-    private static ILog _logger;
+    private IAppLoggerProxy _logger;
 
+    private IAppGlobals _appGlobals;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="appGlobals">Current app globals</param>
+    public FileJobMailer(IAppGlobals appGlobals)
+    {
+        _appGlobals = appGlobals;
+    }
+    
     /// <summary>
     /// Full path of the log file
     /// </summary>
@@ -26,10 +41,11 @@ public class FileJobMailer : IJobMailer
         set
         {
             _logFileName = value;
-            // ReSharper disable once RedundantNameQualifier
-            log4net.GlobalContext.Properties["LogFileName"] = _logFileName; //log file path
-            log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
-            _logger =  LogManager.GetLogger(typeof (FileJobMailer));
+
+            var factory = new MonitorLoggerFactory(_logFileName);
+            factory.LoggingConfig = _appGlobals.LoggingConfig;
+
+            _logger = new AppLoggerProxy(factory, _appGlobals.LogDataFactory);
         }
     }
 
@@ -51,13 +67,23 @@ public class FileJobMailer : IJobMailer
 
         if (string.IsNullOrEmpty(mailTo))
         {
-            _logger.Info($"{result}");
+            if (result.StartsWith("\r\n", StringComparison.OrdinalIgnoreCase))
+            {
+                result = result[2..];
+            }
+
+            if (result.EndsWith("\r\n\r\n", StringComparison.OrdinalIgnoreCase))
+            {
+                result = result[..^2];
+            }
+
+            _logger.LogInformation($"{result}");
         }
         else
         {
-            _logger.Info("\r\n***************** Begin mail ******************");
-            _logger.Info($"Mail to: {mailTo}\r\nSubject: {subject}\r\nBody:\r\n{result}\r\n");
-            _logger.Info("***************** End mail ******************\r\n");
+            _logger.LogInformation("\r\n***************** Begin mail ******************");
+            _logger.LogInformation($"Mail to: {mailTo}\r\nSubject: {subject}\r\nBody:\r\n{result}\r\n");
+            _logger.LogInformation("***************** End mail ******************\r\n");
         }
 
         return true;

@@ -4,85 +4,201 @@
         <name>JobExecuter.Dal</name>
     </assembly>
     <members>
-        <member name="T:JobExecuter.Dal.App.JobExcuterStarter">
+        <member name="T:JobExecuter.Dal.App.Globals">
             <summary>
-            Console starter for JobExecuter app
+            App global values
             </summary>
         </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.#ctor(System.String[])">
+        <member name="P:JobExecuter.Dal.App.Globals.Instance">
+            <summary>
+            Get a singleton instance of 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JobExecuter.Dal.App.Globals.Dispose">
+            <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.EventWaitHandle">
+            <summary>
+            This event is set if the application is started only as singleton
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.AppStartParameter">
+            <summary>
+            App start parameter
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.LogDataFactory">
+            <summary>
+            Current log data entry factory
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.LoggingConfig">
+            <summary>
+            Current logging config
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.Logger">
+            <summary>
+            Current app logger. Use this instance only if no DI container is available. Nonetheless, use DiContainer.Get&lt;IAppLoggerProxy&gt; to fetch the default app logger from DI container. Don't forget to load it during DI setup!
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.DiContainer">
+            <summary>
+            Current dependency injection (DI) container
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.HandleFatalExceptionDelegate">
+            <summary>
+            Delegate called if a fatale app exception has been raised and a message to the UI has to be sent before app terminates
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.AppStorageConnectionCheck">
+            <summary>
+            Current app storage connection check instance or null
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.StatusMessageDelegate">
+            <summary>
+            Current status message delegate
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.LicenseMissingDelegate">
+            <summary>
+            Current license management delegate
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.TranslateDelegate">
+            <summary>
+            Delegate to handle I18N translations
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.TranslateWithParamsDelegate">
+            <summary>
+            Delegate to handle I18N translations with parameters to fill in translated text
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.ProductName">
+            <summary>
+            Externally registered product name
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.ProductVersion">
+            <summary>
+            Externally registered version
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.ConfigurationRoot">
+            <summary>
+            The current configuration loaded from appsettings.json
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.CurrentJob">
+            <summary>
+            Current job to handle
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.CjsonFileName">
+            <summary>
+            Filename of the crypted JSON file
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.LogFileName">
+            <summary>
+            Name of the logfile
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.Globals.SmtpMailAccount">
+            <summary>
+            The current SMTP mail account or null if no SMTP mailing is used
+            </summary>
+        </member>
+        <member name="T:JobExecuter.Dal.App.IJobExecuterAppGlobals">
+            <summary>
+            App globals adjusted for JobExecuter
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.IJobExecuterAppGlobals.CurrentJob">
+            <summary>
+            Current job to handle
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.IJobExecuterAppGlobals.CjsonFileName">
+            <summary>
+            Filename of the crypted JSON file
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.IJobExecuterAppGlobals.LogFileName">
+            <summary>
+            Name of the logfile
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.IJobExecuterAppGlobals.SmtpMailAccount">
+            <summary>
+            The current SMTP mail account or null if no SMTP mailing is used
+            </summary>
+        </member>
+        <member name="T:JobExecuter.Dal.App.JobExecuterService">
+            <summary>
+            Current implementation of <see cref="T:Bodoconsult.App.Abstractions.Interfaces.IApplicationService"/>
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Dal.App.JobExecuterService.#ctor(Bodoconsult.App.Abstractions.Interfaces.IAppLoggerProxy,Bodoconsult.App.Abstractions.Interfaces.IAppGlobals)">
             <summary>
             Default ctor
             </summary>
-            <param name="args">Command line args</param>
         </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.LoadPlugIns">
+        <member name="P:JobExecuter.Dal.App.JobExecuterService.RequestApplicationStopDelegate">
             <summary>
-            Load plug ins
+            Request application stop delegate
             </summary>
         </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.StartInternal(Bodoconsult.App.Interfaces.IConsoleStarter)">
+        <member name="P:JobExecuter.Dal.App.JobExecuterService.AppGlobals">
             <summary>
-            Do the requested start action
+            Current app globals
             </summary>
         </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.RunJobTask(System.String)">
+        <member name="P:JobExecuter.Dal.App.JobExecuterService.Offline">
             <summary>
-            Run a job task
-            </summary>
-            <param name="cjsonFile">Filename of a CJSON file with the job task definition</param>
-            <returns>Error code. If 0 job was executed without error</returns>
-        </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.UiCryptJson(System.String)">
-            <summary>
-            Crypt a JSON file (extension .json) to a crypted JSON file (.cjson)
-            </summary>
-            <param name="jsonFile">JSON file to crypt</param>
-        </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.CryptJson(System.String)">
-            <summary>
-            Crypt a JSON file (extension .json) to a crypted JSON file (.cjson)
-            </summary>
-            <param name="jsonFile">JSON file to crypt</param>
-        </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.DecryptJson(System.String)">
-            <summary>
-            Decrypt a JSON file (extension .json) to a crypted JSON file (.cjson)
-            </summary>
-            <param name="cjsonFile">JSON file to crypt</param>
-        </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.ShowHelp">
-            <summary>
-            Show a help for the program
+            Application status offline true / false
             </summary>
         </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.CheckJson(System.String)">
+        <member name="M:JobExecuter.Dal.App.JobExecuterService.RegisterServices">
             <summary>
-            Check if a JSON file is a valid JobExecuter job
-            </summary>
-            <param name="fileName">JSON file to check</param>
-        </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.SendTestMail">
-            <summary>
-            Send an SMTP test mail
+            Register required services like GRPC clients etc.
             </summary>
         </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.SaveCryptedJson``1(``0,System.String,System.String)">
+        <member name="M:JobExecuter.Dal.App.JobExecuterService.StartApplication(System.Nullable{System.Threading.CancellationToken})">
             <summary>
-            Save an entity in a crypted JSON file
+            Start the application
             </summary>
-            <typeparam name="T">Type of the entity to store</typeparam>
-            <param name="entityToStore">Entity to store</param>
-            <param name="key">Key</param>
-            <param name="fileName">Filename to save the crypted JSON string in</param>
+            <param name="cancellationToken"></param>
         </member>
-        <member name="M:JobExecuter.Dal.App.JobExcuterStarter.LoadCryptedJson``1(System.String,System.String)">
+        <member name="M:JobExecuter.Dal.App.JobExecuterService.Status(System.String)">
             <summary>
-            Load a crypted json file
+            Send a status message
             </summary>
-            <typeparam name="T">Type of the entity to deserialize from the JSON file</typeparam>
-            <param name="key">Key</param>
-            <param name="cjsonFile">Fillename of the crypted JSON file</param>
-            <returns>Deserialized entity</returns>
+            <param name="msg">Message to send</param>
+        </member>
+        <member name="M:JobExecuter.Dal.App.JobExecuterService.SuspendApplication">
+            <summary>
+            Suspend the app
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Dal.App.JobExecuterService.RestartApplication">
+            <summary>
+            Restart the app if it is in suspend state
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Dal.App.JobExecuterService.StopApplication">
+            <summary>
+            Stop the application
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.App.JobExecuterService.LicenseMissingDelegate">
+            <summary>
+            Current <see cref="P:Bodoconsult.App.Abstractions.Interfaces.IApplicationService.LicenseMissingDelegate"/>
+            </summary>
         </member>
         <member name="T:JobExecuter.Dal.Enums.CmdBatchRunType">
             <summary>
@@ -2066,6 +2182,60 @@
             Total size of the drive
             </summary>
         </member>
+        <member name="T:JobExecuter.Dal.IJobHandler">
+            <summary>
+            Interface for jonhandling implementations
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.IJobHandler.Mailers">
+            <summary>
+            All <see cref="T:JobExecuter.Dal.Interfaces.IJobMailer"/> objects to send error messages and summary to
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.IJobHandler.ErrorItems">
+            <summary>
+            All error items that happened in the current job
+            </summary>
+        </member>
+        <member name="P:JobExecuter.Dal.IJobHandler.CurrentJob">
+            <summary>
+            Current job to handle
+            </summary>
+        </member>
+        <member name="M:JobExecuter.Dal.IJobHandler.RunTask(JobExecuter.Base.Interfaces.IJobTask)">
+            <summary>
+            Run a single <see cref="T:JobExecuter.Base.Interfaces.IJobTask"/>
+            </summary>
+            <param name="jobTask"></param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:JobExecuter.Dal.IJobHandler.SaveJob(System.String)">
+            <summary>
+            Save current job as JSON to a file 
+            </summary>
+            <param name="fileName">Path for the JSON file to save</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:JobExecuter.Dal.IJobHandler.LoadJob(JobExecuter.Base.Interfaces.IJob,System.String)">
+            <summary>
+            Load current job from JSON file 
+            </summary>
+            <param name="job">Job to run</param>
+            <param name="jsonJobFile">Filename of the CJSON file</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:JobExecuter.Dal.IJobHandler.RunJob">
+            <summary>
+            Run the current job
+            </summary>
+            <returns>true if no job task caused an error</returns>
+        </member>
+        <member name="M:JobExecuter.Dal.IJobHandler.SetJobJsonFileName(System.String)">
+            <summary>
+            Only for testing purposes: set JobJson file name (without loading the file)
+            </summary>
+            <param name="jobJson"></param>
+        </member>
         <member name="T:JobExecuter.Dal.Interfaces.IBackupTarget">
             <summary>
             Interface for backup targets. A backup target is a system of backups of a source keeping backups of the source from different timepoints
@@ -2215,7 +2385,7 @@
             <param name="fileName">Path for the JSON file to save</param>
             <returns>true on success</returns>
         </member>
-        <member name="M:JobExecuter.Dal.JobHandler.LoadJob(JobExecuter.Dal.Model.Job,System.String)">
+        <member name="M:JobExecuter.Dal.JobHandler.LoadJob(JobExecuter.Base.Interfaces.IJob,System.String)">
             <summary>
             Load current job from JSON file 
             </summary>
@@ -2327,6 +2497,12 @@
             <summary>
             Sends mail to log file
             </summary>
+        </member>
+        <member name="M:JobExecuter.Dal.JobMailer.FileJobMailer.#ctor(Bodoconsult.App.Abstractions.Interfaces.IAppGlobals)">
+            <summary>
+            Default ctor
+            </summary>
+            <param name="appGlobals">Current app globals</param>
         </member>
         <member name="P:JobExecuter.Dal.JobMailer.FileJobMailer.LogFileName">
             <summary>

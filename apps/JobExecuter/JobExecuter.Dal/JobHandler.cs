@@ -22,7 +22,7 @@ namespace JobExecuter.Dal;
 /// <summary>
 /// Class to handle a complete job
 /// </summary>
-public class JobHandler
+public class JobHandler : IJobHandler
 {
     private int _counter;
     private string _jsonJobFile;
@@ -313,7 +313,7 @@ public class JobHandler
     /// <param name="job">Job to run</param>
     /// <param name="jsonJobFile">Filename of the CJSON file</param>
     /// <returns>true on success</returns>
-    public bool LoadJob(Job job, string jsonJobFile)
+    public bool LoadJob(IJob job, string jsonJobFile)
     {
         CurrentJob = job;
         CurrentJob.JobJsonFileName = jsonJobFile;

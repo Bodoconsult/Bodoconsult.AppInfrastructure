@@ -3,7 +3,7 @@
 namespace OpenSourceConnectorBodoCms.Business.Model;
 
 /// <summary>
-/// Folder data found for a open source project
+/// Folder data found for an open source project
 /// </summary>
 public class FolderData
 {
