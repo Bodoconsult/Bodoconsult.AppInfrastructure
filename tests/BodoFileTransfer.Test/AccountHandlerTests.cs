@@ -3,6 +3,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Bodoconsult.App.Helpers;
 using BodoFileTransfer.Business.AccountHandling;
 using BodoFileTransfer.Business.Interfaces;
 using BodoFileTransfer.Business.Model;
@@ -33,7 +34,7 @@ public class AccountHandlerTests
         {
             AccountId = 1,
             Keyword = "Beleg",
-            Path = @"D:\temp\test.pdf",
+            Path = $@"{Path.GetTempPath()}\test.pdf",
             Title = "Steuerbescheinigung 2021"
         };
 
@@ -42,8 +43,6 @@ public class AccountHandlerTests
         _dataHandler = dummyHandler;
 
         _accountHandler = new AccountHandler(AccountId, _dataHandler, config, Globals.Instance);
-
-
     }
 
     [Test]
@@ -54,10 +53,8 @@ public class AccountHandlerTests
         // Act  
 
         // Assert
-        Assert.That(AccountId, Is.EqualTo( _accountHandler.Account.Id));
-
+        Assert.That(AccountId, Is.EqualTo(_accountHandler.Account.Id));
     }
-
 
     [Test]
     public void TestGetAccountMailData()
@@ -153,18 +150,12 @@ public class AccountHandlerTests
     {
         // Arrange
         const int counter = 99;
-
         var id = Guid.Empty;
+        var fileName = $@"{Path.GetTempPath()}\test.pdf";
 
-            
-        const string fileName = @"d:\temp\test.pdf";
+        FileSystemHelper.DeleteFile(fileName);
+        Assert.That(!File.Exists(fileName));
 
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
-            Assert.That(!File.Exists(fileName));
-        }
-            
         File.WriteAllText(fileName, "Hallo");
         Assert.That(File.Exists(fileName));
 
@@ -172,12 +163,8 @@ public class AccountHandlerTests
 
         var targetFileName = _accountHandler.GetNewFileName(fi, counter);
 
-        if (File.Exists(targetFileName))
-        {
-            File.Delete(targetFileName);
-            Assert.That(!File.Exists(targetFileName));
-        }
-
+        FileSystemHelper.DeleteFile(targetFileName);
+        Assert.That(!File.Exists(targetFileName));
 
         // Act
         Assert.DoesNotThrow(() =>
@@ -185,12 +172,10 @@ public class AccountHandlerTests
             id = _accountHandler.AddFileFromInbox(fi, counter);
         });
 
-
         // Assert
         var result = _accountHandler.GetFile(id);
         Assert.That(result, Is.Not.Null);
     }
-
 
     [Test]
     public void TestAddFileArchive()
@@ -204,13 +189,10 @@ public class AccountHandlerTests
             _accountHandler.AddFileArchive(doc);
         });
 
-
         // Assert
         var result = _accountHandler.GetFileArchive(doc.Id);
         Assert.That(result, Is.Not.Null);
     }
-
-
 
     [Test]
     public void TestReSendFile()

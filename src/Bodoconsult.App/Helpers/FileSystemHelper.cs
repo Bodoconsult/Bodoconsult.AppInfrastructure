@@ -122,4 +122,16 @@ public static class FileSystemHelper
             Directory.Delete(directoryName, true);
         }
     }
+
+    /// <summary>
+    /// Create a directory if it is not existing already
+    /// </summary>
+    /// <param name="directoryName">Directory to be created</param>
+    public static void CreateDirectory(string directoryName)
+    {
+        if (!Directory.Exists(directoryName))
+        {
+            Directory.CreateDirectory( directoryName);
+        }
+    }
 }

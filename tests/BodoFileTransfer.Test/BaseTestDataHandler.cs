@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Bodoconsult.App.Logging;
 using BodoFileTransfer.Business.Enums;
@@ -20,9 +21,7 @@ namespace BodoFileTransfer.Test;
 public abstract class BaseTestDataHandler
 {
     protected IDataHandler DataHandler;
-
-    protected const string TestFilePath = @"c:\test\test.pdf";
-
+    protected string TestFilePath = Path.Combine(Path.GetTempPath(),  @"test.pdf");
 
     [Test]
     public void TestGetAllAccounts()
@@ -34,12 +33,10 @@ public abstract class BaseTestDataHandler
 
         // Assert
         Assert.That(result.Count > 0, Is.EqualTo(Is.Not.Null));
-
     }
 
-
     [Test]
-    public void TestGetAllImapAccounts()
+    public void GetAllImapAccounts_ValidSetup_ReturnsAllCounts()
     {
         // Arrange
         IList<ImapAccount> accounts = null;
@@ -52,12 +49,10 @@ public abstract class BaseTestDataHandler
 
         // Assert
         Assert.That(accounts, Is.EqualTo(Is.Not.Null));
-
     }
 
-
     [Test]
-    public void TestGetAllO365Accounts()
+    public void GetAllO365Accounts_ValidSetup_ReturnsAllCounts()
     {
         // Arrange
         IList<O365Account> accounts = null;
@@ -70,16 +65,12 @@ public abstract class BaseTestDataHandler
 
         // Assert
         Assert.That(accounts, Is.EqualTo(Is.Not.Null));
-
     }
 
     [Test]
     public void TestGetAllO365SenderAccounts()
     {
         // Arrange
-        var x = TestHelper.SecretsPath;
-
-
         IList<O365SenderAccount> accounts = null;
 
         // Act
@@ -90,9 +81,7 @@ public abstract class BaseTestDataHandler
 
         // Assert
         Assert.That(accounts, Is.EqualTo(Is.Not.Null));
-
     }
-
 
     //[Test]
     //public void TestTransferSmtpMails()
@@ -112,21 +101,16 @@ public abstract class BaseTestDataHandler
     public void TestProcessImapAccounts()
     {
         // Arrange
-
-
         var config = TestHelper.GetDefaultConfig();
 
         var fh = new FolderHandler(DataHandler, config, Globals.Instance);
 
         // Act
         var result = fh.ProcessImapAccounts();
-
-
+        
         // Assert
         Assert.That(!result, Is.EqualTo(Is.Not.Null));
     }
-
-
 
     [Test]
     public void TestCompleteWorkFlow()
@@ -146,7 +130,6 @@ public abstract class BaseTestDataHandler
         Assert.That(!result, Is.EqualTo(Is.Not.Null));
         Assert.That(!result1, Is.EqualTo(Is.Not.Null));
     }
-
 
     [Test]
     public void TestGetFilesForAnAccount()
@@ -169,7 +152,6 @@ public abstract class BaseTestDataHandler
 
     }
 
-
     [Test]
     public void TestGetFilesArchiveForAnAccount()
     {
@@ -188,7 +170,6 @@ public abstract class BaseTestDataHandler
 
         // Assert
         Assert.That(result.Count > 0, Is.EqualTo(Is.Not.Null));
-
     }
 
     [Test]
@@ -202,15 +183,11 @@ public abstract class BaseTestDataHandler
             FileId = Guid.NewGuid()
         };
 
-        // Act
+        // Act and assert
         Assert.DoesNotThrow(() =>
         {
             DataHandler.AddTrace(trace);
         });
-
-
-        // Assert
-
     }
 
 
@@ -246,8 +223,6 @@ public abstract class BaseTestDataHandler
         var count = DataHandler.GetFilesCount();
 
         var doc = GetDocFile();
-
-
 
         // Act
         //Assert.DoesNotThrow(() =>
@@ -314,7 +289,6 @@ public abstract class BaseTestDataHandler
         // Assert
         resultCount = DataHandler.GetFilesCount();
         Assert.That(count, Is.EqualTo(resultCount));
-
     }
 
     [Test]
@@ -340,7 +314,6 @@ public abstract class BaseTestDataHandler
         // Assert
         resultCount = DataHandler.GetFilesArchiveCount();
         Assert.That(count, Is.EqualTo(resultCount));
-
     }
 
     [Test]
@@ -357,7 +330,6 @@ public abstract class BaseTestDataHandler
 
         // Act
         var result = DataHandler.GetFile(doc.Id);
-
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -383,7 +355,6 @@ public abstract class BaseTestDataHandler
         Assert.That(result, Is.Not.Null);
         Assert.That(doc.Id, Is.EqualTo(result.Id));
     }
-
 
     [Test]
     public void TestGetAccountMailData()

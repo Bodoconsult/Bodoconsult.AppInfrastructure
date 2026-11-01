@@ -13,33 +13,24 @@ namespace BodoFileTransfer.Business.DataHandling;
 /// </summary>
 public class DummyDataHandler : IDataHandler
 {
-
-    public IList<Account> Accounts { get; }
-
-    public IList<ImapAccount> ImapAccounts { get; }
-
-    public IList<TraceEntry> TraceEntries { get; }
-
-    public IList<DocumentFile> Files { get; }
-
-    public IList<DocumentFile> FilesArchive { get; }
-
-
     private readonly string _errorMailAddressee;
+
+    public List<Account> Accounts { get; } = [];
+
+    public List<ImapAccount> ImapAccounts { get; } = [];
+
+    public List<TraceEntry> TraceEntries { get; } = [];
+
+    public List<DocumentFile> Files { get; } = [];
+
+    public List<DocumentFile> FilesArchive { get; } = [];
+
 
     public DummyDataHandler(string errorMailAddressee)
     {
         _errorMailAddressee = errorMailAddressee;
-
-        // ReSharper disable once UseObjectOrCollectionInitializer
-        Accounts = new List<Account>();
-        ImapAccounts = new List<ImapAccount>();
-        TraceEntries = new List<TraceEntry>();
-        Files = new List<DocumentFile>();
-        FilesArchive = new List<DocumentFile>();
     }
-
-
+    
     /// <summary>
     /// Gets all necessary accounts with their data
     /// </summary>
@@ -173,7 +164,7 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List with document files</returns>
     public IList<DocumentFile> GetFilesForAnAccount(int accountId)
     {
-        return Files.Where(x => x.AccountId == accountId).ToList();
+        return [.. Files.Where(x => x.AccountId == accountId)];
     }
 
     /// <summary>
@@ -183,7 +174,7 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List of all traces stored for the file</returns>
     public IList<TraceEntry> GetTracesForFile(Guid fileId)
     {
-        return TraceEntries.Where(x => x.FileId == fileId).ToList();
+        return [.. TraceEntries.Where(x => x.FileId == fileId)];
     }
 
     /// <summary>
@@ -281,7 +272,7 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List with account IDs</returns>
     public IList<int> GetMailTransferAccounts()
     {
-        return Files.GroupBy(x => x.AccountId).Select(x => x.Key).ToList();
+        return [.. Files.GroupBy(x => x.AccountId).Select(x => x.Key)];
     }
 
     /// <summary>
@@ -291,7 +282,7 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List of documents</returns>
     public IList<DocumentFile> GetFilesArchiveForAnAccount(int accountId)
     {
-        return FilesArchive.Where(x => x.AccountId == accountId).ToList();
+        return [.. FilesArchive.Where(x => x.AccountId == accountId)];
     }
 
     /// <summary>
@@ -303,16 +294,22 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List of documents</returns>
     public IList<DocumentFile> GetFilesForAnAccountByDate(int accountId, DateTime @from, DateTime until)
     {
-        return Files.Where(x => x.AccountId == accountId &&
+        return
+        [
+            .. Files.Where(x => x.AccountId == accountId &&
                                 x.DateCreated >= from &&
-                                x.DateCreated <= until).ToList();
+                                x.DateCreated <= until)
+        ];
     }
 
     public IList<DocumentFile> GetFilesArchiveForAnAccountByDate(int accountId, DateTime @from, DateTime until)
     {
-        return FilesArchive.Where(x => x.AccountId == accountId &&
+        return
+        [
+            .. FilesArchive.Where(x => x.AccountId == accountId &&
                                        x.DateCreated >= from &&
-                                       x.DateCreated <= until).ToList();
+                                       x.DateCreated <= until)
+        ];
     }
 
     /// <summary>
@@ -321,7 +318,7 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List with all O365 accounts</returns>
     public IList<O365Account> GetAllO365Accounts()
     {
-        throw new NotImplementedException();
+        return new List<O365Account> { new(this) };
     }
 
     /// <summary>
@@ -330,7 +327,7 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List with all O365 accounts used to sent mails</returns>
     public IList<O365SenderAccount> GetAllO365SenderAccounts()
     {
-        throw new NotImplementedException();
+        return new List<O365SenderAccount> { new() };
     }
 
     /// <summary>
@@ -339,6 +336,7 @@ public class DummyDataHandler : IDataHandler
     /// <returns>List with documents</returns>
     public IList<DocumentFile> GetFilesForAnAccountForDelivery(int accountId)
     {
-        throw new NotImplementedException();
+        var list = new List<DocumentFile> { new() };
+        return list;
     }
 }

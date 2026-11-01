@@ -60,7 +60,7 @@ internal class TestHelper
         var a = CreateDummyAccount(d.Accounts, "M55048");
         CreateDummyAccount(d.Accounts, "M55021");
 
-        d.ImapAccounts.Add(GetImapAccount(d, a));
+        //d.ImapAccounts.Add(GetImapAccount(d, a));
 
         return d;
     }
@@ -77,8 +77,8 @@ internal class TestHelper
         {
             Id = accounts.Count+1,
             Keyword = keyword,
-            InboxPath = $@"d:\tmp\BodoFileTransfer\{keyword}\Inbox",
-            ArchivePath = $@"d:\tmp\BodoFileTransfer\{keyword}\Archive",
+            InboxPath = $@"{Path.GetTempPath()}BodoFileTransfer\{keyword}\Inbox",
+            ArchivePath = $@"{Path.GetTempPath()}BodoFileTransfer\{keyword}\Archive",
             Name = "DummyAccount"
         };
 
@@ -183,7 +183,7 @@ internal class TestHelper
         {
             AccountId = 1,
             Keyword = "Beleg",
-            Path = $@"D:\temp\test{now}.pdf",
+            Path = $@"{Path.GetTempPath()}\test{now}.pdf",
             Title = $"Steuerbescheinigung 2021 {now}"
         };
     }

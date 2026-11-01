@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.IO;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.Helpers;
 using JobExecuter.Dal.JobMailer;
@@ -14,11 +15,16 @@ namespace JobExecuter.Test.PlugInTests;
 [TestFixture]
 public class PlugInTests
 {
+    /// <summary>
+    /// This test requires domain admin permissions
+    /// </summary>
+    [Explicit]
     [Test]
     public void TestLoadPlugInAndRunTask()
     {
 
         var temp = Path.Combine(TestDataHelper.LocalPath, "GpoPlugIn");
+        FileSystemHelper.CreateDirectory(temp);
 
         var cJson = Path.Combine(temp, "job.cjson");
 

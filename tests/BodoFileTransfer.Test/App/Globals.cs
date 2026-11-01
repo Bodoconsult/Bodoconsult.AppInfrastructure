@@ -7,6 +7,7 @@ using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
+using BodoFileTransfer.Business.Interfaces;
 using Microsoft.Extensions.Configuration;
 
 namespace BodoFileTransfer.Test.App;
@@ -14,7 +15,7 @@ namespace BodoFileTransfer.Test.App;
 /// <summary>
 /// App global values
 /// </summary>
-public class Globals : IAppGlobals
+public class Globals : IBodoFileTransferAppGlobals
 {
     #region Singleton factory
 
@@ -160,4 +161,19 @@ public class Globals : IAppGlobals
     /// The current configuration loaded from appsettings.json
     /// </summary>
     public IConfigurationRoot ConfigurationRoot { get; set; }
+
+    /// <summary>
+    /// Number schema for numbering of Belege
+    /// </summary>
+    public string NumberSchema { get; set; } = "000000";
+
+    /// <summary>
+    /// Weeks back to check emails
+    /// </summary>
+    public int EmailSentDateWeeksBack { get; set; } = 10;
+
+    /// <summary>
+    /// File extensions for signature files
+    /// </summary>
+    public string SignatureFileExtensions { get; set; } = ".ads;.cms";
 }

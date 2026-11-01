@@ -7,6 +7,9 @@ namespace Bodoconsult.Database.Test.Utilities.Helpers;
 /// </summary>
 public static class FileHelper
 {
+    private static string _appPath;
+    private static string _tempPath;
+    private static string _outputPath;
 
     /// <summary>
     /// Default ctor
@@ -27,7 +30,7 @@ public static class FileHelper
 
         // Remove old entity backups
         EntityBackupPath = Path.Combine(BasePath, "EntityBackups");
-        CreateFolder(BackupPath, "*.bak");
+        CreateFolder(EntityBackupPath, "*.bak");
     }
 
     /// <summary>
@@ -48,7 +51,6 @@ public static class FileHelper
             catch
             {
                 // Do nothing
-                throw;
             }
         }
 
@@ -77,21 +79,12 @@ public static class FileHelper
             Console.WriteLine(e);
             throw;
         }
-
     }
 
     /// <summary>
     /// Base data path for test environment
     /// </summary>
     public static string BasePath { get; set; }
-
-
-    private static string _appPath;
-
-    private static string _tempPath;
-
-    private static string _outputPath;
-
 
     /// <summary>
     /// Get path of current application
@@ -141,8 +134,6 @@ public static class FileHelper
 #pragma warning restore CA1031
     }
 
-
-
     /// <summary>
     /// Get the current temporary path for test data
     /// </summary>
@@ -174,8 +165,6 @@ public static class FileHelper
         }
 #pragma warning restore CA1031
     }
-
-
 
     /// <summary>
     /// Get the current backup path for test databases
