@@ -8,7 +8,7 @@
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Title": null,
 			"MailTo": "info@bodoconsult.de",
 			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseComplianceReport.htm",

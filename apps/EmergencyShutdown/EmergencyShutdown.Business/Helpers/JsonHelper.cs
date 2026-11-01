@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.Globalization;
-using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 

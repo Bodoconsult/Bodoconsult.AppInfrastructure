@@ -2,7 +2,6 @@
 
 using System;
 using System.Runtime.Versioning;
-using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.DependencyInjection;
 

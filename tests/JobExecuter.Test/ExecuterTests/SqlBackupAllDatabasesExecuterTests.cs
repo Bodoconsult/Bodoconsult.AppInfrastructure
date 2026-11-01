@@ -4,6 +4,7 @@
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.App;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
@@ -13,14 +14,13 @@ namespace JobExecuter.Test.ExecuterTests;
 public class SqlBackupAllDatabasesExecuterTests
 {
     private readonly string localPath = TestDataHelper.LocalPath;
-    private readonly string targetPath = TestDataHelper.LocalPath;
+    private readonly string targetPath = $"{TestDataHelper.LocalPath}Network";
         
     private const string fileName = "??server??_??database??.bak";
 
     [Test]
     public void TestBackup_OnlyLocal()
     {
-
         var job = new Job
         {
             Name = "Sample job for SqlServer backup of all databases",
@@ -29,10 +29,9 @@ public class SqlBackupAllDatabasesExecuterTests
             Timeout = 120
         };
 
-
         var jt = new SqlBackupAllDatabasesJobTask
         {
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             LocalTarget = localPath,
             FileName = fileName,
             Timeout = 60
@@ -51,7 +50,6 @@ public class SqlBackupAllDatabasesExecuterTests
 
         Assert.That(result);
         Assert.That(jh.ErrorItems.Count == 0);
-            
     }
 
     [Test]
@@ -66,10 +64,9 @@ public class SqlBackupAllDatabasesExecuterTests
             Timeout = 120
         };
 
-
         var jt = new SqlBackupAllDatabasesJobTask
         {
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             LocalTarget = localPath,
             NetworkTarget = targetPath,
             FileName = fileName,
@@ -89,11 +86,5 @@ public class SqlBackupAllDatabasesExecuterTests
 
         Assert.That(result);
         Assert.That(jh.ErrorItems.Count == 0);
-            
     }
-
- 
-    //ToDo: test with placeholders in folder path
-
-
 }

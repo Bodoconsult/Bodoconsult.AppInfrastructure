@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.IO;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.Model;
 using NUnit.Framework;
@@ -12,6 +13,9 @@ namespace JobExecuter.Test.ExecuterTests;
 [TestFixture]
 public class DummyExecuterTests
 {
+    string file = Path.Combine(Path.GetTempPath(), @"jobExecuter.json");
+
+
     [Test]
     public void TestDummyJobTask_Basic()
     {
@@ -50,10 +54,7 @@ public class DummyExecuterTests
     [Test]
     public void TestDummyJobTask_SaveJson()
     {
-
-        const string file = @"d:\tmp\jobExecuter.json";
-
-        if (File.Exists(file)) File.Delete(file);
+        FileSystemHelper.DeleteFile(file);
 
         var job = new Job
         {
@@ -96,10 +97,7 @@ public class DummyExecuterTests
     [Test]
     public void TestDummyJobTask_LoadJson()
     {
-
-        const string file = @"d:\tmp\jobExecuter.json";
-
-        if (File.Exists(file)) File.Delete(file);
+        FileSystemHelper.DeleteFile(file);
 
         var job = new Job
         {
@@ -107,7 +105,6 @@ public class DummyExecuterTests
             Description = "bla bla bla blubb",
             Timeout = 65
         };
-
 
         var jt = new DummyJobTask
         {
@@ -144,6 +141,4 @@ public class DummyExecuterTests
         Assert.That(jh.CurrentJob != null);
         Assert.That(jh.CurrentJob.JobTasks.Count==2);
     }
-
-
 }

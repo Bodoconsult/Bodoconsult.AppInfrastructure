@@ -11,6 +11,8 @@ namespace JobExecuter.Test.ExecuterTests;
 [TestFixture]
 public class SqlMaintenanceExecuterTests
 {
+    private readonly string _localPath = TestDataHelper.LocalPath;
+
     [Test]
     public void TestSendMail()
     {
@@ -21,16 +23,14 @@ public class SqlMaintenanceExecuterTests
             Timeout = 600
         };
 
-
         var smjt = new SqlMaintenanceJobTask
         {
             Name = "Runs a maintenance job on a SqlServer instance",
             MailTo = "robert.leisner@bodoconsult.de",
-            HtmlTargetFileName = "d:\\tmp\\JobExecuter\\Maintenance.htm",
+            HtmlTargetFileName = $"{_localPath}\\Maintenance.htm",
             Timeout = 600,
-            Server = "192.168.10.125"
+            Server = JobExecuter.Test.App.Globals.Instance.SqlServerForTests
         };
-
 
         job.JobTasks.Add(smjt);
 
@@ -39,7 +39,7 @@ public class SqlMaintenanceExecuterTests
             CurrentJob = job
         };
 
-        var s = TestDataHelper.GetSmtpMailer();
+        //var s = TestDataHelper.GetSmtpMailer();
 
         jh.Mailers.Add(new FakeJobMailer());
         //jh.Mailers.Add(s);

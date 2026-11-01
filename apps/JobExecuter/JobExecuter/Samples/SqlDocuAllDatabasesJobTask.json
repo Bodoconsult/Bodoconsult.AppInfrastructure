@@ -7,7 +7,7 @@
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlDocuAllDatabasesJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Title": null,
 			"MailTo": null,
 			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\testbackup.bak.htm",

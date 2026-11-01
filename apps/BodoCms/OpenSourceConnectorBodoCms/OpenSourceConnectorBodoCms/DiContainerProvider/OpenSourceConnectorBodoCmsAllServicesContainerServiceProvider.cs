@@ -4,8 +4,6 @@ using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
 using Bodoconsult.App.Factories;
-using Bodoconsult.Database.Interfaces;
-using Bodoconsult.Database.SqlClient;
 using Microsoft.Extensions.Logging;
 using OpenSourceConnectorBodoCms.Business.App;
 using OpenSourceConnectorBodoCms.Business.Services;

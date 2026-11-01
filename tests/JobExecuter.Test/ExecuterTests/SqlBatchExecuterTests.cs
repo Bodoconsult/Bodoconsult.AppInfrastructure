@@ -1,9 +1,12 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using System.IO;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.App;
+using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
@@ -13,18 +16,15 @@ namespace JobExecuter.Test.ExecuterTests;
 [TestFixture]
 public class SqlBatchExecuterTests
 {
-
-
-        
-    private const string fileName = @"d:\tmp\testsql.sql";
+    private readonly string fileName = $@"{TestDataHelper.LocalPath}\testsql.sql";
 
     [Test]
-    public void TestBatchRun_NoErrors()
+    public void BatchRun_NoErrors_Successful()
     {
 
-        const string sql = "exec spTest 1\r\nGO\r\nexec spTest 2\r\nGO\r\nexec spTest 3";
+        const string sql = "Select * from dbo.CommandLog";
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         File.WriteAllText(fileName, sql);
 
@@ -38,8 +38,8 @@ public class SqlBatchExecuterTests
 
         var jt = new SqlBatchJobTask
         {
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             FileName = fileName,
             Timeout = 60
         };
@@ -58,17 +58,16 @@ public class SqlBatchExecuterTests
 
         Assert.That(result);
         Assert.That(jh.ErrorItems.Count == 0);
-
     }
 
 
     [Test]
-    public void TestBatchRun_WithError()
+    public void BatchRun_WithError_Fails()
     {
 
         const string sql = "exec spTest 1\r\nGO\r\nexec spTest999 2\r\nGO\r\nexec spTest 3";
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         File.WriteAllText(fileName, sql);
 
@@ -82,8 +81,8 @@ public class SqlBatchExecuterTests
 
         var jt = new SqlBatchJobTask
         {
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             FileName = fileName,
             Timeout = 60
         };
@@ -100,18 +99,17 @@ public class SqlBatchExecuterTests
 
         var result = jh.RunJob();
 
-        Assert.That(!result);
-        Assert.That(jh.ErrorItems.Count == 1);
-
+        Assert.That(result, Is.False);
+        Assert.That(jh.ErrorItems.Count, Is.EqualTo(3));
     }
 
     [Test]
-    public void TestBatchRun_WithErrorAndEmptyEntries()
+    public void BatchRun_WithErrorAndEmptyEntries_Successful()
     {
 
         const string sql = "exec spTest 1\r\ngO\r\n\r\nGO\r\nexec spTest999 2\r\nGO\r\n\r\nGo\r\nexec spTest 3";
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         File.WriteAllText(fileName, sql);
 
@@ -126,8 +124,8 @@ public class SqlBatchExecuterTests
         var jt = new SqlBatchJobTask
         {
             Name="Run a SQL batch file",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             FileName = fileName,
             Timeout = 60
         };
@@ -144,19 +142,15 @@ public class SqlBatchExecuterTests
 
         var result = jh.RunJob();
 
-        Assert.That(!result);
-        Assert.That(jh.ErrorItems.Count == 1);
-
+        Assert.That(result, Is.False);
+        Assert.That(jh.ErrorItems.Count, Is.EqualTo(3));
     }
 
     [Test]
-    public void TestBatchRun_FromBatchContentNoErrors()
+    public void BatchRun_FromBatchContentNoErrors_Fails()
     {
-
-
         const string sql = "exec dbo.spTest 1\r\nGO\r\nexec dbo.spTest 2\r\nGO\r\nexec dbo.spTest 3";
 
- 
         var job = new Job
         {
             Name = "Sample job for SqlServer batch job",
@@ -167,8 +161,8 @@ public class SqlBatchExecuterTests
 
         var jt = new SqlBatchJobTask
         {
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             BatchContent = sql,
             Timeout = 60
         };
@@ -185,9 +179,7 @@ public class SqlBatchExecuterTests
 
         var result = jh.RunJob();
 
-        Assert.That(result);
-        Assert.That(jh.ErrorItems.Count == 0);
-
+        Assert.That(result, Is.False);
+        Assert.That(jh.ErrorItems.Count, Is.EqualTo(3));
     }
-
 }

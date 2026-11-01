@@ -2,7 +2,6 @@
 
 using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.App.Abstractions.ShellTools;
 using Bodoconsult.Network.Windows.Helpers;
 using EmergencyShutdown.Business.Interfaces;
 using EmergencyShutdown.Business.Servers;

@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Database.SqlClient;
 using JobExecuter.Base;
 using JobExecuter.Base.Interfaces;
@@ -34,6 +35,14 @@ internal class SqlBackupLogSingleDatabaseExecuter : BaseExecuter
         var localFile = NamingHelper.ClearPath(Path.Combine(_jobTask.LocalTarget, _jobTask.FileName), _jobTask.Server, _jobTask.DatabaseName);
         var localPath = NamingHelper.ClearPath(_jobTask.LocalTarget, _jobTask.Server, _jobTask.DatabaseName);
 
+        if (localPath is null)
+        {
+            const string msg = "Local path is null";
+            Errors.Add(new Exception(msg));
+            SetStatus(msg);
+            return true;
+        }
+
         var sConn = string.Format(ExecuterConstants.SqlServerConnectionString, _jobTask.Server, _jobTask.DatabaseName);
         var sql = string.Format(SqlBackup, _jobTask.DatabaseName, localFile);
 
@@ -41,23 +50,41 @@ internal class SqlBackupLogSingleDatabaseExecuter : BaseExecuter
 
         try
         {
-
-            if (!Directory.Exists(localPath)) Directory.CreateDirectory(localPath);
+            if (!Directory.Exists(localPath))
+            {
+                Directory.CreateDirectory(localPath);
+            }
 
             var db = SqlClientConnManager.GetConnManager(sConn);
             db.SetCommandTimeout(_jobTask.Timeout);
             db.SendStatus += SetStatus;
-            db.Exec(sql, false);
+            db.Exec(sql);
 
             SetStatus("Successful local log backup: {0}", sql);
 
-            if (string.IsNullOrEmpty(_jobTask.NetworkTarget) || !File.Exists(localFile)) return true;
+            if (string.IsNullOrEmpty(_jobTask.NetworkTarget) || !File.Exists(localFile))
+            {
+                return true;
+            }
 
             var networkPath = NamingHelper.ClearPath(_jobTask.NetworkTarget, _jobTask.Server, _jobTask.DatabaseName);
-            if (!Directory.Exists(networkPath)) Directory.CreateDirectory(networkPath);
+
+            if (networkPath is null)
+            {
+                const string msg = "Network path is null";
+                Errors.Add(new Exception(msg));
+                SetStatus(msg);
+                return true;
+            }
+
+            if (!Directory.Exists(networkPath))
+            {
+                Directory.CreateDirectory(networkPath);
+            }
 
             var networkFile = NamingHelper.ClearPath( Path.Combine(_jobTask.NetworkTarget, _jobTask.FileName), _jobTask.Server, _jobTask.DatabaseName);
-            if (File.Exists(networkFile)) File.Delete(networkFile);
+            FileSystemHelper.DeleteFile(networkFile);
+
 
             if (_jobTask.RemoveLocalBackup)
             {

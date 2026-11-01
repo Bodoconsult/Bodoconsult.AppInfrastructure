@@ -11,7 +11,6 @@ using System.Xml.Xsl;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Backup;
 using Bodoconsult.App.Helpers;
-using Bodoconsult.Test.Helpers;
 using Bodoconsult.Test.MetaData.Handler;
 using Bodoconsult.Test.MetaData.Model;
 using Bodoconsult.Text.Helpers;
@@ -23,6 +22,7 @@ using JobExecuter.Dal.Enums;
 using JobExecuter.Dal.Helpers;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.App;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
@@ -212,8 +212,8 @@ public class CreateSamplesAndDocumentationTests
         var jt = new SqlBackupSingleDatabaseJobTask
         {
             Name = "Backup database to local file only",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             LocalTarget = localPath,
             FileName = fileName,
             Timeout = 60,
@@ -225,8 +225,8 @@ public class CreateSamplesAndDocumentationTests
         jt = new SqlBackupSingleDatabaseJobTask
         {
             Name = "Backup database to a network path",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             LocalTarget = localPath,
             NetworkTarget = targetPath,
             FileName = fileName,
@@ -240,8 +240,8 @@ public class CreateSamplesAndDocumentationTests
         var jtl = new SqlBackupLogSingleDatabaseJobTask
         {
             Name = "Backup database to a network path",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             LocalTarget = localPath,
             NetworkTarget = targetPath,
             FileName = fileName,
@@ -254,7 +254,7 @@ public class CreateSamplesAndDocumentationTests
         var ja = new SqlBackupAllDatabasesJobTask
         {
             Name = "Local backup of all databases on a SqlServer instance",
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             LocalTarget = localPath,
             FileName = fileName2,
             Timeout = 60,
@@ -267,7 +267,7 @@ public class CreateSamplesAndDocumentationTests
         ja = new SqlBackupAllDatabasesJobTask
         {
             Name = "Network share backup of all databases on a SqlServer instance",
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             LocalTarget = localPath,
             NetworkTarget = targetPath,
             FileName = fileName,
@@ -283,7 +283,7 @@ public class CreateSamplesAndDocumentationTests
             MailTo = "test@test123.de",
             HtmlTargetFileName = Path.Combine(localPath, "Maintenance.htm"),
             Timeout = 600,
-            Server = ".\\sqlexpress"
+            Server = Globals.Instance.SqlServerForTests
         };
 
 
@@ -303,8 +303,8 @@ public class CreateSamplesAndDocumentationTests
         var br = new SqlBatchJobTask
         {
             Name = "Run a SQL batch file",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             FileName = fileName,
             Timeout = 60
         };
@@ -314,8 +314,8 @@ public class CreateSamplesAndDocumentationTests
         br = new SqlBatchJobTask
         {
             Name = "Run SQL batch directly from string",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             BatchContent = sql,
             Timeout = 60
         };
@@ -450,8 +450,8 @@ public class CreateSamplesAndDocumentationTests
         var sd = new SqlDocuSingleDatabaseJobTask
         {
             Name = "Create a documentation for a single database",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             HtmlTargetFileName = htmlSqlDocuFile,
             JsonTargetFileName = jsonSqlDocuFile,
             Timeout = 60
@@ -465,7 +465,7 @@ public class CreateSamplesAndDocumentationTests
         var ad = new SqlDocuAllDatabasesJobTask
         {
             Name = "Create a documentation for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb",
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             HtmlTargetFileName = docuFile,
             JsonTargetFileName = jsonFile,
             Timeout = 60
@@ -476,7 +476,7 @@ public class CreateSamplesAndDocumentationTests
         var sms = new SqlComplianceSingleDatabaseJobTask
         {
             Name = "Create compliance information for a single database",
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             DatabaseName = "DatabaseXY",
             MailTo = "info@bodoconsult.de",
             HtmlTargetFileName = Path.Combine(localPath, "ServerXY_DatabaseXY_ComplianceReport.htm"),
@@ -486,7 +486,7 @@ public class CreateSamplesAndDocumentationTests
         var sma = new SqlComplianceAllDatabasesJobTask
         {
             Name = "Create compliance information for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb",
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             MailTo = "info@bodoconsult.de",
             HtmlTargetFileName = Path.Combine(localPath, "ServerXY_DatabaseComplianceReport.htm"),
             Timeout = 60
@@ -587,14 +587,14 @@ public class CreateSamplesAndDocumentationTests
 
         AddLegalNotes(sr);
 
-        SimpleJsonHelper.SerializeAsFile(jsonHelpFile, sr);
+        JsonHelper.SerializeAsFile(jsonHelpFile, sr);
 
         FileHelper.SaveAsHtml(htmlHelpFile, sr, "JobExecuter documentation");
         FileHelper.SaveAsMarkdown(markdownHelpFile, sr, "JobExecuter documentation");
 
         TestDataHelper.SaveAsHtmlPage(sr);
 
-        TestHelper.OpenFile(htmlHelpFile);
+        FileSystemHelper.RunInDebugMode(htmlHelpFile);
     }
 
     private static void AddLegalNotes(StructuredText sr)
@@ -614,7 +614,6 @@ public class CreateSamplesAndDocumentationTests
 
     private void CreateOverviewClasses(StructuredText sr)
     {
-
         sr.AddHeader1("Overview JobTask classes");
         foreach (var item in mh.TypeMetaDatas.OrderBy(x => x.Name))
         {

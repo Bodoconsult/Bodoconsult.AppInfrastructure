@@ -8,12 +8,12 @@
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask, JobExecuter.Dal",
-			"DatabaseName": "MediaDb",
+			"DatabaseName": "master",
 			"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",
 			"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",
 			"FileName": "testbackup.bak",
 			"RemoveLocalBackup": true,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Backup database to a network path",
 			"Description": null,
 			"ErrorMailReceiver": null,

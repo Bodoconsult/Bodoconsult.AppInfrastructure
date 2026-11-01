@@ -3,6 +3,7 @@
 using System;
 using System.Data;
 using System.IO;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Database.SqlClient;
 using JobExecuter.Base;
 using JobExecuter.Base.Interfaces;
@@ -18,29 +19,21 @@ namespace JobExecuter.Dal.Executer;
 /// </summary>
 internal class SqlBackupAllDatabasesExecuter : BaseExecuter
 {
-
-    //private const string ConnectionString = "Data Source={0};Initial Catalog={1};Integrated Security=SSPI;TrustServerCertificate=True";
-
-    private const string SqlBackup =
-        "BACKUP DATABASE [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'";
-
+    private const string SqlBackup = "BACKUP DATABASE [{0}] TO DISK = N'{1}' WITH  INIT, SKIP, FORMAT,  NOUNLOAD,  NAME = N'{0} full backup'";
     private readonly SqlBackupAllDatabasesJobTask _jobTask;
-
-
+    
     /// <summary>
     /// Run job task
     /// </summary>
     /// <returns>true in case of success</returns>
     public override bool Run()
     {
-
         SetStatus("Start backup off all databases on server '{0}'", _jobTask.Server);
 
         try
         {
             var sConn = string.Format(ExecuterConstants.SqlServerConnectionString, _jobTask.Server, "master");
-
-
+            
             var db = SqlClientConnManager.GetConnManager(sConn);
             db.SetCommandTimeout(_jobTask.Timeout);
             db.SendStatus += SetStatus;
@@ -56,29 +49,52 @@ internal class SqlBackupAllDatabasesExecuter : BaseExecuter
 
                 var localPath = NamingHelper.ClearPath(_jobTask.LocalTarget, _jobTask.Server, dbName);
 
-
                 var localFile = NamingHelper.ClearPath(Path.Combine(_jobTask.LocalTarget, _jobTask.FileName),
                     _jobTask.Server, dbName);
+
+                if (localPath is null)
+                {
+                    var msg = $"Local path is null for {dbName}";
+                    Errors.Add(new Exception(msg));
+                    SetStatus(msg);
+                    continue;
+                }
 
                 var sql = string.Format(SqlBackup, dbName, localFile);
 
                 try
                 {
 
-                    if (!Directory.Exists(localPath)) Directory.CreateDirectory(localPath);
+                    if (!Directory.Exists(localPath))
+                    {
+                        Directory.CreateDirectory(localPath);
+                    }
 
-                    db.Exec(sql, false);
+                    db.Exec(sql);
 
                     SetStatus("Successful local backup: {0}", sql);
 
                     if (!(string.IsNullOrEmpty(_jobTask.NetworkTarget) || !File.Exists(localFile)))
                     {
                         var networkPath = NamingHelper.ClearPath(_jobTask.NetworkTarget, _jobTask.Server, dbName);
-                        if (!Directory.Exists(networkPath)) Directory.CreateDirectory(networkPath);
+
+                        if (networkPath is null)
+                        {
+                            var msg = $"Network path is null for {dbName}";
+                            Errors.Add(new Exception(msg));
+                            SetStatus(msg);
+                            continue;
+                        }
+
+
+                        if (!Directory.Exists(networkPath))
+                        {
+                            Directory.CreateDirectory(networkPath);
+                        }
 
                         var networkFile = NamingHelper.ClearPath(Path.Combine(_jobTask.NetworkTarget, _jobTask.FileName),
                             _jobTask.Server, dbName);
-                        if (File.Exists(networkFile)) File.Delete(networkFile);
+                        FileSystemHelper.DeleteFile(networkFile);
 
                         if (_jobTask.RemoveLocalBackup)
                         {

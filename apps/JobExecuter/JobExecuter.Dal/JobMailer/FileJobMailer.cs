@@ -5,10 +5,7 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Logging;
 using Bodoconsult.Text.Formatter;
 using Bodoconsult.Text.Interfaces;
-using JobExecuter.Dal.App;
 using JobExecuter.Dal.Interfaces;
-using log4net;
-using System.IO;
 
 namespace JobExecuter.Dal.JobMailer;
 

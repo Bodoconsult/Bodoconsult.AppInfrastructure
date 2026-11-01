@@ -3,7 +3,7 @@
 
 JobExecuter documentation
 
-**********Date created: 31.10.2026 11:49:57
+**********Date created: 01.11.2026 11:20:00
 
 
 # Table of content
@@ -1649,7 +1649,7 @@ Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N&#39;JobExecu
 			"NetworkTarget": null,
 			"FileName": "??server??_??database??.bak",
 			"RemoveLocalBackup": false,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Local backup of all databases on a SqlServer instance",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -1661,7 +1661,7 @@ Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N&#39;JobExecu
 			"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",
 			"FileName": "testbackup.bak",
 			"RemoveLocalBackup": false,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Network share backup of all databases on a SqlServer instance",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -1740,12 +1740,12 @@ Uses the following SQl statement: BACKUP LOG [{0}] TO DISK = N&#39;JobExecuter d
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask, JobExecuter.Dal",
-			"DatabaseName": "MediaDb",
+			"DatabaseName": "master",
 			"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",
 			"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",
 			"FileName": "testbackup.bak",
 			"RemoveLocalBackup": true,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Backup database to a network path",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -1824,12 +1824,12 @@ Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N&#39;JobExecu
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal",
-			"DatabaseName": "MediaDb",
+			"DatabaseName": "master",
 			"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",
 			"NetworkTarget": null,
 			"FileName": "testbackup.bak",
 			"RemoveLocalBackup": false,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Backup database to local file only",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -1837,12 +1837,12 @@ Uses the following SQl statement: BACKUP DATABASE [{0}] TO DISK = N&#39;JobExecu
 		},
 		{
 			"$type": "JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal",
-			"DatabaseName": "MediaDb",
+			"DatabaseName": "master",
 			"LocalTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter",
 			"NetworkTarget": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network",
 			"FileName": "testbackup.bak",
 			"RemoveLocalBackup": true,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Backup database to a network path",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -1908,10 +1908,10 @@ SQL statements must be separated by GO. The SQL statements must address database
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal",
-			"DatabaseName": "MediaDb",
+			"DatabaseName": "master",
 			"FileName": "testbackup.bak",
 			"BatchContent": null,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Run a SQL batch file",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -1919,10 +1919,10 @@ SQL statements must be separated by GO. The SQL statements must address database
 		},
 		{
 			"$type": "JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal",
-			"DatabaseName": "MediaDb",
+			"DatabaseName": "master",
 			"FileName": null,
 			"BatchContent": "exec spTest 1\r\nGO\r\nexec spTest 2\r\nGO\r\nexec spTest 3",
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Run SQL batch directly from string",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -1997,7 +1997,7 @@ Databases Master, Msdb, Model and TempDb are excluded by this task. Requires the
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Title": null,
 			"MailTo": "info@bodoconsult.de",
 			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseComplianceReport.htm",
@@ -2079,7 +2079,7 @@ Databases Master, Msdb, Model and TempDb are excluded by this task. Requires the
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlComplianceSingleDatabaseJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"DatabaseName": "DatabaseXY",
 			"Title": null,
 			"MailTo": "info@bodoconsult.de",
@@ -2183,7 +2183,7 @@ For parts of the documentation the user running the job needs certain permission
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlDocuAllDatabasesJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Title": null,
 			"MailTo": null,
 			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\testbackup.bak.htm",
@@ -2290,8 +2290,8 @@ For parts of the documentation the user running the job needs certain permission
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
-			"DatabaseName": "MediaDb",
+			"Server": "(localdb)\\MSSQLLocalDB",
+			"DatabaseName": "master",
 			"Title": null,
 			"MailTo": null,
 			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.htm",
@@ -2386,7 +2386,7 @@ Needs sysadmin permissions to run successfully on the instance of SqlServer
 			"JsonTargetFileName": null,
 			"FragmentationLevel1": 5,
 			"FragmentationLevel2": 30,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Runs a maintenance job on a SqlServer instance",
 			"Description": null,
 			"ErrorMailReceiver": null,
@@ -2544,7 +2544,7 @@ The HTML result of processing such a Readme.txt you can find in the file Readme.
 
 # Legal notes
 
-Date this documentation was created: 31.10.2026 11:49
+Date this documentation was created: 01.11.2026 11:20
 
 
 ## Registered and unregistered trademarks

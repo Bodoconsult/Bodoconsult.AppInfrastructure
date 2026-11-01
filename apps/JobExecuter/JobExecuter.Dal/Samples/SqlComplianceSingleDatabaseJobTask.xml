@@ -8,7 +8,7 @@
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlComplianceSingleDatabaseJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"DatabaseName": "DatabaseXY",
 			"Title": null,
 			"MailTo": "info@bodoconsult.de",

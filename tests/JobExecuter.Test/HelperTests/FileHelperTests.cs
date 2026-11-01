@@ -2,6 +2,7 @@
 
 using System.Diagnostics;
 using System.IO;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Text.Model;
 using JobExecuter.Dal.Helpers;
 using JobExecuter.Test.Helpers;
@@ -22,14 +23,12 @@ public class FileHelperTests
         Assert.That(!string.IsNullOrEmpty(result));
     }
 
-
     [Test]
     public void TestSaveAsPdf()
     {
+        var fileName = $@"{TestDataHelper.LocalPath}\SaveAsPdf.pdf";
 
-        var fileName = @"D:\tmp\JobExecuter\SaveAsPdf.pdf";
-
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         var st = new StructuredText();
 
@@ -38,19 +37,17 @@ public class FileHelperTests
 
         FileHelper.SaveAsPdf(fileName, st, "Hallo");
 
-
         Assert.That(File.Exists(fileName));
 
+        FileSystemHelper.DeleteFile(fileName);
     }
-
 
     [Test]
     public void TestSaveBinaryResource()
     {
-
         var fileName = Path.Combine(TestDataHelper.LocalPath, "Backup.cab");
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         Assert.That(!File.Exists(fileName));
 

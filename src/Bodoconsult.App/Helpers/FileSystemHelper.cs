@@ -110,4 +110,16 @@ public static class FileSystemHelper
             File.Delete(fileName);
         }
     }
+
+    /// <summary>
+    /// Check if a directory is existing and if yes delete it (with all content recursively)
+    /// </summary>
+    /// <param name="directoryName">Directory to be deleted</param>
+    public static void DeleteDirectory(string directoryName)
+    {
+        if (Directory.Exists(directoryName))
+        {
+            Directory.Delete(directoryName, true);
+        }
+    }
 }

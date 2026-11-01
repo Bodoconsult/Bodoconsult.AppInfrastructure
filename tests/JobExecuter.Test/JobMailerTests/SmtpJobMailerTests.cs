@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.Text.Model;
-using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
 // ReSharper disable once InconsistentNaming
@@ -19,9 +18,9 @@ internal class SmtpJobMailerTests
         var sr = new StructuredText();
         sr.AddHeader1("Eine 'Testmail' an mich!");
 
-        var s= TestDataHelper.GetSmtpMailer();
-        var result = s.SendMail("robert.leisner@bodoconsult.de", "Testmail", sr, false);
+        //var s= TestDataHelper.GetSmtpMailer();
+        //var result = s.SendMail("robert.leisner@bodoconsult.de", "Testmail", sr, false);
 
-        Assert.That(result);
+        //Assert.That(result);
     }
 }

@@ -6,7 +6,6 @@
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
-using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
 namespace JobExecuter.Test.ExecuterTests;
@@ -213,7 +212,7 @@ public class DummyErrorExecuterTests
             
         jh.Mailers.Add(new FakeJobMailer());
 
-        jh.Mailers.Add(TestDataHelper.GetSmtpMailer());
+        //jh.Mailers.Add(TestDataHelper.GetSmtpMailer());
 
 
         var result = jh.RunJob();
@@ -221,6 +220,4 @@ public class DummyErrorExecuterTests
         Assert.That(!result);
         Assert.That(jh.ErrorItems.Count > 0);
     }
-
-
 }

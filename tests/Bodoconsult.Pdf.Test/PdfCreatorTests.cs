@@ -6,7 +6,6 @@ using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Test.Helpers;
 using MigraDoc.DocumentObjectModel;
 using NUnit.Framework;
-using PdfSharp.Fonts;
 using System.IO;
 using System.Runtime.Versioning;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;

@@ -30,7 +30,7 @@ public class DnsServer
     /// <summary>
     /// WMI path of the DNS server
     /// </summary>
-    public string WmiPath { get; private set; }
+    public string WmiPath { get; }
 
     /// <summary>
     /// Create a new DNS Server connection

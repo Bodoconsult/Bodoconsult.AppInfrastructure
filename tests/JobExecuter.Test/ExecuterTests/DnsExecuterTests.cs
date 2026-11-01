@@ -1,20 +1,30 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
-using Bodoconsult.Test.Helpers;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
 
 namespace JobExecuter.Test.ExecuterTests;
 
 [TestFixture]
 public class DnsExecuterTests
 {
+    private readonly string _localPath = TestDataHelper.LocalPath;
+
+    /// <summary>
+    /// Test requires admin permissions on the DNS server
+    /// </summary>
+    [Explicit]
     [Test]
     public void TestDns()
     {
+        var fileName = Path.Combine(_localPath, "DNS.htm");
+
+        FileSystemHelper.DeleteFile(fileName);
 
         var job = new Job
         {
@@ -26,15 +36,10 @@ public class DnsExecuterTests
         var dns = new DnsJobTask
         {
             Name = "Report a DNS server's structure",
-            Description =
-                "Report DNS server's structure",
-
-            HtmlTargetFileName = @"D:\tmp\JobExecuter\DNS.htm",
+            Description = "Report DNS server's structure",
+            HtmlTargetFileName = fileName,
             Server = "192.168.10.123"
         };
-
-
-        if (File.Exists(dns.HtmlTargetFileName)) File.Delete(dns.HtmlTargetFileName);
 
         job.JobTasks.Add(dns);
 
@@ -48,8 +53,6 @@ public class DnsExecuterTests
         Assert.That(result);
         Assert.That(jh.ErrorItems.Count == 0);
 
-
-        TestHelper.OpenFile(dns.HtmlTargetFileName);
+        FileSystemHelper.RunInDebugMode(dns.HtmlTargetFileName);
     }
-
 }

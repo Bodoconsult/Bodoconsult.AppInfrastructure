@@ -6,6 +6,7 @@ using System.Diagnostics;
 using Bodoconsult.Text.Formatter;
 using Bodoconsult.Text.Model;
 using JobExecuter.Dal.Helpers;
+using JobExecuter.Test.App;
 using NUnit.Framework;
 
 namespace JobExecuter.Test.HelperTests;
@@ -19,8 +20,8 @@ public class SqlDocuDatabaseHelperTests
     {
         var result = new StructuredText();
         IList<Exception> errors = new List<Exception>();
-        var dbName="MediaDb";
-        var docu = new SqlDocuDatabaseHelper(result, dbName, ".\\sqlexpress", errors, SetStatus);
+        var dbName="master";
+        var docu = new SqlDocuDatabaseHelper(result, dbName, Globals.Instance.SqlServerForTests, errors, SetStatus);
         docu.AddGeneralDatabaseInfos();
         docu.AddSecurityRoles();
         docu.AddSecurityLogins();

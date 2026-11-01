@@ -28,6 +28,8 @@ public class NamingHelper
     public static string ClearPath(string path, string server, string database)
     {
         server = server.Replace("\\", "_")
+            .Replace("(", string.Empty)
+            .Replace(")", string.Empty)
             .Replace(".", Environment.MachineName)
             .Replace("(local)", Environment.MachineName);
 

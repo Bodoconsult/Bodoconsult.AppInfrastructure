@@ -65,21 +65,21 @@ internal static class TestDataHelper
     private const int PageId = 153;
     public static string TempPath { get; set; } = @"C:\ProgramData\JobExecuter";
 
-    /// <summary>
-    /// Get an SMTPMailer account
-    /// </summary>
-    /// <returns></returns>
-    public static SmtpJobMailer GetSmtpMailer()
-    {
-        throw new NotImplementedException();
-        //const string fileName = @"C:\Daten\Projekte\_work\Data\JobExecuter.json";
+    ///// <summary>
+    ///// Get an SMTPMailer account
+    ///// </summary>
+    ///// <returns></returns>
+    //public static SmtpJobMailer GetSmtpMailer()
+    //{
+    //    throw new NotImplementedException();
+    //    //const string fileName = @"C:\Daten\Projekte\_work\Data\JobExecuter.json";
 
-        //var account = JsonHelper.LoadJsonFile<SmtpMailAccount>(fileName);
+    //    //var account = JsonHelper.LoadJsonFile<SmtpMailAccount>(fileName);
 
-        //var s = new SmtpJobMailer(account);
-        //s.LoadDefaultHtmlTemplate();
-        //return s;
-    }
+    //    //var s = new SmtpJobMailer(account);
+    //    //s.LoadDefaultHtmlTemplate();
+    //    //return s;
+    //}
 
     /// <summary>
     /// Get an O365Mailer account

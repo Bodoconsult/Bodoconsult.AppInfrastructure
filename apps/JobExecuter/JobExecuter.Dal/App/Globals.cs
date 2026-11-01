@@ -13,7 +13,7 @@ namespace JobExecuter.Dal.App;
 /// <summary>
 /// App global values
 /// </summary>
-public class Globals : IJobExecuterAppGlobals 
+public class Globals : IJobExecuterAppGlobals
 {
     #region Singleton factory
 
@@ -143,4 +143,9 @@ public class Globals : IJobExecuterAppGlobals
     /// The current SMTP mail account or null if no SMTP mailing is used
     /// </summary>
     public SmtpMailAccount SmtpMailAccount { get; set; }
+
+    /// <summary>
+    /// Test SQL server
+    /// </summary>
+    public string SqlServerForTests { get; set; } = "(localdb)\\MSSQLLocalDB";
 }

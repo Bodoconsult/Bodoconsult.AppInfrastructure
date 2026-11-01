@@ -1,6 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.Test.Helpers;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
@@ -49,6 +49,6 @@ public class SqlComplianceAllDatabasesExecuterTests
         Assert.That(jh.ErrorItems.Count == 0);
 
 
-        TestHelper.OpenFile(sma.PdfTargetFileName);
+        FileSystemHelper.RunInDebugMode(sma.PdfTargetFileName);
     }
 }

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -53,26 +52,5 @@ public class TestHelper
         s = file.ReadToEnd();
 
         return s;
-    }
-
-    /// <summary>
-    /// Opens a file in a separate process. Executable not required
-    /// </summary>
-    /// <param name="path">File to open</param>
-    public static void OpenFile(string path)
-    {
-        if (!Debugger.IsAttached)
-        {
-            return;
-        }
-
-        var p = new Process
-        {
-            StartInfo = new ProcessStartInfo(path)
-            {
-                UseShellExecute = true
-            }
-        };
-        p.Start();
     }
 }

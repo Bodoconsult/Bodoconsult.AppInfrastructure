@@ -14,9 +14,6 @@ namespace JobExecuter.Dal.Model;
 ///  </example>
 public sealed class SqlBackupAllDatabasesJobTask : SqlBaseJobTask
 {
-
-
-
     /// <summary>
     /// Local target folder to backup database in
     /// </summary>
@@ -50,12 +47,9 @@ public sealed class SqlBackupAllDatabasesJobTask : SqlBaseJobTask
     /// </summary>
     public bool RemoveLocalBackup { get; set; }
 
-
     /// <inheritdoc />
     public override ITaskExecuterFactory GetFactory()
     {
         return new SqlBackupAllDatabasesExecuterFactory();
     }
-
-
 }

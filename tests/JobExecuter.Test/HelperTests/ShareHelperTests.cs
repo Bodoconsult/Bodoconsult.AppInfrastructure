@@ -2,6 +2,7 @@
 
 using System.Diagnostics;
 using JobExecuter.Dal.Helpers;
+using JobExecuter.Test.App;
 using NUnit.Framework;
 
 namespace JobExecuter.Test.HelperTests;
@@ -12,7 +13,7 @@ public class ShareHelperTests
     [Test]
     public void TestPathToUnc()
     {
-        var result = ShareHelper.PathToUnc(@"D:\Daten\Projekte");
+        var result = ShareHelper.PathToUnc(Globals.Instance.AppStartParameter.AppPath);
 
         Debug.Print(result);
 

@@ -2,10 +2,8 @@
 
 using System.Collections.Generic;
 using System.IO;
-using ABI.System.Collections.Generic;
 using Bodoconsult.App.Helpers;
 using NUnit.Framework;
-using OpenSourceConnectorBodoCms.Business.Helpers;
 using OpenSourceConnectorBodoCms.Business.Model;
 
 namespace OpenSourceConnectorBodoCms.Test;

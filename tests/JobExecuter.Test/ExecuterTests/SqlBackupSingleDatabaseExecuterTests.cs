@@ -5,6 +5,7 @@ using JobExecuter.Dal;
 using JobExecuter.Dal.Helpers;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.App;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
@@ -16,7 +17,7 @@ namespace JobExecuter.Test.ExecuterTests;
 public class SqlBackupSingleDatabaseExecuterTests
 {
     private readonly string localPath = TestDataHelper.LocalPath;
-    private readonly string targetPath = TestDataHelper.LocalPath;
+    private readonly string targetPath = $"{TestDataHelper.LocalPath}Network";
     private const string fileName = "testbackup.bak";
     private const string fileName2 = "??server??_??database??_??date??_??time??.bak";
 
@@ -33,8 +34,8 @@ public class SqlBackupSingleDatabaseExecuterTests
 
         var jt = new SqlBackupSingleDatabaseJobTask
         {
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "Master",
             LocalTarget = localPath,
             FileName = fileName,
             Timeout = 60
@@ -73,8 +74,8 @@ public class SqlBackupSingleDatabaseExecuterTests
 
         var jt = new SqlBackupSingleDatabaseJobTask
         {
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "Master",
             LocalTarget = localPath,
             NetworkTarget = targetPath,
             FileName = fileName,
@@ -116,8 +117,8 @@ public class SqlBackupSingleDatabaseExecuterTests
 
         var jt = new SqlBackupSingleDatabaseJobTask
         {
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "Master",
             LocalTarget = localPath,
             FileName = fileName2,
             Timeout = 60
@@ -156,8 +157,8 @@ public class SqlBackupSingleDatabaseExecuterTests
 
         var jt = new SqlBackupSingleDatabaseJobTask
         {
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDb",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "Master",
             LocalTarget = localPath,
             NetworkTarget = targetPath,
             FileName = fileName2,
@@ -187,6 +188,4 @@ public class SqlBackupSingleDatabaseExecuterTests
     }
 
     //ToDo: test with placeholders in folder path
-
-
 }

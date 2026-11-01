@@ -1,10 +1,8 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Extensions;
 using NUnit.Framework;
 using OpenSourceConnectorBodoCms.Business.App;
-using OpenSourceConnectorBodoCms.Business.Interfaces;
 using OpenSourceConnectorBodoCms.Test.App;
 using System;
 using System.Diagnostics;

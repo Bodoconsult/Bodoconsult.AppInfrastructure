@@ -1,12 +1,13 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
-using Bodoconsult.Test.Helpers;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
+using JobExecuter.Test.App;
 
 namespace JobExecuter.Test.ExecuterTests;
 
@@ -33,7 +34,7 @@ public class SqlDocuAllDatabasesExecuterTests
         var sd = new SqlDocuAllDatabasesJobTask
         {
             Name = "Create a documentation for all databases on a SqlServer with exception of databases Master, Msdb, Model and TempDb",
-            Server = ".\\sqlexpress",
+            Server = Globals.Instance.SqlServerForTests,
             HtmlTargetFileName = docuFile,
             JsonTargetFileName = jsonFile,
             Timeout = 60
@@ -57,6 +58,6 @@ public class SqlDocuAllDatabasesExecuterTests
         Assert.That(jh.ErrorItems.Count == 0);
         Assert.That(File.Exists(docuFile));
 
-        TestHelper.OpenFile(docuFile);
+        FileSystemHelper.RunInDebugMode(docuFile);
     }
 }

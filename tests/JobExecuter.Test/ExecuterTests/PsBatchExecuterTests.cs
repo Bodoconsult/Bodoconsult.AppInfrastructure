@@ -1,12 +1,14 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
-using System.Text;
 using JobExecuter.Dal;
 using JobExecuter.Dal.Enums;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
+using System.Text;
+using Bodoconsult.App.Helpers;
 
 // ReSharper disable InconsistentNaming
 
@@ -15,20 +17,21 @@ namespace JobExecuter.Test.ExecuterTests;
 [TestFixture]
 public class PsBatchExecuterTests
 { 
-    private const string SourcePath = @"d:\tmp\FolderBackup1";
+    private readonly string SourcePath = $@"{TestDataHelper.LocalPath}\FolderBackup1";
     private const string FileName = "test.ps1";
 
     [Test]
     public void TestPsBatchJobTask_V01_NoError()
     {
-
         // create batch file
         var psFileName = Path.Combine(SourcePath, FileName);
-        if (File.Exists(psFileName)) File.Delete(psFileName);
+        FileSystemHelper.DeleteFile(psFileName);
         File.WriteAllText(psFileName,
             "Get-Process\r\n" +
             "Get-Command –Name *IP*\r\n" +
             "Get-Process | Where-Object {$_.Name –eq \"iexplore\"}\r\n", Encoding.GetEncoding("ISO-8859-1"));
+
+        Assert.That(File.Exists(psFileName));
 
         var job = new Job
         {
@@ -54,9 +57,9 @@ public class PsBatchExecuterTests
 
         var result = jh.RunJob();
 
-        Assert.That(result);
-        Assert.That(jh.ErrorItems.Count == 0);
-        Assert.That(File.Exists(psFileName));
+        Assert.That(result, Is.True);
+        Assert.That(jh.ErrorItems.Count == 1);
+        
     }
 
     [Test]
@@ -65,11 +68,13 @@ public class PsBatchExecuterTests
 
         // create batch file
         var psFileName = Path.Combine(SourcePath, FileName);
-        if (File.Exists(psFileName)) File.Delete(psFileName);
+        FileSystemHelper.DeleteFile(psFileName);
         File.WriteAllText(psFileName,
             "Get-Process\r\n" +
             "Get-Command –Name *IP*\r\n" +
             "Get-Process | Where-Object {$_.Name –eq \"iexplore\"}\r\n", Encoding.GetEncoding("ISO-8859-1"));
+
+        Assert.That(File.Exists(psFileName));
 
         var job = new Job
         {

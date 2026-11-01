@@ -1,11 +1,13 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
 using JobExecuter.Dal;
 using JobExecuter.Dal.Enums;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
+using Bodoconsult.App.Helpers;
 
 // ReSharper disable InconsistentNaming
 
@@ -14,8 +16,8 @@ namespace JobExecuter.Test.ExecuterTests;
 [TestFixture]
 public class FolderBackupExecuterTests
 {
-    private const string SourcePath = @"d:\tmp\FolderBackup1";
-    private const string TargetPath = @"d:\tmp\FolderBackup2";
+    private readonly string SourcePath = $@"{TestDataHelper.LocalPath}\FolderBackup1";
+    private readonly string TargetPath = $@"{TestDataHelper.LocalPath}\FolderBackup2";
 
     private const string FileName = "FileToBackup.txt";
     private const string FileName2 = "FileToBackup2.txt";
@@ -23,18 +25,17 @@ public class FolderBackupExecuterTests
     [Test]
     public void TestFolderBackupJobTask_CopyOnlyNewerFiles()
     {
-
         if (!Directory.Exists(SourcePath)) Directory.CreateDirectory(SourcePath);
         if (Directory.Exists(TargetPath)) Directory.Delete(TargetPath, true);
 
         var fileName = Path.Combine(SourcePath, FileName);
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
         File.WriteAllText(fileName, "Testdatei");
 
         fileName = Path.Combine(TargetPath, FileName);
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
 
         var job = new Job
@@ -76,12 +77,12 @@ public class FolderBackupExecuterTests
 
         var fileName = Path.Combine(SourcePath, FileName);
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
         File.WriteAllText(fileName, "Testdatei");
 
         fileName = Path.Combine(TargetPath, FileName);
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
 
         var job = new Job
@@ -122,7 +123,7 @@ public class FolderBackupExecuterTests
 
         var fileName = Path.Combine(SourcePath, FileName);
 
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
         File.WriteAllText(fileName, "Testdatei");
 
         var fileName2 = Path.Combine(TargetPath, FileName2);
@@ -131,7 +132,7 @@ public class FolderBackupExecuterTests
         File.WriteAllText(fileName2, "Testdatei");
 
         fileName = Path.Combine(TargetPath, FileName);
-        if (File.Exists(fileName)) File.Delete(fileName);
+        FileSystemHelper.DeleteFile(fileName);
 
         fileName2 = Path.Combine(SourcePath, FileName2);
         if (File.Exists(fileName2)) File.Delete(fileName2);
@@ -166,14 +167,12 @@ public class FolderBackupExecuterTests
         Assert.That(!File.Exists(fileName2));
     }
 
-
+    [Explicit]
     [Test]
     public void TestFolderBackupJobTask_CopyOnlyNewerFiles_RealWorld()
     {
-
         const string sourcePath = @"\\192.168.10.121\data$\Bodoprivate\002_Geschäftsleitung\13. Bewertungen";
         const string targetPath = @"\\192.168.10.121\data$\Privat\003_Finanzen\BodoPrivate";
-
 
         var job = new Job
         {
@@ -181,7 +180,6 @@ public class FolderBackupExecuterTests
             Description = "This backup uses RoboCopy.exe to backup a folder to another folder. Newer files on TargetPath will not be overwritten.",
             Timeout = 120
         };
-
 
         var fb = new FolderBackupJobTask
         {
@@ -203,5 +201,4 @@ public class FolderBackupExecuterTests
         Assert.That(result);
         Assert.That(jh.ErrorItems.Count == 0);
     }
-
 }

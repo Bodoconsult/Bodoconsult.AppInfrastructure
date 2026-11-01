@@ -7,8 +7,8 @@
 	"JobTasks": [
 		{
 			"$type": "JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask, JobExecuter.Dal",
-			"Server": ".\\sqlexpress",
-			"DatabaseName": "MediaDb",
+			"Server": "(localdb)\\MSSQLLocalDB",
+			"DatabaseName": "master",
 			"Title": null,
 			"MailTo": null,
 			"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.htm",

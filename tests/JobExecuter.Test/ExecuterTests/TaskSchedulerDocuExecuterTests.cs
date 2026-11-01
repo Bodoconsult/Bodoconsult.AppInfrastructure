@@ -2,9 +2,11 @@
 
 using System.IO;
 using System.Linq;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
@@ -14,17 +16,18 @@ namespace JobExecuter.Test.ExecuterTests;
 [TestFixture]
 public class TaskSchedulerDocuExecuterTests
 {
+    private readonly string TargetPath = $@"{TestDataHelper.LocalPath}\TaskScheduler";
 
-    private const string TargetPath = @"d:\tmp\TaskScheduler";
-
+    [TearDown]
+    public void CleanUp()
+    {
+        FileSystemHelper.DeleteDirectory(TargetPath);
+    }
 
     [Test]
     public void TestTaskSchedulerDocu_NoFilter()
     {
-        if (Directory.Exists(TargetPath))
-        {
-            Directory.Delete(TargetPath, true);
-        }
+        FileSystemHelper.DeleteDirectory(TargetPath);
 
         var job = new Job
         {
@@ -32,7 +35,6 @@ public class TaskSchedulerDocuExecuterTests
             Description = "",
             Timeout = 120
         };
-
 
         var ts = new TaskSchedulerDocuJobTask
         {
@@ -54,7 +56,6 @@ public class TaskSchedulerDocuExecuterTests
         Assert.That(result);
         Assert.That(jh.ErrorItems.Count == 0);
         Assert.That(new DirectoryInfo(TargetPath).EnumerateFiles().Any());
-
     }
 
 

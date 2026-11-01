@@ -55,12 +55,13 @@ public class JsonHelper
     /// <returns>object of type T or null</returns>
     public static T LoadJsonFromResource<T>(string resourceName)
     {
-        T job;
-
         var ass = Assembly.GetExecutingAssembly();
         var str = ass.GetManifestResourceStream(resourceName);
 
-        if (str == null) return default(T);
+        if (str == null)
+        {
+            return default;
+        }
 
         using var file = new StreamReader(str);
         var serializer = new JsonSerializer
@@ -68,7 +69,7 @@ public class JsonHelper
             TypeNameHandling = TypeNameHandling.All
         };
 
-        job = (T)serializer.Deserialize(file, typeof(T));
+        var job = (T)serializer.Deserialize(file, typeof(T));
 
         return job;
     }

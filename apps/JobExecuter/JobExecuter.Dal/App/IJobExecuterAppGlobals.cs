@@ -29,4 +29,9 @@ public interface IJobExecuterAppGlobals: IAppGlobals
     /// The current SMTP mail account or null if no SMTP mailing is used
     /// </summary>
     SmtpMailAccount SmtpMailAccount { get; set; }
+
+    /// <summary>
+    /// Test SQL server
+    /// </summary>
+    string SqlServerForTests { get; set; }
 }

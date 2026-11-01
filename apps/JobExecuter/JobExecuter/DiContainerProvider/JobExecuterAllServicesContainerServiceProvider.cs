@@ -1,13 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App;
-using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
 using Bodoconsult.App.Factories;
 using Bodoconsult.App.Interfaces;
-using Bodoconsult.Web.Mail.Interfaces;
-using Bodoconsult.Web.Mail.Mailers;
 using JobExecuter.Dal;
 using Microsoft.Extensions.Logging;
 using System.IO;

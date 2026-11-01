@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.Test.Helpers;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
+using JobExecuter.Test.App;
 using NUnit.Framework;
 
 namespace JobExecuter.Test.ExecuterTests;
@@ -29,8 +30,8 @@ public class SqlComplianceSingleDatabaseExecuterTests
         var sms = new SqlComplianceSingleDatabaseJobTask
         {
             Name = "Create and send an email with user access information for a single database",
-            Server = ".\\sqlexpress",
-            DatabaseName = "MediaDB",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "master",
             MailTo = "robert.leisner@bodoconsult.de",
             HtmlTargetFileName = "d:\\tmp\\JobExecuter\\Compliance1.htm",
             PdfTargetFileName = "d:\\tmp\\JobExecuter\\Compliance1.pdf",
@@ -52,6 +53,6 @@ public class SqlComplianceSingleDatabaseExecuterTests
         Assert.That(result);
         Assert.That(jh.ErrorItems.Count == 0);
 
-        TestHelper.OpenFile(sms.PdfTargetFileName);
+        FileSystemHelper.RunInDebugMode(sms.PdfTargetFileName);
     }
 }

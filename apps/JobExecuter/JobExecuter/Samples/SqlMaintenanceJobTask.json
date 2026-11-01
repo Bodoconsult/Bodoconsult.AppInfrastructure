@@ -14,7 +14,7 @@
 			"JsonTargetFileName": null,
 			"FragmentationLevel1": 5,
 			"FragmentationLevel2": 30,
-			"Server": ".\\sqlexpress",
+			"Server": "(localdb)\\MSSQLLocalDB",
 			"Name": "Runs a maintenance job on a SqlServer instance",
 			"Description": null,
 			"ErrorMailReceiver": null,

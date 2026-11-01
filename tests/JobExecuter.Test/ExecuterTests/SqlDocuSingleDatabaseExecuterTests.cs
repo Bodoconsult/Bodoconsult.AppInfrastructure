@@ -1,12 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
-using Bodoconsult.Test.Helpers;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
+using JobExecuter.Test.App;
 
 // ReSharper disable InconsistentNaming
 
@@ -35,8 +36,8 @@ public class SqlDocuSingleDatabaseExecuterTests
         var sd = new SqlDocuSingleDatabaseJobTask
         {
             Name ="Create a documentation for a single database",
-            Server = "192.168.10.125",
-            DatabaseName = "BodoFileTransfer",
+            Server = Globals.Instance.SqlServerForTests,
+            DatabaseName = "Master",
             HtmlTargetFileName = docuFile,
             JsonTargetFileName = jsonFile,
             Timeout = 60
@@ -44,8 +45,8 @@ public class SqlDocuSingleDatabaseExecuterTests
 
         job.JobTasks.Add(sd);    
 
-        if (File.Exists(docuFile)) File.Delete(docuFile);
-        if (File.Exists(jsonFile)) File.Delete(jsonFile);
+        FileSystemHelper.DeleteFile(docuFile);
+        FileSystemHelper.DeleteFile(jsonFile);
 
         var jh = new JobHandler
         {
@@ -60,6 +61,6 @@ public class SqlDocuSingleDatabaseExecuterTests
         Assert.That(jh.ErrorItems.Count == 0);
         Assert.That(File.Exists(docuFile));
 
-        TestHelper.OpenFile(docuFile);
+        FileSystemHelper.RunInDebugMode(docuFile);
     }
 }

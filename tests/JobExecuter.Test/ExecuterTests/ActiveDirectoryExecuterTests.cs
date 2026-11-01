@@ -1,12 +1,12 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.IO;
-using Bodoconsult.Test.Helpers;
+using Bodoconsult.App.Helpers;
 using JobExecuter.Dal;
 using JobExecuter.Dal.JobMailer;
 using JobExecuter.Dal.Model;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
+using System.IO;
 
 namespace JobExecuter.Test.ExecuterTests;
 
@@ -51,7 +51,7 @@ public class ActiveDirectoryExecuterTests
         Assert.That(jh.ErrorItems.Count == 0);
 
 
-        TestHelper.OpenFile(ad.HtmlTargetFileName);
+        FileSystemHelper.RunInDebugMode(ad.HtmlTargetFileName);
     }
 
 }

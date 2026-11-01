@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using DocumentFormat.OpenXml.Wordprocessing;
 using System.Data;
 using System.Text;
 

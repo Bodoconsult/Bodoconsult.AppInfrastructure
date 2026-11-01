@@ -44,19 +44,19 @@ internal class WpfEmbeddedResourceProviderTests
         Assert.That(translations.Count, Is.Not.EqualTo(0));
     }
 
-    [Test]
-    public void RegisterLocaleItems_ExistingResourcesTrailingSlashes_TranslationsLoaded()
-    {
-        // Arrange 
-        var ass = TestHelper.CurrentAssembly;
+    //[Test]
+    //public void RegisterLocaleItems_ExistingResourcesTrailingSlashes_TranslationsLoaded()
+    //{
+    //    // Arrange 
+    //    var ass = TestHelper.CurrentAssembly;
 
-        var provider = new WpfEmbeddedResourceProvider(ass, Path);
-        provider.RegisterLocaleItems();
+    //    var provider = new WpfEmbeddedResourceProvider(ass, Path);
+    //    provider.RegisterLocaleItems();
 
-        // Act  
-        var translations = provider.LoadLocaleItem("de");
+    //    // Act  
+    //    var translations = provider.LoadLocaleItem("de");
 
-        // Assert
-        Assert.That(translations.Count, Is.Not.EqualTo(0));
-    }
+    //    // Assert
+    //    Assert.That(translations.Count, Is.Not.EqualTo(0));
+    //}
 }

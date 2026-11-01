@@ -4,7 +4,6 @@ using System.IO;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.Web.Mail.Helpers;
-using JobExecuter.Dal.App;
 using JobExecuter.Test.Helpers;
 using NUnit.Framework;
 

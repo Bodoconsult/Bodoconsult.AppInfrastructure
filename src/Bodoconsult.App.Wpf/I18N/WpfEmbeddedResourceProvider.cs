@@ -15,9 +15,7 @@ namespace Bodoconsult.App.Wpf.I18N;
 public class WpfEmbeddedResourceProvider : BaseResourceProvider
 {
     private readonly string _resourceFolder;
-
     private readonly Assembly _assembly;
-
 
     /// <summary>
     /// Default ctor
@@ -38,7 +36,6 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
         {
             _resourceFolder = _resourceFolder[..^1];
         }
-
     }
 
     /// <summary>
@@ -46,7 +43,6 @@ public class WpfEmbeddedResourceProvider : BaseResourceProvider
     /// </summary>
     public override void RegisterLocaleItems()
     {
-
         var assName = _assembly.GetName().Name;
 
         var lResourceContainerName = $"{assName}.g";
