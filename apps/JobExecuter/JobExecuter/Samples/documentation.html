@@ -1,55 +1,152 @@
-﻿<!DOCTYPE html SYSTEM "about:blank"><html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><link href="printer.css" rel="stylesheet" type="text/css"></head><body><div id="LeftColumn">&nbsp;</div><div id="MiddleColumn"><div class="page"><h1>JobExecuter.Dal</h1><h2>Dal.App.GlobalValues</h2>
+﻿<!DOCTYPE html SYSTEM "about:blank"><html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><link href="printer.css" rel="stylesheet" type="text/css"></head><body><div id="LeftColumn">&nbsp;</div><div id="MiddleColumn"><div class="page"><h1>JobExecuter.Dal</h1><h2>Dal.App.Globals</h2>
             <p>
-            Application global values
+            App global values
             </p>
-        <h3>Properties</h3><h4>CurrentAppSettings</h4>
+        <h3>Properties</h3><h4>Instance</h4>
             <p>
-            Current app settings
+            Get a singleton instance of 
             </p>
-        <h3>Methods</h3><h4>LoadAppSettings</h4><p>
-            Load app settings from app directory
-            </p><h2>Dal.App.JobExcuterStarter</h2>
+            <dt><strong>Return Value: </strong></dt><dd>
+        - </dd>
+        <h4>EventWaitHandle</h4>
             <p>
-            Console starter for JobExecuter app
+            This event is set if the application is started only as singleton
+            </p>
+        <h4>AppStartParameter</h4>
+            <p>
+            App start parameter
+            </p>
+        <h4>LogDataFactory</h4>
+            <p>
+            Current log data entry factory
+            </p>
+        <h4>LoggingConfig</h4>
+            <p>
+            Current logging config
+            </p>
+        <h4>Logger</h4>
+            <p>
+            Current app logger. Use this instance only if no DI container is available. Nonetheless, use DiContainer.Get&lt;IAppLoggerProxy&gt; to fetch the default app logger from DI container. Don't forget to load it during DI setup!
+            </p>
+        <h4>DiContainer</h4>
+            <p>
+            Current dependency injection (DI) container
+            </p>
+        <h4>HandleFatalExceptionDelegate</h4>
+            <p>
+            Delegate called if a fatale app exception has been raised and a message to the UI has to be sent before app terminates
+            </p>
+        <h4>AppStorageConnectionCheck</h4>
+            <p>
+            Current app storage connection check instance or null
+            </p>
+        <h4>StatusMessageDelegate</h4>
+            <p>
+            Current status message delegate
+            </p>
+        <h4>LicenseMissingDelegate</h4>
+            <p>
+            Current license management delegate
+            </p>
+        <h4>TranslateDelegate</h4>
+            <p>
+            Delegate to handle I18N translations
+            </p>
+        <h4>TranslateWithParamsDelegate</h4>
+            <p>
+            Delegate to handle I18N translations with parameters to fill in translated text
+            </p>
+        <h4>ProductName</h4>
+            <p>
+            Externally registered product name
+            </p>
+        <h4>ProductVersion</h4>
+            <p>
+            Externally registered version
+            </p>
+        <h4>ConfigurationRoot</h4>
+            <p>
+            The current configuration loaded from appsettings.json
+            </p>
+        <h4>CurrentJob</h4>
+            <p>
+            Current job to handle
+            </p>
+        <h4>CjsonFileName</h4>
+            <p>
+            Filename of the crypted JSON file
+            </p>
+        <h4>LogFileName</h4>
+            <p>
+            Name of the logfile
+            </p>
+        <h4>SmtpMailAccount</h4>
+            <p>
+            The current SMTP mail account or null if no SMTP mailing is used
+            </p>
+        <h3>Methods</h3><h4>Dispose</h4><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p><h2>Dal.App.IJobExecuterAppGlobals</h2>
+            <p>
+            App globals adjusted for JobExecuter
+            </p>
+        <h3>Properties</h3><h4>CurrentJob</h4>
+            <p>
+            Current job to handle
+            </p>
+        <h4>CjsonFileName</h4>
+            <p>
+            Filename of the crypted JSON file
+            </p>
+        <h4>LogFileName</h4>
+            <p>
+            Name of the logfile
+            </p>
+        <h4>SmtpMailAccount</h4>
+            <p>
+            The current SMTP mail account or null if no SMTP mailing is used
+            </p>
+        <h2>Dal.App.JobExecuterService</h2>
+            <p>
+            Current implementation of <em>
+      See: T:Bodoconsult.App.Abstractions.Interfaces.IApplicationService</em>
+            </p>
+        <h3>Properties</h3><h4>RequestApplicationStopDelegate</h4>
+            <p>
+            Request application stop delegate
+            </p>
+        <h4>AppGlobals</h4>
+            <p>
+            Current app globals
+            </p>
+        <h4>Offline</h4>
+            <p>
+            Application status offline true / false
+            </p>
+        <h4>LicenseMissingDelegate</h4>
+            <p>
+            Current <em>
+      See: P:Bodoconsult.App.Abstractions.Interfaces.IApplicationService.LicenseMissingDelegate</em>
             </p>
         <h3>Methods</h3><h4>
               Constructor:
-              Dal.App.JobExcuterStarter(System.String[])</h4><p>
+              Dal.App.JobExecuterService(Bodoconsult.App.Abstractions.Interfaces.IAppLoggerProxy, Bodoconsult.App.Abstractions.Interfaces.IAppGlobals)</h4><p>
             Default ctor
-            </p><h5>Parameters</h5><dl><dt><strong>args:
-      </strong></dt><dd>Command line args</dd></dl><h4>LoadPlugIns</h4><p>
-            Load plug ins
-            </p><h4>StartInternal(Bodoconsult.App.Interfaces.IConsoleStarter)</h4><p>
-            Do the requested start action
-            </p><h4>RunJobTask(System.String)</h4><p>
-            Run a job task
-            </p><h5>Parameters</h5><dl><dt><strong>cjsonFile:
-      </strong></dt><dd>Filename of a CJSON file with the job task definition</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>Error code. If 0 job was executed without error</dd>Error code. If 0 job was executed without error</dl><h4>UiCryptJson(System.String)</h4><p>
-            Crypt a JSON file (extension .json) to a crypted JSON file (.cjson)
-            </p><h5>Parameters</h5><dl><dt><strong>jsonFile:
-      </strong></dt><dd>JSON file to crypt</dd></dl><h4>CryptJson(System.String)</h4><p>
-            Crypt a JSON file (extension .json) to a crypted JSON file (.cjson)
-            </p><h5>Parameters</h5><dl><dt><strong>jsonFile:
-      </strong></dt><dd>JSON file to crypt</dd></dl><h4>DecryptJson(System.String)</h4><p>
-            Decrypt a JSON file (extension .json) to a crypted JSON file (.cjson)
-            </p><h5>Parameters</h5><dl><dt><strong>cjsonFile:
-      </strong></dt><dd>JSON file to crypt</dd></dl><h4>ShowHelp</h4><p>
-            Show a help for the program
-            </p><h4>CheckJson(System.String)</h4><p>
-            Check if a JSON file is a valid JobExecuter job
-            </p><h5>Parameters</h5><dl><dt><strong>fileName:
-      </strong></dt><dd>JSON file to check</dd></dl><h4>SendTestMail</h4><p>
-            Send an SMTP test mail
-            </p><h4>SaveCryptedJson``1(``0, System.String, System.String)</h4><p>
-            Save an entity in a crypted JSON file
-            </p><h5>Parameters</h5><dl><dt><strong>entityToStore:
-      </strong></dt><dd>Entity to store</dd><dt><strong>key:
-      </strong></dt><dd>Key</dd><dt><strong>fileName:
-      </strong></dt><dd>Filename to save the crypted JSON string in</dd></dl><h4>LoadCryptedJson``1(System.String, System.String)</h4><p>
-            Load a crypted json file
-            </p><h5>Parameters</h5><dl><dt><strong>key:
-      </strong></dt><dd>Key</dd><dt><strong>cjsonFile:
-      </strong></dt><dd>Fillename of the crypted JSON file</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>Deserialized entity</dd>Deserialized entity</dl><h2>Dal.Enums.CmdBatchRunType</h2>
+            </p><h4>RegisterServices</h4><p>
+            Register required services like GRPC clients etc.
+            </p><h4>StartApplication(System.Nullable{System.Threading.CancellationToken})</h4><p>
+            Start the application
+            </p><h5>Parameters</h5><dl><dt><strong>cancellationToken:
+      </strong></dt><dd>
+        -
+      </dd></dl><h4>Status(System.String)</h4><p>
+            Send a status message
+            </p><h5>Parameters</h5><dl><dt><strong>msg:
+      </strong></dt><dd>Message to send</dd></dl><h4>SuspendApplication</h4><p>
+            Suspend the app
+            </p><h4>RestartApplication</h4><p>
+            Restart the app if it is in suspend state
+            </p><h4>StopApplication</h4><p>
+            Stop the application
+            </p><h2>Dal.Enums.CmdBatchRunType</h2>
             <p>
             Type of how to run a cmd batch from a file or a string
             </p>
@@ -1541,7 +1638,44 @@
             </p>
         <h3>Methods</h3><h4>GetDiskData</h4><p>
             Get disk size from remote computer
-            </p><h2>Dal.Interfaces.IBackupTarget</h2>
+            </p><h2>Dal.IJobHandler</h2>
+            <p>
+            Interface for jonhandling implementations
+            </p>
+        <h3>Properties</h3><h4>Mailers</h4>
+            <p>
+            All <em>
+      See: T:JobExecuter.Dal.Interfaces.IJobMailer</em> objects to send error messages and summary to
+            </p>
+        <h4>ErrorItems</h4>
+            <p>
+            All error items that happened in the current job
+            </p>
+        <h4>CurrentJob</h4>
+            <p>
+            Current job to handle
+            </p>
+        <h3>Methods</h3><h4>RunTask(JobExecuter.Base.Interfaces.IJobTask)</h4><p>
+            Run a single <em>
+      See: T:JobExecuter.Base.Interfaces.IJobTask</em>
+            </p><h5>Parameters</h5><dl><dt><strong>jobTask:
+      </strong></dt><dd>
+        -
+      </dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>SaveJob(System.String)</h4><p>
+            Save current job as JSON to a file 
+            </p><h5>Parameters</h5><dl><dt><strong>fileName:
+      </strong></dt><dd>Path for the JSON file to save</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>LoadJob(JobExecuter.Base.Interfaces.IJob, System.String)</h4><p>
+            Load current job from JSON file 
+            </p><h5>Parameters</h5><dl><dt><strong>job:
+      </strong></dt><dd>Job to run</dd><dt><strong>jsonJobFile:
+      </strong></dt><dd>Filename of the CJSON file</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>RunJob</h4><p>
+            Run the current job
+            </p><dl><dt><strong>Return Value: </strong></dt><dd>true if no job task caused an error</dd>true if no job task caused an error</dl><h4>SetJobJsonFileName(System.String)</h4><p>
+            Only for testing purposes: set JobJson file name (without loading the file)
+            </p><h5>Parameters</h5><dl><dt><strong>jobJson:
+      </strong></dt><dd>
+        -
+      </dd></dl><h2>Dal.Interfaces.IBackupTarget</h2>
             <p>
             Interface for backup targets. A backup target is a system of backups of a source keeping backups of the source from different timepoints
             </p>
@@ -1646,7 +1780,7 @@
       </strong></dt><dd>objects for formatting message</dd></dl><h4>SaveJob(System.String)</h4><p>
             Save current job as JSON to a file 
             </p><h5>Parameters</h5><dl><dt><strong>fileName:
-      </strong></dt><dd>Path for the JSON file to save</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>LoadJob(JobExecuter.Dal.Model.Job, System.String)</h4><p>
+      </strong></dt><dd>Path for the JSON file to save</dd></dl><dl><dt><strong>Return Value: </strong></dt><dd>true on success</dd>true on success</dl><h4>LoadJob(JobExecuter.Base.Interfaces.IJob, System.String)</h4><p>
             Load current job from JSON file 
             </p><h5>Parameters</h5><dl><dt><strong>job:
       </strong></dt><dd>Job to run</dd><dt><strong>jsonJobFile:
@@ -1661,7 +1795,7 @@
             Send error mails for single task errors
             </p><h4>SendErrorMail</h4><p>
             Send an error mail to job error mail receivers
-            </p><h4>GetErrorMessage(Bodoconsult.Text.Interfaces.IStructuredText, Bodoconsult.Text.Enums.TextItemType)</h4><p>
+            </p><h4>GetErrorMessage(Bodoconsult.Text.Model.StructuredText, Bodoconsult.Text.Enums.TextItemType)</h4><p>
             Format all error messages
             </p><h5>Parameters</h5><dl><dt><strong>sr:
       </strong></dt><dd>Error messages</dd><dt><strong>headerLevel:
@@ -1718,7 +1852,12 @@
             <p>
             Full path of the log file
             </p>
-        <h3>Methods</h3><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
+        <h3>Methods</h3><h4>
+              Constructor:
+              Dal.JobMailer.FileJobMailer(Bodoconsult.App.Abstractions.Interfaces.IAppGlobals)</h4><p>
+            Default ctor
+            </p><h5>Parameters</h5><dl><dt><strong>appGlobals:
+      </strong></dt><dd>Current app globals</dd></dl><h4>SendMail(System.String, System.String, Bodoconsult.Text.Interfaces.IStructuredText, System.Boolean)</h4><p>
             Send a mail 
             </p><h5>Parameters</h5><dl><dt><strong>mailTo:
       </strong></dt><dd>receiver of the mail</dd><dt><strong>subject:
@@ -1792,19 +1931,7 @@
             </p>
             <p>Work only for single domain networks. Domain forest are not supported. Delivers a report over the structure of the AD with Organizational Units (OU),  users, groups and computers.</p>
             <h5>Example</h5><code class="prettyprint linenums lang-cs"><br>            {<br>&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.Job, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;"Name": "Sample job for ActiveDirectoryJobTask",<br>&nbsp;&nbsp;&nbsp;"Description": "This job contains one or more sample JobTasks for class JobExecuter.Dal.Model.ActiveDirectoryJobTask",<br>&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": "errorreceiver1@test.xxx;errorreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"SummaryMailReceiver": "summaryreceiver1@test.xxx;summaryreceiver2@test.xxx",<br>&nbsp;&nbsp;&nbsp;"JobTasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"$type": "JobExecuter.Dal.Model.ActiveDirectoryJobTask, JobExecuter.Dal",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MailTo": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"HtmlTargetFileName": "C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ActiveDirectory.htm",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PdfTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"JsonTargetFileName": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Report Active Directory",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "Report the current domain's Active Directory structure with organisation units (OU), users, groups and computers.",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ErrorMailReceiver": null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Timeout": 30<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;"Timeout": 500,<br>&nbsp;&nbsp;&nbsp;"WriteToEventLog": true<br>}<br>             </code>
-        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.AppSettings</h2>
-            <p>
-            Application settings
-            </p>
-        <h3>Properties</h3><h4>JobSalt</h4>
-            <p>
-            Job salt
-            </p>
-        <h4>JobPassword</h4>
-            <p>
-            Job password
-            </p>
-        <h2>Dal.Model.BackupBatchJobTask</h2>
+        <h3>Methods</h3><h4>GetFactory</h4><h2>Dal.Model.BackupBatchJobTask</h2>
             <p>
             Task to run a backup of the file system.  
             </p>

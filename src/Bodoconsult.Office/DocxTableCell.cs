@@ -17,5 +17,5 @@ public class DocxTableCell
     /// <summary>
     /// Style ID to use for the cell paragraphs
     /// </summary>
-    public string StyleId { get; set; }
+    public string? StyleId { get; set; }
 }

@@ -87,7 +87,7 @@ public static class OpenXmlHelper
 
         // Insert some text into the body, this would cause Schema Error
         using var wordprocessingDocument = WordprocessingDocument.Open(filepath, true);
-        if (wordprocessingDocument.MainDocumentPart is null || wordprocessingDocument.MainDocumentPart.Document.Body is null)
+        if (wordprocessingDocument.MainDocumentPart is null || wordprocessingDocument.MainDocumentPart.Document?.Body is null)
         {
             throw new ArgumentNullException(nameof(wordprocessingDocument.MainDocumentPart));
         }

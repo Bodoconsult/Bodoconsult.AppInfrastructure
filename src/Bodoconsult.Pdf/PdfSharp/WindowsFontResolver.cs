@@ -11,8 +11,9 @@ using PdfSharp.Fonts;
 namespace Bodoconsult.Pdf.PdfSharp;
 
 /// <summary>
-/// An implementation of <see cref="IFontResolver"/> working on MS Windows operating systems
+/// An implementation of <see cref="IFontResolver"/> working on MS Windows operating systems 
 /// </summary>
+/// <remarks> See https://docs.pdfsharp.net/PDFsharp/Topics/Fonts/Font-Embedding.html for more information</remarks>
 [SupportedOSPlatform("windows")]
 public class WindowsFontResolver : IFontResolver
 {
@@ -66,7 +67,6 @@ public class WindowsFontResolver : IFontResolver
 
         localMachineKey.Close();
         localMachineKeySub.Close();
-
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public class WindowsFontResolver : IFontResolver
 
         if (!fonts.Any())
         {
-            return new FontResolverInfo("Aptos");
+            return new FontResolverInfo("Arial");
         }
 
 
@@ -127,7 +127,7 @@ public class WindowsFontResolver : IFontResolver
 
         key = $"{name}";
         success = InstalledFonts.TryGetValue(key, out _);
-        return success ? new FontResolverInfo(key) : new FontResolverInfo("Aptos");
+        return success ? new FontResolverInfo(key) : new FontResolverInfo("Arial");
     }
 
     /// <summary>

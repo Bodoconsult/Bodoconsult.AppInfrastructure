@@ -22,3 +22,5 @@ NOT intended for public use
 # 1.0.11
 
 -   Better PDB handling
+
+-   Changed to nullable project type

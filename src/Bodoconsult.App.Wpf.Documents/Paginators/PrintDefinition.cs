@@ -29,9 +29,9 @@
 //            ImageTemplate = "<Figure CanDelayPlacement=\"false\" HorizontalAnchor=\"ColumnCenter\"><BlockUIContainer><Image Source=\"{0}\" MaxHeight=\"{2}\" MaxWidth=\"{3}\"/></BlockUIContainer>{1}</Figure>";
 //            CurrentLanguage = "de";
 
-//            HeaderFontName = "Aptos";
+//            HeaderFontName = "Arial";
 //            HeaderFontSize = 10.0;
-//            FooterFontName = "Aptos";
+//            FooterFontName = "Arial";
 //            FooterFontSize = 10.0;
 //            LogoWidth = 113;
 //        }

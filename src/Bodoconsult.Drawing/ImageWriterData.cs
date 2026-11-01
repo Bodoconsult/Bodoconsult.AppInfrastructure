@@ -15,13 +15,13 @@ public class ImageWriterData
     public ImageWriterData()
     {
         FontSize = 12;
-        FontName = "Aptos";
+        FontName = "Arial";
         FontStyle = 0;
         TextColor = Color.Black;
     }
 
     /// <summary>
-    /// Name of the font to use, i.e. "Aptos", "Times New Roman", ...
+    /// Name of the font to use, i.e. "Arial", "Times New Roman", ...
     /// </summary>
     public string FontName { get; set; }
 

@@ -20,7 +20,7 @@ public interface ITypoParagraphStyle
     /// <summary>
     /// Font color
     /// </summary>
-    TypoColor TypoFontColor { get; }
+    TypoColor? TypoFontColor { get; }
 
     /// <summary>
     /// Bold
@@ -95,5 +95,5 @@ public interface ITypoParagraphStyle
     /// <summary>
     /// Background shading
     /// </summary>
-    TypoColor TypoShading { get; }
+    TypoColor? TypoShading { get; }
 }

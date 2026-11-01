@@ -226,7 +226,7 @@ public class TypoColor: IEquatable<TypoColor>
     /// <param name="lhs">Range 1</param>
     /// <param name="rhs">Range 2</param>
     /// <returns>True if both ranges are equal</returns>
-    public static bool operator ==(TypoColor lhs, TypoColor rhs) => lhs.Equals(rhs);
+    public static bool operator ==(TypoColor lhs, TypoColor rhs) =>  lhs?.Equals(rhs) ?? false;
 
     /// <summary>
     /// Not equal operator
@@ -234,5 +234,5 @@ public class TypoColor: IEquatable<TypoColor>
     /// <param name="lhs">Range 1</param>
     /// <param name="rhs">Range 2</param>
     /// <returns>True if both ranges are not equal</returns>
-    public static bool operator !=(TypoColor lhs, TypoColor rhs) => !lhs.Equals(rhs);
+    public static bool operator !=(TypoColor lhs, TypoColor rhs) => !(lhs?.Equals(rhs) ?? false);
 }

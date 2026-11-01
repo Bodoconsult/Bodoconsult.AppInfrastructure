@@ -60,47 +60,47 @@ public class DocxBuilder : IDisposable
     /// <summary>
     /// DOCX document
     /// </summary>
-    public WordprocessingDocument Docx { get; private set; }
+    public WordprocessingDocument? Docx { get; private set; }
 
     /// <summary>
     /// Main part of the document
     /// </summary>
-    public MainDocumentPart MainDocumentPart { get; private set; }
+    public MainDocumentPart? MainDocumentPart { get; private set; }
 
     /// <summary>
     /// Current document settings part
     /// </summary>
-    public DocumentSettingsPart Settings { get; private set; }
+    public DocumentSettingsPart? Settings { get; private set; }
 
     /// <summary>
     /// Style definition part
     /// </summary>
-    public StyleDefinitionsPart StyleDefinitionsPart { get; private set; }
+    public StyleDefinitionsPart? StyleDefinitionsPart { get; private set; }
 
     /// <summary>
     /// Current numbering definition part
     /// </summary>
-    public NumberingDefinitionsPart NumberingDefinitionsPart { get; private set; }
+    public NumberingDefinitionsPart? NumberingDefinitionsPart { get; private set; }
 
     /// <summary>
     /// Current styles in the document
     /// </summary>
-    public Styles Styles { get; private set; }
+    public Styles? Styles { get; private set; }
 
     /// <summary>
     /// Body of the document
     /// </summary>
-    public Body Body { get; private set; }
+    public Body? Body { get; private set; }
 
     /// <summary>
     /// Document meta data
     /// </summary>
-    public ITypoMetaData DocumentMetaData { get; }
+    public ITypoMetaData? DocumentMetaData { get; }
 
     /// <summary>
     /// Memory stream representing the document. Is only set if <see cref="CreateDocument()"/> was used to create the document
     /// </summary>
-    public MemoryStream MemoryStream { get; private set; }
+    public MemoryStream? MemoryStream { get; private set; }
 
     /// <summary>
     /// All sections in the document
@@ -110,12 +110,12 @@ public class DocxBuilder : IDisposable
     /// <summary>
     /// Current section in the document
     /// </summary>
-    public SectionProperties CurrentSection { get; private set; }
+    public SectionProperties? CurrentSection { get; private set; }
 
     /// <summary>
-    /// The style to use for the watermark. Default: font-family:\"Aptos\";font-size:medium
+    /// The style to use for the watermark. Default: font-family:\"Arial\";font-size:medium
     /// </summary>
-    public string WatermarkStyle { get; set; } = "font-family:\"Aptos\";font-size:medium";
+    public string WatermarkStyle { get; set; } = "font-family:\"Arial\";font-size:medium";
 
     /// <summary>
     /// Fill color for a watermark. Default: TypoColors.LightGray
@@ -148,6 +148,8 @@ public class DocxBuilder : IDisposable
     /// <param name="filePath">Full file path to save the document in</param>
     public void SaveDocument(string filePath)
     {
+        ArgumentNullException.ThrowIfNull(Docx);
+
         if (DocumentMetaData != null)
         {
             var bProps = Docx.PackageProperties;
@@ -196,6 +198,9 @@ public class DocxBuilder : IDisposable
 
     private void LoadBaseData()
     {
+        ArgumentNullException.ThrowIfNull(Docx);
+        ArgumentNullException.ThrowIfNull(DocumentMetaData);
+
         // Assign a reference to the existing document body.
         MainDocumentPart = Docx.MainDocumentPart ?? Docx.AddMainDocumentPart();
         MainDocumentPart.Document ??= new Document();
@@ -236,11 +241,11 @@ public class DocxBuilder : IDisposable
         AddBulletedNumbering(NumberFormatValues.Bullet, "•");
         AddBulletedNumbering(NumberFormatValues.Bullet, "-");
 
-        AddBulletedNumbering(NumberFormatValues.Decimal, null);
-        AddBulletedNumbering(NumberFormatValues.LowerRoman, null);
-        AddBulletedNumbering(NumberFormatValues.UpperRoman, null);
-        AddBulletedNumbering(NumberFormatValues.LowerLetter, null);
-        AddBulletedNumbering(NumberFormatValues.UpperLetter, null);
+        AddBulletedNumbering(NumberFormatValues.Decimal, string.Empty);
+        AddBulletedNumbering(NumberFormatValues.LowerRoman, string.Empty);
+        AddBulletedNumbering(NumberFormatValues.UpperRoman, string.Empty);
+        AddBulletedNumbering(NumberFormatValues.LowerLetter, string.Empty);
+        AddBulletedNumbering(NumberFormatValues.UpperLetter, string.Empty);
 
         //Numbering element =
         //    new Numbering(
@@ -279,6 +284,12 @@ public class DocxBuilder : IDisposable
         {
             var fi = new FileInfo(DocumentMetaData.BackgroundImagePath);
             var ip = AddImagePart(MainDocumentPart, DocumentMetaData.BackgroundImagePath, fi.Extension);
+
+            if (ip is null)
+            {
+                return;
+            }
+
             var id = MainDocumentPart.GetIdOfPart(ip);
 
             var docBg = new DocumentBackground
@@ -315,6 +326,9 @@ public class DocxBuilder : IDisposable
         // https://stackoverflow.com/questions/1940911/openxml-2-sdk-word-document-create-bulleted-list-programmatically
 
         // https://stackoverflow.com/questions/59093861/how-do-you-create-multi-level-ordered-lists-with-open-xml-in-asp-net
+
+        ArgumentNullException.ThrowIfNull(NumberingDefinitionsPart);
+        ArgumentNullException.ThrowIfNull(NumberingDefinitionsPart.Numbering);
 
         // Insert an AbstractNum into the numbering part numbering list. The order seems to matter or it will not pass the 
         // Open XML SDK Productity Tools validation test.  AbstractNum comes first and then NumberingInstance and we want to
@@ -396,6 +410,10 @@ public class DocxBuilder : IDisposable
     public void AddHeaderToCurrentSection(double position,
         PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
+        ArgumentNullException.ThrowIfNull(DocumentMetaData);
+        ArgumentNullException.ThrowIfNull(CurrentSection);
+        ArgumentNullException.ThrowIfNull(MainDocumentPart);
+
         if (string.IsNullOrEmpty(DocumentMetaData.HeaderTemplate))
         {
             return;
@@ -617,6 +635,10 @@ public class DocxBuilder : IDisposable
     public void AddFooterToCurrentSection(double position,
         PageNumberFormatEnum pageNumberFormat = PageNumberFormatEnum.Decimal)
     {
+        ArgumentNullException.ThrowIfNull(CurrentSection);
+        ArgumentNullException.ThrowIfNull(MainDocumentPart);
+        ArgumentNullException.ThrowIfNull(DocumentMetaData);
+
 
         if (!_footerParts.TryGetValue(CurrentSection, out var footerPart))
         {
@@ -666,6 +688,8 @@ public class DocxBuilder : IDisposable
     /// <returns>OpenXML Style</returns>
     public Style AddNewStyle(string styleid, string stylename, StyleRunProperties styleRunProperties, int uiPriority)
     {
+        ArgumentNullException.ThrowIfNull(Styles);
+
         // Create a new paragraph style and specify some of the properties.
         var style = new Style
         {
@@ -693,6 +717,8 @@ public class DocxBuilder : IDisposable
     /// <returns>OpenXML Style</returns>
     public Style AddNewStyle(string styleid, string stylename, ITypoParagraphStyle typoStyle, int uiPriority)
     {
+        ArgumentNullException.ThrowIfNull(Styles);
+
         Debug.Print($"{styleid}: Alignment {typoStyle.TextAlignment}");
         Debug.Print($"{styleid}: Bold {typoStyle.Bold}");
         Debug.Print(
@@ -820,7 +846,7 @@ public class DocxBuilder : IDisposable
         pPr.Append(widowControl);
 
         // Shading
-        if (typoStyle.TypoShading != null)
+        if (typoStyle.TypoShading is not null)
         {
             var shading = new Shading
             {
@@ -1106,6 +1132,8 @@ public class DocxBuilder : IDisposable
     /// <param name="height">Height in pixels</param>
     public Paragraph AddImage(string path, string styleName, int width, int height)
     {
+        ArgumentNullException.ThrowIfNull(MainDocumentPart);
+
         var para = CreateBaseParagraph(styleName);
 
         //para.ParagraphProperties?.AddChild(new Justification { Val = JustificationValues.Center });
@@ -1128,7 +1156,7 @@ public class DocxBuilder : IDisposable
     /// <param name="prefix">Prefix to separate header / footer images</param>
     /// <returns>Run with the image</returns>
     public static Run CreateImageRun(OpenXmlPart mainDocumentPart, string path, int width, int height, int imageCounter,
-        string prefix = null)
+        string? prefix = null)
     {
         Debug.Print($"Image {imageCounter}");
 
@@ -1149,6 +1177,9 @@ public class DocxBuilder : IDisposable
         var ext = fi.Extension.ToLowerInvariant();
 
         var ip = AddImagePart(mainDocumentPart, path, ext);
+
+        ArgumentNullException.ThrowIfNull(ip);
+
         var relationshipId = mainDocumentPart.GetIdOfPart(ip);
 
         var inline = new DW.Inline(
@@ -1227,6 +1258,8 @@ public class DocxBuilder : IDisposable
 
     private Paragraph CreateBaseParagraph(string styleName)
     {
+        ArgumentNullException.ThrowIfNull(Body);
+
         var para = Body.AppendChild(new Paragraph());
 
         // If the paragraph has no ParagraphProperties object, create one.
@@ -1247,7 +1280,7 @@ public class DocxBuilder : IDisposable
         return para;
     }
 
-    private static ImagePart AddImagePart(OpenXmlPart docPart, string path, string ext)
+    private static ImagePart? AddImagePart(OpenXmlPart docPart, string path, string ext)
     {
         var imageType = ext switch
         {
@@ -1303,6 +1336,10 @@ public class DocxBuilder : IDisposable
         bool restartPageNumbering = false)
     {
 
+        ArgumentNullException.ThrowIfNull(Body);
+        ArgumentNullException.ThrowIfNull(DocumentMetaData);
+        ArgumentNullException.ThrowIfNull(MainDocumentPart);
+
         if (CurrentSection != null)
         {
             var p = Body.Descendants<Paragraph>().LastOrDefault();
@@ -1318,7 +1355,6 @@ public class DocxBuilder : IDisposable
                 pPr.Append(CurrentSection);
             }
         }
-
 
         var section = new SectionProperties();
         _pageStyles.Add(section, pageStyle);
@@ -1685,6 +1721,8 @@ public class DocxBuilder : IDisposable
 
     private void CreateListItem(List<OpenXmlElement> items, string paragraphPropertiesXml)
     {
+        ArgumentNullException.ThrowIfNull(Body);
+
         var p1 = new Paragraph
         {
             ParagraphProperties = new ParagraphProperties(paragraphPropertiesXml)
@@ -1704,8 +1742,10 @@ public class DocxBuilder : IDisposable
     /// <param name="rows">List of rows</param>
     /// <param name="typoTableStyle">Style to use for the table</param>
     /// <param name="bookmark">Name of an empty bookmark to add</param>
-    public void AddTable(List<DocxTableRow> rows, ITypoTableStyle typoTableStyle, string bookmark)
+    public void AddTable(List<DocxTableRow> rows, ITypoTableStyle typoTableStyle, string? bookmark)
     {
+        ArgumentNullException.ThrowIfNull(Body);
+
         var table = new Table();
 
         // Create a TableProperties object and specify its border information.
@@ -1937,6 +1977,8 @@ public class DocxBuilder : IDisposable
     /// <param name="itemsWidth">Width of the items column in cm</param>
     public void AddDefinitionList(List<DocxDefinitionListRow> rows, double termWidth, double itemsWidth)
     {
+        ArgumentNullException.ThrowIfNull(Body);
+
         var table = new Table();
 
         var leftColWidth = (double)MeasurementHelper.GetDxaFromCm(termWidth);
@@ -2107,6 +2149,8 @@ public class DocxBuilder : IDisposable
     /// </summary>
     public void AddWatermark()
     {
+        ArgumentNullException.ThrowIfNull(DocumentMetaData);
+
         var id = 0;
 
         foreach (var kvp in _headerParts)

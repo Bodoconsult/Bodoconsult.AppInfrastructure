@@ -4,7 +4,7 @@
 <x:fonts>
   <x:font>
     <x:sz val="11" />
-    <x:name val="Aptos" />
+    <x:name val="Arial" />
   </x:font>
 </x:fonts>
 <x:fills>

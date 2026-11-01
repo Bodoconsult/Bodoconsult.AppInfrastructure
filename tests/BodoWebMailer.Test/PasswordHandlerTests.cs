@@ -2,6 +2,7 @@
 
 using System.Diagnostics;
 using Bodoconsult.App.DataProtection;
+using BodoWebMailer.Business.Helpers;
 using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
@@ -11,10 +12,10 @@ namespace BodoWebMailer.Test;
 [TestFixture]
 public class PasswordHandlerTests
 {
-    //public PasswordHandlerTests()
-    //{
-    //    DataHelper.LoadPasswordData();
-    //}
+    public PasswordHandlerTests()
+    {
+        AppHelper.LoadPasswordData();
+    }
 
     [Test]
     public void Decrypt_ValidPassword_PasswordDecrypted()

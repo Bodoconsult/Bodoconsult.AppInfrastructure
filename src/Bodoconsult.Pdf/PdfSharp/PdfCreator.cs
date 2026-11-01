@@ -39,7 +39,7 @@ public class PdfCreator : PdfBuilderBase
         // Because all styles are derived from Normal, the next line changes the 
         // font of the whole document. Or, more exactly, it changes the font of
         // all styles and paragraphs that do not redefine the font.
-        style.Font.Name = "Aptos";
+        style.Font.Name = "Arial";
         style.Font.Size = 11;
     }
 

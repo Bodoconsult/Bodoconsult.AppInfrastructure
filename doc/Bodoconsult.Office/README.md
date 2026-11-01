@@ -145,7 +145,7 @@ public void RealWorld_MultipleSectionsWithPageNumbering_DocxCreated()
     var style = new DemoStyle
     {
         TypoFontColor = TypoColors.Cyan,
-        FontName = "Aptos Black",
+        FontName = "Arial Black",
         FontSize = 20,
         Bold = true,
         Italic = true,

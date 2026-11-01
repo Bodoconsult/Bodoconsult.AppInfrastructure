@@ -24,7 +24,7 @@ public class XlsxLateBindingBuilderTests
         excel.NewWorkbook();
         //if (e.ErrorCode != 0) return;
 
-        //excel.NewSheet("Daten");
+        excel.NewSheet("Daten");
         excel.SelectSheetFirst("TransactionData");
         excel.Header("Test");
         excel.NumberFormat = "#,##0.000000";

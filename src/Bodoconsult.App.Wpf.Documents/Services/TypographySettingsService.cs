@@ -25,7 +25,7 @@ public class TypographySettingsService: BasePageSettingsService
     /// </summary>
     public TypographySettingsService()
     {
-        Typography = new CompactTypographyPageHeader("Aptos", "Aptos", "Aptos");
+        Typography = new CompactTypographyPageHeader("Arial", "Arial", "Arial");
         LoadTypography();
     }
 
@@ -452,7 +452,7 @@ public class TypographySettingsService: BasePageSettingsService
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            Typography = new ElegantTypographyPageHeader("Aptos", "Aptos", "Aptos");
+            Typography = new ElegantTypographyPageHeader("Arial", "Arial", "Arial");
             LoadTypography();
         });
 
@@ -466,7 +466,7 @@ public class TypographySettingsService: BasePageSettingsService
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            Typography = new CompactTypographyPageHeader("Aptos", "Aptos", "Aptos");
+            Typography = new CompactTypographyPageHeader("Arial", "Arial", "Arial");
             LoadTypography();
         });
 

@@ -14,7 +14,7 @@ public static class GlobalValues
     /// <returns></returns>
     public static ITypography DefaultTypography()
     {
-        var typography = new ElegantTypographyPageHeader("Aptos", "Aptos", "Aptos")
+        var typography = new ElegantTypographyPageHeader("Arial", "Arial", "Arial")
         {
             ChartStyle =
             {

@@ -1,15 +1,19 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Versioning;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.Pdf.Extensions;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Test.Helpers;
 using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
 using NUnit.Framework;
+using PdfSharp;
+using PdfSharp.Pdf;
+using PdfSharp.Quality;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Versioning;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;
 
 namespace Bodoconsult.Pdf.Test;
@@ -18,6 +22,96 @@ namespace Bodoconsult.Pdf.Test;
 [TestFixture]
 public class PdfBuilderTests
 {
+    [Test]
+    public void RenderDocument_RawMigradoc_PdfRendered()
+    {
+        // Set AGPL license.
+        PdfSharpLicense.SetAgplLicense();
+#if CORE
+            // Core build does not use Windows fonts,
+            // so set a FontResolver that handles the fonts our samples need.
+            GlobalFontSettings.FontResolver = new SamplesFontResolver();
+#endif
+
+        // Create a MigraDoc document.
+        var document = CreateDocument();
+
+        // Create a renderer for the MigraDoc document.
+        var pdfRenderer = new PdfDocumentRenderer
+        {
+            // Associate the MigraDoc document with a renderer.
+            Document = document,
+            PdfDocument =
+            {
+                // Change some settings before rendering the MigraDoc document.
+                PageLayout = PdfPageLayout.SinglePage,
+                ViewerPreferences =
+                {
+                    FitWindow = true
+                }
+            }
+        };
+        pdfRenderer.PdfDocument.Options.CompressContentStreams = true;
+
+        // Layout and render document to PDF.
+        pdfRenderer.RenderDocument();
+
+        // Save the document...
+        var filename = PdfFileUtility.GetTempPdfFullFileName("samples-MigraDoc/HelloMigraDoc.pdf");
+        pdfRenderer.PdfDocument.Save(filename);
+
+        // ...and start a viewer.
+        FileSystemHelper.RunInDebugMode(filename);
+    }
+
+    public static Document CreateDocument()
+    {
+        // Create a new MigraDoc document.
+        var document = new Document
+        {
+            Info =
+                {
+                    Title = "Hello, MigraDoc",
+                    Subject = "Demonstrates an excerpt of the capabilities of MigraDoc.",
+                    Author = "Stefan Lange"
+                }
+        };
+
+        DefineContentSection(document);
+
+        return document;
+    }
+
+    /// <summary>
+    /// Defines page setup, headers, and footers.
+    /// </summary>
+    static void DefineContentSection(Document document)
+    {
+        var section = document.AddSection();
+        section.PageSetup.OddAndEvenPagesHeaderFooter = true;
+        section.PageSetup.StartingNumber = 1;
+
+        // For the odd page header, add a paragraph with right aligned text due to the given tab.
+        // See definition of style StyleNames.Header.
+        var header = section.Headers.Primary;
+        header.AddParagraph("\tOdd Page Header");
+
+        // For the even page header, add a paragraph with left aligned text due to the missing tab.
+        // See definition of style StyleNames.Header.
+        header = section.Headers.EvenPage;
+        header.AddParagraph("Even Page Header");
+
+        // Create a paragraph with centered page number. See definition of style StyleNames.Footer.
+        var paragraph = new Paragraph();
+        paragraph.AddTab();
+        paragraph.AddPageField();
+
+        // Add paragraph to footer for odd pages.
+        section.Footers.Primary.Add(paragraph);
+        // Add clone of paragraph to footer for even pages. Cloning is necessary because an object must
+        // not belong to more than one other object. If you forget cloning an exception is thrown.
+        section.Footers.EvenPage.Add(paragraph.Clone());
+    }
 
     [Test]
     public void TestPdfCreatorWithDefaultStyleSheet()
@@ -46,7 +140,6 @@ public class PdfBuilderTests
         CreateFile(fileName2);
     }
 
-
     private void CreateFile(string fileName, bool landscape = false)
     {
         var code = ResourceHelper.GetTextResource("code1.txt").Replace("\\t", "\t");
@@ -56,10 +149,7 @@ public class PdfBuilderTests
         var pdfLargeTable = DataHelper.GetLargeDataTable().ToPdfTable();
         var pdfLargeTableWithCss = DataHelper.GetLargeDataTableWithCssInfo().ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors);
 
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
-        }
+        FileSystemHelper.DeleteFile(fileName);
 
         var styleset = new DefaultStyleSet();
         styleset.CreatePageSetup();
@@ -247,12 +337,12 @@ public class PdfBuilderTests
         var width = ps.PageWidth.Point - ps.TopMargin.Point - ps.BottomMargin.Point;
 
         var style = styleSet.Normal;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 9;
 
         // Spezielles Format für Tabellenbasis (nicht ändern!)
         style = styleSet.NormalTable;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.ParagraphFormat.SpaceBefore = 0;
         style.ParagraphFormat.SpaceAfter = 0;
@@ -260,7 +350,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Heading1;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 12;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.PageBreakBefore = true;
@@ -271,7 +361,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Title;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 16;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 9;
@@ -279,7 +369,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.NoHeading1;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 2;
@@ -291,7 +381,7 @@ public class PdfBuilderTests
 
 
         style = styleSet.ChartTitle;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 10;
         style.Font.Bold = true;
         style.Font.Color = Colors.Black;
@@ -300,12 +390,12 @@ public class PdfBuilderTests
         style.ParagraphFormat.SpaceAfter = 3;
 
         style = styleSet.ChartYLabel;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
 
         style = styleSet.Toc1;
-        style.Font.Name = "Aptos";
+        style.Font.Name = "Arial";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceBefore = 3;
@@ -319,7 +409,7 @@ public class PdfBuilderTests
 
 
         style = styleSet.TocHeading;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 12;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 3;
@@ -328,7 +418,7 @@ public class PdfBuilderTests
 
         // Kopfzeile
         style = styleSet.Header;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.Alignment = ParagraphAlignment.Right;
@@ -339,7 +429,7 @@ public class PdfBuilderTests
 
 
         style = styleSet.Details;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 6;
@@ -349,7 +439,7 @@ public class PdfBuilderTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Footer;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.Alignment = ParagraphAlignment.Left;

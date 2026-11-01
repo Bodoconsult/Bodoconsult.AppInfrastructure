@@ -1,12 +1,12 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System.Data;
-using System.Globalization;
-using System.Text;
 using Bodoconsult.Office.Interfaces;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.Data;
+using System.Globalization;
+using System.Text;
 
 // ReSharper disable PossiblyMistakenUseOfParamsMethod
 
@@ -17,21 +17,21 @@ namespace Bodoconsult.Office;
 /// </summary>
 public class XlsxBuilder
 {
-    private SpreadsheetDocument _wb;
-    private WorkbookPart _wp;
-    private WorksheetPart _wsp;
-    private Worksheet _ws;
-    private SheetData _sd;
-    private Columns _columns;
+    private SpreadsheetDocument? _wb;
+    private WorkbookPart? _wp;
+    private WorksheetPart? _wsp;
+    private Worksheet? _ws;
+    private SheetData? _sd;
+    private Columns? _columns;
 
-    private Cell _range;
+    private Cell? _range;
 
     #region Caching variables
 
     private uint _cacheRowId;
     private uint _cacheColumnId;
-    private Row _cacheRow;
-    private Cell _cacheCell;
+    private Row? _cacheRow;
+    private Cell? _cacheCell;
 
     #endregion
 
@@ -42,7 +42,6 @@ public class XlsxBuilder
     /// </summary>
     public XlsxBuilder()
     {
-
         _decimalSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         NumberFormatDouble = "#,##0.00";
         NumberFormatInteger = "#,##0";
@@ -70,12 +69,12 @@ public class XlsxBuilder
     /// <summary>
     /// Delegate for sending status message to UI
     /// </summary>
-    public StatusHandlerDelegate Status { get; set; }
+    public StatusHandlerDelegate? Status { get; set; }
 
     /// <summary>
     /// Delegate for sending error message to UI
     /// </summary>
-    public ErrorHandlerDelegate Error { get; set; }
+    public ErrorHandlerDelegate? Error { get; set; }
 
     /// <summary>
     /// Current style
@@ -197,34 +196,36 @@ public class XlsxBuilder
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_wp);
+        ArgumentNullException.ThrowIfNull(_wp.Workbook);
+
         //try
         //{
 
         var name = string.Empty;
 
         //Get the first worksheet.
-        foreach (var x in from Sheet x in _wp.Workbook.Sheets where x.SheetId == index select x)
+        foreach (var x in from Sheet x in _wp.Workbook.Sheets where (x.SheetId ?? 0) == index select x)
         {
             name = x.Id;
             break;
         }
+
+        ArgumentNullException.ThrowIfNull(name);
 
         _wsp = (WorksheetPart)_wp.GetPartById(name);
 
         //_wsp = GetWorksheetPartByName(name);
         _ws = _wsp.Worksheet;
 
+        ArgumentNullException.ThrowIfNull(_ws);
+
         _sd = _ws.GetFirstChild<SheetData>();
-
-
 
 
         //// Check if the column collection exists
         //_columns = _ws.Elements<Columns>().FirstOrDefault() ??
         //              _ws.InsertAt(new Columns(), 0);
-
-
-
 
         //}
         //catch (Exception ex)
@@ -264,6 +265,8 @@ public class XlsxBuilder
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_wp?.Workbook);
+
         try
         {
             //Get the first worksheet.
@@ -271,9 +274,15 @@ public class XlsxBuilder
 
             var sheet = GetSheetFromName(name);
 
+            ArgumentNullException.ThrowIfNull(sheet);
+
             _wsp = GetWorkSheetFromSheet(sheet);
 
+            ArgumentNullException.ThrowIfNull(_wsp);
+
             _ws = _wsp.Worksheet;
+
+            ArgumentNullException.ThrowIfNull(_ws);
 
             _sd = _ws.GetFirstChild<SheetData>();
 
@@ -286,9 +295,9 @@ public class XlsxBuilder
     }
 
     /// <summary>
-    /// Wähle erstes Tabellenblatt und benenne es um
+    /// Select first sheet and rename it
     /// </summary>
-    /// <param name="name">Neuer Name für Tabellenblatt</param>
+    /// <param name="name">New sheet name</param>
     public void SelectSheetFirst(string name)
     {
         if (ErrorCode != 0)
@@ -296,13 +305,16 @@ public class XlsxBuilder
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_wp?.Workbook);
+
         SelectSheet(1);
 
         try
         {
+            var sheet = _wp.Workbook.GetFirstChild<Sheets>()?.Elements<Sheet>().FirstOrDefault(x => (x.SheetId ?? 0)== 1);
 
+            ArgumentNullException.ThrowIfNull(sheet);
 
-            var sheet = _wp.Workbook.GetFirstChild<Sheets>().Elements<Sheet>().FirstOrDefault(x => x.SheetId == 1);
             sheet.Name = name;
         }
         catch (Exception ex)
@@ -310,9 +322,7 @@ public class XlsxBuilder
             ExcelError(ex, null);
             ErrorCode = 6;
         }
-
     }
-
 
     /// <summary>
     /// Neues Blatt anlegen
@@ -322,7 +332,11 @@ public class XlsxBuilder
     {
         //if (_error != 0) return;
 
+        ArgumentNullException.ThrowIfNull(_wp?.Workbook);
+
         var sheets = _wp.Workbook.GetFirstChild<Sheets>();
+
+        ArgumentNullException.ThrowIfNull(sheets);
 
         // Add the worksheetpart
         _wsp = _wp.AddNewPart<WorksheetPart>();
@@ -353,8 +367,6 @@ public class XlsxBuilder
         //// Check if the column collection exists
         //_columns = _ws.Elements<DocumentFormat.OpenXml.Spreadsheet.Columns>().FirstOrDefault() ??
         //              _ws.InsertAt(new DocumentFormat.OpenXml.Spreadsheet.Columns(), 0);
-
-
     }
 
 
@@ -437,9 +449,11 @@ public class XlsxBuilder
             return;
         }
 
-        Row row;
-        Row previousRow = null;
-        Cell previousCell = null;
+        ArgumentNullException.ThrowIfNull(_sd);
+
+        Row? row;
+        Row? previousRow = null;
+        Cell? previousCell = null;
 
         var cellAddress = ColumnNameFromIndex(colIndex) + rowIndex;
 
@@ -447,9 +461,9 @@ public class XlsxBuilder
         {
 
             // Check if the row exists, create if necessary
-            if (_sd.Elements<Row>().Any(item => item.RowIndex == rowIndex))
+            if (_sd.Elements<Row>().Any(item => (item.RowIndex ?? 0) == rowIndex))
             {
-                row = _sd.Elements<Row>().First(item => item.RowIndex == rowIndex);
+                row = _sd.Elements<Row>().First(item => (item.RowIndex ?? 0)== rowIndex);
             }
             else
             {
@@ -457,7 +471,7 @@ public class XlsxBuilder
                 //sheetData.Append(row);
                 for (var counter = rowIndex - 1; counter > 0; counter--)
                 {
-                    previousRow = _sd.Elements<Row>().FirstOrDefault(item => item.RowIndex == counter);
+                    previousRow = _sd.Elements<Row>().FirstOrDefault(item => (item.RowIndex ?? 0) == counter);
                     if (previousRow != null)
                     {
                         break;
@@ -471,6 +485,7 @@ public class XlsxBuilder
             row = _cacheRow;
         }
 
+        ArgumentNullException.ThrowIfNull(row);
 
         if (_cacheRowId == rowIndex && _cacheColumnId == colIndex)
         {
@@ -478,7 +493,7 @@ public class XlsxBuilder
         }
         else
         {
-            _range = row.Elements<Cell>().FirstOrDefault(item => item.CellReference.Value == cellAddress);
+            _range = row.Elements<Cell>().FirstOrDefault(item => item.CellReference?.Value == cellAddress);
 
             // Check if the cell exists, create if necessary
             if (_range is null)
@@ -492,7 +507,7 @@ public class XlsxBuilder
                     // Find the previous existing cell in the row
                     for (var counter = colIndex - 1; counter > 0; counter--)
                     {
-                        previousCell = row.Elements<Cell>().FirstOrDefault(item => item.CellReference.Value == ColumnNameFromIndex(counter) + rowIndex);
+                        previousCell = row.Elements<Cell>().FirstOrDefault(item => item.CellReference?.Value == ColumnNameFromIndex(counter) + rowIndex);
                         if (previousCell != null)
                         {
                             break;
@@ -510,21 +525,23 @@ public class XlsxBuilder
         _cacheRowId = rowIndex;
         _cacheRow = row;
 
+        ArgumentNullException.ThrowIfNull(_ws);
+
         _columns = _ws.Elements<Columns>().FirstOrDefault() ?? _ws.InsertAt(new Columns(), 0);
 
         // Check if the column exists
-        if (_columns.Elements<Column>().Any(item => item.Min == colIndex))
+        if (_columns.Elements<Column>().Any(item => (item.Min ?? 0) == colIndex))
         {
             return;
         }
 
 
-        Column previousColumn = null;
+        Column? previousColumn = null;
 
         // Find the previous existing column in the columns
         for (var counter = colIndex - 1; counter > 0; counter--)
         {
-            previousColumn = _columns.Elements<Column>().FirstOrDefault(item => item.Min == counter);
+            previousColumn = _columns.Elements<Column>().FirstOrDefault(item => (item.Min ?? 0) == counter);
             if (previousColumn != null)
             {
                 break;
@@ -647,6 +664,8 @@ public class XlsxBuilder
             return 0;
         }
 
+        ArgumentNullException.ThrowIfNull(_range);
+
         var len = 15;
 
         if (value.StartsWith('='))
@@ -658,7 +677,6 @@ public class XlsxBuilder
             };
 
             _range.CellFormula = formula;
-
         }
         else
         {
@@ -835,6 +853,8 @@ public class XlsxBuilder
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_range);
+
         if (valueType != CellValues.Date)
         {
             _range.DataType = valueType;
@@ -850,7 +870,6 @@ public class XlsxBuilder
             var v = new CellValue(value);
             _range.CellValue = v;
         }
-
     }
 
 
@@ -864,6 +883,7 @@ public class XlsxBuilder
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_range);
 
         ////_range.StyleIndex = 2;
 
@@ -915,6 +935,8 @@ public class XlsxBuilder
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_columns);
+
         var row = rowIndex;
         var col = colIndex;
         var high = false;
@@ -931,7 +953,10 @@ public class XlsxBuilder
 
             SelectRange(row, col1);
 
-            var column = _columns.Elements<Column>().FirstOrDefault(x => x.Min == col1);
+            var column = _columns.Elements<Column>().FirstOrDefault(x => (x.Min ?? 0) == col1);
+
+            ArgumentNullException.ThrowIfNull(column);
+
             column.BestFit = true;
 
             columnObj.Add(column);
@@ -1035,7 +1060,7 @@ public class XlsxBuilder
                                 : SetValue(Convert.ToInt64(r[y].ToString()));
                             break;
                         default:
-                            length = SetValue(r[y].ToString());
+                            length = SetValue(r[y].ToString() ?? "");
                             break;
                     }
                 }
@@ -1079,6 +1104,8 @@ public class XlsxBuilder
     /// </summary>
     public void AutoFitColumns()
     {
+        ArgumentNullException.ThrowIfNull(_columns);
+
         foreach (var column in _columns.Descendants<Column>())
         {
             column.BestFit = true;
@@ -1139,7 +1166,7 @@ public class XlsxBuilder
     /// </summary>
     /// <param name="ex"> </param>
     /// <param name="message">Nachricht für Statusanzeige</param>
-    public void ExcelError(Exception ex, string message)
+    public void ExcelError(Exception ex, string? message)
     {
         Error?.Invoke(ex, message);
     }
@@ -1168,6 +1195,8 @@ public class XlsxBuilder
     /// <param name="colIndex">Column index of the left top corner</param>
     public void FillDataArray<T>(T[,] data, string[] header, uint rowIndex, uint colIndex)
     {
+        ArgumentNullException.ThrowIfNull(_columns);
+
         var row = rowIndex;
         var col = colIndex;
         var high = false;
@@ -1181,12 +1210,9 @@ public class XlsxBuilder
 
             SelectRange(row, col1);
 
-            var column = _columns.Elements<Column>().FirstOrDefault(x => x.Min == col1);
+            var column = _columns.Elements<Column>().FirstOrDefault(x => (x.Min ?? 0) == col1);
 
-            if (column is null)
-            {
-                throw new ArgumentNullException(nameof(column));
-            }
+            ArgumentNullException.ThrowIfNull(column);
 
             column.Width = typeName switch
             {
@@ -1241,7 +1267,7 @@ public class XlsxBuilder
                     case "int64":
                         Style = high ? SpreadsheetStyles.TableContentInteger : SpreadsheetStyles.TableContentAlternateInteger;
 
-                        if (string.IsNullOrEmpty(data[currRow, currCol].ToString()))
+                        if (string.IsNullOrEmpty(data[currRow, currCol]?.ToString()))
                         {
                             SetValue(string.Empty);
                         }
@@ -1251,7 +1277,7 @@ public class XlsxBuilder
                         }
                         break;
                     default:
-                        SetValue(data[currRow, currCol].ToString());
+                        SetValue(data[currRow, currCol]?.ToString() ?? string.Empty);
                         break;
                 }
                 col++;
@@ -1269,10 +1295,11 @@ public class XlsxBuilder
     /// </summary>
     /// <param name="sheetName">Sheet name</param>
     /// <returns><see cref="Sheet"/> instance selected</returns>
-    public Sheet GetSheetFromName(string sheetName)
+    public Sheet? GetSheetFromName(string sheetName)
     {
+        ArgumentNullException.ThrowIfNull(_wp?.Workbook);
         return _wp.Workbook.Sheets?.Elements<Sheet>()
-            .FirstOrDefault(s => s.Name.HasValue && s.Name.Value == sheetName);
+            .FirstOrDefault(s => (s.Name?.HasValue ?? false) && s.Name.Value == sheetName);
     }
 
     /// <summary>
@@ -1280,9 +1307,18 @@ public class XlsxBuilder
     /// </summary>
     /// <param name="sheet">Sheet instance</param>
     /// <returns><see cref="WorksheetPart"/> rthe seeht is member of</returns>
-    public WorksheetPart GetWorkSheetFromSheet(Sheet sheet)
+    public WorksheetPart? GetWorkSheetFromSheet(Sheet sheet)
     {
-        var worksheetPart = (WorksheetPart)_wp.GetPartById(sheet.Id);
+        ArgumentNullException.ThrowIfNull(_wp);
+
+        var id = sheet.Id;
+
+        if (id is null)
+        {
+            return null;
+        }
+
+        var worksheetPart = (WorksheetPart)_wp.GetPartById(id!);
         return worksheetPart;
     }
 

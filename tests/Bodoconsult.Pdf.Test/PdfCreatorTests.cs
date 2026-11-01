@@ -1,13 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.IO;
-using System.Runtime.Versioning;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Test.Helpers;
 using MigraDoc.DocumentObjectModel;
 using NUnit.Framework;
+using PdfSharp.Fonts;
+using System.IO;
+using System.Runtime.Versioning;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;
 
 namespace Bodoconsult.Pdf.Test;
@@ -167,12 +168,12 @@ public class PdfCreatorTests
         var width = Unit.FromCentimeter( ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
 
         var style = styleSet.Normal;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 9;
 
         // Spezielles Format für Tabellenbasis (nicht ändern!)
         style = styleSet.NormalTable;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.ParagraphFormat.SpaceBefore = 0;
         style.ParagraphFormat.SpaceAfter = 0;
@@ -180,7 +181,7 @@ public class PdfCreatorTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Heading1;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 12;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.PageBreakBefore = true;
@@ -191,7 +192,7 @@ public class PdfCreatorTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Title;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 16;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 9;
@@ -199,7 +200,7 @@ public class PdfCreatorTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.NoHeading1;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 2;
@@ -211,7 +212,7 @@ public class PdfCreatorTests
 
 
         style = styleSet.ChartTitle;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 10;
         style.Font.Bold = true;
         style.Font.Color = Colors.Black;
@@ -220,12 +221,12 @@ public class PdfCreatorTests
         style.ParagraphFormat.SpaceAfter = 3;
 
         style = styleSet.ChartYLabel;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
 
         style = styleSet.Toc1;
-        style.Font.Name = "Aptos";
+        style.Font.Name = "Arial";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceBefore = 3;
@@ -239,7 +240,7 @@ public class PdfCreatorTests
 
 
         style = styleSet.TocHeading;
-        style.Font.Name = "Aptos Black";
+        style.Font.Name = "Arial Black";
         style.Font.Size = 12;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 3;
@@ -248,7 +249,7 @@ public class PdfCreatorTests
 
         // Kopfzeile
         style = styleSet.Header;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.Alignment = ParagraphAlignment.Right;
@@ -259,7 +260,7 @@ public class PdfCreatorTests
 
 
         style = styleSet.Details;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 10;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.SpaceAfter = 6;
@@ -269,7 +270,7 @@ public class PdfCreatorTests
         style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
         style = styleSet.Footer;
-        style.Font.Name = "Aptos Narrow";
+        style.Font.Name = "Arial Narrow";
         style.Font.Size = 8;
         style.Font.Color = Colors.Black;
         style.ParagraphFormat.Alignment = ParagraphAlignment.Left;

@@ -10,11 +10,11 @@ namespace Bodoconsult.App.Abstractions.Typography;
 public class ElegantTypographyPageHeader : TypographyBase
 {
     /// <summary>
-    /// Default ctor. Sets font names to Aptos
+    /// Default ctor. Sets font names to Arial
     /// </summary>
     public ElegantTypographyPageHeader()
     {
-        BaseConstructor("Aptos", "Aptos", "Aptos");
+        BaseConstructor("Arial", "Arial", "Arial");
     }
 
     /// <summary>

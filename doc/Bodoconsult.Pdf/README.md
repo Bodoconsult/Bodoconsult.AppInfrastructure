@@ -343,12 +343,12 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     var width = Unit.FromCentimeter( ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
 
     var style = styleSet.Normal;
-    style.Font.Name = "Aptos Narrow";
+    style.Font.Name = "Arial Narrow";
     style.Font.Size = 9;
 
     // Spezielles Format für Tabellenbasis (nicht ändern!)
     style = styleSet.NormalTable;
-    style.Font.Name = "Aptos Narrow";
+    style.Font.Name = "Arial Narrow";
     style.Font.Size = 8;
     style.ParagraphFormat.SpaceBefore = 0;
     style.ParagraphFormat.SpaceAfter = 0;
@@ -356,7 +356,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.Heading1;
-    style.Font.Name = "Aptos Black";
+    style.Font.Name = "Arial Black";
     style.Font.Size = 12;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.PageBreakBefore = true;
@@ -367,7 +367,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.Title;
-    style.Font.Name = "Aptos Black";
+    style.Font.Name = "Arial Black";
     style.Font.Size = 16;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 9;
@@ -375,7 +375,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.NoHeading1;
-    style.Font.Name = "Aptos Black";
+    style.Font.Name = "Arial Black";
     style.Font.Size = 10;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 2;
@@ -383,7 +383,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.ChartTitle;
-    style.Font.Name = "Aptos Narrow";
+    style.Font.Name = "Arial Narrow";
     style.Font.Size = 10;
     style.Font.Bold = true;
     style.Font.Color = Colors.Black;
@@ -392,12 +392,12 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     style.ParagraphFormat.SpaceAfter = 3;
 
     style = styleSet.ChartYLabel;
-    style.Font.Name = "Aptos Narrow";
+    style.Font.Name = "Arial Narrow";
     style.Font.Size = 8;
     style.Font.Color = Colors.Black;
 
     style = styleSet.Toc1;
-    style.Font.Name = "Aptos";
+    style.Font.Name = "Arial";
     style.Font.Size = 10;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceBefore = 3;
@@ -411,7 +411,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
 
 
     style = styleSet.TocHeading;
-    style.Font.Name = "Aptos Black";
+    style.Font.Name = "Arial Black";
     style.Font.Size = 12;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 3;
@@ -420,7 +420,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
 
     // Kopfzeile
     style = styleSet.Header;
-    style.Font.Name = "Aptos Narrow";
+    style.Font.Name = "Arial Narrow";
     style.Font.Size = 8;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.Alignment = ParagraphAlignment.Right;
@@ -430,7 +430,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     style.ParagraphFormat.Borders.Bottom.Color = Colors.Black;
 
     style = styleSet.Details;
-    style.Font.Name = "Aptos Narrow";
+    style.Font.Name = "Arial Narrow";
     style.Font.Size = 10;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 6;
@@ -440,7 +440,7 @@ private void LoadLandScapeSettings(IStyleSet styleSet)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.Footer;
-    style.Font.Name = "Aptos Narrow";
+    style.Font.Name = "Arial Narrow";
     style.Font.Size = 8;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.Alignment = ParagraphAlignment.Left;
@@ -488,7 +488,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos",
+                Name = "Arial",
                 Size = 10,
                 Color = Colors.Black
             },
@@ -509,7 +509,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Narrow",
+                Name = "Arial Narrow",
                 Size = 8
             },
             ParagraphFormat =
@@ -525,7 +525,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Black",
+                Name = "Arial Black",
                 Size = 16,
                 Color = Colors.Black
             },
@@ -545,7 +545,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Black",
+                Name = "Arial Black",
                 Size = 14,
                 Color = Colors.Black
             },
@@ -563,7 +563,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos",
+                Name = "Arial",
                 Size = 12,
                 Color = Colors.Black,
                 Bold = true
@@ -583,7 +583,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos",
+                Name = "Arial",
                 Size = 12,
                 Color = Colors.Black,
                 Bold = true
@@ -603,7 +603,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Black",
+                Name = "Arial Black",
                 Size = 20,
                 Color = Colors.Black
             },
@@ -620,7 +620,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Black",
+                Name = "Arial Black",
                 Size = 10,
                 Color = Colors.Black
             },
@@ -640,7 +640,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Narrow",
+                Name = "Arial Narrow",
                 Size = 10,
                 Bold = true,
                 Color = Colors.Red
@@ -657,7 +657,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Narrow",
+                Name = "Arial Narrow",
                 Size = 8,
                 Color = Colors.Black
             }
@@ -667,7 +667,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Black",
+                Name = "Arial Black",
                 Size = 10,
                 Color = Colors.Black
             },
@@ -688,7 +688,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos",
+                Name = "Arial",
                 Size = 10,
                 Color = Colors.Black
             },
@@ -710,7 +710,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos",
+                Name = "Arial",
                 Size = 10,
                 Color = Colors.Black
             },
@@ -732,7 +732,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos",
+                Name = "Arial",
                 Size = 10,
                 Color = Colors.Black
             },
@@ -755,7 +755,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Black",
+                Name = "Arial Black",
                 Size = 12,
                 Color = Colors.Black
             },
@@ -769,7 +769,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Narrow",
+                Name = "Arial Narrow",
                 Size = 8,
                 Color = Colors.Black
             },
@@ -788,7 +788,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Narrow",
+                Name = "Arial Narrow",
                 Size = 10,
                 Color = Colors.Black
             },
@@ -805,7 +805,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Narrow",
+                Name = "Arial Narrow",
                 Size = 9,
                 Color = Colors.Black
             },
@@ -827,7 +827,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos Narrow",
+                Name = "Arial Narrow",
                 Size = 8,
                 Color = Colors.Black
             },
@@ -881,7 +881,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = "Aptos",
+                Name = "Arial",
                 Size = 10,
                 Color = Colors.Black
             },

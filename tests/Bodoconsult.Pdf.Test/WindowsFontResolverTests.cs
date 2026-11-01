@@ -40,6 +40,7 @@ public class WindowsFontResolverTests
         var result = r.ResolveTypeface(fontFamily, false, false);
 
         // Assert
+        Assert.That(result, Is.Not.Null);
         Assert.That(result.FaceName, Is.EqualTo(fontFamily.ToUpperInvariant()));
     }
 
@@ -55,6 +56,7 @@ public class WindowsFontResolverTests
         var result = r.ResolveTypeface(fontFamily, true, false);
 
         // Assert
+        Assert.That(result, Is.Not.Null);
         Assert.That(result.FaceName, Is.EqualTo($"{fontFamily} BOLD".ToUpperInvariant()));
     }
 
@@ -70,6 +72,7 @@ public class WindowsFontResolverTests
         var result = r.ResolveTypeface(fontFamily, false, true);
 
         // Assert
+        Assert.That(result, Is.Not.Null);
         Assert.That(result.FaceName, Is.EqualTo($"{fontFamily} ITALIC".ToUpperInvariant()));
     }
 
@@ -85,6 +88,7 @@ public class WindowsFontResolverTests
         var result = r.ResolveTypeface(fontFamily, true, true);
 
         // Assert
+        Assert.That(result, Is.Not.Null);
         Assert.That(result.FaceName, Is.EqualTo($"{fontFamily} BOLD ITALIC".ToUpperInvariant()));
     }
 
@@ -100,7 +104,8 @@ public class WindowsFontResolverTests
         var result = r.ResolveTypeface(fontFamily, true, false);
 
         // Assert
-        Assert.That(result.FaceName, Is.EqualTo("Aptos"));
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result.FaceName, Is.EqualTo("Arial"));
     }
 
     [Test]
@@ -112,11 +117,13 @@ public class WindowsFontResolverTests
         const string fontFamily = "Arial";
 
         var fontInfo = r.ResolveTypeface(fontFamily, true, true);
+        Assert.That(fontInfo, Is.Not.Null);
 
         // Act  
         var result = r.GetFont(fontInfo.FaceName);
 
         // Assert
+        Assert.That(result, Is.Not.Null);
         Assert.That(result.Length, Is.Not.EqualTo(0));
     }
 }

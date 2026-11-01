@@ -171,7 +171,20 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public virtual void RenderToPdf(string fileName, bool showPdfFile)
     {
 
-        var renderer = new PdfDocumentRenderer { Document = Document };
+        var renderer = new PdfDocumentRenderer
+        {
+            Document = Document,
+            PdfDocument =
+            {
+                // Change some settings before rendering the MigraDoc document.
+                PageLayout = PdfPageLayout.SinglePage,
+                ViewerPreferences =
+                {
+                    FitWindow = true
+                }
+            }
+        };
+        renderer.PdfDocument.Options.CompressContentStreams = true;
         renderer.RenderDocument();
 
         if (!string.IsNullOrEmpty(StyleSet.DocumentMetaData.WatermarkText))
@@ -2563,6 +2576,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         //ObjectHelper.MapProperties(_ps, _document.DefaultPageSetup);
 
+        
+
         var style = Document.Styles["Normal"];
 
         ArgumentNullException.ThrowIfNull(style);
@@ -2583,7 +2598,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
         ObjectHelper.MapProperties(styleSet.Normal.ParagraphFormat.Borders.Top, style.ParagraphFormat.Borders.Top);
         ObjectHelper.MapProperties(styleSet.Normal.ParagraphFormat.Borders.Bottom, style.ParagraphFormat.Borders.Bottom);
 
-        //AddStyle(styleSet.Normal);
+        //return;
+
         AddStyle(styleSet.ParagraphCenter);
         AddStyle(styleSet.ParagraphRight);
         AddStyle(styleSet.ParagraphJustify);
@@ -2598,7 +2614,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
         AddStyle(styleSet.Details);
         AddStyle(styleSet.DefinitionListItem);
         AddStyle(styleSet.DefinitionListTerm);
-
         AddStyle(styleSet.Header);
         AddStyle(styleSet.Heading1);
         AddStyle(styleSet.Heading2);

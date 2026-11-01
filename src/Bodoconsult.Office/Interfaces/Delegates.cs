@@ -13,4 +13,4 @@ public delegate void StatusHandlerDelegate(string message);
 /// </summary>
 /// <param name="ex">Exception to provide to UI</param>
 /// <param name="message">Message to send</param>
-public delegate void ErrorHandlerDelegate(Exception ex, string message);
+public delegate void ErrorHandlerDelegate(Exception ex, string? message);

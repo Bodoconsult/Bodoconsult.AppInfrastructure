@@ -1,10 +1,11 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
+using Bodoconsult.Office.Interfaces;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System.Data;
 using System.Reflection;
 using System.Runtime.Versioning;
-using Bodoconsult.Office.Interfaces;
 
 namespace Bodoconsult.Office;
 
@@ -15,22 +16,22 @@ namespace Bodoconsult.Office;
 public class XlsxLateBindingBuilder: IDisposable
 {
 
-    private object _objAppLate;
-    private object _objBookLate;
-    private object _objBooksLate;
-    private object _objSheetsLate;
-    private object _objSheetLate;
-    private object _objRangeLate;
+    private object? _objAppLate;
+    private object? _objBookLate;
+    private object? _objBooksLate;
+    private object? _objSheetsLate;
+    private object? _objSheetLate;
+    private object? _objRangeLate;
 
     private readonly Type _typeAppLate;
-    private Type _typeBookLate;
+    private Type? _typeBookLate;
     private readonly Type _typeBooksLate;
-    private Type _typeSheetsLate;
-    private Type _typeSheetLate;
-    private Type _typeRangeLate;
-    private Type _typeInteriorLate;
-    private Type _typeFontLate;
-    private Type _typeBorderLate;
+    private Type? _typeSheetsLate;
+    private Type? _typeSheetLate;
+    private Type? _typeRangeLate;
+    private Type? _typeInteriorLate;
+    private Type? _typeFontLate;
+    private Type? _typeBorderLate;
 
     private readonly object[] _parameters = new object[1];
     private readonly object[] _parameters2 = new object[2];
@@ -55,12 +56,10 @@ public class XlsxLateBindingBuilder: IDisposable
             var objClassType = Type.GetTypeFromProgID("Excel.Application");
             ArgumentNullException.ThrowIfNull(objClassType);
 
-
             _objAppLate = Activator.CreateInstance(objClassType);
             ArgumentNullException.ThrowIfNull(_objAppLate);
 
             _typeAppLate = _objAppLate.GetType();
-
 
             //_parameters = new object[1];
             //_parameters[0] = true;
@@ -82,6 +81,9 @@ public class XlsxLateBindingBuilder: IDisposable
             ExcelError(ex, null);
             _error = 1;
         }
+
+        ArgumentNullException.ThrowIfNull(_typeAppLate);
+        ArgumentNullException.ThrowIfNull(_typeBooksLate);
     }
 
     /// <summary>
@@ -95,12 +97,12 @@ public class XlsxLateBindingBuilder: IDisposable
     /// <summary>
     /// Delegate for sending status message to UI
     /// </summary>
-    public StatusHandlerDelegate Status { get; set; }
+    public StatusHandlerDelegate? Status { get; set; }
 
     /// <summary>
     /// Delegate for sending error message to UI
     /// </summary>
-    public ErrorHandlerDelegate Error { get; set; }
+    public ErrorHandlerDelegate? Error { get; set; }
 
     /// <summary>
     /// Border style for cells
@@ -128,9 +130,9 @@ public class XlsxLateBindingBuilder: IDisposable
     public int FontSize { get; set; } = 9;
 
     /// <summary>
-    /// Font name. Default = Aptos
+    /// Font name. Default = Arial
     /// </summary>
-    public string FontName { get; set; } = "Aptos";
+    public string FontName { get; set; } = "Arial";
 
     /// <summary>
     /// Numberformat for cells. Default: #,##0.00
@@ -157,7 +159,10 @@ public class XlsxLateBindingBuilder: IDisposable
     /// </summary>
     public void NewWorkbook()
     {
-        if (_error != 0) return;
+        if (_error != 0)
+        {
+            return;
+        }
 
         try
         {
@@ -230,6 +235,8 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_typeSheetsLate);
+
         try
         {
             //Get the first worksheet.
@@ -256,6 +263,8 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_typeSheetsLate);
+
         try
         {
             //Get the first worksheet.
@@ -281,6 +290,8 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             return;
         }
+
+        ArgumentNullException.ThrowIfNull(_typeSheetsLate);
 
         try
         {
@@ -314,6 +325,8 @@ public class XlsxLateBindingBuilder: IDisposable
     public void NewSheet(string name)
     {
         //if (_error != 0) return;
+
+        ArgumentNullException.ThrowIfNull(_typeSheetsLate);
 
         _objSheetLate = _typeSheetsLate.InvokeMember("Add", BindingFlags.GetProperty, null, _objSheetsLate, null);
         ArgumentNullException.ThrowIfNull(_objSheetLate);
@@ -398,6 +411,8 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
+
         _parameters[0] = value;
 
         _typeRangeLate.InvokeMember(value.StartsWith("=", StringComparison.OrdinalIgnoreCase) ? "FormulaLocal" : "Value", BindingFlags.SetProperty, null,
@@ -420,6 +435,8 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             return;
         }
+
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
 
         _parameters[0] = value;
         _typeRangeLate.InvokeMember("Value", BindingFlags.SetProperty, null, _objRangeLate, _parameters);
@@ -445,6 +462,8 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             return;
         }
+
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
 
         _parameters[0] = value;
         _typeRangeLate.InvokeMember("Value", BindingFlags.SetProperty, null, _objRangeLate, _parameters);
@@ -492,6 +511,8 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
+
         _parameters[0] = value;
         _typeRangeLate.InvokeMember("Value", BindingFlags.SetProperty, null, _objRangeLate, _parameters);
 
@@ -499,7 +520,6 @@ public class XlsxLateBindingBuilder: IDisposable
         NumberFormat = "#,##0";
         Format();
         NumberFormat = alt;
-
     }
 
 
@@ -518,6 +538,8 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             return;
         }
+
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
 
         _parameters[0] = value;
         _typeRangeLate.InvokeMember("Value", BindingFlags.SetProperty, null, _objRangeLate, _parameters);
@@ -543,6 +565,8 @@ public class XlsxLateBindingBuilder: IDisposable
             return;
         }
 
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
+
         _parameters[0] = value;
         _typeRangeLate.InvokeMember("Value", BindingFlags.SetProperty, null, _objRangeLate, _parameters);
 
@@ -552,15 +576,11 @@ public class XlsxLateBindingBuilder: IDisposable
         NumberFormat = alt;
     }
 
-
-
-
     /// <summary>
-    /// Ausgewählten Zellbereich formatieren
+    /// Format secledt cell range
     /// </summary>
     public void Format()
     {
-
         if (_error != 0)
         {
             return;
@@ -570,6 +590,8 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             return;
         }
+
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
 
         if (_numberFormatting)
         {
@@ -596,7 +618,6 @@ public class XlsxLateBindingBuilder: IDisposable
 
 
         }
-
 
         if (!_otherFormatting)
         {
@@ -629,6 +650,7 @@ public class XlsxLateBindingBuilder: IDisposable
         _typeFontLate.InvokeMember("Bold", BindingFlags.SetProperty, null, objFontLate, _parameters);
 
 
+        ArgumentNullException.ThrowIfNull(_typeRangeLate);
 
         // Rand oben
         switch (Border)
@@ -705,10 +727,14 @@ public class XlsxLateBindingBuilder: IDisposable
     /// Rahmen anzeigen
     /// </summary>
     /// <param name="objBorderLate"></param>
-    private void ShowBorder(object objBorderLate)
+    private void ShowBorder(object? objBorderLate)
     {
         try
         {
+            if (objBorderLate is null)
+            {
+                return;
+            }
 
             _typeBorderLate ??= objBorderLate.GetType();
 
@@ -729,7 +755,6 @@ public class XlsxLateBindingBuilder: IDisposable
         {
             ExcelError(ex, null);
         }
-
     }
 
     /// <summary>
@@ -766,7 +791,7 @@ public class XlsxLateBindingBuilder: IDisposable
     public void SetToDefault()
     {
         FontSize = 9;
-        FontName = "Aptos";
+        FontName = "Arial";
         NumberFormat = "#,##0.00";
         DateFormat = "m/d/yyyy";
         Border = BorderStyle.None;
@@ -782,6 +807,8 @@ public class XlsxLateBindingBuilder: IDisposable
     /// <param name="colIndex">Spaltennummer der linken oberen Eck</param>
     public void FillDataTable(DataTable dt, int rowIndex, int colIndex)
     {
+        
+
         try
         {
             if (_error != 0)
@@ -789,7 +816,7 @@ public class XlsxLateBindingBuilder: IDisposable
                 return;
             }
 
-            var parameters = new object[2];
+            var parameters = new object?[2];
             var row = rowIndex;
             var col = colIndex;
             var high = false;
@@ -893,6 +920,7 @@ public class XlsxLateBindingBuilder: IDisposable
                 }
 
                 // Background
+                ArgumentNullException.ThrowIfNull(_typeSheetLate);
 
                 _parameters2[0] = row + i;
                 _parameters2[1] = colIndex;
@@ -993,6 +1021,8 @@ public class XlsxLateBindingBuilder: IDisposable
     /// </summary>
     public void AutoFitColumns()
     {
+        ArgumentNullException.ThrowIfNull(_typeSheetLate);
+
         var objColumnsLate = _typeSheetLate.InvokeMember("Columns", BindingFlags.GetProperty, null, _objSheetLate, null);
         objColumnsLate?.GetType().InvokeMember("Autofit", BindingFlags.InvokeMethod, null, objColumnsLate, null);
     }
@@ -1003,6 +1033,7 @@ public class XlsxLateBindingBuilder: IDisposable
     /// <param name="fileName"></param>
     public void Save(string fileName)
     {
+        ArgumentNullException.ThrowIfNull(_typeBookLate);
 
         var parameters = new object[12];
         parameters[0] = fileName;
@@ -1043,7 +1074,7 @@ public class XlsxLateBindingBuilder: IDisposable
     /// </summary>
     /// <param name="ex"> </param>
     /// <param name="message">Nachricht für Statusanzeige</param>
-    public void ExcelError(Exception ex, string message)
+    public void ExcelError(Exception ex, string? message)
     {
         Error?.Invoke(ex, message);
     }

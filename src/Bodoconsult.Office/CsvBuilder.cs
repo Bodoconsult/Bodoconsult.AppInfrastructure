@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using DocumentFormat.OpenXml.Wordprocessing;
 using System.Data;
 using System.Text;
 
@@ -47,7 +48,7 @@ public class CsvBuilder
     /// <summary>
     /// Full filename
     /// </summary>
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     /// <summary>
     /// Export the data table
@@ -55,6 +56,8 @@ public class CsvBuilder
     /// <exception cref="ArgumentNullException">Thrown if <see cref="Data"/> is null</exception>
     public void Export()
     {
+        ArgumentNullException.ThrowIfNull(Data);
+        ArgumentNullException.ThrowIfNull(FileName);
 
         if (Data is null)
         {
@@ -94,7 +97,6 @@ public class CsvBuilder
         sw.Write(_erg.ToString());
         sw.Close();
         sw.Dispose();
-
     }
 
     // ToDo: Document class

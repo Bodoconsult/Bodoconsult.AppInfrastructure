@@ -13,12 +13,12 @@ public class DemoStyle : ITypoParagraphStyle
     /// <summary>
     /// Font name
     /// </summary>
-    public string FontName { get; set; }
+    public string FontName { get; set; } = "Arial";
 
     /// <summary>
     /// Font size in pt
     /// </summary>
-    public int FontSize { get; set; }
+    public int FontSize { get; set; } = 11;
 
     /// <summary>
     /// Font color

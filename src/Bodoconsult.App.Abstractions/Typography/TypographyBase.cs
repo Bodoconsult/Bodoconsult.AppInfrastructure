@@ -17,7 +17,7 @@ public class TypographyBase : ITypography
     /// </summary>
     public TypographyBase()
     {
-        FontName = "Aptos";
+        FontName = "Arial";
         FontSize = 11;
         SmallFontSize = FontSize - 2;
         ExtraSmallFontSize = SmallFontSize - 2;

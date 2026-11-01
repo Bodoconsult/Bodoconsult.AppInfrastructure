@@ -22,10 +22,10 @@ public class DocxDefinitionListRow
     /// <summary>
     /// Style ID to use for term
     /// </summary>
-    public string TermStyleId { get; set; }
+    public string? TermStyleId { get; set; }
 
     /// <summary>
     /// Style ID to use for items
     /// </summary>
-    public string ItemsStyleId { get; set; }
+    public string? ItemsStyleId { get; set; }
 }
