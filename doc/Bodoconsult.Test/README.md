@@ -4,7 +4,7 @@ Bodoconsult.Test
 # What does the library
 
 
-Bodoconsult.Core.Pdf library was developed originally to create reports from databases with tables and charts from databases.
+Bodoconsult.Test library was developed to create reports from unit test results to deliver them to auditors etc.
 
 
 # How to use the library

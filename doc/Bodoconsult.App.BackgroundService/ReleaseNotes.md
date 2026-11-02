@@ -22,3 +22,9 @@ NOT intended for public use
 -   Better PDB handling
 
 -   Migration to nullable project
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

@@ -269,7 +269,7 @@ Project-Url: https://github.com/JamesNK/Newtonsoft.Json
 
 ## Referenced external libraries for Bodoconsult.Database.Dbase
 
-## Social Explorer
+### Social Explorer
 
 Project:Url:    https://github.com/SocialExplorer/FastDBF
 

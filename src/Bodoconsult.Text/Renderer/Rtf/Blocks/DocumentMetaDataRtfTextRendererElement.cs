@@ -105,12 +105,12 @@ public class DocumentMetaDataRtfTextRendererElement : RtfTextRendererElementBase
 
             CheckColor(styleset, paragraphStyle.FontColor);
 
-            if (paragraphStyle.BorderBrush != null)
+            if (paragraphStyle.BorderBrush is not null)
             {
                 CheckColor(styleset, paragraphStyle.BorderBrush.TypoColor);
             }
 
-            if (paragraphStyle.TypoShading != null)
+            if (paragraphStyle.TypoShading is not null)
             {
                 CheckColor(styleset, paragraphStyle.TypoShading);
             }

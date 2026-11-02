@@ -19,7 +19,7 @@ public class FolderHandlerTests
 
         TestHelper.GetDummyDataHandler();
 
-        var d = new DataHandler(Globals.Instance);
+        var d = new Business.DataHandling.DataHandler(Globals.Instance);
 
         var fh = new FolderHandler(d, config, Globals.Instance);
 

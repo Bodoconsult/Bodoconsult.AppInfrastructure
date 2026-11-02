@@ -44,3 +44,9 @@ NOT intended for public use
 -   Added ErrorMailAddress property to IAppStartParameter to email address for sending mail to in case of exceptions
 
 -   IMailAccount, IO365MailAcccount, SmtpMailAccount and O365MailAccount moved from Bodoconsult.Web.Mail to Bodoconsult.App.Abstractions.Interfaces
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

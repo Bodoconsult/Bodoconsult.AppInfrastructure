@@ -11,7 +11,7 @@ Bodoconsult.Text provides the following main classes;
 
 > [DocumentBuilder class](#documentbuilder-class): easy setup of a LDML document and rendering it to HTML, PDF etc.
 
-> [StructuredText class](#structuredtext-class)
+> [StructuredText class](#structuredtext-class): simple structured text generation and rendering it to HTM and PDF
 
 # How to use the library
 

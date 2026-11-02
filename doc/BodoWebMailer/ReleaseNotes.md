@@ -7,7 +7,7 @@ With each release all the repository internal references are updated.
 
 -	Based on Bodoconsult.Core.Web.Mail 1.0.0
 
-
+-   New package
 
 # 1.0.10
 
@@ -19,5 +19,9 @@ NOT intended for public use
 
 -	Refactoring for business logic
 
+-   Migration to Net10
 
+# 1.0.12
+
+-  
 

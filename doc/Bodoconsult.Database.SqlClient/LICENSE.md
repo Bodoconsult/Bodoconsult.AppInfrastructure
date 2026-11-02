@@ -38,3 +38,15 @@ License-Url: https://licenses.nuget.org/MIT
 
 Project-Url: https://github.com/dotnet/sqlclient
 
+### Nuget package library Microsoft.Data.SqlClient.Extensions.Azure by Microsoft
+
+Copyright: © Microsoft Corporation. All rights reserved.
+
+Microsoft.Data.SqlClient Extensions Azure
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/dotnet/SqlClient
+

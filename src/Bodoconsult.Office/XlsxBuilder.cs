@@ -204,8 +204,10 @@ public class XlsxBuilder
 
         var name = string.Empty;
 
-        //Get the first worksheet.
-        foreach (var x in from Sheet x in _wp.Workbook.Sheets where (x.SheetId ?? 0) == index select x)
+        //Get the first worksheet
+        ArgumentNullException.ThrowIfNull(_wp.Workbook.Sheets);
+
+        foreach (var x in _wp.Workbook.Sheets.Cast<Sheet>().Where(x => (x.SheetId ?? 0) == index))
         {
             name = x.Id;
             break;

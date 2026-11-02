@@ -23,3 +23,8 @@ NOT intended for public use
 # 1.0.11
 
 -   Better PDB handling
+
+
+# 1.0.12
+
+-

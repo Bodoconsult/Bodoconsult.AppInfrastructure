@@ -100,7 +100,7 @@
 <h2 id="wpf-app-start-infrastructure-basics">WPF app start infrastructure basics</h2>
 <p>See page <a href="../Bodoconsult.App.Wpf/README.html">WPF app start infrastructure</a> for details.</p>
 <h2 id="what-does-the-library">What does the library</h2>
-<p>Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting XPS or PDF export.</p>
+<p>Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting screen, XPS or PDF export.</p>
 <h2 id="how-to-use-the-library">How to use the library</h2>
 <p>The source code contains NUnit test classes the following source code is extracted from. The samples below show the most helpful use cases for the library.</p>
 <h1 id="using-flowdocumentservice-class-to-create-and-export-wpf-flowdocuments-to-pdf-or-xps">Using FlowDocumentService class to create and export WPF FlowDocuments to PDF (or XPS)</h1>
@@ -119,7 +119,7 @@ The layout of the output should follow to a minimum of typographic rules at leas
     // Act
 
     // Define a typography
-    var typo = new ElegantTypographyPageHeader(&quot;Times New Roman&quot;, &quot;Times New Roman&quot;, &quot;Aptos Black&quot;);
+    var typo = new ElegantTypographyPageHeader(&quot;Times New Roman&quot;, &quot;Times New Roman&quot;, &quot;Arial Black&quot;);
     
     // Get the typo service needed
     var typoService = new TypographySettingsService(typo)
@@ -201,7 +201,7 @@ public void TestReportBase_Demo_FileCreated()
     var fileName = Path.Combine(_tempPath, &quot;TestReportBase_Demo.pdf&quot;);
 
     // Define a typography
-    var typo = new ElegantTypographyPageHeader(&quot;Times New Roman&quot;, &quot;Times New Roman&quot;, &quot;Aptos Black&quot;);
+    var typo = new ElegantTypographyPageHeader(&quot;Times New Roman&quot;, &quot;Times New Roman&quot;, &quot;Arial Black&quot;);
 
     // Get the typo service needed
     var typoService = new TypographySettingsService(typo)

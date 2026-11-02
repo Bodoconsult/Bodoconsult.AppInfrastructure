@@ -218,7 +218,6 @@ public class PlainTextParagraphFormatter
 
     private void FormatLine(List<string> result, string line, bool isFirstLine)
     {
-
         var missinglength = WidthInChars - line.Length;
 
         if (string.IsNullOrEmpty(line))

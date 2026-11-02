@@ -1,0 +1,5 @@
+JobExecuter fulfills helpful tasks especially for small Windows based IT enviroments but it is not limited on them. In such small environments often important features like database backup or file backup are missed and have to be implemented with some effort.
+
+JobExecuter is a software to run different types of administrative jobs like database backup, file copying, running apps and others. It is used used in conjunction with Windows Task Scheduler (WTS). The WTS provides the job scheduling infrastructure. JobExecuter provides the functionality of the jobs in an supervised environment.
+
+JobExecuter supports self-documentation: each job can be documented automatically and all job documentations can be added to a complete documentation of all JobExecuter based jobs running on diverse server systems.

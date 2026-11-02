@@ -3,7 +3,7 @@
 using BodoFileTransfer.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransfer.Test;
+namespace BodoFileTransfer.Test.DataHandling;
 
 [TestFixture]
 public class DummyDataHandlerTests: BaseTestDataHandler

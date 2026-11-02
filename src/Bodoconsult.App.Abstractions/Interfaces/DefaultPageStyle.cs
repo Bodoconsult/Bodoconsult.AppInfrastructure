@@ -31,6 +31,6 @@ public class DefaultPageStyle : ITypoPageStyle
     /// The resulting text column width in cm
     /// </summary>
     public double ColumnWidth =>
-        (TypoPaperFormat.Size.Width - TypoMargins.Left - TypoMargins.Right - (NumberOfColumns * ColumnGap)) /
+        (TypoPaperFormat.Size.Width - TypoMargins.Left - TypoMargins.Right - ((NumberOfColumns - 1) * ColumnGap)) /
         NumberOfColumns;
 }

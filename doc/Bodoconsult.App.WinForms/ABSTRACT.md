@@ -1,0 +1,1 @@
+Bodoconsult.App.WinForms is a library with basic functionality for multilayered monolithic WinForms based applications. 

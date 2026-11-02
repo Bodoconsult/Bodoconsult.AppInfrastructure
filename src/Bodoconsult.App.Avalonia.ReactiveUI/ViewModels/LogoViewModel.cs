@@ -69,16 +69,9 @@ public partial class LogoViewModel : ReactiveObject, ILogoViewModel
             return;
         }
 
-        if (_appGlobals.AppStartParameter.LogoAssembly is null)
-        {
-            return;
-        }
-
         Dispatcher.UIThread.Post(() =>
         {
-            var logoStream =
-                _appGlobals.AppStartParameter.LogoAssembly.GetManifestResourceStream(_appGlobals.AppStartParameter
-                    .LogoRessourcePath);
+            var logoStream = _appGlobals.AppStartParameter.LogoAssembly?.GetManifestResourceStream(_appGlobals.AppStartParameter.LogoRessourcePath);
 
             if (logoStream is null)
             {
@@ -86,8 +79,6 @@ public partial class LogoViewModel : ReactiveObject, ILogoViewModel
             }
 
             logoStream.Position = 0;
-
-
             Logo = new Bitmap(logoStream);
         });
     }

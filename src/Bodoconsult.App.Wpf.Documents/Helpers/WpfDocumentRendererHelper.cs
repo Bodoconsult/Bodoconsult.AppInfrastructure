@@ -193,14 +193,18 @@ public static class WpfDocumentRendererHelper
         }
 
         // Keep next
-        if (docStyle.Shading != null)
+        if (docStyle.Shading is null)
         {
-            wpfStyle.Setters.Add(new Setter
-            {
-                Property = TextElement.BackgroundProperty,
-                Value = new SolidColorBrush(docStyle.Shading.ToWpfColor())
-            });
+            return;
         }
+
+        var setter = new Setter
+        {
+            Property = TextElement.BackgroundProperty,
+            Value = new SolidColorBrush(docStyle.Shading.ToWpfColor())
+        };
+
+        wpfStyle.Setters.Add(setter);
 
     }
 

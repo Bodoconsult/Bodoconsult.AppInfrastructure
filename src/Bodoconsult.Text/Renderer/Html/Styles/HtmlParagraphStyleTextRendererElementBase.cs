@@ -77,7 +77,7 @@ public class HtmlParagraphStyleTextRendererElementBase: ITextRendererElement
         sb.AppendLine($"     text-align: {Style.TextAlignment.ToString().ToLowerInvariant()};");
 
         // Shading
-        if (Style.TypoShading != null)
+        if (Style.TypoShading is not null)
         {
             sb.AppendLine($"     background-color: {Style.TypoShading.ToHtml()};");
         }

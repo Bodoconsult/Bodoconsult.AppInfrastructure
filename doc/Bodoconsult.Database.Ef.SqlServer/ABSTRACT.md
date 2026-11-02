@@ -1,0 +1,1 @@
+Bodoconsult.Database.Ef.SqlServer is a library based on Microsoft Entity Framework to support database apps accessing Microsoft (R) SqlServer. The idea is to simplify database access via EF for normal users by hiding EF complexity.

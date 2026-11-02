@@ -2244,6 +2244,64 @@ references:
   commentId: N:Bodoconsult.App.Abstractions.Interfaces
   fullName: Bodoconsult.App.Abstractions.Interfaces
   nameWithType: Bodoconsult.App.Abstractions.Interfaces
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials
+  name: AdCredentials
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html
+  commentId: T:Bodoconsult.App.Abstractions.Interfaces.AdCredentials
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials
+  nameWithType: AdCredentials
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Domain
+  name: Domain
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Domain
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Domain
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Domain
+  nameWithType: AdCredentials.Domain
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Domain*
+  name: Domain
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Domain_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Domain
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Domain
+  nameWithType: AdCredentials.Domain
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Name
+  name: Name
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Name
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Name
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Name
+  nameWithType: AdCredentials.Name
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Name*
+  name: Name
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Name_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Name
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Name
+  nameWithType: AdCredentials.Name
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Password
+  name: Password
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Password
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Password
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Password
+  nameWithType: AdCredentials.Password
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Password*
+  name: Password
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Password_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Password
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Password
+  nameWithType: AdCredentials.Password
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Username
+  name: Username
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Username
+  commentId: P:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Username
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Username
+  nameWithType: AdCredentials.Username
+- uid: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Username*
+  name: Username
+  href: api/Bodoconsult.App.Abstractions.Interfaces.AdCredentials.html#Bodoconsult_App_Abstractions_Interfaces_AdCredentials_Username_
+  commentId: Overload:Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Username
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.Interfaces.AdCredentials.Username
+  nameWithType: AdCredentials.Username
 - uid: Bodoconsult.App.Abstractions.Interfaces.BackupModeEnum
   name: BackupModeEnum
   href: api/Bodoconsult.App.Abstractions.Interfaces.BackupModeEnum.html
@@ -16432,6 +16490,19 @@ references:
   commentId: T:Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter
   fullName: Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter
   nameWithType: ShellCommandShellProcessParameter
+- uid: Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.AdCredentials
+  name: AdCredentials
+  href: api/Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.html#Bodoconsult_App_Abstractions_ShellTools_ShellCommandShellProcessParameter_AdCredentials
+  commentId: P:Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.AdCredentials
+  fullName: Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.AdCredentials
+  nameWithType: ShellCommandShellProcessParameter.AdCredentials
+- uid: Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.AdCredentials*
+  name: AdCredentials
+  href: api/Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.html#Bodoconsult_App_Abstractions_ShellTools_ShellCommandShellProcessParameter_AdCredentials_
+  commentId: Overload:Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.AdCredentials
+  isSpec: "True"
+  fullName: Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.AdCredentials
+  nameWithType: ShellCommandShellProcessParameter.AdCredentials
 - uid: Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.Command
   name: Command
   href: api/Bodoconsult.App.Abstractions.ShellTools.ShellCommandShellProcessParameter.html#Bodoconsult_App_Abstractions_ShellTools_ShellCommandShellProcessParameter_Command
@@ -33248,6 +33319,22 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Extensions.StringExtensions.ToGuid
   nameWithType: StringExtensions.ToGuid
+- uid: Bodoconsult.App.Extensions.StringExtensions.ToSecureString(System.String)
+  name: ToSecureString(string)
+  href: api/Bodoconsult.App.Extensions.StringExtensions.html#Bodoconsult_App_Extensions_StringExtensions_ToSecureString_System_String_
+  commentId: M:Bodoconsult.App.Extensions.StringExtensions.ToSecureString(System.String)
+  name.vb: ToSecureString(String)
+  fullName: Bodoconsult.App.Extensions.StringExtensions.ToSecureString(string)
+  fullName.vb: Bodoconsult.App.Extensions.StringExtensions.ToSecureString(String)
+  nameWithType: StringExtensions.ToSecureString(string)
+  nameWithType.vb: StringExtensions.ToSecureString(String)
+- uid: Bodoconsult.App.Extensions.StringExtensions.ToSecureString*
+  name: ToSecureString
+  href: api/Bodoconsult.App.Extensions.StringExtensions.html#Bodoconsult_App_Extensions_StringExtensions_ToSecureString_
+  commentId: Overload:Bodoconsult.App.Extensions.StringExtensions.ToSecureString
+  isSpec: "True"
+  fullName: Bodoconsult.App.Extensions.StringExtensions.ToSecureString
+  nameWithType: StringExtensions.ToSecureString
 - uid: Bodoconsult.App.Extensions.TaskExtensions
   name: TaskExtensions
   href: api/Bodoconsult.App.Extensions.TaskExtensions.html
@@ -42666,6 +42753,54 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Helpers.FileSystemHelper.CheckForInvalidChars
   nameWithType: FileSystemHelper.CheckForInvalidChars
+- uid: Bodoconsult.App.Helpers.FileSystemHelper.CreateDirectory(System.String)
+  name: CreateDirectory(string)
+  href: api/Bodoconsult.App.Helpers.FileSystemHelper.html#Bodoconsult_App_Helpers_FileSystemHelper_CreateDirectory_System_String_
+  commentId: M:Bodoconsult.App.Helpers.FileSystemHelper.CreateDirectory(System.String)
+  name.vb: CreateDirectory(String)
+  fullName: Bodoconsult.App.Helpers.FileSystemHelper.CreateDirectory(string)
+  fullName.vb: Bodoconsult.App.Helpers.FileSystemHelper.CreateDirectory(String)
+  nameWithType: FileSystemHelper.CreateDirectory(string)
+  nameWithType.vb: FileSystemHelper.CreateDirectory(String)
+- uid: Bodoconsult.App.Helpers.FileSystemHelper.CreateDirectory*
+  name: CreateDirectory
+  href: api/Bodoconsult.App.Helpers.FileSystemHelper.html#Bodoconsult_App_Helpers_FileSystemHelper_CreateDirectory_
+  commentId: Overload:Bodoconsult.App.Helpers.FileSystemHelper.CreateDirectory
+  isSpec: "True"
+  fullName: Bodoconsult.App.Helpers.FileSystemHelper.CreateDirectory
+  nameWithType: FileSystemHelper.CreateDirectory
+- uid: Bodoconsult.App.Helpers.FileSystemHelper.DeleteDirectory(System.String)
+  name: DeleteDirectory(string)
+  href: api/Bodoconsult.App.Helpers.FileSystemHelper.html#Bodoconsult_App_Helpers_FileSystemHelper_DeleteDirectory_System_String_
+  commentId: M:Bodoconsult.App.Helpers.FileSystemHelper.DeleteDirectory(System.String)
+  name.vb: DeleteDirectory(String)
+  fullName: Bodoconsult.App.Helpers.FileSystemHelper.DeleteDirectory(string)
+  fullName.vb: Bodoconsult.App.Helpers.FileSystemHelper.DeleteDirectory(String)
+  nameWithType: FileSystemHelper.DeleteDirectory(string)
+  nameWithType.vb: FileSystemHelper.DeleteDirectory(String)
+- uid: Bodoconsult.App.Helpers.FileSystemHelper.DeleteDirectory*
+  name: DeleteDirectory
+  href: api/Bodoconsult.App.Helpers.FileSystemHelper.html#Bodoconsult_App_Helpers_FileSystemHelper_DeleteDirectory_
+  commentId: Overload:Bodoconsult.App.Helpers.FileSystemHelper.DeleteDirectory
+  isSpec: "True"
+  fullName: Bodoconsult.App.Helpers.FileSystemHelper.DeleteDirectory
+  nameWithType: FileSystemHelper.DeleteDirectory
+- uid: Bodoconsult.App.Helpers.FileSystemHelper.DeleteFile(System.String)
+  name: DeleteFile(string)
+  href: api/Bodoconsult.App.Helpers.FileSystemHelper.html#Bodoconsult_App_Helpers_FileSystemHelper_DeleteFile_System_String_
+  commentId: M:Bodoconsult.App.Helpers.FileSystemHelper.DeleteFile(System.String)
+  name.vb: DeleteFile(String)
+  fullName: Bodoconsult.App.Helpers.FileSystemHelper.DeleteFile(string)
+  fullName.vb: Bodoconsult.App.Helpers.FileSystemHelper.DeleteFile(String)
+  nameWithType: FileSystemHelper.DeleteFile(string)
+  nameWithType.vb: FileSystemHelper.DeleteFile(String)
+- uid: Bodoconsult.App.Helpers.FileSystemHelper.DeleteFile*
+  name: DeleteFile
+  href: api/Bodoconsult.App.Helpers.FileSystemHelper.html#Bodoconsult_App_Helpers_FileSystemHelper_DeleteFile_
+  commentId: Overload:Bodoconsult.App.Helpers.FileSystemHelper.DeleteFile
+  isSpec: "True"
+  fullName: Bodoconsult.App.Helpers.FileSystemHelper.DeleteFile
+  nameWithType: FileSystemHelper.DeleteFile
 - uid: Bodoconsult.App.Helpers.FileSystemHelper.GetAppPath
   name: GetAppPath()
   href: api/Bodoconsult.App.Helpers.FileSystemHelper.html#Bodoconsult_App_Helpers_FileSystemHelper_GetAppPath
@@ -53128,6 +53263,19 @@ references:
   commentId: T:Bodoconsult.App.Toast.DummyToastMessagingService
   fullName: Bodoconsult.App.Toast.DummyToastMessagingService
   nameWithType: DummyToastMessagingService
+- uid: Bodoconsult.App.Toast.DummyToastMessagingService.Dispose
+  name: Dispose()
+  href: api/Bodoconsult.App.Toast.DummyToastMessagingService.html#Bodoconsult_App_Toast_DummyToastMessagingService_Dispose
+  commentId: M:Bodoconsult.App.Toast.DummyToastMessagingService.Dispose
+  fullName: Bodoconsult.App.Toast.DummyToastMessagingService.Dispose()
+  nameWithType: DummyToastMessagingService.Dispose()
+- uid: Bodoconsult.App.Toast.DummyToastMessagingService.Dispose*
+  name: Dispose
+  href: api/Bodoconsult.App.Toast.DummyToastMessagingService.html#Bodoconsult_App_Toast_DummyToastMessagingService_Dispose_
+  commentId: Overload:Bodoconsult.App.Toast.DummyToastMessagingService.Dispose
+  isSpec: "True"
+  fullName: Bodoconsult.App.Toast.DummyToastMessagingService.Dispose
+  nameWithType: DummyToastMessagingService.Dispose
 - uid: Bodoconsult.App.Toast.DummyToastMessagingService.SendSimpleToastMessage(Bodoconsult.App.Abstractions.Interfaces.NotifyRequestRecord)
   name: SendSimpleToastMessage(NotifyRequestRecord)
   href: api/Bodoconsult.App.Toast.DummyToastMessagingService.html#Bodoconsult_App_Toast_DummyToastMessagingService_SendSimpleToastMessage_Bodoconsult_App_Abstractions_Interfaces_NotifyRequestRecord_
@@ -54606,6 +54754,38 @@ references:
   commentId: T:Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService
   fullName: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService
   nameWithType: WinFormsToastMessagingService
+- uid: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.#ctor
+  name: WinFormsToastMessagingService()
+  href: api/Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.html#Bodoconsult_App_WinForms_Toast_WinFormsToastMessagingService__ctor
+  commentId: M:Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.#ctor
+  name.vb: New()
+  fullName: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.WinFormsToastMessagingService()
+  fullName.vb: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.New()
+  nameWithType: WinFormsToastMessagingService.WinFormsToastMessagingService()
+  nameWithType.vb: WinFormsToastMessagingService.New()
+- uid: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.#ctor*
+  name: WinFormsToastMessagingService
+  href: api/Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.html#Bodoconsult_App_WinForms_Toast_WinFormsToastMessagingService__ctor_
+  commentId: Overload:Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.WinFormsToastMessagingService
+  fullName.vb: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.New
+  nameWithType: WinFormsToastMessagingService.WinFormsToastMessagingService
+  nameWithType.vb: WinFormsToastMessagingService.New
+- uid: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.Dispose
+  name: Dispose()
+  href: api/Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.html#Bodoconsult_App_WinForms_Toast_WinFormsToastMessagingService_Dispose
+  commentId: M:Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.Dispose
+  fullName: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.Dispose()
+  nameWithType: WinFormsToastMessagingService.Dispose()
+- uid: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.Dispose*
+  name: Dispose
+  href: api/Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.html#Bodoconsult_App_WinForms_Toast_WinFormsToastMessagingService_Dispose_
+  commentId: Overload:Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.Dispose
+  isSpec: "True"
+  fullName: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.Dispose
+  nameWithType: WinFormsToastMessagingService.Dispose
 - uid: Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.SendSimpleToastMessage(Bodoconsult.App.Abstractions.Interfaces.NotifyRequestRecord)
   name: SendSimpleToastMessage(NotifyRequestRecord)
   href: api/Bodoconsult.App.WinForms.Toast.WinFormsToastMessagingService.html#Bodoconsult_App_WinForms_Toast_WinFormsToastMessagingService_SendSimpleToastMessage_Bodoconsult_App_Abstractions_Interfaces_NotifyRequestRecord_
@@ -54885,22 +55065,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DataProtectionService
   nameWithType: BaseConsoleStarter.DataProtectionService
-- uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DeleteFile(System.String)
-  name: DeleteFile(string)
-  href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_DeleteFile_System_String_
-  commentId: M:Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DeleteFile(System.String)
-  name.vb: DeleteFile(String)
-  fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DeleteFile(string)
-  fullName.vb: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DeleteFile(String)
-  nameWithType: BaseConsoleStarter.DeleteFile(string)
-  nameWithType.vb: BaseConsoleStarter.DeleteFile(String)
-- uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DeleteFile*
-  name: DeleteFile
-  href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_DeleteFile_
-  commentId: Overload:Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DeleteFile
-  isSpec: "True"
-  fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.DeleteFile
-  nameWithType: BaseConsoleStarter.DeleteFile
 - uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.HashAppPassword(System.String)
   name: HashAppPassword(string)
   href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_HashAppPassword_System_String_
@@ -54962,6 +55126,22 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadAppPasswordHash
   nameWithType: BaseConsoleStarter.LoadAppPasswordHash
+- uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCredentials*
+  name: LoadCredentials
+  href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_LoadCredentials_
+  commentId: Overload:Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCredentials
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCredentials
+  nameWithType: BaseConsoleStarter.LoadCredentials
+- uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCredentials``1(System.String,System.String,System.String)
+  name: LoadCredentials<T>(string, string, string)
+  href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_LoadCredentials__1_System_String_System_String_System_String_
+  commentId: M:Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCredentials``1(System.String,System.String,System.String)
+  name.vb: LoadCredentials(Of T)(String, String, String)
+  fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCredentials<T>(string, string, string)
+  fullName.vb: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCredentials(Of T)(String, String, String)
+  nameWithType: BaseConsoleStarter.LoadCredentials<T>(string, string, string)
+  nameWithType.vb: BaseConsoleStarter.LoadCredentials(Of T)(String, String, String)
 - uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.LoadCryptedSimpleJson*
   name: LoadCryptedSimpleJson
   href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_LoadCryptedSimpleJson_
@@ -55108,6 +55288,22 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.O365MailAccountImportFileName
   nameWithType: BaseConsoleStarter.O365MailAccountImportFileName
+- uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCredentials*
+  name: SaveCredentials
+  href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_SaveCredentials_
+  commentId: Overload:Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCredentials
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCredentials
+  nameWithType: BaseConsoleStarter.SaveCredentials
+- uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCredentials``1(``0,System.String,System.String)
+  name: SaveCredentials<T>(T, string, string)
+  href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_SaveCredentials__1___0_System_String_System_String_
+  commentId: M:Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCredentials``1(``0,System.String,System.String)
+  name.vb: SaveCredentials(Of T)(T, String, String)
+  fullName: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCredentials<T>(T, string, string)
+  fullName.vb: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCredentials(Of T)(T, String, String)
+  nameWithType: BaseConsoleStarter.SaveCredentials<T>(T, string, string)
+  nameWithType.vb: BaseConsoleStarter.SaveCredentials(Of T)(T, String, String)
 - uid: Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.SaveCryptedSimpleJson*
   name: SaveCryptedSimpleJson
   href: api/Bodoconsult.App.Windows.ConsoleTools.BaseConsoleStarter.html#Bodoconsult_App_Windows_ConsoleTools_BaseConsoleStarter_SaveCryptedSimpleJson_
@@ -56343,6 +56539,136 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.App.Windows.DataProtection.DataProtectionService.UnprotectString
   nameWithType: DataProtectionService.UnprotectString
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1
+  name: TestCredentialManager<T>
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html
+  commentId: T:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1
+  name.vb: TestCredentialManager(Of T)
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T)
+  nameWithType: TestCredentialManager<T>
+  nameWithType.vb: TestCredentialManager(Of T)
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.#ctor(System.String)
+  name: TestCredentialManager(string)
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1__ctor_System_String_
+  commentId: M:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.#ctor(System.String)
+  name.vb: New(String)
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.TestCredentialManager(string)
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).New(String)
+  nameWithType: TestCredentialManager<T>.TestCredentialManager(string)
+  nameWithType.vb: TestCredentialManager(Of T).New(String)
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.#ctor*
+  name: TestCredentialManager
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1__ctor_
+  commentId: Overload:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.TestCredentialManager
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).New
+  nameWithType: TestCredentialManager<T>.TestCredentialManager
+  nameWithType.vb: TestCredentialManager(Of T).New
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialFileName
+  name: CredentialFileName
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_CredentialFileName
+  commentId: P:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialFileName
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.CredentialFileName
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).CredentialFileName
+  nameWithType: TestCredentialManager<T>.CredentialFileName
+  nameWithType.vb: TestCredentialManager(Of T).CredentialFileName
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialFileName*
+  name: CredentialFileName
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_CredentialFileName_
+  commentId: Overload:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialFileName
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.CredentialFileName
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).CredentialFileName
+  nameWithType: TestCredentialManager<T>.CredentialFileName
+  nameWithType.vb: TestCredentialManager(Of T).CredentialFileName
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialImportFileName
+  name: CredentialImportFileName
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_CredentialImportFileName
+  commentId: P:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialImportFileName
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.CredentialImportFileName
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).CredentialImportFileName
+  nameWithType: TestCredentialManager<T>.CredentialImportFileName
+  nameWithType.vb: TestCredentialManager(Of T).CredentialImportFileName
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialImportFileName*
+  name: CredentialImportFileName
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_CredentialImportFileName_
+  commentId: Overload:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.CredentialImportFileName
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.CredentialImportFileName
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).CredentialImportFileName
+  nameWithType: TestCredentialManager<T>.CredentialImportFileName
+  nameWithType.vb: TestCredentialManager(Of T).CredentialImportFileName
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.Credentials
+  name: Credentials
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_Credentials
+  commentId: P:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.Credentials
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.Credentials
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).Credentials
+  nameWithType: TestCredentialManager<T>.Credentials
+  nameWithType.vb: TestCredentialManager(Of T).Credentials
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.Credentials*
+  name: Credentials
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_Credentials_
+  commentId: Overload:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.Credentials
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.Credentials
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).Credentials
+  nameWithType: TestCredentialManager<T>.Credentials
+  nameWithType.vb: TestCredentialManager(Of T).Credentials
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.DataProtectionService
+  name: DataProtectionService
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_DataProtectionService
+  commentId: P:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.DataProtectionService
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.DataProtectionService
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).DataProtectionService
+  nameWithType: TestCredentialManager<T>.DataProtectionService
+  nameWithType.vb: TestCredentialManager(Of T).DataProtectionService
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.DataProtectionService*
+  name: DataProtectionService
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_DataProtectionService_
+  commentId: Overload:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.DataProtectionService
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.DataProtectionService
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).DataProtectionService
+  nameWithType: TestCredentialManager<T>.DataProtectionService
+  nameWithType.vb: TestCredentialManager(Of T).DataProtectionService
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.LoadCredentials
+  name: LoadCredentials()
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_LoadCredentials
+  commentId: M:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.LoadCredentials
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.LoadCredentials()
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).LoadCredentials()
+  nameWithType: TestCredentialManager<T>.LoadCredentials()
+  nameWithType.vb: TestCredentialManager(Of T).LoadCredentials()
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.LoadCredentials*
+  name: LoadCredentials
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_LoadCredentials_
+  commentId: Overload:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.LoadCredentials
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.LoadCredentials
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).LoadCredentials
+  nameWithType: TestCredentialManager<T>.LoadCredentials
+  nameWithType.vb: TestCredentialManager(Of T).LoadCredentials
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.SaveCredentials
+  name: SaveCredentials()
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_SaveCredentials
+  commentId: M:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.SaveCredentials
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.SaveCredentials()
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).SaveCredentials()
+  nameWithType: TestCredentialManager<T>.SaveCredentials()
+  nameWithType.vb: TestCredentialManager(Of T).SaveCredentials()
+- uid: Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.SaveCredentials*
+  name: SaveCredentials
+  href: api/Bodoconsult.App.Windows.DataProtection.TestCredentialManager-1.html#Bodoconsult_App_Windows_DataProtection_TestCredentialManager_1_SaveCredentials_
+  commentId: Overload:Bodoconsult.App.Windows.DataProtection.TestCredentialManager`1.SaveCredentials
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.DataProtection.TestCredentialManager<T>.SaveCredentials
+  fullName.vb: Bodoconsult.App.Windows.DataProtection.TestCredentialManager(Of T).SaveCredentials
+  nameWithType: TestCredentialManager<T>.SaveCredentials
+  nameWithType.vb: TestCredentialManager(Of T).SaveCredentials
 - uid: Bodoconsult.App.Windows.FileSystem
   name: Bodoconsult.App.Windows.FileSystem
   href: api/Bodoconsult.App.Windows.FileSystem.html
@@ -57201,6 +57527,38 @@ references:
   commentId: T:Bodoconsult.App.Windows.Toast.WindowsToastMessagingService
   fullName: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService
   nameWithType: WindowsToastMessagingService
+- uid: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.#ctor
+  name: WindowsToastMessagingService()
+  href: api/Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.html#Bodoconsult_App_Windows_Toast_WindowsToastMessagingService__ctor
+  commentId: M:Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.#ctor
+  name.vb: New()
+  fullName: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.WindowsToastMessagingService()
+  fullName.vb: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.New()
+  nameWithType: WindowsToastMessagingService.WindowsToastMessagingService()
+  nameWithType.vb: WindowsToastMessagingService.New()
+- uid: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.#ctor*
+  name: WindowsToastMessagingService
+  href: api/Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.html#Bodoconsult_App_Windows_Toast_WindowsToastMessagingService__ctor_
+  commentId: Overload:Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.WindowsToastMessagingService
+  fullName.vb: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.New
+  nameWithType: WindowsToastMessagingService.WindowsToastMessagingService
+  nameWithType.vb: WindowsToastMessagingService.New
+- uid: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.Dispose
+  name: Dispose()
+  href: api/Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.html#Bodoconsult_App_Windows_Toast_WindowsToastMessagingService_Dispose
+  commentId: M:Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.Dispose
+  fullName: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.Dispose()
+  nameWithType: WindowsToastMessagingService.Dispose()
+- uid: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.Dispose*
+  name: Dispose
+  href: api/Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.html#Bodoconsult_App_Windows_Toast_WindowsToastMessagingService_Dispose_
+  commentId: Overload:Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.Dispose
+  isSpec: "True"
+  fullName: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.Dispose
+  nameWithType: WindowsToastMessagingService.Dispose
 - uid: Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.SendSimpleToastMessage(Bodoconsult.App.Abstractions.Interfaces.NotifyRequestRecord)
   name: SendSimpleToastMessage(NotifyRequestRecord)
   href: api/Bodoconsult.App.Windows.Toast.WindowsToastMessagingService.html#Bodoconsult_App_Windows_Toast_WindowsToastMessagingService_SendSimpleToastMessage_Bodoconsult_App_Abstractions_Interfaces_NotifyRequestRecord_
@@ -70072,6 +70430,38 @@ references:
   commentId: T:Bodoconsult.App.Wpf.Toast.WpfToastMessagingService
   fullName: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService
   nameWithType: WpfToastMessagingService
+- uid: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.#ctor
+  name: WpfToastMessagingService()
+  href: api/Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.html#Bodoconsult_App_Wpf_Toast_WpfToastMessagingService__ctor
+  commentId: M:Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.#ctor
+  name.vb: New()
+  fullName: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.WpfToastMessagingService()
+  fullName.vb: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.New()
+  nameWithType: WpfToastMessagingService.WpfToastMessagingService()
+  nameWithType.vb: WpfToastMessagingService.New()
+- uid: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.#ctor*
+  name: WpfToastMessagingService
+  href: api/Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.html#Bodoconsult_App_Wpf_Toast_WpfToastMessagingService__ctor_
+  commentId: Overload:Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.WpfToastMessagingService
+  fullName.vb: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.New
+  nameWithType: WpfToastMessagingService.WpfToastMessagingService
+  nameWithType.vb: WpfToastMessagingService.New
+- uid: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.Dispose
+  name: Dispose()
+  href: api/Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.html#Bodoconsult_App_Wpf_Toast_WpfToastMessagingService_Dispose
+  commentId: M:Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.Dispose
+  fullName: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.Dispose()
+  nameWithType: WpfToastMessagingService.Dispose()
+- uid: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.Dispose*
+  name: Dispose
+  href: api/Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.html#Bodoconsult_App_Wpf_Toast_WpfToastMessagingService_Dispose_
+  commentId: Overload:Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.Dispose
+  isSpec: "True"
+  fullName: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.Dispose
+  nameWithType: WpfToastMessagingService.Dispose
 - uid: Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.SendSimpleToastMessage(Bodoconsult.App.Abstractions.Interfaces.NotifyRequestRecord)
   name: SendSimpleToastMessage(NotifyRequestRecord)
   href: api/Bodoconsult.App.Wpf.Toast.WpfToastMessagingService.html#Bodoconsult_App_Wpf_Toast_WpfToastMessagingService_SendSimpleToastMessage_Bodoconsult_App_Abstractions_Interfaces_NotifyRequestRecord_
@@ -116677,6 +117067,44 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Network.Windows.Helpers.AdHelper.GetUserData
   nameWithType: AdHelper.GetUserData
+- uid: Bodoconsult.Network.Windows.Helpers.ServerHelper
+  name: ServerHelper
+  href: api/Bodoconsult.Network.Windows.Helpers.ServerHelper.html
+  commentId: T:Bodoconsult.Network.Windows.Helpers.ServerHelper
+  fullName: Bodoconsult.Network.Windows.Helpers.ServerHelper
+  nameWithType: ServerHelper
+- uid: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteReboot(System.String,System.String,System.String,System.String)
+  name: RemoteReboot(string, string, string, string)
+  href: api/Bodoconsult.Network.Windows.Helpers.ServerHelper.html#Bodoconsult_Network_Windows_Helpers_ServerHelper_RemoteReboot_System_String_System_String_System_String_System_String_
+  commentId: M:Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteReboot(System.String,System.String,System.String,System.String)
+  name.vb: RemoteReboot(String, String, String, String)
+  fullName: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteReboot(string, string, string, string)
+  fullName.vb: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteReboot(String, String, String, String)
+  nameWithType: ServerHelper.RemoteReboot(string, string, string, string)
+  nameWithType.vb: ServerHelper.RemoteReboot(String, String, String, String)
+- uid: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteReboot*
+  name: RemoteReboot
+  href: api/Bodoconsult.Network.Windows.Helpers.ServerHelper.html#Bodoconsult_Network_Windows_Helpers_ServerHelper_RemoteReboot_
+  commentId: Overload:Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteReboot
+  isSpec: "True"
+  fullName: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteReboot
+  nameWithType: ServerHelper.RemoteReboot
+- uid: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteShutdown(System.String,System.String,System.String,System.String)
+  name: RemoteShutdown(string, string, string, string)
+  href: api/Bodoconsult.Network.Windows.Helpers.ServerHelper.html#Bodoconsult_Network_Windows_Helpers_ServerHelper_RemoteShutdown_System_String_System_String_System_String_System_String_
+  commentId: M:Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteShutdown(System.String,System.String,System.String,System.String)
+  name.vb: RemoteShutdown(String, String, String, String)
+  fullName: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteShutdown(string, string, string, string)
+  fullName.vb: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteShutdown(String, String, String, String)
+  nameWithType: ServerHelper.RemoteShutdown(string, string, string, string)
+  nameWithType.vb: ServerHelper.RemoteShutdown(String, String, String, String)
+- uid: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteShutdown*
+  name: RemoteShutdown
+  href: api/Bodoconsult.Network.Windows.Helpers.ServerHelper.html#Bodoconsult_Network_Windows_Helpers_ServerHelper_RemoteShutdown_
+  commentId: Overload:Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteShutdown
+  isSpec: "True"
+  fullName: Bodoconsult.Network.Windows.Helpers.ServerHelper.RemoteShutdown
+  nameWithType: ServerHelper.RemoteShutdown
 - uid: Bodoconsult.Network.Windows.Interfaces
   name: Bodoconsult.Network.Windows.Interfaces
   href: api/Bodoconsult.Network.Windows.Interfaces.html
@@ -121408,13 +121836,13 @@ references:
   nameWithType: DocxBuilder.AddTable(List<DocxTableRow>, ITypoTableStyle)
   nameWithType.vb: DocxBuilder.AddTable(List(Of DocxTableRow), ITypoTableStyle)
 - uid: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List{Bodoconsult.Office.DocxTableRow},Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle,System.String)
-  name: AddTable(List<DocxTableRow>, ITypoTableStyle, string)
+  name: AddTable(List<DocxTableRow>, ITypoTableStyle, string?)
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_AddTable_System_Collections_Generic_List_Bodoconsult_Office_DocxTableRow__Bodoconsult_App_Abstractions_Interfaces_ITypoTableStyle_System_String_
   commentId: M:Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List{Bodoconsult.Office.DocxTableRow},Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle,System.String)
   name.vb: AddTable(List(Of DocxTableRow), ITypoTableStyle, String)
-  fullName: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List<Bodoconsult.Office.DocxTableRow>, Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle, string)
+  fullName: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List<Bodoconsult.Office.DocxTableRow>, Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle, string?)
   fullName.vb: Bodoconsult.Office.DocxBuilder.AddTable(System.Collections.Generic.List(Of Bodoconsult.Office.DocxTableRow), Bodoconsult.App.Abstractions.Interfaces.ITypoTableStyle, String)
-  nameWithType: DocxBuilder.AddTable(List<DocxTableRow>, ITypoTableStyle, string)
+  nameWithType: DocxBuilder.AddTable(List<DocxTableRow>, ITypoTableStyle, string?)
   nameWithType.vb: DocxBuilder.AddTable(List(Of DocxTableRow), ITypoTableStyle, String)
 - uid: Bodoconsult.Office.DocxBuilder.AddTable*
   name: AddTable
@@ -121526,13 +121954,13 @@ references:
   fullName: Bodoconsult.Office.DocxBuilder.CreateHyperlink
   nameWithType: DocxBuilder.CreateHyperlink
 - uid: Bodoconsult.Office.DocxBuilder.CreateImageRun(DocumentFormat.OpenXml.Packaging.OpenXmlPart,System.String,System.Int32,System.Int32,System.Int32,System.String)
-  name: CreateImageRun(OpenXmlPart, string, int, int, int, string)
+  name: CreateImageRun(OpenXmlPart, string, int, int, int, string?)
   href: api/Bodoconsult.Office.DocxBuilder.html#Bodoconsult_Office_DocxBuilder_CreateImageRun_DocumentFormat_OpenXml_Packaging_OpenXmlPart_System_String_System_Int32_System_Int32_System_Int32_System_String_
   commentId: M:Bodoconsult.Office.DocxBuilder.CreateImageRun(DocumentFormat.OpenXml.Packaging.OpenXmlPart,System.String,System.Int32,System.Int32,System.Int32,System.String)
   name.vb: CreateImageRun(OpenXmlPart, String, Integer, Integer, Integer, String)
-  fullName: Bodoconsult.Office.DocxBuilder.CreateImageRun(DocumentFormat.OpenXml.Packaging.OpenXmlPart, string, int, int, int, string)
+  fullName: Bodoconsult.Office.DocxBuilder.CreateImageRun(DocumentFormat.OpenXml.Packaging.OpenXmlPart, string, int, int, int, string?)
   fullName.vb: Bodoconsult.Office.DocxBuilder.CreateImageRun(DocumentFormat.OpenXml.Packaging.OpenXmlPart, String, Integer, Integer, Integer, String)
-  nameWithType: DocxBuilder.CreateImageRun(OpenXmlPart, string, int, int, int, string)
+  nameWithType: DocxBuilder.CreateImageRun(OpenXmlPart, string, int, int, int, string?)
   nameWithType.vb: DocxBuilder.CreateImageRun(OpenXmlPart, String, Integer, Integer, Integer, String)
 - uid: Bodoconsult.Office.DocxBuilder.CreateImageRun*
   name: CreateImageRun
@@ -122875,13 +123303,13 @@ references:
   fullName: Bodoconsult.Office.XlsxBuilder.ErrorCode
   nameWithType: XlsxBuilder.ErrorCode
 - uid: Bodoconsult.Office.XlsxBuilder.ExcelError(System.Exception,System.String)
-  name: ExcelError(Exception, string)
+  name: ExcelError(Exception, string?)
   href: api/Bodoconsult.Office.XlsxBuilder.html#Bodoconsult_Office_XlsxBuilder_ExcelError_System_Exception_System_String_
   commentId: M:Bodoconsult.Office.XlsxBuilder.ExcelError(System.Exception,System.String)
   name.vb: ExcelError(Exception, String)
-  fullName: Bodoconsult.Office.XlsxBuilder.ExcelError(System.Exception, string)
+  fullName: Bodoconsult.Office.XlsxBuilder.ExcelError(System.Exception, string?)
   fullName.vb: Bodoconsult.Office.XlsxBuilder.ExcelError(System.Exception, String)
-  nameWithType: XlsxBuilder.ExcelError(Exception, string)
+  nameWithType: XlsxBuilder.ExcelError(Exception, string?)
   nameWithType.vb: XlsxBuilder.ExcelError(Exception, String)
 - uid: Bodoconsult.Office.XlsxBuilder.ExcelError*
   name: ExcelError
@@ -123465,13 +123893,13 @@ references:
   fullName: Bodoconsult.Office.XlsxLateBindingBuilder.Error
   nameWithType: XlsxLateBindingBuilder.Error
 - uid: Bodoconsult.Office.XlsxLateBindingBuilder.ExcelError(System.Exception,System.String)
-  name: ExcelError(Exception, string)
+  name: ExcelError(Exception, string?)
   href: api/Bodoconsult.Office.XlsxLateBindingBuilder.html#Bodoconsult_Office_XlsxLateBindingBuilder_ExcelError_System_Exception_System_String_
   commentId: M:Bodoconsult.Office.XlsxLateBindingBuilder.ExcelError(System.Exception,System.String)
   name.vb: ExcelError(Exception, String)
-  fullName: Bodoconsult.Office.XlsxLateBindingBuilder.ExcelError(System.Exception, string)
+  fullName: Bodoconsult.Office.XlsxLateBindingBuilder.ExcelError(System.Exception, string?)
   fullName.vb: Bodoconsult.Office.XlsxLateBindingBuilder.ExcelError(System.Exception, String)
-  nameWithType: XlsxLateBindingBuilder.ExcelError(Exception, string)
+  nameWithType: XlsxLateBindingBuilder.ExcelError(Exception, string?)
   nameWithType.vb: XlsxLateBindingBuilder.ExcelError(Exception, String)
 - uid: Bodoconsult.Office.XlsxLateBindingBuilder.ExcelError*
   name: ExcelError
@@ -124662,6 +125090,25 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Pdf.Extensions.TypoColorExtensions.ToPdfColor
   nameWithType: TypoColorExtensions.ToPdfColor
+- uid: Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions
+  name: TypoPaperFormatExtensions
+  href: api/Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.html
+  commentId: T:Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions
+  fullName: Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions
+  nameWithType: TypoPaperFormatExtensions
+- uid: Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.ToPageSize(Bodoconsult.App.Abstractions.Interfaces.TypoPaperFormat)
+  name: ToPageSize(TypoPaperFormat)
+  href: api/Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.html#Bodoconsult_Pdf_Extensions_TypoPaperFormatExtensions_ToPageSize_Bodoconsult_App_Abstractions_Interfaces_TypoPaperFormat_
+  commentId: M:Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.ToPageSize(Bodoconsult.App.Abstractions.Interfaces.TypoPaperFormat)
+  fullName: Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.ToPageSize(Bodoconsult.App.Abstractions.Interfaces.TypoPaperFormat)
+  nameWithType: TypoPaperFormatExtensions.ToPageSize(TypoPaperFormat)
+- uid: Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.ToPageSize*
+  name: ToPageSize
+  href: api/Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.html#Bodoconsult_Pdf_Extensions_TypoPaperFormatExtensions_ToPageSize_
+  commentId: Overload:Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.ToPageSize
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.Extensions.TypoPaperFormatExtensions.ToPageSize
+  nameWithType: TypoPaperFormatExtensions.ToPageSize
 - uid: Bodoconsult.Pdf.Factories
   name: Bodoconsult.Pdf.Factories
   href: api/Bodoconsult.Pdf.Factories.html
@@ -125926,15 +126373,15 @@ references:
   commentId: T:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder
   fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder
   nameWithType: PdfFromImagesBuilder
-- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.#ctor
-  name: PdfFromImagesBuilder()
-  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder__ctor
-  commentId: M:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.#ctor
-  name.vb: New()
-  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PdfFromImagesBuilder()
-  fullName.vb: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.New()
-  nameWithType: PdfFromImagesBuilder.PdfFromImagesBuilder()
-  nameWithType.vb: PdfFromImagesBuilder.New()
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.#ctor(System.Collections.Generic.List{System.Byte[]},System.String,System.String)
+  name: PdfFromImagesBuilder(List<byte[]>, string, string)
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder__ctor_System_Collections_Generic_List_System_Byte____System_String_System_String_
+  commentId: M:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.#ctor(System.Collections.Generic.List{System.Byte[]},System.String,System.String)
+  name.vb: New(List(Of Byte()), String, String)
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PdfFromImagesBuilder(System.Collections.Generic.List<byte[]>, string, string)
+  fullName.vb: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.New(System.Collections.Generic.List(Of Byte()), String, String)
+  nameWithType: PdfFromImagesBuilder.PdfFromImagesBuilder(List<byte[]>, string, string)
+  nameWithType.vb: PdfFromImagesBuilder.New(List(Of Byte()), String, String)
 - uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.#ctor*
   name: PdfFromImagesBuilder
   href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder__ctor_
@@ -125945,6 +126392,103 @@ references:
   fullName.vb: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.New
   nameWithType: PdfFromImagesBuilder.PdfFromImagesBuilder
   nameWithType.vb: PdfFromImagesBuilder.New
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Images
+  name: Images
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_Images
+  commentId: P:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Images
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Images
+  nameWithType: PdfFromImagesBuilder.Images
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Images*
+  name: Images
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_Images_
+  commentId: Overload:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Images
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Images
+  nameWithType: PdfFromImagesBuilder.Images
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Orientation
+  name: Orientation
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_Orientation
+  commentId: P:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Orientation
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Orientation
+  nameWithType: PdfFromImagesBuilder.Orientation
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Orientation*
+  name: Orientation
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_Orientation_
+  commentId: Overload:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Orientation
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.Orientation
+  nameWithType: PdfFromImagesBuilder.Orientation
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PageSize
+  name: PageSize
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_PageSize
+  commentId: P:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PageSize
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PageSize
+  nameWithType: PdfFromImagesBuilder.PageSize
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PageSize*
+  name: PageSize
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_PageSize_
+  commentId: Overload:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PageSize
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.PageSize
+  nameWithType: PdfFromImagesBuilder.PageSize
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImage(PdfSharp.Pdf.PdfPage,System.Byte[])
+  name: ProcessImage(PdfPage, byte[])
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_ProcessImage_PdfSharp_Pdf_PdfPage_System_Byte___
+  commentId: M:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImage(PdfSharp.Pdf.PdfPage,System.Byte[])
+  name.vb: ProcessImage(PdfPage, Byte())
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImage(PdfSharp.Pdf.PdfPage, byte[])
+  fullName.vb: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImage(PdfSharp.Pdf.PdfPage, Byte())
+  nameWithType: PdfFromImagesBuilder.ProcessImage(PdfPage, byte[])
+  nameWithType.vb: PdfFromImagesBuilder.ProcessImage(PdfPage, Byte())
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImage*
+  name: ProcessImage
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_ProcessImage_
+  commentId: Overload:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImage
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImage
+  nameWithType: PdfFromImagesBuilder.ProcessImage
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImages
+  name: ProcessImages()
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_ProcessImages
+  commentId: M:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImages
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImages()
+  nameWithType: PdfFromImagesBuilder.ProcessImages()
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImages*
+  name: ProcessImages
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_ProcessImages_
+  commentId: Overload:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImages
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.ProcessImages
+  nameWithType: PdfFromImagesBuilder.ProcessImages
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.SaveAs(System.String)
+  name: SaveAs(string)
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_SaveAs_System_String_
+  commentId: M:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.SaveAs(System.String)
+  name.vb: SaveAs(String)
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.SaveAs(string)
+  fullName.vb: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.SaveAs(String)
+  nameWithType: PdfFromImagesBuilder.SaveAs(string)
+  nameWithType.vb: PdfFromImagesBuilder.SaveAs(String)
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.SaveAs*
+  name: SaveAs
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_SaveAs_
+  commentId: Overload:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.SaveAs
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.SaveAs
+  nameWithType: PdfFromImagesBuilder.SaveAs
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.UsePdfA
+  name: UsePdfA
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_UsePdfA
+  commentId: P:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.UsePdfA
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.UsePdfA
+  nameWithType: PdfFromImagesBuilder.UsePdfA
+- uid: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.UsePdfA*
+  name: UsePdfA
+  href: api/Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.html#Bodoconsult_Pdf_PdfFromImagesBuilder_PdfFromImagesBuilder_UsePdfA_
+  commentId: Overload:Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.UsePdfA
+  isSpec: "True"
+  fullName: Bodoconsult.Pdf.PdfFromImagesBuilder.PdfFromImagesBuilder.UsePdfA
+  nameWithType: PdfFromImagesBuilder.UsePdfA
 - uid: Bodoconsult.Pdf.PdfSharp
   name: Bodoconsult.Pdf.PdfSharp
   href: api/Bodoconsult.Pdf.PdfSharp.html
@@ -131403,22 +131947,6 @@ references:
   isSpec: "True"
   fullName: Bodoconsult.Test.Helpers.TestHelper.AppPath
   nameWithType: TestHelper.AppPath
-- uid: Bodoconsult.Test.Helpers.TestHelper.OpenFile(System.String)
-  name: OpenFile(string)
-  href: api/Bodoconsult.Test.Helpers.TestHelper.html#Bodoconsult_Test_Helpers_TestHelper_OpenFile_System_String_
-  commentId: M:Bodoconsult.Test.Helpers.TestHelper.OpenFile(System.String)
-  name.vb: OpenFile(String)
-  fullName: Bodoconsult.Test.Helpers.TestHelper.OpenFile(string)
-  fullName.vb: Bodoconsult.Test.Helpers.TestHelper.OpenFile(String)
-  nameWithType: TestHelper.OpenFile(string)
-  nameWithType.vb: TestHelper.OpenFile(String)
-- uid: Bodoconsult.Test.Helpers.TestHelper.OpenFile*
-  name: OpenFile
-  href: api/Bodoconsult.Test.Helpers.TestHelper.html#Bodoconsult_Test_Helpers_TestHelper_OpenFile_
-  commentId: Overload:Bodoconsult.Test.Helpers.TestHelper.OpenFile
-  isSpec: "True"
-  fullName: Bodoconsult.Test.Helpers.TestHelper.OpenFile
-  nameWithType: TestHelper.OpenFile
 - uid: Bodoconsult.Test.Helpers.TestHelper.TestDataPath
   name: TestDataPath
   href: api/Bodoconsult.Test.Helpers.TestHelper.html#Bodoconsult_Test_Helpers_TestHelper_TestDataPath

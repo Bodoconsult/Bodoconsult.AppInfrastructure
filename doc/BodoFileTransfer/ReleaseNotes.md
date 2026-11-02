@@ -16,7 +16,12 @@ NOT intended for public use
 
 - 	Migration to repository https://github.com/Bodoconsult/Bodoconsult.AppInfrastructure
 
--	Refactoring for business logic based
+-	Refactoring for business logic
 
+-   Migration to Net10
+
+# 1.0.12
+
+-  
 
 

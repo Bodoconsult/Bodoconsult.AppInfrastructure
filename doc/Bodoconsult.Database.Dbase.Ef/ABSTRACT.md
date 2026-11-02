@@ -1,0 +1,1 @@
+Bodoconsult.Database.Dbase.Ef allows reading data from DBase or Clipper DBF database files and store it with Entity Framework in a SQL database.

@@ -15,7 +15,7 @@ See page [WPF app start infrastructure](../Bodoconsult.App.Wpf/README.md) for de
 
 ## What does the library
 
-Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting XPS or PDF export. 
+Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting screen, XPS or PDF export. 
 
 ## How to use the library
 

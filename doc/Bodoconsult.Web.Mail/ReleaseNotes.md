@@ -21,4 +21,8 @@ NOT intended for public use
 
 -   IMailAccount, IO365MailAcccount, SmtpMailAccount and O365MailAccount moved to Bodoconsult.App.Abstractions.Interfaces
 
+-   Migration to Net10
 
+# 1.0.12
+
+-   

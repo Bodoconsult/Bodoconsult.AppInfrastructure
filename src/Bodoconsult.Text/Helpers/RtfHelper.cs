@@ -75,7 +75,7 @@ public static class RtfHelper
             }
         }
 
-        if (style.Shading != null)
+        if (style.Shading is not null)
         {
             var colorIndex = styleset.GetIndexOfColor((Color)style.TypoShading) + 1;
             sb.Append($@"\shading{colorIndex}");

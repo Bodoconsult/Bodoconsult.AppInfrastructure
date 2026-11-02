@@ -1,0 +1,1 @@
+Bodoconsult.App.Wpf is a library with basic functionality for multilayered monolithic WPF based applications. 

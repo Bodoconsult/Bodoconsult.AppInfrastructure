@@ -8,7 +8,6 @@ namespace Bodoconsult.App.Test.Toast;
 [TestFixture]
 internal class WinFormsToastMessagingServiceTests
 {
-
     [Test]
     public void SendSimpleToastMessage_NotifyRequestRecord_NotificationIsShown()
     {

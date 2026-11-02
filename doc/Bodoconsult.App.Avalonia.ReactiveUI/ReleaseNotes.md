@@ -30,3 +30,9 @@ NOT intended for public use
 -   Migration to nullable project
 
 -   Add ImageControl to show images in an Avalonia control with features like saving as bitmap or copying to clipboard
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

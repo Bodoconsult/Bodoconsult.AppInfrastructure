@@ -19,4 +19,8 @@ NOT intended for public use
 
 -	Some refactoring for SSH handling inclunding new interface IRemoteServerHandler
 
+-   Migration to Net10
 
+# 1.0.12
+
+-   

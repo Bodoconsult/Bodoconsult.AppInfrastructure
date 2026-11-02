@@ -17,4 +17,10 @@ public class DummyToastMessagingService : IToastMessagingService
     {
         // Do nothing
     }
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    public void Dispose()
+    {
+        // Do nothing
+    }
 }

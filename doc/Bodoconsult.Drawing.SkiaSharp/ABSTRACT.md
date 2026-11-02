@@ -1,0 +1,1 @@
+Bodoconsult.Drawing.SkiaSharp is library to simplify bitmap handling and common bitmap tasks.

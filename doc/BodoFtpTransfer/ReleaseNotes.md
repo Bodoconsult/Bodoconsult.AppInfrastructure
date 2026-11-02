@@ -19,5 +19,10 @@ NOT intended for public use
 
 -	Refactoring for business logic
 
+-   Migration to Net10
+
+# 1.0.12
+
+-  
 
 

@@ -14,3 +14,7 @@ With each release all the repository internal references are updated.
 -   Improved security
 
 -   Had to change to AGPL-3.0-only license due to PdfSharp
+
+# 1.0.12
+
+-

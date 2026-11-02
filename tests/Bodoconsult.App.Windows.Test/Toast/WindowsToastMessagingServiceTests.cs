@@ -26,8 +26,10 @@ internal class WindowsToastMessagingServiceTests
         Assert.DoesNotThrow(() =>
         {
             s.SendSimpleToastMessage(request);
+            s.Dispose();
         });
 
+        
     }
 
     [Test]
@@ -46,8 +48,7 @@ internal class WindowsToastMessagingServiceTests
         Assert.DoesNotThrow(() =>
         {
             s.SendSimpleToastMessage(request);
+            s.Dispose();
         });
-
     }
-
 }

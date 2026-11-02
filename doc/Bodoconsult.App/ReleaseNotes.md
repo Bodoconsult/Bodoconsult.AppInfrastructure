@@ -75,3 +75,9 @@ NOT intended for public use
 -   Added Hasher class for hashing 
 
 -   Bugfix in DefaultAppLoggerProvider.AddLoggerProviders(): bug leading to no app log created under certain circumstances
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

@@ -13,7 +13,7 @@ using BodoFileTransfer.Test.App;
 using BodoFileTransfer.Test.Helper;
 using NUnit.Framework;
 
-namespace BodoFileTransfer.Test;
+namespace BodoFileTransfer.Test.DataHandling;
 
 /// <summary>
 /// Base test class for <see cref="IDataHandler"/> tests
@@ -32,7 +32,7 @@ public abstract class BaseTestDataHandler
         var result = DataHandler.GetAllAccounts();
 
         // Assert
-        Assert.That(result.Count > 0, Is.EqualTo(Is.Not.Null));
+        Assert.That(result.Count > 0, Is.Not.Null);
     }
 
     [Test]
@@ -48,7 +48,7 @@ public abstract class BaseTestDataHandler
         });
 
         // Assert
-        Assert.That(accounts, Is.EqualTo(Is.Not.Null));
+        Assert.That(accounts, Is.Not.Null);
     }
 
     [Test]
@@ -64,7 +64,7 @@ public abstract class BaseTestDataHandler
         });
 
         // Assert
-        Assert.That(accounts, Is.EqualTo(Is.Not.Null));
+        Assert.That(accounts, Is.Not.Null);
     }
 
     [Test]
@@ -80,7 +80,7 @@ public abstract class BaseTestDataHandler
         });
 
         // Assert
-        Assert.That(accounts, Is.EqualTo(Is.Not.Null));
+        Assert.That(accounts, Is.Not.Null);
     }
 
     //[Test]
@@ -109,7 +109,7 @@ public abstract class BaseTestDataHandler
         var result = fh.ProcessImapAccounts();
         
         // Assert
-        Assert.That(!result, Is.EqualTo(Is.Not.Null));
+        Assert.That(!result, Is.Not.Null);
     }
 
     [Test]
@@ -127,8 +127,8 @@ public abstract class BaseTestDataHandler
         var result1 = fh.ProcessAccounts();
 
         // Assert
-        Assert.That(!result, Is.EqualTo(Is.Not.Null));
-        Assert.That(!result1, Is.EqualTo(Is.Not.Null));
+        Assert.That(!result, Is.Not.Null);
+        Assert.That(!result1, Is.Not.Null);
     }
 
     [Test]
@@ -148,7 +148,7 @@ public abstract class BaseTestDataHandler
         var result = DataHandler.GetFilesForAnAccount(accountId);
 
         // Assert
-        Assert.That(result.Count > 0, Is.EqualTo(Is.Not.Null));
+        Assert.That(result.Count > 0, Is.Not.Null);
 
     }
 
@@ -169,7 +169,7 @@ public abstract class BaseTestDataHandler
         var result = DataHandler.GetFilesArchiveForAnAccount(accountId);
 
         // Assert
-        Assert.That(result.Count > 0, Is.EqualTo(Is.Not.Null));
+        Assert.That(result.Count > 0, Is.Not.Null);
     }
 
     [Test]
@@ -211,8 +211,8 @@ public abstract class BaseTestDataHandler
         var result = DataHandler.GetTracesForFile(trace.FileId);
 
         // Assert
-        Assert.That(result, Is.EqualTo(Is.Not.Null));
-        Assert.That(result.Any(), Is.EqualTo(Is.Not.Null));
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result.Any(), Is.Not.False);
     }
 
 

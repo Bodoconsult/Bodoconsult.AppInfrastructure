@@ -1,6 +1,6 @@
 # What does the library
 
-Bodoconsult.Core.Charting.Base is a base class library for creating charts from database data. The workflow for using the library is generally as follows:
+Bodoconsult.Charting.Base is a base class library for creating charts from database data. The workflow for using the library is generally as follows:
 
 1. Getting data as DataTable from a database
 2. Create a ChartData object to make general settings for the chart and load the data from the DataTable as List<IChartItemData> 

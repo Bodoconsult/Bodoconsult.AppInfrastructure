@@ -5,15 +5,15 @@ With each release all the repository internal references are updated.
 
 # 1.0.0
 
-New package
+-   New package
 
 # 1.0.4
 
-Moved AD, DNS and DHCP related classes to Bodoconsult.Network repo and removed dependencies Microsoft.Management.Infrastructure and Microsoft.Windows.Compatibility to get a smaller footprint for package
+-   Moved AD, DNS and DHCP related classes to Bodoconsult.Network.Windows library and removed dependencies Microsoft.Management.Infrastructure and Microsoft.Windows.Compatibility to get a smaller footprint for package
 
 # 1.0.5
 
-Migrated interfaces to Bodoconsult.App.Abstractions
+-   Migrated interfaces to Bodoconsult.App.Abstractions
 
 # 1.0.6
 
@@ -32,12 +32,18 @@ NOT intended for public use
 
 # 1.0.11
 
-Better PDB handling
+-   Better PDB handling
 
-Enabled nullable for project
+-   Enabled nullable for project
 
-Adjusting namespace for Clipboard class
+-   Adjusting namespace for Clipboard class
 
-Implemented IDataProtectionService for DataProtectionService for usage with DataProtectionManager class
+-   Implemented IDataProtectionService for DataProtectionService for usage with DataProtectionManager class
 
-Added TestCredentialManager to protect secrets for unit test environments (only Windows OS)
+-   Added TestCredentialManager to protect secrets for unit test environments (only Windows OS)
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

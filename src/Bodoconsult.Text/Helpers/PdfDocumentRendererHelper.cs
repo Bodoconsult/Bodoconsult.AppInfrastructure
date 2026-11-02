@@ -101,7 +101,7 @@ public static class PdfDocumentRendererHelper
         bb.Width = Unit.FromCentimeter(style.BorderThickness.Bottom);
 
         // Shading
-        if (style.TypoShading != null)
+        if (style.TypoShading is not null)
         {
             pdfStyle.ParagraphFormat.Shading = new Shading
             {

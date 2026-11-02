@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using PdfSharp;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
 
 namespace Bodoconsult.Pdf.Helpers;
 
@@ -13,6 +14,14 @@ namespace Bodoconsult.Pdf.Helpers;
 /// </summary>
 public static class PdfHelper
 {
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    static PdfHelper()
+    {
+        PdfSharpLicense.SetAgplLicense();
+    }
+
     /// <summary>
     /// Merge some PDF files into a target PDF file
     /// </summary>

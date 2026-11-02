@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Runtime.Versioning;
 using Bodoconsult.Pdf.PdfSharp;
 using MigraDoc;
 using NUnit.Framework;
@@ -11,6 +12,7 @@ namespace Bodoconsult.Pdf.Test;
 /// <summary>
 /// Setup for the assembly for all tests
 /// </summary>
+[SupportedOSPlatform("windows")]
 [SetUpFixture]
 public static class AssemblySetup
 {

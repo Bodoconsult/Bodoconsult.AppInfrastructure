@@ -1,14 +1,46 @@
-# Bodoconsult.Test
+# BodoCmsConsole
 
-## License for Bodoconsult.Test
+## License for BodoCmsConsole
 
-Bodoconsult.Test is licensed under the MIT License.
+BodoCmsConsole is licensed under the MIT License.
 
 For the license text please see https://licenses.nuget.org/MIT.
 
 
 
-## Repository internal library references for Bodoconsult.Test
+## Repository internal library references for BodoCmsConsole
 
-## Referenced external libraries for Bodoconsult.Test
+### BodoCmsConsole.Business
+
+#### Nuget package library Newtonsoft.Json by James Newton-King
+
+Copyright: Copyright © James Newton-King 2008
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+License: MIT
+
+License-Url: https://licenses.nuget.org/MIT
+
+Project-Url: https://github.com/JamesNK/Newtonsoft.Json
+
+#### Nuget package library WebMarkupMin.Core by Andrey Taritsyn
+
+Copyright: Copyright © 2013-2024 Andrey Taritsyn
+
+The Web Markup Minifier (abbreviated WebMarkupMin) is a .NET library that contains a set of markup minifiers. The objective of this project is to improve the performance of web applications by reducing the size of HTML, XHTML and XML code.
+
+WebMarkupMin absorbed the best of existing solutions from non-microsoft platforms: Juriy Zaytsev's HTML Minifier (https://github.com/kangax/html-minifier/) (written in JavaScript) and Sergiy Kovalchuk's HtmlCompressor (https://github.com/serg472/htmlcompressor) (written in Java).
+
+Minification of markup produces by removing extra whitespaces, comments and redundant code (only for HTML and XHTML). In addition, HTML and XHTML minifiers supports the minification of CSS code from style tags and attributes, and minification of JavaScript code from script tags, event attributes and hyperlinks with javascript: protocol. WebMarkupMin.Core contains built-in JavaScript minifier based on the Douglas Crockford's JSMin (https://github.com/douglascrockford/JSMin) and built-in CSS minifier based on the Mads Kristensen's Efficient stylesheet minifier (https://madskristensen.net/blog/Efficient-stylesheet-minification-in-C). The above mentioned minifiers produce only the most simple minifications of CSS and JavaScript code, but you can always install additional modules that support the more powerful algorithms of minification: WebMarkupMin.MsAjax (contains minifier-adapters for the Microsoft Ajax Minifier - https://github.com/microsoft/ajaxmin), WebMarkupMin.Yui (contains minifier-adapters for YUI Compressor for .NET - https://github.com/YUICompressor-NET/YUICompressor.NET) and WebMarkupMin.NUglify (contains minifier-adapters for the NUglify - https://github.com/trullock/NUglify).
+
+Also supports minification of views of popular JavaScript template engines: KnockoutJS, Kendo UI MVVM and AngularJS 1.X.
+
+License: Apache-2.0
+
+License-Url: https://licenses.nuget.org/Apache-2.0
+
+Project-Url: https://github.com/Taritsyn/WebMarkupMin
+
+## Referenced external libraries for BodoCmsConsole
 

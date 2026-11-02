@@ -15,3 +15,9 @@ NOT intended for public use
 
 -   Better PDB handling
 
+-   Migration to Net10
+
+# 1.0.12
+
+-  
+

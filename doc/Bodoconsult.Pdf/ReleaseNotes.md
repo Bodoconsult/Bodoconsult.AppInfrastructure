@@ -22,3 +22,9 @@ NOT intended for public use
 -   Better PDB handling
 
 -   Had to change to AGPL-3.0-only license due to PdfSharp
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

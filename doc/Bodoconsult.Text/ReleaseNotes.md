@@ -31,4 +31,10 @@ NOT intended for public use
 
 -   Added MarkDownTextFormatter to format simple text based on IStructuredText as Markdown
 
--   Had to change to AGPL-3.0-only license due to PdfSharp
+-   Had to change license to AGPL-3.0-only license due to PdfSharp
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

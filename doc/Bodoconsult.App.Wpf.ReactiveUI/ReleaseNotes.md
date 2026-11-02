@@ -15,3 +15,7 @@ NOT intended for public use
 
 -   Better PDB handling
 
+# 1.0.12
+
+-
+

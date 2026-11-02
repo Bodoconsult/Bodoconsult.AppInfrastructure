@@ -30,3 +30,9 @@ NOT intended for public use
 -   Migration to nullable project
 
 -   Added ImageControlViewModel
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

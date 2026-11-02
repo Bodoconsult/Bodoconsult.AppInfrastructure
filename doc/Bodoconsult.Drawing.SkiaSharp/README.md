@@ -5,7 +5,7 @@ Bodoconsult.Drawing.SkiaSharp
 
 ## What does Bodoconsult.Drawing.SkiaSharp library
 
-Bodoconsult.Drawing.SkiaSharp is library to simplify bitmap handling. The main class is BitmapService. 
+Bodoconsult.Drawing.SkiaSharp is library to simplify bitmap handling and common bitmap tasks. The main class is BitmapService. 
 
 ## How to use the library
 

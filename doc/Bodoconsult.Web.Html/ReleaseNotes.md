@@ -19,3 +19,8 @@ NOT intended for public use
 
 -	Added MarkdownBuilder class
 
+-   Migration to Net10
+
+# 1.0.12
+
+-   

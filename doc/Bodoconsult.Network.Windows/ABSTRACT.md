@@ -1,0 +1,1 @@
+Bodoconsult.Network.Windows provides tools for getting network information from Windows (R) domain network, from a Windows (R) DNS server or as Windows (R) DHCP server.

@@ -22,6 +22,7 @@ internal class ImageViewModelTests
     private Window _window;
     private IUiFileDialogService _dialogService;
     private IAvaloniaUiClipboardService _clipboardService;
+    private const string LogoRessourcePath = "Bodoconsult.App.ReactiveUI.Test.Resources.logo.jpg";
 
     //public ImageViewModelTests()
     //{
@@ -73,7 +74,7 @@ internal class ImageViewModelTests
         // Arrange 
         Setup();
 
-        Globals.Instance.AppStartParameter.LogoRessourcePath = "Bodoconsult.App.ReactiveUI.Tests.Resources.logo.jpg";
+        Globals.Instance.AppStartParameter.LogoRessourcePath = LogoRessourcePath;
         Globals.Instance.AppStartParameter.LogoAssembly = typeof(MenuBuilderHelper).Assembly;
 
         var vm = new ImageViewModel(_dialogService, _clipboardService);
@@ -81,7 +82,7 @@ internal class ImageViewModelTests
         // Act  
         Assert.DoesNotThrow(() =>
         {
-            vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath);
+            vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath!);
         });
 
         //Wait.Until(() => vm.Bitmap is not null);
@@ -98,11 +99,13 @@ internal class ImageViewModelTests
 
         var path = Path.Combine(Path.GetTempPath(), "test.jpg");
 
-        Globals.Instance.AppStartParameter.LogoRessourcePath = "Bodoconsult.App.ReactiveUI.Tests.Resources.logo.jpg";
+        FileSystemHelper.DeleteFile(path);
+
+        Globals.Instance.AppStartParameter.LogoRessourcePath = LogoRessourcePath;
         Globals.Instance.AppStartParameter.LogoAssembly = typeof(MenuBuilderHelper).Assembly;
 
         var vm = new ImageViewModel(_dialogService, _clipboardService);
-        vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath);
+        vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath!);
 
         // Act  
         vm.SaveAsJpeg(path, 100);
@@ -121,11 +124,13 @@ internal class ImageViewModelTests
 
         var path = Path.Combine(Path.GetTempPath(), "test.png");
 
-        Globals.Instance.AppStartParameter.LogoRessourcePath = "Bodoconsult.App.ReactiveUI.Tests.Resources.logo.jpg";
+        FileSystemHelper.DeleteFile(path);
+
+        Globals.Instance.AppStartParameter.LogoRessourcePath = LogoRessourcePath;
         Globals.Instance.AppStartParameter.LogoAssembly = typeof(MenuBuilderHelper).Assembly;
 
         var vm = new ImageViewModel(_dialogService, _clipboardService);
-        vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath);
+        vm.LoadLogoFromRessources(Globals.Instance.AppStartParameter.LogoAssembly, Globals.Instance.AppStartParameter.LogoRessourcePath!);
 
         // Act  
         vm.SaveAsJpeg(path, 100);

@@ -1,0 +1,1 @@
+Bodoconsult.App.Wpf.Documents is a library with basic functionality for creating repots based on WPF FlowDocument targeting screen, XPS or PDF export.

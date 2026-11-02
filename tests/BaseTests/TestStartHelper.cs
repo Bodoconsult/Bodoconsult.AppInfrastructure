@@ -27,6 +27,7 @@ public static class TestStartHelper
     public static void LoadCredentials()
     {
         var globals = TestAppGlobals.Instance;
+        ArgumentNullException.ThrowIfNull(cm.Credentials);
         globals.TestCredentials = cm.Credentials;
     }
 

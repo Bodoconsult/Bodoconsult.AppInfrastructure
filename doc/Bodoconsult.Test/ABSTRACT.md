@@ -1,0 +1,1 @@
+Bodoconsult.Test library was developed to create reports from unit test results to deliver them to auditors etc. 

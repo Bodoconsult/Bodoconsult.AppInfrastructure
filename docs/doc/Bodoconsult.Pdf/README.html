@@ -107,6 +107,9 @@
 <p><a href="#adjusting-layout-by-creating-an-own-styleset">Adjusting layout by creating an own StyleSet</a></p>
 </blockquote>
 </blockquote>
+<blockquote>
+<p><a href="#creating-pdf-files-from-page-images-pdffromimagesbuilder-class">Creating PDF files from page images:PdfFromImagesBuilder class</a></p>
+</blockquote>
 <h2 id="what-does-the-library">What does the library</h2>
 <p>Bodoconsult.Pdf library simplifies the usage of the cool PDfSharp and Migradoc libraries <a href="https://http://pdfsharp.net/">https://http://pdfsharp.net/</a> to create PDF files.</p>
 <p>The more simple PdfCreator class provides easy to use methods for common tasks for PDF creation.</p>
@@ -412,12 +415,12 @@ private void CreateFile(string fileName, bool landscape = false)
     var width = Unit.FromCentimeter( ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
 
     var style = styleSet.Normal;
-    style.Font.Name = &quot;Aptos Narrow&quot;;
+    style.Font.Name = &quot;Arial Narrow&quot;;
     style.Font.Size = 9;
 
     // Spezielles Format für Tabellenbasis (nicht ändern!)
     style = styleSet.NormalTable;
-    style.Font.Name = &quot;Aptos Narrow&quot;;
+    style.Font.Name = &quot;Arial Narrow&quot;;
     style.Font.Size = 8;
     style.ParagraphFormat.SpaceBefore = 0;
     style.ParagraphFormat.SpaceAfter = 0;
@@ -425,7 +428,7 @@ private void CreateFile(string fileName, bool landscape = false)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.Heading1;
-    style.Font.Name = &quot;Aptos Black&quot;;
+    style.Font.Name = &quot;Arial Black&quot;;
     style.Font.Size = 12;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.PageBreakBefore = true;
@@ -436,7 +439,7 @@ private void CreateFile(string fileName, bool landscape = false)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.Title;
-    style.Font.Name = &quot;Aptos Black&quot;;
+    style.Font.Name = &quot;Arial Black&quot;;
     style.Font.Size = 16;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 9;
@@ -444,7 +447,7 @@ private void CreateFile(string fileName, bool landscape = false)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.NoHeading1;
-    style.Font.Name = &quot;Aptos Black&quot;;
+    style.Font.Name = &quot;Arial Black&quot;;
     style.Font.Size = 10;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 2;
@@ -452,7 +455,7 @@ private void CreateFile(string fileName, bool landscape = false)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.ChartTitle;
-    style.Font.Name = &quot;Aptos Narrow&quot;;
+    style.Font.Name = &quot;Arial Narrow&quot;;
     style.Font.Size = 10;
     style.Font.Bold = true;
     style.Font.Color = Colors.Black;
@@ -461,12 +464,12 @@ private void CreateFile(string fileName, bool landscape = false)
     style.ParagraphFormat.SpaceAfter = 3;
 
     style = styleSet.ChartYLabel;
-    style.Font.Name = &quot;Aptos Narrow&quot;;
+    style.Font.Name = &quot;Arial Narrow&quot;;
     style.Font.Size = 8;
     style.Font.Color = Colors.Black;
 
     style = styleSet.Toc1;
-    style.Font.Name = &quot;Aptos&quot;;
+    style.Font.Name = &quot;Arial&quot;;
     style.Font.Size = 10;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceBefore = 3;
@@ -480,7 +483,7 @@ private void CreateFile(string fileName, bool landscape = false)
 
 
     style = styleSet.TocHeading;
-    style.Font.Name = &quot;Aptos Black&quot;;
+    style.Font.Name = &quot;Arial Black&quot;;
     style.Font.Size = 12;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 3;
@@ -489,7 +492,7 @@ private void CreateFile(string fileName, bool landscape = false)
 
     // Kopfzeile
     style = styleSet.Header;
-    style.Font.Name = &quot;Aptos Narrow&quot;;
+    style.Font.Name = &quot;Arial Narrow&quot;;
     style.Font.Size = 8;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.Alignment = ParagraphAlignment.Right;
@@ -499,7 +502,7 @@ private void CreateFile(string fileName, bool landscape = false)
     style.ParagraphFormat.Borders.Bottom.Color = Colors.Black;
 
     style = styleSet.Details;
-    style.Font.Name = &quot;Aptos Narrow&quot;;
+    style.Font.Name = &quot;Arial Narrow&quot;;
     style.Font.Size = 10;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.SpaceAfter = 6;
@@ -509,7 +512,7 @@ private void CreateFile(string fileName, bool landscape = false)
     style.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
     style = styleSet.Footer;
-    style.Font.Name = &quot;Aptos Narrow&quot;;
+    style.Font.Name = &quot;Arial Narrow&quot;;
     style.Font.Size = 8;
     style.Font.Color = Colors.Black;
     style.ParagraphFormat.Alignment = ParagraphAlignment.Left;
@@ -553,7 +556,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos&quot;,
+                Name = &quot;Arial&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -574,7 +577,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Narrow&quot;,
+                Name = &quot;Arial Narrow&quot;,
                 Size = 8
             },
             ParagraphFormat =
@@ -590,7 +593,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Black&quot;,
+                Name = &quot;Arial Black&quot;,
                 Size = 16,
                 Color = Colors.Black
             },
@@ -610,7 +613,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Black&quot;,
+                Name = &quot;Arial Black&quot;,
                 Size = 14,
                 Color = Colors.Black
             },
@@ -628,7 +631,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos&quot;,
+                Name = &quot;Arial&quot;,
                 Size = 12,
                 Color = Colors.Black,
                 Bold = true
@@ -648,7 +651,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos&quot;,
+                Name = &quot;Arial&quot;,
                 Size = 12,
                 Color = Colors.Black,
                 Bold = true
@@ -668,7 +671,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Black&quot;,
+                Name = &quot;Arial Black&quot;,
                 Size = 20,
                 Color = Colors.Black
             },
@@ -685,7 +688,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Black&quot;,
+                Name = &quot;Arial Black&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -705,7 +708,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Narrow&quot;,
+                Name = &quot;Arial Narrow&quot;,
                 Size = 10,
                 Bold = true,
                 Color = Colors.Red
@@ -722,7 +725,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Narrow&quot;,
+                Name = &quot;Arial Narrow&quot;,
                 Size = 8,
                 Color = Colors.Black
             }
@@ -732,7 +735,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Black&quot;,
+                Name = &quot;Arial Black&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -753,7 +756,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos&quot;,
+                Name = &quot;Arial&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -775,7 +778,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos&quot;,
+                Name = &quot;Arial&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -797,7 +800,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos&quot;,
+                Name = &quot;Arial&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -820,7 +823,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Black&quot;,
+                Name = &quot;Arial Black&quot;,
                 Size = 12,
                 Color = Colors.Black
             },
@@ -834,7 +837,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Narrow&quot;,
+                Name = &quot;Arial Narrow&quot;,
                 Size = 8,
                 Color = Colors.Black
             },
@@ -853,7 +856,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Narrow&quot;,
+                Name = &quot;Arial Narrow&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -870,7 +873,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Narrow&quot;,
+                Name = &quot;Arial Narrow&quot;,
                 Size = 9,
                 Color = Colors.Black
             },
@@ -892,7 +895,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos Narrow&quot;,
+                Name = &quot;Arial Narrow&quot;,
                 Size = 8,
                 Color = Colors.Black
             },
@@ -946,7 +949,7 @@ public class DefaultStyleSet : IStyleSet
         {
             Font =
             {
-                Name = &quot;Aptos&quot;,
+                Name = &quot;Arial&quot;,
                 Size = 10,
                 Color = Colors.Black
             },
@@ -1069,6 +1072,32 @@ public class DefaultStyleSet : IStyleSet
 <p>With exception of the Normal style all styles defined in a styleset are injected as new styles to the MigraDoc PDF document.</p>
 <p>The Normal style exists in a MigraDoc PDF document by default. The Normal style from the styleset therefore has to cloned to the MigraDoc PDF document.
 It may happen that not all properties are cloned correctly.</p>
+<h1 id="creating-pdf-files-from-page-images-pdffromimagesbuilder-class">Creating PDF files from page images: PdfFromImagesBuilder class</h1>
+<p>Imagine a situation where you create your pages as graphics (JPEG or PNG) and you want to create a PDF from this graphics.</p>
+<p>This is exactly the use case for PdfFromImagesBuilder class. Give a instance of this class a list of images as byte array and it produces a PDF for you with each image a separate page in the PDF filling the page fully.</p>
+<pre><code class="lang-csharp">private readonly byte[] _image = ResourceHelper.GetByteResource(&quot;Bodoconsult.Pdf.Test.Resources.page.jpg&quot;);
+private readonly string _fileName = Path.Combine(Path.GetTempPath(), &quot;test.pdf&quot;);
+
+[Test]
+public void ProcessImages_TwoImages_PdfCreated()
+{
+    // Arrange 
+    var images = new List&lt;byte[]&gt; { _image, _image };
+
+    CheckFile(_fileName);
+
+    var pdf = new PdfFromImagesBuilder.PdfFromImagesBuilder(images, &quot;Blubb title&quot;, &quot;Testauthor&quot;);
+
+    // Act  
+    pdf.ProcessImages();
+    pdf.SaveAs(_fileName);
+
+    // Assert
+    Assert.That(File.Exists(_fileName));
+
+    FileSystemHelper.RunInDebugMode(_fileName);
+}
+</code></pre>
 <h1 id="about-us">About us</h1>
 <p>Bodoconsult <a href="http://www.bodoconsult.de">http://www.bodoconsult.de</a> is a Munich based software company.</p>
 <p>Robert Leisner is senior software developer at Bodoconsult. See his profile on <a href="http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf">http://www.bodoconsult.de/Curriculum_vitae_Robert_Leisner.pdf</a>.</p>

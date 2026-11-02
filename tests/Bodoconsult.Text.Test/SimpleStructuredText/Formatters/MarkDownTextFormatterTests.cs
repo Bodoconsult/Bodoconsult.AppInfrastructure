@@ -1,5 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System;
 using System.Diagnostics;
 using System.IO;
 using Bodoconsult.Text.Formatter;
@@ -68,8 +69,8 @@ internal class MarkDownTextFormatterTests
         Assert.That(result, Is.Not.Null);
         Debug.Print(result);
         Assert.That(!string.IsNullOrEmpty(result));
-        Assert.That(result.Contains("<h1"));
-        Assert.That(result.Contains("<h2"));
+        Assert.That(result.Contains("# ", StringComparison.OrdinalIgnoreCase));
+        Assert.That(result.Contains("## ", StringComparison.OrdinalIgnoreCase));
     }
 
     [Test]

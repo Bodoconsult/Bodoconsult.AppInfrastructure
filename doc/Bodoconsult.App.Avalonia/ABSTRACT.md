@@ -1,0 +1,1 @@
+Bodoconsult.App.Avalonia is a library with basic functionality for multilayered monolithic Avalonia based applications. 

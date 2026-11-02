@@ -1,0 +1,1 @@
+Bodoconsult.Database.Dbase allows reading data from DBase or Clipper DBF database files.

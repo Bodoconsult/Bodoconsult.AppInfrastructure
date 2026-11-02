@@ -14,3 +14,9 @@ NOT intended for public use
 -   Migration of all ASPNetCore based features from Bodoconsult.App to Bodoconsult.App.DataProtection
 
 -   Removed unused dependencies
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

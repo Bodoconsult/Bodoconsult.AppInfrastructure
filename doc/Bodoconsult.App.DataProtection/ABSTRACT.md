@@ -1,0 +1,1 @@
+Bodoconsult.App.DataProtection is a library with providing tools to handle credentials for console apps, WinForm apps, WPF apps, Avalonia apps etc. based on ASPNetCore features. Requires .NET installed with ASPNetCore.

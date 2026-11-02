@@ -88,7 +88,7 @@
 <h1 id="jobexecuter-documentation">JobExecuter documentation</h1>
 
 <p>JobExecuter documentation</p>
-<p>**********Date created: 14.10.2026 21:10:32</p>
+<p>**********Date created: 01.11.2026 11:26:09</p>
 <h1 id="table-of-content">Table of content</h1>
 <blockquote>
 <p><a href="#about-jobexecuter"><strong>About JobExecuter</strong></a></p>
@@ -1253,7 +1253,7 @@ Optional placeholders are:<br>
 			&quot;NetworkTarget&quot;: null,
 			&quot;FileName&quot;: &quot;??server??_??database??.bak&quot;,
 			&quot;RemoveLocalBackup&quot;: false,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Local backup of all databases on a SqlServer instance&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1265,7 +1265,7 @@ Optional placeholders are:<br>
 			&quot;NetworkTarget&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network&quot;,
 			&quot;FileName&quot;: &quot;testbackup.bak&quot;,
 			&quot;RemoveLocalBackup&quot;: false,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Network share backup of all databases on a SqlServer instance&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1314,12 +1314,12 @@ May contain placeholders:<br>
 	&quot;JobTasks&quot;: [
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlBackupLogSingleDatabaseJobTask, JobExecuter.Dal&quot;,
-			&quot;DatabaseName&quot;: &quot;MediaDb&quot;,
+			&quot;DatabaseName&quot;: &quot;master&quot;,
 			&quot;LocalTarget&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&quot;,
 			&quot;NetworkTarget&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network&quot;,
 			&quot;FileName&quot;: &quot;testbackup.bak&quot;,
 			&quot;RemoveLocalBackup&quot;: true,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Backup database to a network path&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1368,12 +1368,12 @@ May contain placeholders:<br>
 	&quot;JobTasks&quot;: [
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal&quot;,
-			&quot;DatabaseName&quot;: &quot;MediaDb&quot;,
+			&quot;DatabaseName&quot;: &quot;master&quot;,
 			&quot;LocalTarget&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&quot;,
 			&quot;NetworkTarget&quot;: null,
 			&quot;FileName&quot;: &quot;testbackup.bak&quot;,
 			&quot;RemoveLocalBackup&quot;: false,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Backup database to local file only&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1381,12 +1381,12 @@ May contain placeholders:<br>
 		},
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlBackupSingleDatabaseJobTask, JobExecuter.Dal&quot;,
-			&quot;DatabaseName&quot;: &quot;MediaDb&quot;,
+			&quot;DatabaseName&quot;: &quot;master&quot;,
 			&quot;LocalTarget&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter&quot;,
 			&quot;NetworkTarget&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\network&quot;,
 			&quot;FileName&quot;: &quot;testbackup.bak&quot;,
 			&quot;RemoveLocalBackup&quot;: true,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Backup database to a network path&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1426,10 +1426,10 @@ May contain placeholders:<br>
 	&quot;JobTasks&quot;: [
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal&quot;,
-			&quot;DatabaseName&quot;: &quot;MediaDb&quot;,
+			&quot;DatabaseName&quot;: &quot;master&quot;,
 			&quot;FileName&quot;: &quot;testbackup.bak&quot;,
 			&quot;BatchContent&quot;: null,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Run a SQL batch file&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1437,10 +1437,10 @@ May contain placeholders:<br>
 		},
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlBatchJobTask, JobExecuter.Dal&quot;,
-			&quot;DatabaseName&quot;: &quot;MediaDb&quot;,
+			&quot;DatabaseName&quot;: &quot;master&quot;,
 			&quot;FileName&quot;: null,
 			&quot;BatchContent&quot;: &quot;exec spTest 1\r\nGO\r\nexec spTest 2\r\nGO\r\nexec spTest 3&quot;,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Run SQL batch directly from string&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1485,7 +1485,7 @@ If empty, the file will be placed in app subfolder docu with the name &quot;job_
 	&quot;JobTasks&quot;: [
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlComplianceAllDatabasesJobTask, JobExecuter.Dal&quot;,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Title&quot;: null,
 			&quot;MailTo&quot;: &quot;info@bodoconsult.de&quot;,
 			&quot;HtmlTargetFileName&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\ServerXY_DatabaseComplianceReport.htm&quot;,
@@ -1536,7 +1536,7 @@ If empty, the file will be placed in app subfolder docu with the name &quot;job_
 	&quot;JobTasks&quot;: [
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlComplianceSingleDatabaseJobTask, JobExecuter.Dal&quot;,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;DatabaseName&quot;: &quot;DatabaseXY&quot;,
 			&quot;Title&quot;: null,
 			&quot;MailTo&quot;: &quot;info@bodoconsult.de&quot;,
@@ -1605,7 +1605,7 @@ If empty, the file will be placed in app subfolder docu with the name &quot;job_
 	&quot;JobTasks&quot;: [
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlDocuAllDatabasesJobTask, JobExecuter.Dal&quot;,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Title&quot;: null,
 			&quot;MailTo&quot;: null,
 			&quot;HtmlTargetFileName&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\testbackup.bak.htm&quot;,
@@ -1675,8 +1675,8 @@ If empty, the file will be placed in app subfolder docu with the name &quot;job_
 	&quot;JobTasks&quot;: [
 		{
 			&quot;$type&quot;: &quot;JobExecuter.Dal.Model.SqlDocuSingleDatabaseJobTask, JobExecuter.Dal&quot;,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
-			&quot;DatabaseName&quot;: &quot;MediaDb&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
+			&quot;DatabaseName&quot;: &quot;master&quot;,
 			&quot;Title&quot;: null,
 			&quot;MailTo&quot;: null,
 			&quot;HtmlTargetFileName&quot;: &quot;C:\\Users\\rleisner\\AppData\\Local\\Temp\\JobExecuter\\database_docu.htm&quot;,
@@ -1737,7 +1737,7 @@ If empty, the file will be placed in app subfolder docu with the name &quot;job_
 			&quot;JsonTargetFileName&quot;: null,
 			&quot;FragmentationLevel1&quot;: 5,
 			&quot;FragmentationLevel2&quot;: 30,
-			&quot;Server&quot;: &quot;.\\sqlexpress&quot;,
+			&quot;Server&quot;: &quot;(localdb)\\MSSQLLocalDB&quot;,
 			&quot;Name&quot;: &quot;Runs a maintenance job on a SqlServer instance&quot;,
 			&quot;Description&quot;: null,
 			&quot;ErrorMailReceiver&quot;: null,
@@ -1839,7 +1839,7 @@ If empty, the file will be placed in app subfolder docu with the name &quot;job_
 <h3 id="sample">Sample</h3>
 <p>The HTML result of processing such a Readme.txt you can find in the file Readme.htm</p>
 <h1 id="legal-notes">Legal notes</h1>
-<p>Date this documentation was created: 14.10.2026 21:10</p>
+<p>Date this documentation was created: 01.11.2026 11:26</p>
 <h2 id="registered-and-unregistered-trademarks">Registered and unregistered trademarks</h2>
 <p>All other registered and unregistered trademarks are the property of their respective owners.</p>
 <h2 id="licence-information">Licence information</h2>

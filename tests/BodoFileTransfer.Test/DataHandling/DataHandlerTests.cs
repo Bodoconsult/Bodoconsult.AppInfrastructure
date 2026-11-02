@@ -4,12 +4,11 @@ using BodoFileTransfer.Business.DataHandling;
 using BodoFileTransfer.Test.App;
 using NUnit.Framework;
 
-namespace BodoFileTransfer.Test;
+namespace BodoFileTransfer.Test.DataHandling;
 
 [TestFixture]
 public class DataHandlerTests: BaseTestDataHandler
 {
-
     [SetUp]
     public void Setup()
     {
