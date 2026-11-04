@@ -12,5 +12,5 @@ public interface ITestAppGlobals : IAppGlobals
     /// <summary>
     /// Credentials to use for unit tests
     /// </summary>
-    public TestCredentials TestCredentials { get; set; }
+    public TestCredentials? TestCredentials { get; set; }
 }

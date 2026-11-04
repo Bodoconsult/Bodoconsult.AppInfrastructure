@@ -84,6 +84,24 @@ This repository contains the following Nuget packages:
 
 >   [&#8618; **Bodoconsult.Office**: Exporting System.Data.DataTable to Excel file](Bodoconsult.Office/README.md) 
 
+>   [&#8618; **Bodoconsult.Database**: Base library for database access](Bodoconsult.Database/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.SqlClient**: SqlServer based database access](Bodoconsult.Database.SqlClient/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Sqlite**: Sqlite based database access](Bodoconsult.Database.Sqlite/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Postgres**: Postgres based database access](Bodoconsult.Database.Postgres/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Dbase**: DBase based database access](Bodoconsult.Database.Dbase/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Ef**: base library for EF based database access](Bodoconsult.Database/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Ef.SqlServer**: base library for EF based SqlServer database access](Bodoconsult.Database.Ef.SqlServer/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Dbase.Ef**: base library for EF based DBase database access](Bodoconsult.Database.Dbase.Ef/README.md) 
+
+>   [&#8618; **Bodoconsult.Network.Windows**: getting information like AD, DNS or DHCP from a Windows based network](Bodoconsult.Network.Windows/README.md) 
+
 The following Nuget packages are deprecated starting with 1.0.8
 
 >   **Bodoconsult.Text.Pdf**: this package was integrated into Bodoconsult.Text

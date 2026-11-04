@@ -44,13 +44,19 @@ This repository contains the following Nuget packages:
 
 >   [&#8618; **Bodoconsult.App**: basic features nearly every app needs like configuration, logging, APM, Toast messages, business transactions and client notifications to simplify client communication...](doc/Bodoconsult.App/README.md)
 
+>   [&#8618; **Bodoconsult.App.ReactiveUI**: basic features nearly every ReactiveUI based app needs](doc/Bodoconsult.App.ReactiveUI/README.md)
+
 >   [&#8618; **Bodoconsult.App.WinForms**: more basic features for WinForms based apps](doc/Bodoconsult.App.WinForms/README.md)
 
 >   [&#8618; **Bodoconsult.App.Wpf**: more basic features for WPF based apps](doc/Bodoconsult.App.Wpf/README.md)
 
+>   [&#8618; **Bodoconsult.App.Wpf.ReactiveUI**: basic features nearly every ReactiveUI based WPF app needs](doc/Bodoconsult.App.Wpf.ReactiveUI/README.md)
+
 >   [&#8618; **Bodoconsult.App.Wpf.Documents**: creating reports with WPF based apps](doc/Bodoconsult.App.Wpf.Documents/README.md)
 
 >   [&#8618; **Bodoconsult.App.Avalonia**: more basic features for Avalonia based apps](doc/Bodoconsult.App.Avalonia/README.md)
+
+>   [&#8618; **Bodoconsult.App.Avalonia.ReactiveUI**: more basic features for Avalonia based apps](doc/Bodoconsult.App.Avalonia.ReactiveUI/README.md)
 
 >   [&#8618; **Bodoconsult.Pdf**: simplified generation of PDF files](doc/Bodoconsult.Pdf/README.md)
 
@@ -73,6 +79,26 @@ This repository contains the following Nuget packages:
 >   [&#8618; **Bodoconsult.Charting.Base**: Base definitions for charting](doc/Bodoconsult.Charting.Base/README.md)
 
 >   [&#8618; **Bodoconsult.Charting**: Charting based on ScottPlot and SkiaSharp](doc/Bodoconsult.Charting/README.md)
+
+>   [&#8618; **Bodoconsult.Office**: Exporting System.Data.DataTable to Excel file](doc/Bodoconsult.Office/README.md) 
+
+>   [&#8618; **Bodoconsult.Database**: Base library for database access](doc/Bodoconsult.Database/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.SqlClient**: SqlServer based database access](doc/Bodoconsult.Database.SqlClient/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Sqlite**: Sqlite based database access](doc/Bodoconsult.Database.Sqlite/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Postgres**: Postgres based database access](doc/Bodoconsult.Database.Postgres/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Dbase**: DBase based database access](doc/Bodoconsult.Database.Dbase/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Ef**: base library for EF based database access](doc/Bodoconsult.Database/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Ef.SqlServer**: base library for EF based SqlServer database access](doc/Bodoconsult.Database.Ef.SqlServer/README.md) 
+
+>   [&#8618; **Bodoconsult.Database.Dbase.Ef**: base library for EF based DBase database access](doc/Bodoconsult.Database.Dbase.Ef/README.md) 
+
+>   [&#8618; **Bodoconsult.Network.Windows**: getting information like AD, DNS or DHCP from a Windows based network](doc/Bodoconsult.Network.Windows/README.md) 
 
 The following Nuget packages are deprecated starting with 1.0.8
 
