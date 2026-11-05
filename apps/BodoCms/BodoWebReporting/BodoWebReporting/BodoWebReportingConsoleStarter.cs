@@ -24,6 +24,7 @@ public class BodoWebReportingConsoleStarter : BaseConsoleStarter
     public BodoWebReportingConsoleStarter(string[] args, bool isTestEnvironment = false) : base($"BodoWebReporting{(isTestEnvironment ? "Test" : string.Empty)}", args)
     {
         MainAppRunnerDelegate = StartInternal;
+        Globals.Instance.StatusMessageDelegate = SetStatus;
     }
 
     private int StartInternal(IConsoleStarter consoleStarter)

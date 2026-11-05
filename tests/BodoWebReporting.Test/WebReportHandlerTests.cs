@@ -1,21 +1,24 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.Database.SqlClient;
+using BodoWebReporting.Dal.App;
+using BodoWebReporting.Dal.Handler;
+using BodoWebReporting.Dal.Interfaces;
+using BodoWebReporting.Dal.Model;
+using NUnit.Framework;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Versioning;
-using BodoWebReporting.Dal;
-using BodoWebReporting.Dal.Handler;
-using BodoWebReporting.Dal.Model;
-using NUnit.Framework;
 
 namespace BodoWebReporting.Test;
 
 [SupportedOSPlatform("windows")]
 [TestFixture]
-public class UnitTestWebReportHandler
+public class WebReportHandlerTests
 {
+    private readonly IBodoWebReportingAppGlobals _appGlobals = Globals.Instance;
 
-    public UnitTestWebReportHandler()
+    public WebReportHandlerTests()
     {
         var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -32,30 +35,15 @@ public class UnitTestWebReportHandler
     [Test]
     public void TestRun_Success()
     {
+        ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DefaultConnectionString);
 
-        var appSettings = GlobalValues.CurrentAppSettings;
+        var db = new SqlClientConnManager(_appGlobals.AppStartParameter.DefaultConnectionString);
 
+        var dataLayer = new DataHandler(_appGlobals, db);
 
-        var dataLayer = new DataHandler(appSettings.DatabaseConnection,
-            appSettings.ErrorMailReceiver);
-
-
-        var rh = new WebReportHandler(dataLayer)
-        {
-            TargetPath = appSettings.TargetPath,
-            Target = ReportingTargets.PdfFile,
-        };
-        rh.StatusChange += Status;
-
-        rh.OpenDatabase();
-
+        var rh = new WebReportHandler(dataLayer, _appGlobals);
         rh.StartExport();
         rh.MoveToTarget();
 
-    }
-
-    private static void Status(string msg)
-    {
-        Debug.Print(msg);
     }
 }

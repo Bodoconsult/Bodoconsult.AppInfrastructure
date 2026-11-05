@@ -1,10 +1,12 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
-using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
+using BodoWebReporting.Dal.Handler;
+using System.Diagnostics;
+using System.Runtime.Versioning;
+using BodoWebReporting.Dal.Interfaces;
 
 namespace BodoWebReporting.Dal.App;
 
@@ -71,12 +73,13 @@ public class BodoWebReportingService : IApplicationService
 
         _appLogger.LogInformation("BodoCms starts creating website");
 
-        //ArgumentException.ThrowIfNullOrEmpty(AppGlobals.AppStartParameter.DefaultConnectionString);
-        //ArgumentException.ThrowIfNullOrEmpty(AppGlobals.AppStartParameter.ErrorMailAddress);
-
-        //var h =AppGlobals.DiContainer.Get<IBodoCmsHandler>();
-        //h.CreateHomepage();
-        ////Console.ReadLine();
+        var wrh = AppGlobals.DiContainer.Get<IWebReportingHandler>();
+        wrh.RunPreRunSql();
+        wrh.CheckTargetPath();
+        wrh.CreateWebTables();
+        wrh.CreateWebCharts();
+        //wrh.CreateWebReports();
+        wrh.RunPostRunSql();
 
         _appLogger.LogInformation("BodoCms has finished creating website");
 

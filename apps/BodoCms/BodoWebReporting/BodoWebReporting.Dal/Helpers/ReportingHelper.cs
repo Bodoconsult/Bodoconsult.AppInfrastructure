@@ -1,18 +1,17 @@
-﻿using System.Reflection;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using System.Reflection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
-using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Model;
 
-namespace BodoWebReporting.Dal;
+namespace BodoWebReporting.Dal.Helpers;
 
-public static class GlobalValues
+/// <summary>
+/// Class with helper methods for reporting
+/// </summary>
+public static class ReportingHelper
 {
-    /// <summary>
-    /// Current app settings
-    /// </summary>
-    public static AppSettings CurrentAppSettings { get; private set; }
-
     /// <summary>
     /// Get a elegant default typography
     /// </summary>
@@ -33,19 +32,4 @@ public static class GlobalValues
 
         return typography;
     }
-
-    /// <summary>
-    /// Load app settings from app directory
-    /// </summary>
-    public static void LoadAppSettings()
-    {
-
-        var path = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
-
-        var fileName = Path.Combine(path, "appSettings.json");
-
-        CurrentAppSettings = JsonHelper.LoadJsonFile<AppSettings>(fileName);
-    }
-
-
 }

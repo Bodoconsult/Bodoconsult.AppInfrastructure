@@ -1,12 +1,17 @@
-﻿using System.Globalization;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using System.Globalization;
 
 namespace BodoWebReporting.Dal.Helpers;
 
 public static class TextHelper
 {
-    public static string Parser(string input)
+    public static string? Parser(string? input)
     {
-        if (input == null) return null;
+        if (input == null)
+        {
+            return null;
+        }
 
         if (input.Contains("@Quarter"))
         {

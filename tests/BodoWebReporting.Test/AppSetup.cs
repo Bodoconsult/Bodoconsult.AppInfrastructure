@@ -1,36 +1,55 @@
-﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using BodoWebReporting.Dal;
+using Bodoconsult.App.Extensions;
+using BodoWebReporting.Dal.App;
+using BodoWebReporting.Test.App;
 using NUnit.Framework;
 
 namespace BodoWebReporting.Test;
 
 /// <summary>
-/// Test app
+/// Setup for the assembly for all tests
 /// </summary>
 [SetUpFixture]
-public class AppSetup
+public static class AssemblySetup
 {
     /// <summary>
-    /// Load initial data for testing
+    /// At startup of the assembly
     /// </summary>
     [OneTimeSetUp]
-    public void LoadApp()
+    public static void AssemblyStartUp()
     {
-        GlobalValues.LoadAppSettings();
+        var globals = Globals.Instance;
+        globals.LoggingConfig.AddDefaultLoggerProviderConfiguratorsForUiApp();
 
-        if (!Directory.Exists(GlobalValues.CurrentAppSettings.TargetPath))
-            Directory.CreateDirectory(GlobalValues.CurrentAppSettings.TargetPath);
+        // Set additional app start parameters as required
+        var param = globals.AppStartParameter;
+        param.AppName = "BodoWebReporting.Test";
+        param.SoftwareTeam = "Robert Leisner";
+        //param.LogoRessourcePath = "WinFormsConsoleApp1.Resources.logo.jpg";
+        param.AppFolderName = "BodoWebReporting.Test";
+
+        // Now start the app building process
+        var builder = new MyDebugAppBuilder(globals);
+#if !DEBUG
+        AppDomain.CurrentDomain.UnhandledException += builder.CurrentDomainOnUnhandledException;
+#endif
+
+        // Load basic app metadata
+        builder.LoadBasicSettings();
+
+        // Process the config file
+        builder.ProcessConfiguration();
+
+        // Now load the globally needed settings
+        builder.LoadGlobalSettings();
+
+        ArgumentNullException.ThrowIfNull(globals.Logger);
+        globals.Logger.LogInformation("Starting tests...");
+
+        if (!Directory.Exists(globals.TargetPath))
+        {
+            Directory.CreateDirectory(globals.TargetPath);
+        }
     }
-
-
-    ///// <summary>
-    ///// Unlooad app
-    ///// </summary>
-    //[OneTimeTearDown]
-    //public void UnloadApp()
-    //{
-
-    //}
-
 }

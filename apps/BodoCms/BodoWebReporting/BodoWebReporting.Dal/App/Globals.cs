@@ -4,6 +4,7 @@ using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
+using BodoWebReporting.Dal.Interfaces;
 using Microsoft.Extensions.Configuration;
 
 namespace BodoWebReporting.Dal.App;
@@ -11,7 +12,7 @@ namespace BodoWebReporting.Dal.App;
 /// <summary>
 /// App global values
 /// </summary>
-public class Globals : IAppGlobals
+public class Globals : IBodoWebReportingAppGlobals
 {
     #region Singleton factory
 
@@ -122,4 +123,19 @@ public class Globals : IAppGlobals
     /// The current configuration loaded from appsettings.json
     /// </summary>
     public IConfigurationRoot? ConfigurationRoot { get; set; }
+
+    /// <summary>
+    /// Target path for reporting items
+    /// </summary>
+    public string TargetPath { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Run SQL statement(s) at app start
+    /// </summary>
+    public string PreRunSql { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Run SQL statement(s) at app's runtime end
+    /// </summary>
+    public string PostRunSql { get; set; } = string.Empty;
 }

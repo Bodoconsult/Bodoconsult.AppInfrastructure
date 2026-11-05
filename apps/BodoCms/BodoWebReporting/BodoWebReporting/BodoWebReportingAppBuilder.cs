@@ -4,12 +4,13 @@ using System;
 using System.Runtime.Versioning;
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Interfaces;
+using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.DiContainerProvider;
 
 namespace BodoWebReporting;
 
 [SupportedOSPlatform("windows10.0.17763")]
-public class BodoWebReportingAppBuilder: BaseAppBuilder
+public class BodoWebReportingAppBuilder : BaseAppBuilder
 {
     /// <summary>
     /// Default ctor
@@ -45,13 +46,15 @@ public class BodoWebReportingAppBuilder: BaseAppBuilder
             return;
         }
 
-        //var section = root.GetSection("BodoWebReporting");
+        var section = root.GetSection("BodoWebReporting");
 
-        //if (AppGlobals is not IBodoWebReportingAppGlobals globals)
-        //{
-        //    throw new ArgumentException("AppGlobals is not IBodoWebReportingAppGlobals");
-        //}
+        if (AppGlobals is not IBodoWebReportingAppGlobals globals)
+        {
+            throw new ArgumentException("AppGlobals is not IBodoWebReportingAppGlobals");
+        }
 
-        //globals.UseSmtp = DefaultAppStartProvider.ReadBoolProperty(section, "UseSmtp", globals.UseSmtp);
+        globals.TargetPath = DefaultAppStartProvider.ReadStringProperty(section, "TargetPath", globals.TargetPath) ?? string.Empty;
+        globals.PreRunSql = DefaultAppStartProvider.ReadStringProperty(section, "PreRunSql", globals.PreRunSql) ?? string.Empty;
+        globals.PostRunSql = DefaultAppStartProvider.ReadStringProperty(section, "PostRunSql", globals.PostRunSql) ?? string.Empty;
     }
 }

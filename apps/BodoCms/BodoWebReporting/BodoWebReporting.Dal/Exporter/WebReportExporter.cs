@@ -7,6 +7,7 @@ using Bodoconsult.Drawing;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using BodoWebReporting.Dal.Handler;
+using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using BodoWebReporting.Dal.Report;
 using MigraDoc.DocumentObjectModel;
@@ -106,10 +107,10 @@ public class WebReportExporter : IDisposable
 
     private string _backgroundImagePath;
 
-    private readonly DataHandler _dataHandler;
+    private readonly IDataHandler _dataHandler;
 
 
-    public WebReportExporter(DataHandler dataHandler, ReportingFile file, int id=1)
+    public WebReportExporter(IDataHandler dataHandler, ReportingFile file, int id=1)
     {
 
         StyleSet = StyleHandler.StyleSet;

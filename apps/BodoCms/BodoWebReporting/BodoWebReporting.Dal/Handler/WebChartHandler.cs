@@ -1,30 +1,27 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System.Runtime.Versioning;
+using Bodoconsult.App.Abstractions.Interfaces;
 using BodoWebReporting.Dal.Exporter;
+using BodoWebReporting.Dal.Interfaces;
 
 namespace BodoWebReporting.Dal.Handler;
 
 [SupportedOSPlatform("windows")]
-public class WebChartHandler
+public class WebChartHandler: BaseObjectHandler, IWebChartHandler
 {
-    private readonly DataHandler _dataHandler;
-
-    public WebChartHandler(DataHandler dataHandler)
-    {
-        _dataHandler = dataHandler;
-    }
-
-    public StatusHandler StatusChange;
-
-
-    public string TargetPath; // { get; set; }
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="dataHandler">Current data handler</param>
+    /// <param name="appGlobals">Current app globals</param>
+    public WebChartHandler(IDataHandler dataHandler, IAppGlobals appGlobals): base(dataHandler, appGlobals)
+    { }
 
     public int ExportCharts()
     {
         var i = 0;
-        var data = _dataHandler.GetWebCharts(TargetPath);
+        var data = _dataHandler.GetWebCharts(_appGlobals.TargetPath);
 
         foreach (var wc in data)
         {
@@ -49,27 +46,12 @@ public class WebChartHandler
         return i;
     }
 
-
-    //public string ErrorMailer; // { get; set; }
-
-
-    public void OpenDatabase()
-    {
-        SetStatus("Check target directory...");
-
-        if (!Directory.Exists(TargetPath))
-        {
-            Directory.CreateDirectory(TargetPath);
-        }
-    }
-
     /// <summary>
     /// Statusanzeige
     /// </summary>
     /// <param name="msg">Anzuzeigende Nachricht</param>
     private void SetStatus(string msg)
     {
-        var x = StatusChange;
-        x?.Invoke(msg);
+        StatusMessageDelegate.Invoke(msg);
     }
 }

@@ -1,16 +1,20 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System;
-using System.Runtime.Versioning;
-using System.IO;
 using Bodoconsult.App.Abstractions.DependencyInjection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Benchmarking;
 using Bodoconsult.App.Factories;
 using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.SqlClient;
-using Microsoft.Extensions.Logging;
+using Bodoconsult.Drawing.SkiaSharp.Factories;
 using BodoWebReporting.Dal.App;
+using BodoWebReporting.Dal.Handler;
+using BodoWebReporting.Dal.Interfaces;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
+using System.Runtime.Versioning;
+using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 
 namespace BodoWebReporting.DiContainerProvider;
 
@@ -61,13 +65,16 @@ public class BodoWebReportingAllServicesContainerServiceProvider : IDiContainerS
         //diContainer.AddSingleton<IGeneralAppManagementManager, GeneralAppManagementManager>();
 
         // Services
-        //ArgumentException.ThrowIfNullOrEmpty(_appGlobals.AppStartParameter.DefaultConnectionString);
-        //var db = new SqlClientConnManager(_appGlobals.AppStartParameter.DefaultConnectionString);
+        ArgumentException.ThrowIfNullOrEmpty(_appGlobals.AppStartParameter.DefaultConnectionString);
+        var db = new SqlClientConnManager(_appGlobals.AppStartParameter.DefaultConnectionString);
 
-        //diContainer.AddSingletonInstance((IConnManager)db);
-        //diContainer.AddSingleton<IDatabaseHandler, DatabaseHandler>();
-        //diContainer.AddSingleton<IWebsiteBuilder, WebsiteBuilder>();
-        //diContainer.AddSingleton<IBodoWebReportingHandler, BodoWebReportingHandler>();
+        diContainer.AddSingletonInstance((IConnManager)db);
+        diContainer.AddSingleton<IBitmapServiceFactory, BitmapServiceFactory>();
+        diContainer.AddSingleton<IDataHandler, DataHandler>();
+        diContainer.AddSingleton<IWebChartHandler, WebChartHandler>();
+        diContainer.AddSingleton<IWebTablesHandler, WebTablesHandler>();
+        diContainer.AddSingleton<IWebReportHandler, WebReportHandler>();
+        diContainer.AddSingleton<IWebReportingHandler, WebReportingHandler>();
 
         // Load all other services required for the app now
         diContainer.AddSingleton<IApplicationService, BodoWebReportingService>();

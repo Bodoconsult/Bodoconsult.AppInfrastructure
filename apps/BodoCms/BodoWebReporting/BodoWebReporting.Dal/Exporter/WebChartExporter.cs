@@ -11,6 +11,7 @@ using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using Bodoconsult.Web.Html.Html;
 using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Helpers;
+using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 
 namespace BodoWebReporting.Dal.Exporter;
@@ -20,33 +21,30 @@ public class WebChartExporter
 {
     private bool _exportDataTable;
     private string? _inc;
-    private readonly DataHandler _dataHandler;
+    private readonly IDataHandler _dataHandler;
     private DataTable? _dt;
     private IBitmapServiceFactory _bitmapServiceFactory;
-    
 
-
-    public WebChartExporter(DataHandler dataHandler, WebChart wc)
+    public WebChartExporter(IDataHandler dataHandler, WebChart wc)
     {
         _dataHandler = dataHandler;
         WebChart = wc;
         BaseCtor();
     }
 
-    private void BaseCtor()
-    {
-        WebChart.Width = 750;
-        WebChart.Height = 433;
-        Typography = GlobalValues.DefaultTypography();
-    }
-
-
-    public WebChartExporter(DataHandler dataHandler, DataTable dt, WebChart webChart)
+    public WebChartExporter(IDataHandler dataHandler, DataTable dt, WebChart webChart)
     {
         _dataHandler = dataHandler;
         WebChart = webChart;
         BaseCtor();
         _dt = dt;
+    }
+
+    private void BaseCtor()
+    {
+        WebChart.Width = 750;
+        WebChart.Height = 433;
+        Typography = ReportingHelper.DefaultTypography();
     }
 
     /// <summary>
@@ -70,7 +68,12 @@ public class WebChartExporter
 
             if (_dt == null)
             {
-                _dt = _dataHandler.GetDataTable(TextHelper.Parser(WebChart.Sql));
+                if (string.IsNullOrEmpty(WebChart.Sql))
+                {
+                    return;
+                }
+
+                _dt = _dataHandler.GetDataTable(WebChart.Sql);
             }
 
             //Typography.ChartStyle.FontSize = 9;

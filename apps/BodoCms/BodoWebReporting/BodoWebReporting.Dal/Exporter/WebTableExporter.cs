@@ -3,6 +3,7 @@ using Bodoconsult.Office;
 using Bodoconsult.Web.Html.Html;
 using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Helpers;
+using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 
 namespace BodoWebReporting.Dal.Exporter;
@@ -12,19 +13,17 @@ namespace BodoWebReporting.Dal.Exporter;
 /// </summary>
 public class WebTableExporter
 {
-    public DataTable Data { get;  }
-
-    private readonly DataHandler _dataHandler;
-
+    private readonly IDataHandler _dataHandler;
     private readonly WebTable _webTable;
 
-    public WebTableExporter(DataHandler dataHandler, WebTable webTable)
+    public WebTableExporter(IDataHandler dataHandler, WebTable webTable)
     {
         _dataHandler = dataHandler;
         _webTable = webTable;
         Data = _dataHandler.GetDataTable(_webTable.Sql);
     }
 
+    public DataTable Data { get; }
 
     /// <summary>
     /// Export the WebTable to the export directory

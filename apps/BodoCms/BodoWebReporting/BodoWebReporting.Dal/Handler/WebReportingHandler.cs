@@ -3,57 +3,73 @@
 
 using System.Reflection;
 using System.Runtime.Versioning;
+using Bodoconsult.App.Abstractions.Interfaces;
+using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 
 namespace BodoWebReporting.Dal.Handler;
 
 [SupportedOSPlatform("windows")]
-public class WebReportingHandler
+public class WebReportingHandler : IWebReportingHandler
 {
-
-    public DataHandler DataLayer { get; set; }
-
-    public string CurrentDir { get; set; }
-    public StatusHandler StatusChange { get; set; }
-    public string PreRunSql { get; set; }
-    public string TargetPath { get; set; }
-
+    private readonly IWebChartHandler _webChartHandler;
+    private readonly IWebTablesHandler _webTablesHandler;
+    private readonly IWebReportHandler _webReportHandler;
+    private IDataHandler _dataHandler;
+    private readonly IBodoWebReportingAppGlobals _appGlobals;
 
     /// <summary>
     /// Default ctor
     /// </summary>
-    /// <param name="dataLayer"></param>
-    public WebReportingHandler(DataHandler dataLayer)
+    public WebReportingHandler(IDataHandler dataHandler, IWebChartHandler webChartHandler,  IWebTablesHandler webTablesHandler, IWebReportHandler webReportHandler, IAppGlobals appGlobals)
     {
+        _dataHandler = dataHandler;
+        _webChartHandler = webChartHandler;
+        _webTablesHandler = webTablesHandler;
+        _webReportHandler = webReportHandler;
 
-        DataLayer = dataLayer;
-
-        CurrentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        if (CurrentDir == null)
+        if (appGlobals is not IBodoWebReportingAppGlobals globals)
         {
-            return;
+            throw new ArgumentException("appGlobals is not IBodoWebReportingAppGlobals");
         }
+
+        _appGlobals = globals;
+
+        ArgumentNullException.ThrowIfNull(appGlobals.AppStartParameter.AppPath); 
+        CurrentDir = appGlobals.AppStartParameter.AppPath;
         var file = Path.Combine(CurrentDir, @"Template\StyleImport.cs");
 
         // Styles laden
         StyleHandler.FileName = file;
         StyleHandler.Start();
+        _webReportHandler = webReportHandler;
+    }
+
+    /// <summary>
+    /// Current directory
+    /// </summary>
+    public string CurrentDir { get; }
+
+    /// <summary>
+    /// Check the target directory
+    /// </summary>
+    public void CheckTargetPath()
+    {
+        _appGlobals.StatusMessageDelegate?.Invoke("Check target directory...");
+
+        if (!Directory.Exists(_appGlobals.TargetPath))
+        {
+            Directory.CreateDirectory(_appGlobals.TargetPath);
+        }
     }
 
     /// <summary>
     /// Create web tables
     /// </summary>
+    /// <returns>O on success else error code</returns>
     public int CreateWebTables()
     {
-        var wt = new WebTablesHandler(DataLayer)
-        {
-            TargetPath = TargetPath,
-            PreRunSql = PreRunSql,
-            StatusChange = StatusChange,
-        };
-        wt.OpenDatabase();
-        return wt.ExportTables();
+        return _webTablesHandler.ExportTables();
     }
 
     /// <summary>
@@ -61,34 +77,60 @@ public class WebReportingHandler
     /// </summary>
     public int CreateWebCharts()
     {
-        // Webcharts
-        var wc = new WebChartHandler(DataLayer)
-        {
-            TargetPath = TargetPath,
-            StatusChange = StatusChange,
-        };
-
-        wc.OpenDatabase();
-        return wc.ExportCharts();
+        return _webChartHandler.ExportCharts();
     }
 
-
+    /// <summary>
+    /// Create web reports
+    /// </summary>
+    /// <returns>O on success else error code</returns>
     public int CreateWebReports()
     {
-
-           
-
-        var rh = new WebReportHandler(DataLayer)
-        {
-            TargetPath = TargetPath,
-            Target = ReportingTargets.PdfFile,
-            StatusChange = StatusChange,
-        };
-
-        rh.OpenDatabase();
-        var result = rh.StartExport();
-        rh.MoveToTarget();
-
+        _webReportHandler.Target = ReportingTargets.PdfFile;
+        var result = _webReportHandler.StartExport();
+        _webReportHandler.MoveToTarget();
         return result;
+    }
+
+    /// <summary>
+    /// Run the post run SQL statement
+    /// </summary>
+    public void RunPostRunSql()
+    {
+        if (string.IsNullOrEmpty(_appGlobals.PostRunSql))
+        {
+            return;
+        }
+
+        _appGlobals.StatusMessageDelegate?.Invoke("Execute post run app SQL...");
+        try
+        {
+            _dataHandler.Exec(_appGlobals.PostRunSql);
+        }
+        catch
+        {
+            // Do nothing
+        }
+    }
+
+    /// <summary>
+    /// Run the pre run SQL statement
+    /// </summary>
+    public void RunPreRunSql()
+    {
+        if (string.IsNullOrEmpty(_appGlobals.PreRunSql))
+        {
+            return;
+        }
+
+        _appGlobals.StatusMessageDelegate?.Invoke("Execute pre run app SQL...");
+        try
+        {
+            _dataHandler.Exec(_appGlobals.PreRunSql);
+        }
+        catch
+        {
+            // Do nothing
+        }
     }
 }

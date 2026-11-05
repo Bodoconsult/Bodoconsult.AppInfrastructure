@@ -2,10 +2,12 @@
 
 
 using System.Data;
+using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Charting.Base.Interfaces;
 using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.SqlClient;
 using BodoWebReporting.Dal.Helpers;
+using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using Microsoft.Data.SqlClient;
 
@@ -14,24 +16,24 @@ namespace BodoWebReporting.Dal.Handler;
 /// <summary>
 /// Data layer
 /// </summary>
-public class DataHandler
+public class DataHandler : IDataHandler
 {
-
-    public StatusHandler StatusChange;
-
     private readonly IConnManager _db;
-
     private readonly string _errorMailer;
+    private readonly IAppGlobals _appGlobals;
 
-    public string ConnectionString { get; }
-
-    public DataHandler(string connectionString, string errorMailer)
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="appGlobals">Current app globals</param>
+    /// <param name="db">Current database connection</param>
+    public DataHandler(IAppGlobals appGlobals, IConnManager db)
     {
-        ConnectionString = connectionString;
-        _errorMailer = errorMailer;
+        _db = db;
+        _errorMailer = appGlobals.AppStartParameter.ErrorMailAddress ?? string.Empty;
+        _appGlobals = appGlobals;
 
         SetStatus("Opening database connection...");
-        _db = SqlClientConnManager.GetConnManager(ConnectionString);
     }
 
     /// <summary>
@@ -44,15 +46,13 @@ public class DataHandler
         return _db.GetDataReader(sql);
     }
 
-
     /// <summary>
-    /// Statusanzeige
+    /// Send a state message to the UI
     /// </summary>
-    /// <param name="msg">Anzuzeigende Nachricht</param>
+    /// <param name="msg">Message</param>
     private void SetStatus(string msg)
     {
-        var x = StatusChange;
-        x?.Invoke(msg);
+        _appGlobals.StatusMessageDelegate?.Invoke(msg);
     }
 
     /// <summary>
@@ -67,20 +67,21 @@ public class DataHandler
 
     public void Exec(string sql)
     {
-        _db.Exec(sql, false);
+        _db.Exec(sql);
     }
 
-
+    /// <summary>
+    /// Get <see cref="WebTable"/> instances for a certain target path
+    /// </summary>
+    /// <param name="targetPath">Target path</param>
+    /// <returns>List with <see cref="WebTable"/> instances</returns>
     public IList<WebTable> GetWebTables(string targetPath)
     {
-
         var result = new List<WebTable>();
-
 
         var df = _db.GetDataTable("EXEC dbo.spWeb_Tables_FetchAll");
         foreach (DataRow row in df.Rows)
         {
-
             var wt = new WebTable
             {
                 Name = row["WT_Name"].ToString(),
@@ -97,17 +98,25 @@ public class DataHandler
         return result;
     }
 
-    internal IList<CopyTask> GetWebTableTargets(string fileName, int id)
+    public IList<CopyTask> GetWebTableTargets(string fileName, int id)
     {
         var result = new List<CopyTask>();
 
         var df = _db.GetDataTable($"EXEC dbo.spWeb_Tables_Targets_Get {id}");
         foreach (DataRow row in df.Rows)
         {
+            var target = TextHelper.Parser(row["WTT_TargetPath"].ToString());
+
+            if (string.IsNullOrEmpty(target))
+            {
+                _appGlobals.Logger?.LogWarning($"Copying {fileName}: target is null");
+                continue;
+            }
+
             var ct = new CopyTask
             {
                 SourceFileName = fileName,
-                TargetFileName = TextHelper.Parser(row["WTT_TargetPath"].ToString())
+                TargetFileName = target
             };
             result.Add(ct);
         }
@@ -115,6 +124,11 @@ public class DataHandler
         return result;
     }
 
+    /// <summary>
+    /// Get reporting files
+    /// </summary>
+    /// <param name="targetPath">Target path</param>
+    /// <returns>List with <see cref="ReportingFile"/> instances</returns>
     public IList<ReportingFile> GetReportingFiles(string targetPath)
     {
         var result = new List<ReportingFile>();
@@ -125,10 +139,15 @@ public class DataHandler
 
             var fileName = row["WR_FileName"].ToString();
 
+            if (string.IsNullOrEmpty(fileName))
+            {
+                continue;
+            }
+
             var rf = new ReportingFile
             {
                 FileName = Path.Combine(targetPath, fileName),
-                Author = row["WR_Author"].ToString(),
+                Author = row["WR_Author"].ToString() ?? "Author",
                 Shortname = row["WR_ShortName"].ToString(),
                 LogoPath = row["WR_LogoPath"].ToString()
             };
@@ -148,7 +167,7 @@ public class DataHandler
                     Subject = r["WR_Subject"].ToString(),
                     Sql = r["WR_SQL"].ToString(),
                     AddInfoSql = r["WR_AddInfos"].ToString(),
-                    ReportType = r["WR_Type"].ToString().ToLower().Trim(),
+                    ReportType = r["WR_Type"].ToString()?.ToLowerInvariant().Trim(),
                     Name = r["WR_Name"].ToString(),
                     ShowInToc = Convert.ToBoolean(r["WR_ShowInToc"].ToString()),
                     ChartColumns = r["WR_C_Columns"].ToString(),
@@ -157,7 +176,7 @@ public class DataHandler
                     ChartType = string.IsNullOrEmpty(r["WR_C_ChartType"].ToString())
                         ? ChartType.BarChart
                         : (ChartType)Enum.Parse(typeof(ChartType),
-                            r["WR_C_ChartType"].ToString().Trim().ToLower() + "chart", true),
+                            r["WR_C_ChartType"].ToString()?.Trim().ToLowerInvariant() + "chart", true),
                     ChartLegendLength = string.IsNullOrEmpty(r["WR_C_LegendLength"].ToString())
                         ? (short)0
                         : Convert.ToInt16(r["WR_C_LegendLength"].ToString())
@@ -181,11 +200,9 @@ public class DataHandler
     /// <param name="message">Mail message</param>
     public void ErrorHandling(string subject, string message)
     {
-
         try
         {
-
-            SetStatus(subject + ":" + message);
+            SetStatus($"{subject}: {message}");
 
             var lo = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.[spMAIL_New]" };
             lo.Parameters.Add("@To", SqlDbType.VarChar);
@@ -195,7 +212,6 @@ public class DataHandler
             lo.Parameters.Add("@Msg", SqlDbType.VarChar);
             lo.Parameters[2].Value = $"{message}";
             _db.Exec(lo);
-
         }
         catch (Exception ex)
         {
@@ -203,6 +219,11 @@ public class DataHandler
         }
     }
 
+    /// <summary>
+    /// Get webcharts for a target path
+    /// </summary>
+    /// <param name="targetPath">Target path</param>
+    /// <returns>List with  <see cref="WebChart"/> instances</returns>
     public IList<WebChart> GetWebCharts(string targetPath)
     {
         var result = new List<WebChart>();
@@ -239,10 +260,25 @@ public class DataHandler
         var df = _db.GetDataTable("EXEC dbo.spWEB_ReportingTarget");
         foreach (DataRow row in df.Rows)
         {
+            var fileName = row["RT_FileName"].ToString();
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                _appGlobals.Logger?.LogWarning("FileName is null or empty");
+                continue;
+            }
+
+            var target = row["RT_Target"].ToString();
+            if (string.IsNullOrEmpty(target))
+            {
+                _appGlobals.Logger?.LogWarning("Target is null or empty");
+                continue;
+            }
+            
             var ct = new CopyTask
             {
-                SourceFileName = Path.Combine(targetPath, row["RT_FileName"].ToString()),
-                TargetFileName = row["RT_Target"].ToString()
+                SourceFileName = Path.Combine(targetPath, fileName),
+                TargetFileName = target
             };
 
             result.Add(ct);
@@ -251,6 +287,13 @@ public class DataHandler
         return result;
     }
 
+    /// <summary>
+    /// Get the copy targets for webcharts
+    /// </summary>
+    /// <param name="sourcePath">Source path</param>
+    /// <param name="includePath">Include path</param>
+    /// <param name="webChartId">WebChart database ID</param>
+    /// <returns>List with copy tasks</returns>
     public IList<CopyTask> GetWebChartTargets(string sourcePath, string includePath, int webChartId)
     {
         var result = new List<CopyTask>();
@@ -258,17 +301,24 @@ public class DataHandler
         var df = _db.GetDataTable($"EXEC dbo.spWeb_Charts_Targets_Get {webChartId}");
         foreach (DataRow row in df.Rows)
         {
+            var target = row["WCT_TargetPath"].ToString();
+            if (string.IsNullOrEmpty(target))
+            {
+                _appGlobals.Logger?.LogWarning("Target is null or empty");
+                continue;
+            }
+
             var ct = new CopyTask
             {
                 SourceFileName = sourcePath,
-                TargetFileName = row["WCT_TargetPath"].ToString()
+                TargetFileName = target
             };
 
             if (!string.IsNullOrEmpty(includePath))
             {
                 ct.IncludeSourceFileName = includePath;
                 ct.IncludeTargetFileName = Path.Combine(Path.GetDirectoryName(ct.TargetFileName),
-                    Path.GetFileNameWithoutExtension(ct.TargetFileName) + ".inc");
+                    $"{Path.GetFileNameWithoutExtension(ct.TargetFileName)}.inc");
             }
 
             result.Add(ct);

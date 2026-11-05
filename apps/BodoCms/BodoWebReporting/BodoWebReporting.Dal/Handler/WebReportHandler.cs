@@ -1,70 +1,43 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Abstractions.Interfaces;
+using BodoWebReporting.Dal.Exporter;
+using BodoWebReporting.Dal.Helpers;
+using BodoWebReporting.Dal.Interfaces;
+using BodoWebReporting.Dal.Model;
 using System.Data;
 using System.Diagnostics;
 using System.Runtime.Versioning;
-using BodoWebReporting.Dal.Exporter;
-using BodoWebReporting.Dal.Helpers;
-using BodoWebReporting.Dal.Model;
 
 namespace BodoWebReporting.Dal.Handler;
 
-/// <summary>
-/// Statusanzeige
-/// </summary>
-/// <param name="msg">Anzuzeigende Nachricht</param>
-public delegate void StatusHandler(string msg);
-
-
 [SupportedOSPlatform("windows")]
-public class WebReportHandler
+public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 {
+    private readonly IList<Task> _exportTasks = new List<Task>();
 
-    private readonly DataHandler _dataHandler;
-
-
-
-    public WebReportHandler(DataHandler dataHandler)
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="dataHandler">Current data handler</param>
+    /// <param name="appGlobals">Current app globals</param>
+    public WebReportHandler(IDataHandler dataHandler, IAppGlobals appGlobals) : base(dataHandler, appGlobals)
     {
-        _dataHandler = dataHandler;
-
         Schritt = 21;
     }
 
-    public StatusHandler StatusChange;
-
     public int Schritt;
 
-    public ReportingTargets Target; // { get; set; }
+    public ReportingTargets? Target { get; set; }
 
-    public FileOptions FileOption; // { get; set; }
-
-    public string TargetPath; // { get; set; }
-
-
-    private readonly IList<Task> _exportTasks = new List<Task>();
-
-
-    public void OpenDatabase()
-    {
-
-        SetStatus("Check target directory...");
-        if (!Directory.Exists(TargetPath))
-        {
-            Directory.CreateDirectory(TargetPath);
-        }
-
-    }
-
-
-
+    public FileOptions? FileOption { get; set; }
 
     public int StartExport()
     {
 
         //try
         //{
-        var rfiles = _dataHandler.GetReportingFiles(TargetPath);
+        var rfiles = _dataHandler.GetReportingFiles(_appGlobals.TargetPath);
 
         var i = 0;
 
@@ -111,8 +84,6 @@ public class WebReportHandler
 
         wr.StartDocument();
         var left = 0;
-
-
         var gewicht = 0;
         var start = true;
         var backImage = "";
@@ -323,24 +294,17 @@ public class WebReportHandler
     }
 
 
-    /// <summary>
-    /// Statusanzeige
-    /// </summary>
-    /// <param name="msg">Anzuzeigende Nachricht</param>
-    private void SetStatus(string msg)
-    {
-
-        var x = StatusChange;
-        x?.Invoke(msg);
-    }
 
     public void MoveToTarget()
     {
-        var ct = _dataHandler.GetReportingTargets(TargetPath);
+        var ct = _dataHandler.GetReportingTargets(_appGlobals.TargetPath);
 
         var errors = CopyTaskHelper.RunAllTasks(ct);
 
-        if (!errors.Any()) return;
+        if (!errors.Any())
+        {
+            return;
+        }
 
         var msg = errors.Aggregate("", (current, error) => current + ("<br/>+" + error));
 
