@@ -1,18 +1,19 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Data;
-using System.Globalization;
-using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Charting;
 using Bodoconsult.Charting.Base.Interfaces;
 using Bodoconsult.Charting.Util;
+using Bodoconsult.Drawing.SkiaSharp.Factories;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using Bodoconsult.Web.Html.Html;
 using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
+using System.Data;
+using System.Globalization;
+using System.Runtime.Versioning;
 
 namespace BodoWebReporting.Dal.Exporter;
 
@@ -25,8 +26,9 @@ public class WebChartExporter
     private DataTable? _dt;
     private IBitmapServiceFactory _bitmapServiceFactory;
 
-    public WebChartExporter(IDataHandler dataHandler, WebChart wc)
+    public WebChartExporter(IDataHandler dataHandler, IBitmapServiceFactory bitmapServiceFactory,  WebChart wc)
     {
+        _bitmapServiceFactory = bitmapServiceFactory;
         _dataHandler = dataHandler;
         WebChart = wc;
         BaseCtor();

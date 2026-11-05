@@ -7,14 +7,15 @@ using Bodoconsult.App.Factories;
 using Bodoconsult.Database.Interfaces;
 using Bodoconsult.Database.SqlClient;
 using Bodoconsult.Drawing.SkiaSharp.Factories;
+using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using BodoWebReporting.Dal.App;
+using BodoWebReporting.Dal.Factories;
 using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Runtime.Versioning;
-using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 
 namespace BodoWebReporting.DiContainerProvider;
 
@@ -35,7 +36,7 @@ public class BodoWebReportingAllServicesContainerServiceProvider : IDiContainerS
     {
         AppStartParameter = appGlobals.AppStartParameter;
         _appGlobals = appGlobals;
-        
+
         ArgumentNullException.ThrowIfNull(appGlobals.AppStartParameter.DataPath);
 
         //_benchmarkFileName = Path.Combine(appGlobals.AppStartParameter.DataPath, "BodoWebReporting_Benchmark.csv");
@@ -71,6 +72,8 @@ public class BodoWebReportingAllServicesContainerServiceProvider : IDiContainerS
         diContainer.AddSingletonInstance((IConnManager)db);
         diContainer.AddSingleton<IBitmapServiceFactory, BitmapServiceFactory>();
         diContainer.AddSingleton<IDataHandler, DataHandler>();
+        diContainer.AddSingleton<IWebChartExporterFactory, WebChartExporterFactory>();
+
         diContainer.AddSingleton<IWebChartHandler, WebChartHandler>();
         diContainer.AddSingleton<IWebTablesHandler, WebTablesHandler>();
         diContainer.AddSingleton<IWebReportHandler, WebReportHandler>();

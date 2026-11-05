@@ -44,6 +44,5 @@ public class WebReportHandlerTests
         var rh = new WebReportHandler(dataLayer, _appGlobals);
         rh.StartExport();
         rh.MoveToTarget();
-
     }
 }

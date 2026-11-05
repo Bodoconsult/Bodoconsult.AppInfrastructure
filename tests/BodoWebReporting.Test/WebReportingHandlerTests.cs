@@ -1,13 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Diagnostics;
-using System.Runtime.Versioning;
 using Bodoconsult.Database.SqlClient;
+using Bodoconsult.Drawing.SkiaSharp.Factories;
 using BodoWebReporting.Dal;
 using BodoWebReporting.Dal.App;
+using BodoWebReporting.Dal.Factories;
 using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Interfaces;
 using NUnit.Framework;
+using System.Diagnostics;
+using System.Runtime.Versioning;
 
 namespace BodoWebReporting.Test;
 
@@ -18,6 +20,8 @@ public class WebReportingHandlerTests
     private readonly IBodoWebReportingAppGlobals _appGlobals = Globals.Instance;
     private readonly WebReportingHandler _wrh;
 
+    private readonly BitmapServiceFactory _bsf = new BitmapServiceFactory();
+
     public WebReportingHandlerTests()
     {
         ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DefaultConnectionString);
@@ -26,7 +30,9 @@ public class WebReportingHandlerTests
 
         var dataLayer = new DataHandler(_appGlobals, db);
 
-        IWebChartHandler webChartHandler = new WebChartHandler(dataLayer, _appGlobals);
+        IWebChartExporterFactory webChartExporterFactory = new WebChartExporterFactory(dataLayer, _bsf);
+        IWebChartHandler webChartHandler = new WebChartHandler(dataLayer, _appGlobals, webChartExporterFactory);
+
         IWebTablesHandler webTablesHandler = new WebTablesHandler(dataLayer, _appGlobals); ;
         IWebReportHandler webReportHandler = new WebReportHandler(dataLayer, _appGlobals); ;
         _wrh = new WebReportingHandler(dataLayer, webChartHandler, webTablesHandler, webReportHandler, _appGlobals);

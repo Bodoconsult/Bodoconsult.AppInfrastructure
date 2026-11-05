@@ -10,13 +10,19 @@ namespace BodoWebReporting.Dal.Handler;
 [SupportedOSPlatform("windows")]
 public class WebChartHandler: BaseObjectHandler, IWebChartHandler
 {
+    private readonly IWebChartExporterFactory _webChartExporterFactory;
+
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="dataHandler">Current data handler</param>
     /// <param name="appGlobals">Current app globals</param>
-    public WebChartHandler(IDataHandler dataHandler, IAppGlobals appGlobals): base(dataHandler, appGlobals)
-    { }
+    /// <param name="webChartExporterFactory">Current WebChartExporter factory</param>
+    public WebChartHandler(IDataHandler dataHandler, IAppGlobals appGlobals,
+        IWebChartExporterFactory webChartExporterFactory) : base(dataHandler, appGlobals)
+    {
+        _webChartExporterFactory = webChartExporterFactory;
+    }
 
     public int ExportCharts()
     {
@@ -28,7 +34,7 @@ public class WebChartHandler: BaseObjectHandler, IWebChartHandler
             SetStatus($"Exportiere Chart {wc.Title}");
             try
             {
-                var wce = new WebChartExporter(_dataHandler, wc);
+                var wce = _webChartExporterFactory.CreateInstance(wc);
                 wce.Export();
                 wce.ExportDataTable();
                 wce.CopyToTarget();
