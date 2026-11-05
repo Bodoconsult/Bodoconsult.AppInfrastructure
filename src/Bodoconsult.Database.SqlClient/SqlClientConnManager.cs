@@ -84,8 +84,7 @@ public class SqlClientConnManager : AdapterConnManager
     //}
 
     private int _commandTimeOut = -1;
-
-
+    
     /// <summary>
     /// Set the command timeout for the connection in seconds
     /// </summary>

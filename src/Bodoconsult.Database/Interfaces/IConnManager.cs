@@ -40,9 +40,6 @@ public interface IConnManager
     /// </summary>
     int NotifyProgressSteps { get; set; }
 
-
-
-
     /// <summary>
     /// Run SQL statement directly against database
     /// </summary>
@@ -90,7 +87,6 @@ public interface IConnManager
     /// <returns></returns>
     DbCommand GetCommand();
 
-
     /// <summary>
     /// Get a parameter for the provided command
     /// </summary>
@@ -99,8 +95,6 @@ public interface IConnManager
     /// <param name="dataType">General database data typeof the parameter</param>
     /// <returns>Parameter object to set value for</returns>
     DbParameter GetParameter(DbCommand cmd, string parameterName, GeneralDbType dataType);
-
-
 
     /// <summary>
     /// Get a data table from an SQL command

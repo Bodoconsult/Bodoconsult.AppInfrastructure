@@ -1,0 +1,350 @@
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using System.Data;
+using System.Diagnostics;
+using System.Runtime.Versioning;
+using BodoWebReporting.Dal.Exporter;
+using BodoWebReporting.Dal.Helpers;
+using BodoWebReporting.Dal.Model;
+
+namespace BodoWebReporting.Dal.Handler;
+
+/// <summary>
+/// Statusanzeige
+/// </summary>
+/// <param name="msg">Anzuzeigende Nachricht</param>
+public delegate void StatusHandler(string msg);
+
+
+[SupportedOSPlatform("windows")]
+public class WebReportHandler
+{
+
+    private readonly DataHandler _dataHandler;
+
+
+
+    public WebReportHandler(DataHandler dataHandler)
+    {
+        _dataHandler = dataHandler;
+
+        Schritt = 21;
+    }
+
+    public StatusHandler StatusChange;
+
+    public int Schritt;
+
+    public ReportingTargets Target; // { get; set; }
+
+    public FileOptions FileOption; // { get; set; }
+
+    public string TargetPath; // { get; set; }
+
+
+    private readonly IList<Task> _exportTasks = new List<Task>();
+
+
+    public void OpenDatabase()
+    {
+
+        SetStatus("Check target directory...");
+        if (!Directory.Exists(TargetPath))
+        {
+            Directory.CreateDirectory(TargetPath);
+        }
+
+    }
+
+
+
+
+    public int StartExport()
+    {
+
+        //try
+        //{
+        var rfiles = _dataHandler.GetReportingFiles(TargetPath);
+
+        var i = 0;
+
+        foreach (var rfile in rfiles)
+        {
+            StartExportReportFile(rfile, i);
+            i++;
+        }
+
+        Task.WaitAll(_exportTasks.ToArray());
+
+        SetStatus("Exporting reporting is done...");
+
+        return i;
+        //}
+        //catch (Exception ex)
+        //{
+        //    _dataHandler.ErrorHandling("BodoWebReporting:ReportingHandler:StartExport", $"{ex.Message}");
+        //    return 0;
+        //}
+    }
+
+
+    /// <summary>
+    /// Export aller Berichte einer Reportdatei
+    /// </summary>
+    public void StartExportReportFile(ReportingFile file, int id)
+    {
+
+        //try
+        //{
+
+        SetStatus($"Export report '{file.FileName}'");
+
+        StyleHandler.RunCode();
+
+        var wr = new WebReportExporter(_dataHandler, file, id)
+        {
+            Schritt = Schritt,
+            BackColor = StyleHandler.BackColor,
+        };
+
+        //var x = StyleHandler.StyleSet;
+
+        wr.StartDocument();
+        var left = 0;
+
+
+        var gewicht = 0;
+        var start = true;
+        var backImage = "";
+        //var logoImage = "";
+        var sql = "";
+        var itemCount = file.ReportingFileParts.Count;
+
+        var data = new DataTable();
+
+        foreach (var rfp in file.ReportingFileParts)
+        {
+            if (start)
+            {
+
+                wr.Landscape = rfp.Landscape;
+
+                Schritt = rfp.Landscape ? 35 : 42;
+
+                wr.Schritt = Schritt;
+
+                if (!string.IsNullOrEmpty(rfp.BackgroundImagePath) &&  backImage != rfp.BackgroundImagePath && File.Exists(rfp.BackgroundImagePath))
+                {
+                    wr.BackgroundImagePath = rfp.BackgroundImagePath;
+                }
+                else
+                {
+                    wr.BackgroundImagePath = null;
+                    if (!string.IsNullOrEmpty(rfp.BackgroundImagePath)) Debug.Print($"Not found: {rfp.BackgroundImagePath}");
+                }    
+
+                //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
+
+                wr.AddPageSetup();
+
+                // Inhaltsverzeichnis sinnvoll?
+                if (itemCount < 2)
+                {
+                    wr.NewContentSection();
+                    //wr.AddHeading(r["WR_Title1"].ToString());
+                }
+                else
+                {
+                    wr.TocSection(rfp.Title1);
+                    wr.NewContentSection();
+                }
+            }
+
+            wr.Subject = rfp.Subject;
+
+            if (sql != rfp.Sql && rfp.Sql.ToUpperInvariant() != "XXX")
+            {
+                sql = TextHelper.Parser(rfp.Sql);
+                data = _dataHandler.GetDataTable(sql);
+            }
+
+            if (!string.IsNullOrEmpty(rfp.AddInfoSql))
+                wr.AddInfos = FormatAddInfos(_dataHandler.GetDataTable(rfp.AddInfoSql));
+
+            var typ = rfp.ReportType;
+
+            if (typ == "smalltable" && data.Rows.Count > Schritt / 2) typ = "table";
+
+            switch (typ)
+            {
+                case "table":
+                    gewicht += 2;
+                    break;
+                case "chart":
+                    gewicht += 1;
+                    break;
+                case "smalltable":
+                    gewicht += 1;
+                    break;
+                //case "heading":
+                default:
+                    break;
+            }
+
+            // Neue Seite?
+            if (gewicht > 4)
+            {
+                gewicht = 0;
+                //SetStatus("Neue Seite");
+
+                switch (typ)
+                {
+                    case "heading":
+
+                        break;
+                    case "table":
+                        gewicht += 2;
+                        break;
+                    case "chart":
+                        gewicht += 1;
+                        break;
+                    case "smalltable":
+                        gewicht += 1;
+                        break;
+                }
+
+                wr.EndCharting();
+                if (backImage != rfp.BackgroundImagePath)
+                    wr.BackgroundImagePath = rfp.BackgroundImagePath;
+                //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
+                wr.NewContentSection();
+            }
+
+
+            switch (typ)
+            {
+                case "heading":
+                    SetStatus($"Exporting heading {rfp.Name}...");
+
+                    gewicht = 0;
+                    wr.EndCharting();
+                    if (backImage != rfp.BackgroundImagePath)
+                        wr.BackgroundImagePath = rfp.BackgroundImagePath;
+                    //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
+                    if (!start) wr.NewContentSection();
+                    wr.AddHeading(rfp.Name);
+                    break;
+                case "table":
+                    SetStatus($"Exporting table {rfp.Name}...{gewicht}");
+                    left = 0;
+                    wr.EndCharting();
+                    wr.AddTable(rfp.Title, data, rfp.ShowInToc, gewicht > 2);
+                    break;
+                case "smalltable":
+                    SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
+                    left = 0;
+                    wr.AddSmallTable(rfp.Title, data);
+                    break;
+                case "chart":
+                    SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
+
+                    // Entferne ggfs. "Gesamt" für Charts
+                    var s = $"[{data.Columns[0].ColumnName}]='Gesamt'";
+
+                    if (data.Columns[0].DataType == typeof(string))
+                    {
+
+                        //try
+                        //{
+                        if (data.Select(s).Any()) data.Rows.RemoveAt(data.Rows.Count - 1);
+                        //}
+                        //// ReSharper disable EmptyGeneralCatchClause
+                        //catch
+                        //// ReSharper restore EmptyGeneralCatchClause
+                        //{
+
+                    }
+
+
+                    //}
+
+                    var chartdata = new ChartData
+                    {
+                        Data = data.Copy(),
+                        Title = rfp.Title,
+                        Columns = rfp.ChartColumns,
+                        ColumnsDataTable = rfp.ChartColumnsDataTable,
+                        YLabel = rfp.ChartYUnit,
+                        LegendLength = rfp.ChartLegendLength,
+                        TypeOfChart = rfp.ChartType,
+                        Left = left,
+                    };
+
+                    left = left == 0 ? 24 : 0;
+
+                    wr.AddChart(chartdata);
+
+                    break;
+            }
+
+            backImage = rfp.BackgroundImagePath;
+            //logoImage = rfp.LogoPath;
+            start = false;
+        }
+
+        wr.EndCharting();
+
+        SetStatus($"Create PDF file {file.FileName}");
+
+
+        var task = new TaskFactory().StartNew(() =>
+            {
+
+                wr.ExportReport();
+                wr.Dispose();
+
+            }
+        );
+
+        _exportTasks.Add(task);
+
+        //}
+        //catch (Exception ex)
+        //{
+        //    _dataHandler.ErrorHandling("BodoWebReporting:ReportingHandler:StartExportReportFile", string.Format("{1}:{0}", ex.Message, file.FileName));
+        //}
+
+
+    }
+
+    private static string FormatAddInfos(DataTable dataTable)
+    {
+        return dataTable.Rows.Cast<DataRow>().Aggregate("", (current, r) => current + r[0] + ":  " + r[1] + "\t\t");
+    }
+
+
+    /// <summary>
+    /// Statusanzeige
+    /// </summary>
+    /// <param name="msg">Anzuzeigende Nachricht</param>
+    private void SetStatus(string msg)
+    {
+
+        var x = StatusChange;
+        x?.Invoke(msg);
+    }
+
+    public void MoveToTarget()
+    {
+        var ct = _dataHandler.GetReportingTargets(TargetPath);
+
+        var errors = CopyTaskHelper.RunAllTasks(ct);
+
+        if (!errors.Any()) return;
+
+        var msg = errors.Aggregate("", (current, error) => current + ("<br/>+" + error));
+
+        _dataHandler.ErrorHandling($"Error:Reportinghandler:MoveToTarget", $"<p>{msg}</p>");
+
+    }
+}

@@ -13,16 +13,12 @@ namespace Bodoconsult.Database;
 /// </summary>
 public abstract class AdapterConnManager : IConnManager
 {
+    private const string NotImplementedMessage = "The method or operation is not implemented. This is just the adapter class.";
 
     /// <summary>
     /// Connection string to use
     /// </summary>
     protected string ConnectionString;
-
-
-    private const string NotImplementedMessage =
-        "The method or operation is not implemented. This is just the adapter class.";
-
 
     #region IConnManager Members
 

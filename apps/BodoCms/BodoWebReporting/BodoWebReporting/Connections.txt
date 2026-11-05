@@ -1,0 +1,5 @@
+﻿Data Source=bododata;Initial Catalog=BodoReporting;User Id=sa;password=soficon_19670129;
+
+Data Source=sqlsrv1;Initial Catalog=BodoReporting;;User=sa;Password=sa;
+
+\\bododata\medien\Websites\Exporte\WebReporting\
