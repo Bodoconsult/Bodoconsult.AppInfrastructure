@@ -19,9 +19,9 @@ public static class StyleHandler
 
     //private static bool isStart;
 
-    public static string FileName { get; set;  }
+    public static string? FileName { get; set;  }
 
-    private static object _instance;
+    //private static object? _instance;
 
     public static void Start()
     {
@@ -66,15 +66,16 @@ public static class StyleHandler
         //if (!isStart) return;
         StyleSet = new BodoWebReportingStyleSet();
 
-        if (_instance == null) return;
+        //if (_instance == null)
+        //{
+        //    return;
+        //}
 
-        var parametersArray = new object[] { };
+        //var parametersArray = new object[] { };
 
-        var info = _instance.GetType().GetMethod("Start");
-        if (info != null) info.Invoke(_instance, parametersArray);
+        //var info = _instance.GetType().GetMethod("Start");
+        //if (info != null) info.Invoke(_instance, parametersArray);
 
         //isStart = false;
-
     }
-
 }

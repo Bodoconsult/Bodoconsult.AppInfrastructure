@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -136,6 +137,7 @@ public abstract class BaseConsoleStarter : IConsoleStarter
     /// <param name="message">Message to show in the console</param>
     protected static void SetStatus(string message)
     {
+        Debug.Print(message);
         Console.WriteLine(message);
     }
 

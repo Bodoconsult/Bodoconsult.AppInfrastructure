@@ -2,6 +2,7 @@
 
 
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Charting.Base.Interfaces;
 using Bodoconsult.Database.Interfaces;
@@ -20,7 +21,7 @@ public class DataHandler : IDataHandler
 {
     private readonly IConnManager _db;
     private readonly string _errorMailer;
-    private readonly IAppGlobals _appGlobals;
+
 
     /// <summary>
     /// Default ctor
@@ -31,10 +32,18 @@ public class DataHandler : IDataHandler
     {
         _db = db;
         _errorMailer = appGlobals.AppStartParameter.ErrorMailAddress ?? string.Empty;
-        _appGlobals = appGlobals;
+
+        if (appGlobals is not IBodoWebReportingAppGlobals globals)
+        {
+            throw new ArgumentException("appGlobals is not IBodoWebReportingAppGlobals");
+        }
+
+        AppGlobals = globals;
 
         SetStatus("Opening database connection...");
     }
+
+    public IBodoWebReportingAppGlobals AppGlobals { get; }
 
     /// <summary>
     /// Get a data reader
@@ -52,7 +61,7 @@ public class DataHandler : IDataHandler
     /// <param name="msg">Message</param>
     private void SetStatus(string msg)
     {
-        _appGlobals.StatusMessageDelegate?.Invoke(msg);
+        AppGlobals.StatusMessageDelegate?.Invoke(msg);
     }
 
     /// <summary>
@@ -109,7 +118,7 @@ public class DataHandler : IDataHandler
 
             if (string.IsNullOrEmpty(target))
             {
-                _appGlobals.Logger?.LogWarning($"Copying {fileName}: target is null");
+                AppGlobals.Logger?.LogWarning($"Copying {fileName}: target is null");
                 continue;
             }
 
@@ -176,7 +185,7 @@ public class DataHandler : IDataHandler
                     ChartType = string.IsNullOrEmpty(r["WR_C_ChartType"].ToString())
                         ? ChartType.BarChart
                         : (ChartType)Enum.Parse(typeof(ChartType),
-                            r["WR_C_ChartType"].ToString()?.Trim().ToLowerInvariant() + "chart", true),
+                            $"{r["WR_C_ChartType"].ToString()?.Trim().ToLowerInvariant()}chart", true),
                     ChartLegendLength = string.IsNullOrEmpty(r["WR_C_LegendLength"].ToString())
                         ? (short)0
                         : Convert.ToInt16(r["WR_C_LegendLength"].ToString())
@@ -204,6 +213,9 @@ public class DataHandler : IDataHandler
         {
             SetStatus($"{subject}: {message}");
 
+#if DEBUG
+
+#else
             var lo = new SqlCommand { CommandType = CommandType.StoredProcedure, CommandText = "dbo.[spMAIL_New]" };
             lo.Parameters.Add("@To", SqlDbType.VarChar);
             lo.Parameters[0].Value = _errorMailer;
@@ -212,6 +224,7 @@ public class DataHandler : IDataHandler
             lo.Parameters.Add("@Msg", SqlDbType.VarChar);
             lo.Parameters[2].Value = $"{message}";
             _db.Exec(lo);
+#endif
         }
         catch (Exception ex)
         {
@@ -239,7 +252,7 @@ public class DataHandler : IDataHandler
                 YUnit = row["WC_YUnit"].ToString(),
                 Columns = row["WC_Columns"].ToString(),
                 ColumnsDataTable = row["WC_ColumnsDataTable"].ToString(),
-                ChartType = (ChartType)Enum.Parse(typeof(ChartType), row["WC_ChartType"] + "chart", true),
+                ChartType = (ChartType)Enum.Parse(typeof(ChartType), $"{row["WC_ChartType"]}chart", true),
                 Copyright = row["WC_Copyright"].ToString(),
                 Id = Convert.ToInt32(row["WC_Id"].ToString()),
                 Width = Convert.ToInt32(row["WC_Width"].ToString()),
@@ -264,14 +277,14 @@ public class DataHandler : IDataHandler
 
             if (string.IsNullOrEmpty(fileName))
             {
-                _appGlobals.Logger?.LogWarning("FileName is null or empty");
+                AppGlobals.Logger?.LogWarning("FileName is null or empty");
                 continue;
             }
 
             var target = row["RT_Target"].ToString();
             if (string.IsNullOrEmpty(target))
             {
-                _appGlobals.Logger?.LogWarning("Target is null or empty");
+                AppGlobals.Logger?.LogWarning("Target is null or empty");
                 continue;
             }
             
@@ -304,7 +317,7 @@ public class DataHandler : IDataHandler
             var target = row["WCT_TargetPath"].ToString();
             if (string.IsNullOrEmpty(target))
             {
-                _appGlobals.Logger?.LogWarning("Target is null or empty");
+                AppGlobals.Logger?.LogWarning("Target is null or empty");
                 continue;
             }
 
@@ -317,7 +330,7 @@ public class DataHandler : IDataHandler
             if (!string.IsNullOrEmpty(includePath))
             {
                 ct.IncludeSourceFileName = includePath;
-                ct.IncludeTargetFileName = Path.Combine(Path.GetDirectoryName(ct.TargetFileName),
+                ct.IncludeTargetFileName = Path.Combine(Path.GetDirectoryName(ct.TargetFileName) ?? string.Empty,
                     $"{Path.GetFileNameWithoutExtension(ct.TargetFileName)}.inc");
             }
 

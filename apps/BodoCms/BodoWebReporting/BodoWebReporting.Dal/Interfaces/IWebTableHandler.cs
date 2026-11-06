@@ -7,7 +7,7 @@ namespace BodoWebReporting.Dal.Interfaces;
 /// <summary>
 /// Interface for the creation process handler of <see cref="WebTable"/> instances
 /// </summary>
-public interface IWebTablesHandler
+public interface IWebTableHandler
 {
     /// <summary>
     /// Export the tables

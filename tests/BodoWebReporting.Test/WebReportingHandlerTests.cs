@@ -1,15 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Diagnostics;
+using System.Runtime.Versioning;
 using Bodoconsult.Database.SqlClient;
 using Bodoconsult.Drawing.SkiaSharp.Factories;
-using BodoWebReporting.Dal;
+using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using BodoWebReporting.Dal.App;
 using BodoWebReporting.Dal.Factories;
 using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Interfaces;
 using NUnit.Framework;
-using System.Diagnostics;
-using System.Runtime.Versioning;
 
 namespace BodoWebReporting.Test;
 
@@ -20,8 +20,6 @@ public class WebReportingHandlerTests
     private readonly IBodoWebReportingAppGlobals _appGlobals = Globals.Instance;
     private readonly WebReportingHandler _wrh;
 
-    private readonly BitmapServiceFactory _bsf = new BitmapServiceFactory();
-
     public WebReportingHandlerTests()
     {
         ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DefaultConnectionString);
@@ -30,34 +28,52 @@ public class WebReportingHandlerTests
 
         var dataLayer = new DataHandler(_appGlobals, db);
 
-        IWebChartExporterFactory webChartExporterFactory = new WebChartExporterFactory(dataLayer, _bsf);
+        IBitmapServiceFactory bitmapServiceFactory = new BitmapServiceFactory();
+        IWebChartExporterFactory webChartExporterFactory = new WebChartExporterFactory(dataLayer, bitmapServiceFactory);
         IWebChartHandler webChartHandler = new WebChartHandler(dataLayer, _appGlobals, webChartExporterFactory);
 
-        IWebTablesHandler webTablesHandler = new WebTablesHandler(dataLayer, _appGlobals); ;
-        IWebReportHandler webReportHandler = new WebReportHandler(dataLayer, _appGlobals); ;
+
+        IWebTableExporterFactory webTableExporterFactory = new WebTableExporterFactory(dataLayer);
+        IWebTableHandler webTablesHandler = new WebTableHandler(dataLayer, webTableExporterFactory, _appGlobals);
+
+        IWebReportExporterFactory webReportExporterFactory = new WebReportExporterFactory(dataLayer, webChartExporterFactory);
+        IWebReportHandler webReportHandler = new WebReportHandler(dataLayer, webReportExporterFactory, _appGlobals);
         _wrh = new WebReportingHandler(dataLayer, webChartHandler, webTablesHandler, webReportHandler, _appGlobals);
     }
 
     [Test]
-    public void TestCreateWebTables_Success()
-    {   
-        var result = _wrh.CreateWebTables();
-        Assert.That(result>0);
-    }
-
-    [Test]
-    public void TestCreateWebCharts_Success()
+    public void CreateWebTables_ValidSetup_Success()
     {
-        // Webcharts
-        var result = _wrh.CreateWebCharts();
+        // Arrange
+
+        // Act
+        var result = _wrh.CreateWebTables();
+
+        // Assert
         Assert.That(result > 0);
     }
 
     [Test]
-    public void TestCreateWebReports_Success()
+    public void CreateWebCharts_ValidSetup_Success()
     {
-        // Web reports
+        // Arrange 
+
+        // Act  
+        var result = _wrh.CreateWebCharts();
+
+        // Assert
+        Assert.That(result > 0);
+    }
+
+    [Test]
+    public void CreateWebReports_ValidSetup_Success()
+    {
+        // Arrange 
+
+        // Act  
         var result = _wrh.CreateWebReports();
+
+        // Assert
         Assert.That(result > 0);
     }
 }

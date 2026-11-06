@@ -68,15 +68,21 @@ public class BodoWebReportingAllServicesContainerServiceProvider : IDiContainerS
         // Services
         ArgumentException.ThrowIfNullOrEmpty(_appGlobals.AppStartParameter.DefaultConnectionString);
         var db = new SqlClientConnManager(_appGlobals.AppStartParameter.DefaultConnectionString);
+        db.SetCommandTimeout(60000);
 
         diContainer.AddSingletonInstance((IConnManager)db);
         diContainer.AddSingleton<IBitmapServiceFactory, BitmapServiceFactory>();
         diContainer.AddSingleton<IDataHandler, DataHandler>();
+        
         diContainer.AddSingleton<IWebChartExporterFactory, WebChartExporterFactory>();
-
         diContainer.AddSingleton<IWebChartHandler, WebChartHandler>();
-        diContainer.AddSingleton<IWebTablesHandler, WebTablesHandler>();
+
+        diContainer.AddSingleton<IWebTableExporterFactory, WebTableExporterFactory>();
+        diContainer.AddSingleton<IWebTableHandler, WebTableHandler>();
+
+        diContainer.AddSingleton<IWebReportExporterFactory, WebReportExporterFactory>();
         diContainer.AddSingleton<IWebReportHandler, WebReportHandler>();
+        
         diContainer.AddSingleton<IWebReportingHandler, WebReportingHandler>();
 
         // Load all other services required for the app now

@@ -2,6 +2,7 @@
 
 using Bodoconsult.App;
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.App.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.DiContainerProvider;
 
@@ -50,5 +51,7 @@ public class MyDebugAppBuilder : BaseDebugAppBuilder
         globals.TargetPath = DefaultAppStartProvider.ReadStringProperty(section, "TargetPath", globals.TargetPath) ?? string.Empty;
         globals.PreRunSql = DefaultAppStartProvider.ReadStringProperty(section, "PreRunSql", globals.PreRunSql) ?? string.Empty;
         globals.PostRunSql = DefaultAppStartProvider.ReadStringProperty(section, "PostRunSql", globals.PostRunSql) ?? string.Empty;
+
+        FileSystemHelper.CreateDirectory(globals.TargetPath);
     }
 }

@@ -163,12 +163,22 @@ public class BaseChart<T> : IChart where T : IChartItemData
         labelStyle.FontSize = style.FontSize * style.AxisTitleFontSizeDelta;
 
         // Y axis
-        label = string.IsNullOrEmpty(ChartData.YLabelText)
-            ? ChartData.PropertiesToUseForChart[1]
-            : ChartData.YLabelText;
 
-        labelStyle = Chart.Axes.Left.Label;
-        labelStyle.Text = label;
+        if (string.IsNullOrEmpty(ChartData.YLabelText))
+        {
+            label = ChartData.PropertiesToUseForChart.Count > 1 ? ChartData.PropertiesToUseForChart[1] : string.Empty;
+        }
+        else
+        {
+            label = ChartData.YLabelText;
+        }
+
+        if (!string.IsNullOrEmpty(label))
+        {
+            labelStyle = Chart.Axes.Left.Label;
+            labelStyle.Text = label;
+        }
+
         labelStyle.FontName = style.FontName;
         labelStyle.Bold = true;
         labelStyle.FontSize = style.FontSize * style.AxisTitleFontSizeDelta;
@@ -224,11 +234,11 @@ public class BaseChart<T> : IChart where T : IChartItemData
             {
                 return ChartData.PropertiesToUseForChart[i + 1];
             }
-            catch 
+            catch
             {
                 return null;
             }
-                
+
         }
     }
 

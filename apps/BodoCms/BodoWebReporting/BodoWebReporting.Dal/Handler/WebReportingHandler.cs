@@ -13,15 +13,15 @@ namespace BodoWebReporting.Dal.Handler;
 public class WebReportingHandler : IWebReportingHandler
 {
     private readonly IWebChartHandler _webChartHandler;
-    private readonly IWebTablesHandler _webTablesHandler;
+    private readonly IWebTableHandler _webTablesHandler;
     private readonly IWebReportHandler _webReportHandler;
-    private IDataHandler _dataHandler;
+    private readonly IDataHandler _dataHandler;
     private readonly IBodoWebReportingAppGlobals _appGlobals;
 
     /// <summary>
     /// Default ctor
     /// </summary>
-    public WebReportingHandler(IDataHandler dataHandler, IWebChartHandler webChartHandler,  IWebTablesHandler webTablesHandler, IWebReportHandler webReportHandler, IAppGlobals appGlobals)
+    public WebReportingHandler(IDataHandler dataHandler, IWebChartHandler webChartHandler,  IWebTableHandler webTablesHandler, IWebReportHandler webReportHandler, IAppGlobals appGlobals)
     {
         _dataHandler = dataHandler;
         _webChartHandler = webChartHandler;
@@ -69,7 +69,9 @@ public class WebReportingHandler : IWebReportingHandler
     /// <returns>O on success else error code</returns>
     public int CreateWebTables()
     {
-        return _webTablesHandler.ExportTables();
+        _appGlobals.StatusMessageDelegate?.Invoke("Create WebTables...");
+        var  result = _webTablesHandler.ExportTables();
+        return result;
     }
 
     /// <summary>
@@ -77,6 +79,7 @@ public class WebReportingHandler : IWebReportingHandler
     /// </summary>
     public int CreateWebCharts()
     {
+        _appGlobals.StatusMessageDelegate?.Invoke("Create WebCharts...");
         return _webChartHandler.ExportCharts();
     }
 
@@ -86,6 +89,7 @@ public class WebReportingHandler : IWebReportingHandler
     /// <returns>O on success else error code</returns>
     public int CreateWebReports()
     {
+        _appGlobals.StatusMessageDelegate?.Invoke("Create WebReports...");
         _webReportHandler.Target = ReportingTargets.PdfFile;
         var result = _webReportHandler.StartExport();
         _webReportHandler.MoveToTarget();

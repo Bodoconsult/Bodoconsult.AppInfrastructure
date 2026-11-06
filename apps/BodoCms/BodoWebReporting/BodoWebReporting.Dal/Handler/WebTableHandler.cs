@@ -6,26 +6,35 @@ using BodoWebReporting.Dal.Interfaces;
 
 namespace BodoWebReporting.Dal.Handler;
 
-public class WebTablesHandler: BaseObjectHandler, IWebTablesHandler
+/// <summary>
+/// Current implementation of <see cref="IWebTableHandler"/>
+/// </summary>
+public class WebTableHandler: BaseObjectHandler, IWebTableHandler
 {
+    private readonly IWebTableExporterFactory _webTableExporterFactory;
+
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="dataHandler">Current data handler</param>
+    /// <param name="webTableExporterFactory">Current WebTableExporter factory</param>
     /// <param name="appGlobals">Current app globals</param>
-    public WebTablesHandler(IDataHandler dataHandler, IAppGlobals appGlobals) : base(dataHandler, appGlobals)
-    { }
+    public WebTableHandler(IDataHandler dataHandler, IWebTableExporterFactory webTableExporterFactory,
+        IAppGlobals appGlobals) : base(dataHandler, appGlobals)
+    {
+        _webTableExporterFactory = webTableExporterFactory;
+    }
 
     public int ExportTables()
     {
-        var data = _dataHandler.GetWebTables(_appGlobals.TargetPath);
+        var data = DataHandler.GetWebTables(AppGlobals.TargetPath);
 
         var i = 0;
 
         foreach (var wt in data)
         {
             SetStatus($"WebTable {wt.Name}...");
-            var wte = new WebTableExporter(_dataHandler, wt);
+            var wte = _webTableExporterFactory.CreateInstance(wt);
             wte.Export();
             wte.CopyToTarget();
             i++;

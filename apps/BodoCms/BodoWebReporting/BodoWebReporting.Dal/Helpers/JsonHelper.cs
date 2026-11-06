@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
@@ -15,9 +17,9 @@ public class JsonHelper
     /// </summary>
     /// <param name="fileName"></param>
     /// <returns></returns>
-    public static T LoadJsonFile<T>(string fileName)
+    public static T? LoadJsonFile<T>(string fileName)
     {
-        T job;
+        T? job;
 
         using (var file = File.OpenText(fileName))
         {
@@ -26,7 +28,7 @@ public class JsonHelper
                 TypeNameHandling = TypeNameHandling.All
             };
 
-            job = (T)serializer.Deserialize(file, typeof(T));
+            job = (T?)serializer.Deserialize(file, typeof(T?));
 
         }
 
@@ -39,14 +41,17 @@ public class JsonHelper
     /// </summary>
     /// <param name="resourceName">Fully qualified resource name</param>
     /// <returns>object of type T or null</returns>
-    public static T LoadJsonFromResource<T>(string resourceName)
+    public static T? LoadJsonFromResource<T>(string resourceName)
     {
-        T job;
+        T? job;
 
         var ass = Assembly.GetExecutingAssembly();
         var str = ass.GetManifestResourceStream(resourceName);
 
-        if (str == null) return default(T);
+        if (str == null)
+        {
+            return default;
+        }
 
         using (var file = new StreamReader(str))
         {
@@ -55,21 +60,20 @@ public class JsonHelper
                 TypeNameHandling = TypeNameHandling.All
             };
 
-            job = (T)serializer.Deserialize(file, typeof(T));
-
+            job = (T?)serializer.Deserialize(file, typeof(T?));
         }
 
         return job;
     }
 
     /// <summary>
-    /// Load a object from a JSON string
+    /// Load an object from a JSON string
     /// </summary>
     /// <param name="json">Fully qualified resource name</param>
     /// <returns>object of type T or null</returns>
-    public static T LoadJsonFromString<T>(string json)
+    public static T? LoadJsonFromString<T>(string json)
     {
-        var job = JsonConvert.DeserializeObject<T>(json);
+        var job = JsonConvert.DeserializeObject<T?>(json);
 
         return job;
     }
@@ -100,7 +104,7 @@ public class JsonHelper
             jsonWriter.IndentChar = '\t';
             jsonWriter.Indentation = 1;
 
-            jsonSerializer.Serialize(jsonWriter, value, typeof(T));
+            jsonSerializer.Serialize(jsonWriter, value, typeof(T?));
         }
 
         return sw.ToString();

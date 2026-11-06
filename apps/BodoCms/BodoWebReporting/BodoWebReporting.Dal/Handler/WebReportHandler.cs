@@ -14,15 +14,18 @@ namespace BodoWebReporting.Dal.Handler;
 [SupportedOSPlatform("windows")]
 public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 {
-    private readonly IList<Task> _exportTasks = new List<Task>();
+    private readonly List<Task> _exportTasks = new();
+    private readonly IWebReportExporterFactory _webReportExporterFactory;
 
     /// <summary>
     /// Default ctor
     /// </summary>
     /// <param name="dataHandler">Current data handler</param>
+    /// <param name="webReportExporterFactory">Current factory for WebReportExporter</param>
     /// <param name="appGlobals">Current app globals</param>
-    public WebReportHandler(IDataHandler dataHandler, IAppGlobals appGlobals) : base(dataHandler, appGlobals)
+    public WebReportHandler(IDataHandler dataHandler, IWebReportExporterFactory webReportExporterFactory, IAppGlobals appGlobals) : base(dataHandler, appGlobals)
     {
+        _webReportExporterFactory = webReportExporterFactory;
         Schritt = 21;
     }
 
@@ -37,7 +40,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         //try
         //{
-        var rfiles = _dataHandler.GetReportingFiles(_appGlobals.TargetPath);
+        var rfiles = DataHandler.GetReportingFiles(AppGlobals.TargetPath);
 
         var i = 0;
 
@@ -74,11 +77,9 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         StyleHandler.RunCode();
 
-        var wr = new WebReportExporter(_dataHandler, file, id)
-        {
-            Schritt = Schritt,
-            BackColor = StyleHandler.BackColor,
-        };
+        var wr = _webReportExporterFactory.CreateInstance(file, id);
+        wr.Schritt = Schritt;
+        wr.BackColor = StyleHandler.BackColor;
 
         //var x = StyleHandler.StyleSet;
 
@@ -131,20 +132,29 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                 }
             }
 
-            wr.Subject = rfp.Subject;
+            wr.Subject = rfp.Subject ?? string.Empty;
 
-            if (sql != rfp.Sql && rfp.Sql.ToUpperInvariant() != "XXX")
+            if (sql != rfp.Sql && rfp.Sql?.ToUpperInvariant() != "XXX")
             {
                 sql = TextHelper.Parser(rfp.Sql);
-                data = _dataHandler.GetDataTable(sql);
+
+                if (!string.IsNullOrEmpty(sql))
+                {
+                    data = DataHandler.GetDataTable(sql);
+                }
             }
 
             if (!string.IsNullOrEmpty(rfp.AddInfoSql))
-                wr.AddInfos = FormatAddInfos(_dataHandler.GetDataTable(rfp.AddInfoSql));
+            {
+                wr.AddInfos = FormatAddInfos(DataHandler.GetDataTable(rfp.AddInfoSql));
+            }
 
             var typ = rfp.ReportType;
 
-            if (typ == "smalltable" && data.Rows.Count > Schritt / 2) typ = "table";
+            if (typ == "smalltable" && data.Rows.Count > Schritt / 2)
+            {
+                typ = "table";
+            }
 
             switch (typ)
             {
@@ -203,18 +213,18 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                         wr.BackgroundImagePath = rfp.BackgroundImagePath;
                     //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
                     if (!start) wr.NewContentSection();
-                    wr.AddHeading(rfp.Name);
+                    wr.AddHeading(rfp.Name ?? "Heading missing (rfp.Name)");
                     break;
                 case "table":
                     SetStatus($"Exporting table {rfp.Name}...{gewicht}");
                     left = 0;
                     wr.EndCharting();
-                    wr.AddTable(rfp.Title, data, rfp.ShowInToc, gewicht > 2);
+                    wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
                     break;
                 case "smalltable":
                     SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
                     left = 0;
-                    wr.AddSmallTable(rfp.Title, data);
+                    wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
                     break;
                 case "chart":
                     SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
@@ -242,10 +252,10 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                     var chartdata = new ChartData
                     {
                         Data = data.Copy(),
-                        Title = rfp.Title,
-                        Columns = rfp.ChartColumns,
-                        ColumnsDataTable = rfp.ChartColumnsDataTable,
-                        YLabel = rfp.ChartYUnit,
+                        Title = rfp.Title ?? "Title missing (rfp.Title)",
+                        Columns = rfp.ChartColumns ?? string.Empty,
+                        ColumnsDataTable = rfp.ChartColumnsDataTable ?? string.Empty,
+                        YLabel = rfp.ChartYUnit ?? string.Empty,
                         LegendLength = rfp.ChartLegendLength,
                         TypeOfChart = rfp.ChartType,
                         Left = left,
@@ -290,14 +300,14 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
     private static string FormatAddInfos(DataTable dataTable)
     {
-        return dataTable.Rows.Cast<DataRow>().Aggregate("", (current, r) => current + r[0] + ":  " + r[1] + "\t\t");
+        return dataTable.Rows.Cast<DataRow>().Aggregate("", (current, r) => $"{current}{r[0]}:  {r[1]}\t\t");
     }
 
 
 
     public void MoveToTarget()
     {
-        var ct = _dataHandler.GetReportingTargets(_appGlobals.TargetPath);
+        var ct = DataHandler.GetReportingTargets(AppGlobals.TargetPath);
 
         var errors = CopyTaskHelper.RunAllTasks(ct);
 
@@ -308,7 +318,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         var msg = errors.Aggregate("", (current, error) => current + ("<br/>+" + error));
 
-        _dataHandler.ErrorHandling($"Error:Reportinghandler:MoveToTarget", $"<p>{msg}</p>");
+        DataHandler.ErrorHandling($"Error:Reportinghandler:MoveToTarget", $"<p>{msg}</p>");
 
     }
 }

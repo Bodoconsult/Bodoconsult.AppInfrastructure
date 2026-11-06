@@ -20,24 +20,43 @@ public class WebTableExporter
     {
         _dataHandler = dataHandler;
         _webTable = webTable;
+
+        if (string.IsNullOrEmpty(_webTable.Sql))
+        {
+            Data = null;
+            return;
+        }
         Data = _dataHandler.GetDataTable(_webTable.Sql);
     }
 
-    public DataTable Data { get; }
+    public DataTable? Data { get; }
 
     /// <summary>
     /// Export the WebTable to the export directory
     /// </summary>
     public void Export()
     {
+        if (Data is null)
+        {
+            return;
+        }
+
+        var type = _webTable.TableType?.ToLowerInvariant() ?? "inc";
+        
+        var fileName = _webTable.FileName;
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return;
+        }
+
         try
         {
-            switch (_webTable.TableType.ToLower())
+            switch (type)
             {
                 case "xlsx":
                     var e = new XlsxBuilder();
                     //e.Status += StatusMsg;
-                    e.NewWorkbook(_webTable.FileName);
+                    e.NewWorkbook(fileName);
 
                     if (e.ErrorCode != 0)
                     {
@@ -45,7 +64,7 @@ public class WebTableExporter
                     }
 
                     e.NewSheet("Daten");
-                    e.Header(_webTable.Name);
+                    e.Header(_webTable.Name ?? "Heading missing (_webTable.Name)");
                     e.FillDataTable(Data, 4, 1);
                     e.Quit();
                     break;
@@ -75,13 +94,19 @@ public class WebTableExporter
     public void CopyToTarget()
     {
 
-        var ct = _dataHandler.GetWebTableTargets(_webTable.FileName, _webTable.Id);
+        var fileName = _webTable.FileName;
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return;
+        }
+
+        var ct = _dataHandler.GetWebTableTargets(fileName, _webTable.Id);
 
         var errors = CopyTaskHelper.RunAllTasks(ct);
 
         if (!errors.Any()) return;
 
-        var msg = errors.Aggregate("", (current, error) => current + "<br/>+" + error);
+        var msg = errors.Aggregate(string.Empty, (current, error) => $"{current}<br/>+{error}");
 
         _dataHandler.ErrorHandling("Error:WebTableExporter:CopyToTarget", $"<p>{msg}</p>");
 

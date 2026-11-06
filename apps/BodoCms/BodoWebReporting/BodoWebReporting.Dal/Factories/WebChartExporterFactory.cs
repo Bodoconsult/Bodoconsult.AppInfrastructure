@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using System.Data;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using BodoWebReporting.Dal.Exporter;
 using BodoWebReporting.Dal.Interfaces;
@@ -41,5 +42,16 @@ public class WebChartExporterFactory : IWebChartExporterFactory
     public WebChartExporter CreateInstance(WebChart wc)
     {
         return new WebChartExporter(DataHandler, BitmapServiceFactory, wc);
+    }
+
+    /// <summary>
+    /// Create an instance of <see cref="WebChartExporter"/>
+    /// </summary>
+    /// <param name="dt">DataTable with chart data</param>
+    /// <param name="wc">WebChart data</param>
+    /// <returns>Instance of <see cref="WebChartExporter"/></returns>
+    public WebChartExporter CreateInstance(DataTable dt, WebChart wc)
+    {
+        return new WebChartExporter(DataHandler, BitmapServiceFactory, dt, wc);
     }
 }

@@ -11,6 +11,11 @@ namespace BodoWebReporting.Dal.Interfaces;
 public interface IDataHandler
 {
     /// <summary>
+    /// App globals
+    /// </summary>
+    IBodoWebReportingAppGlobals AppGlobals { get; }
+
+    /// <summary>
     /// Get a data reader
     /// </summary>
     /// <param name="sql">SQL to run</param>
@@ -24,6 +29,10 @@ public interface IDataHandler
     /// <returns></returns>
     DataTable GetDataTable(string sql);
 
+    /// <summary>
+    /// Execute a SQL statement
+    /// </summary>
+    /// <param name="sql">SQL statement</param>
     void Exec(string sql);
 
     /// <summary>

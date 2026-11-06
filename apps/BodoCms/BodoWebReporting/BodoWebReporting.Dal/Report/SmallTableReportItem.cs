@@ -12,8 +12,14 @@ internal class SmallTableReportItem : BaseReportItem
         TypeOfObject = ReportItemType.SmallTable;
     }
 
-    public DataTable Data { get; set; }
+    /// <summary>
+    /// Chart or table data
+    /// </summary>
+    public DataTable? Data { get; set; }
 
-    public string Heading { get; set; }
+    /// <summary>
+    /// Heading text
+    /// </summary>
+    public string Heading { get; set; } = "Heading missing";
 
 }

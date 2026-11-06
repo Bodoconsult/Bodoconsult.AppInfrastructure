@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Data;
-using System.Diagnostics;
-using System.Runtime.Versioning;
 using Bodoconsult.Drawing;
+using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using BodoWebReporting.Dal.Handler;
@@ -11,6 +9,9 @@ using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using BodoWebReporting.Dal.Report;
 using MigraDoc.DocumentObjectModel;
+using System.Data;
+using System.Diagnostics;
+using System.Runtime.Versioning;
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 namespace BodoWebReporting.Dal.Exporter;
@@ -18,52 +19,39 @@ namespace BodoWebReporting.Dal.Exporter;
 [SupportedOSPlatform("windows")]
 public class WebReportExporter : IDisposable
 {
-
+    private string _backgroundImagePath = string.Empty;
+    private readonly IDataHandler _dataHandler;
     private int _objectCounter;
-    private List<BaseReportItem> _reportItems;
-
-    public int Schritt { get; set; }
-
-    public bool Landscape { get; set; } = true;
-
-    public Color BackColor { get; set; } = new(211, 223, 240);
-    public Color TableBorderColor { get; set; } = new (217, 230, 245);
-    public Color HeadLineColor { get; set; } = Colors.Black;
-    public Color DetailsColor { get; set; } = Colors.Black;
-
-    public Color AlternateBackColor { get; set; } = new(217, 230, 245);
-
-    //public string LogoImagePath { get; set; }
-
-    //public string TargetPath; // { get; set; }
-
-    //public string FileName; // { get; set; }
-
-    public string Title { get; set; } // { get; set; }
-
-    public string AddInfos { get; set; } // { get; set; }
-
-    public string Subject { get; set; } // { get; set; }
-
-    //public string Author; // { get; set; }
-
-    //public string AuthorShort; // { get; set; }
-
-
-    public IStyleSet StyleSet { get; set; }
-
+    private readonly List<BaseReportItem> _reportItems = new();
     private readonly ReportingFile _file;
-
     private readonly int _id;
+    private IWebChartExporterFactory _webChartExporterFactory;
+
+    public WebReportExporter(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory, ReportingFile file, int id = 1)
+    {
+        _webChartExporterFactory = webChartExporterFactory;
+
+        StyleSet = StyleHandler.StyleSet;
 
 
-    public string BackgroundImagePath
+        Pdf = new PdfCreator(StyleSet);
+        //BackColor = new Color(211, 223, 240);
+        //TableBorderColor = new Color(217, 230, 245);
+        //HeadLineColor = Colors.Black;
+        //DetailsColor = Colors.Black;
+        //Landscape = true;
+        _dataHandler = dataHandler;
+        _file = file;
+        _id = id;
+    }
+
+    public string? BackgroundImagePath
     {
         get => _backgroundImagePath;
         set => _backgroundImagePath = CheckImage(value);
     }
 
-    private static string CheckImage(string fileName)
+    private static string CheckImage(string? fileName)
     {
         try
         {
@@ -99,39 +87,26 @@ public class WebReportExporter : IDisposable
         }
     }
 
+    public int Schritt { get; set; }
 
-    //public string Target => _file.FileName;
+    public bool Landscape { get; set; } = true;
+
+    public Color BackColor { get; set; } = new(211, 223, 240);
+    public Color TableBorderColor { get; set; } = new(217, 230, 245);
+    public Color HeadLineColor { get; set; } = Colors.Black;
+    public Color DetailsColor { get; set; } = Colors.Black;
+
+    public Color AlternateBackColor { get; set; } = new(217, 230, 245);
+
+    public string Title { get; set; } = string.Empty;
+
+    public string AddInfos { get; set; } = string.Empty;
+
+    public string Subject { get; set; } = string.Empty;
+
+    public IStyleSet StyleSet { get; set; }
 
     public readonly PdfCreator Pdf;
-
-
-    private string _backgroundImagePath;
-
-    private readonly IDataHandler _dataHandler;
-
-
-    public WebReportExporter(IDataHandler dataHandler, ReportingFile file, int id=1)
-    {
-
-        StyleSet = StyleHandler.StyleSet;
-        
-
-        Pdf = new PdfCreator(StyleSet);
-        //BackColor = new Color(211, 223, 240);
-        //TableBorderColor = new Color(217, 230, 245);
-        //HeadLineColor = Colors.Black;
-        //DetailsColor = Colors.Black;
-        //Landscape = true;
-        _dataHandler = dataHandler;
-        _file = file;
-        _id = id;
-    }
-
-
-    //public Style AddStyle(string styleName)
-    //{
-    //    return Pdf.AddStyle(styleName);
-    //}
 
 
     public void StartDocument()
@@ -161,17 +136,12 @@ public class WebReportExporter : IDisposable
 
     }
 
-        
-
-
     public void TocSection()
     {
         TocSection(null);
-
     }
 
-
-    public void TocSection(string heading)
+    public void TocSection(string? heading)
     {
         //if (File.Exists(BackgroundImagePath))
         //{
@@ -232,7 +202,6 @@ public class WebReportExporter : IDisposable
 
     public void AddChart(ChartData data)
     {
-
         _objectCounter++;
 
         var fileName = Path.Combine(Path.GetTempPath(), $"tmpR{_id}O{_objectCounter}.png");
@@ -253,8 +222,7 @@ public class WebReportExporter : IDisposable
             ChartType = data.TypeOfChart
         };
 
-
-        var x = new WebChartExporter(_dataHandler, data.Data, wc);
+        var x = _webChartExporterFactory.CreateInstance(data.Data, wc);
 
 
         //{
@@ -264,7 +232,6 @@ public class WebReportExporter : IDisposable
 
         rc.Data = x;
 
-        _reportItems ??= new List<BaseReportItem>();
         _reportItems.Add(rc);
     }
 
@@ -281,7 +248,10 @@ public class WebReportExporter : IDisposable
 
     public int GetCurrentHeightUnits()
     {
-        if (_reportItems == null) return -1;
+        if (_reportItems.Count==0)
+        {
+            return -1;
+        }
 
         var xy = _reportItems.Count % 2;
 
@@ -290,22 +260,29 @@ public class WebReportExporter : IDisposable
 
     public void EndCharting()
     {
-        if (_reportItems == null) return;
+        if (_reportItems.Count == 0)
+        {
+            return;
+        }
 
         if (_reportItems.Count == 1)
         {
             switch (_reportItems[0].TypeOfObject)
             {
                 case ReportItemType.Chart:
-                    Pdf.AddParagraph("");
-                    Pdf.AddParagraph("");
-                    Pdf.AddParagraph("");
+                    Pdf.AddParagraph(string.Empty);
+                    Pdf.AddParagraph(string.Empty);
+                    Pdf.AddParagraph(string.Empty);
                     //Pdf.AddParagraph("Hallo");
                     //Pdf.AddParagraph("Hallo");
 
                     var chart = (ChartReportItem)_reportItems[0];
                     chart.Export();
-                    Pdf.AddImage(chart.Data.WebChart.FileName, 12.5, 7.7);
+
+                    if (chart.Data is not null)
+                    {
+                        Pdf.AddImage(chart.Data.WebChart.FileName, 12.5, 7.7);
+                    }
 
                     break;
                 case ReportItemType.SmallTable:
@@ -318,7 +295,7 @@ public class WebReportExporter : IDisposable
 
             }
 
-            _reportItems = null;
+            _reportItems.Clear();
 
             return;
         }
@@ -343,13 +320,19 @@ public class WebReportExporter : IDisposable
                 case ReportItemType.Chart:
                     var chart = (ChartReportItem)obj;
                     chart.Export();
-                    Pdf.TableSetContent(i, zeile, chart.Data.WebChart.FileName, 12.5, 7.7);
+                    if (chart.Data is not null)
+                    {
+                        Pdf.TableSetContent(i, zeile, chart.Data.WebChart.FileName, 12.5, 7.7);
+                    }
 
                     break;
                 case ReportItemType.SmallTable:
                     var t = (SmallTableReportItem)obj;
-                    var height = t.Data.Rows.Count * 0.8F;
-                    if (height < 6F) height = 6F;
+                    var height = t.Data?.Rows.Count ?? 0 * 0.8F;
+                    if (height < 6F)
+                    {
+                        height = 6F;
+                    }
 
                     Pdf.TableSetContentSmallTable(i, zeile, t.Data, t.Heading, 12.5, height);
                     break;
@@ -358,23 +341,25 @@ public class WebReportExporter : IDisposable
             i = i == 2 ? 0 : 2;
         }
 
-        _reportItems = null;
+        _reportItems.Clear();
     }
 
     public virtual void StartCharting()
     {
-        _reportItems = new List<BaseReportItem>();
+        _reportItems.Clear();
     }
 
     public void Dispose()
     {
         Pdf.Dispose();
-        if (File.Exists(BackgroundImagePath) && BackgroundImagePath.Contains("Temp")) File.Delete(BackgroundImagePath);
+        if (File.Exists(BackgroundImagePath) && BackgroundImagePath.Contains("Temp"))
+        {
+            File.Delete(BackgroundImagePath);
+        }
     }
 
     public void AddSmallTable(string caption, DataTable data)
     {
-
         var r = new SmallTableReportItem
         {
             Data = data,

@@ -71,17 +71,17 @@ public class BodoWebReportingService : IApplicationService
 
         // Do start your workload here
 
-        _appLogger.LogInformation("BodoCms starts creating website");
+        _appLogger.LogInformation("BodoWebReporting is starting...");
 
         var wrh = AppGlobals.DiContainer.Get<IWebReportingHandler>();
         wrh.RunPreRunSql();
         wrh.CheckTargetPath();
-        wrh.CreateWebTables();
+        // wrh.CreateWebTables();
         wrh.CreateWebCharts();
         //wrh.CreateWebReports();
         wrh.RunPostRunSql();
 
-        _appLogger.LogInformation("BodoCms has finished creating website");
+        _appLogger.LogInformation("BodoWebReporting has finished!");
 
         // Stop app now
         if (RequestApplicationStopDelegate is null)

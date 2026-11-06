@@ -27,7 +27,7 @@ public class WebChartHandler: BaseObjectHandler, IWebChartHandler
     public int ExportCharts()
     {
         var i = 0;
-        var data = _dataHandler.GetWebCharts(_appGlobals.TargetPath);
+        var data = DataHandler.GetWebCharts(AppGlobals.TargetPath);
 
         foreach (var wc in data)
         {
@@ -43,21 +43,12 @@ public class WebChartHandler: BaseObjectHandler, IWebChartHandler
             }
             catch (Exception ex)
             {
-                _dataHandler.ErrorHandling($"BodoWebReporting:WebChartHandler:ExportCharts:ID{wc.Id}",
+                DataHandler.ErrorHandling($"BodoWebReporting:WebChartHandler:ExportCharts:ID{wc.Id}",
                     $"{ex.Message}");
             }
         }
 
         SetStatus("Exporting charts is done...");
         return i;
-    }
-
-    /// <summary>
-    /// Statusanzeige
-    /// </summary>
-    /// <param name="msg">Anzuzeigende Nachricht</param>
-    private void SetStatus(string msg)
-    {
-        StatusMessageDelegate.Invoke(msg);
     }
 }

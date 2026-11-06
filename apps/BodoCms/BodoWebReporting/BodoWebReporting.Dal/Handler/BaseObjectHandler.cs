@@ -11,9 +11,9 @@ namespace BodoWebReporting.Dal.Handler;
 /// </summary>
 public abstract class BaseObjectHandler
 {
-    protected readonly IDataHandler _dataHandler;
+    protected readonly IDataHandler DataHandler;
 
-    protected readonly IBodoWebReportingAppGlobals _appGlobals;
+    protected readonly IBodoWebReportingAppGlobals AppGlobals;
 
 
     protected StatusMessageDelegate StatusMessageDelegate { get; }
@@ -25,14 +25,14 @@ public abstract class BaseObjectHandler
     /// <param name="appGlobals">Current app globals</param>
     protected BaseObjectHandler(IDataHandler dataHandler, IAppGlobals appGlobals)
     {
-        _dataHandler = dataHandler;
+        DataHandler = dataHandler;
 
         if (appGlobals is not IBodoWebReportingAppGlobals globals)
         {
             throw new ArgumentException("appGlobals is not IBodoWebReportingAppGlobals");
         }
 
-        _appGlobals = globals;
+        AppGlobals = globals;
 
         StatusMessageDelegate = appGlobals.StatusMessageDelegate ?? Console.WriteLine;
     }
@@ -44,6 +44,6 @@ public abstract class BaseObjectHandler
     /// <param name="msg">Anzuzeigende Nachricht</param>
     protected void SetStatus(string msg)
     {
-        StatusMessageDelegate?.Invoke(msg);
+        StatusMessageDelegate.Invoke(msg);
     }
 }

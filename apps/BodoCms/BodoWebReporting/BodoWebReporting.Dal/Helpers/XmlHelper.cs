@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using System.Data;
 using System.Text;
 
 namespace BodoWebReporting.Dal.Helpers;
@@ -17,17 +19,17 @@ public static class XmlHelper
     public static void SaveDataTableAsXml(string fileName, DataTable data)
     {
 
-        StringWriter strXML = new StringWriter();
+        var strXml = new StringWriter();
 
+        if (string.IsNullOrEmpty(data.TableName))
+        {
+            data.TableName = "Data";
+        }
 
-        if (string.IsNullOrEmpty(data.TableName)) data.TableName = "Data";
-
-        data.WriteXml(strXML, XmlWriteMode.WriteSchema, false);
-        var xml = strXML.ToString();
+        data.WriteXml(strXml, XmlWriteMode.WriteSchema, false);
+        var xml = strXml.ToString();
 
         File.WriteAllText(fileName, xml, Encoding.UTF8);
-
-
     }
 
     /// <summary>
@@ -37,11 +39,9 @@ public static class XmlHelper
     /// <returns>Data from XML file as <see cref="DataTable"/></returns>
     public static DataTable GetDataTableFromXml(string fileName)
     {
-
         var dt = new DataTable();
         dt.ReadXml(fileName);
 
         return dt;
     }
-
 }

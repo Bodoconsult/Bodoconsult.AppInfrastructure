@@ -14,6 +14,7 @@ using BodoWebReporting.Dal.Model;
 using System.Data;
 using System.Globalization;
 using System.Runtime.Versioning;
+using Bodoconsult.App.Helpers;
 
 namespace BodoWebReporting.Dal.Exporter;
 
@@ -24,20 +25,36 @@ public class WebChartExporter
     private string? _inc;
     private readonly IDataHandler _dataHandler;
     private DataTable? _dt;
-    private IBitmapServiceFactory _bitmapServiceFactory;
+    private readonly IBitmapServiceFactory _bitmapServiceFactory;
 
-    public WebChartExporter(IDataHandler dataHandler, IBitmapServiceFactory bitmapServiceFactory,  WebChart wc)
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="dataHandler">Current data handler</param>
+    /// <param name="bitmapServiceFactory">Current bitmap service factory</param>
+    /// <param name="wc">WebChart data</param>
+    public WebChartExporter(IDataHandler dataHandler, IBitmapServiceFactory bitmapServiceFactory, WebChart wc)
     {
         _bitmapServiceFactory = bitmapServiceFactory;
         _dataHandler = dataHandler;
         WebChart = wc;
+        Typography = ReportingHelper.DefaultTypography();
         BaseCtor();
     }
 
-    public WebChartExporter(IDataHandler dataHandler, DataTable dt, WebChart webChart)
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="dataHandler">Current data handler</param>
+    /// <param name="bitmapServiceFactory">Current bitmap service factory</param>
+    /// <param name="dt">Current data table with chart data</param>
+    /// <param name="wc">WebChart data</param>
+    public WebChartExporter(IDataHandler dataHandler, IBitmapServiceFactory bitmapServiceFactory, DataTable dt, WebChart wc)
     {
+        _bitmapServiceFactory = bitmapServiceFactory;
         _dataHandler = dataHandler;
-        WebChart = webChart;
+        WebChart = wc;
+        Typography = ReportingHelper.DefaultTypography();
         BaseCtor();
         _dt = dt;
     }
@@ -46,7 +63,6 @@ public class WebChartExporter
     {
         WebChart.Width = 750;
         WebChart.Height = 433;
-        Typography = ReportingHelper.DefaultTypography();
     }
 
     /// <summary>
@@ -54,21 +70,25 @@ public class WebChartExporter
     /// </summary>
     public ITypography Typography { get; set; }
 
+    /// <summary>
+    /// WebChart data
+    /// </summary>
     public WebChart WebChart { get; }
 
-
+    /// <summary>
+    /// Export the chart
+    /// </summary>
     public void Export()
     {
         try
         {
-
             WebChart.Sql = TextHelper.Parser(WebChart.Sql);
 
             WebChart.Title = TextHelper.Parser(WebChart.Title);
 
             WebChart.Copyright = TextHelper.Parser(WebChart.Copyright);
 
-            if (_dt == null)
+            if (_dt is null)
             {
                 if (string.IsNullOrEmpty(WebChart.Sql))
                 {
@@ -76,6 +96,11 @@ public class WebChartExporter
                 }
 
                 _dt = _dataHandler.GetDataTable(WebChart.Sql);
+
+                if (_dt is null)
+                {
+                    return;
+                }
             }
 
             //Typography.ChartStyle.FontSize = 9;
@@ -84,26 +109,24 @@ public class WebChartExporter
 
             Bodoconsult.Charting.Base.Interfaces.ChartData chartData;
 
-//#if DEBUG
+            //#if DEBUG
 
-//                var path = Path.Combine(@"D:\temp\BodoWebReportingCore\Xml", $"chart{WebChart.Id}.xml");
+            //                var path = Path.Combine(@"D:\temp\BodoWebReportingCore\Xml", $"chart{WebChart.Id}.xml");
 
-//                XmlHelper.SaveDataTableAsXml(path, _dt);
+            //                XmlHelper.SaveDataTableAsXml(path, _dt);
 
-//                path = Path.Combine(@"D:\temp\BodoWebReportingCore\Xml", $"column{WebChart.Id}.txt");
+            //                path = Path.Combine(@"D:\temp\BodoWebReportingCore\Xml", $"column{WebChart.Id}.txt");
 
-//                var s = $"{WebChart.ChartType} {WebChart.Columns}";
+            //                var s = $"{WebChart.ChartType} {WebChart.Columns}";
 
-//                if (File.Exists(path)) File.Delete(path);
-//                File.WriteAllText(path, s);
-
-
+            //                if (File.Exists(path)) File.Delete(path);
+            //                File.WriteAllText(path, s);
 
 
-//#endif
 
 
-            ChartHandler x;
+            //#endif
+
 
             switch (WebChart.ChartType)
             {
@@ -113,7 +136,7 @@ public class WebChartExporter
                     {
                         ChartStyle = Typography.ChartStyle,
                         Title = WebChart.Title,
-                        Copyright = "© " + WebChart.Copyright,
+                        Copyright = $"© {WebChart.Copyright}",
                         YLabelText = WebChart.YUnit,
                         FileName = WebChart.FileName,
                         ChartType = WebChart.ChartType
@@ -121,8 +144,6 @@ public class WebChartExporter
 
                     ChartUtility.DataTableToChartItemData(_dt.Copy(), WebChart.Columns, chartData);
 
-                    x = new ChartHandler(chartData, _bitmapServiceFactory);
-                    x.Export();
                     break;
                 case ChartType.StackedBarChart:
                 case ChartType.StackedColumn100Chart:
@@ -132,7 +153,7 @@ public class WebChartExporter
                     {
                         ChartStyle = Typography.ChartStyle,
                         Title = WebChart.Title,
-                        Copyright = "© " + WebChart.Copyright,
+                        Copyright = $"© {WebChart.Copyright}",
                         YLabelText = WebChart.YUnit,
                         FileName = WebChart.FileName,
                         ChartType = WebChart.ChartType
@@ -140,15 +161,13 @@ public class WebChartExporter
 
                     ChartUtility.DataTableToChartItemData(_dt.Copy(), WebChart.Columns, chartData);
 
-                    x = new ChartHandler(chartData, _bitmapServiceFactory);
-                    x.Export();
                     break;
                 case ChartType.PieChart:
                     chartData = new Bodoconsult.Charting.Base.Interfaces.ChartData
                     {
                         ChartStyle = Typography.ChartStyle,
                         Title = WebChart.Title,
-                        Copyright = "© "+WebChart.Copyright,
+                        Copyright = $"© {WebChart.Copyright}",
                         YLabelText = WebChart.YUnit,
                         FileName = WebChart.FileName,
                         ChartType = WebChart.ChartType
@@ -156,15 +175,13 @@ public class WebChartExporter
 
                     ChartUtility.DataTableToPieChartItemData(_dt.Copy(), WebChart.Columns, chartData);
 
-                    x = new ChartHandler(chartData, _bitmapServiceFactory);
-                    x.Export();
                     break;
                 case ChartType.PointChart:
                     chartData = new Bodoconsult.Charting.Base.Interfaces.ChartData
                     {
                         ChartStyle = Typography.ChartStyle,
                         Title = WebChart.Title,
-                        Copyright = "© " + WebChart.Copyright,
+                        Copyright = $"© {WebChart.Copyright}",
                         YLabelText = WebChart.YUnit,
                         FileName = WebChart.FileName,
                         ChartType = WebChart.ChartType
@@ -172,9 +189,6 @@ public class WebChartExporter
 
                     ChartUtility.DataTableToPointChartItemData(_dt.Copy(), WebChart.Columns, chartData);
 
-                    x = new ChartHandler(chartData, _bitmapServiceFactory);
-
-                    x.Export();
                     break;
 
                 case ChartType.StockChart:
@@ -185,55 +199,74 @@ public class WebChartExporter
                     throw new ArgumentOutOfRangeException();
             }
 
-        }
+            var x = new ChartHandler(chartData, _bitmapServiceFactory);
+            x.Export();
+    }
         catch (Exception ex)
         {
 
 #if DEBUG
+            if (_dt is null)
+            {
+                return;
+            }
 
-                var path = Path.Combine(@"D:\temp\BodoWebReportingCore\Xml", $"chart{WebChart.Id}.xml");
+            var basePath = _dataHandler.AppGlobals.TargetPath;
+    FileSystemHelper.CreateDirectory(basePath);
 
-                XmlHelper.SaveDataTableAsXml(path, _dt);
+            var path = Path.Combine(basePath, "Xml", $"chart{WebChart.Id}.xml");
+    FileSystemHelper.CreateDirectory(path);
 
-                path = Path.Combine(@"D:\temp\BodoWebReportingCore\Xml", $"column{WebChart.Id}.txt");
+            XmlHelper.SaveDataTableAsXml(path, _dt);
 
-                var s = $"{WebChart.ChartType} {WebChart.Columns}";
+            path = Path.Combine(basePath, "Xml", $"column{WebChart.Id}.txt");
 
-                if (File.Exists(path)) File.Delete(path);
-                File.WriteAllText(path, s);
+            var s = $"{WebChart.ChartType} {WebChart.Columns}";
 
-
-
-
+    FileSystemHelper.DeleteFile(path);
+            File.WriteAllText(path, s);
 #endif
 
-            OnErrorHandlerFired($"WebChart:Export:Id={WebChart.Id}", ex.Message);
-        }
-
-
+            OnErrorHandlerFired($"WebChart:Export:Id={WebChart.Id}", ex.ToString());
+}
     }
 
     public void CopyToTarget()
     {
+        if (string.IsNullOrEmpty(WebChart.FileName))
+        {
+            return;
+        }
 
-        var ct = _dataHandler.GetWebChartTargets(WebChart.FileName, _exportDataTable ? _inc : null, WebChart.Id);
+        var ct = _dataHandler.GetWebChartTargets(WebChart.FileName, _exportDataTable ? _inc ?? string.Empty : string.Empty, WebChart.Id);
 
         var errors = CopyTaskHelper.RunAllTasks(ct);
 
-        if (!errors.Any()) return;
+        if (!errors.Any())
+        {
+            return;
+        }
 
-        var msg = errors.Aggregate("", (current, error) => current + "<br/>+" + error);
+        var msg = errors.Aggregate("", (current, error) => $"{current}<br/>+{error}");
 
         _dataHandler.ErrorHandling("Error:WebChartExporter:MoveToTarget", $"<p>{msg}</p>");
     }
 
     public void ExportDataTable()
     {
+        if (_dt is null)
+        {
+            return;
+        }
+
         try
         {
             _exportDataTable = true;
 
-            if (string.IsNullOrEmpty(WebChart.ColumnsDataTable)) WebChart.ColumnsDataTable = WebChart.Columns;
+            if (string.IsNullOrEmpty(WebChart.ColumnsDataTable))
+            {
+                WebChart.ColumnsDataTable = WebChart.Columns;
+            }
 
             var ex = new DataTableExport
             {
@@ -247,7 +280,8 @@ public class WebChartExporter
             ex.CreateTable();
 
             // ReSharper disable AssignNullToNotNullAttribute
-            _inc = Path.Combine(Path.GetDirectoryName(WebChart.FileName), Path.GetFileNameWithoutExtension(WebChart.FileName) + ".inc");
+            _inc = Path.Combine(Path.GetDirectoryName(WebChart.FileName) ?? string.Empty,
+                $"{Path.GetFileNameWithoutExtension(WebChart.FileName)}.inc");
             // ReSharper restore AssignNullToNotNullAttribute
 
             ex.SaveAsFile(_inc);
@@ -259,7 +293,7 @@ public class WebChartExporter
 
     }
 
-    private DataTable PrepareDataTable(DataTable dt)
+    private DataTable? PrepareDataTable(DataTable dt)
     {
         try
         {
@@ -295,7 +329,6 @@ public class WebChartExporter
             return null;
         }
     }
-
 
     protected void OnErrorHandlerFired(string subject, string msg)
     {

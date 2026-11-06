@@ -9,12 +9,15 @@ using NUnit.Framework;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Versioning;
+using Bodoconsult.Drawing.SkiaSharp.Factories;
+using Bodoconsult.Drawing.SkiaSharp.Interfaces;
+using BodoWebReporting.Dal.Factories;
 
 namespace BodoWebReporting.Test;
 
 [SupportedOSPlatform("windows")]
 [TestFixture]
-public class WebReportHandlerTests
+internal class WebReportHandlerTests
 {
     private readonly IBodoWebReportingAppGlobals _appGlobals = Globals.Instance;
 
@@ -33,7 +36,7 @@ public class WebReportHandlerTests
     }
 
     [Test]
-    public void TestRun_Success()
+    public void Run_ValidSetup_Success()
     {
         ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DefaultConnectionString);
 
@@ -41,7 +44,12 @@ public class WebReportHandlerTests
 
         var dataLayer = new DataHandler(_appGlobals, db);
 
-        var rh = new WebReportHandler(dataLayer, _appGlobals);
+        IBitmapServiceFactory bitmapServiceFactory = new BitmapServiceFactory();
+        var chartFactory = new WebChartExporterFactory(dataLayer, bitmapServiceFactory);
+
+        var factory = new WebReportExporterFactory(dataLayer, chartFactory);
+
+        var rh = new WebReportHandler(dataLayer, factory, _appGlobals);
         rh.StartExport();
         rh.MoveToTarget();
     }
