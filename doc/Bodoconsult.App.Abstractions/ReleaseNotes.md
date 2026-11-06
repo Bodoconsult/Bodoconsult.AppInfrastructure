@@ -49,4 +49,6 @@ NOT intended for public use
 
 # 1.0.12
 
--  
+-  ChartStyle.XAxisNumberformat default changed to #,##0
+
+-  ChartStyle.YAxisNumberformat default changed to #,##0

@@ -27,4 +27,5 @@ NOT intended for public use
 
 # 1.0.12
 
--
+-   Bugfixing BaseChart class if there is no label text for y-axis given
+

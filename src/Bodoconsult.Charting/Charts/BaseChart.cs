@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System.Globalization;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Charting.Base.Interfaces;
 using Bodoconsult.Charting.Extensions;
@@ -54,42 +55,6 @@ public class BaseChart<T> : IChart where T : IChartItemData
         //Chart.AntiAlias(true, true, true);
         Chart.Grid.IsVisible = false;
     }
-
-    ///// <summary>
-    ///// Get names of all properties to be used as series data
-    ///// </summary>
-    ///// <returns></returns>
-    //public IList<string> GetSeriesNames()
-    //{
-    //    return ChartData.PropertiesToUseForChart.Skip(1).ToList();
-    //}
-
-    ///// <summary>
-    ///// Default constructor
-    ///// </summary>
-    //public BaseChart()
-    //{
-
-    //    ////@"Templates\
-
-    //    ////Template = "Default.xml";
-    //    //Chart.RenderType = RenderType.BinaryStreaming;
-    //    //// Set Antialiasing mode
-    //    //Chart.AntiAliasing = AntiAliasingStyles.All;
-    //    //Chart.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
-
-    //    //// Chart Area
-    //    //var c = new ChartArea("Default")
-    //    //{
-    //    //    AxisY = { IsMarginVisible = false },
-    //    //    AxisX = { IsMarginVisible = false },
-    //    //    Area3DStyle = { Rotation = 0 },
-    //    //};
-
-
-    //    //Chart.ChartAreas.Add(c);
-
-    //}
 
     /// <summary>
     /// Creates the chart
@@ -156,14 +121,13 @@ public class BaseChart<T> : IChart where T : IChartItemData
             ? ChartData.PropertiesToUseForChart[0]
             : ChartData.XLabelText;
 
-        var labelStyle = Chart.Axes.Bottom.Label;
-        labelStyle.Text = label;
-        labelStyle.FontName = style.FontName;
-        labelStyle.Bold = true;
-        labelStyle.FontSize = style.FontSize * style.AxisTitleFontSizeDelta;
+        var labelStyleX = Chart.Axes.Bottom.Label;
+        labelStyleX.Text = label;
+        labelStyleX.FontName = style.FontName;
+        labelStyleX.Bold = true;
+        labelStyleX.FontSize = style.FontSize * style.AxisTitleFontSizeDelta;
 
         // Y axis
-
         if (string.IsNullOrEmpty(ChartData.YLabelText))
         {
             label = ChartData.PropertiesToUseForChart.Count > 1 ? ChartData.PropertiesToUseForChart[1] : string.Empty;
@@ -173,48 +137,16 @@ public class BaseChart<T> : IChart where T : IChartItemData
             label = ChartData.YLabelText;
         }
 
-        if (!string.IsNullOrEmpty(label))
+        if (string.IsNullOrEmpty(label))
         {
-            labelStyle = Chart.Axes.Left.Label;
-            labelStyle.Text = label;
+            return;
         }
 
-        labelStyle.FontName = style.FontName;
-        labelStyle.Bold = true;
-        labelStyle.FontSize = style.FontSize * style.AxisTitleFontSizeDelta;
-
-        //Chart.BorderWidth = new Unit(ChartData.ChartStyle.ChartBorderWidth);
-        //Chart.BorderColor = ChartData.ChartStyle.ChartBorderColor;
-        //Chart.BackGradientStyle = (GradientStyle)ChartData.ChartStyle.ChartBackgroundGradientStyle;
-        //Chart.BackColor = ChartData.ChartStyle.ChartBackgroundColor;
-        //Chart.BackSecondaryColor = ChartData.ChartStyle.ChartBackgroundSecondColor;
-
-        //if (ChartData.ChartStyle.TitleShadow)
-        //{
-        //    titel.ShadowColor = Color.Gray;
-        //    titel.ShadowOffset = 3;
-        //}
-
-        //var area = Chart.ChartAreas[0];
-
-        //area.BackColor = ChartData.ChartStyle.BackgroundColor;
-        //area.BackSecondaryColor = ChartData.ChartStyle.BackgroundSecondColor;
-        //area.BackGradientStyle = (GradientStyle)ChartData.ChartStyle.BackGradientStyle;
-        //area.AxisY.IsMarginVisible = false;
-        //area.AxisX.IsMarginVisible = false;
-        //area.AxisX.LabelStyle.Font = new Font(ChartData.ChartStyle.FontName, ChartData.ChartStyle.FontSize * ChartData.ChartStyle.AxisLabelFontSizeDelta, FontStyle.Regular);
-        //area.AxisY.LabelStyle.Font = new Font(ChartData.ChartStyle.FontName, ChartData.ChartStyle.FontSize * ChartData.ChartStyle.AxisLabelFontSizeDelta, FontStyle.Regular);
-        //area.AxisX.TitleFont = new Font(ChartData.ChartStyle.FontName, ChartData.ChartStyle.FontSize * ChartData.ChartStyle.AxisTitleFontSizeDelta, FontStyle.Bold);
-        //area.AxisY.TitleFont = new Font(ChartData.ChartStyle.FontName, ChartData.ChartStyle.FontSize * ChartData.ChartStyle.AxisTitleFontSizeDelta, FontStyle.Bold);
-        //area.AxisX.TitleForeColor = ChartData.ChartStyle.FontColor;
-        //area.AxisY.TitleForeColor = ChartData.ChartStyle.FontColor;
-        //area.BorderColor = ChartData.ChartStyle.ChartBorderColor;
-
-        //area.AxisY.MajorGrid.LineColor = ChartData.ChartStyle.GridLineColor;
-        //area.AxisX.MajorGrid.LineColor = ChartData.ChartStyle.GridLineColor;
-
-        //area.AxisX.LineColor = ChartData.ChartStyle.AxisLineColor;
-        //area.AxisY.LineColor = ChartData.ChartStyle.AxisLineColor;
+        var labelStyleY = Chart.Axes.Left.Label;
+        labelStyleY.Text = label;
+        labelStyleY.FontName = style.FontName;
+        labelStyleY.Bold = true;
+        labelStyleY.FontSize = style.FontSize * style.AxisTitleFontSizeDelta;
     }
 
     /// <summary>
@@ -275,8 +207,6 @@ public class BaseChart<T> : IChart where T : IChartItemData
     /// <returns></returns>
     protected static Color GetColor(int seriesNumber)
     {
-        //var dColor = System.Drawing.Color.DeepSkyBlue;
-
         return seriesNumber switch
         {
             0 => Colors.OrangeRed,
@@ -293,49 +223,4 @@ public class BaseChart<T> : IChart where T : IChartItemData
             _ => Color.RandomHue()
         };
     }
-
-
-    //private string GetFormattedValue(object pointValue, ChartValueType chartValueType)
-    //{
-
-    //    if (pointValue is string) return pointValue.ToString();
-
-    //    if (pointValue is double)
-    //    {
-    //        var value = (double)pointValue;
-
-    //        switch (chartValueType)
-    //        {
-    //            case ChartValueType.Auto:
-    //                break;
-    //            case ChartValueType.Double:
-    //                break;
-    //            case ChartValueType.Single:
-    //                break;
-    //            case ChartValueType.Int32:
-    //                break;
-    //            case ChartValueType.Int64:
-    //                break;
-    //            case ChartValueType.UInt32:
-    //                break;
-    //            case ChartValueType.UInt64:
-    //                break;
-    //            case ChartValueType.String:
-    //                break;
-    //            case ChartValueType.DateTime:
-    //            case ChartValueType.Date:
-    //                return DateTime.FromOADate((int)value).ToString("dd.MM.yyyy");
-    //            case ChartValueType.Time:
-    //                return value.ToString("hh:mm");
-    //            case ChartValueType.DateTimeOffset:
-    //                break;
-    //            default:
-    //                throw new ArgumentOutOfRangeException("chartValueType", chartValueType, null);
-    //        }
-
-
-    //    }
-
-    //    return pointValue.ToString();
-    //}
 }

@@ -92,7 +92,6 @@ public abstract class BaseChartHandlerTests
     [Test]
     public void StackedColumn100Chart_AsPng()
     {
-
         // const string sql = "EXEC Vermoegen_Db.[dbo].SetFinDBUser 'bodoprivate' exec Vermoegen_Db.[dbo].[GetAnteilswerte] 120, 1";
 
         var fileName = Path.Combine(TestHelper.TestResultPath, $"ScottPlott{FileNameExt}_StackedColumn100Chart.png");
@@ -127,7 +126,6 @@ public abstract class BaseChartHandlerTests
     [Test]
     public void PieChart_AsPng()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, $"ScottPlott{FileNameExt}_PieChart.png");
 
         if (File.Exists(fileName)) File.Delete(fileName);
@@ -158,7 +156,6 @@ public abstract class BaseChartHandlerTests
     [Test]
     public void PointChart_AsPng()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, $"ScottPlott{FileNameExt}_PointChart.png");
 
         if (File.Exists(fileName)) File.Delete(fileName);
@@ -192,7 +189,6 @@ public abstract class BaseChartHandlerTests
     [Test]
     public void PointChartPercent_AsPng()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, $"ScottPlott{FileNameExt}_PointChart_Percent.png");
 
         if (File.Exists(fileName)) File.Delete(fileName);
@@ -231,7 +227,6 @@ public abstract class BaseChartHandlerTests
     [Test]
     public void BarChart_AsPng()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, $"ScottPlott{FileNameExt}_BarChart.png");
 
         if (File.Exists(fileName)) File.Delete(fileName);
@@ -267,7 +262,6 @@ public abstract class BaseChartHandlerTests
     [Test]
     public void ColumnChart_AsPng()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, $"ScottPlott{FileNameExt}_ColumnChart.png");
 
         if (File.Exists(fileName)) File.Delete(fileName);
@@ -304,7 +298,6 @@ public abstract class BaseChartHandlerTests
     [Test]
     public void LineChart_AsPng()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, $"ScottPlott{FileNameExt}_LineChart.png");
 
         if (File.Exists(fileName)) File.Delete(fileName);

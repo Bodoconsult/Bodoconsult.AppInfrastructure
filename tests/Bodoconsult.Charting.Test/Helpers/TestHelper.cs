@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
+using System;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -38,15 +39,20 @@ public static class TestHelper
     /// <param name="fileName"></param>
     public static void StartFile(string fileName)
     {
+        if (!Debugger.IsAttached)
+        {
+            return;
+        }
 
-        if (!Debugger.IsAttached) return;
-
+        ArgumentNullException.ThrowIfNull(fileName);
         Assert.That(File.Exists(fileName));
 
-        var p = new Process {StartInfo = new ProcessStartInfo {UseShellExecute = true, FileName = fileName}};
-
+        var p = new Process {StartInfo = new ProcessStartInfo
+        {
+            UseShellExecute = true, 
+            FileName = fileName
+        }};
         p.Start();
-
     }
 
     /// <summary>

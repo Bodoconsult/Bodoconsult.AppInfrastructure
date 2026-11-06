@@ -28,7 +28,6 @@ public class ChartHandler_WithDatabase_Tests : BaseChartHandlerTests
     [Test]
     public void TestRealLife_Chart3()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, "ScottPlott_Chart3.png");
 
         if (File.Exists(fileName))
@@ -40,7 +39,7 @@ public class ChartHandler_WithDatabase_Tests : BaseChartHandlerTests
         {
             Title = "Test portfolio",
             Copyright = "Testfirma",
-            XLabelText = "Anlageklassen",
+            XLabelText = "Jahre",
             YLabelText = "Anteil in %",
             FileName = fileName,
             ChartType = ChartType.LineChart,
@@ -75,7 +74,6 @@ public class ChartHandler_WithDatabase_Tests : BaseChartHandlerTests
     [Test]
     public void TestRealLife_Chart22()
     {
-
         var fileName = Path.Combine(TestHelper.TestResultPath, "ScottPlott_Chart22.png");
 
         if (File.Exists(fileName))
@@ -87,8 +85,8 @@ public class ChartHandler_WithDatabase_Tests : BaseChartHandlerTests
         {
             Title = "Test portfolio",
             Copyright = "Testfirma",
-            XLabelText = "Anlageklassen",
-            YLabelText = "Anteil in %",
+            XLabelText = "Monate",
+            YLabelText = "Wert",
             FileName = fileName,
             ChartType = ChartType.LineChart,
             //PaperColor = Color.Red
@@ -123,8 +121,8 @@ public class ChartHandler_WithDatabase_Tests : BaseChartHandlerTests
         {
             Title = "Test portfolio",
             Copyright = "Testfirma",
-            XLabelText = "Anlageklassen",
-            YLabelText = "Anteil in %",
+            XLabelText = "Monate",
+            YLabelText = "Wert",
             FileName = fileName,
             ChartType = ChartType.LineChart,
             //PaperColor = Color.Red

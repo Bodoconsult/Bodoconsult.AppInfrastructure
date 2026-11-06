@@ -89,14 +89,23 @@ public class StackedColumn100Chart<T> : BaseChart<T> where T : IChartItemData
             bar.CenterLabel = true;
         }
 
-        // create a custom tick generator using your custom label formatter
-        NumericAutomatic myTickGenerator = new()
+        // X axis custom tick generator using your custom label formatter
+        NumericAutomatic myTickGeneratorX = new()
         {
-            LabelFormatter = CustomFormatter,
+            LabelFormatter = CustomFormatterX,
             //MaxTickCount = 10
         };
 
-        Chart.Axes.Bottom.TickGenerator = myTickGenerator;
+        Chart.Axes.Bottom.TickGenerator = myTickGeneratorX;
+
+        // Y axis custom tick generator using your custom label formatter
+        NumericAutomatic myTickGeneratorY = new()
+        {
+            LabelFormatter = CustomFormatterY,
+            MaxTickCount = 10
+        };
+
+        Chart.Axes.Left.TickGenerator = myTickGeneratorY;
 
         // Add legend 
         PlottLegend(barData, countCol);
@@ -106,7 +115,7 @@ public class StackedColumn100Chart<T> : BaseChart<T> where T : IChartItemData
 
 
         // create a static function containing the string formatting logic
-        string CustomFormatter(double position)
+        string CustomFormatterX(double position)
         {
             var position1 = _existingsTicks.FirstOrDefault(x => x >= position);
 
@@ -118,6 +127,11 @@ public class StackedColumn100Chart<T> : BaseChart<T> where T : IChartItemData
             Debug.Print($"{position.ToString(CultureInfo.InvariantCulture)} {position1.ToString(CultureInfo.InvariantCulture)}");
 
             return !_labels.TryGetValue(position1, out var value) ? string.Empty : value;
+        }
+
+        string CustomFormatterY(double position)
+        {
+            return position.ToString("0%");
         }
     }
 

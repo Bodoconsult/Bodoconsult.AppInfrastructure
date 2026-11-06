@@ -80,6 +80,15 @@ public class WebChartExporter
     /// </summary>
     public void Export()
     {
+
+        var basePath = _dataHandler.AppGlobals.TargetPath;
+        FileSystemHelper.CreateDirectory(basePath);
+
+        var xmlPath = Path.Combine(basePath, "Xml");
+        FileSystemHelper.CreateDirectory(xmlPath);
+
+        var path = Path.Combine(basePath, "Xml", $"chart{WebChart.Id}.xml");
+
         try
         {
             WebChart.Sql = TextHelper.Parser(WebChart.Sql);
@@ -102,6 +111,10 @@ public class WebChartExporter
                     return;
                 }
             }
+
+#if DEBUG
+            XmlHelper.SaveDataTableAsXml(path, _dt);
+#endif
 
             //Typography.ChartStyle.FontSize = 9;
             //Typography.ChartStyle.Width = Width;
@@ -201,7 +214,7 @@ public class WebChartExporter
 
             var x = new ChartHandler(chartData, _bitmapServiceFactory);
             x.Export();
-    }
+        }
         catch (Exception ex)
         {
 
@@ -211,24 +224,18 @@ public class WebChartExporter
                 return;
             }
 
-            var basePath = _dataHandler.AppGlobals.TargetPath;
-    FileSystemHelper.CreateDirectory(basePath);
-
-            var path = Path.Combine(basePath, "Xml", $"chart{WebChart.Id}.xml");
-    FileSystemHelper.CreateDirectory(path);
-
             XmlHelper.SaveDataTableAsXml(path, _dt);
 
-            path = Path.Combine(basePath, "Xml", $"column{WebChart.Id}.txt");
+            path = Path.Combine(xmlPath, $"column{WebChart.Id}.txt");
 
             var s = $"{WebChart.ChartType} {WebChart.Columns}";
 
-    FileSystemHelper.DeleteFile(path);
+            FileSystemHelper.DeleteFile(path);
             File.WriteAllText(path, s);
 #endif
 
             OnErrorHandlerFired($"WebChart:Export:Id={WebChart.Id}", ex.ToString());
-}
+        }
     }
 
     public void CopyToTarget()

@@ -138,7 +138,6 @@ public class ChartStyle: ICloneable
     /// </summary>
     public string FontName { get; set; } = "Arial";
 
-
     /// <summary>
     /// Width of the chart areas borderline
     /// </summary>
@@ -208,14 +207,14 @@ public class ChartStyle: ICloneable
     public string Template { get; set; }
 
     /// <summary>
-    /// Numberformat used to format values of YAxis
+    /// Numberformat used to format values of YAxis (based on en-US culture)
     /// </summary>
-    public string YAxisNumberformat { get; set; } = "0,000";
+    public string YAxisNumberformat { get; set; } = "#,##0";
 
     /// <summary>
-    /// Numberformat used to format values of XAxis
+    /// Numberformat used to format values of XAxis (based on en-US culture)
     /// </summary>
-    public string XAxisNumberformat { get; set; } = "0,000";
+    public string XAxisNumberformat { get; set; } = "#,##0";
 
     /// <summary>
     /// Radius in pixels for the border corners. If no rounded corners requested for the chart, set BorderCornerRadius=0
