@@ -93,7 +93,7 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
                 KeepTogether = true,
                 KeepWithNext = true,
                 SpaceAfter = verticalMargin,
-                SpaceBefore = 3 * verticalMargin,
+                SpaceBefore = 2 * verticalMargin,
                 Alignment = ParagraphAlignment.Center
             }
         };

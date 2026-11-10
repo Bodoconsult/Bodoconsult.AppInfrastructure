@@ -230,57 +230,57 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                     if (!start) wr.NewContentSection();
                     wr.AddHeading(rfp.Name ?? "Heading missing (rfp.Name)");
                     break;
-                //case "table":
-                //    SetStatus($"Exporting table {rfp.Name}...{gewicht}");
-                //    left = 0;
-                //    wr.EndCharting();
-                //    wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
-                //    break;
-                //case "smalltable":
-                //    SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
-                //    left = 0;
-                //    wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
-                //    break;
-                //case "chart":
-                //    SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
+                case "table":
+                    SetStatus($"Exporting table {rfp.Name}...{gewicht}");
+                    left = 0;
+                    wr.EndCharting();
+                    wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
+                    break;
+                case "smalltable":
+                    SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
+                    left = 0;
+                    wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
+                    break;
+                case "chart":
+                    SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
 
-                //    // Entferne ggfs. "Gesamt" für Charts
-                //    var s = $"[{data.Columns[0].ColumnName}]='Gesamt'";
+                    // Entferne ggfs. "Gesamt" für Charts
+                    var s = $"[{data.Columns[0].ColumnName}]='Gesamt'";
 
-                //    if (data.Columns[0].DataType == typeof(string))
-                //    {
+                    if (data.Columns[0].DataType == typeof(string))
+                    {
 
-                //        //try
-                //        //{
-                //        if (data.Select(s).Any()) data.Rows.RemoveAt(data.Rows.Count - 1);
-                //        //}
-                //        //// ReSharper disable EmptyGeneralCatchClause
-                //        //catch
-                //        //// ReSharper restore EmptyGeneralCatchClause
-                //        //{
+                        //try
+                        //{
+                        if (data.Select(s).Any()) data.Rows.RemoveAt(data.Rows.Count - 1);
+                        //}
+                        //// ReSharper disable EmptyGeneralCatchClause
+                        //catch
+                        //// ReSharper restore EmptyGeneralCatchClause
+                        //{
 
-                //    }
+                    }
 
 
-                //    //}
+                    //}
 
-                //    var chartdata = new ChartData
-                //    {
-                //        Data = data.Copy(),
-                //        Title = rfp.Title ?? "Title missing (rfp.Title)",
-                //        Columns = rfp.ChartColumns ?? string.Empty,
-                //        ColumnsDataTable = rfp.ChartColumnsDataTable ?? string.Empty,
-                //        YLabel = rfp.ChartYUnit ?? string.Empty,
-                //        LegendLength = rfp.ChartLegendLength,
-                //        TypeOfChart = rfp.ChartType,
-                //        Left = left,
-                //    };
+                    var chartdata = new ChartData
+                    {
+                        Data = data.Copy(),
+                        Title = rfp.Title ?? "Title missing (rfp.Title)",
+                        Columns = rfp.ChartColumns ?? string.Empty,
+                        ColumnsDataTable = rfp.ChartColumnsDataTable ?? string.Empty,
+                        YLabel = rfp.ChartYUnit ?? string.Empty,
+                        LegendLength = rfp.ChartLegendLength,
+                        TypeOfChart = rfp.ChartType,
+                        Left = left,
+                    };
 
-                //    left = left == 0 ? 24 : 0;
+                    left = left == 0 ? 24 : 0;
 
-                //    wr.AddChart(chartdata);
+                    wr.AddChart(chartdata);
 
-                //    break;
+                    break;
             }
 
             backImage = rfp.BackgroundImagePath;
