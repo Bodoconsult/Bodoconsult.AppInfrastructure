@@ -77,8 +77,8 @@ public class BodoWebReportingService : IApplicationService
         wrh.RunPreRunSql();
         wrh.CheckTargetPath();
         // wrh.CreateWebTables();
-        wrh.CreateWebCharts();
-        //wrh.CreateWebReports();
+       // wrh.CreateWebCharts();
+        wrh.CreateWebReports();
         wrh.RunPostRunSql();
 
         _appLogger.LogInformation("BodoWebReporting has finished!");

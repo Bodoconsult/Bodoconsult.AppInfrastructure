@@ -3,6 +3,7 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
+using Bodoconsult.Pdf.PdfSharp;
 using MigraDoc.DocumentObjectModel;
 
 namespace Bodoconsult.Pdf.Stylesets;
@@ -43,6 +44,11 @@ public class DefaultStyleSet : IStyleSet
     public Unit ColumnWidth { get; set; }
 
     /// <summary>
+    /// The default style to use for the table
+    /// </summary>
+    public ITypoTableStyle DefaultTableStyle { get; set; } = new PdfDefaultTableStyle();
+
+    /// <summary>
     /// Calculate measures <see cref="IStyleSet.TypeAreaWidth"/> and ColumnWidth!
     /// </summary>
     public void CalculateMeasures()
@@ -55,6 +61,12 @@ public class DefaultStyleSet : IStyleSet
     /// </summary>
     public void InitializeStyles()
     {
+        if (ColumnWidth.Value == 0)
+        {
+            // ToDo: multiple columns
+            ColumnWidth = TypeAreaWidth;
+        }
+
         Empty = CreateEmptyStyle();
         Normal = CreateNormalStyle();
         //Normal.ParagraphFormat.Borders.Left.Width = 1;
@@ -907,7 +919,11 @@ public class DefaultStyleSet : IStyleSet
         style.ParagraphFormat.Borders.Top.Width = 0;
         style.ParagraphFormat.Borders.Right.Width = 0;
         style.ParagraphFormat.Borders.Left.Width = 0;
-        style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
+
+        //// The following command should work but does not
+        //style.ParagraphFormat.TabStops.AddTabStop(ColumnWidth, TabAlignment.Right);
+        style.ParagraphFormat.TabStops.AddTabStop(Unit.FromCentimeter(ColumnWidth.Value), TabAlignment.Right);
+
         return style;
     }
 
@@ -1112,6 +1128,7 @@ public class DefaultStyleSet : IStyleSet
             },
             ParagraphFormat =
             {
+                PageBreakBefore = false,
                 KeepTogether = true,
                 KeepWithNext = true,
                 SpaceAfter = DefaultVerticalMargin,
@@ -1138,6 +1155,7 @@ public class DefaultStyleSet : IStyleSet
             },
             ParagraphFormat =
             {
+                PageBreakBefore = false,
                 KeepTogether = true,
                 KeepWithNext = true,
                 SpaceAfter = DefaultVerticalMargin,
@@ -1164,6 +1182,7 @@ public class DefaultStyleSet : IStyleSet
             },
             ParagraphFormat =
             {
+                PageBreakBefore = false,
                 KeepTogether = true,
                 KeepWithNext = true,
                 SpaceAfter = DefaultVerticalMargin,
@@ -1189,6 +1208,7 @@ public class DefaultStyleSet : IStyleSet
             },
             ParagraphFormat =
             {
+                PageBreakBefore = false,
                 KeepTogether = true,
                 KeepWithNext = true,
                 SpaceAfter = 3 * DefaultVerticalMargin,
@@ -1216,7 +1236,7 @@ public class DefaultStyleSet : IStyleSet
             },
             ParagraphFormat =
             {
-                PageBreakBefore = true,
+                PageBreakBefore = false,
                 KeepTogether = true,
                 KeepWithNext = true,
                 SpaceAfter = 6 * DefaultVerticalMargin,
@@ -1377,11 +1397,11 @@ public class DefaultStyleSet : IStyleSet
     /// Document meta data
     /// </summary>
     public ITypoMetaData DocumentMetaData { get; set; } = new TypoMetaData
-                                                                {
-                                                                    Authors ="Robert Leisner",
-                                                                    Company = "Bodoconsult EDV-Dienstleistungen GmbH",
-                                                                    Description = "Document description"
-                                                                };
+    {
+        Authors = "Robert Leisner",
+        Company = "Bodoconsult EDV-Dienstleistungen GmbH",
+        Description = "Document description"
+    };
 
     /// <summary>
     /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!
@@ -1400,7 +1420,7 @@ public class DefaultStyleSet : IStyleSet
             RightMargin = Unit.FromCentimeter(1.5),
             BottomMargin = Unit.FromCentimeter(2.5)
         };
-        
+
         PageSetup = ps;
         return ps;
     }
@@ -1560,8 +1580,8 @@ public class DefaultStyleSet : IStyleSet
     /// <summary>
     /// Style used for figure legends
     /// </summary>
-    public Style Figure{ get; set; }
-    
+    public Style Figure { get; set; }
+
     /// <summary>
     /// Style used for equation legends
     /// </summary>

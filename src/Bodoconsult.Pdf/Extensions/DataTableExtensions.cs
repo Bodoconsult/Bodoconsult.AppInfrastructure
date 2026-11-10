@@ -128,7 +128,7 @@ public static class DataTableExtensions
 
             if (startIndex == 1)
             {
-                var css = dataCells[0]?.ToString() ?? string.Empty;
+                var css = (dataCells[0]?.ToString() ?? string.Empty).ToLowerInvariant();
                 if (cssColors.TryGetValue(css, out var color))
                 {
                     row.ShadingColor = color;
@@ -170,20 +170,27 @@ public static class DataTableExtensions
             return string.Empty;
         }
 
-        var t = type.Name.Replace("System.", string.Empty).ToLower();
+        var value = dataCell.ToString();
+
+        if (string.IsNullOrEmpty(value))
+        {
+            return string.Empty;
+        }
+
+        var t = type.Name.Replace("System.", string.Empty).ToLowerInvariant();
         return t switch
         {
-            "datetime" => Convert.ToDateTime(dataCell).ToString("d", cultureInfo),
-            "decimal" or "double" or "single" => Convert.ToDouble(dataCell).ToString("#,##0.00", cultureInfo),
-            "int" or "int16" or "int32" or "int64" => Convert.ToInt64(dataCell).ToString("#,##0", cultureInfo),
-            _ => dataCell.ToString()
+            "datetime" => Convert.ToDateTime(value).ToString("d", cultureInfo),
+            "decimal" or "double" or "single" => Convert.ToDouble(value).ToString("#,##0.00", cultureInfo),
+            "int" or "int16" or "int32" or "int64" => Convert.ToInt64(value).ToString("#,##0", cultureInfo),
+            _ => value
         };
     }
 
     /// <summary>
     /// CSS color settings for Bodoconsult website
     /// </summary>
-    public static Dictionary<string, Color> BodoconsultCssColors => new Dictionary<string, Color>
+    public static Dictionary<string, Color> BodoconsultCssColors => new()
     {
         { "wr_cell_h1", Colors.GreenYellow },
         { "wr_cell_h2", Colors.YellowGreen },

@@ -272,22 +272,20 @@ public interface ITypography: ITypoPageStyle, ITypoMetaData
     /// Get the height of an element using the Golden Schnitt ratio in cm
     /// </summary>
     /// <param name="numberOfColumnsUsed"></param>
-    /// <param name="landscape"></param>
     /// <returns>Height in cm</returns>
-    double GetHeight(int numberOfColumnsUsed, bool landscape = true);
+    double GetHeight(int numberOfColumnsUsed);
 
     /// <summary>
     /// Get the width of a landscape element which should a certain number of layout columns in pixels
     /// </summary>
     /// <param name="numberOfColumnsUsed">Number of columns used</param>
-    /// <returns>Width in cm</returns>
+    /// <returns>Width in pixels</returns>
     int GetPixelWidth(int numberOfColumnsUsed);
 
     /// <summary>
     /// Get the height of an element using the Golden Schnitt ratio in pixels
     /// </summary>
     /// <param name="numberOfColumnsUsed"></param>
-    /// <param name="landscape"></param>
-    /// <returns></returns>
-    int GetPixelHeight(int numberOfColumnsUsed, bool landscape = true);
+    /// <returns>Height in pixels</returns>
+    int GetPixelHeight(int numberOfColumnsUsed);
 }

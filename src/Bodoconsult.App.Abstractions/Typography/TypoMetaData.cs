@@ -10,20 +10,18 @@ namespace Bodoconsult.App.Abstractions.Typography;
 /// </summary>
 public class TypoMetaData: ITypoMetaData
 {
-    private string _currentLanguage = "en";
-
     /// <summary>
     /// Language code like en or de (only first 2 letters needed). Default: en
     /// </summary>
     public string CurrentLanguage
     {
-        get => _currentLanguage;
+        get;
         set
         {
-            _currentLanguage = value;
+            field = value;
             CultureInfo = new CultureInfo(value);
         }
-    }
+    } = "en";
 
     /// <summary>
     /// Current culture info
@@ -125,4 +123,24 @@ public class TypoMetaData: ITypoMetaData
     /// Watermark text
     /// </summary>
     public string? WatermarkText { get; set; }
+
+    /// <summary>
+    /// Table of content (TOC) heading
+    /// </summary>
+    public string TocHeading { get; set; } = "Table of content";
+
+    /// <summary>
+    /// Table of figures (TOF) heading
+    /// </summary>
+    public string TofHeading { get; set; } = "Table of figures";
+
+    /// <summary>
+    /// Table of equations (TOE) heading
+    /// </summary>
+    public string ToeHeading { get; set; } = "Table of equations";
+
+    /// <summary>
+    /// Table of tables (TOT) heading
+    /// </summary>
+    public string TotHeading { get; set; } = "Table of tables";
 }

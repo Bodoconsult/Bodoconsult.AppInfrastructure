@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using System.Reflection;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
-using BodoWebReporting.Dal.Model;
 
 namespace BodoWebReporting.Dal.Helpers;
 
@@ -20,6 +18,8 @@ public static class ReportingHelper
     {
         var typography = new ElegantTypographyPageHeader("Calibri", "Calibri", "Calibri")
         {
+            GridColumnCount = 12,
+            GridColumnWidth = 1.8,
             ChartStyle =
             {
                 Width = 750,
@@ -27,8 +27,21 @@ public static class ReportingHelper
                 FontSize = 10,
                 BackGradientStyle = GradientStyle.TopBottom,
                 BackgroundColor = TypoColors.Transparent
+            },
+            MarginLeftFactor = 1.5,
+            MarginRightFactor = 1.5,
+            MarginTopFactor = 1.5,
+            MarginBottomFactor = 1.5,
+            TypoPaperFormat =
+            {
+                Landscape = true
             }
         };
+
+        //var ps = new TypoPaperFormat()
+        //    { PaperFormatName = "A3", Size = new TypoSize(29.7, 21)}
+
+        typography.SetMargins();
 
         return typography;
     }

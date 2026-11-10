@@ -108,7 +108,7 @@ public class PdfCreator : PdfBuilderBase
             Toc.AddParagraph(heading, "Title");
         }
 
-        var p = Toc.AddParagraph(TitleTableOfContent, "TocHeading");
+        var p = Toc.AddParagraph(StyleSet.DocumentMetaData.TocHeading, "TocHeading");
         p.AddBookmark("Inhalt");
 
         Content = Toc;

@@ -29,31 +29,6 @@ public interface IPdfBuilder : IDisposable
     Table Table { get; }
 
     /// <summary>
-    /// The title for the table of content (TOC)
-    /// </summary>
-    string TitleTableOfContent { get; set; }
-
-    /// <summary>
-    /// The title for the table of figures (TOF)
-    /// </summary>
-    string TitleTableOfFigures { get; set; }
-
-    /// <summary>
-    /// The title for the table of equations (TOE)
-    /// </summary>
-    string TitleTableOfEquations { get; set; }
-
-    /// <summary>
-    /// The title for the table of tables (TOT)
-    /// </summary>
-    string TitleTableOfTables { get; set; }
-
-    /// <summary>
-    /// The word written before the page number in a page footer
-    /// </summary>
-    string PageNumberPrefix { get; set; }
-
-    /// <summary>
     /// Increment
     /// </summary>
     int Increment { get; set; }

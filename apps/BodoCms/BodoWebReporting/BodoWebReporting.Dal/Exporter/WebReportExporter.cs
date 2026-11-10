@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Drawing;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
@@ -8,10 +9,14 @@ using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using BodoWebReporting.Dal.Report;
+using DocumentFormat.OpenXml.Office2010.Word;
 using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Internals;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.Versioning;
+
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 namespace BodoWebReporting.Dal.Exporter;
@@ -25,7 +30,7 @@ public class WebReportExporter : IDisposable
     private readonly List<BaseReportItem> _reportItems = new();
     private readonly ReportingFile _file;
     private readonly int _id;
-    private IWebChartExporterFactory _webChartExporterFactory;
+    private readonly IWebChartExporterFactory _webChartExporterFactory;
 
     public WebReportExporter(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory, ReportingFile file, int id = 1)
     {
@@ -35,6 +40,7 @@ public class WebReportExporter : IDisposable
 
 
         Pdf = new PdfCreator(StyleSet);
+        
         //BackColor = new Color(211, 223, 240);
         //TableBorderColor = new Color(217, 230, 245);
         //HeadLineColor = Colors.Black;
@@ -116,6 +122,13 @@ public class WebReportExporter : IDisposable
         AlternateBackColor = StyleHandler.AlternateBackColor;
 
         Pdf.Increment = Schritt;
+
+        var meta = StyleSet.DocumentMetaData;
+
+        meta.TocHeading = "Inhaltsverzeichnis";
+        meta.HeaderText = Title;
+        meta.PageNumberPrefix = "Seite";
+        meta.CultureInfo = CultureInfo.CurrentCulture; 
 
         // ToDo:
         //StyleSet.BackColor = BackColor;
@@ -211,8 +224,8 @@ public class WebReportExporter : IDisposable
         var wc = new WebChart
         {
             Id = _id*10000+_objectCounter,
-            Width = 600,
-            Height = 500,
+            Width = 750,
+            Height = 454,
             Title = data.Title,
             Copyright = _file.Shortname,
             YUnit = data.YLabel,
@@ -223,7 +236,6 @@ public class WebReportExporter : IDisposable
         };
 
         var x = _webChartExporterFactory.CreateInstance(data.Data, wc);
-
 
         //{
         //    //BackColor = (System.Drawing.Color.FromArgb((int)BackColor.R, (int)BackColor.G, (int)BackColor.B)),
@@ -244,6 +256,7 @@ public class WebReportExporter : IDisposable
     {
         Pdf.RenderToPdf(_file.FileName, false);
 
+        FileSystemHelper.RunInDebugMode(_file.FileName);
     }
 
     public int GetCurrentHeightUnits()
@@ -373,5 +386,24 @@ public class WebReportExporter : IDisposable
     {
         // ToDo: Page settings
         //Pdf.SetPage();
+
+        var ps = StyleSet.PageSetup;
+        ps.Orientation = Landscape ? Orientation.Landscape : Orientation.Portrait;
+        var w = ps.PageWidth;
+        var h = ps.PageHeight;
+        ps.PageHeight = w;
+        ps.PageWidth = h;
+        ps.LeftMargin = Unit.FromCentimeter(1.5);
+        ps.RightMargin = Unit.FromCentimeter(1.5);
+        ps.TopMargin = Unit.FromCentimeter(1.3);
+        ps.BottomMargin = Unit.FromCentimeter(0.7);
+
+        ps.HeaderDistance = Unit.FromCentimeter(0.4);
+        ps.FooterDistance = Unit.FromCentimeter(0.3);
+
+        ps.SectionStart = BreakType.BreakNextPage;
+
+        StyleSet.CalculateMeasures();
+        StyleSet.InitializeStyles();
     }
 }

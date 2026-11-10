@@ -312,7 +312,10 @@ public class BaseAppBuilder : IAppBuilder
 
             var result = gms.CreateLogDump(request);
 
-            logger?.LogWarning(fileName, $"CreateLogDump after crash: error code {result.ErrorCode}: {result.Message}");
+            if (result.ErrorCode != 0)
+            {
+                logger?.LogWarning(fileName, $"CreateLogDump after crash: error code {result.ErrorCode}: {result.Message}");
+            }
         }
         catch (Exception e)
         {

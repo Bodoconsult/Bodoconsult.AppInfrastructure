@@ -31,9 +31,7 @@ public class TablePdfTextRendererElement : PdfTextRendererElementBase
     /// <param name="renderer">Current renderer</param>
     public override void RenderIt(PdfTextDocumentRenderer renderer)
     {
-
         var dt = new PdfTable();
-
         var sb = new StringBuilder();
 
         var childs = new List<Inline>();
@@ -49,16 +47,16 @@ public class TablePdfTextRendererElement : PdfTextRendererElementBase
 
         foreach (var column in _table.Columns)
         {
-            var col = new PdfColumn(column.Name);
-
-            col.TextAlignment = DocumentRendererHelper.GetAlignment(column.DataType) switch
+            var col = new PdfColumn(column.Name)
             {
-                "Center" => PdfTextAlignment.Center,
-                "Right" => PdfTextAlignment.Right,
-                _ => PdfTextAlignment.Left
+                TextAlignment = DocumentRendererHelper.GetAlignment(column.DataType) switch
+                {
+                    "Center" => PdfTextAlignment.Center,
+                    "Right" => PdfTextAlignment.Right,
+                    _ => PdfTextAlignment.Left
+                },
+                MaxLength = column.MaxLength
             };
-
-            col.MaxLength = column.MaxLength;
 
             dt.Columns.Add(col);
         }

@@ -620,20 +620,20 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             switch (pageNumberFormat)
             {
                 case PageNumberFormatEnum.UpperRoman:
-                    text = $"{PageNumberPrefix} {(pageNumber + 1).ArabicToRoman().ToUpperInvariant()}";
+                    text = $"{StyleSet.DocumentMetaData.PageNumberPrefix} {(pageNumber + 1).ArabicToRoman().ToUpperInvariant()}";
                     break;
                 case PageNumberFormatEnum.LowerRoman:
-                    text = $"{PageNumberPrefix} {(pageNumber + 1).ArabicToRoman().ToLowerInvariant()}";
+                    text = $"{StyleSet.DocumentMetaData.PageNumberPrefix} {(pageNumber + 1).ArabicToRoman().ToLowerInvariant()}";
                     break;
                 case PageNumberFormatEnum.UpperLatin:
-                    text = $"{PageNumberPrefix} {(pageNumber + 1).ToUpperLatin()}";
+                    text = $"{StyleSet.DocumentMetaData.PageNumberPrefix} {(pageNumber + 1).ToUpperLatin()}";
                     break;
                 case PageNumberFormatEnum.LowerLatin:
-                    text = $"{PageNumberPrefix} {(pageNumber + 1).ToLowerLatin()}";
+                    text = $"{StyleSet.DocumentMetaData.PageNumberPrefix} {(pageNumber + 1).ToLowerLatin()}";
                     break;
                 case PageNumberFormatEnum.Decimal:
                 default:
-                    text = $"{PageNumberPrefix} {pageNumber + 1}";
+                    text = $"{StyleSet.DocumentMetaData.PageNumberPrefix} {pageNumber + 1}";
                     break;
             }
 

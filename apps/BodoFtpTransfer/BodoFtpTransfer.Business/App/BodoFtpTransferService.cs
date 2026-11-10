@@ -203,10 +203,10 @@ public class BodoFtpTransferService : IApplicationService
             // ToDo: fill request with useful information for logging
             var result = gms.CreateLogDump(request);
 
-            //if (result != null)
-            //{
-            _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
-            //}
+            if (result.ErrorCode != 0)
+            {
+                _appLogger.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
+            }
         }
         catch
         {
@@ -216,12 +216,8 @@ public class BodoFtpTransferService : IApplicationService
         // Stop logging now
         try
         {
-            if (_appLogger != null)
-            {
-                _appLogger.StopLogging();
-                _appLogger.Dispose();
-            }
-
+            _appLogger.StopLogging();
+            _appLogger.Dispose();
         }
         catch
         {

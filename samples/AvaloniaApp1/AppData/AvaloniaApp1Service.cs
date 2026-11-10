@@ -76,7 +76,7 @@ public class AvaloniaApp1Service : IApplicationService
 
         while (i < 15)
         {
-            _appLogger.LogWarning( "Processing workload...");
+            _appLogger.LogWarning("Processing workload...");
             AsyncHelper.Delay(1000);
             i++;
         }
@@ -171,7 +171,6 @@ public class AvaloniaApp1Service : IApplicationService
             //_appLogger.LogError($"Performance logging could not be stopped", new object[]{e});
         }
 
-
         var gms = di.Get<IGeneralAppManagementManager>();
         var request = new EmptyBusinessTransactionRequestData();
 
@@ -181,7 +180,7 @@ public class AvaloniaApp1Service : IApplicationService
             // ToDo: fill request with useful information for logging
             var result = gms.CreateLogDump(request);
 
-            if (result != null)
+            if (result.ErrorCode != 0)
             {
                 _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
             }

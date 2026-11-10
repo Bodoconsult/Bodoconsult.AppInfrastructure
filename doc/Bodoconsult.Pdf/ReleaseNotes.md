@@ -27,4 +27,12 @@ NOT intended for public use
 
 # 1.0.12
 
--  
+-  Replaced IPdfBuilder.TitleTableOfContent with ITypoMetaData.TocHeading
+
+-  Replaced IPdfBuilder.TitleTableOfTables with ITypoMetaData.TotHeading
+
+-  Replaced IPdfBuilder.TitleTableOfEquations with ITypoMetaData.ToeHeading
+
+-  Replaced IPdfBuilder.TitleTableOfFigures with ITypoMetaData.TofHeading
+
+-   Replaced IPdfBuilder.PageNumberPrefix with ITypoMetaData.PageNumberPrefix

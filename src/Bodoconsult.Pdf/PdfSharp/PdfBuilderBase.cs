@@ -104,31 +104,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public Table Table { get; protected set; }
 
     /// <summary>
-    /// The title for the table of content (TOC)
-    /// </summary>
-    public string TitleTableOfContent { get; set; } = "Table of content";
-
-    /// <summary>
-    /// The title for the table of figures (TOF)
-    /// </summary>
-    public string TitleTableOfFigures { get; set; } = "Table of figures";
-
-    /// <summary>
-    /// The title for the table of equations (TOE)
-    /// </summary>
-    public string TitleTableOfEquations { get; set; } = "Table of equations";
-
-    /// <summary>
-    /// The title for the table of tables (TOT)
-    /// </summary>
-    public string TitleTableOfTables { get; set; } = "Table of tables";
-
-    /// <summary>
-    /// The word written before the page number in a page footer
-    /// </summary>
-    public string PageNumberPrefix { get; set; } = "Page";
-
-    /// <summary>
     /// Increment
     /// </summary>
     public int Increment { get; set; }
@@ -451,6 +426,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         Toc = Document.AddSection();
         Toc.PageSetup = StyleSet.PageSetup.Clone();
+        
         Content = Toc;
 
         if (isRestartPageNumberingRequired)
@@ -462,7 +438,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         {
             Section = Toc,
             IsRestartPageNumberingRequired = isRestartPageNumberingRequired,
-            PageNumberFormat = pageNumberFormat
+            PageNumberFormat = pageNumberFormat,
         };
         SectionInfos.Add(si);
 
@@ -473,7 +449,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         AddHeaderInternal(Toc, pageNumberFormat);
         AddFooterInternal(Toc, pageNumberFormat);
 
-        var p = Toc.AddParagraph(TitleTableOfContent, "TocHeading");
+        var p = Toc.AddParagraph(StyleSet.DocumentMetaData.TocHeading, "TocHeading");
         p.AddBookmark("Content");
     }
 
@@ -508,7 +484,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         AddHeaderInternal(Tof, pageNumberFormat);
         AddFooterInternal(Tof, pageNumberFormat);
 
-        var p = Tof.AddParagraph(TitleTableOfFigures, "TofHeading");
+        var p = Tof.AddParagraph(StyleSet.DocumentMetaData.TofHeading, "TofHeading");
         p.AddBookmark("Figures");
     }
 
@@ -543,7 +519,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         AddHeaderInternal(Toe, pageNumberFormat);
         AddFooterInternal(Toe, pageNumberFormat);
 
-        var p = Toe.AddParagraph(TitleTableOfEquations, "ToeHeading");
+        var p = Toe.AddParagraph(StyleSet.DocumentMetaData.ToeHeading, "ToeHeading");
         p.AddBookmark("Equations");
     }
 
@@ -578,7 +554,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         AddHeaderInternal(Tot, pageNumberFormat);
         AddFooterInternal(Tot, pageNumberFormat);
 
-        var p = Tot.AddParagraph(TitleTableOfTables, "TotHeading");
+        var p = Tot.AddParagraph(StyleSet.DocumentMetaData.TotHeading, "TotHeading");
         p.AddBookmark("Tables");
 
     }
@@ -766,6 +742,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         paragraph.AddBookmark(tag);
         paragraph.AddText(text ?? string.Empty);
+
+        if (level == 1 && Content.Elements.Count > 1)
+        {
+            Content.AddPageBreak();
+        }
 
         Content.Add(paragraph);
 
@@ -1155,7 +1136,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         // Page number
         if (section == ITypography.PageFieldIndicator)
         {
-            para.AddText($"{PageNumberPrefix} ");
+            para.AddText($"{StyleSet.DocumentMetaData.PageNumberPrefix} ");
 
             var p = para.AddPageField();
 
@@ -1276,6 +1257,18 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         const int columnMaxLength = 25;
 
+        if (dt.TableStyle is null)
+        {
+            if (StyleSet.DefaultTableStyle is not null)
+            {
+                dt.TableStyle = StyleSet.DefaultTableStyle;
+            }
+            else
+            {
+                dt.TableStyle = new PdfDefaultTableStyle();
+            }
+        }
+
         // Load the table style
         var style = Document.Styles[dt.TableStyleName];
 
@@ -1362,9 +1355,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
             }
         }
 
-
-
-
         var colCount = dt.Columns.Count;
 
         for (var i = 1; i <= colCount; i++)
@@ -1414,6 +1404,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             if (r.ShadingColor.HasValue)
             {
                 row.Shading.Color = r.ShadingColor.Value;
+                shadow = false;
             }
             else
             {

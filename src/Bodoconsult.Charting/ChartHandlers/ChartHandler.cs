@@ -130,15 +130,17 @@ public class ChartHandler : IChartHandler
         var rectWidth = ChartData.ChartStyle.Width - deltaX;
         var rectHeight = ChartData.ChartStyle.Height - deltaY;
 
-        var effLeft = ChartData.ChartStyle.ChartBorderCornerRadius;
-        var effTop = ChartData.ChartStyle.ChartBorderCornerRadius;
-        var effWidth = ChartData.ChartStyle.Width - deltaX - 2 * ChartData.ChartStyle.ChartBorderCornerRadius;
-        var effHeight = ChartData.ChartStyle.Height - deltaY - 2 * ChartData.ChartStyle.ChartBorderCornerRadius;
+        var radius = (int)(ChartData.ChartStyle.ChartBorderCornerRadius * 0.5);
 
-        var color1 = ChartData.ChartStyle.ChartBackgroundColor?.ToSkiaColor() ?? SKColors.White;
-        var color2 = ChartData.ChartStyle.ChartBackgroundSecondColor?.ToSkiaColor() ?? SKColors.White;
-        var borderColor = ChartData.ChartStyle.BorderColor?.ToSkiaColor() ?? SKColors.Black;
-        var shadowColor = ChartData.ChartStyle.ChartShadowColor?.ToSkiaColor() ?? SKColors.DarkGray;
+        var effLeft = radius;
+        var effTop = radius;
+        var effWidth = ChartData.ChartStyle.Width - deltaX - 2 * radius;
+        var effHeight = ChartData.ChartStyle.Height - deltaY - 2 * radius;
+
+        var color1 = ChartData.ChartStyle.ChartBackgroundColor.ToSkiaColor();
+        var color2 = ChartData.ChartStyle.ChartBackgroundSecondColor.ToSkiaColor();
+        var borderColor = ChartData.ChartStyle.BorderColor.ToSkiaColor();
+        var shadowColor = ChartData.ChartStyle.ChartShadowColor.ToSkiaColor();
 
         // Draw shadow and chart background: fill with gradients
         if (ChartData.ChartStyle.BackGradientStyle == GradientStyle.TopBottom)

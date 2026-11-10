@@ -25,7 +25,12 @@ public class TypoPaperFormat
     public string PaperFormatName { get; set; }
 
     /// <summary>
-    /// Size of the paper. Default: width 21 cm height 29,7 cm (=A4 portrait)
+    /// Size of the paper. Set the papersize always for portrait orientation. Default: width 21 cm height 29,7 cm (=A4 portrait)
     /// </summary>
-    public TypoSize Size { get; set; } 
+    public TypoSize Size { get; set; }
+
+    /// <summary>
+    /// Paper orientation is landscape. Default: false
+    /// </summary>
+    public bool Landscape { get; set; }
 }

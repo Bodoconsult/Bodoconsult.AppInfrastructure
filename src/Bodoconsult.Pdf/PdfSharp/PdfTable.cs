@@ -48,7 +48,7 @@ public class PdfTable
     /// <summary>
     /// Style name for the heading
     /// </summary>
-    public string HeadingStyleName { get; set; }
+    public string HeadingStyleName { get; set; } = "Normal";
 
     /// <summary>
     /// Additional info for the table to be presented before the table
@@ -58,12 +58,12 @@ public class PdfTable
     /// <summary>
     /// Style name for the additonal info
     /// </summary>
-    public string AdditionalInfosStyleName { get; set; }
+    public string AdditionalInfosStyleName { get; set; } = "Normal";
 
     /// <summary>
     /// The style to use for the table
     /// </summary>
-    public ITypoTableStyle TableStyle { get; set; } = new PdfDefaultTableStyle();
+    public ITypoTableStyle TableStyle { get; set; }
 
     ///// <summary>
     ///// The width to use for the table in cm or 0. Default 0

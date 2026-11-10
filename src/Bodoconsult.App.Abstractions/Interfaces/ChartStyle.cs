@@ -8,13 +8,11 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// </summary>
 public class ChartStyle: ICloneable
 {
-
     /// <summary>
     /// Default constructor
     /// </summary>
     public ChartStyle()
     {
-
         const int defaultLineWidth = 1;
 
         Width = 750;
@@ -29,7 +27,7 @@ public class ChartStyle: ICloneable
         IntervalYLineWidth = defaultLineWidth;
         SeriesLineWidth = defaultLineWidth;
         TitleFontName = "Cambria";
-        ChartBorderCornerRadius = 25;
+        ChartBorderCornerRadius = 20;
         CorrectiveFactor = 5;
         ChartBorderWidth = defaultLineWidth;
         ChartBorderColor = TypoColor.FromArgb(178, 204, 255);
@@ -44,7 +42,7 @@ public class ChartStyle: ICloneable
         TitleShadow = false;
         CopyrightColor = TypoColors.Black;
         PaperColor = TypoColors.Transparent;
-        ChartShadow = 0.0175;
+        ChartShadow = 0.0075;
         ChartShadowColor = TypoColors.DimGray;
         BorderColor = TypoColors.DarkBlue;
         GridLineColor = TypoColors.CornflowerBlue;

@@ -80,6 +80,9 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         var wr = _webReportExporterFactory.CreateInstance(file, id);
         wr.Schritt = Schritt;
         wr.BackColor = StyleHandler.BackColor;
+        wr.Title = TextHelper.Parser(file.Shortname) ?? "Title";
+        wr.StyleSet.DocumentMetaData.Title = wr.Title;
+        wr.StyleSet.DocumentMetaData.Authors = file.Author;
 
         //var x = StyleHandler.StyleSet;
 
@@ -98,7 +101,6 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         {
             if (start)
             {
-
                 wr.Landscape = rfp.Landscape;
 
                 Schritt = rfp.Landscape ? 35 : 42;
@@ -112,7 +114,10 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                 else
                 {
                     wr.BackgroundImagePath = null;
-                    if (!string.IsNullOrEmpty(rfp.BackgroundImagePath)) Debug.Print($"Not found: {rfp.BackgroundImagePath}");
+                    if (!string.IsNullOrEmpty(rfp.BackgroundImagePath))
+                    {
+                        Debug.Print($"Not found: {rfp.BackgroundImagePath}");
+                    }
                 }    
 
                 //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
@@ -134,7 +139,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
             wr.Subject = rfp.Subject ?? string.Empty;
 
-            if (sql != rfp.Sql && rfp.Sql?.ToUpperInvariant() != "XXX")
+            if (sql != rfp.Sql && (!rfp.Sql?.Equals("XXX", StringComparison.OrdinalIgnoreCase) ?? false ))
             {
                 sql = TextHelper.Parser(rfp.Sql);
 
@@ -149,7 +154,12 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                 wr.AddInfos = FormatAddInfos(DataHandler.GetDataTable(rfp.AddInfoSql));
             }
 
-            var typ = rfp.ReportType;
+            var typ = rfp.ReportType?.ToLowerInvariant();
+
+            if (string.IsNullOrEmpty(typ))
+            {
+                continue;
+            }
 
             if (typ == "smalltable" && data.Rows.Count > Schritt / 2)
             {
@@ -196,7 +206,9 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
                 wr.EndCharting();
                 if (backImage != rfp.BackgroundImagePath)
+                {
                     wr.BackgroundImagePath = rfp.BackgroundImagePath;
+                }
                 //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
                 wr.NewContentSection();
             }
@@ -210,62 +222,65 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                     gewicht = 0;
                     wr.EndCharting();
                     if (backImage != rfp.BackgroundImagePath)
+                    {
                         wr.BackgroundImagePath = rfp.BackgroundImagePath;
+                    }
+
                     //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
                     if (!start) wr.NewContentSection();
                     wr.AddHeading(rfp.Name ?? "Heading missing (rfp.Name)");
                     break;
-                case "table":
-                    SetStatus($"Exporting table {rfp.Name}...{gewicht}");
-                    left = 0;
-                    wr.EndCharting();
-                    wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
-                    break;
-                case "smalltable":
-                    SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
-                    left = 0;
-                    wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
-                    break;
-                case "chart":
-                    SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
+                //case "table":
+                //    SetStatus($"Exporting table {rfp.Name}...{gewicht}");
+                //    left = 0;
+                //    wr.EndCharting();
+                //    wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
+                //    break;
+                //case "smalltable":
+                //    SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
+                //    left = 0;
+                //    wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
+                //    break;
+                //case "chart":
+                //    SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
 
-                    // Entferne ggfs. "Gesamt" für Charts
-                    var s = $"[{data.Columns[0].ColumnName}]='Gesamt'";
+                //    // Entferne ggfs. "Gesamt" für Charts
+                //    var s = $"[{data.Columns[0].ColumnName}]='Gesamt'";
 
-                    if (data.Columns[0].DataType == typeof(string))
-                    {
+                //    if (data.Columns[0].DataType == typeof(string))
+                //    {
 
-                        //try
-                        //{
-                        if (data.Select(s).Any()) data.Rows.RemoveAt(data.Rows.Count - 1);
-                        //}
-                        //// ReSharper disable EmptyGeneralCatchClause
-                        //catch
-                        //// ReSharper restore EmptyGeneralCatchClause
-                        //{
+                //        //try
+                //        //{
+                //        if (data.Select(s).Any()) data.Rows.RemoveAt(data.Rows.Count - 1);
+                //        //}
+                //        //// ReSharper disable EmptyGeneralCatchClause
+                //        //catch
+                //        //// ReSharper restore EmptyGeneralCatchClause
+                //        //{
 
-                    }
+                //    }
 
 
-                    //}
+                //    //}
 
-                    var chartdata = new ChartData
-                    {
-                        Data = data.Copy(),
-                        Title = rfp.Title ?? "Title missing (rfp.Title)",
-                        Columns = rfp.ChartColumns ?? string.Empty,
-                        ColumnsDataTable = rfp.ChartColumnsDataTable ?? string.Empty,
-                        YLabel = rfp.ChartYUnit ?? string.Empty,
-                        LegendLength = rfp.ChartLegendLength,
-                        TypeOfChart = rfp.ChartType,
-                        Left = left,
-                    };
+                //    var chartdata = new ChartData
+                //    {
+                //        Data = data.Copy(),
+                //        Title = rfp.Title ?? "Title missing (rfp.Title)",
+                //        Columns = rfp.ChartColumns ?? string.Empty,
+                //        ColumnsDataTable = rfp.ChartColumnsDataTable ?? string.Empty,
+                //        YLabel = rfp.ChartYUnit ?? string.Empty,
+                //        LegendLength = rfp.ChartLegendLength,
+                //        TypeOfChart = rfp.ChartType,
+                //        Left = left,
+                //    };
 
-                    left = left == 0 ? 24 : 0;
+                //    left = left == 0 ? 24 : 0;
 
-                    wr.AddChart(chartdata);
+                //    wr.AddChart(chartdata);
 
-                    break;
+                //    break;
             }
 
             backImage = rfp.BackgroundImagePath;

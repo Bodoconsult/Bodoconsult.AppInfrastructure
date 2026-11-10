@@ -27,7 +27,7 @@ public class PdfDefaultTableStyle : ITypoTableStyle
     /// <summary>
     /// Current borderline width setting
     /// </summary>
-    public TypoThickness TypoBorderThickness { get; set; } = new TypoThickness(0.5 * TypoThickness.LineWidth1Pt);
+    public TypoThickness TypoBorderThickness { get; set; } = new(0.5 * TypoThickness.LineWidth1Pt);
 
     /// <summary>
     /// Inside the table horizontal border width in cm

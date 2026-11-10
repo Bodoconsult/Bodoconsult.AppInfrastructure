@@ -12,12 +12,12 @@ public interface ITypoMetaData
     /// <summary>
     /// Language code like en or de (only first 2 letters needed). Default: de
     /// </summary>
-    public string CurrentLanguage { get; set; }
+    string CurrentLanguage { get; set; }
 
     /// <summary>
     /// Current culture info
     /// </summary>
-    public CultureInfo CultureInfo { get; set; }
+    CultureInfo CultureInfo { get; set; }
 
     /// <summary>
     /// Copyright to print in charts and other items
@@ -112,4 +112,24 @@ public interface ITypoMetaData
     /// Watermark text
     /// </summary>
     string? WatermarkText { get; set; }
+
+    /// <summary>
+    /// Table of content (TOC) heading
+    /// </summary>
+    string TocHeading { get; set; } 
+
+    /// <summary>
+    /// Table of figures (TOF) heading
+    /// </summary>
+    string TofHeading { get; set; } 
+
+    /// <summary>
+    /// Table of equations (TOE) heading
+    /// </summary>
+    string ToeHeading { get; set; } 
+
+    /// <summary>
+    /// Table of tables (TOT) heading
+    /// </summary>
+    string TotHeading { get; set; }
 }

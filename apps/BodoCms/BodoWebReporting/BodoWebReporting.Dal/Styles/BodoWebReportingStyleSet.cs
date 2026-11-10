@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.Pdf.Extensions;
+using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
 
@@ -11,11 +13,11 @@ namespace BodoWebReporting.Dal.Styles;
 /// </summary>
 public class BodoWebReportingStyleSet : DefaultStyleSet
 {
+    private readonly TypoColor _blueColor = TypoColor.FromArgb(178, 204, 255);
 
     public BodoWebReportingStyleSet()
     {
-
-        double verticalMargin = 3;
+        const double verticalMargin = 3;
 
         PageSetup = new PageSetup
         {
@@ -29,6 +31,15 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
             BottomMargin = Unit.FromCentimeter(1.2)
         };
 
+
+        // Table style
+        DefaultTableStyle = new PdfDefaultTableStyle
+        {
+            TypoTableHeaderBackColor = TypoColors.White,
+            TypoTableAlternateBackColor = _blueColor,
+            TypoBorderBrush = new TypoSolidColorBrush(TypoColors.Transparent)
+            //TypoTableBackColor = new TypoColor(217, 230, 245, 1)
+        };
 
         var width = PageSetup.PageHeight - PageSetup.LeftMargin - PageSetup.RightMargin;
 
@@ -46,7 +57,6 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
                 SpaceAfter = verticalMargin,
                 PageBreakBefore = false,
                 Alignment = ParagraphAlignment.Left,
-
             }
         };
 
@@ -79,12 +89,12 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
             },
             ParagraphFormat =
             {
-                PageBreakBefore = true,
+                PageBreakBefore = false,
                 KeepTogether = true,
                 KeepWithNext = true,
                 SpaceAfter = verticalMargin,
                 SpaceBefore = 3 * verticalMargin,
-                Alignment = ParagraphAlignment.Left
+                Alignment = ParagraphAlignment.Center
             }
         };
 
@@ -170,13 +180,14 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
             {
                 Name = "Arial Black",
                 Size = 10,
-                Color = Colors.Black
+                Color = Colors.Black,
             },
             ParagraphFormat =
             {
                 SpaceAfter = verticalMargin,
                 SpaceBefore = 2 * verticalMargin,
-                Alignment = ParagraphAlignment.Center
+                Alignment = ParagraphAlignment.Center,
+                Shading = new Shading{ Color = _blueColor.ToPdfColor()}
             }
         };
 
@@ -197,7 +208,8 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
             {
                 SpaceBefore = 1.5 * verticalMargin,
                 Alignment = ParagraphAlignment.Center,
-                SpaceAfter = 1.5 * verticalMargin
+                SpaceAfter = 1.5 * verticalMargin,
+                Shading = new Shading{ Color = _blueColor.ToPdfColor()}
             }
         };
 
@@ -448,7 +460,5 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
         Bullet1.ParagraphFormat.LeftIndent = Unit.FromCentimeter(1);
         var li = new ListInfo { ListType = ListType.BulletList1 };
         Bullet1.ParagraphFormat.ListInfo = li;
-
     }
-
 }

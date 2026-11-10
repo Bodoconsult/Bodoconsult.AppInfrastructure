@@ -195,16 +195,13 @@ public class GrpcServerAppService : IApplicationService
         var gms = di.Get<IGeneralAppManagementManager>();
         var request = new EmptyBusinessTransactionRequestData();
 
-        DefaultBusinessTransactionReply result;
-
         // Create log dump on app stop
         try
         {
-
             // ToDo: fill request with useful information for logging
-            result = gms.CreateLogDump(request);
+            var result = gms.CreateLogDump(request);
 
-            if (result != null)
+            if (result.ErrorCode != 0)
             {
                 _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
             }

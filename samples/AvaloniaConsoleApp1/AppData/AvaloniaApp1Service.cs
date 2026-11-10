@@ -181,7 +181,7 @@ public class AvaloniaConsoleApp1Service : IApplicationService
             // ToDo: fill request with useful information for logging
             var result = gms.CreateLogDump(request);
 
-            if (result != null)
+            if (result.ErrorCode != 0)
             {
                 _appLogger?.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
             }

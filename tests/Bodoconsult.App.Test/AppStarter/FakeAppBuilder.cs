@@ -201,7 +201,7 @@ internal class FakeAppBuilder : IAppBuilder
 
             var result = gms?.CreateLogDump(request);
 
-            if (result is null)
+            if (result?.ErrorCode == 0)
             {
                 return;
             }

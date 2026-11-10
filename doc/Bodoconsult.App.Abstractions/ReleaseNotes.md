@@ -49,6 +49,20 @@ NOT intended for public use
 
 # 1.0.12
 
--  ChartStyle.XAxisNumberformat default changed to #,##0
+-   ChartStyle.XAxisNumberformat default changed to #,##0
 
--  ChartStyle.YAxisNumberformat default changed to #,##0
+-   ChartStyle.YAxisNumberformat default changed to #,##0
+
+-   Added Landscape property to TypoPaperFormat. Set TypoPaperFormat.Size always for portrait mode. Landscape property is then used to calculate margins properly for portrait and landscape. 
+
+-   Methods GetHeight and GetPixelHeight adjusted to use new landscape property.
+
+-   Added ITypoMetaData.TocHeading
+
+-   Added ITypoMetaData.TotHeading
+
+-   Added ITypoMetaData.ToeHeading
+
+-   Added ITypoMetaData.TofHeading
+
+-   Added ITypoMetaData.PageNumberPrefix

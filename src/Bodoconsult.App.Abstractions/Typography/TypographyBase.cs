@@ -61,20 +61,18 @@ public class TypographyBase : ITypography
         TableBorderColor = TypoColor.FromArgb(178, 204, 255);
     }
 
-    private string _currentLanguage = "en";
-
     /// <summary>
     /// Language code like en or de (only first 2 letters needed). Default: de
     /// </summary>
     public string CurrentLanguage
     {
-        get => _currentLanguage;
+        get;
         set
         {
-            _currentLanguage = value;
+            field = value;
             CultureInfo = new CultureInfo(value);
         }
-    }
+    } = "en";
 
     /// <summary>
     /// Current culture info
@@ -146,6 +144,26 @@ public class TypographyBase : ITypography
     /// Company website
     /// </summary>
     public string? CompanyWebsite { get; set; }
+
+    /// <summary>
+    /// Table of content (TOC) heading
+    /// </summary>
+    public string TocHeading { get; set; } = "Table of content";
+
+    /// <summary>
+    /// Table of figures (TOF) heading
+    /// </summary>
+    public string TofHeading { get; set; } = "Table of figures";
+
+    /// <summary>
+    /// Table of equations (TOE) heading
+    /// </summary>
+    public string ToeHeading { get; set; } = "Table of equations";
+
+    /// <summary>
+    /// Table of tables (TOT) heading
+    /// </summary>
+    public string TotHeading { get; set; } = "Table of tables";
 
     /// <summary>
     /// Default font name
@@ -258,7 +276,7 @@ public class TypographyBase : ITypography
     public double MarginBottomFactor { get; set; }
 
     /// <summary>
-    /// Unit used for margin calculations in cm (Teil in cm)
+    /// Unit used for horizontal margin calculations in cm (Teil in cm)
     /// 
     /// <see cref="MarginUnit"/> = PaperSize.Size.Width - TypeAreaRect.Size.Width / (<see cref="SetMargins"/>.left + <see cref="SetMargins"/>.right)
     /// </summary>
@@ -445,7 +463,16 @@ public class TypographyBase : ITypography
     {
         var typeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * ColumnGap;
 
-        var mu = TypoPaperFormat.Size.Width - typeAreaWidth;
+        double mu;
+
+        if (TypoPaperFormat.Landscape)
+        {
+            mu = TypoPaperFormat.Size.Height - typeAreaWidth;
+        }
+        else
+        {
+            mu = TypoPaperFormat.Size.Width - typeAreaWidth;
+        }
 
         MarginUnit = mu / (MarginLeftFactor + MarginRightFactor);
 
@@ -489,17 +516,15 @@ public class TypographyBase : ITypography
     /// Get the height of an element using the Golden Schnitt ratio in cm
     /// </summary>
     /// <param name="numberOfColumnsUsed"></param>
-    /// <param name="landscape"></param>
     /// <returns>Height in cm</returns>
-    public double GetHeight(int numberOfColumnsUsed, bool landscape = true)
+    public double GetHeight(int numberOfColumnsUsed)
     {
-        return landscape
+        return TypoPaperFormat.Landscape
             ? Math.Round((numberOfColumnsUsed * GridColumnWidth + (numberOfColumnsUsed - 1) * GridColumnDividerWidth) /
                          TypographicConstants.GoldenerSchnittRatio, 2)
             : Math.Round((numberOfColumnsUsed * GridColumnWidth + (numberOfColumnsUsed - 1) * GridColumnDividerWidth) *
                          TypographicConstants.GoldenerSchnittRatio, 2);
     }
-
 
     /// <summary>
     /// Get the width of a landscape element which should a certain number of layout columns in pixels
@@ -514,14 +539,12 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Get the height of an element using the Golden Schnitt ratio in pixels
     /// </summary>
-    /// <param name="numberOfColumnsUsed">Number of columns used</param>
-    /// <param name="landscape">Landscape?</param>
+    /// <param name="numberOfColumnsUsed"></param>
     /// <returns>Height in pixels</returns>
-    public int GetPixelHeight(int numberOfColumnsUsed, bool landscape = true)
+    public int GetPixelHeight(int numberOfColumnsUsed)
     {
-        return (int)(GetHeight(numberOfColumnsUsed, landscape) * TypographicConstants.InchPerCentimeter * DotsPerInch);
+        return (int)(GetHeight(numberOfColumnsUsed) * TypographicConstants.InchPerCentimeter * DotsPerInch);
     }
 
     #endregion
-
 }

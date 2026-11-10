@@ -181,7 +181,11 @@ public class AvaloniaReactiveUiDemoAppService : IApplicationService
 
             // ToDo: fill request with useful information for logging
             result = gms.CreateLogDump(request);
-            _appLogger.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
+
+            if (result.ErrorCode != 0)
+            {
+                _appLogger.LogWarning($"CreateLogDump: error code {result.ErrorCode}: {result.Message}");
+            }
 
         }
         catch
@@ -199,7 +203,6 @@ public class AvaloniaReactiveUiDemoAppService : IApplicationService
         {
             // Do nothing
         }
-
     }
 
     /// <summary>

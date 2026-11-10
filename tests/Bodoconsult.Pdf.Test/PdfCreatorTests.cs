@@ -49,10 +49,7 @@ public class PdfCreatorTests
     {
         var code = ResourceHelper.GetTextResource("code1.txt").Replace("\\t", "\t");
 
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
-        }
+        FileSystemHelper.DeleteFile(fileName);
 
         var styleset = new DefaultStyleSet();
         styleset.CreatePageSetup();
@@ -77,8 +74,8 @@ public class PdfCreatorTests
         pdf.CreateTocSection("Document title");
         pdf.CreateContentSection();
 
-         
-        pdf.AddParagraph("Heading 1", "Heading1");
+
+        pdf.AddHeading1("Heading 1", "Heading1");
 
         pdf.AddParagraph(TestDataHelper.MassText, "Normal");
 
@@ -103,15 +100,15 @@ public class PdfCreatorTests
 
         pdf.AddParagraph(TestDataHelper.MassText, "Normal");
 
-        pdf.AddParagraph("Heading 2", "Heading1");
+        pdf.AddHeading1("Heading 2", "Heading1");
         pdf.AddParagraph(TestDataHelper.MassText, "Normal");
 
-        pdf.AddParagraph("Heading 2-1", "Heading2");
+        pdf.AddHeading2("Heading 2-1", "Heading2");
         pdf.AddParagraph(TestDataHelper.MassText, "Normal");
 
         pdf.AddImage(TestHelper.TestChartImage, 10, 6);
 
-        pdf.AddParagraph("Heading 2-2", "Heading2");
+        pdf.AddHeading2("Heading 2-2", "Heading2");
         pdf.AddParagraph(TestDataHelper.MassText, "Normal");
 
         pdf.AddParagraph("Aufzählung 1", "Bullet1");
@@ -164,7 +161,7 @@ public class PdfCreatorTests
         styleSet.CalculateMeasures();
         styleSet.InitializeStyles();
 
-        var width = Unit.FromCentimeter( ps.PageHeight.Centimeter - ps.TopMargin.Centimeter - ps.BottomMargin.Centimeter);
+        var width = Unit.FromCentimeter(h.Centimeter - ps.LeftMargin.Centimeter - ps.RightMargin.Centimeter);
 
         var style = styleSet.Normal;
         style.Font.Name = "Arial Narrow";
@@ -279,7 +276,5 @@ public class PdfCreatorTests
         style.ParagraphFormat.AddTabStop(width, TabAlignment.Right);
         style.ParagraphFormat.Borders.Top.Width = 1;
         style.ParagraphFormat.Borders.Top.Color = Colors.Black;
-
-        
     }
 }

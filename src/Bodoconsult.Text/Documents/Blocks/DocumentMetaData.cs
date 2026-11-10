@@ -11,8 +11,6 @@ namespace Bodoconsult.Text.Documents;
 /// </summary>
 public class DocumentMetaData : Block, ITypoMetaData
 {
-    private string _currentLanguage = "en";
-
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -26,13 +24,13 @@ public class DocumentMetaData : Block, ITypoMetaData
     /// </summary>
     public string CurrentLanguage
     {
-        get => _currentLanguage;
+        get;
         set
         {
-            _currentLanguage = value;
+            field = value;
             CultureInfo = new CultureInfo(value);
         }
-    }
+    } = "en";
 
     /// <summary>
     /// Current culture info
@@ -42,27 +40,27 @@ public class DocumentMetaData : Block, ITypoMetaData
     /// <summary>
     /// Copyright to print in charts and other items
     /// </summary>
-    public string Copyright { get; set; }
+    public string Copyright { get; set; } = string.Empty;
 
     /// <summary>
     /// Name(s) of the author(s)
     /// </summary>
-    public string Authors { get; set; }
+    public string Authors { get; set; } = string.Empty;
 
     /// <summary>
     /// Company name
     /// </summary>
-    public string Company { get; set; }
+    public string Company { get; set; } = string.Empty;
 
     /// <summary>
     /// Company website
     /// </summary>
-    public string CompanyWebsite { get; set; }
+    public string CompanyWebsite { get; set; } = string.Empty;
 
     /// <summary>
     /// Path to logo to print in the page header
     /// </summary>
-    public string LogoPath { get; set; }
+    public string LogoPath { get; set; } = string.Empty;
 
     /// <summary>
     /// Width of the logo to print in the page header in cm
@@ -72,7 +70,7 @@ public class DocumentMetaData : Block, ITypoMetaData
     /// <summary>
     /// Title of the document
     /// </summary>
-    public string Title { get; set; }
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
     /// Document description

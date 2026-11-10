@@ -52,10 +52,6 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
         var factory = new PdfBuilderFactory(fontResolver);
 
         PdfDocument = factory.CreateInstance(styleSet);
-        PdfDocument.TitleTableOfFigures = metaData.TofHeading;
-        PdfDocument.TitleTableOfEquations = metaData.ToeHeading;
-        PdfDocument.TitleTableOfTables = metaData.TotHeading;
-        PdfDocument.TitleTableOfContent = metaData.TocHeading;
     }
 
     /// <summary>

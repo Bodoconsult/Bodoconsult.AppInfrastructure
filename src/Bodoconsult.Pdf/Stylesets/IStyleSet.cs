@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.Pdf.PdfSharp;
 using MigraDoc.DocumentObjectModel;
 
 namespace Bodoconsult.Pdf.Stylesets;
@@ -50,6 +51,11 @@ public interface IStyleSet
     /// The resulting text column width
     /// </summary>
     Unit ColumnWidth { get; set; }
+
+    /// <summary>
+    /// The default style to use for the table
+    /// </summary>
+    ITypoTableStyle DefaultTableStyle { get; set; }
 
     /// <summary>
     /// Normal paragraphs (default style)
