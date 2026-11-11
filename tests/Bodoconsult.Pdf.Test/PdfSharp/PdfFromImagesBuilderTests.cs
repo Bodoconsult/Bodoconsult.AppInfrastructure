@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 // https://github.com/ststeiger/PdfSharpCore/issues/203
 
-namespace Bodoconsult.Pdf.Test;
+namespace Bodoconsult.Pdf.Test.PdfSharp;
 
 [TestFixture]
 internal class PdfFromImagesBuilderTests

@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using System.Reflection;
 using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Interfaces;
+using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 
-namespace BodoWebReporting.Dal.Handler;
+namespace BodoWebReporting.Dal.ReportHandling;
 
 [SupportedOSPlatform("windows")]
 public class WebReportingHandler : IWebReportingHandler
@@ -40,8 +40,8 @@ public class WebReportingHandler : IWebReportingHandler
         var file = Path.Combine(CurrentDir, @"Template\StyleImport.cs");
 
         // Styles laden
-        StyleHandler.FileName = file;
-        StyleHandler.Start();
+        StyleHelper.FileName = file;
+        StyleHelper.Start();
         _webReportHandler = webReportHandler;
     }
 
@@ -92,7 +92,8 @@ public class WebReportingHandler : IWebReportingHandler
         _appGlobals.StatusMessageDelegate?.Invoke("Create WebReports...");
         _webReportHandler.Target = ReportingTargets.PdfFile;
         var result = _webReportHandler.StartExport();
-        _webReportHandler.MoveToTarget();
+        _webReportHandler.WaitForExportsDone();
+        _webReportHandler.CopyToTarget();
         return result;
     }
 

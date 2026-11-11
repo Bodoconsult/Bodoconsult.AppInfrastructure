@@ -38,5 +38,4 @@ public static class TypoPaperFormatExtensions
                 return PageSize.A4;
         }
     }
-
 }

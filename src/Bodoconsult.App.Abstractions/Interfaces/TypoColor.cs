@@ -128,11 +128,11 @@ public class TypoColor: IEquatable<TypoColor>
     }
 
     /// <summary>
-    /// Get a color from HTML color string with 7 chars length like #000000
+    /// Get a color from HTML color string with 7 or 9 chars length like #000000  or #00000000
     /// </summary>
-    /// <param name="htmlColor">HTML color string with 7 chars length</param>
+    /// <param name="htmlColor">HTML color string with 7 or 9 chars length</param>
     /// <returns>Color or null</returns>
-    public static TypoColor? FromHtml(string htmlColor)
+    public static TypoColor FromHtml(string htmlColor)
     {
         var color = new TypoColor();
 
@@ -143,15 +143,12 @@ public class TypoColor: IEquatable<TypoColor>
             color.B = Convert.ToByte(htmlColor.Substring(5, 2), 16);
             return color;
         }
-        //string r = char.ToString(htmlColor[1]);
-        //string g = char.ToString(htmlColor[2]);
-        //string b = char.ToString(htmlColor[3]);
 
-        //c = System.Drawing.Color.FromArgb(Convert.ToInt32(r + r, 16),
-        //    Convert.ToInt32(g + g, 16),
-        //    Convert.ToInt32(b + b, 16));
-        return null;
-
+        color.A = Convert.ToByte(htmlColor.Substring(1, 2), 16);
+        color.R = Convert.ToByte(htmlColor.Substring(3, 2), 16);
+        color.G = Convert.ToByte(htmlColor.Substring(5, 2), 16);
+        color.B = Convert.ToByte(htmlColor.Substring(7, 2), 16);
+        return color;
     }
 
     /// <summary>

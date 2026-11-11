@@ -36,3 +36,9 @@ NOT intended for public use
 -  Replaced IPdfBuilder.TitleTableOfFigures with ITypoMetaData.TofHeading
 
 -   Replaced IPdfBuilder.PageNumberPrefix with ITypoMetaData.PageNumberPrefix
+
+-   Renamed TypoColorExtensions class to PdfColorExtensions
+
+-   Added PdfColorExtensions.FromHtml method
+
+-   PdfBuilder and PdfCreator class allow saving the DDL markup for the PDF next to the PDF with extension .mdddl. This may be helpful finding bugs in PDF creation process. Use CreateDdlFile property set to true to activate DDL creation.

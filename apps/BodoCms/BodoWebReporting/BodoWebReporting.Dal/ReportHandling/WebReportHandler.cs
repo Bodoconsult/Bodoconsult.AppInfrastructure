@@ -1,15 +1,15 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System.Data;
+using System.Diagnostics;
+using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Interfaces;
 using BodoWebReporting.Dal.Exporter;
 using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
-using System.Data;
-using System.Diagnostics;
-using System.Runtime.Versioning;
 
-namespace BodoWebReporting.Dal.Handler;
+namespace BodoWebReporting.Dal.ReportHandling;
 
 [SupportedOSPlatform("windows")]
 public class WebReportHandler: BaseObjectHandler, IWebReportHandler
@@ -26,15 +26,23 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
     public WebReportHandler(IDataHandler dataHandler, IWebReportExporterFactory webReportExporterFactory, IAppGlobals appGlobals) : base(dataHandler, appGlobals)
     {
         _webReportExporterFactory = webReportExporterFactory;
-        Schritt = 21;
+        Steps = 21;
     }
 
-    public int Schritt;
+    /// <summary>
+    /// Steps
+    /// </summary>
+    public int Steps { get; set; }
 
+    /// <summary>
+    /// The kind of reporting to be created
+    /// </summary>
     public ReportingTargets? Target { get; set; }
 
-    public FileOptions? FileOption { get; set; }
-
+    /// <summary>
+    /// Start the export tasks for all files
+    /// </summary>
+    /// <returns>Number of reports created</returns>
     public int StartExport()
     {
 
@@ -50,10 +58,6 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
             i++;
         }
 
-        Task.WaitAll(_exportTasks.ToArray());
-
-        SetStatus("Exporting reporting is done...");
-
         return i;
         //}
         //catch (Exception ex)
@@ -63,9 +67,8 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         //}
     }
 
-
     /// <summary>
-    /// Export aller Berichte einer Reportdatei
+    /// Start a single report export to a file task
     /// </summary>
     public void StartExportReportFile(ReportingFile file, int id)
     {
@@ -75,11 +78,11 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         SetStatus($"Export report '{file.FileName}'");
 
-        StyleHandler.RunCode();
+        StyleHelper.RunCode();
 
         var wr = _webReportExporterFactory.CreateInstance(file, id);
-        wr.Schritt = Schritt;
-        wr.BackColor = StyleHandler.BackColor;
+        wr.Steps = Steps;
+        wr.BackColor = StyleHelper.BackColor;
         wr.Title = TextHelper.Parser(file.Shortname) ?? "Title";
         wr.StyleSet.DocumentMetaData.Title = wr.Title;
         wr.StyleSet.DocumentMetaData.Authors = file.Author;
@@ -96,16 +99,15 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         var itemCount = file.ReportingFileParts.Count;
 
         var data = new DataTable();
-
         foreach (var rfp in file.ReportingFileParts)
         {
             if (start)
             {
                 wr.Landscape = rfp.Landscape;
 
-                Schritt = rfp.Landscape ? 35 : 42;
+                Steps = rfp.Landscape ? 35 : 42;
 
-                wr.Schritt = Schritt;
+                wr.Steps = Steps;
 
                 if (!string.IsNullOrEmpty(rfp.BackgroundImagePath) &&  backImage != rfp.BackgroundImagePath && File.Exists(rfp.BackgroundImagePath))
                 {
@@ -124,17 +126,17 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
                 wr.AddPageSetup();
 
-                // Inhaltsverzeichnis sinnvoll?
+                // Does a TOC make sense?
                 if (itemCount < 2)
                 {
-                    wr.NewContentSection();
                     //wr.AddHeading(r["WR_Title1"].ToString());
                 }
                 else
                 {
                     wr.TocSection(rfp.Title1);
-                    wr.NewContentSection();
                 }
+
+                wr.NewContentSection();
             }
 
             wr.Subject = rfp.Subject ?? string.Empty;
@@ -161,7 +163,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                 continue;
             }
 
-            if (typ == "smalltable" && data.Rows.Count > Schritt / 2)
+            if (typ == "smalltable" && data.Rows.Count > Steps / 2)
             {
                 typ = "table";
             }
@@ -210,76 +212,23 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                     wr.BackgroundImagePath = rfp.BackgroundImagePath;
                 }
                 //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
-                wr.NewContentSection();
+                //wr.NewContentSection();
             }
 
 
             switch (typ)
             {
                 case "heading":
-                    SetStatus($"Exporting heading {rfp.Name}...");
-
-                    gewicht = 0;
-                    wr.EndCharting();
-                    if (backImage != rfp.BackgroundImagePath)
-                    {
-                        wr.BackgroundImagePath = rfp.BackgroundImagePath;
-                    }
-
-                    //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
-                    if (!start) wr.NewContentSection();
-                    wr.AddHeading(rfp.Name ?? "Heading missing (rfp.Name)");
+                    AddHeading(rfp, wr, backImage);
                     break;
                 case "table":
-                    SetStatus($"Exporting table {rfp.Name}...{gewicht}");
-                    left = 0;
-                    wr.EndCharting();
-                    wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
+                    AddTable(rfp, gewicht, wr, data);
                     break;
                 case "smalltable":
-                    SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
-                    left = 0;
-                    wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
+                    AddSmallTable(rfp, gewicht, wr, data);
                     break;
                 case "chart":
-                    SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
-
-                    // Entferne ggfs. "Gesamt" für Charts
-                    var s = $"[{data.Columns[0].ColumnName}]='Gesamt'";
-
-                    if (data.Columns[0].DataType == typeof(string))
-                    {
-
-                        //try
-                        //{
-                        if (data.Select(s).Any()) data.Rows.RemoveAt(data.Rows.Count - 1);
-                        //}
-                        //// ReSharper disable EmptyGeneralCatchClause
-                        //catch
-                        //// ReSharper restore EmptyGeneralCatchClause
-                        //{
-
-                    }
-
-
-                    //}
-
-                    var chartdata = new ChartData
-                    {
-                        Data = data.Copy(),
-                        Title = rfp.Title ?? "Title missing (rfp.Title)",
-                        Columns = rfp.ChartColumns ?? string.Empty,
-                        ColumnsDataTable = rfp.ChartColumnsDataTable ?? string.Empty,
-                        YLabel = rfp.ChartYUnit ?? string.Empty,
-                        LegendLength = rfp.ChartLegendLength,
-                        TypeOfChart = rfp.ChartType,
-                        Left = left,
-                    };
-
-                    left = left == 0 ? 24 : 0;
-
-                    wr.AddChart(chartdata);
-
+                    AddChart(rfp, gewicht, data, left, wr);
                     break;
             }
 
@@ -295,10 +244,8 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         var task = new TaskFactory().StartNew(() =>
             {
-
                 wr.ExportReport();
                 wr.Dispose();
-
             }
         );
 
@@ -309,8 +256,92 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         //{
         //    _dataHandler.ErrorHandling("BodoWebReporting:ReportingHandler:StartExportReportFile", string.Format("{1}:{0}", ex.Message, file.FileName));
         //}
+    }
+
+    private void AddChart(ReportingFileParts rfp, int gewicht, DataTable data, int left, WebReportExporter wr)
+    {
+        SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
+
+        // Entferne ggfs. "Gesamt" für Charts
+        var s = $"[{data.Columns[0].ColumnName}]='Gesamt'";
+
+        if (data.Columns[0].DataType == typeof(string))
+        {
+
+            //try
+            //{
+            if (data.Select(s).Any())
+            {
+                data.Rows.RemoveAt(data.Rows.Count - 1);
+            }
+            //}
+            //// ReSharper disable EmptyGeneralCatchClause
+            //catch
+            //// ReSharper restore EmptyGeneralCatchClause
+            //{
+
+        }
 
 
+        //}
+
+        var chartdata = new ChartData
+        {
+            Data = data.Copy(),
+            Title = rfp.Title ?? "Title missing (rfp.Title)",
+            Columns = rfp.ChartColumns ?? string.Empty,
+            ColumnsDataTable = rfp.ChartColumnsDataTable ?? string.Empty,
+            YLabel = rfp.ChartYUnit ?? string.Empty,
+            LegendLength = rfp.ChartLegendLength,
+            TypeOfChart = rfp.ChartType,
+            Left = left,
+        };
+
+        left = left == 0 ? 24 : 0;
+
+        wr.AddChart(chartdata);
+    }
+
+    private void AddSmallTable(ReportingFileParts rfp, int gewicht, WebReportExporter wr, DataTable data)
+    {
+        SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
+        wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
+    }
+
+    private void AddTable(ReportingFileParts rfp, int gewicht, WebReportExporter wr, DataTable data)
+    {
+        SetStatus($"Exporting table {rfp.Name}...{gewicht}");
+        wr.EndCharting();
+        wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
+    }
+
+    private void AddHeading(ReportingFileParts rfp, WebReportExporter wr, string? backImage)
+    {
+        SetStatus($"Exporting heading {rfp.Name}...");
+
+        wr.EndCharting();
+        if (backImage != rfp.BackgroundImagePath)
+        {
+            wr.BackgroundImagePath = rfp.BackgroundImagePath;
+        }
+
+        if (wr.NumberOfContentElements > 1)
+        {
+            wr.AddPageBreak();
+        }
+
+        //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
+        wr.AddHeading(rfp.Name ?? "Heading missing (rfp.Name)");
+    }
+
+    /// <summary>
+    /// Wait for all export tasks
+    /// </summary>
+    public void WaitForExportsDone()
+    {
+        Task.WaitAll(_exportTasks.ToArray());
+
+        SetStatus("Exporting reporting is done...");
     }
 
     private static string FormatAddInfos(DataTable dataTable)
@@ -319,8 +350,10 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
     }
 
 
-
-    public void MoveToTarget()
+    /// <summary>
+    /// Copy the reports to their final targets
+    /// </summary>
+    public void CopyToTarget()
     {
         var ct = DataHandler.GetReportingTargets(AppGlobals.TargetPath);
 

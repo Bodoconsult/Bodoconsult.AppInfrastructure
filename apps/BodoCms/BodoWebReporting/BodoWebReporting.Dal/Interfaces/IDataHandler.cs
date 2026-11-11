@@ -57,6 +57,14 @@ public interface IDataHandler
     /// <returns>List with <see cref="ReportingFile"/> instances</returns>
     IList<ReportingFile> GetReportingFiles(string targetPath);
 
+    /// <summary> 
+    /// Get reporting file
+    /// </summary>
+    /// <param name="targetPath">Target path</param>
+    /// <param name="fileName">Requested report filename</param>
+    /// <returns><see cref="ReportingFile"/> instance or null</returns>
+    ReportingFile? GetReportingFile(string targetPath, string fileName);
+
     /// <summary>
     /// Send an error mail
     /// </summary>

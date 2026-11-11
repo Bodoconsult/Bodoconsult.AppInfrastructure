@@ -4,7 +4,7 @@ using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using BodoWebReporting.Dal.Interfaces;
 
-namespace BodoWebReporting.Dal.Handler;
+namespace BodoWebReporting.Dal.ReportHandling;
 
 /// <summary>
 /// Base class for reporting object handlers

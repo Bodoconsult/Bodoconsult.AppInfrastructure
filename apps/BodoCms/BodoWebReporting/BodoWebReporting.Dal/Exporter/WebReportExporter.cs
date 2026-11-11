@@ -1,17 +1,13 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.App.Helpers;
 using Bodoconsult.Drawing;
-using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
-using BodoWebReporting.Dal.Handler;
+using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using BodoWebReporting.Dal.Report;
-using DocumentFormat.OpenXml.Office2010.Word;
 using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Internals;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
@@ -32,14 +28,19 @@ public class WebReportExporter : IDisposable
     private readonly int _id;
     private readonly IWebChartExporterFactory _webChartExporterFactory;
 
+    private int _headingCounter;
+
     public WebReportExporter(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory, ReportingFile file, int id = 1)
     {
         _webChartExporterFactory = webChartExporterFactory;
 
-        StyleSet = StyleHandler.StyleSet;
+        StyleSet = StyleHelper.StyleSet;
 
 
         Pdf = new PdfCreator(StyleSet);
+#if DEBUG
+        Pdf.CreateDdlFile = true;
+#endif
         
         //BackColor = new Color(211, 223, 240);
         //TableBorderColor = new Color(217, 230, 245);
@@ -93,7 +94,10 @@ public class WebReportExporter : IDisposable
         }
     }
 
-    public int Schritt { get; set; }
+    /// <summary>
+    /// Steps
+    /// </summary>
+    public int Steps { get; set; }
 
     public bool Landscape { get; set; } = true;
 
@@ -111,17 +115,18 @@ public class WebReportExporter : IDisposable
     public string Subject { get; set; } = string.Empty;
 
     public IStyleSet StyleSet { get; set; }
+    public int NumberOfContentElements => Pdf.NumberOfContentElements;
 
     public readonly PdfCreator Pdf;
 
 
     public void StartDocument()
     {
-        BackColor = StyleHandler.BackColor;
-        TableBorderColor = StyleHandler.TableBorderColor;
-        AlternateBackColor = StyleHandler.AlternateBackColor;
+        BackColor = StyleHelper.BackColor;
+        TableBorderColor = StyleHelper.TableBorderColor;
+        AlternateBackColor = StyleHelper.AlternateBackColor;
 
-        Pdf.Increment = Schritt;
+        Pdf.Increment = Steps;
 
         var meta = StyleSet.DocumentMetaData;
 
@@ -167,7 +172,7 @@ public class WebReportExporter : IDisposable
         //    Pdf.BackgroundImagePath = null;
         //    if (!string.IsNullOrEmpty(BackgroundImagePath))  Debug.Print($"Not found: {BackgroundImagePath}");
         //}
-        Pdf.Increment = Schritt;
+        Pdf.Increment = Steps;
         Pdf.CreateTocSection(heading);
     }
 
@@ -175,7 +180,7 @@ public class WebReportExporter : IDisposable
 
     public void NewContentSection()
     {
-        Pdf.Increment = Schritt;
+        Pdf.Increment = Steps;
         //if (File.Exists(BackgroundImagePath))
         //{
 
@@ -196,21 +201,29 @@ public class WebReportExporter : IDisposable
 
     public void AddTable(string tableTitle, DataTable data)
     {
-        Pdf.Increment = Schritt;
+        Pdf.Increment = Steps;
         Pdf.AddTableFrame(data, tableTitle, "Heading1", AddInfos, "Details");
     }
 
     public void AddTable(string tableTitle, DataTable data, bool showInToc, bool addPageBreakIfNecessary)
     {
-        Pdf.Increment = Schritt;
+        Pdf.Increment = Steps;
         Pdf.AddPageBreakIfNecessary = addPageBreakIfNecessary;
 
         Pdf.AddTableFrame(data, tableTitle, showInToc ? "Heading1" : "NoHeading1", AddInfos, "Details", Pdf.Width);
     }
 
+    /// <summary>
+    /// Add a heading to the report
+    /// </summary>
+    /// <param name="headingTitle">Heading title</param>
     public void AddHeading(string headingTitle)
     {
-        Pdf.AddParagraph(headingTitle, "Heading1");
+        var tag = $"H{_headingCounter}";
+        Pdf.AddHeading1(headingTitle, tag);
+        Pdf.AddToc1Entry(headingTitle, tag);
+
+        _headingCounter++;
     }
 
     public void AddChart(ChartData data)
@@ -255,8 +268,6 @@ public class WebReportExporter : IDisposable
     public void ExportReport()
     {
         Pdf.RenderToPdf(_file.FileName, false);
-
-        FileSystemHelper.RunInDebugMode(_file.FileName);
     }
 
     public int GetCurrentHeightUnits()
@@ -396,7 +407,7 @@ public class WebReportExporter : IDisposable
         ps.LeftMargin = Unit.FromCentimeter(1.5);
         ps.RightMargin = Unit.FromCentimeter(1.5);
         ps.TopMargin = Unit.FromCentimeter(1.3);
-        ps.BottomMargin = Unit.FromCentimeter(0.7);
+        ps.BottomMargin = Unit.FromCentimeter(0.5);
 
         ps.HeaderDistance = Unit.FromCentimeter(0.4);
         ps.FooterDistance = Unit.FromCentimeter(0.3);
@@ -405,5 +416,13 @@ public class WebReportExporter : IDisposable
 
         StyleSet.CalculateMeasures();
         StyleSet.InitializeStyles();
+    }
+
+    /// <summary>
+    /// Add a page break
+    /// </summary>
+    public void AddPageBreak()
+    {
+        Pdf.AddPageBreak();
     }
 }

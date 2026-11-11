@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using BodoWebReporting.Dal.Exporter;
 using BodoWebReporting.Dal.Interfaces;
 
-namespace BodoWebReporting.Dal.Handler;
+namespace BodoWebReporting.Dal.ReportHandling;
 
 /// <summary>
 /// Current implementation of <see cref="IWebTableHandler"/>
@@ -25,6 +24,10 @@ public class WebTableHandler: BaseObjectHandler, IWebTableHandler
         _webTableExporterFactory = webTableExporterFactory;
     }
 
+    /// <summary>
+    /// Export the tables
+    /// </summary>
+    /// <returns>Number of exported tables</returns>
     public int ExportTables()
     {
         var data = DataHandler.GetWebTables(AppGlobals.TargetPath);

@@ -16,7 +16,7 @@ using System.IO;
 using System.Runtime.Versioning;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;
 
-namespace Bodoconsult.Pdf.Test;
+namespace Bodoconsult.Pdf.Test.PdfSharp;
 
 [SupportedOSPlatform("windows")]
 [TestFixture]

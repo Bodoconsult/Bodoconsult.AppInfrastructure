@@ -1,18 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Charting.Base.Interfaces;
 using Bodoconsult.Database.Interfaces;
-using Bodoconsult.Database.SqlClient;
 using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
-using Microsoft.Data.SqlClient;
 
-namespace BodoWebReporting.Dal.Handler;
+namespace BodoWebReporting.Dal.DataHandling;
 
 /// <summary>
 /// Data layer
@@ -145,62 +141,83 @@ public class DataHandler : IDataHandler
         var df = _db.GetDataTable("EXEC dbo.spWEB_Reporting_Files");
         foreach (DataRow row in df.Rows)
         {
-
-            var fileName = row["WR_FileName"].ToString();
-
-            if (string.IsNullOrEmpty(fileName))
-            {
-                continue;
-            }
-
-            var rf = new ReportingFile
-            {
-                FileName = Path.Combine(targetPath, fileName),
-                Author = row["WR_Author"].ToString() ?? "Author",
-                Shortname = row["WR_ShortName"].ToString(),
-                LogoPath = row["WR_LogoPath"].ToString()
-            };
-
-
-            var dt = _db.GetDataTable($"EXEC dbo.spWEB_Reporting '{fileName}'");
-            for (var index = 0; index < dt.Rows.Count; index++)
-            {
-                var r = dt.Rows[index];
-                var rfp = new ReportingFileParts
-                {
-                    Landscape = Convert.ToBoolean(r["WR_Landscape"].ToString()),
-                    BackgroundImagePath = r["WR_BackgroundImagePath"].ToString(),
-                    LogoPath = r["WR_LogoPath"].ToString(),
-                    Title = r["WR_Title"].ToString(),
-                    Title1 = r["WR_Title1"].ToString(),
-                    Subject = r["WR_Subject"].ToString(),
-                    Sql = r["WR_SQL"].ToString(),
-                    AddInfoSql = r["WR_AddInfos"].ToString(),
-                    ReportType = r["WR_Type"].ToString()?.ToLowerInvariant().Trim(),
-                    Name = r["WR_Name"].ToString(),
-                    ShowInToc = Convert.ToBoolean(r["WR_ShowInToc"].ToString()),
-                    ChartColumns = r["WR_C_Columns"].ToString(),
-                    ChartColumnsDataTable = r["WR_C_ColumnsDataTable"].ToString(),
-                    ChartYUnit = r["WR_C_Y_Unit"].ToString(),
-                    ChartType = string.IsNullOrEmpty(r["WR_C_ChartType"].ToString())
-                        ? ChartType.BarChart
-                        : (ChartType)Enum.Parse(typeof(ChartType),
-                            $"{r["WR_C_ChartType"].ToString()?.Trim().ToLowerInvariant()}chart", true),
-                    ChartLegendLength = string.IsNullOrEmpty(r["WR_C_LegendLength"].ToString())
-                        ? (short)0
-                        : Convert.ToInt16(r["WR_C_LegendLength"].ToString())
-                };
-
-
-                rf.ReportingFileParts.Add(rfp);
-            }
-
-            result.Add(rf);
+            GetReportingFile(targetPath, row, result);
         }
 
         return result;
     }
 
+    private void GetReportingFile(string targetPath, DataRow row, List<ReportingFile> result)
+    {
+        var fileName = row["WR_FileName"].ToString();
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return;
+        }
+
+        var rf = new ReportingFile
+        {
+            FileName = Path.Combine(targetPath, fileName),
+            Author = row["WR_Author"].ToString() ?? "Author",
+            Shortname = row["WR_ShortName"].ToString(),
+            LogoPath = row["WR_LogoPath"].ToString()
+        };
+        
+        var dt = _db.GetDataTable($"EXEC dbo.spWEB_Reporting '{fileName}'");
+        for (var index = 0; index < dt.Rows.Count; index++)
+        {
+            var r = dt.Rows[index];
+            var rfp = new ReportingFileParts
+            {
+                Landscape = Convert.ToBoolean(r["WR_Landscape"].ToString()),
+                BackgroundImagePath = r["WR_BackgroundImagePath"].ToString(),
+                LogoPath = r["WR_LogoPath"].ToString(),
+                Title = r["WR_Title"].ToString(),
+                Title1 = r["WR_Title1"].ToString(),
+                Subject = r["WR_Subject"].ToString(),
+                Sql = r["WR_SQL"].ToString(),
+                AddInfoSql = r["WR_AddInfos"].ToString(),
+                ReportType = r["WR_Type"].ToString()?.ToLowerInvariant().Trim(),
+                Name = r["WR_Name"].ToString(),
+                ShowInToc = Convert.ToBoolean(r["WR_ShowInToc"].ToString()),
+                ChartColumns = r["WR_C_Columns"].ToString(),
+                ChartColumnsDataTable = r["WR_C_ColumnsDataTable"].ToString(),
+                ChartYUnit = r["WR_C_Y_Unit"].ToString(),
+                ChartType = string.IsNullOrEmpty(r["WR_C_ChartType"].ToString())
+                    ? ChartType.BarChart
+                    : (ChartType)Enum.Parse(typeof(ChartType),
+                        $"{r["WR_C_ChartType"].ToString()?.Trim().ToLowerInvariant()}chart", true),
+                ChartLegendLength = string.IsNullOrEmpty(r["WR_C_LegendLength"].ToString())
+                    ? (short)0
+                    : Convert.ToInt16(r["WR_C_LegendLength"].ToString())
+            };
+
+
+            rf.ReportingFileParts.Add(rfp);
+        }
+
+        result.Add(rf);
+    }
+
+    /// <summary> 
+    /// Get reporting file
+    /// </summary>
+    /// <param name="targetPath">Target path</param>
+    /// <param name="fileName">Requested report filename</param>
+    /// <returns><see cref="ReportingFile"/> instance or null</returns>
+    public ReportingFile? GetReportingFile(string targetPath, string fileName)
+    {
+        var result = new List<ReportingFile>();
+
+        var df = _db.GetDataTable($"EXEC dbo.spWEB_Reporting_File '{fileName}';");
+        foreach (DataRow row in df.Rows)
+        {
+            GetReportingFile(targetPath, row, result);
+        }
+
+        return result.FirstOrDefault();
+    }
 
     /// <summary>
     /// Send an error mail

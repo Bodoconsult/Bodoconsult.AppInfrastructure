@@ -30,5 +30,4 @@ public class PdfColumn
     /// Maximum length of the content in chars
     /// </summary>
     public int MaxLength { get; set; }
-
 }

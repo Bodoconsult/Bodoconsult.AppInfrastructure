@@ -18,7 +18,7 @@ public class ChartStyle: ICloneable
         Width = 750;
         Height = 464;   // Goldener Schnitt: Width / 1,618 
         Template = "default.xml";
-        TitleFontSizeDelta = 1.2F;
+        TitleFontSizeDelta = 1.5F;
         AxisLabelFontSizeDelta = 1.0F;
         AxisTitleFontSizeDelta = 1.1F;
         LegendFontSizeDelta = 0.9F;
@@ -30,12 +30,18 @@ public class ChartStyle: ICloneable
         ChartBorderCornerRadius = 20;
         CorrectiveFactor = 5;
         ChartBorderWidth = defaultLineWidth;
-        ChartBorderColor = TypoColor.FromArgb(178, 204, 255);
-        ChartBackgroundColor = TypoColor.FromArgb(178, 204, 255);
+
+        var color1 = TypoColor.FromArgb(178, 204, 255);
+        
+        ChartBorderColor = color1;
+        ChartBackgroundColor = color1;
         ChartBackgroundSecondColor = TypoColors.White;
         ChartBackgroundGradientStyle = GradientStyle.TopBottom;
-        BackgroundColor = TypoColor.FromArgb(208, 223, 255);
-        BackgroundSecondColor = TypoColor.FromArgb(208, 223, 255);
+
+        // var color1 = TypoColor.FromArgb(208, 223, 255);
+        var color2 = TypoColor.FromArgb(228, 237, 255);
+        BackgroundColor = color2;
+        BackgroundSecondColor = color2;
         BackGradientStyle = GradientStyle.None;
 
         TitleColor = TypoColor.FromArgb(26, 59, 124);

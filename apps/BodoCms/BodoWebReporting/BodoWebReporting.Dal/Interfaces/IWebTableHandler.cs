@@ -12,6 +12,6 @@ public interface IWebTableHandler
     /// <summary>
     /// Export the tables
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Number of exported tables</returns>
     int ExportTables();
 }

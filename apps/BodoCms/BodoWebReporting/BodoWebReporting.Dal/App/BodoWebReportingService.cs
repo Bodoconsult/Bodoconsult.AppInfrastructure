@@ -3,7 +3,6 @@
 using Bodoconsult.App.Abstractions.Delegates;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Helpers;
-using BodoWebReporting.Dal.Handler;
 using System.Diagnostics;
 using System.Runtime.Versioning;
 using BodoWebReporting.Dal.Interfaces;

@@ -5,9 +5,9 @@ using Bodoconsult.Pdf.Stylesets;
 using BodoWebReporting.Dal.Styles;
 using MigraDoc.DocumentObjectModel;
 
-namespace BodoWebReporting.Dal.Handler;
+namespace BodoWebReporting.Dal.Helpers;
 
-public static class StyleHandler
+public static class StyleHelper
 {
     public static Color BackColor { get; set; } = Colors.White;
     public static Color TableBorderColor { get; set; } = new(217, 230, 245);

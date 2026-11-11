@@ -75,8 +75,6 @@ public class ChartHandler : IChartHandler
     /// </summary>
     public void Export()
     {
-
-
         if (File.Exists(ChartData.FileName))
         {
             File.Delete(ChartData.FileName);
@@ -130,7 +128,7 @@ public class ChartHandler : IChartHandler
         var rectWidth = ChartData.ChartStyle.Width - deltaX;
         var rectHeight = ChartData.ChartStyle.Height - deltaY;
 
-        var radius = (int)(ChartData.ChartStyle.ChartBorderCornerRadius * 0.5);
+        var radius = (int)(ChartData.ChartStyle.ChartBorderCornerRadius * 0.25);
 
         var effLeft = radius;
         var effTop = radius;

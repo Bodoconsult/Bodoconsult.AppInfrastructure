@@ -300,7 +300,6 @@ public class DefaultStyleSet : IStyleSet
             },
             ParagraphFormat =
             {
-
                 Alignment = ParagraphAlignment.Left,
                 SpaceAfter = 0,
                 SpaceBefore = 0

@@ -4,7 +4,7 @@ using Bodoconsult.Pdf.Helpers;
 using MigraDoc.DocumentObjectModel;
 using NUnit.Framework;
 
-namespace Bodoconsult.Pdf.Test;
+namespace Bodoconsult.Pdf.Test.HelperTests;
 
 [TestFixture]
 public class ObjectHelperTests

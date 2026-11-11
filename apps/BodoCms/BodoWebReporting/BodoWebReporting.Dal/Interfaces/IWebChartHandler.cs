@@ -12,6 +12,6 @@ public interface IWebChartHandler
     /// <summary>
     /// Export the charts
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Number of exported charts</returns>
     int ExportCharts();
 }

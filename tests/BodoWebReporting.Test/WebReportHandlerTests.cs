@@ -2,16 +2,19 @@
 
 using Bodoconsult.Database.SqlClient;
 using BodoWebReporting.Dal.App;
-using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using NUnit.Framework;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Versioning;
+using Bodoconsult.App.Helpers;
 using Bodoconsult.Drawing.SkiaSharp.Factories;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
+using BodoWebReporting.Dal.DataHandling;
 using BodoWebReporting.Dal.Factories;
+using BodoWebReporting.Dal.Helpers;
+using BodoWebReporting.Dal.ReportHandling;
 
 namespace BodoWebReporting.Test;
 
@@ -29,10 +32,10 @@ internal class WebReportHandlerTests
         var file = Path.Combine(dir, @"Template\StyleImport.cs");
 
         // Styles laden
-        StyleHandler.FileName = file;
-        StyleHandler.Start();
+        StyleHelper.FileName = file;
+        StyleHelper.Start();
 
-        StyleHandler.RunCode();
+        StyleHelper.RunCode();
     }
 
     [Test]
@@ -51,6 +54,38 @@ internal class WebReportHandlerTests
 
         var rh = new WebReportHandler(dataLayer, factory, _appGlobals);
         rh.StartExport();
-        rh.MoveToTarget();
+        rh.WaitForExportsDone();
+        rh.CopyToTarget();
+    }
+
+    [Test]
+    public void StartExportReportFile_ValidReportName_ReportCreated()
+    {
+        ArgumentNullException.ThrowIfNull(_appGlobals.AppStartParameter.DefaultConnectionString);
+
+        var db = new SqlClientConnManager(_appGlobals.AppStartParameter.DefaultConnectionString);
+
+        const string reportName = "Andrea_Gesamtbericht.pdf";
+        var targetPath = Path.Combine(_appGlobals.TargetPath, reportName);
+
+        FileSystemHelper.DeleteFile(targetPath);
+
+        var dataLayer = new DataHandler(_appGlobals, db);
+
+        IBitmapServiceFactory bitmapServiceFactory = new BitmapServiceFactory();
+        var chartFactory = new WebChartExporterFactory(dataLayer, bitmapServiceFactory);
+
+        var factory = new WebReportExporterFactory(dataLayer, chartFactory);
+
+        var rh = new WebReportHandler(dataLayer, factory, _appGlobals);
+
+        var rf = dataLayer.GetReportingFile(_appGlobals.TargetPath, reportName);
+        ArgumentNullException.ThrowIfNull(rf);
+
+        rh.StartExportReportFile(rf, 0);
+
+        rh.WaitForExportsDone();
+
+        FileSystemHelper.RunInDebugMode(targetPath);
     }
 }

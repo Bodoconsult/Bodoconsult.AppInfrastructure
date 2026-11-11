@@ -19,9 +19,19 @@ namespace Bodoconsult.Pdf.Interfaces;
 public interface IPdfBuilder : IDisposable
 {
     /// <summary>
+    /// Create a DDL for the current document and save it with extension .mdddl next to the PDF rendered
+    /// </summary>
+    bool CreateDdlFile { get; set; }
+
+    /// <summary>
     /// Current styleset to use
     /// </summary>
     IStyleSet StyleSet { get; }
+
+    /// <summary>
+    /// Current number of content elements
+    /// </summary>
+    int NumberOfContentElements { get; }
 
     /// <summary>
     /// Current started table

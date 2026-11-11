@@ -99,5 +99,4 @@ public class PdfTextDocumentRendererTests
 
         FileSystemHelper.RunInDebugMode(filePath);
     }
-
 }

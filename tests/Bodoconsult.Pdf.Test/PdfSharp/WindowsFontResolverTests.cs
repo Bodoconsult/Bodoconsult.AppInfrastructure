@@ -5,7 +5,7 @@ using System.Runtime.Versioning;
 using Bodoconsult.Pdf.PdfSharp;
 using NUnit.Framework;
 
-namespace Bodoconsult.Pdf.Test;
+namespace Bodoconsult.Pdf.Test.PdfSharp;
 
 [TestFixture]
 [SupportedOSPlatform("windows")]

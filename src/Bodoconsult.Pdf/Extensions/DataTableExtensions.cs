@@ -192,12 +192,24 @@ public static class DataTableExtensions
     /// </summary>
     public static Dictionary<string, Color> BodoconsultCssColors => new()
     {
-        { "wr_cell_h1", Colors.GreenYellow },
-        { "wr_cell_h2", Colors.YellowGreen },
-        { "wr_cell_h3", Colors.Gold },
-        { "wr_cell_risk1", Colors.Red },
-        { "wr_cell_risk2", Colors.Orange }
+        { "wr_cell_h1", "#FFDF7F".FromHtml() },
+        { "wr_cell_h2", "#FCDD41".FromHtml()  },
+        { "wr_cell_h3", "#4DD110".FromHtml()  },
+        { "wr_cell_risk1", "#FF8000".FromHtml() },
+        { "wr_cell_risk2", "#FF01A1".FromHtml() }
     };
+
+    ///// <summary>
+    ///// CSS color settings for Bodoconsult website
+    ///// </summary>
+    //public static Dictionary<string, Color> BodoconsultCssColors => new()
+    //{
+    //    { "wr_cell_h1", Colors.GreenYellow },
+    //    { "wr_cell_h2", Colors.YellowGreen },
+    //    { "wr_cell_h3", Colors.Gold },
+    //    { "wr_cell_risk1", Colors.Red },
+    //    { "wr_cell_risk2", Colors.Orange }
+    //};
 
     /// <summary>
     /// Get the alignment for a datatype

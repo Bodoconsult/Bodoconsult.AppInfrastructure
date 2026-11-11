@@ -1,6 +1,5 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System;
 using System.Data;
 using System.Linq;
@@ -15,8 +14,8 @@ namespace Bodoconsult.Pdf.PdfSharp;
 /// </summary>
 public class PdfChart
 {
+    private int _xDimension;
     private readonly Chart _chart = new();
-
 
     /// <summary>
     /// Default ctor
@@ -69,8 +68,6 @@ public class PdfChart
     /// </summary>
     public int LegendLength { get; set; }
 
-    private int _xDimension;
-
     /// <summary>
     /// Chart title
     /// </summary>
@@ -91,7 +88,10 @@ public class PdfChart
         _chart.Height = Unit.FromCentimeter(Height);
 
         _chart.XAxis.MajorTickMark = TickMarkType.Outside;
-        if (!string.IsNullOrEmpty(XAxisLabel)) _chart.XAxis.Title.Caption = XAxisLabel;
+        if (!string.IsNullOrEmpty(XAxisLabel))
+        {
+            _chart.XAxis.Title.Caption = XAxisLabel;
+        }
 
         _chart.YAxis.MajorTickMark = TickMarkType.Outside;
         _chart.YAxis.HasMajorGridlines = true;
@@ -153,7 +153,6 @@ public class PdfChart
         _chart.RightArea.AddLegend();
 
         return _chart;
-
     }
 
     /// <summary>
@@ -179,7 +178,6 @@ public class PdfChart
     /// <param name="name">Name of the series</param>
     public void AddSeries(DataTable dataTable, int columnId, string name)
     {
-
         var x = new double[_xDimension];
 
         for (var i = 0; i < _xDimension; i++)
@@ -197,7 +195,6 @@ public class PdfChart
         //var x = query.Select(i => i.Field<Double>(columnId)).ToArray(); 
 
         AddSeries(x, name);
-
     }
 
     /// <summary>
@@ -218,7 +215,10 @@ public class PdfChart
     /// <param name="columnId">Column number starting with 0</param>
     public void XSeries(DataTable dataTable, int columnId)
     {
-        if (LegendLength > 15) LegendLength = 15;
+        if (LegendLength > 15)
+        {
+            LegendLength = 15;
+        }
 
         var rows = dataTable.EnumerateRows().Where(r => r.ItemArray[columnId]?.ToString() != "Gesamt").ToArray();
 

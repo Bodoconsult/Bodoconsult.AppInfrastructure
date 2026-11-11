@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using BodoWebReporting.Dal.Exporter;
 using BodoWebReporting.Dal.Model;
 
@@ -15,7 +14,6 @@ public interface IWebTableExporterFactory
     /// Current data handler
     /// </summary>
     IDataHandler DataHandler { get; }
-
 
     /// <summary>
     /// Create an instance of <see cref="WebTableExporter"/>

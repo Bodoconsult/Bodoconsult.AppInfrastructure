@@ -7,6 +7,7 @@ using Bodoconsult.Pdf.Helpers;
 using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.IO;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
@@ -46,6 +47,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// TOC section
     /// </summary>
     protected Section Toc;
+
     /// <summary>
     /// TOF section
     /// </summary>
@@ -94,9 +96,19 @@ public abstract class PdfBuilderBase : IPdfBuilder
     #endregion
 
     /// <summary>
+    /// Create a DDL for the current document and save it with extension .mdddl next to the PDF rendered
+    /// </summary>
+    public bool CreateDdlFile { get; set; }
+
+    /// <summary>
     /// Current styleset to use
     /// </summary>
     public IStyleSet StyleSet { get; private set; }
+
+    /// <summary>
+    /// Current number of content elements
+    /// </summary>
+    public int NumberOfContentElements => Content.Elements.Count;
 
     /// <summary>
     /// Current started table
@@ -145,6 +157,16 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="showPdfFile">Show Pdf-File in a viewer</param>
     public virtual void RenderToPdf(string fileName, bool showPdfFile)
     {
+        // Save DDL
+        if (CreateDdlFile)
+        {
+            var ddlFilename = fileName.Replace(".pdf", ".mdddl", StringComparison.OrdinalIgnoreCase);
+
+            var writer = new DdlWriter(ddlFilename);
+            writer.WriteDocument(Document);
+
+            Debug.Print(ddlFilename);
+        }
 
         var renderer = new PdfDocumentRenderer
         {
@@ -426,7 +448,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         Toc = Document.AddSection();
         Toc.PageSetup = StyleSet.PageSetup.Clone();
-        
+
         Content = Toc;
 
         if (isRestartPageNumberingRequired)
@@ -743,11 +765,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
         paragraph.AddBookmark(tag);
         paragraph.AddText(text ?? string.Empty);
 
-        if (level == 1 && Content.Elements.Count > 1)
-        {
-            Content.AddPageBreak();
-        }
-
         Content.Add(paragraph);
 
         return paragraph;
@@ -978,8 +995,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="height">Height in cm</param>
     public virtual void AddFigure(string imagePath, string legend, string tag, double width, double height)
     {
-
-
         AddImage(imagePath, width, height);
 
         if (string.IsNullOrEmpty(legend))
@@ -1057,7 +1072,12 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         var para = new Paragraph
         {
-            Style = FooterStyleName
+            Format =
+            {
+                SpaceAfter = 0,
+                SpaceBefore = 0
+            },
+            Style = FooterStyleName,
         };
 
         var sections = md.FooterTemplate.ToLowerInvariant().Split('|');
@@ -2567,7 +2587,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         //ObjectHelper.MapProperties(_ps, _document.DefaultPageSetup);
 
-        
+
 
         var style = Document.Styles["Normal"];
 

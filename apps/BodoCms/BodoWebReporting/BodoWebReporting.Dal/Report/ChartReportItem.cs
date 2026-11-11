@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using System.Drawing;
 using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Interfaces;
 using BodoWebReporting.Dal.Exporter;

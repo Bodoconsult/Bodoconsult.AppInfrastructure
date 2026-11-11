@@ -1,20 +1,20 @@
-// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+//// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 
-using NUnit.Framework;
+//using NUnit.Framework;
 
-namespace Bodoconsult.Pdf.Test;
+//namespace Bodoconsult.Pdf.Test;
 
-public class Tests
-{
-    [SetUp]
-    public void Setup()
-    {
-    }
+//public class Tests
+//{
+//    [SetUp]
+//    public void Setup()
+//    {
+//    }
 
-    [Test]
-    public void Test1()
-    {
-        Assert.Pass();
-    }
-}
+//    [Test]
+//    public void Test1()
+//    {
+//        Assert.Pass();
+//    }
+//}

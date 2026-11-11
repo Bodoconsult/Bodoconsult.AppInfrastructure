@@ -13,7 +13,7 @@ namespace BodoWebReporting.Dal.Styles;
 /// </summary>
 public class BodoWebReportingStyleSet : DefaultStyleSet
 {
-    private readonly TypoColor _blueColor = TypoColor.FromArgb(178, 204, 255);
+    private readonly TypoColor _blueColor = TypoColor.FromArgb(178, 204, 255); //TypoColor.FromHtml("#E4EDFF");
 
     public BodoWebReportingStyleSet()
     {
@@ -31,13 +31,12 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
             BottomMargin = Unit.FromCentimeter(1.2)
         };
 
-
         // Table style
         DefaultTableStyle = new PdfDefaultTableStyle
         {
             TypoTableHeaderBackColor = TypoColors.White,
             TypoTableAlternateBackColor = _blueColor,
-            TypoBorderBrush = new TypoSolidColorBrush(TypoColors.Transparent)
+            TypoBorderBrush = new TypoSolidColorBrush(_blueColor)
             //TypoTableBackColor = new TypoColor(217, 230, 245, 1)
         };
 
@@ -92,8 +91,8 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
                 PageBreakBefore = false,
                 KeepTogether = true,
                 KeepWithNext = true,
-                SpaceAfter = verticalMargin,
-                SpaceBefore = 2 * verticalMargin,
+                //SpaceAfter = verticalMargin,
+                //SpaceBefore = 2 * verticalMargin,
                 Alignment = ParagraphAlignment.Center
             }
         };
@@ -184,8 +183,8 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
             },
             ParagraphFormat =
             {
-                SpaceAfter = verticalMargin,
-                SpaceBefore = 2 * verticalMargin,
+                SpaceAfter = 0,
+                SpaceBefore = 0,
                 Alignment = ParagraphAlignment.Center,
                 Shading = new Shading{ Color = _blueColor.ToPdfColor()}
             }
@@ -345,7 +344,6 @@ public class BodoWebReportingStyleSet : DefaultStyleSet
         };
         Header.ParagraphFormat.Borders.Bottom.Width = 1;
         Header.ParagraphFormat.Borders.Bottom.Color = Colors.Black;
-
 
         Details = new Style("Details", "Normal")
         {

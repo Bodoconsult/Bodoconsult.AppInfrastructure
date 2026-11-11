@@ -6,9 +6,10 @@ using Bodoconsult.Database.SqlClient;
 using Bodoconsult.Drawing.SkiaSharp.Factories;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using BodoWebReporting.Dal.App;
+using BodoWebReporting.Dal.DataHandling;
 using BodoWebReporting.Dal.Factories;
-using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Interfaces;
+using BodoWebReporting.Dal.ReportHandling;
 using NUnit.Framework;
 
 namespace BodoWebReporting.Test;

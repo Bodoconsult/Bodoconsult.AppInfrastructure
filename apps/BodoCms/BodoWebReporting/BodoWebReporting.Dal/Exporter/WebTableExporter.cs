@@ -1,7 +1,8 @@
-﻿using System.Data;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
+using System.Data;
 using Bodoconsult.Office;
 using Bodoconsult.Web.Html.Html;
-using BodoWebReporting.Dal.Handler;
 using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;

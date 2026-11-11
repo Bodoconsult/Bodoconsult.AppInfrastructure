@@ -2,10 +2,9 @@
 
 using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Interfaces;
-using BodoWebReporting.Dal.Exporter;
 using BodoWebReporting.Dal.Interfaces;
 
-namespace BodoWebReporting.Dal.Handler;
+namespace BodoWebReporting.Dal.ReportHandling;
 
 [SupportedOSPlatform("windows")]
 public class WebChartHandler: BaseObjectHandler, IWebChartHandler

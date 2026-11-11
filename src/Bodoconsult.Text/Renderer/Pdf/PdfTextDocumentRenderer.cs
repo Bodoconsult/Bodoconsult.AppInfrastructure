@@ -52,6 +52,10 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
         var factory = new PdfBuilderFactory(fontResolver);
 
         PdfDocument = factory.CreateInstance(styleSet);
+
+#if DEBUG
+        PdfDocument.CreateDdlFile = true;
+#endif
     }
 
     /// <summary>

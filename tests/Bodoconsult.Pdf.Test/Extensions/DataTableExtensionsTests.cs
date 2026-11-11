@@ -4,12 +4,11 @@ using Bodoconsult.Pdf.Extensions;
 using Bodoconsult.Text.Test.Helpers;
 using NUnit.Framework;
 
-namespace Bodoconsult.Pdf.Test;
+namespace Bodoconsult.Pdf.Test.Extensions;
 
 [TestFixture]
-public class DataTableExtensionsTests
+internal class DataTableExtensionsTests
 {
-
     [Test]
     public void ToPdfTable_ValidDataTable_PdfTableCreated()
     {
