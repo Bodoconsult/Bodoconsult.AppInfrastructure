@@ -65,13 +65,8 @@ public class PdfTable
     /// </summary>
     public ITypoTableStyle TableStyle { get; set; }
 
-    ///// <summary>
-    ///// The width to use for the table in cm or 0. Default 0
-    ///// </summary>
-    //public double Width;
-
-    ///// <summary>
-    ///// Fit the table to the given width. If the width is zero the available page (or text column) width is taken. Default: false
-    ///// </summary>
-    //public bool FitToWidth { get; set; }
+    /// <summary>
+    /// Fit the table to the given  page (or text column) width. Default: false
+    /// </summary>
+    public bool FitToWidth { get; set; }
 }

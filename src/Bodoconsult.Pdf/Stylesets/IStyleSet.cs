@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-using Bodoconsult.Pdf.PdfSharp;
 using MigraDoc.DocumentObjectModel;
 
 namespace Bodoconsult.Pdf.Stylesets;
@@ -17,10 +16,17 @@ public interface IStyleSet
     ITypoMetaData DocumentMetaData { get; set; }
 
     /// <summary>
-    /// Create the page setup. This method must set <see cref="PageSetup"/>!
+    /// Create the page setup in portrait mode. This method must set <see cref="PageSetup"/>!
     /// </summary>
     /// <returns>Page setup</returns>
     PageSetup CreatePageSetup();
+
+    /// <summary>
+    /// Create the page setup. This method must set <see cref="PageSetup"/>!
+    /// </summary>
+    /// <param name="landscape">Orientation is landscape?</param>
+    /// <returns>Page setup</returns>
+    PageSetup CreatePageSetup(bool landscape);
 
     /// <summary>
     /// Calculate measures <see cref="TypeAreaWidth"/> and ColumnWidth!
@@ -55,7 +61,7 @@ public interface IStyleSet
     /// <summary>
     /// The default style to use for the table
     /// </summary>
-    ITypoTableStyle DefaultTableStyle { get; set; }
+    ITypoTableStyle DefaultTableStyle { get; }
 
     /// <summary>
     /// Normal paragraphs (default style)

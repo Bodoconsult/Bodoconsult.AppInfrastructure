@@ -33,25 +33,23 @@ public class WebReportExporter : IDisposable
     public WebReportExporter(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory, ReportingFile file, int id = 1)
     {
         _webChartExporterFactory = webChartExporterFactory;
+        _dataHandler = dataHandler;
+        _file = file;
+        _id = id;
 
-        StyleSet = StyleHelper.StyleSet;
-
+        // ToDo: move to DI
+        StyleSet = StyleHelper.CreateStyleSet(file.Landscape);
 
         Pdf = new PdfCreator(StyleSet);
 #if DEBUG
         Pdf.CreateDdlFile = true;
 #endif
-        
-        //BackColor = new Color(211, 223, 240);
-        //TableBorderColor = new Color(217, 230, 245);
-        //HeadLineColor = Colors.Black;
-        //DetailsColor = Colors.Black;
-        //Landscape = true;
-        _dataHandler = dataHandler;
-        _file = file;
-        _id = id;
+
     }
 
+    /// <summary>
+    /// Background image path or null
+    /// </summary>
     public string? BackgroundImagePath
     {
         get => _backgroundImagePath;
@@ -99,33 +97,46 @@ public class WebReportExporter : IDisposable
     /// </summary>
     public int Steps { get; set; }
 
+    /// <summary>
+    /// Landscape?
+    /// </summary>
     public bool Landscape { get; set; } = true;
 
-    public Color BackColor { get; set; } = new(211, 223, 240);
-    public Color TableBorderColor { get; set; } = new(217, 230, 245);
-    public Color HeadLineColor { get; set; } = Colors.Black;
-    public Color DetailsColor { get; set; } = Colors.Black;
-
-    public Color AlternateBackColor { get; set; } = new(217, 230, 245);
-
+    /// <summary>
+    /// Title
+    /// </summary>
     public string Title { get; set; } = string.Empty;
 
-    public string AddInfos { get; set; } = string.Empty;
+    /// <summary>
+    /// Additional info
+    /// </summary>
+    public string AdditionalInfo { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Subject
+    /// </summary>
     public string Subject { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Current styleset
+    /// </summary>
     public IStyleSet StyleSet { get; set; }
+
+    /// <summary>
+    /// Current number of content elements
+    /// </summary>
     public int NumberOfContentElements => Pdf.NumberOfContentElements;
 
+    /// <summary>
+    /// <see cref="PdfCreator"/> instance
+    /// </summary>
     public readonly PdfCreator Pdf;
 
-
+    /// <summary>
+    /// Start document generation
+    /// </summary>
     public void StartDocument()
     {
-        BackColor = StyleHelper.BackColor;
-        TableBorderColor = StyleHelper.TableBorderColor;
-        AlternateBackColor = StyleHelper.AlternateBackColor;
-
         Pdf.Increment = Steps;
 
         var meta = StyleSet.DocumentMetaData;
@@ -133,7 +144,7 @@ public class WebReportExporter : IDisposable
         meta.TocHeading = "Inhaltsverzeichnis";
         meta.HeaderText = Title;
         meta.PageNumberPrefix = "Seite";
-        meta.CultureInfo = CultureInfo.CurrentCulture; 
+        meta.CultureInfo = CultureInfo.CurrentCulture;
 
         // ToDo:
         //StyleSet.BackColor = BackColor;
@@ -154,12 +165,19 @@ public class WebReportExporter : IDisposable
 
     }
 
-    public void TocSection()
-    {
-        TocSection(null);
-    }
+    ///// <summary>
+    ///// Add a TOC section
+    ///// </summary>
+    //public void AddTocSection()
+    //{
+    //    AddTocSection(null);
+    //}
 
-    public void TocSection(string? heading)
+    /// <summary>
+    /// Create a TOC section with a heading
+    /// </summary>
+    /// <param name="heading"></param>
+    public void AddTocSection(string? heading)
     {
         //if (File.Exists(BackgroundImagePath))
         //{
@@ -202,7 +220,7 @@ public class WebReportExporter : IDisposable
     public void AddTable(string tableTitle, DataTable data)
     {
         Pdf.Increment = Steps;
-        Pdf.AddTableFrame(data, tableTitle, "Heading1", AddInfos, "Details");
+        Pdf.AddTableFrame(data, tableTitle, "Heading1", AdditionalInfo, "Details");
     }
 
     public void AddTable(string tableTitle, DataTable data, bool showInToc, bool addPageBreakIfNecessary)
@@ -210,7 +228,7 @@ public class WebReportExporter : IDisposable
         Pdf.Increment = Steps;
         Pdf.AddPageBreakIfNecessary = addPageBreakIfNecessary;
 
-        Pdf.AddTableFrame(data, tableTitle, showInToc ? "Heading1" : "NoHeading1", AddInfos, "Details", Pdf.Width);
+        Pdf.AddTableFrame(data, tableTitle, showInToc ? "Heading1" : "NoHeading1", AdditionalInfo, "Details", Pdf.Width, true);
     }
 
     /// <summary>
@@ -236,7 +254,7 @@ public class WebReportExporter : IDisposable
 
         var wc = new WebChart
         {
-            Id = _id*10000+_objectCounter,
+            Id = _id * 10000 + _objectCounter,
             Width = 750,
             Height = 454,
             Title = data.Title,
@@ -272,7 +290,7 @@ public class WebReportExporter : IDisposable
 
     public int GetCurrentHeightUnits()
     {
-        if (_reportItems.Count==0)
+        if (_reportItems.Count == 0)
         {
             return -1;
         }
@@ -314,8 +332,8 @@ public class WebReportExporter : IDisposable
                     Pdf.AddTableFrame(t.Data, t.Heading, "NoHeading1");
                     //Pdf.AddParagraph("Hallo");
                     break;
-                //default:
-                //    break;
+                    //default:
+                    //    break;
 
             }
 
@@ -399,18 +417,14 @@ public class WebReportExporter : IDisposable
         //Pdf.SetPage();
 
         var ps = StyleSet.PageSetup;
-        ps.Orientation = Landscape ? Orientation.Landscape : Orientation.Portrait;
-        var w = ps.PageWidth;
-        var h = ps.PageHeight;
-        ps.PageHeight = w;
-        ps.PageWidth = h;
+
         ps.LeftMargin = Unit.FromCentimeter(1.5);
         ps.RightMargin = Unit.FromCentimeter(1.5);
         ps.TopMargin = Unit.FromCentimeter(1.3);
         ps.BottomMargin = Unit.FromCentimeter(0.5);
 
         ps.HeaderDistance = Unit.FromCentimeter(0.4);
-        ps.FooterDistance = Unit.FromCentimeter(0.3);
+        ps.FooterDistance = Unit.FromCentimeter(0.5);
 
         ps.SectionStart = BreakType.BreakNextPage;
 

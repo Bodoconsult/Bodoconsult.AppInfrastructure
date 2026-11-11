@@ -23,23 +23,49 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         DefaultVerticalMargin = _typography.FontSize / 4;
     }
 
+
     /// <summary>
-    /// Create the page setup. This method should set <see cref="DefaultStyleSet.TypeAreaWidth"/>!
+    /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!
     /// </summary>
+    /// <param name="landscape">Is ignored for this implementation</param>
     /// <returns>Page setup</returns>
-    public override PageSetup CreatePageSetup()
+    public override PageSetup CreatePageSetup(bool landscape)
     {
-        var ps = new PageSetup
+        var orientation = _typography.TypoPaperFormat.Size.Width < _typography.TypoPaperFormat.Size.Height
+            ? Orientation.Portrait
+            : Orientation.Landscape;
+
+        PageSetup ps;
+
+        if (orientation == Orientation.Landscape)
         {
-            Orientation = _typography.TypoPaperFormat.Size.Width <_typography.TypoPaperFormat.Size.Height ?  Orientation.Portrait: Orientation.Landscape,
-            PageFormat = GetPageFormat(_typography.TypoPaperFormat.PaperFormatName),
-            PageWidth = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Width),
-            PageHeight = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Height),
-            LeftMargin = Unit.FromCentimeter(_typography.TypoMargins.Left),
-            TopMargin = Unit.FromCentimeter(_typography.TypoMargins.Top),
-            RightMargin = Unit.FromCentimeter(_typography.TypoMargins.Right),
-            BottomMargin = Unit.FromCentimeter(_typography.TypoMargins.Bottom)
-        };
+            ps = new PageSetup
+            {
+                Orientation = orientation,
+                PageFormat = GetPageFormat(_typography.TypoPaperFormat.PaperFormatName),
+                PageWidth = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Height),
+                PageHeight = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Width),
+                LeftMargin = Unit.FromCentimeter(_typography.TypoMargins.Left),
+                TopMargin = Unit.FromCentimeter(_typography.TypoMargins.Top),
+                RightMargin = Unit.FromCentimeter(_typography.TypoMargins.Right),
+                BottomMargin = Unit.FromCentimeter(_typography.TypoMargins.Bottom)
+            };
+        }
+        else
+        {
+            ps = new PageSetup
+            {
+                Orientation = orientation,
+                PageFormat = GetPageFormat(_typography.TypoPaperFormat.PaperFormatName),
+                PageWidth = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Width),
+                PageHeight = Unit.FromCentimeter(_typography.TypoPaperFormat.Size.Height),
+                LeftMargin = Unit.FromCentimeter(_typography.TypoMargins.Left),
+                TopMargin = Unit.FromCentimeter(_typography.TypoMargins.Top),
+                RightMargin = Unit.FromCentimeter(_typography.TypoMargins.Right),
+                BottomMargin = Unit.FromCentimeter(_typography.TypoMargins.Bottom)
+            };
+        }
+
         PageSetup = ps;
         return ps;
     }

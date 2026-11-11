@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
@@ -15,8 +14,8 @@ public class ChartStyle: ICloneable
     {
         const int defaultLineWidth = 1;
 
-        Width = 750;
-        Height = 464;   // Goldener Schnitt: Width / 1,618 
+        Width = 800;
+        Height = 494;   // Goldener Schnitt: Width / 1,618 
         Template = "default.xml";
         TitleFontSizeDelta = 1.5F;
         AxisLabelFontSizeDelta = 1.0F;

@@ -3,19 +3,23 @@
 
 using Bodoconsult.Pdf.Stylesets;
 using BodoWebReporting.Dal.Styles;
-using MigraDoc.DocumentObjectModel;
 
 namespace BodoWebReporting.Dal.Helpers;
 
 public static class StyleHelper
 {
-    public static Color BackColor { get; set; } = Colors.White;
-    public static Color TableBorderColor { get; set; } = new(217, 230, 245);
-
-    public static Color AlternateBackColor { get; set; } = new(217, 230, 245);
-
-
-    public static IStyleSet StyleSet { get; set; } = new BodoWebReportingStyleSet();
+    /// <summary>
+    /// Generate a stylesheet
+    /// </summary>
+    /// <param name="landscape">Orientation is landscape?</param>
+    public static IStyleSet CreateStyleSet(bool landscape)
+    {
+        var s = new BodoWebReportingStyleSet();
+        s.CreatePageSetup(landscape);
+        s.CalculateMeasures();
+        s.InitializeStyles();
+        return s;
+    }
 
     //private static bool isStart;
 
@@ -64,7 +68,6 @@ public static class StyleHelper
     public static void  RunCode()
     {
         //if (!isStart) return;
-        StyleSet = new BodoWebReportingStyleSet();
 
         //if (_instance == null)
         //{

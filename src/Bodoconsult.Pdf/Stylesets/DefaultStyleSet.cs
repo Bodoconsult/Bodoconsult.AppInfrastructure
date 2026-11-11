@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.Pdf.PdfSharp;
@@ -21,7 +20,7 @@ public class DefaultStyleSet : IStyleSet
     /// <summary>
     /// Type area width
     /// </summary>
-    public Unit TypeAreaWidth { get; private set; }
+    public Unit TypeAreaWidth => Unit.FromCentimeter(PageSetup.PageWidth.Centimeter - PageSetup.LeftMargin.Centimeter - PageSetup.RightMargin.Centimeter);
 
     /// <summary>
     /// Default vertical margin
@@ -41,19 +40,79 @@ public class DefaultStyleSet : IStyleSet
     /// <summary>
     /// The resulting text column width
     /// </summary>
-    public Unit ColumnWidth { get; set; }
+    public Unit ColumnWidth
+    {
+        get
+        {
+            var x = field.Value;
+
+            return x == 0 ? TypeAreaWidth : field;
+        }
+        set;
+    } = new(0);
 
     /// <summary>
     /// The default style to use for the table
     /// </summary>
-    public ITypoTableStyle DefaultTableStyle { get; set; } = new PdfDefaultTableStyle();
+    public ITypoTableStyle DefaultTableStyle { get; private set; }
+
+    /// <summary>
+    /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!
+    /// </summary>
+    /// <returns>Page setup</returns>
+    public PageSetup CreatePageSetup()
+    {
+        return CreatePageSetup(false);
+    }
+
+    /// <summary>
+    /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!
+    /// </summary>
+    /// <param name="landscape">Orientation is landscape?</param>
+    /// <returns>Page setup</returns>
+    public virtual PageSetup CreatePageSetup(bool landscape)
+    {
+        PageSetup ps;
+
+        if (landscape)
+        {
+            ps = new PageSetup
+            {
+                Orientation = Orientation.Landscape,
+                PageFormat = PageFormat.A4,
+                PageWidth = Unit.FromCentimeter(29.7),
+                PageHeight = Unit.FromCentimeter(21.0),
+                LeftMargin = Unit.FromCentimeter(3),
+                TopMargin = Unit.FromCentimeter(2.5),
+                RightMargin = Unit.FromCentimeter(1.5),
+                BottomMargin = Unit.FromCentimeter(2.5)
+            };
+        }
+        else
+        {
+            ps = new PageSetup
+            {
+                Orientation = Orientation.Portrait,
+                PageFormat = PageFormat.A4,
+                PageWidth = Unit.FromCentimeter(21.0),
+                PageHeight = Unit.FromCentimeter(29.7),
+                LeftMargin = Unit.FromCentimeter(3),
+                TopMargin = Unit.FromCentimeter(2.5),
+                RightMargin = Unit.FromCentimeter(1.5),
+                BottomMargin = Unit.FromCentimeter(2.5)
+            };
+        }
+
+        PageSetup = ps;
+        return ps;
+    }
 
     /// <summary>
     /// Calculate measures <see cref="IStyleSet.TypeAreaWidth"/> and ColumnWidth!
     /// </summary>
     public void CalculateMeasures()
     {
-        TypeAreaWidth = PageSetup.PageWidth.Centimeter - PageSetup.LeftMargin.Centimeter - PageSetup.RightMargin.Centimeter;
+        // Do nothing
     }
 
     /// <summary>
@@ -61,11 +120,7 @@ public class DefaultStyleSet : IStyleSet
     /// </summary>
     public void InitializeStyles()
     {
-        if (ColumnWidth.Value == 0)
-        {
-            // ToDo: multiple columns
-            ColumnWidth = TypeAreaWidth;
-        }
+        DefaultTableStyle = CreateDefaultTableStyle();
 
         Empty = CreateEmptyStyle();
         Normal = CreateNormalStyle();
@@ -135,6 +190,15 @@ public class DefaultStyleSet : IStyleSet
         DefinitionListItem = CreateDefinitionListItemStyle();
 
         Watermark = CreateWatermarkStyle();
+    }
+
+    /// <summary>
+    /// Create a default table style
+    /// </summary>
+    /// <returns>Default table style</returns>
+    protected virtual ITypoTableStyle CreateDefaultTableStyle()
+    {
+        return new PdfDefaultTableStyle();
     }
 
     /// <summary>
@@ -1401,28 +1465,6 @@ public class DefaultStyleSet : IStyleSet
         Company = "Bodoconsult EDV-Dienstleistungen GmbH",
         Description = "Document description"
     };
-
-    /// <summary>
-    /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!
-    /// </summary>
-    /// <returns>Page setup</returns>
-    public virtual PageSetup CreatePageSetup()
-    {
-        var ps = new PageSetup
-        {
-            Orientation = Orientation.Portrait,
-            PageFormat = PageFormat.A4,
-            PageWidth = Unit.FromCentimeter(21.0),
-            PageHeight = Unit.FromCentimeter(29.7),
-            LeftMargin = Unit.FromCentimeter(3),
-            TopMargin = Unit.FromCentimeter(2.5),
-            RightMargin = Unit.FromCentimeter(1.5),
-            BottomMargin = Unit.FromCentimeter(2.5)
-        };
-
-        PageSetup = ps;
-        return ps;
-    }
 
     /// <summary>
     /// Add a border around a paragraph

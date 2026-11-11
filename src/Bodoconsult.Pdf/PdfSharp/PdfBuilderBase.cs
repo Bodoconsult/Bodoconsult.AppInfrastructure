@@ -31,6 +31,11 @@ namespace Bodoconsult.Pdf.PdfSharp;
 /// </summary>
 public abstract class PdfBuilderBase : IPdfBuilder
 {
+    /// <summary>
+    /// Width of a char in cm
+    /// </summary>
+    private const double CharWidth = 0.16;
+
     #region Protected properties
 
     /// <summary>
@@ -136,16 +141,13 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
             var ps = StyleSet.PageSetup;
 
-            if (ps.Orientation == Orientation.Landscape)
-            {
-                w = ps.PageHeight.Centimeter - ps.RightMargin.Centimeter -
-                    ps.LeftMargin.Centimeter;
-                return w;
-            }
+            //if (ps.Orientation == Orientation.Landscape)
+            //{
+            //    w = ps.PageHeight.Centimeter - ps.RightMargin.Centimeter - ps.LeftMargin.Centimeter;
+            //    return w;
+            //}
 
-            w = ps.PageWidth.Centimeter - ps.RightMargin.Centimeter -
-                ps.LeftMargin.Centimeter;
-
+            w = ps.PageWidth.Centimeter - ps.RightMargin.Centimeter - ps.LeftMargin.Centimeter;
             return w;
         }
     }
@@ -207,6 +209,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
     protected void CreateWatermark(PdfDocument pdf)
     {
         var watermark = StyleSet.DocumentMetaData.WatermarkText;
+
+        if (string.IsNullOrEmpty(watermark))
+        {
+            return;
+        }
 
         var style = StyleSet.Watermark;
 
@@ -1275,8 +1282,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
     private Table AddTableInternal(DocumentObject documentObject, PdfTable dt)
     {
-        const int columnMaxLength = 25;
-
         if (dt.TableStyle is null)
         {
             if (StyleSet.DefaultTableStyle is not null)
@@ -1343,37 +1348,16 @@ public abstract class PdfBuilderBase : IPdfBuilder
         par.Format.SpaceBefore = StyleSet.Table.ParagraphFormat.SpaceBefore;
         par.Format.Font.Size = 2;
 
-        // Calculate maxlength for columns
-        for (var i = 0; i < dt.Columns.Count; i++)
-        {
-            var col = dt.Columns[i];
-            if (col.MaxLength < col.ColumnName.Length)
-            {
-                col.MaxLength = col.ColumnName.Length;
-            }
-        }
+        // Calculate column length
+        CalculateColumnWidth(dt);
 
-        foreach (var r in dt.Rows)
-        {
-            for (var i = 0; i < dt.Columns.Count; i++)
-            {
-                var cell = r.Cells[i];
-
-                var col = dt.Columns[i];
-                if (col.MaxLength < cell.Content.Length)
-                {
-                    col.MaxLength = cell.Content.Length;
-                }
-            }
-        }
-
-        foreach (var column in dt.Columns)
-        {
-            if (column.MaxLength > columnMaxLength)
-            {
-                //column.
-            }
-        }
+        //foreach (var column in dt.Columns)
+        //{
+        //    if (column.MaxLength > columnMaxLength)
+        //    {
+        //        //column.
+        //    }
+        //}
 
         var colCount = dt.Columns.Count;
 
@@ -1381,14 +1365,9 @@ public abstract class PdfBuilderBase : IPdfBuilder
         {
             var col = dt.Columns[i - 1];
 
-            if (col.MaxLength > 25)
-            {
-                col.MaxLength = 25;
-            }
-
             var column = table.AddColumn();
             column.Borders.Color = borderColor;
-            column.Width = Unit.FromCentimeter(col.MaxLength * 0.16);
+            column.Width = Unit.FromCentimeter(col.Width);
             column.Format.Alignment = col.TextAlignment switch
             {
                 PdfTextAlignment.Left => ParagraphAlignment.Left,
@@ -1454,6 +1433,85 @@ public abstract class PdfBuilderBase : IPdfBuilder
         return table;
     }
 
+    private void CalculateColumnWidth(PdfTable dt)
+    {
+        const int columnMaxLength = 25;
+
+        // Calculate maxlength for columns (column name)
+        foreach (var col in dt.Columns)
+        {
+            var len = col.ColumnName.Length;
+            if (col.MaxLength < len)
+            {
+                col.MaxLength = len;
+            }
+        }
+
+        // Calculate maxlength for columns (column name)
+        foreach (var r in dt.Rows)
+        {
+            for (var i = 0; i < dt.Columns.Count; i++)
+            {
+                var cell = r.Cells[i];
+
+                var col = dt.Columns[i];
+                if (col.MaxLength < cell.Content.Length)
+                {
+                    col.MaxLength = cell.Content.Length;
+                }
+            }
+        }
+
+        if (!dt.FitToWidth)
+        {
+            // Do not adjust the table to column width
+            foreach (var col in dt.Columns)
+            {
+                if (col.MaxLength > columnMaxLength)
+                {
+                    col.MaxLength = columnMaxLength;
+                }
+
+                col.Width = col.MaxLength * CharWidth;
+            }
+
+            return;
+        }
+
+        // Adjust the table to column width
+
+        double width = 0;
+        int count = 0;
+
+        foreach (var col in dt.Columns)
+        {
+            if (col.MaxLength > columnMaxLength)
+            {
+                count++;
+            }
+            else
+            {
+                width += col.MaxLength * CharWidth;
+            }
+        }
+
+        var remainingWidth = StyleSet.TypeAreaWidth.Value - width;
+
+        var longColWidth = remainingWidth / count;
+
+        foreach (var col in dt.Columns)
+        {
+            if (col.MaxLength > 25)
+            {
+                col.Width = longColWidth;
+            }
+            else
+            {
+                col.Width = col.MaxLength * CharWidth;
+            }
+        }
+    }
+
     /// <summary>
     /// Create a table legend
     /// </summary>
@@ -1505,242 +1563,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         pdfTable.TableStyleName = tableStyle;
 
         AddTable(pdfTable);
-
-        ////if (Math.Abs(width) < 0.000001)
-        ////{
-        ////    width = Width;
-        ////}
-
-        //if (!string.IsNullOrEmpty(heading))
-        //{
-        //    AddParagraph(heading, headingStyleName);
-        //}
-
-        //if (!string.IsNullOrEmpty(additionalInfos))
-        //{
-        //    AddParagraph(additionalInfos, additionalInfosStyleName);
-        //}
-
-        //var style = Document.Styles[tableStyle];
-        //if (style is null)
-        //{
-        //    throw new ArgumentNullException(nameof(style));
-        //}
-
-
-        ////frame.FillFormat.Color = Colors.White;
-        //var table = Content.AddTable();
-        //table.LeftPadding = 2;
-        //table.Borders.Width = 0.5;
-        //table.Borders.Color = TableBorderColor;
-
-        //var colCount = dt.Columns.Count;
-
-
-        //var startCol = 1;
-        //var format = new string[dt.Columns.Count];
-
-        //var usedWidth = 0D;
-        //var colCountNotUsed = 0;
-
-        //var fontSize = Unit.FromCentimeter(style.Font.Size.Centimeter / 40.0).Point;
-
-        //// Ermittle Breite der Nicht-Text-Spalten und Anzahl der Text-Spalten
-        //for (var i = 1; i <= colCount; i++)
-        //{
-        //    var col = dt.Columns[i - 1];
-
-        //    if (col.ColumnName.ToLower() == "cssstyle") continue;
-
-        //    var t = col.DataType.ToString().Replace("System.", string.Empty).ToLower();
-
-        //    switch (t)
-        //    {
-        //        case "datetime":
-        //            usedWidth += WidthDateTime * fontSize;
-        //            break;
-        //        case "decimal":
-        //        case "double":
-        //        case "single":
-        //        case "float":
-        //            usedWidth += WidthDouble * fontSize;
-        //            break;
-        //        case "int":
-        //        case "int16":
-        //        case "int32":
-        //        case "int64":
-        //            usedWidth += WidthInteger * fontSize;
-        //            break;
-        //        default:
-        //            colCountNotUsed++;
-        //            break;
-        //    }
-        //}
-
-        //// Errechne dann die zur Verfügung stehende maximale Breite der Text-Spalten
-        //var widthText = colCountNotUsed > 0 ? Math.Round((Width - usedWidth) / colCountNotUsed, 1) - 0.1 : 2.0;
-
-        //if (widthText > 7.0) widthText = 7.0;
-
-        //for (var i = 1; i <= colCount; i++)
-        //{
-        //    var col = dt.Columns[i - 1];
-
-        //    if (col.ColumnName.ToLower() == "cssstyle")
-        //    {
-        //        startCol = 2;
-        //        continue;
-        //    }
-
-        //    double colWidth;
-
-        //    var column = table.AddColumn();
-        //    column.Borders.Color = TableBorderColor;
-
-        //    var t = col.DataType.ToString().Replace("System.", string.Empty).ToLower();
-        //    switch (t)
-        //    {
-        //        case "datetime":
-        //            colWidth = WidthDateTime * fontSize;
-        //            format[i - 1] = "dd.MM.yyyy";
-        //            break;
-        //        case "decimal":
-        //        case "double":
-        //        case "single":
-        //            colWidth = WidthDouble * fontSize;
-        //            column.Format.Alignment = ParagraphAlignment.Right;
-        //            format[i - 1] = "#,##0.00";
-        //            break;
-        //        case "int":
-        //        case "int16":
-        //        case "int32":
-        //        case "int64":
-        //            colWidth = WidthInteger * fontSize;
-        //            column.Format.Alignment = ParagraphAlignment.Right;
-        //            format[i - 1] = "#,##0";
-        //            break;
-        //        default:
-        //            colWidth = widthText;
-        //            column.Format.Alignment = ParagraphAlignment.Left;
-        //            break;
-        //    }
-
-        //    column.Width = Unit.FromCentimeter(colWidth);
-        //}
-
-
-
-        //var korr = startCol == 2 ? 1 : 0;
-
-        //// Kopfzeile schreiben
-        //var header = table.AddRow();
-        //header.Shading.Color = TableHeaderBackgroundColor;
-        //header.Format.Font.Color = Colors.Black;
-        //header.Format.Font.Size = style.Font.Size;
-        //header.Format.Font.Name = style.Font.Name;
-
-        //for (var i = 1; i <= table.Columns.Count; i++)
-        //{
-        //    var cell = header.Cells[i - 1];
-        //    var p = cell.AddParagraph(dt.Columns[i - 1 + korr].ColumnName);
-        //    p.Format.Font.Size = style.Font.Size;
-        //    p.Format.Font.Name = style.Font.Name;
-        //    p.Format.Font.Bold = true;
-        //}
-
-        //// Inhaltszeilen schreiben
-        //var shadow = false;
-
-        //foreach (DataRow r in dt.Rows)
-
-        ////for (var zeile = schleife * Increment; zeile < (schleife + 1) * Increment; zeile++)
-        //{
-        //    var row = table.AddRow();
-        //    //row.KeepWith = 2;
-        //    var css = string.Empty;
-        //    if (startCol == 2) css = r[0].ToString();
-
-        //    Color shadingColor;
-
-        //    if (string.IsNullOrEmpty(css))
-        //    {
-        //        shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
-        //    }
-        //    else
-        //    {
-        //        switch (css.ToLower())
-        //        {
-        //            case "wr_cell_h1":
-        //                shadingColor = ShadingH1Color;
-        //                break;
-        //            case "wr_cell_h2":
-        //                shadingColor = ShadingH2Color;
-        //                break;
-        //            case "wr_cell_h3":
-        //                shadingColor = ShadingH3Color;
-        //                break;
-        //            case "wr_cell_risk1":
-        //                shadingColor = ShadingRisk1Color;
-        //                break;
-        //            case "wr_cell_risk2":
-        //                shadingColor = ShadingRisk2Color;
-        //                break;
-        //            default:
-        //                shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
-        //                break;
-        //        }
-        //    }
-
-        //    row.Shading.Color = shadingColor;
-
-        //    for (var i = 0; i < table.Columns.Count; i++)
-        //    {
-        //        var cell = row.Cells[i];
-
-        //        if (string.IsNullOrEmpty(format[i + korr]))
-        //        {
-        //            var p = cell.AddParagraph(r[i + korr].ToString() ?? string.Empty);
-        //            p.Format.Font.Size = style.Font.Size;
-        //            p.Format.Font.Name = style.Font.Name;
-        //            //p.Format.Shading.Color = shadingColor;
-        //        }
-        //        else
-        //        {
-        //            if (format[i + korr].ToLowerInvariant().Contains("yy"))
-        //            {
-        //                var z = r[i + korr].ToString();
-        //                if (!string.IsNullOrEmpty(z))
-        //                {
-        //                    var p = cell.AddParagraph(Convert.ToDateTime(z).ToString(format[i + korr]));
-        //                    p.Format.Font.Size = style.Font.Size;
-        //                    p.Format.Font.Name = style.Font.Name;
-        //                    //p.Format.Shading.Color = shadingColor;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                var z = r[i + korr].ToString();
-        //                if (string.IsNullOrEmpty(z))
-        //                {
-        //                    continue;
-        //                }
-
-        //                var p = cell.AddParagraph(Convert.ToDouble(z).ToString(format[i + korr]));
-        //                p.Format.Font.Size = style.Font.Size;
-        //                p.Format.Font.Name = style.Font.Name;
-        //                // p.Format.Shading.Color = shadingColor;
-        //            }
-        //        }
-        //    }
-
-        //    shadow = !shadow;
-        //}
-
-        ////var widthTable = table.Columns.Cast<Column>().Aggregate(0D, (current, t) => current + t.Width.Centimeter);
-        ////frame.Width = Unit.FromCentimeter(widthTable);
-
     }
-
 
     /// <summary>
     /// Add a table in a separate frame
@@ -1748,13 +1571,12 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="dt">Data to show in the table</param>
     /// <param name="heading">Heading for the table</param>
     /// <param name="headingStyleName">Style name for the heading</param>
-    /// <param name="additionalInfos"></param>
-    /// <param name="additionalInfosStyleName"></param>
+    /// <param name="additionalInfos">Additional info</param>
+    /// <param name="additionalInfosStyleName">Stylename for the additional info</param>
     /// <param name="width"></param>
-
-    public void AddTableFrame(DataTable dt, string heading, string headingStyleName, string additionalInfos = null, string additionalInfosStyleName = null, double width = 0)
+    /// <param name="autoFit">Fit to column width. Default: false</param>
+    public void AddTableFrame(DataTable dt, string heading, string headingStyleName, string additionalInfos = null, string additionalInfosStyleName = null, double width = 0, bool autoFit = false)
     {
-
         if (width < 0.000001)
         {
             width = Width;
@@ -1767,7 +1589,10 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         var anzahlSchleifen = dt.Rows.Count / Increment + 1;
 
-        if (dt.Rows.Count > Increment / 2 && AddPageBreakIfNecessary) Content.AddPageBreak();
+        if (dt.Rows.Count > Increment / 2 && AddPageBreakIfNecessary)
+        {
+            Content.AddPageBreak();
+        }
 
         if (!string.IsNullOrEmpty(heading))
         {
@@ -1792,11 +1617,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
             }
 
             var frame = Content.AddTextFrame();
-            frame.Height = Unit.FromCentimeter(6F);
+            frame.Height = Unit.FromCentimeter(6.5F);
             frame.Width = Unit.FromCentimeter(width);
             frame.Left = ShapePosition.Center;
 
-            CreateTable(dt, schleife, frame);
+            CreateTable(dt, schleife, frame, 0.5, "NormalTable", autoFit);
         }
     }
 
@@ -1912,265 +1737,22 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="frame">Current frame</param>
     /// <param name="borderWidth">Border width in pt</param>
     /// <param name="tableStyle">Style to use for the table</param>
-    protected void CreateTable(DataTable dt, int schleife, TextFrame frame, double borderWidth = 0.5, string tableStyle = "NormalTable")
+    /// <param name="autoFit">Autofit to column width</param>
+    protected void CreateTable(DataTable dt, int schleife, TextFrame frame, double borderWidth = 0.5, string tableStyle = "NormalTable", bool autoFit = false)
     {
         var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.OrdinalIgnoreCase) ?
             dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors) :
             dt.ToPdfTable();
 
+        if (autoFit)
+        {
+            pdfTable.FitToWidth = true;
+        }
+
         var table = AddTableInternal(frame, pdfTable);
 
         var widthTable = table.Columns.Cast<Column>().Aggregate(0D, (current, t) => current + t.Width.Centimeter);
         frame.Width = Unit.FromCentimeter(widthTable);
-
-        //var style = Document.Styles[tableStyle];
-        //if (style is null)
-        //{
-        //    throw new ArgumentNullException(nameof(style));
-        //}
-
-        ////frame.FillFormat.Color = Colors.White;
-        //var table = frame.AddTable();
-
-        //table.Borders.Width = borderWidth;
-        //table.BottomPadding = 0;
-        //table.TopPadding = 0;
-
-        //if (borderWidth > 0)
-        //{
-        //    table.Borders.Color = TableBorderColor;
-        //}
-
-        //var colCount = dt.Columns.Count;
-
-
-        //var startCol = 1;
-        //var format = new string[dt.Columns.Count];
-
-        //var usedWidth = 0D;
-        //var colCountNotUsed = 0;
-
-        //var fontSize = Unit.FromCentimeter(style.Font.Size.Centimeter / 40.0);
-
-        //// Ermittle Breite der Nicht-Text-Spalten und Anzahl der Text-Spalten
-        //for (var i = 1; i <= colCount; i++)
-        //{
-        //    var col = dt.Columns[i - 1];
-
-        //    if (col.ColumnName.ToLower() == "cssstyle")
-        //    {
-        //        continue;
-        //    }
-
-        //    var t = col.DataType.ToString().Replace("System.", string.Empty).ToLower();
-
-        //    switch (t)
-        //    {
-        //        case "datetime":
-        //            usedWidth += WidthDateTime * fontSize.Point;
-        //            break;
-        //        case "decimal":
-        //        case "double":
-        //        case "single":
-        //        case "float":
-        //            usedWidth += WidthDouble * fontSize.Point;
-        //            break;
-        //        case "int":
-        //        case "int16":
-        //        case "int32":
-        //        case "int64":
-        //            usedWidth += WidthInteger * fontSize.Point;
-        //            break;
-        //        default:
-        //            colCountNotUsed++;
-        //            break;
-        //    }
-        //}
-
-        //// Errechne dann die zur Verfügung stehende maximale Breite der Text-Spalten
-        //var widthText = colCountNotUsed > 0 ? Math.Round((frame.Width.Centimeter - usedWidth) / colCountNotUsed, 1) - 0.1 : 2.0;
-
-        //if (widthText > 7.0)
-        //{
-        //    widthText = 7.0;
-        //}
-
-        //for (var i = 1; i <= colCount; i++)
-        //{
-        //    var col = dt.Columns[i - 1];
-
-        //    if (col.ColumnName.ToLower() == "cssstyle")
-        //    {
-        //        startCol = 2;
-        //        continue;
-        //    }
-
-        //    double width;
-
-        //    var column = table.AddColumn();
-        //    column.Borders.Color = TableBorderColor;
-
-        //    var t = col.DataType.ToString().Replace("System.", string.Empty).ToLower();
-        //    switch (t)
-        //    {
-        //        case "datetime":
-        //            width = WidthDateTime * fontSize.Point;
-        //            format[i - 1] = "dd.MM.yyyy";
-        //            break;
-        //        case "decimal":
-        //        case "double":
-        //        case "single":
-        //            width = WidthDouble * fontSize.Point;
-        //            column.Format.Alignment = ParagraphAlignment.Right;
-        //            format[i - 1] = "#,##0.00";
-        //            break;
-        //        case "int":
-        //        case "int16":
-        //        case "int32":
-        //        case "int64":
-        //            width = WidthInteger * fontSize.Point;
-        //            column.Format.Alignment = ParagraphAlignment.Right;
-        //            format[i - 1] = "#,##0";
-        //            break;
-        //        default:
-        //            width = widthText;
-        //            column.Format.Alignment = ParagraphAlignment.Left;
-        //            break;
-        //    }
-
-        //    column.Width = Unit.FromCentimeter(width);
-        //}
-
-
-
-        //var korr = startCol == 2 ? 1 : 0;
-
-        //// Kopfzeile schreiben
-        //var header = table.AddRow();
-        //header.Shading.Color = TableBackColor;
-        //header.Format.Font.Color = Colors.Black;
-        //header.Format.Font.Size = style.Font.Size - 0.5;
-        //header.Format.Font.Name = style.Font.Name;
-        //header.Format.Font.Bold = true;
-        //header.Format.SpaceAfter = style.ParagraphFormat.SpaceAfter;
-        //header.Format.SpaceBefore = style.ParagraphFormat.SpaceBefore;
-
-        //for (var i = 1; i <= table.Columns.Count; i++)
-        //{
-        //    var cell = header.Cells[i - 1];
-        //    cell.AddParagraph(dt.Columns[i - 1 + korr].ColumnName);
-
-        //}
-
-        //// Inhaltszeilen schreiben
-        //var shadow = false;
-        //for (var zeile = schleife * Increment; zeile < (schleife + 1) * Increment; zeile++)
-        //{
-        //    if (zeile >= dt.Rows.Count)
-        //    {
-        //        break;
-        //    }
-
-        //    var r = dt.Rows[zeile];
-        //    var row = table.AddRow();
-
-        //    row.BottomPadding = 0;
-        //    row.TopPadding = 0;
-
-        //    var css = string.Empty;
-        //    if (startCol == 2)
-        //    {
-        //        css = r[0].ToString();
-        //    }
-
-        //    Color shadingColor;
-
-        //    if (string.IsNullOrEmpty(css))
-        //    {
-        //        shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
-        //    }
-        //    else
-        //    {
-        //        switch (css.ToLower())
-        //        {
-        //            case "wr_cell_h1":
-        //                shadingColor = ShadingH1Color;
-        //                break;
-        //            case "wr_cell_h2":
-        //                shadingColor = ShadingH2Color;
-        //                break;
-        //            case "wr_cell_h3":
-        //                shadingColor = ShadingH3Color;
-        //                break;
-        //            case "wr_cell_risk1":
-        //                shadingColor = ShadingRisk1Color;
-        //                break;
-        //            case "wr_cell_risk2":
-        //                shadingColor = ShadingRisk2Color;
-        //                break;
-        //            default:
-        //                shadingColor = shadow ? TableBackColor : TableAlternateBackColor;
-        //                break;
-        //        }
-        //    }
-
-        //    row.Shading.Color = shadingColor;
-
-        //    for (var i = 0; i < table.Columns.Count; i++)
-        //    {
-        //        var cell = row.Cells[i];
-        //        cell.Format.SpaceAfter = 0;
-        //        cell.Format.SpaceBefore = 0;
-
-        //        var s = format[i + korr];
-
-        //        if (string.IsNullOrEmpty(s))
-        //        {
-        //            var p = cell.AddParagraph((r[i + korr].ToString() ?? string.Empty).Trim());
-        //            p.Format.Font.Size = style.Font.Size;
-        //            p.Format.Font.Name = style.Font.Name;
-        //            p.Format.SpaceAfter = style.ParagraphFormat.SpaceAfter;
-        //            p.Format.SpaceBefore = style.ParagraphFormat.SpaceBefore;
-        //            p.Format.Shading.Color = shadingColor;
-        //        }
-        //        else
-        //        {
-        //            if (s.ToLower().Contains("yy"))
-        //            {
-        //                var z = (r[i + korr].ToString() ?? string.Empty).Trim();
-        //                if (string.IsNullOrEmpty(z))
-        //                {
-        //                    continue;
-        //                }
-        //                var p = cell.AddParagraph(Convert.ToDateTime(z).ToString(format[i + korr]));
-        //                p.Format.Font.Size = style.Font.Size;
-        //                p.Format.Font.Name = style.Font.Name;
-        //                p.Format.SpaceAfter = style.ParagraphFormat.SpaceAfter;
-        //                p.Format.SpaceBefore = style.ParagraphFormat.SpaceBefore;
-        //                p.Format.Shading.Color = shadingColor;
-        //            }
-        //            else
-        //            {
-        //                var z = r[i + korr].ToString();
-        //                if (string.IsNullOrEmpty(z))
-        //                {
-        //                    continue;
-        //                }
-        //                var p = cell.AddParagraph(Convert.ToDouble(z).ToString(format[i + korr]));
-        //                p.Format.Font.Size = style.Font.Size;
-        //                p.Format.Font.Name = style.Font.Name;
-        //                p.Format.SpaceAfter = style.ParagraphFormat.SpaceAfter;
-        //                p.Format.SpaceBefore = style.ParagraphFormat.SpaceBefore;
-        //                p.Format.Shading.Color = shadingColor;
-        //            }
-        //        }
-        //    }
-
-        //    shadow = !shadow;
-        //}
-
-        //var widthTable = table.Columns.Cast<Column>().Aggregate(0D, (current, t) => current + t.Width.Centimeter);
-        //frame.Width = Unit.FromCentimeter(widthTable);
     }
 
     /// <summary>
@@ -2586,8 +2168,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
         SetDocInfo(md.Title, md.Description, md.Authors);
 
         //ObjectHelper.MapProperties(_ps, _document.DefaultPageSetup);
-
-
 
         var style = Document.Styles["Normal"];
 

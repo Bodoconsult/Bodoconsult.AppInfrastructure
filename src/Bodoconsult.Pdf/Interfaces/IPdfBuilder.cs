@@ -410,10 +410,11 @@ public interface IPdfBuilder : IDisposable
     /// <param name="dt">Data to show in the table</param>
     /// <param name="heading">Heading for the table</param>
     /// <param name="headingStyleName">Style name for the heading</param>
-    /// <param name="additionalInfos"></param>
-    /// <param name="additionalInfosStyleName"></param>
+    /// <param name="additionalInfos">Additional info</param>
+    /// <param name="additionalInfosStyleName">Stylename for the additional info</param>
     /// <param name="width"></param>
-    void AddTableFrame(DataTable dt, string heading, string headingStyleName, string additionalInfos = null, string additionalInfosStyleName = null, double width = 0);
+    /// <param name="autoFit">Fit to column width. Default: false</param>
+    void AddTableFrame(DataTable dt, string heading, string headingStyleName, string additionalInfos = null, string additionalInfosStyleName = null, double width = 0, bool autoFit = false);
 
     /// <summary>
     /// Add a definition list with left and right column

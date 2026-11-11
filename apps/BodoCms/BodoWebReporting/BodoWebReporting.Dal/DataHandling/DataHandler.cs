@@ -161,7 +161,8 @@ public class DataHandler : IDataHandler
             FileName = Path.Combine(targetPath, fileName),
             Author = row["WR_Author"].ToString() ?? "Author",
             Shortname = row["WR_ShortName"].ToString(),
-            LogoPath = row["WR_LogoPath"].ToString()
+            LogoPath = row["WR_LogoPath"].ToString(),
+            Landscape = row["WR_Landscape"].ToString()?.Equals("1") ?? false
         };
         
         var dt = _db.GetDataTable($"EXEC dbo.spWEB_Reporting '{fileName}'");

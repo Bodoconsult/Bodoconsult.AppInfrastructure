@@ -36,4 +36,9 @@ public class ReportingFile
     /// Path to the logo
     /// </summary>
     public string? LogoPath { get; set; }
+
+    /// <summary>
+    /// Is the orientation landscape?
+    /// </summary>
+    public bool Landscape { get; set; }
 }

@@ -72,7 +72,6 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
     /// </summary>
     public void StartExportReportFile(ReportingFile file, int id)
     {
-
         //try
         //{
 
@@ -81,8 +80,13 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         StyleHelper.RunCode();
 
         var wr = _webReportExporterFactory.CreateInstance(file, id);
+        wr.Landscape = file.Landscape;
+        wr.AddPageSetup();
+        wr.StyleSet.ColumnWidth = wr.StyleSet.TypeAreaWidth;
+
+        Steps = file.Landscape ? 35 : 42;
         wr.Steps = Steps;
-        wr.BackColor = StyleHelper.BackColor;
+
         wr.Title = TextHelper.Parser(file.Shortname) ?? "Title";
         wr.StyleSet.DocumentMetaData.Title = wr.Title;
         wr.StyleSet.DocumentMetaData.Authors = file.Author;
@@ -90,6 +94,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         //var x = StyleHandler.StyleSet;
 
         wr.StartDocument();
+
         var left = 0;
         var gewicht = 0;
         var start = true;
@@ -103,11 +108,11 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
         {
             if (start)
             {
-                wr.Landscape = rfp.Landscape;
+                //wr.Landscape = rfp.Landscape;
 
-                Steps = rfp.Landscape ? 35 : 42;
+                //Steps = rfp.Landscape ? 35 : 42;
 
-                wr.Steps = Steps;
+                //wr.Steps = Steps;
 
                 if (!string.IsNullOrEmpty(rfp.BackgroundImagePath) &&  backImage != rfp.BackgroundImagePath && File.Exists(rfp.BackgroundImagePath))
                 {
@@ -124,7 +129,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
                 //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
 
-                wr.AddPageSetup();
+                
 
                 // Does a TOC make sense?
                 if (itemCount < 2)
@@ -133,7 +138,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                 }
                 else
                 {
-                    wr.TocSection(rfp.Title1);
+                    wr.AddTocSection(rfp.Title1);
                 }
 
                 wr.NewContentSection();
@@ -153,7 +158,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
             if (!string.IsNullOrEmpty(rfp.AddInfoSql))
             {
-                wr.AddInfos = FormatAddInfos(DataHandler.GetDataTable(rfp.AddInfoSql));
+                wr.AdditionalInfo = FormatAddInfos(DataHandler.GetDataTable(rfp.AddInfoSql));
             }
 
             var typ = rfp.ReportType?.ToLowerInvariant();
