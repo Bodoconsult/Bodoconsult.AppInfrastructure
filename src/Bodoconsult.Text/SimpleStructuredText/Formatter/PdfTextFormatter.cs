@@ -11,6 +11,7 @@ using Bodoconsult.Text.Interfaces;
 using Bodoconsult.Text.Model;
 using Bodoconsult.Pdf.Extensions;
 using MigraDoc.DocumentObjectModel;
+using Bodoconsult.Pdf.Interfaces;
 
 namespace Bodoconsult.Text.Formatter;
 
@@ -20,6 +21,58 @@ namespace Bodoconsult.Text.Formatter;
 [SupportedOSPlatform("windows")]
 public class PdfTextFormatter : ITextFormatter, IDisposable
 {
+    /// <summary>
+    /// PdfCreator instance: do not use directly
+    /// </summary>
+    public PdfCreator Pdf;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    public PdfTextFormatter()
+    {
+        BackColor = new Color(211, 223, 240);
+        TableBorderColor = new Color(217, 230, 245);
+        HeadLineColor = Colors.Black;
+        DetailsColor = Colors.Black;
+
+        StyleSet = new DefaultStyleSet();
+        StyleSet.CreatePageSetup();
+        StyleSet.InitializeStyles();
+    }
+
+    /// <summary>
+    /// ctor with a stylesheet for customized formatting
+    /// </summary>
+    /// <param name="styleSet"></param>
+    public PdfTextFormatter(IStyleSet styleSet)
+    {
+        BackColor = new Color(211, 223, 240);
+        TableBorderColor = new Color(217, 230, 245);
+        HeadLineColor = Colors.Black;
+        DetailsColor = Colors.Black;
+
+        StyleSet = styleSet;
+        StyleSet.CreatePageSetup();
+        StyleSet.InitializeStyles();
+    }
+
+    /// <summary>Structured text to format</summary>
+    public IStructuredText StructuredText { get; set; }
+
+    /// <summary>
+    /// Template to place the structered text. Must contain placeholder {0} for the structured text
+    /// </summary>
+    public string Template { get; set; }
+
+    /// <summary>Title for documentation</summary>
+    public string Title { get; set; }
+
+    /// <summary>
+    /// Show the date the text was created. I.e.: "date created: 7.7.2018"
+    /// </summary>
+    public string DateString { get; set; }
+
     /// <summary>
     /// The increment to use
     /// </summary>
@@ -78,7 +131,7 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
 
         Pdf = new PdfCreator(StyleSet)
         {
-            Increment = Increment,
+            NumberOfTableRowsPerPage = Increment,
         };
 
         //Pdf.SetDocInfo(Title, Subject, Author);
@@ -161,8 +214,6 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
                     GetTable((TableTextItem)ti);
                     break;
             }
-
-
         }
 
         return null;
@@ -189,24 +240,7 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
         pdfTable.HeadingStyleName = "NoHeading1";
 
         Pdf.AddTable(pdfTable);
-
     }
-
-    /// <summary>Structured text to format</summary>
-    public IStructuredText StructuredText { get; set; }
-
-    /// <summary>
-    /// Template to place the structered text. Must contain placeholder {0} for the structured text
-    /// </summary>
-    public string Template { get; set; }
-
-    /// <summary>Title for documentation</summary>
-    public string Title { get; set; }
-
-    /// <summary>
-    /// Show the date the text was created. I.e.: "date created: 7.7.2018"
-    /// </summary>
-    public string DateString { get; set; }
 
     /// <summary>
     /// Save as file
@@ -216,49 +250,7 @@ public class PdfTextFormatter : ITextFormatter, IDisposable
     {
         Pdf.RenderToPdf(fileName, false);
     }
-
-
-
-    /// <summary>
-    /// PdfCreator instance: do not use directly
-    /// </summary>
-    public PdfCreator Pdf;
-
-    /// <summary>
-    /// Default ctor
-    /// </summary>
-    public PdfTextFormatter()
-    {
-        BackColor = new Color(211, 223, 240);
-        TableBorderColor = new Color(217, 230, 245);
-        HeadLineColor = Colors.Black;
-        DetailsColor = Colors.Black;
-
-        StyleSet = new DefaultStyleSet();
-        StyleSet.CreatePageSetup();
-        StyleSet.CalculateMeasures();
-        StyleSet.InitializeStyles();
-
-    }
-
-    /// <summary>
-    /// ctor with a stylesheet for customized formatting
-    /// </summary>
-    /// <param name="styleSet"></param>
-    public PdfTextFormatter(IStyleSet styleSet)
-    {
-        BackColor = new Color(211, 223, 240);
-        TableBorderColor = new Color(217, 230, 245);
-        HeadLineColor = Colors.Black;
-        DetailsColor = Colors.Black;
-
-        StyleSet = styleSet;
-        StyleSet.CreatePageSetup();
-        StyleSet.CalculateMeasures();
-        StyleSet.InitializeStyles();
-    }
-
-
+    
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
     {

@@ -46,7 +46,6 @@ public class PdfTextDocumentRenderer : BaseDocumentRenderer
             styleSet.ColumnWidth = Unit.FromCentimeter(style.NumberOfColumns > 1 ? style.ColumnWidth : style.TypeAreaWidth);
         }
 
-        styleSet.CalculateMeasures();
         styleSet.InitializeStyles();
 
         var factory = new PdfBuilderFactory(fontResolver);

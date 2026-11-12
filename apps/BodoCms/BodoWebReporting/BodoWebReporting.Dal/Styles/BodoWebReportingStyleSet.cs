@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Extensions;
+using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;

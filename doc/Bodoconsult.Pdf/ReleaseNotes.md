@@ -27,13 +27,13 @@ NOT intended for public use
 
 # 1.0.12
 
--  Replaced IPdfBuilder.TitleTableOfContent with ITypoMetaData.TocHeading
+-   Replaced IPdfBuilder.TitleTableOfContent with ITypoMetaData.TocHeading
 
--  Replaced IPdfBuilder.TitleTableOfTables with ITypoMetaData.TotHeading
+-   Replaced IPdfBuilder.TitleTableOfTables with ITypoMetaData.TotHeading
 
--  Replaced IPdfBuilder.TitleTableOfEquations with ITypoMetaData.ToeHeading
+-   Replaced IPdfBuilder.TitleTableOfEquations with ITypoMetaData.ToeHeading
 
--  Replaced IPdfBuilder.TitleTableOfFigures with ITypoMetaData.TofHeading
+-   Replaced IPdfBuilder.TitleTableOfFigures with ITypoMetaData.TofHeading
 
 -   Replaced IPdfBuilder.PageNumberPrefix with ITypoMetaData.PageNumberPrefix
 
@@ -42,3 +42,5 @@ NOT intended for public use
 -   Added PdfColorExtensions.FromHtml method
 
 -   PdfBuilder and PdfCreator class allow saving the DDL markup for the PDF next to the PDF with extension .mdddl. This may be helpful finding bugs in PDF creation process. Use CreateDdlFile property set to true to activate DDL creation.
+
+-   Bugfixing table handling for multipage tables

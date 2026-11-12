@@ -14,8 +14,8 @@ public class ChartStyle: ICloneable
     {
         const int defaultLineWidth = 1;
 
-        Width = 800;
-        Height = 494;   // Goldener Schnitt: Width / 1,618 
+        Width = 900;
+        Height = 556;   // Goldener Schnitt: Width / 1,618 
         Template = "default.xml";
         TitleFontSizeDelta = 1.5F;
         AxisLabelFontSizeDelta = 1.0F;

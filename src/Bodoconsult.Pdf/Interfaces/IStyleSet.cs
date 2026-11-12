@@ -3,7 +3,7 @@
 using Bodoconsult.App.Abstractions.Interfaces;
 using MigraDoc.DocumentObjectModel;
 
-namespace Bodoconsult.Pdf.Stylesets;
+namespace Bodoconsult.Pdf.Interfaces;
 
 /// <summary>
 /// Interface for stylesets used to format PDF files created by PdfSharp and MigraDoc
@@ -27,11 +27,6 @@ public interface IStyleSet
     /// <param name="landscape">Orientation is landscape?</param>
     /// <returns>Page setup</returns>
     PageSetup CreatePageSetup(bool landscape);
-
-    /// <summary>
-    /// Calculate measures <see cref="TypeAreaWidth"/> and ColumnWidth!
-    /// </summary>
-    void CalculateMeasures();
 
     /// <summary>
     /// Initialize all styles

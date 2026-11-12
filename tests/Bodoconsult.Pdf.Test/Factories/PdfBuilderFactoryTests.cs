@@ -24,7 +24,6 @@ internal class PdfBuilderFactoryTests
             NumberOfColumns = 1
         };
         styleSet.CreatePageSetup();
-        styleSet.CalculateMeasures();
         styleSet.InitializeStyles();
 
         var factory = new PdfBuilderFactory(fontResolver);
@@ -47,7 +46,6 @@ internal class PdfBuilderFactoryTests
             NumberOfColumns = 3
         };
         styleSet.CreatePageSetup();
-        styleSet.CalculateMeasures();
         styleSet.InitializeStyles();
 
         var factory = new PdfBuilderFactory(fontResolver);

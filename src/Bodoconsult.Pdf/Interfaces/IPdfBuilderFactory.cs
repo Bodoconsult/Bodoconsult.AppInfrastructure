@@ -1,7 +1,5 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.Pdf.Stylesets;
-
 namespace Bodoconsult.Pdf.Interfaces;
 
 /// <summary>

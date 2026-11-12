@@ -16,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Runtime.Versioning;
+using Bodoconsult.Pdf.Interfaces;
+using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.ReportHandling;
 
 namespace BodoWebReporting.DiContainerProvider;
@@ -74,6 +76,8 @@ public class BodoWebReportingAllServicesContainerServiceProvider : IDiContainerS
         diContainer.AddSingletonInstance((IConnManager)db);
         diContainer.AddSingleton<IBitmapServiceFactory, BitmapServiceFactory>();
         diContainer.AddSingleton<IDataHandler, DataHandler>();
+
+        diContainer.AddSingleton<IStyleSetFactory, BodoWebReportingStyleSetFactory>();
         
         diContainer.AddSingleton<IWebChartExporterFactory, WebChartExporterFactory>();
         diContainer.AddSingleton<IWebChartHandler, WebChartHandler>();

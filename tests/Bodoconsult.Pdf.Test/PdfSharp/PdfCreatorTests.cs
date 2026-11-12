@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.App.Helpers;
+using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Test.Helpers;
@@ -8,6 +9,7 @@ using MigraDoc.DocumentObjectModel;
 using NUnit.Framework;
 using System.IO;
 using System.Runtime.Versioning;
+using Bodoconsult.Pdf.Factories;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;
 
 namespace Bodoconsult.Pdf.Test.PdfSharp;
@@ -51,8 +53,9 @@ public class PdfCreatorTests
 
         FileSystemHelper.DeleteFile(fileName);
 
-        var styleset = new DefaultStyleSet();
-        styleset.CreatePageSetup();
+        var styleSetFactory = new DefaultStyleSetFactory();
+
+        var styleset = styleSetFactory.CreateInstance(landscape);
 
         if (landscape)
         {
@@ -60,7 +63,6 @@ public class PdfCreatorTests
         }
         else
         {
-            styleset.CalculateMeasures();
             styleset.InitializeStyles();
         }
 
@@ -147,21 +149,7 @@ public class PdfCreatorTests
 
     private void LoadLandScapeSettings(IStyleSet styleSet)
     {
-        var ps = styleSet.PageSetup;
-        ps.Orientation = Orientation.Landscape;
-        var w = ps.PageWidth;
-        var h = ps.PageHeight;
-        ps.PageHeight = w;
-        ps.PageWidth = h;
-        ps.LeftMargin = Unit.FromCentimeter(1.5);
-        ps.RightMargin = Unit.FromCentimeter(1.5);
-        ps.TopMargin = Unit.FromCentimeter(1.5);
-        ps.BottomMargin = Unit.FromCentimeter(1.5);
-
-        styleSet.CalculateMeasures();
-        styleSet.InitializeStyles();
-
-        var width = Unit.FromCentimeter(h.Centimeter - ps.LeftMargin.Centimeter - ps.RightMargin.Centimeter);
+        var width = styleSet.TypeAreaWidth;
 
         var style = styleSet.Normal;
         style.Font.Name = "Arial Narrow";

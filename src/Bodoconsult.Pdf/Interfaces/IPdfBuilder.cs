@@ -2,7 +2,6 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
-using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
@@ -39,9 +38,9 @@ public interface IPdfBuilder : IDisposable
     Table Table { get; }
 
     /// <summary>
-    /// Increment
+    /// Maximum number of table rows per page
     /// </summary>
-    int Increment { get; set; }
+    int NumberOfTableRowsPerPage { get; set; }
 
     /// <summary>
     /// Add a page break if necessary
@@ -49,7 +48,7 @@ public interface IPdfBuilder : IDisposable
     bool AddPageBreakIfNecessary { get; set; }
 
     /// <summary>
-    /// Get the current width of the page.
+    /// Get the current width of the page in cm
     /// </summary>
     double Width { get; }
 
@@ -433,11 +432,6 @@ public interface IPdfBuilder : IDisposable
     /// <param name="style2">Name of the style to use for right column</param>
     /// <param name="columnWidth1">Column width column 1 in percent</param>
     void AddDefinitionList(DataTable dt, string style1 = "DefinitionListTerm", string style2 = "DefinitionListItem", double columnWidth1 = 0.2);
-
-    /// <summary>
-    /// Seitenumbruch in Text einfügen
-    /// </summary>
-    void NewPage();
 
     ///// <summary>
     ///// Defines the styles used in the document.

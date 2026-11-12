@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
+using Bodoconsult.Pdf.Interfaces;
 using MigraDoc.DocumentObjectModel;
 
 namespace Bodoconsult.Pdf.Stylesets;
@@ -22,7 +23,6 @@ public class TypographyBasedStyleSet : DefaultStyleSet
         DefaultFontSize = _typography.FontSize;
         DefaultVerticalMargin = _typography.FontSize / 4;
     }
-
 
     /// <summary>
     /// Create the page setup. This method must set <see cref="IStyleSet.PageSetup"/>!

@@ -5,7 +5,6 @@ using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.Pdf.Extensions;
 using Bodoconsult.Pdf.Helpers;
 using Bodoconsult.Pdf.Interfaces;
-using Bodoconsult.Pdf.Stylesets;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.IO;
 using MigraDoc.DocumentObjectModel.Shapes;
@@ -121,9 +120,9 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public Table Table { get; protected set; }
 
     /// <summary>
-    /// Increment
+    /// Maximum number of table rows per page. Default: 35 fitting for a landscape orientation
     /// </summary>
-    public int Increment { get; set; }
+    public int NumberOfTableRowsPerPage { get; set; } = 35;
 
     /// <summary>
     /// Add a page break if necessary
@@ -131,23 +130,14 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public bool AddPageBreakIfNecessary { get; set; }
 
     /// <summary>
-    /// Get the current width of the page.
+    /// Get the current width of the page in cm
     /// </summary>
     public double Width
     {
         get
         {
-            double w;
-
             var ps = StyleSet.PageSetup;
-
-            //if (ps.Orientation == Orientation.Landscape)
-            //{
-            //    w = ps.PageHeight.Centimeter - ps.RightMargin.Centimeter - ps.LeftMargin.Centimeter;
-            //    return w;
-            //}
-
-            w = ps.PageWidth.Centimeter - ps.RightMargin.Centimeter - ps.LeftMargin.Centimeter;
+            var w = ps.PageWidth.Centimeter - ps.RightMargin.Centimeter - ps.LeftMargin.Centimeter;
             return w;
         }
     }
@@ -160,15 +150,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public virtual void RenderToPdf(string fileName, bool showPdfFile)
     {
         // Save DDL
-        if (CreateDdlFile)
-        {
-            var ddlFilename = fileName.Replace(".pdf", ".mdddl", StringComparison.OrdinalIgnoreCase);
-
-            var writer = new DdlWriter(ddlFilename);
-            writer.WriteDocument(Document);
-
-            Debug.Print(ddlFilename);
-        }
+        SaveDdlFile(fileName);
 
         var renderer = new PdfDocumentRenderer
         {
@@ -200,6 +182,25 @@ public abstract class PdfBuilderBase : IPdfBuilder
         }
 
         OpenFile(fileName);
+    }
+
+    /// <summary>
+    /// Save the PDF document as DDL file. Helpful for debugging PDF creation bugs
+    /// </summary>
+    /// <param name="fileName"></param>
+    private void SaveDdlFile(string fileName)
+    {
+        if (!CreateDdlFile)
+        {
+            return;
+        }
+
+        var ddlFilename = fileName.Replace(".pdf", ".mdddl", StringComparison.OrdinalIgnoreCase);
+
+        var writer = new DdlWriter(ddlFilename);
+        writer.WriteDocument(Document);
+
+        Debug.Print(ddlFilename);
     }
 
     /// <summary>
@@ -1587,9 +1588,9 @@ public abstract class PdfBuilderBase : IPdfBuilder
             width = Width;
         }
 
-        var anzahlSchleifen = dt.Rows.Count / Increment + 1;
+        var numberOfPages = dt.Rows.Count / NumberOfTableRowsPerPage + 1;
 
-        if (dt.Rows.Count > Increment / 2 && AddPageBreakIfNecessary)
+        if (dt.Rows.Count > NumberOfTableRowsPerPage / 2 && AddPageBreakIfNecessary)
         {
             Content.AddPageBreak();
         }
@@ -1604,9 +1605,9 @@ public abstract class PdfBuilderBase : IPdfBuilder
             AddParagraph(additionalInfos, additionalInfosStyleName);
         }
 
-        for (var schleife = 0; schleife < anzahlSchleifen; schleife++)
+        for (var pageNumber = 0; pageNumber < numberOfPages; pageNumber++)
         {
-            if (schleife > 0)
+            if (pageNumber > 0)
             {
                 Content.AddPageBreak();
                 if (!string.IsNullOrEmpty(heading))
@@ -1621,7 +1622,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             frame.Width = Unit.FromCentimeter(width);
             frame.Left = ShapePosition.Center;
 
-            CreateTable(dt, schleife, frame, 0.5, "NormalTable", autoFit);
+            CreateTable(dt, pageNumber, frame, 0.5, "NormalTable", autoFit, pageNumber, NumberOfTableRowsPerPage);
         }
     }
 
@@ -1738,11 +1739,13 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="borderWidth">Border width in pt</param>
     /// <param name="tableStyle">Style to use for the table</param>
     /// <param name="autoFit">Autofit to column width</param>
-    protected void CreateTable(DataTable dt, int schleife, TextFrame frame, double borderWidth = 0.5, string tableStyle = "NormalTable", bool autoFit = false)
+    /// <param name="pageNumber">Current page number. Default: 0</param>
+    /// <param name="pageSize">Current page size. Default: 0</param>
+    protected void CreateTable(DataTable dt, int schleife, TextFrame frame, double borderWidth = 0.5, string tableStyle = "NormalTable", bool autoFit = false, int pageNumber = 0, int pageSize=0)
     {
         var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.OrdinalIgnoreCase) ?
-            dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors) :
-            dt.ToPdfTable();
+            dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors, pageNumber, pageSize) :
+            dt.ToPdfTable(pageNumber, pageSize);
 
         if (autoFit)
         {
@@ -1754,15 +1757,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
         var widthTable = table.Columns.Cast<Column>().Aggregate(0D, (current, t) => current + t.Width.Centimeter);
         frame.Width = Unit.FromCentimeter(widthTable);
     }
-
-    /// <summary>
-    /// Seitenumbruch in Text einfügen
-    /// </summary>
-    public void NewPage()
-    {
-        Content.AddPageBreak();
-    }
-
 
     /// <summary>
     /// Add a chart
@@ -1896,7 +1890,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
         var image = p.AddImage(fileName);
         image.Width = frame.Width;
         image.Height = frame.Height;
-        image = null;
     }
 
     /// <summary>
@@ -1938,7 +1931,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         var myObjectType = typeof(T);
 
-        var fieldInfo = myObjectType.GetProperties().ToArray();
+        var fieldInfo = myObjectType.GetProperties();
 
         // Header
 
@@ -1960,7 +1953,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
                 _ => ParagraphAlignment.Left
             };
         }
-
 
         // header anzeigen
         var column = 0;
@@ -2026,7 +2018,10 @@ public abstract class PdfBuilderBase : IPdfBuilder
             return;
         }
 
-        html = html.Replace("&nbsp;", " ").Replace("<br />", "\r\n").Replace("<br/>", "\r\n").Replace("\r\n\r\n", "\r\n");
+        html = html.Replace("&nbsp;", " ", StringComparison.OrdinalIgnoreCase)
+            .Replace("<br />", "\r\n", StringComparison.OrdinalIgnoreCase)
+            .Replace("<br/>", "\r\n", StringComparison.OrdinalIgnoreCase)
+            .Replace("\r\n\r\n", "\r\n", StringComparison.OrdinalIgnoreCase);
 
         var startTag = html.IndexOf("<", StringComparison.OrdinalIgnoreCase);
 
@@ -2083,50 +2078,48 @@ public abstract class PdfBuilderBase : IPdfBuilder
         }
     }
 
-    /// <summary>
-    /// Create a footer with three section left, middle and right
-    /// </summary>
-    /// <param name="footerLeft">Content of left footer section</param>
-    /// <param name="footerMiddle">Content of left middle section</param>
-    /// <param name="footerRight">Content of left right section</param>
-    /// <param name="styleName">Style to use for the footer</param>
-    public void CreateFooter3(string footerLeft, string footerMiddle, string footerRight, string styleName)
-    {
-        var table = Content.Footers.Primary.AddTable();
-        table.Borders.Visible = false;
-        table.TopPadding = 9;
-        //table.Rows.LeftIndent = Unit.FromCentimeter(1);
+    ///// <summary>
+    ///// Create a footer with three section left, middle and right
+    ///// </summary>
+    ///// <param name="footerLeft">Content of left footer section</param>
+    ///// <param name="footerMiddle">Content of left middle section</param>
+    ///// <param name="footerRight">Content of left right section</param>
+    ///// <param name="styleName">Style to use for the footer</param>
+    //public void CreateFooter3(string footerLeft, string footerMiddle, string footerRight, string styleName)
+    //{
+    //    var table = Content.Footers.Primary.AddTable();
+    //    table.Borders.Visible = false;
+    //    table.TopPadding = 9;
+    //    //table.Rows.LeftIndent = Unit.FromCentimeter(1);
 
-        var w = Unit.FromCentimeter(Width / 3);
+    //    var w = Unit.FromCentimeter(Width / 3);
 
-        var col = table.AddColumn();
-        col.Width = w;
+    //    var col = table.AddColumn();
+    //    col.Width = w;
 
-        col = table.AddColumn();
-        col.Format.Alignment = ParagraphAlignment.Center;
-        col.Width = w;
+    //    col = table.AddColumn();
+    //    col.Format.Alignment = ParagraphAlignment.Center;
+    //    col.Width = w;
 
-        col = table.AddColumn();
-        col.Format.Alignment = ParagraphAlignment.Right;
-        col.Width = w;
+    //    col = table.AddColumn();
+    //    col.Format.Alignment = ParagraphAlignment.Right;
+    //    col.Width = w;
 
-        table.AddRow();
+    //    table.AddRow();
 
-        var cell = table.Rows[0][0];
-        var p = cell.AddParagraph(footerLeft);
-        p.Style = styleName;
+    //    var cell = table.Rows[0][0];
+    //    var p = cell.AddParagraph(footerLeft);
+    //    p.Style = styleName;
 
-        cell = table.Rows[0][1];
-        p = cell.AddParagraph(footerMiddle);
-        p.Style = styleName;
-
-
-        cell = table.Rows[0][2];
-        p = cell.AddParagraph(footerRight);
-        p.Style = styleName;
+    //    cell = table.Rows[0][1];
+    //    p = cell.AddParagraph(footerMiddle);
+    //    p.Style = styleName;
 
 
-    }
+    //    cell = table.Rows[0][2];
+    //    p = cell.AddParagraph(footerRight);
+    //    p.Style = styleName;
+    //}
 
     /// <summary>
     /// Add a pagebreak to the content section
@@ -2135,7 +2128,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         Content.AddPageBreak();
     }
-
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
@@ -2151,7 +2143,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     protected void LoadDefaults()
     {
         AddPageBreakIfNecessary = false;
-        Increment = 21;
+        NumberOfTableRowsPerPage = 21;
     }
 
     /// <summary>

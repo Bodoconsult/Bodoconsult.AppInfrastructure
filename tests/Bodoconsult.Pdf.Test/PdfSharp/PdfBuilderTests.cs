@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.Helpers;
 using Bodoconsult.Pdf.Extensions;
+using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using Bodoconsult.Pdf.Stylesets;
 using Bodoconsult.Text.Test.Helpers;
@@ -14,6 +15,7 @@ using PdfSharp.Quality;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Versioning;
+using Bodoconsult.Pdf.Factories;
 using ResourceHelper = Bodoconsult.Text.Test.Helpers.ResourceHelper;
 
 namespace Bodoconsult.Pdf.Test.PdfSharp;
@@ -85,7 +87,7 @@ public class PdfBuilderTests
     /// <summary>
     /// Defines page setup, headers, and footers.
     /// </summary>
-    static void DefineContentSection(Document document)
+    private static void DefineContentSection(Document document)
     {
         var section = document.AddSection();
         section.PageSetup.OddAndEvenPagesHeaderFooter = true;
@@ -120,7 +122,6 @@ public class PdfBuilderTests
         CreateFile(fileName);
     }
 
-
     [Test]
     public void TestPdfCreatorWithDefaultStyleSheetLandScape()
     {
@@ -151,8 +152,9 @@ public class PdfBuilderTests
 
         FileSystemHelper.DeleteFile(fileName);
 
-        var styleset = new DefaultStyleSet();
-        styleset.CreatePageSetup();
+        var styleSetFactory = new DefaultStyleSetFactory();
+
+        var styleset = styleSetFactory.CreateInstance(landscape);
 
         if (landscape)
         {
@@ -160,7 +162,6 @@ public class PdfBuilderTests
         }
         else
         {
-            styleset.CalculateMeasures();
             styleset.InitializeStyles();
         }
 
@@ -320,21 +321,7 @@ public class PdfBuilderTests
 
     private void LoadLandScapeSettings(IStyleSet styleSet)
     {
-        var ps = styleSet.PageSetup;
-        ps.Orientation = Orientation.Landscape;
-        var w = ps.PageWidth;
-        var h = ps.PageHeight;
-        ps.PageHeight = w;
-        ps.PageWidth = h;
-        ps.LeftMargin = Unit.FromCentimeter(1.5);
-        ps.RightMargin = Unit.FromCentimeter(1.5);
-        ps.TopMargin = Unit.FromCentimeter(1.5);
-        ps.BottomMargin = Unit.FromCentimeter(1.5);
-
-        styleSet.CalculateMeasures();
-        styleSet.InitializeStyles();
-
-        var width = ps.PageWidth.Point - ps.TopMargin.Point - ps.BottomMargin.Point;
+        var width = styleSet.TypeAreaWidth;
 
         var style = styleSet.Normal;
         style.Font.Name = "Arial Narrow";

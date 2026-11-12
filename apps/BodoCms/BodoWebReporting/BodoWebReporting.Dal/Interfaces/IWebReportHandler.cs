@@ -12,11 +12,6 @@ public interface IWebReportHandler
     ReportingTargets? Target { get; set; }
 
     /// <summary>
-    /// Steps
-    /// </summary>
-    int Steps { get; set; }
-
-    /// <summary>
     /// Start the export tasks for all files
     /// </summary>
     /// <returns>Number of reports created</returns>

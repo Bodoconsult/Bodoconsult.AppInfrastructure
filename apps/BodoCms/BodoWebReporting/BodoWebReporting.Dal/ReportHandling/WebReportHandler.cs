@@ -26,13 +26,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
     public WebReportHandler(IDataHandler dataHandler, IWebReportExporterFactory webReportExporterFactory, IAppGlobals appGlobals) : base(dataHandler, appGlobals)
     {
         _webReportExporterFactory = webReportExporterFactory;
-        Steps = 21;
     }
-
-    /// <summary>
-    /// Steps
-    /// </summary>
-    public int Steps { get; set; }
 
     /// <summary>
     /// The kind of reporting to be created
@@ -77,15 +71,12 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         SetStatus($"Export report '{file.FileName}'");
 
-        StyleHelper.RunCode();
-
         var wr = _webReportExporterFactory.CreateInstance(file, id);
         wr.Landscape = file.Landscape;
         wr.AddPageSetup();
         wr.StyleSet.ColumnWidth = wr.StyleSet.TypeAreaWidth;
 
-        Steps = file.Landscape ? 35 : 42;
-        wr.Steps = Steps;
+        wr.NumberOfTableRowsPerPage = file.Landscape ? 35 : 48;
 
         wr.Title = TextHelper.Parser(file.Shortname) ?? "Title";
         wr.StyleSet.DocumentMetaData.Title = wr.Title;
@@ -141,7 +132,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                     wr.AddTocSection(rfp.Title1);
                 }
 
-                wr.NewContentSection();
+                wr.AddContentSection();
             }
 
             wr.Subject = rfp.Subject ?? string.Empty;
@@ -168,7 +159,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                 continue;
             }
 
-            if (typ == "smalltable" && data.Rows.Count > Steps / 2)
+            if (typ == "smalltable" && data.Rows.Count > wr.NumberOfTableRowsPerPage / 2)
             {
                 typ = "table";
             }
@@ -185,8 +176,8 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                     gewicht += 1;
                     break;
                 //case "heading":
-                default:
-                    break;
+                //default:
+                //    break;
             }
 
             // Neue Seite?
@@ -272,23 +263,11 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         if (data.Columns[0].DataType == typeof(string))
         {
-
-            //try
-            //{
             if (data.Select(s).Any())
             {
                 data.Rows.RemoveAt(data.Rows.Count - 1);
             }
-            //}
-            //// ReSharper disable EmptyGeneralCatchClause
-            //catch
-            //// ReSharper restore EmptyGeneralCatchClause
-            //{
-
         }
-
-
-        //}
 
         var chartdata = new ChartData
         {
@@ -301,8 +280,6 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
             TypeOfChart = rfp.ChartType,
             Left = left,
         };
-
-        left = left == 0 ? 24 : 0;
 
         wr.AddChart(chartdata);
     }

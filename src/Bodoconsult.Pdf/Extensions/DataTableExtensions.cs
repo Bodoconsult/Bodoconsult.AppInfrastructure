@@ -50,7 +50,21 @@ public static class DataTableExtensions
     public static PdfTable ToPdfTable(this DataTable dt)
     {
         const int startIndex = 0;
-        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, new Dictionary<string, Color>());
+        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, new Dictionary<string, Color>(), 0, 0);
+        return result;
+    }
+
+    /// <summary>
+    /// Convert a <see cref="DataTable"/> to a <see cref="PdfTable"/>
+    /// </summary>
+    /// <param name="dt">Current <see cref="DataTable"/> to convert</param>
+    /// <param name="pageNumber">Current page number. Default: 0</param>
+    /// <param name="pageSize">Current page size. Default: 0</param>
+    /// <returns>Resulting <see cref="PdfTable"/> instance</returns>
+    public static PdfTable ToPdfTable(this DataTable dt, int pageNumber, int pageSize)
+    {
+        const int startIndex = 0;
+        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, new Dictionary<string, Color>(), pageNumber, pageSize);
         return result;
     }
 
@@ -63,7 +77,7 @@ public static class DataTableExtensions
     public static PdfTable ToPdfTable(this DataTable dt, CultureInfo cultureInfo)
     {
         const int startIndex = 0;
-        var result = GetPdfTable(dt, startIndex, cultureInfo, new Dictionary<string, Color>());
+        var result = GetPdfTable(dt, startIndex, cultureInfo, new Dictionary<string, Color>(), 0, 0);
         return result;
     }
 
@@ -76,7 +90,22 @@ public static class DataTableExtensions
     public static PdfTable ToPdfTableWithCssInfo(this DataTable dt, Dictionary<string, Color> cssColors)
     {
         const int startIndex = 1;
-        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, cssColors);
+        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, cssColors, 0, 0);
+        return result;
+    }
+
+    /// <summary>
+    /// Convert a <see cref="DataTable"/> to a <see cref="PdfTable"/>
+    /// </summary>
+    /// <param name="dt">Current <see cref="DataTable"/> to convert. First column should be named CssStyle</param>
+    /// <param name="cssColors">Color translation table. If first column is named CssStyle the style name is translated to a color with this table</param>
+    /// <param name="pageNumber">Current page number. Default: 0</param>
+    /// <param name="pageSize">Current page size. Default: 0</param>
+    /// <returns>Resulting <see cref="PdfTable"/> instance</returns>
+    public static PdfTable ToPdfTableWithCssInfo(this DataTable dt, Dictionary<string, Color> cssColors, int pageNumber, int pageSize)
+    {
+        const int startIndex = 1;
+        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, cssColors, pageNumber, pageSize);
         return result;
     }
 
@@ -90,12 +119,12 @@ public static class DataTableExtensions
     public static PdfTable ToPdfTableWithCssInfo(this DataTable dt, Dictionary<string, Color> cssColors, CultureInfo cultureInfo)
     {
         const int startIndex = 1;
-        var result = GetPdfTable(dt, startIndex, cultureInfo, cssColors);
+        var result = GetPdfTable(dt, startIndex, cultureInfo, cssColors, 0, 0);
         return result;
     }
 
     private static PdfTable GetPdfTable(DataTable dt, int startIndex, CultureInfo cultureInfo,
-        Dictionary<string, Color> cssColors)
+        Dictionary<string, Color> cssColors, int page, int pageSize)
     {
         var result = new PdfTable();
 
@@ -120,7 +149,21 @@ public static class DataTableExtensions
             result.Columns.Add(col);
         }
 
-        for (var i = 0; i < dt.Rows.Count; i++)
+        var start = 0;
+        var count = dt.Rows.Count;
+
+        if (pageSize > 0)
+        {
+            start = page * pageSize;
+            count = start + pageSize;
+
+            if (count > dt.Rows.Count)
+            {
+                count = dt.Rows.Count;
+            }
+        }
+
+        for (var i = start; i < count; i++)
         {
             var dataRow = dt.Rows[i];
             var row = new PdfRow();
@@ -177,7 +220,7 @@ public static class DataTableExtensions
             return string.Empty;
         }
 
-        var t = type.Name.Replace("System.", string.Empty).ToLowerInvariant();
+        var t = type.Name.Replace("System.", string.Empty, StringComparison.OrdinalIgnoreCase).ToLowerInvariant();
         return t switch
         {
             "datetime" => Convert.ToDateTime(value).ToString("d", cultureInfo),

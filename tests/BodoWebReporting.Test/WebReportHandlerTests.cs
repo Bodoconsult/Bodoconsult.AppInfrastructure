@@ -3,17 +3,15 @@
 using Bodoconsult.Database.SqlClient;
 using BodoWebReporting.Dal.App;
 using BodoWebReporting.Dal.Interfaces;
-using BodoWebReporting.Dal.Model;
 using NUnit.Framework;
-using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Versioning;
 using Bodoconsult.App.Helpers;
 using Bodoconsult.Drawing.SkiaSharp.Factories;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
+using Bodoconsult.Pdf.Interfaces;
 using BodoWebReporting.Dal.DataHandling;
 using BodoWebReporting.Dal.Factories;
-using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.ReportHandling;
 
 namespace BodoWebReporting.Test;
@@ -27,15 +25,7 @@ internal class WebReportHandlerTests
     public WebReportHandlerTests()
     {
         var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        if (dir == null) return;
-        var file = Path.Combine(dir, @"Template\StyleImport.cs");
-
-        // Styles laden
-        StyleHelper.FileName = file;
-        StyleHelper.Start();
-
-        StyleHelper.RunCode();
+        ArgumentNullException.ThrowIfNull(dir);
     }
 
     [Test]
@@ -49,8 +39,9 @@ internal class WebReportHandlerTests
 
         IBitmapServiceFactory bitmapServiceFactory = new BitmapServiceFactory();
         var chartFactory = new WebChartExporterFactory(dataLayer, bitmapServiceFactory);
+        IStyleSetFactory styleSetFactory = new BodoWebReportingStyleSetFactory();
 
-        var factory = new WebReportExporterFactory(dataLayer, chartFactory);
+        var factory = new WebReportExporterFactory(dataLayer, chartFactory, styleSetFactory);
 
         var rh = new WebReportHandler(dataLayer, factory, _appGlobals);
         rh.StartExport();
@@ -65,7 +56,7 @@ internal class WebReportHandlerTests
 
         var db = new SqlClientConnManager(_appGlobals.AppStartParameter.DefaultConnectionString);
 
-        const string reportName = "Andrea_Gesamtbericht.pdf";
+        const string reportName = "Andrea_Gesamtbericht.pdf"; // BC_LiquiForecast.pdf Andrea_Gesamtbericht.pdf
         var targetPath = Path.Combine(_appGlobals.TargetPath, reportName);
 
         FileSystemHelper.DeleteFile(targetPath);
@@ -74,8 +65,9 @@ internal class WebReportHandlerTests
 
         IBitmapServiceFactory bitmapServiceFactory = new BitmapServiceFactory();
         var chartFactory = new WebChartExporterFactory(dataLayer, bitmapServiceFactory);
+        IStyleSetFactory styleSetFactory = new BodoWebReportingStyleSetFactory();
 
-        var factory = new WebReportExporterFactory(dataLayer, chartFactory);
+        var factory = new WebReportExporterFactory(dataLayer, chartFactory, styleSetFactory);
 
         var rh = new WebReportHandler(dataLayer, factory, _appGlobals);
 

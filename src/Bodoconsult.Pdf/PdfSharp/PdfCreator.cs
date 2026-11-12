@@ -1,6 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-using Bodoconsult.Pdf.Stylesets;
+using Bodoconsult.Pdf.Interfaces;
 using MigraDoc.DocumentObjectModel;
 using PdfSharp;
 using PdfSharp.Fonts;

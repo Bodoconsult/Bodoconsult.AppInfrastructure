@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.Pdf.Interfaces;
 using BodoWebReporting.Dal.Exporter;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
@@ -16,10 +17,12 @@ public class WebReportExporterFactory : IWebReportExporterFactory
     /// </summary>
     /// <param name="dataHandler">Current datahandler</param>
     /// <param name="webChartExporterFactory">Current WebChart exporter factory</param>
-    public WebReportExporterFactory(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory)
+    /// <param name="styleSetFactory">Current styleset factory</param>
+    public WebReportExporterFactory(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory, IStyleSetFactory styleSetFactory)
     {
         DataHandler = dataHandler;
         WebChartExporterFactory = webChartExporterFactory;
+        StyleSetFactory = styleSetFactory;
     }
 
     /// <summary>
@@ -33,6 +36,11 @@ public class WebReportExporterFactory : IWebReportExporterFactory
     public IWebChartExporterFactory WebChartExporterFactory { get; }
 
     /// <summary>
+    /// Current styleset factory
+    /// </summary>
+    public IStyleSetFactory StyleSetFactory { get; }
+
+    /// <summary>
     /// Create an instance of <see cref="WebReportExporter"/>
     /// </summary>
     /// <param name="file">Reporting file data</param>
@@ -40,6 +48,6 @@ public class WebReportExporterFactory : IWebReportExporterFactory
     /// <returns>Instance of <see cref="WebReportExporter"/></returns>
     public WebReportExporter CreateInstance(ReportingFile file, int id = 1)
     {
-        return new WebReportExporter(DataHandler, WebChartExporterFactory, file, id);
+        return new WebReportExporter(DataHandler, WebChartExporterFactory, StyleSetFactory, file, id);
     }
 }

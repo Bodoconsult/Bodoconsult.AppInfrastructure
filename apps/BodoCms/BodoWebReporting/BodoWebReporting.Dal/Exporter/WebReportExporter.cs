@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
 using Bodoconsult.Drawing;
+using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
-using Bodoconsult.Pdf.Stylesets;
-using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using BodoWebReporting.Dal.Report;
@@ -30,7 +29,20 @@ public class WebReportExporter : IDisposable
 
     private int _headingCounter;
 
-    public WebReportExporter(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory, ReportingFile file, int id = 1)
+    /// <summary>
+    /// Divider column width in cm
+    /// </summary>
+    private readonly double _dividerWidth = 1;
+
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    /// <param name="dataHandler">Current data handler</param>
+    /// <param name="webChartExporterFactory">Current factory for <see cref="WebChartExporter"/> instances</param>
+    /// <param name="styleSetFactory">Current factoy for <see cref="IStyleSet"/> instances</param>
+    /// <param name="file">Reporting file data</param>
+    /// <param name="id">Running ID</param>
+    public WebReportExporter(IDataHandler dataHandler, IWebChartExporterFactory webChartExporterFactory, IStyleSetFactory styleSetFactory, ReportingFile file, int id = 1)
     {
         _webChartExporterFactory = webChartExporterFactory;
         _dataHandler = dataHandler;
@@ -38,7 +50,10 @@ public class WebReportExporter : IDisposable
         _id = id;
 
         // ToDo: move to DI
-        StyleSet = StyleHelper.CreateStyleSet(file.Landscape);
+        StyleSet = styleSetFactory.CreateInstance(file.Landscape);
+
+        ChartWidth = (StyleSet.TypeAreaWidth.Centimeter - _dividerWidth) / 2;
+        ChartHeight = ChartWidth / 1.618;   // Goldener Schnitt
 
         Pdf = new PdfCreator(StyleSet);
 #if DEBUG
@@ -95,7 +110,7 @@ public class WebReportExporter : IDisposable
     /// <summary>
     /// Steps
     /// </summary>
-    public int Steps { get; set; }
+    public int NumberOfTableRowsPerPage { get; set; }
 
     /// <summary>
     /// Landscape?
@@ -128,6 +143,16 @@ public class WebReportExporter : IDisposable
     public int NumberOfContentElements => Pdf.NumberOfContentElements;
 
     /// <summary>
+    /// Chart width in cm
+    /// </summary>
+    public double ChartWidth { get; }
+
+    /// <summary>
+    /// Chart height in cm
+    /// </summary>
+    public double ChartHeight { get; }
+
+    /// <summary>
     /// <see cref="PdfCreator"/> instance
     /// </summary>
     public readonly PdfCreator Pdf;
@@ -137,7 +162,7 @@ public class WebReportExporter : IDisposable
     /// </summary>
     public void StartDocument()
     {
-        Pdf.Increment = Steps;
+        Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
 
         var meta = StyleSet.DocumentMetaData;
 
@@ -145,28 +170,16 @@ public class WebReportExporter : IDisposable
         meta.HeaderText = Title;
         meta.PageNumberPrefix = "Seite";
         meta.CultureInfo = CultureInfo.CurrentCulture;
-
-        // ToDo:
-        //StyleSet.BackColor = BackColor;
-        //Pdf.TableBorderColor = TableBorderColor;
-        //Pdf.AlternateBackColor = AlternateBackColor;
-        //Pdf.ShadingH1Color = Colors.LightGray;
-        //Pdf.ShadingH2Color = TableBorderColor;
-        //Pdf.ShadingH3Color = Color.FromRgb(44, 160, 44);
-        //Pdf.ShadingRisk1Color = Color.FromRgb(255, 99, 71);
-        //Pdf.ShadingRisk2Color = Color.FromRgb(255, 127, 80);
+        meta.BackgroundImagePath = BackgroundImagePath;
 
         Pdf.SetDocInfo(Title, Subject, _file.Author);
 
-        // ToDo:
-        // Pdf.SetHeader(_file.Author, "Header", _file.LogoPath);
-        Pdf.SetHeader();
-        Pdf.SetFooter();
+        Pdf.SetHeader(); Pdf.SetFooter();
 
     }
 
     ///// <summary>
-    ///// Add a TOC section
+    ///// Add a TOC section without custom heading text
     ///// </summary>
     //public void AddTocSection()
     //{
@@ -179,53 +192,30 @@ public class WebReportExporter : IDisposable
     /// <param name="heading"></param>
     public void AddTocSection(string? heading)
     {
-        //if (File.Exists(BackgroundImagePath))
-        //{
-
-        // ToDo:
-        //Pdf.BackgroundImagePath = BackgroundImagePath;
-        //}
-        //else
-        //{
-        //    Pdf.BackgroundImagePath = null;
-        //    if (!string.IsNullOrEmpty(BackgroundImagePath))  Debug.Print($"Not found: {BackgroundImagePath}");
-        //}
-        Pdf.Increment = Steps;
+        Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
         Pdf.CreateTocSection(heading);
     }
 
 
-
-    public void NewContentSection()
+    /// <summary>
+    /// Add a new content section
+    /// </summary>
+    public void AddContentSection()
     {
-        Pdf.Increment = Steps;
-        //if (File.Exists(BackgroundImagePath))
-        //{
-
-        //// ToDo:
-        //Pdf.BackgroundImagePath = BackgroundImagePath;
-        //}
-        //else
-        //{
-        //    Pdf.BackgroundImagePath = null;
-        //    Debug.Print($"Not found: {BackgroundImagePath}");
-        //}
+        Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
         Pdf.CreateContentSection();
-
-        //Pdf.SetHeader(_file.Author, "Header", LogoImagePath);
-        //Pdf.SetFooter($"{DateTime.Now:dd.MM.yyyy}\t<<page>>", "Footer");
     }
 
 
     public void AddTable(string tableTitle, DataTable data)
     {
-        Pdf.Increment = Steps;
+        Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
         Pdf.AddTableFrame(data, tableTitle, "Heading1", AdditionalInfo, "Details");
     }
 
     public void AddTable(string tableTitle, DataTable data, bool showInToc, bool addPageBreakIfNecessary)
     {
-        Pdf.Increment = Steps;
+        Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
         Pdf.AddPageBreakIfNecessary = addPageBreakIfNecessary;
 
         Pdf.AddTableFrame(data, tableTitle, showInToc ? "Heading1" : "NoHeading1", AdditionalInfo, "Details", Pdf.Width, true);
@@ -244,6 +234,10 @@ public class WebReportExporter : IDisposable
         _headingCounter++;
     }
 
+    /// <summary>
+    /// Add a chart to the report
+    /// </summary>
+    /// <param name="data">Chart data</param>
     public void AddChart(ChartData data)
     {
         _objectCounter++;
@@ -255,8 +249,8 @@ public class WebReportExporter : IDisposable
         var wc = new WebChart
         {
             Id = _id * 10000 + _objectCounter,
-            Width = 750,
-            Height = 454,
+            Width = 900,
+            Height = 556,
             Title = data.Title,
             Copyright = _file.Shortname,
             YUnit = data.YLabel,
@@ -267,86 +261,66 @@ public class WebReportExporter : IDisposable
         };
 
         var x = _webChartExporterFactory.CreateInstance(data.Data, wc);
-
-        //{
-        //    //BackColor = (System.Drawing.Color.FromArgb((int)BackColor.R, (int)BackColor.G, (int)BackColor.B)),
-        //    //TableBorderColor = (System.Drawing.Color.FromArgb((int)TableBorderColor.R, (int)TableBorderColor.G, (int)TableBorderColor.B)),
-        //};
-
         rc.Data = x;
 
         _reportItems.Add(rc);
     }
 
-    public void PageBreak()
-    {
-        Pdf.NewPage();
-    }
-
+    /// <summary>
+    /// Export the PDF file
+    /// </summary>
     public void ExportReport()
     {
         Pdf.RenderToPdf(_file.FileName, false);
     }
 
-    public int GetCurrentHeightUnits()
-    {
-        if (_reportItems.Count == 0)
-        {
-            return -1;
-        }
+    //public int GetCurrentHeightUnits()
+    //{
+    //    if (_reportItems.Count == 0)
+    //    {
+    //        return -1;
+    //    }
 
-        var xy = _reportItems.Count % 2;
+    //    var xy = _reportItems.Count % 2;
 
-        return xy;
-    }
+    //    return xy;
+    //}
 
+
+    /// <summary>
+    /// Ends multicolumn charting
+    /// </summary>
     public void EndCharting()
     {
+        // No chart at all
         if (_reportItems.Count == 0)
         {
             return;
         }
 
+        // Only a single chart to add
         if (_reportItems.Count == 1)
         {
-            switch (_reportItems[0].TypeOfObject)
-            {
-                case ReportItemType.Chart:
-                    Pdf.AddParagraph(string.Empty);
-                    Pdf.AddParagraph(string.Empty);
-                    Pdf.AddParagraph(string.Empty);
-                    //Pdf.AddParagraph("Hallo");
-                    //Pdf.AddParagraph("Hallo");
-
-                    var chart = (ChartReportItem)_reportItems[0];
-                    chart.Export();
-
-                    if (chart.Data is not null)
-                    {
-                        Pdf.AddImage(chart.Data.WebChart.FileName, 12.5, 7.7);
-                    }
-
-                    break;
-                case ReportItemType.SmallTable:
-                    var t = (SmallTableReportItem)_reportItems[0];
-                    Pdf.AddTableFrame(t.Data, t.Heading, "NoHeading1");
-                    //Pdf.AddParagraph("Hallo");
-                    break;
-                    //default:
-                    //    break;
-
-            }
-
+            AddSingleChart();
             _reportItems.Clear();
-
             return;
         }
 
+        // Add multiple charts in a 2-column design
+        AddMultipleCharts();
+        _reportItems.Clear();
+    }
 
+    /// <summary>
+    /// Add multiple charts to the report in a 2-column design
+    /// </summary>
+    private void AddMultipleCharts()
+    {
         Pdf.TableStart();
-        Pdf.TableAddColumn(ParagraphAlignment.Left, 13);
-        Pdf.TableAddColumn(ParagraphAlignment.Left, 0.8);
-        Pdf.TableAddColumn(ParagraphAlignment.Right, 13);
+        Pdf.TableAddColumn(ParagraphAlignment.Left, ChartWidth);
+        Pdf.TableAddColumn(ParagraphAlignment.Left, Pdf.Width - 2 * ChartWidth);
+        Pdf.TableAddColumn(ParagraphAlignment.Right, ChartWidth);
+        
         var i = 0;
         var zeile = -1;
         foreach (var obj in _reportItems)
@@ -364,7 +338,7 @@ public class WebReportExporter : IDisposable
                     chart.Export();
                     if (chart.Data is not null)
                     {
-                        Pdf.TableSetContent(i, zeile, chart.Data.WebChart.FileName, 12.5, 7.7);
+                        Pdf.TableSetContent(i, zeile, chart.Data.WebChart.FileName, ChartWidth, ChartHeight);
                     }
 
                     break;
@@ -382,15 +356,43 @@ public class WebReportExporter : IDisposable
             }
             i = i == 2 ? 0 : 2;
         }
-
-        _reportItems.Clear();
     }
 
-    public virtual void StartCharting()
+    /// <summary>
+    /// Only a single chart to add to the report
+    /// </summary>
+    private void AddSingleChart()
     {
-        _reportItems.Clear();
+        switch (_reportItems[0].TypeOfObject)
+        {
+            case ReportItemType.Chart:
+                Pdf.AddEmpty();
+                Pdf.AddEmpty();
+                Pdf.AddEmpty();
+
+                var chart = (ChartReportItem)_reportItems[0];
+                chart.Export();
+
+                if (chart.Data is not null)
+                {
+                    Pdf.AddImage(chart.Data.WebChart.FileName, ChartWidth, ChartHeight);
+                }
+
+                break;
+            case ReportItemType.SmallTable:
+                var t = (SmallTableReportItem)_reportItems[0];
+                Pdf.AddTableFrame(t.Data, t.Heading, "NoHeading1");
+                //Pdf.AddParagraph("Hallo");
+                break;
+        }
     }
 
+    //public virtual void StartCharting()
+    //{
+    //    _reportItems.Clear();
+    //}
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
     {
         Pdf.Dispose();
@@ -400,6 +402,11 @@ public class WebReportExporter : IDisposable
         }
     }
 
+    /// <summary>
+    /// Add a small table
+    /// </summary>
+    /// <param name="caption">Table caption</param>
+    /// <param name="data">Table data</param>
     public void AddSmallTable(string caption, DataTable data)
     {
         var r = new SmallTableReportItem
@@ -411,6 +418,9 @@ public class WebReportExporter : IDisposable
         _reportItems.Add(r);
     }
 
+    /// <summary>
+    /// Add the page setup
+    /// </summary>
     public void AddPageSetup()
     {
         // ToDo: Page settings
@@ -428,7 +438,6 @@ public class WebReportExporter : IDisposable
 
         ps.SectionStart = BreakType.BreakNextPage;
 
-        StyleSet.CalculateMeasures();
         StyleSet.InitializeStyles();
     }
 

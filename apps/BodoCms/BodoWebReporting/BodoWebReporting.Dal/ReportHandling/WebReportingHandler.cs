@@ -3,7 +3,6 @@
 
 using System.Runtime.Versioning;
 using Bodoconsult.App.Abstractions.Interfaces;
-using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 
@@ -39,9 +38,6 @@ public class WebReportingHandler : IWebReportingHandler
         CurrentDir = appGlobals.AppStartParameter.AppPath;
         var file = Path.Combine(CurrentDir, @"Template\StyleImport.cs");
 
-        // Styles laden
-        StyleHelper.FileName = file;
-        StyleHelper.Start();
         _webReportHandler = webReportHandler;
     }
 

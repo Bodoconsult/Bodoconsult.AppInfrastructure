@@ -2,6 +2,7 @@
 
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
+using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
 using MigraDoc.DocumentObjectModel;
 
@@ -105,14 +106,6 @@ public class DefaultStyleSet : IStyleSet
 
         PageSetup = ps;
         return ps;
-    }
-
-    /// <summary>
-    /// Calculate measures <see cref="IStyleSet.TypeAreaWidth"/> and ColumnWidth!
-    /// </summary>
-    public void CalculateMeasures()
-    {
-        // Do nothing
     }
 
     /// <summary>

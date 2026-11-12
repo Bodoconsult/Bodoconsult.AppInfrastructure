@@ -2,7 +2,6 @@
 
 using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
-using Bodoconsult.Pdf.Stylesets;
 using PdfSharp.Fonts;
 
 namespace Bodoconsult.Pdf.Factories;

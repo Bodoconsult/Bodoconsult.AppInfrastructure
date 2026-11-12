@@ -114,10 +114,8 @@ public class RtfTextDocumentRendererTests
 
         var filePath = Path.Combine(workingDir, "test.rtf");
 
-
         var styleset = new DefaultStyleSet();
         styleset.CreatePageSetup();
-        styleset.CalculateMeasures();
         styleset.InitializeStyles();
 
         // Create a new MigraDoc document.

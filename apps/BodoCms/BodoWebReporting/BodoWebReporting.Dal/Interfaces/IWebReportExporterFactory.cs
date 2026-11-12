@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.Pdf.Interfaces;
 using BodoWebReporting.Dal.Exporter;
 using BodoWebReporting.Dal.Model;
 
@@ -19,6 +20,11 @@ public interface IWebReportExporterFactory
     /// Current WebChart export factory
     /// </summary>
     IWebChartExporterFactory WebChartExporterFactory { get; }
+
+    /// <summary>
+    /// Current styleset factory
+    /// </summary>
+    IStyleSetFactory StyleSetFactory { get; }
 
     /// <summary>
     /// Create an instance of <see cref="WebReportExporter"/>

@@ -37,7 +37,6 @@ public class WebChartExporter
         _dataHandler = dataHandler;
         WebChart = wc;
         Typography = ReportingHelper.DefaultTypography();
-        BaseCtor();
     }
 
     /// <summary>
@@ -53,14 +52,7 @@ public class WebChartExporter
         _dataHandler = dataHandler;
         WebChart = wc;
         Typography = ReportingHelper.DefaultTypography();
-        BaseCtor();
         _dt = dt;
-    }
-
-    private void BaseCtor()
-    {
-        WebChart.Width = 750;
-        WebChart.Height = 433;
     }
 
     /// <summary>
@@ -78,7 +70,6 @@ public class WebChartExporter
     /// </summary>
     public void Export()
     {
-
         var basePath = _dataHandler.AppGlobals.TargetPath;
         FileSystemHelper.CreateDirectory(basePath);
 
