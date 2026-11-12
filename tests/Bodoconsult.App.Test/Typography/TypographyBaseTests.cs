@@ -176,8 +176,7 @@ internal class TypographyBaseTests
 
         //json = Decrypt(json);
 
-        var erg = (T)JsonConvert.DeserializeObject(json, typeof(T),
-            new JsonSerializerSettings
+        var erg = JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All
             });

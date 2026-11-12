@@ -21,7 +21,7 @@ namespace Bodoconsult.Pdf.PdfSharp;
 /// </summary>
 public class MultiColumnPdfBuilder : PdfBuilderBase
 {
-    private readonly Dictionary<string, int> _pageInfo = new();
+    private readonly Dictionary<string, int> _pageInfo = [];
 
     #region Constructors
 
@@ -371,10 +371,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
             }
             else
             {
-                if (gfx is null)
-                {
-                    throw new ArgumentNullException(nameof(gfx));
-                }
+                ArgumentNullException.ThrowIfNull(gfx);
             }
 
             var rect = GetRect(idx);
@@ -560,7 +557,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
                 if (isHeader)
                 {
-                    y = y - marginHeaderFooter;
+                    y -= marginHeaderFooter;
                 }
                 else
                 {
@@ -602,7 +599,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
             if (isHeader)
             {
-                y = y - marginHeaderFooter;
+                y -= marginHeaderFooter;
             }
             else
             {
@@ -652,7 +649,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
             if (isHeader)
             {
-                y = y - marginHeaderFooter;
+                y -= marginHeaderFooter;
             }
             else
             {
@@ -683,7 +680,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
             if (isHeader)
             {
-                y = y - marginHeaderFooter;
+                y -= marginHeaderFooter;
             }
             else
             {
@@ -713,7 +710,7 @@ public class MultiColumnPdfBuilder : PdfBuilderBase
 
             if (isHeader)
             {
-                y = y - marginHeaderFooter ;
+                y -= marginHeaderFooter ;
             }
             else
             {

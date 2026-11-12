@@ -50,7 +50,7 @@ public static class DataTableExtensions
     public static PdfTable ToPdfTable(this DataTable dt)
     {
         const int startIndex = 0;
-        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, new Dictionary<string, Color>(), 0, 0);
+        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, [], 0, 0);
         return result;
     }
 
@@ -64,7 +64,7 @@ public static class DataTableExtensions
     public static PdfTable ToPdfTable(this DataTable dt, int pageNumber, int pageSize)
     {
         const int startIndex = 0;
-        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, new Dictionary<string, Color>(), pageNumber, pageSize);
+        var result = GetPdfTable(dt, startIndex, Thread.CurrentThread.CurrentCulture, [], pageNumber, pageSize);
         return result;
     }
 
@@ -77,7 +77,7 @@ public static class DataTableExtensions
     public static PdfTable ToPdfTable(this DataTable dt, CultureInfo cultureInfo)
     {
         const int startIndex = 0;
-        var result = GetPdfTable(dt, startIndex, cultureInfo, new Dictionary<string, Color>(), 0, 0);
+        var result = GetPdfTable(dt, startIndex, cultureInfo, [], 0, 0);
         return result;
     }
 

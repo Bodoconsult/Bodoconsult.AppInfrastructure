@@ -12,9 +12,9 @@ using BodoWebReporting.Dal.Model;
 namespace BodoWebReporting.Dal.ReportHandling;
 
 [SupportedOSPlatform("windows")]
-public class WebReportHandler: BaseObjectHandler, IWebReportHandler
+public class WebReportHandler : BaseObjectHandler, IWebReportHandler
 {
-    private readonly List<Task> _exportTasks = new();
+    private readonly List<Task> _exportTasks = [];
     private readonly IWebReportExporterFactory _webReportExporterFactory;
 
     /// <summary>
@@ -105,7 +105,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
                 //wr.Steps = Steps;
 
-                if (!string.IsNullOrEmpty(rfp.BackgroundImagePath) &&  backImage != rfp.BackgroundImagePath && File.Exists(rfp.BackgroundImagePath))
+                if (!string.IsNullOrEmpty(rfp.BackgroundImagePath) && backImage != rfp.BackgroundImagePath && File.Exists(rfp.BackgroundImagePath))
                 {
                     wr.BackgroundImagePath = rfp.BackgroundImagePath;
                 }
@@ -116,11 +116,11 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                     {
                         Debug.Print($"Not found: {rfp.BackgroundImagePath}");
                     }
-                }    
+                }
 
                 //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
 
-                
+
 
                 // Does a TOC make sense?
                 if (itemCount < 2)
@@ -137,7 +137,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
             wr.Subject = rfp.Subject ?? string.Empty;
 
-            if (sql != rfp.Sql && (!rfp.Sql?.Equals("XXX", StringComparison.OrdinalIgnoreCase) ?? false ))
+            if (sql != rfp.Sql && (!rfp.Sql?.Equals("XXX", StringComparison.OrdinalIgnoreCase) ?? false))
             {
                 sql = TextHelper.Parser(rfp.Sql);
 
@@ -175,9 +175,9 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
                 case "smalltable":
                     gewicht += 1;
                     break;
-                //case "heading":
-                //default:
-                //    break;
+                    //case "heading":
+                    //default:
+                    //    break;
             }
 
             // Neue Seite?
@@ -263,7 +263,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
 
         if (data.Columns[0].DataType == typeof(string))
         {
-            if (data.Select(s).Any())
+            if (data.Select(s).Length > 0)
             {
                 data.Rows.RemoveAt(data.Rows.Count - 1);
             }
@@ -321,7 +321,7 @@ public class WebReportHandler: BaseObjectHandler, IWebReportHandler
     /// </summary>
     public void WaitForExportsDone()
     {
-        Task.WaitAll(_exportTasks.ToArray());
+        Task.WaitAll([.. _exportTasks]);
 
         SetStatus("Exporting reporting is done...");
     }

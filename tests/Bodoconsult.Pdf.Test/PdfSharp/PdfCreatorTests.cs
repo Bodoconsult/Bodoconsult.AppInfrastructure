@@ -47,7 +47,7 @@ public class PdfCreatorTests
 
     }
 
-    private void CreateFile(string fileName, bool landscape = false)
+    private static void CreateFile(string fileName, bool landscape = false)
     {
         var code = ResourceHelper.GetTextResource("code1.txt").Replace("\\t", "\t");
 
@@ -147,7 +147,7 @@ public class PdfCreatorTests
         FileSystemHelper.RunInDebugMode(fileName);
     }
 
-    private void LoadLandScapeSettings(IStyleSet styleSet)
+    private static void LoadLandScapeSettings(IStyleSet styleSet)
     {
         var width = styleSet.TypeAreaWidth;
 

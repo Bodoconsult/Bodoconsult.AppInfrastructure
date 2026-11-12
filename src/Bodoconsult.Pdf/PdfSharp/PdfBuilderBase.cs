@@ -1622,7 +1622,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             frame.Width = Unit.FromCentimeter(width);
             frame.Left = ShapePosition.Center;
 
-            CreateTable(dt, pageNumber, frame, 0.5, "NormalTable", autoFit, pageNumber, NumberOfTableRowsPerPage);
+            CreateTable(dt, frame,  autoFit, pageNumber, NumberOfTableRowsPerPage);
         }
     }
 
@@ -1734,14 +1734,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// Create a table
     /// </summary>
     /// <param name="dt">Data table</param>
-    /// <param name="schleife"></param>
     /// <param name="frame">Current frame</param>
-    /// <param name="borderWidth">Border width in pt</param>
-    /// <param name="tableStyle">Style to use for the table</param>
     /// <param name="autoFit">Autofit to column width</param>
     /// <param name="pageNumber">Current page number. Default: 0</param>
     /// <param name="pageSize">Current page size. Default: 0</param>
-    protected void CreateTable(DataTable dt, int schleife, TextFrame frame, double borderWidth = 0.5, string tableStyle = "NormalTable", bool autoFit = false, int pageNumber = 0, int pageSize=0)
+    protected void CreateTable(DataTable dt, TextFrame frame, bool autoFit = false, int pageNumber = 0, int pageSize=0)
     {
         var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.OrdinalIgnoreCase) ?
             dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors, pageNumber, pageSize) :
@@ -1916,7 +1913,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         frame.Left = ShapePosition.Center;
         frame.Width = Unit.FromCentimeter(width);
 
-        CreateTable(data, 0, frame);
+        CreateTable(data, frame);
     }
 
     /// <summary>

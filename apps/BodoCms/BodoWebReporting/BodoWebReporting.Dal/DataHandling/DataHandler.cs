@@ -187,8 +187,7 @@ public class DataHandler : IDataHandler
                 ChartYUnit = r["WR_C_Y_Unit"].ToString(),
                 ChartType = string.IsNullOrEmpty(r["WR_C_ChartType"].ToString())
                     ? ChartType.BarChart
-                    : (ChartType)Enum.Parse(typeof(ChartType),
-                        $"{r["WR_C_ChartType"].ToString()?.Trim().ToLowerInvariant()}chart", true),
+                    : Enum.Parse<ChartType>($"{r["WR_C_ChartType"].ToString()?.Trim().ToLowerInvariant()}chart", true),
                 ChartLegendLength = string.IsNullOrEmpty(r["WR_C_LegendLength"].ToString())
                     ? (short)0
                     : Convert.ToInt16(r["WR_C_LegendLength"].ToString())
@@ -270,7 +269,7 @@ public class DataHandler : IDataHandler
                 YUnit = row["WC_YUnit"].ToString(),
                 Columns = row["WC_Columns"].ToString(),
                 ColumnsDataTable = row["WC_ColumnsDataTable"].ToString(),
-                ChartType = (ChartType)Enum.Parse(typeof(ChartType), $"{row["WC_ChartType"]}chart", true),
+                ChartType = Enum.Parse<ChartType>($"{row["WC_ChartType"]}chart", true),
                 Copyright = row["WC_Copyright"].ToString(),
                 Id = Convert.ToInt32(row["WC_Id"].ToString()),
                 Width = Convert.ToInt32(row["WC_Width"].ToString()),

@@ -238,7 +238,7 @@ public class ChartHandler : IChartHandler
 
         if (ChartData.LabelsForSeries.Count == 0)
         {
-            ChartData.LabelsForSeries = ChartData.PropertiesToUseForChart.Skip(1).ToList();
+            ChartData.LabelsForSeries = [.. ChartData.PropertiesToUseForChart.Skip(1)];
         }
 
         IChart chart = ChartData.ChartType switch

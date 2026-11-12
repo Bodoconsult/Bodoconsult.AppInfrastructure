@@ -22,7 +22,7 @@ public class WebReportExporter : IDisposable
     private string _backgroundImagePath = string.Empty;
     private readonly IDataHandler _dataHandler;
     private int _objectCounter;
-    private readonly List<BaseReportItem> _reportItems = new();
+    private readonly List<BaseReportItem> _reportItems = [];
     private readonly ReportingFile _file;
     private readonly int _id;
     private readonly IWebChartExporterFactory _webChartExporterFactory;

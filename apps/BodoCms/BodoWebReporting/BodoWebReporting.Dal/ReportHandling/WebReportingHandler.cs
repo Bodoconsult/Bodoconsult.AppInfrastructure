@@ -36,7 +36,6 @@ public class WebReportingHandler : IWebReportingHandler
 
         ArgumentNullException.ThrowIfNull(appGlobals.AppStartParameter.AppPath); 
         CurrentDir = appGlobals.AppStartParameter.AppPath;
-        var file = Path.Combine(CurrentDir, @"Template\StyleImport.cs");
 
         _webReportHandler = webReportHandler;
     }

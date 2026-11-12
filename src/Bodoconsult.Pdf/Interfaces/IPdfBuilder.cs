@@ -391,7 +391,6 @@ public interface IPdfBuilder : IDisposable
     /// <param name="additionalInfosStyleName"></param>
     /// <param name="width"></param>
     /// <param name="tableStyle">Name of the style to use for table formatting (not all properties supported)</param>
-    [Obsolete]
     void AddTable(DataTable dt, string heading, string headingStyleName, string additionalInfos, string additionalInfosStyleName, double width = 0, string tableStyle = "NormalTable");
 
     /// <summary>
