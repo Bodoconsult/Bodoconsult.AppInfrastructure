@@ -25,12 +25,12 @@ public class ReportingFile
     /// <summary>
     /// Reporting parts
     /// </summary>
-    public List<ReportingFileParts> ReportingFileParts { get; } = new();
+    public List<ReportingFileParts> ReportingFileParts { get; } = [];
 
     /// <summary>
     /// Copy tasks
     /// </summary>
-    public List<CopyTask> CopyTasks { get; set; } = new();
+    public List<CopyTask> CopyTasks { get; set; } = [];
 
     /// <summary>
     /// Path to the logo
@@ -41,4 +41,9 @@ public class ReportingFile
     /// Is the orientation landscape?
     /// </summary>
     public bool Landscape { get; set; }
+
+    /// <summary>
+    /// Background image path
+    /// </summary>
+    public string? BackgroundImagePath { get; set; }
 }

@@ -72,5 +72,5 @@ public class WebChart
     /// <summary>
     /// Copy tasks
     /// </summary>
-    public List<CopyTask> CopyTasks { get; } = new();
+    public List<CopyTask> CopyTasks { get; } = [];
 }

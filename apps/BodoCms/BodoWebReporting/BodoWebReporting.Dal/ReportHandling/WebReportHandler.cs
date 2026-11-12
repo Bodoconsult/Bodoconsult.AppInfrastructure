@@ -70,71 +70,37 @@ public class WebReportHandler : BaseObjectHandler, IWebReportHandler
         //{
 
         SetStatus($"Export report '{file.FileName}'");
+        var itemCount = file.ReportingFileParts.Count;
 
         var wr = _webReportExporterFactory.CreateInstance(file, id);
-        wr.Landscape = file.Landscape;
         wr.AddPageSetup();
-        wr.StyleSet.ColumnWidth = wr.StyleSet.TypeAreaWidth;
-
-        wr.NumberOfTableRowsPerPage = file.Landscape ? 35 : 48;
-
-        wr.Title = TextHelper.Parser(file.Shortname) ?? "Title";
-        wr.StyleSet.DocumentMetaData.Title = wr.Title;
-        wr.StyleSet.DocumentMetaData.Authors = file.Author;
-
-        //var x = StyleHandler.StyleSet;
-
         wr.StartDocument();
+
+        // Does a TOC make sense?
+        if (itemCount < 2)
+        {
+            //wr.AddHeading(r["WR_Title1"].ToString());
+        }
+        else
+        {
+            wr.AddTocSection(file.ReportingFileParts[0].Title1);
+        }
+
+        wr.AddContentSection();
 
         var left = 0;
         var gewicht = 0;
-        var start = true;
-        var backImage = "";
-        //var logoImage = "";
-        var sql = "";
-        var itemCount = file.ReportingFileParts.Count;
+        var sql = string.Empty;
+        
 
         var data = new DataTable();
+
+        var count = file.ReportingFileParts.Count;
+        var i = 1;
+
+
         foreach (var rfp in file.ReportingFileParts)
         {
-            if (start)
-            {
-                //wr.Landscape = rfp.Landscape;
-
-                //Steps = rfp.Landscape ? 35 : 42;
-
-                //wr.Steps = Steps;
-
-                if (!string.IsNullOrEmpty(rfp.BackgroundImagePath) && backImage != rfp.BackgroundImagePath && File.Exists(rfp.BackgroundImagePath))
-                {
-                    wr.BackgroundImagePath = rfp.BackgroundImagePath;
-                }
-                else
-                {
-                    wr.BackgroundImagePath = null;
-                    if (!string.IsNullOrEmpty(rfp.BackgroundImagePath))
-                    {
-                        Debug.Print($"Not found: {rfp.BackgroundImagePath}");
-                    }
-                }
-
-                //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
-
-
-
-                // Does a TOC make sense?
-                if (itemCount < 2)
-                {
-                    //wr.AddHeading(r["WR_Title1"].ToString());
-                }
-                else
-                {
-                    wr.AddTocSection(rfp.Title1);
-                }
-
-                wr.AddContentSection();
-            }
-
             wr.Subject = rfp.Subject ?? string.Empty;
 
             if (sql != rfp.Sql && (!rfp.Sql?.Equals("XXX", StringComparison.OrdinalIgnoreCase) ?? false))
@@ -156,6 +122,7 @@ public class WebReportHandler : BaseObjectHandler, IWebReportHandler
 
             if (string.IsNullOrEmpty(typ))
             {
+                i++;
                 continue;
             }
 
@@ -167,7 +134,7 @@ public class WebReportHandler : BaseObjectHandler, IWebReportHandler
             switch (typ)
             {
                 case "table":
-                    gewicht += 2;
+                    gewicht = (data.Rows.Count / wr.NumberOfTableRowsPerPage) + 1 ;
                     break;
                 case "chart":
                     gewicht += 1;
@@ -175,62 +142,62 @@ public class WebReportHandler : BaseObjectHandler, IWebReportHandler
                 case "smalltable":
                     gewicht += 1;
                     break;
-                    //case "heading":
-                    //default:
-                    //    break;
+                default:
+                    gewicht = 0;
+                    break;
             }
 
-            // Neue Seite?
+            Debug.Print($"{rfp.Name} Weight: {gewicht}");
+
+            var pageBreakRequired = false;
+
+            // If weight is more than 4 add a new page
             if (gewicht > 4)
             {
-                gewicht = 0;
-                //SetStatus("Neue Seite");
+                
 
                 switch (typ)
                 {
                     case "heading":
-
+                        gewicht = 0;
                         break;
                     case "table":
-                        gewicht += 2;
+                        pageBreakRequired = true;
                         break;
                     case "chart":
+                        gewicht = 0;
+                        pageBreakRequired = true;
                         gewicht += 1;
                         break;
                     case "smalltable":
+                        pageBreakRequired = true;
                         gewicht += 1;
                         break;
                 }
-
-                wr.EndCharting();
-                if (backImage != rfp.BackgroundImagePath)
-                {
-                    wr.BackgroundImagePath = rfp.BackgroundImagePath;
-                }
-                //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
-                //wr.NewContentSection();
             }
-
-
+            
             switch (typ)
             {
                 case "heading":
-                    AddHeading(rfp, wr, backImage);
+                    AddHeading(rfp, wr);
                     break;
                 case "table":
-                    AddTable(rfp, gewicht, wr, data);
+                    AddTable(rfp, gewicht, wr, data, pageBreakRequired);
+
+                    if (i < count)
+                    {
+                        wr.AddPageBreak();
+                    }
                     break;
                 case "smalltable":
-                    AddSmallTable(rfp, gewicht, wr, data);
+                    AddSmallTable(rfp, gewicht, wr, data, pageBreakRequired);
                     break;
                 case "chart":
-                    AddChart(rfp, gewicht, data, left, wr);
+                    AddChart(rfp, gewicht, data, left, wr, pageBreakRequired);
                     break;
             }
 
-            backImage = rfp.BackgroundImagePath;
-            //logoImage = rfp.LogoPath;
-            start = false;
+            i++;
         }
 
         wr.EndCharting();
@@ -254,7 +221,8 @@ public class WebReportHandler : BaseObjectHandler, IWebReportHandler
         //}
     }
 
-    private void AddChart(ReportingFileParts rfp, int gewicht, DataTable data, int left, WebReportExporter wr)
+    private void AddChart(ReportingFileParts rfp, int gewicht, DataTable data, int left, WebReportExporter wr,
+        bool pageBreakRequired)
     {
         SetStatus($"Exporting chart {rfp.Name}...{gewicht}");
 
@@ -278,41 +246,31 @@ public class WebReportHandler : BaseObjectHandler, IWebReportHandler
             YLabel = rfp.ChartYUnit ?? string.Empty,
             LegendLength = rfp.ChartLegendLength,
             TypeOfChart = rfp.ChartType,
-            Left = left,
+            Left = left
         };
 
-        wr.AddChart(chartdata);
+        wr.AddChart(chartdata, pageBreakRequired);
     }
 
-    private void AddSmallTable(ReportingFileParts rfp, int gewicht, WebReportExporter wr, DataTable data)
+    private void AddSmallTable(ReportingFileParts rfp, int gewicht, WebReportExporter wr, DataTable data,
+        bool pageBreakRequired)
     {
         SetStatus($"Exporting small table {rfp.Name}...{gewicht}");
-        wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data);
+        wr.AddSmallTable(rfp.Title ?? "Title missing (rfp.Title)", data, pageBreakRequired);
     }
 
-    private void AddTable(ReportingFileParts rfp, int gewicht, WebReportExporter wr, DataTable data)
+    private void AddTable(ReportingFileParts rfp, int gewicht, WebReportExporter wr, DataTable data,
+        bool pageBreakRequired)
     {
         SetStatus($"Exporting table {rfp.Name}...{gewicht}");
-        wr.EndCharting();
-        wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, gewicht > 2);
+        wr.AddTable(rfp.Title ?? "Title missing (rfp.Title)", data, rfp.ShowInToc, pageBreakRequired);
     }
 
-    private void AddHeading(ReportingFileParts rfp, WebReportExporter wr, string? backImage)
+    private void AddHeading(ReportingFileParts rfp, WebReportExporter wr)
     {
         SetStatus($"Exporting heading {rfp.Name}...");
 
         wr.EndCharting();
-        if (backImage != rfp.BackgroundImagePath)
-        {
-            wr.BackgroundImagePath = rfp.BackgroundImagePath;
-        }
-
-        if (wr.NumberOfContentElements > 1)
-        {
-            wr.AddPageBreak();
-        }
-
-        //if (logoImage != rfp.LogoPath) wr.LogoImagePath = rfp.LogoPath;
         wr.AddHeading(rfp.Name ?? "Heading missing (rfp.Name)");
     }
 

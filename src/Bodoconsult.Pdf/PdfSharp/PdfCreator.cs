@@ -86,6 +86,8 @@ public class PdfCreator : PdfBuilderBase
         LoadStyleset(styleSet);
     }
 
+
+
     #endregion
 
     // https://github.com/empira/MigraDoc-samples-1.5/blob/master/samples/core/MixMigraDocAndPdfSharp/Program.cs
@@ -98,6 +100,8 @@ public class PdfCreator : PdfBuilderBase
     public void CreateTocSection(string heading)
     {
         Toc = Document.AddSection();
+        Toc.PageSetup = StyleSet.PageSetup.Clone();
+        Content = Toc;
 
         AddHeaderInternal(Toc);
         AddFooterInternal(Toc);
@@ -110,9 +114,6 @@ public class PdfCreator : PdfBuilderBase
 
         var p = Toc.AddParagraph(StyleSet.DocumentMetaData.TocHeading, "TocHeading");
         p.AddBookmark("Inhalt");
-
-        Content = Toc;
-        Toc.PageSetup = StyleSet.PageSetup.Clone();
     }
 
     /// <summary>

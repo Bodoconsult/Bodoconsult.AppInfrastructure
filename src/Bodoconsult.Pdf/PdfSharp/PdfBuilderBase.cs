@@ -125,6 +125,25 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public int NumberOfTableRowsPerPage { get; set; } = 35;
 
     /// <summary>
+    /// Is the last element a pagebreak?
+    /// </summary>
+    public bool IsLastElementAPageBreak
+    {
+        get
+        {
+            var count = Content.Elements.Count;
+
+            if (count == 0)
+            {
+                return false;
+            }
+
+            var last = Content.Elements[count - 1];
+            return last is PageBreak;
+        }
+    }
+
+    /// <summary>
     /// Add a page break if necessary
     /// </summary>
     public bool AddPageBreakIfNecessary { get; set; }
@@ -436,9 +455,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         };
         SectionInfos.Add(si);
 
-        var par = Content.AddParagraph(string.Empty);
-        par.Format.SpaceBefore = 0;
-        par.Format.Font.Size = 2;
+        Content.AddParagraph(string.Empty, "Empty");
 
         AddHeaderInternal(Content, pageNumberFormat);
         AddFooterInternal(Content, pageNumberFormat);
@@ -472,9 +489,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
         };
         SectionInfos.Add(si);
 
-        var par = Content.AddParagraph(string.Empty);
-        par.Format.SpaceBefore = 0;
-        par.Format.Font.Size = 2;
+        Content.AddParagraph(string.Empty, "Empty");
+
 
         AddHeaderInternal(Toc, pageNumberFormat);
         AddFooterInternal(Toc, pageNumberFormat);
@@ -507,9 +523,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         };
         SectionInfos.Add(si);
 
-        var par = Content.AddParagraph(string.Empty);
-        par.Format.SpaceBefore = 0;
-        par.Format.Font.Size = 2;
+        Content.AddParagraph(string.Empty, "Empty");
 
         AddHeaderInternal(Tof, pageNumberFormat);
         AddFooterInternal(Tof, pageNumberFormat);
@@ -542,9 +556,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         };
         SectionInfos.Add(si);
 
-        var par = Content.AddParagraph(string.Empty);
-        par.Format.SpaceBefore = 0;
-        par.Format.Font.Size = 2;
+        Content.AddParagraph(string.Empty, "Empty");
 
         AddHeaderInternal(Toe, pageNumberFormat);
         AddFooterInternal(Toe, pageNumberFormat);
@@ -577,9 +589,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         };
         SectionInfos.Add(si);
 
-        var par = Content.AddParagraph(string.Empty);
-        par.Format.SpaceBefore = 0;
-        par.Format.Font.Size = 2;
+        Content.AddParagraph(string.Empty, "Empty");
 
         AddHeaderInternal(Tot, pageNumberFormat);
         AddFooterInternal(Tot, pageNumberFormat);
@@ -990,7 +1000,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         {
             Content.AddPageBreak();
         }
-        Content.AddParagraph("", "Empty");
+        Content.AddParagraph(string.Empty, "Empty");
     }
 
     /// <summary>
@@ -1345,9 +1355,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
         table.Style = dt.TableStyleName;
 
         // Add an empty paragraph to keep distance
-        var par = Content.AddParagraph(string.Empty);
+        var par = Content.AddParagraph(string.Empty, "Empty");
         par.Format.SpaceBefore = StyleSet.Table.ParagraphFormat.SpaceBefore;
-        par.Format.Font.Size = 2;
 
         // Calculate column length
         CalculateColumnWidth(dt);
@@ -1845,7 +1854,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
     public void TableSetContent(int column, int row, Chart chart)
     {
         Table.Rows[row][column].Add(chart);
-
     }
 
     /// <summary>
@@ -2140,7 +2148,6 @@ public abstract class PdfBuilderBase : IPdfBuilder
     protected void LoadDefaults()
     {
         AddPageBreakIfNecessary = false;
-        NumberOfTableRowsPerPage = 21;
     }
 
     /// <summary>

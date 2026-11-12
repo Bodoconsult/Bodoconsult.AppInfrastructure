@@ -43,6 +43,11 @@ public interface IPdfBuilder : IDisposable
     int NumberOfTableRowsPerPage { get; set; }
 
     /// <summary>
+    /// Is the last element a pagebreak?
+    /// </summary>
+    bool IsLastElementAPageBreak { get; }
+
+    /// <summary>
     /// Add a page break if necessary
     /// </summary>
     bool AddPageBreakIfNecessary { get; set; }

@@ -3,6 +3,7 @@
 using Bodoconsult.Drawing;
 using Bodoconsult.Pdf.Interfaces;
 using Bodoconsult.Pdf.PdfSharp;
+using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
 using BodoWebReporting.Dal.Report;
@@ -19,7 +20,6 @@ namespace BodoWebReporting.Dal.Exporter;
 [SupportedOSPlatform("windows")]
 public class WebReportExporter : IDisposable
 {
-    private string _backgroundImagePath = string.Empty;
     private readonly IDataHandler _dataHandler;
     private int _objectCounter;
     private readonly List<BaseReportItem> _reportItems = [];
@@ -49,13 +49,21 @@ public class WebReportExporter : IDisposable
         _file = file;
         _id = id;
 
-        // ToDo: move to DI
-        StyleSet = styleSetFactory.CreateInstance(file.Landscape);
+        Landscape = file.Landscape;
+        NumberOfTableRowsPerPage = file.Landscape ? 35 : 48;
+        BackgroundImagePath = CheckImage(file.BackgroundImagePath);
 
-        ChartWidth = (StyleSet.TypeAreaWidth.Centimeter - _dividerWidth) / 2;
+        var styleSet = styleSetFactory.CreateInstance(file.Landscape);
+        styleSet.ColumnWidth = styleSet.TypeAreaWidth;
+
+        Title = TextHelper.Parser(file.Shortname) ?? "Title";
+        styleSet.DocumentMetaData.Title = Title;
+        styleSet.DocumentMetaData.Authors = file.Author;
+
+        ChartWidth = (styleSet.TypeAreaWidth.Centimeter - _dividerWidth) / 2;
         ChartHeight = ChartWidth / 1.618;   // Goldener Schnitt
 
-        Pdf = new PdfCreator(StyleSet);
+        Pdf = new PdfCreator(styleSet);
 #if DEBUG
         Pdf.CreateDdlFile = true;
 #endif
@@ -65,11 +73,7 @@ public class WebReportExporter : IDisposable
     /// <summary>
     /// Background image path or null
     /// </summary>
-    public string? BackgroundImagePath
-    {
-        get => _backgroundImagePath;
-        set => _backgroundImagePath = CheckImage(value);
-    }
+    public string? BackgroundImagePath { get; private set; }
 
     private static string CheckImage(string? fileName)
     {
@@ -115,12 +119,12 @@ public class WebReportExporter : IDisposable
     /// <summary>
     /// Landscape?
     /// </summary>
-    public bool Landscape { get; set; } = true;
+    public bool Landscape { get; }
 
     /// <summary>
     /// Title
     /// </summary>
-    public string Title { get; set; } = string.Empty;
+    public string Title { get; set; }
 
     /// <summary>
     /// Additional info
@@ -132,15 +136,10 @@ public class WebReportExporter : IDisposable
     /// </summary>
     public string Subject { get; set; } = string.Empty;
 
-    /// <summary>
-    /// Current styleset
-    /// </summary>
-    public IStyleSet StyleSet { get; set; }
-
-    /// <summary>
-    /// Current number of content elements
-    /// </summary>
-    public int NumberOfContentElements => Pdf.NumberOfContentElements;
+    ///// <summary>
+    ///// Current styleset
+    ///// </summary>
+    //public IStyleSet StyleSet { get; set; }
 
     /// <summary>
     /// Chart width in cm
@@ -164,7 +163,7 @@ public class WebReportExporter : IDisposable
     {
         Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
 
-        var meta = StyleSet.DocumentMetaData;
+        var meta = Pdf.StyleSet.DocumentMetaData;
 
         meta.TocHeading = "Inhaltsverzeichnis";
         meta.HeaderText = Title;
@@ -216,9 +215,14 @@ public class WebReportExporter : IDisposable
     public void AddTable(string tableTitle, DataTable data, bool showInToc, bool addPageBreakIfNecessary)
     {
         Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
-        Pdf.AddPageBreakIfNecessary = addPageBreakIfNecessary;
+        //Pdf.AddPageBreakIfNecessary = addPageBreakIfNecessary;
 
         Pdf.AddTableFrame(data, tableTitle, showInToc ? "Heading1" : "NoHeading1", AdditionalInfo, "Details", Pdf.Width, true);
+
+        if (addPageBreakIfNecessary)
+        {
+            Pdf.AddPageBreak();
+        }
     }
 
     /// <summary>
@@ -228,6 +232,12 @@ public class WebReportExporter : IDisposable
     public void AddHeading(string headingTitle)
     {
         var tag = $"H{_headingCounter}";
+
+        if (Pdf.NumberOfContentElements > 1 && !Pdf.IsLastElementAPageBreak) 
+        {
+            AddPageBreak();
+        }
+
         Pdf.AddHeading1(headingTitle, tag);
         Pdf.AddToc1Entry(headingTitle, tag);
 
@@ -238,13 +248,17 @@ public class WebReportExporter : IDisposable
     /// Add a chart to the report
     /// </summary>
     /// <param name="data">Chart data</param>
-    public void AddChart(ChartData data)
+    /// <param name="pageBreakRequired"></param>
+    public void AddChart(ChartData data, bool pageBreakRequired)
     {
         _objectCounter++;
 
         var fileName = Path.Combine(Path.GetTempPath(), $"tmpR{_id}O{_objectCounter}.png");
 
-        var rc = new ChartReportItem();
+        var rc = new ChartReportItem
+        {
+            PageBreakAfter = pageBreakRequired
+        };
 
         var wc = new WebChart
         {
@@ -308,6 +322,7 @@ public class WebReportExporter : IDisposable
 
         // Add multiple charts in a 2-column design
         AddMultipleCharts();
+        //AddPageBreak();
         _reportItems.Clear();
     }
 
@@ -320,7 +335,7 @@ public class WebReportExporter : IDisposable
         Pdf.TableAddColumn(ParagraphAlignment.Left, ChartWidth);
         Pdf.TableAddColumn(ParagraphAlignment.Left, Pdf.Width - 2 * ChartWidth);
         Pdf.TableAddColumn(ParagraphAlignment.Right, ChartWidth);
-        
+
         var i = 0;
         var zeile = -1;
         foreach (var obj in _reportItems)
@@ -407,12 +422,14 @@ public class WebReportExporter : IDisposable
     /// </summary>
     /// <param name="caption">Table caption</param>
     /// <param name="data">Table data</param>
-    public void AddSmallTable(string caption, DataTable data)
+    /// <param name="pageBreakRequired">Is a pagebreak required after?</param>
+    public void AddSmallTable(string caption, DataTable data, bool pageBreakRequired)
     {
         var r = new SmallTableReportItem
         {
             Data = data,
-            Heading = caption
+            Heading = caption,
+            PageBreakAfter = pageBreakRequired
         };
 
         _reportItems.Add(r);
@@ -426,7 +443,7 @@ public class WebReportExporter : IDisposable
         // ToDo: Page settings
         //Pdf.SetPage();
 
-        var ps = StyleSet.PageSetup;
+        var ps = Pdf.StyleSet.PageSetup;
 
         ps.LeftMargin = Unit.FromCentimeter(1.5);
         ps.RightMargin = Unit.FromCentimeter(1.5);
@@ -438,7 +455,7 @@ public class WebReportExporter : IDisposable
 
         ps.SectionStart = BreakType.BreakNextPage;
 
-        StyleSet.InitializeStyles();
+        Pdf.StyleSet.InitializeStyles();
     }
 
     /// <summary>
