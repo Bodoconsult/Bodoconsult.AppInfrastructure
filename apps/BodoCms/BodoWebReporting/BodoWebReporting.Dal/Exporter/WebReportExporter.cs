@@ -34,6 +34,8 @@ public class WebReportExporter : IDisposable
     /// </summary>
     private readonly double _dividerWidth = 1;
 
+    private const float RowHeight = 0.8F;
+
     /// <summary>
     /// Default ctor
     /// </summary>
@@ -212,14 +214,14 @@ public class WebReportExporter : IDisposable
         Pdf.AddTableFrame(data, tableTitle, "Heading1", AdditionalInfo, "Details");
     }
 
-    public void AddTable(string tableTitle, DataTable data, bool showInToc, bool addPageBreakIfNecessary)
+    public void AddTable(string tableTitle, DataTable data, bool showInToc, bool addPageBreak)
     {
         Pdf.NumberOfTableRowsPerPage = NumberOfTableRowsPerPage;
         //Pdf.AddPageBreakIfNecessary = addPageBreakIfNecessary;
 
         Pdf.AddTableFrame(data, tableTitle, showInToc ? "Heading1" : "NoHeading1", AdditionalInfo, "Details", Pdf.Width, true);
 
-        if (addPageBreakIfNecessary)
+        if (addPageBreak)
         {
             Pdf.AddPageBreak();
         }
@@ -233,7 +235,7 @@ public class WebReportExporter : IDisposable
     {
         var tag = $"H{_headingCounter}";
 
-        if (Pdf.NumberOfContentElements > 1 && !Pdf.IsLastElementAPageBreak) 
+        if (Pdf is { NumberOfContentElements: > 1, IsLastElementAPageBreak: false }) 
         {
             AddPageBreak();
         }
@@ -359,13 +361,13 @@ public class WebReportExporter : IDisposable
                     break;
                 case ReportItemType.SmallTable:
                     var t = (SmallTableReportItem)obj;
-                    var height = t.Data?.Rows.Count ?? 0 * 0.8F;
-                    if (height < 6F)
+                    var height = t.Data?.Rows.Count ?? 0 * RowHeight;
+                    if (height < ChartWidth)
                     {
-                        height = 6F;
+                        height = (float)ChartWidth;
                     }
 
-                    Pdf.TableSetContentSmallTable(i, zeile, t.Data, t.Heading, 12.5, height);
+                    Pdf.TableSetContentSmallTable(i, zeile, t.Data, t.Heading, ChartWidth, height);
                     break;
 
             }

@@ -69,4 +69,9 @@ public class PdfTable
     /// Fit the table to the given  page (or text column) width. Default: false
     /// </summary>
     public bool FitToWidth { get; set; }
+
+    /// <summary>
+    /// Width of table or 0 to fit to the full available width. Applied only, if <see cref="FitToWidth"/> is set to true
+    /// </summary>
+    public double Width { get; set; }
 }

@@ -7,6 +7,7 @@ using Bodoconsult.Database.Interfaces;
 using BodoWebReporting.Dal.Helpers;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.Model;
+using Microsoft.Data.SqlClient;
 
 namespace BodoWebReporting.Dal.DataHandling;
 

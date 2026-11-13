@@ -75,8 +75,8 @@ public class BodoWebReportingService : IApplicationService
         var wrh = AppGlobals.DiContainer.Get<IWebReportingHandler>();
         wrh.RunPreRunSql();
         wrh.CheckTargetPath();
-        // wrh.CreateWebTables();
-       // wrh.CreateWebCharts();
+        wrh.CreateWebTables();
+        wrh.CreateWebCharts();
         wrh.CreateWebReports();
         wrh.RunPostRunSql();
 

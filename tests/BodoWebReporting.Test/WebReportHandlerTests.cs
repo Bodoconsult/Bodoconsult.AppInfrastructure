@@ -56,7 +56,7 @@ internal class WebReportHandlerTests
 
         var db = new SqlClientConnManager(_appGlobals.AppStartParameter.DefaultConnectionString);
 
-        const string reportName = "BP_Gesamtbericht.pdf"; // BC_LiquiForecast.pdf Andrea_Gesamtbericht.pdf Bodoconsult_PV.pdf BP_Gesamtbericht.pdf
+        const string reportName = "Johanna_Gesamtbericht.pdf"; // BC_LiquiForecast.pdf Andrea_Gesamtbericht.pdf Bodoconsult_PV.pdf BP_Gesamtbericht.pdf Johanna_Gesamtbericht.pdf
         var targetPath = Path.Combine(_appGlobals.TargetPath, reportName);
 
         FileSystemHelper.DeleteFile(targetPath);

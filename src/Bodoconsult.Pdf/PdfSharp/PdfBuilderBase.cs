@@ -998,7 +998,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
     {
         if (addPageBreak)
         {
-            Content.AddPageBreak();
+            AddPageBreak();
         }
         Content.AddParagraph(string.Empty, "Empty");
     }
@@ -1359,15 +1359,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
         par.Format.SpaceBefore = StyleSet.Table.ParagraphFormat.SpaceBefore;
 
         // Calculate column length
-        CalculateColumnWidth(dt);
+        CalculateColumnWidth(dt, table);
 
-        //foreach (var column in dt.Columns)
-        //{
-        //    if (column.MaxLength > columnMaxLength)
-        //    {
-        //        //column.
-        //    }
-        //}
 
         var colCount = dt.Columns.Count;
 
@@ -1443,7 +1436,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         return table;
     }
 
-    private void CalculateColumnWidth(PdfTable dt)
+    private void CalculateColumnWidth(PdfTable dt, Table table)
     {
         const int columnMaxLength = 25;
 
@@ -1491,7 +1484,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         // Adjust the table to column width
 
         double width = 0;
-        int count = 0;
+        var count = 0;
 
         foreach (var col in dt.Columns)
         {
@@ -1505,20 +1498,37 @@ public abstract class PdfBuilderBase : IPdfBuilder
             }
         }
 
-        var remainingWidth = StyleSet.TypeAreaWidth.Value - width;
+        var availableWidth = dt.Width == 0 ? StyleSet.TypeAreaWidth.Value : dt.Width - 2 * table.LeftPadding.Centimeter -  table.RightPadding.Centimeter;
 
-        var longColWidth = remainingWidth / count;
+        var remainingWidth = availableWidth - width;
+
+        
+        if (count > 0)
+        {
+            // At least one long columns found
+            var longColWidth = remainingWidth / count;
+
+            foreach (var col in dt.Columns)
+            {
+                if (col.MaxLength > 25)
+                {
+                    col.Width = longColWidth;
+                }
+                else
+                {
+                    col.Width = col.MaxLength * CharWidth;
+                }
+            }
+
+            return;
+        }
+
+        // No long columns found: make all columns broader
+        var addWidth = remainingWidth / dt.Columns.Count;
 
         foreach (var col in dt.Columns)
         {
-            if (col.MaxLength > 25)
-            {
-                col.Width = longColWidth;
-            }
-            else
-            {
-                col.Width = col.MaxLength * CharWidth;
-            }
+            col.Width = col.MaxLength * CharWidth + addWidth;
         }
     }
 
@@ -1601,7 +1611,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
 
         if (dt.Rows.Count > NumberOfTableRowsPerPage / 2 && AddPageBreakIfNecessary)
         {
-            Content.AddPageBreak();
+            AddPageBreak();
         }
 
         if (!string.IsNullOrEmpty(heading))
@@ -1618,7 +1628,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         {
             if (pageNumber > 0)
             {
-                Content.AddPageBreak();
+                AddPageBreak();
                 if (!string.IsNullOrEmpty(heading))
                 {
                     var p = Content.AddParagraph($"{heading} (Forts.)");
@@ -1631,7 +1641,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
             frame.Width = Unit.FromCentimeter(width);
             frame.Left = ShapePosition.Center;
 
-            CreateTable(dt, frame,  autoFit, pageNumber, NumberOfTableRowsPerPage);
+            CreateTable(dt, frame, autoFit, pageNumber, NumberOfTableRowsPerPage);
         }
     }
 
@@ -1747,7 +1757,8 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// <param name="autoFit">Autofit to column width</param>
     /// <param name="pageNumber">Current page number. Default: 0</param>
     /// <param name="pageSize">Current page size. Default: 0</param>
-    protected void CreateTable(DataTable dt, TextFrame frame, bool autoFit = false, int pageNumber = 0, int pageSize=0)
+    /// <param name="width">Width the table should have or 0 for full width</param>
+    protected void CreateTable(DataTable dt, TextFrame frame, bool autoFit = false, int pageNumber = 0, int pageSize = 0, double width = 0)
     {
         var pdfTable = string.Equals(dt.Columns[0].ColumnName, "cssstyle", StringComparison.OrdinalIgnoreCase) ?
             dt.ToPdfTableWithCssInfo(DataTableExtensions.BodoconsultCssColors, pageNumber, pageSize) :
@@ -1756,6 +1767,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         if (autoFit)
         {
             pdfTable.FitToWidth = true;
+            pdfTable.Width = width;
         }
 
         var table = AddTableInternal(frame, pdfTable);
@@ -1921,7 +1933,7 @@ public abstract class PdfBuilderBase : IPdfBuilder
         frame.Left = ShapePosition.Center;
         frame.Width = Unit.FromCentimeter(width);
 
-        CreateTable(data, frame);
+        CreateTable(data, frame, true, 0, 0, width);
     }
 
     /// <summary>
@@ -2131,6 +2143,11 @@ public abstract class PdfBuilderBase : IPdfBuilder
     /// </summary>
     public void AddPageBreak()
     {
+        if (IsLastElementAPageBreak)
+        {
+            return;
+        }
+
         Content.AddPageBreak();
     }
 
