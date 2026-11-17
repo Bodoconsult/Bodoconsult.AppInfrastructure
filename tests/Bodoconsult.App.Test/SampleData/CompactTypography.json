@@ -2,72 +2,6 @@
   "$type": "Bodoconsult.App.Abstractions.Typography.CompactTypographyPageHeader, Bodoconsult.App.Abstractions",
   "CurrentLanguage": "en",
   "CultureInfo": "en",
-  "TypoPaperFormat": {
-    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPaperFormat, Bodoconsult.App.Abstractions",
-    "PaperFormatName": "A4",
-    "Size": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
-      "Width": 21.0,
-      "Height": 29.7
-    }
-  },
-  "NumberOfColumns": 1,
-  "ColumnGap": 0.0,
-  "ColumnWidth": 17.5,
-  "TypeAreaRect": {
-    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoRect, Bodoconsult.App.Abstractions",
-    "Point1": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
-      "X": 1.75,
-      "Y": 1.75
-    },
-    "Point2": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
-      "X": 19.25,
-      "Y": 27.95
-    },
-    "Size": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
-      "Width": 17.5,
-      "Height": 26.2
-    }
-  },
-  "HeaderAreaRect": {
-    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoRect, Bodoconsult.App.Abstractions",
-    "Point1": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
-      "X": 1.75,
-      "Y": -0.25
-    },
-    "Point2": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
-      "X": 19.25,
-      "Y": 0.75
-    },
-    "Size": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
-      "Width": 17.5,
-      "Height": 1.0
-    }
-  },
-  "FooterAreaRect": {
-    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoRect, Bodoconsult.App.Abstractions",
-    "Point1": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
-      "X": 1.75,
-      "Y": 2.25
-    },
-    "Point2": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
-      "X": 19.25,
-      "Y": 2.75
-    },
-    "Size": {
-      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
-      "Width": 17.5,
-      "Height": 0.5
-    }
-  },
   "TableBorderColor": {
     "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoColor, Bodoconsult.App.Abstractions",
     "A": 255,
@@ -81,6 +15,10 @@
   "Authors": "Authors",
   "Company": "Company",
   "CompanyWebsite": null,
+  "TocHeading": "Table of content",
+  "TofHeading": "Table of figures",
+  "ToeHeading": "Table of equations",
+  "TotHeading": "Table of tables",
   "FontName": "Cambria",
   "FontSize": 10.0,
   "SmallFontSize": 8.0,
@@ -96,29 +34,8 @@
   "HeadingFontSize4": 10.0,
   "HeadingFontSize5": 10.0,
   "LineHeight": 0.5,
-  "GridColumnDividerWidth": 0.5,
-  "GridColumnWidth": 2.5,
-  "GridColumnCount": 6,
-  "MarginLeftFactor": 1.0,
-  "MarginRightFactor": 1.0,
-  "MarginTopFactor": 1.0,
-  "MarginBottomFactor": 1.0,
-  "MarginUnit": 1.75,
-  "TypoMargins": {
-    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoThickness, Bodoconsult.App.Abstractions",
-    "Left": 1.75,
-    "Top": 1.75,
-    "Right": 1.75,
-    "Bottom": 1.75
-  },
-  "PageHeaderHeight": 1.0,
-  "PageHeaderMargin": 1.0,
-  "PageFooterHeight": 0.5,
-  "PageFooterMargin": 0.5,
-  "DotsPerInch": 300.0,
-  "VerticalLines": null,
   "LogoPath": null,
-  "LogoWidth": 3.0,
+  "LogoWidth": 4.5,
   "Title": "Your title",
   "Description": null,
   "Keywords": null,
@@ -164,7 +81,7 @@
       "B": 105,
       "Html": "#696969"
     },
-    "ChartShadow": 0.0175,
+    "ChartShadow": 0.0075,
     "PaperColor": {
       "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoColor, Bodoconsult.App.Abstractions",
       "A": 255,
@@ -191,7 +108,7 @@
       "Html": "#FFFFFF"
     },
     "CopyrightFontSizeDelta": 0.6,
-    "TitleFontSizeDelta": 1.2,
+    "TitleFontSizeDelta": 1.5,
     "LegendFontSizeDelta": 0.9,
     "AxisLabelFontSizeDelta": 1.0,
     "AxisTitleFontSizeDelta": 1.1,
@@ -204,12 +121,12 @@
     "FontSize": 10.0,
     "Left": 0,
     "LegendLength": 0,
-    "Height": 1265,
-    "Width": 2047,
+    "Height": 5016,
+    "Width": 3100,
     "Template": "default.xml",
-    "YAxisNumberformat": "0,000",
-    "XAxisNumberformat": "0,000",
-    "ChartBorderCornerRadius": 25,
+    "YAxisNumberformat": "#,##0",
+    "XAxisNumberformat": "#,##0",
+    "ChartBorderCornerRadius": 20,
     "CorrectiveFactor": 5,
     "ChartBorderWidth": 1,
     "ChartBorderColor": {
@@ -223,18 +140,18 @@
     "BackgroundColor": {
       "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoColor, Bodoconsult.App.Abstractions",
       "A": 255,
-      "R": 208,
-      "G": 223,
+      "R": 228,
+      "G": 237,
       "B": 255,
-      "Html": "#D0DFFF"
+      "Html": "#E4EDFF"
     },
     "BackgroundSecondColor": {
       "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoColor, Bodoconsult.App.Abstractions",
       "A": 255,
-      "R": 208,
-      "G": 223,
+      "R": 228,
+      "G": 237,
       "B": 255,
-      "Html": "#D0DFFF"
+      "Html": "#E4EDFF"
     },
     "BackGradientStyle": 0,
     "TitleColor": {
@@ -294,5 +211,93 @@
     "B": 255,
     "Html": "#FFFFFF"
   },
-  "TableCornerRadius": 0.3
+  "TableCornerRadius": 0.3,
+  "DotsPerInch": 300.0,
+  "MarginLeftFactor": 1.0,
+  "MarginRightFactor": 1.0,
+  "MarginTopFactor": 1.0,
+  "MarginBottomFactor": 1.0,
+  "MarginUnit": 1.5999999999999996,
+  "GridColumnDividerWidth": 0.5,
+  "GridColumnWidth": 4.0,
+  "GridColumnCount": 6,
+  "TypeAreaRect": {
+    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoRect, Bodoconsult.App.Abstractions",
+    "Point1": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
+      "X": 1.6,
+      "Y": 1.6
+    },
+    "Point2": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
+      "X": 28.1,
+      "Y": 28.099999999999998
+    },
+    "Size": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
+      "Width": 26.5,
+      "Height": 26.499999999999996
+    }
+  },
+  "HeaderAreaRect": {
+    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoRect, Bodoconsult.App.Abstractions",
+    "Point1": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
+      "X": 1.6,
+      "Y": -0.3999999999999999
+    },
+    "Point2": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
+      "X": 28.1,
+      "Y": 0.6000000000000001
+    },
+    "Size": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
+      "Width": 26.5,
+      "Height": 1.0
+    }
+  },
+  "FooterAreaRect": {
+    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoRect, Bodoconsult.App.Abstractions",
+    "Point1": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
+      "X": 1.6,
+      "Y": 2.1
+    },
+    "Point2": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPoint, Bodoconsult.App.Abstractions",
+      "X": 28.1,
+      "Y": 2.6
+    },
+    "Size": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
+      "Width": 26.5,
+      "Height": 0.5
+    }
+  },
+  "TypoMargins": {
+    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoThickness, Bodoconsult.App.Abstractions",
+    "Left": 1.6,
+    "Top": 1.6,
+    "Right": 1.6,
+    "Bottom": 1.6
+  },
+  "PageHeaderHeight": 1.0,
+  "PageHeaderMargin": 1.0,
+  "PageFooterHeight": 0.5,
+  "PageFooterMargin": 0.5,
+  "TypoPaperFormat": {
+    "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoPaperFormat, Bodoconsult.App.Abstractions",
+    "PaperFormatName": "A4",
+    "Size": {
+      "$type": "Bodoconsult.App.Abstractions.Interfaces.TypoSize, Bodoconsult.App.Abstractions",
+      "Width": 21.0,
+      "Height": 29.7
+    },
+    "Landscape": true
+  },
+  "NumberOfColumns": 1,
+  "ColumnGap": 0.0,
+  "ColumnWidth": 26.5,
+  "VerticalLines": null
 }

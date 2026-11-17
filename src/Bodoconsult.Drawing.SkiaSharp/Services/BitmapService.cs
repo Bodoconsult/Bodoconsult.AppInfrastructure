@@ -317,6 +317,47 @@ public class BitmapService : IBitmapService
     }
 
     /// <summary>
+    /// Draw a text in a rectangle
+    /// </summary>
+    /// <param name="text">Text to print</param>
+    /// <param name="rect">Rectangle to print the text in</param>
+    /// <param name="font">Font to use for printing</param>
+    /// <param name="paint">Paint to use for the text</param>
+    public float DrawText(string text, SKRect rect, SKFont font, SKPaint paint)
+    {
+        var cleanText = text.Replace("\r\n", "\n", StringComparison.OrdinalIgnoreCase)
+            .Replace("\r", "\n", StringComparison.OrdinalIgnoreCase)
+            .Replace("\n", " \n");
+        var spaceWidth = font.MeasureText(" ");
+        var wordX = rect.Left;
+        var wordY = rect.Top + font.Size;
+        foreach (var word in text.Split(' '))
+        {
+            if (word.Equals("\n", StringComparison.OrdinalIgnoreCase))
+            {
+                wordY += font.Spacing;
+                wordX = rect.Left;
+                continue;
+            }
+
+            var wordWidth = font.MeasureText(word);
+            if (wordWidth <= rect.Right - wordX)
+            {
+                CurrentCanvas.DrawText(word, wordX, wordY, font, paint);
+                wordX += wordWidth + spaceWidth;
+            }
+            else
+            {
+                wordY += font.Spacing;
+                wordX = rect.Left;
+            }
+        }
+
+        return wordY;
+    }
+
+
+    /// <summary>
     /// Draw a text
     /// </summary>
     /// <param name="text">Text to draw</param>

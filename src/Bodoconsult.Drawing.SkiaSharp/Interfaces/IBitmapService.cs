@@ -175,6 +175,16 @@ public interface IBitmapService : IDisposable
     /// <param name="alignment">Alignment relative to x and y position</param>
     void DrawText(string text, int x, int y, string fontName, float fontSize, SKColor color, SKTextAlign alignment);
 
+    /// <summary>
+    /// Draw a text in a rectangle
+    /// </summary>
+    /// <param name="text">Text to print</param>
+    /// <param name="rect">Rectangle to print the text in</param>
+    /// <param name="font">Font to use for printing</param>
+    /// <param name="paint">Paint to use for the text</param>
+    /// <returns>Y position of the bottom of the last text line in the rectangle</returns>
+    float DrawText(string text, SKRect rect, SKFont font, SKPaint paint);
+
     #region Resize image
 
     /// <summary>

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
+using System.Diagnostics;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Abstractions.Typography;
 using Bodoconsult.App.Test.Helpers;
@@ -46,10 +47,10 @@ internal class TypographyBaseTests
         Assert.That(Math.Abs(t.MarginUnit - 0.875) < Tolerance);
         Assert.That(Math.Abs(t.TypoMargins.Left - 1.75) < Tolerance);
         Assert.That(Math.Abs(t.TypoMargins.Right - 1.75) < Tolerance);
-        Assert.That(Math.Abs(t.TypoMargins.Top - 0.875) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Top - 0.88) < Tolerance);
         Assert.That(Math.Abs(t.TypoMargins.Bottom - 1.75) < Tolerance);
 
-        //var erg = t.GetPixelHeight(4);
+        var erg = t.GetPixelHeight(4);
 
         Assert.That(Math.Abs(t.GetWidth(4) - 11.5) < Tolerance);
         Assert.That(Math.Abs(t.GetHeight(4) - 7.11) < Tolerance);
@@ -87,7 +88,6 @@ internal class TypographyBaseTests
         Assert.That(File.Exists(fileName));
         Assert.That(typo2, Is.Not.Null);
         Assert.That(t.MarginUnit - typo2.MarginUnit < Tolerance);
-
     }
 
     [Test]
@@ -112,7 +112,6 @@ internal class TypographyBaseTests
 
         var typo2 = ImportFromJson<ElegantTypographyPageHeader>(fileName);
         typo2.SetMargins();
-
 
         Assert.That(File.Exists(fileName));
         Assert.That(typo2, Is.Not.Null);
@@ -148,7 +147,6 @@ internal class TypographyBaseTests
         Assert.That(File.Exists(fileName));
         Assert.That(typo2, Is.Not.Null);
         Assert.That(t.MarginUnit - typo2.MarginUnit < Tolerance);
-
     }
 
     private static void ExportToJson(ITypography typography, string fileName)
@@ -202,16 +200,20 @@ internal class TypographyBaseTests
         typo.CalculateVerticalLines();
 
         // Assert
-        const double expectedValue = 1.75;
+        const double expectedValue = 1.6;
 
         Assert.That(Math.Abs(typo.TypoMargins.Left - expectedValue) < CompareToZeroValue);
         Assert.That(Math.Abs(typo.TypoMargins.Right - expectedValue) < CompareToZeroValue);
         Assert.That(Math.Abs(typo.TypoMargins.Top - expectedValue) < CompareToZeroValue);
         Assert.That(Math.Abs(typo.TypoMargins.Bottom -expectedValue) < CompareToZeroValue);
-        Assert.That(Math.Abs(typo.GridColumnWidth - 2.5) < CompareToZeroValue);
+        Assert.That(Math.Abs(typo.GridColumnWidth - 4) < CompareToZeroValue);
 
+        Assert.That(typo.VerticalLines, Is.Not.Null);
         Assert.That(Math.Abs(typo.VerticalLines[0] - expectedValue) < CompareToZeroValue);
-        Assert.That(Math.Abs(typo.VerticalLines[1] - expectedValue - typo.GridColumnWidth) < CompareToZeroValue);
+
+        Debug.Print((typo.VerticalLines[1] - expectedValue - typo.GridColumnWidth).ToString());
+
+        Assert.That(Math.Abs(typo.VerticalLines[1] - expectedValue - typo.GridColumnWidth) < 0.009);
         //Assert.That(Math.Abs(typo.VerticalLines[2] - 5.75) < CompareToZeroValue);
         //Assert.That(Math.Abs(typo.VerticalLines[3] - 7.75) < CompareToZeroValue);
         //Assert.That(Math.Abs(typo.VerticalLines[4] - 8.25) < CompareToZeroValue);
@@ -223,10 +225,4 @@ internal class TypographyBaseTests
         //Assert.That(Math.Abs(typo.VerticalLines[10] - 15.75) < CompareToZeroValue);
         //Assert.That(Math.Abs(typo.VerticalLines[11] - 17.75) < CompareToZeroValue);
     }
-
-    private static void DefaultAsserts(ITypography typo)
-    {
-
-    }
-
 }

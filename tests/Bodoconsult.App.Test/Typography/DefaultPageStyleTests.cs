@@ -18,41 +18,48 @@ internal class DefaultPageStyleTests
     public void Ctor_ValidDefaultSetup_PropsSetCorrectly()
     {
         // Arrange
+        var t = new DefaultPageStyle();
 
         // Act
-        var t = new DefaultPageStyle();
+        t.SetMargins();
 
         // Assert
         Assert.That(t.TypoPaperFormat.PaperFormatName, Is.EqualTo("A4"));
         Assert.That(t.TypoPaperFormat.Size.Width, Is.EqualTo(21.0));
         Assert.That(t.TypoPaperFormat.Size.Height, Is.EqualTo(29.7));
-        Assert.That(Math.Abs(t.TypoMargins.Left - 2) < Tolerance);
-        Assert.That(Math.Abs(t.TypoMargins.Right - 1.3) < Tolerance);
-        Assert.That(Math.Abs(t.TypoMargins.Top - 1.5) < Tolerance);
-        Assert.That(Math.Abs(t.TypoMargins.Bottom - 1.2) < Tolerance);
-        Assert.That(Math.Abs(t.ColumnWidth - 17.7) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Left - 1.75) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Right - 1.75) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Top - 0.88) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Bottom - 1.75) < Tolerance);
+        Assert.That(Math.Abs(t.ColumnWidth - 17.5) < Tolerance);
     }
 
     [Test]
-    public void ColumnWidth_A4Paper2Columns_PropsSetCorrectly()
+    public void ColumnWidth_A4PaperLandscape2Columns_PropsSetCorrectly()
     {
         // Arrange
-
-        // Act
         var t = new DefaultPageStyle
         {
-            ColumnGap = 0.7,
-            NumberOfColumns = 2
+            GridColumnWidth = 1.7,
+            ColumnGap = 0.3,
+            NumberOfColumns = 2,
+            TypoPaperFormat =
+            {
+                Landscape = true
+            }
         };
+
+        // Act
+        t.SetMargins();
 
         // Assert
         Assert.That(t.TypoPaperFormat.PaperFormatName, Is.EqualTo("A4"));
         Assert.That(t.TypoPaperFormat.Size.Width, Is.EqualTo(21.0));
         Assert.That(t.TypoPaperFormat.Size.Height, Is.EqualTo(29.7));
         Assert.That(Math.Abs(t.TypoMargins.Left - 2) < Tolerance);
-        Assert.That(Math.Abs(t.TypoMargins.Right - 1.3) < Tolerance);
-        Assert.That(Math.Abs(t.TypoMargins.Top - 1.5) < Tolerance);
-        Assert.That(Math.Abs(t.TypoMargins.Bottom - 1.2) < Tolerance);
-        Assert.That(Math.Abs(t.ColumnWidth - 8.5) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Right - 2) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Top - 1) < Tolerance);
+        Assert.That(Math.Abs(t.TypoMargins.Bottom - 2) < Tolerance);
+        Assert.That(Math.Abs(t.ColumnWidth - 12.7) < Tolerance);
     }
 }

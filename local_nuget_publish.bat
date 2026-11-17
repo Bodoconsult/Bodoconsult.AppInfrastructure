@@ -1,4 +1,4 @@
-set version=1.0.10
+set version=1.0.12
 
 dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.App.Abstractions.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
@@ -47,5 +47,8 @@ dotnet nuget push packages\Bodoconsult.Pdf.%version%.snupkg --source \\BCGS03DS\
 
 dotnet nuget push packages\Bodoconsult.Drawing.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
 dotnet nuget push packages\Bodoconsult.Drawing.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
+
+dotnet nuget push packages\Bodoconsult.Drawing.SkiaSharp.%version%.nupkg --source \\BCGS03DS\Data$\Projekte\Packages
+dotnet nuget push packages\Bodoconsult.Drawing.SkiaSharp.%version%.snupkg --source \\BCGS03DS\Data$\Projekte\Packages
 
 pause

@@ -5,4 +5,14 @@ namespace Bodoconsult.App.Abstractions.Interfaces;
 /// <summary>
 /// Default page style
 /// </summary>
-public class DefaultPageStyle : BaseTypoPageStyle;
+public class DefaultPageStyle : BaseTypoPageStyle
+{
+    /// <summary>
+    /// Default ctor
+    /// </summary>
+    public DefaultPageStyle()
+    {
+        TypoPaperFormat.Landscape = false;
+        SetMargins();
+    }
+}

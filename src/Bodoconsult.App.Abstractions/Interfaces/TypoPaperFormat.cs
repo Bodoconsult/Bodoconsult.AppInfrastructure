@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace Bodoconsult.App.Abstractions.Interfaces;
 
 /// <summary>
-/// Paper format information like name and size
+/// Paper format information like name and size. Papersize is given always in portrait mode (meaning paper width smaller or equal to paper height). Set <see cref="Landscape"/> to true for getting a landscape paper
 /// </summary>
 [DebuggerDisplay("FormatName = {PaperFormatName} Size = {Size.Width} cm x {Size.Height} cm")]
 public class TypoPaperFormat
@@ -25,7 +25,7 @@ public class TypoPaperFormat
     public string PaperFormatName { get; set; }
 
     /// <summary>
-    /// Size of the paper. Set the papersize always for portrait orientation. Default: width 21 cm height 29,7 cm (=A4 portrait)
+    /// Size of the paper. Papersize is given always in portrait mode (meaning paper width smaller or equal to paper height). Set <see cref="Landscape"/> to true for getting a landscape paper. Default: width 21 cm height 29,7 cm (=A4 portrait)
     /// </summary>
     public TypoSize Size { get; set; }
 

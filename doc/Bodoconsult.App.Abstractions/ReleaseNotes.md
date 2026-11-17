@@ -66,3 +66,9 @@ NOT intended for public use
 -   Added ITypoMetaData.TofHeading
 
 -   Added ITypoMetaData.PageNumberPrefix
+
+-   Added new PaperFormats for landscape paper formats. Adjusted existing portrait paper formats to be really portrait. PaperFormats creates always fresh instances now.
+
+-   Moved page related logic from ITypography to ITypoPageStyle
+
+    Bugfixing implementations of ITypoPageStyle

@@ -1,4 +1,4 @@
-set version=1.0.10
+set version=1.0.12
 
 del C:\Users\rleisner\.nuget\packages\bodoconsult.app\%version% /S /Q
 del C:\Users\rleisner\.nuget\packages\bodoconsult.app.abstractions\%version% /S /Q
@@ -16,6 +16,7 @@ del C:\Users\rleisner\.nuget\packages\bodoconsult.text\%version% /S /Q
 del C:\Users\rleisner\.nuget\packages\bodoconsult.office\%version% /S /Q
 del C:\Users\rleisner\.nuget\packages\bodoconsult.pdf\%version% /S /Q
 del C:\Users\rleisner\.nuget\packages\bodoconsult.drawing\%version% /S /Q
+del C:\Users\rleisner\.nuget\packages\bodoconsult.drawing.skiasharp\%version% /S /Q
 
 
 dotnet nuget delete Bodoconsult.App.Abstractions %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
@@ -34,4 +35,5 @@ dotnet nuget delete Bodoconsult.Text %version% --source \\BCGS03DS\Data$\Projekt
 dotnet nuget delete Bodoconsult.Office %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
 dotnet nuget delete Bodoconsult.Pdf %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
 dotnet nuget delete Bodoconsult.Drawing %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
+dotnet nuget delete Bodoconsult.Drawing.SkiaSharp %version% --source \\BCGS03DS\Data$\Projekte\Packages --non-interactive
 pause

@@ -26,4 +26,4 @@ NOT intended for public use
 
 # 1.0.12
 
--  
+-   Added UnitHelper class to handle value conversion from cm or inch to pixels depending on dots per inch (dpi) setting

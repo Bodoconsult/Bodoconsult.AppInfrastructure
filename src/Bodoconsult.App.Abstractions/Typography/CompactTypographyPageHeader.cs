@@ -30,6 +30,8 @@ public class CompactTypographyPageHeader : TypographyBase
 
     private void BaseConstructor(string primaryFontname, string secondaryFontName, string thirdFontName)
     {
+        TypoPaperFormat.Landscape = true;
+
         FontName = primaryFontname;
         FontSize = 10;
         SmallFontSize = FontSize - 2;
@@ -44,7 +46,7 @@ public class CompactTypographyPageHeader : TypographyBase
 
         LineHeight = 0.5;
         GridColumnDividerWidth = 0.5;
-        GridColumnWidth = 2.5;
+        GridColumnWidth = 4;
         GridColumnCount = 6;
         DotsPerInch = 300;
         LogoWidth = 1 * GridColumnWidth + GridColumnDividerWidth;
@@ -54,7 +56,6 @@ public class CompactTypographyPageHeader : TypographyBase
 
         TitleFontSize = HeadingFontSize1 + 4;
         SubTitleFontSize = HeadingFontSize1 + 2;
-
 
         MarginLeftFactor = 1.5;
         MarginRightFactor = 1;
