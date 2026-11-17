@@ -8,17 +8,13 @@ namespace Bodoconsult.App.Abstractions.Typography;
 /// <summary>
 /// Base class for typography data
 /// </summary>
-public class TypographyBase : ITypography
+public class TypographyBase : BaseTypoPageStyle, ITypography
 {
-    private double _columnWidth;
-
     /// <summary>
     /// Default ctor
     /// </summary>
     public TypographyBase()
     {
-        FontName = "Arial";
-        FontSize = 11;
         SmallFontSize = FontSize - 2;
         ExtraSmallFontSize = SmallFontSize - 2;
 
@@ -36,10 +32,6 @@ public class TypographyBase : ITypography
         SubTitleFontSize = HeadingFontSize1 + 2;
 
         LineHeight = 0.5;
-        GridColumnDividerWidth = 0.5;
-        GridColumnWidth = 2.5;
-        GridColumnCount = 6;
-        DotsPerInch = 96;
         LogoWidth = 2 * GridColumnWidth + GridColumnDividerWidth;
 
         MarginLeftFactor = 2;
@@ -78,42 +70,6 @@ public class TypographyBase : ITypography
     /// Current culture info
     /// </summary>
     public CultureInfo CultureInfo { get; set; } = new("en");
-
-    /// <summary>
-    /// Paper format. Default: DIN A4
-    /// </summary>
-    public TypoPaperFormat TypoPaperFormat { get; set; } = new();
-
-    /// <summary>
-    /// Number of text columns the type area is divided in
-    /// </summary>
-    public int NumberOfColumns { get; set; } = 1;
-
-    /// <summary>
-    /// The space between text columns in the type area in cm
-    /// </summary>
-    public double ColumnGap { get; set; } = 0;
-
-
-    /// <summary>
-    /// The resulting text column width in cm
-    /// </summary>
-    public double ColumnWidth => _columnWidth;
-
-    /// <summary>
-    /// Type area rect dimensions in cm (Abmessungen des Satzspiegels in cm)
-    /// </summary>
-    public TypoRect TypeAreaRect { get; private set; }
-
-    /// <summary>
-    /// Header area rect dimensions in cm
-    /// </summary>
-    public TypoRect HeaderAreaRect { get; private set; }
-
-    /// <summary>
-    /// Footer area rect dimensions in cm
-    /// </summary>
-    public TypoRect FooterAreaRect { get; private set; }
 
     /// <summary>
     /// Border color of the table
@@ -168,12 +124,12 @@ public class TypographyBase : ITypography
     /// <summary>
     /// Default font name
     /// </summary>
-    public string FontName { get; set; }
+    public string FontName { get; set; } = "Arial";
 
     /// <summary>
     /// Default font size in pt
     /// </summary>
-    public double FontSize { get; set; }
+    public double FontSize { get; set; } = 11;
 
     /// <summary>
     /// Small font size in pt
@@ -239,105 +195,6 @@ public class TypographyBase : ITypography
     /// Line height in cm (Zeilenabstand ZAB in cm)
     /// </summary>
     public double LineHeight { get; set; }
-
-    /// <summary>
-    /// Width of the column divider in cm (Spaltenabstand in cm)
-    /// </summary>
-    public double GridColumnDividerWidth { get; set; }
-
-    /// <summary>
-    /// Column width in cm
-    /// </summary>
-    public double GridColumnWidth { get; set; }
-
-    /// <summary>
-    /// Number of grid columns to use for the layout of a column in the type area
-    /// </summary>
-    public int GridColumnCount { get; set; }
-
-    /// <summary>
-    /// Sets the factor for the calculation of the left margin. See <see cref="ITypography.SetMargins"/> for details
-    /// </summary>
-    public double MarginLeftFactor { get; set; }
-
-    /// <summary>
-    /// Sets the factor for the calculation of the right margin. See <see cref="ITypography.SetMargins"/> for details
-    /// </summary>
-    public double MarginRightFactor { get; set; }
-
-    /// <summary>
-    /// Sets the factor for the calculation of the top margin. See <see cref="ITypography.SetMargins"/> for details
-    /// </summary>
-    public double MarginTopFactor { get; set; }
-
-    /// <summary>
-    /// Sets the factor for the calculation of the bottom margin. See <see cref="ITypography.SetMargins"/> for details
-    /// </summary>
-    public double MarginBottomFactor { get; set; }
-
-    /// <summary>
-    /// Unit used for horizontal margin calculations in cm (Teil in cm)
-    /// 
-    /// <see cref="MarginUnit"/> = PaperSize.Size.Width - TypeAreaRect.Size.Width / (<see cref="SetMargins"/>.left + <see cref="SetMargins"/>.right)
-    /// </summary>
-    public double MarginUnit { get; private set; }
-
-    /// <summary>
-    /// Current margins in cm
-    /// </summary>
-    public TypoThickness TypoMargins { get; } = new();
-
-    /// <summary>
-    /// Height of the page header in cm
-    /// </summary>
-    public double PageHeaderHeight { get; set; }
-
-    /// <summary>
-    /// Margin between page header and type area in cm
-    /// </summary>
-    public double PageHeaderMargin { get; set; }
-
-    /// <summary>
-    /// Height of the page header in cm
-    /// </summary>
-    public double PageFooterHeight { get; set; }
-
-    /// <summary>
-    /// Margin between page header and type area in cm
-    /// </summary>
-    public double PageFooterMargin { get; set; }
-
-    /// <summary>
-    /// Dots per inch (for converting to pixels). Default: 96dpi
-    /// </summary>
-    public double DotsPerInch { get; set; }
-
-    /// <summary>
-    /// Coordinates of the vertical lines of the typo grid
-    /// </summary>
-    public double[]? VerticalLines { get; private set; }
-
-    /// <summary>
-    /// Create all vertical lines for the typographic grid
-    /// </summary>
-    public void CalculateVerticalLines()
-    {
-        var numberOfLines = GridColumnCount * 2 * NumberOfColumns;
-
-        VerticalLines = new double[numberOfLines];
-
-        var left = TypoMargins.Left;
-        for (var column = 0; column < NumberOfColumns; column++)
-        {
-            for (var i = 0; i < GridColumnCount; i++)
-            {
-                VerticalLines[i * 2] = left + i * (GridColumnWidth + GridColumnDividerWidth);
-                VerticalLines[i * 2 + 1] = left + i * (GridColumnWidth + GridColumnDividerWidth) + GridColumnWidth;
-            }
-
-            left += ColumnWidth + ColumnGap;
-        }
-    }
 
     /// <summary>
     /// Path to logo to print in the page header
@@ -438,113 +295,8 @@ public class TypographyBase : ITypography
     /// </summary>
     public TypoColor TableBodyUnborderedBackground { get; set; }
 
-
     /// <summary>
     /// Corner radius of a table in cm
     /// </summary>
     public double TableCornerRadius { get; set; }
-
-    #region Methods
-
-    /// <summary>
-    /// Calculate margins. Margins are calculate as follows:
-    ///
-    /// TypeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * Space
-    /// 
-    /// <see cref="MarginUnit"/> = (PaperSize.Size.Width - TypeAreaWidth) / (<see cref="MarginLeftFactor"/> + <see cref="MarginRightFactor"/>)
-    /// 
-    /// Margins.Left  = <see cref="MarginLeftFactor"/> * <see cref="MarginUnit"/>
-    /// Margins.Right  = <see cref="MarginRightFactor"/> * <see cref="MarginUnit"/>
-    /// Margins.Top  = <see cref="MarginTopFactor"/> * <see cref="MarginUnit"/>
-    /// Margins.Bottom  = <see cref="MarginBottomFactor"/>* <see cref="MarginUnit"/>
-    /// 
-    /// </summary>
-    public void SetMargins()
-    {
-        var typeAreaWidth = NumberOfColumns * (GridColumnCount * GridColumnWidth + (GridColumnCount - 1) * GridColumnDividerWidth) + (NumberOfColumns - 1) * ColumnGap;
-
-        double mu;
-
-        if (TypoPaperFormat.Landscape)
-        {
-            mu = TypoPaperFormat.Size.Height - typeAreaWidth;
-        }
-        else
-        {
-            mu = TypoPaperFormat.Size.Width - typeAreaWidth;
-        }
-
-        MarginUnit = mu / (MarginLeftFactor + MarginRightFactor);
-
-        TypoMargins.Left = MarginLeftFactor * MarginUnit;
-        TypoMargins.Right = MarginRightFactor * MarginUnit;
-        TypoMargins.Top = MarginTopFactor * MarginUnit;
-        TypoMargins.Bottom = MarginBottomFactor * MarginUnit;
-
-        // Type area
-        var typeAreaHeight = TypoPaperFormat.Size.Height - TypoMargins.Top - TypoMargins.Bottom;
-
-        var p1 = new TypoPoint(TypoMargins.Left, TypoMargins.Top);
-        var p2 = new TypoPoint(TypoMargins.Left + typeAreaWidth, TypoMargins.Top + typeAreaHeight);
-        TypeAreaRect = new TypoRect(p1, p2);
-
-        // Header
-        var hp1 = new TypoPoint(p1.X, p1.Y - PageHeaderMargin - PageHeaderHeight);
-        var hp2 = new TypoPoint(p1.X + typeAreaWidth, p1.Y - PageHeaderMargin);
-        HeaderAreaRect = new TypoRect(hp1, hp2);
-
-        // Footer
-        var fp1 = new TypoPoint(p1.X, p1.Y + PageFooterMargin);
-        var fp2 = new TypoPoint(p1.X + typeAreaWidth, p1.Y + PageFooterMargin + PageFooterHeight);
-        FooterAreaRect = new TypoRect(fp1, fp2);
-
-        // Effective column width
-        _columnWidth = (TypeAreaRect.Size.Width - (NumberOfColumns - 1) * ColumnGap) / NumberOfColumns;
-    }
-
-    /// <summary>
-    /// Get the width of a landscape element which should a certain number of layout columns in cm
-    /// </summary>
-    /// <param name="numberOfColumnsUsed"></param>
-    /// <returns>Width in cm</returns>
-    public double GetWidth(int numberOfColumnsUsed)
-    {
-        return numberOfColumnsUsed * GridColumnWidth + (numberOfColumnsUsed - 1) * GridColumnDividerWidth;
-    }
-
-    /// <summary>
-    /// Get the height of an element using the Golden Schnitt ratio in cm
-    /// </summary>
-    /// <param name="numberOfColumnsUsed"></param>
-    /// <returns>Height in cm</returns>
-    public double GetHeight(int numberOfColumnsUsed)
-    {
-        return TypoPaperFormat.Landscape
-            ? Math.Round((numberOfColumnsUsed * GridColumnWidth + (numberOfColumnsUsed - 1) * GridColumnDividerWidth) /
-                         TypographicConstants.GoldenerSchnittRatio, 2)
-            : Math.Round((numberOfColumnsUsed * GridColumnWidth + (numberOfColumnsUsed - 1) * GridColumnDividerWidth) *
-                         TypographicConstants.GoldenerSchnittRatio, 2);
-    }
-
-    /// <summary>
-    /// Get the width of a landscape element which should a certain number of layout columns in pixels
-    /// </summary>
-    /// <param name="numberOfColumnsUsed">Number of columns used</param>
-    /// <returns>Width in pixels</returns>
-    public int GetPixelWidth(int numberOfColumnsUsed)
-    {
-        return (int)(GetWidth(numberOfColumnsUsed) * TypographicConstants.InchPerCentimeter * DotsPerInch);
-    }
-
-    /// <summary>
-    /// Get the height of an element using the Golden Schnitt ratio in pixels
-    /// </summary>
-    /// <param name="numberOfColumnsUsed"></param>
-    /// <returns>Height in pixels</returns>
-    public int GetPixelHeight(int numberOfColumnsUsed)
-    {
-        return (int)(GetHeight(numberOfColumnsUsed) * TypographicConstants.InchPerCentimeter * DotsPerInch);
-    }
-
-    #endregion
 }
