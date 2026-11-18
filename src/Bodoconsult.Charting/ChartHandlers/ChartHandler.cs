@@ -190,7 +190,7 @@ public class ChartHandler : IChartHandler
         {
             var chart = CreateBaseChart();
             var bytes = chart.RenderImagePng(effWidth, effHeight);
-            bs.DrawPng(bytes, effLeft, effTop, effLeft + effWidth, effTop + effHeight);
+            bs.DrawBitmap(bytes, effLeft, effTop, effLeft + effWidth, effTop + effHeight);
 
             // Copyright
             if (!string.IsNullOrEmpty(ChartData.Copyright))

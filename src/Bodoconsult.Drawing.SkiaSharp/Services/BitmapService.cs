@@ -1,12 +1,11 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
+using Bodoconsult.Drawing.SkiaSharp.Interfaces;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.CompilerServices;
-using Bodoconsult.Drawing.SkiaSharp.Interfaces;
-using SkiaSharp;
 
 namespace Bodoconsult.Drawing.SkiaSharp.Services;
 
@@ -80,7 +79,6 @@ public class BitmapService : IBitmapService
         CurrentCanvas.Dispose();
         CurrentBitmap.Dispose();
     }
-
 
     /// <summary>
     /// Save the bitmap as PNG file
@@ -286,17 +284,52 @@ public class BitmapService : IBitmapService
     }
 
     /// <summary>
-    /// Draw a PNG image as array to the canvas
+    /// Draw a PNG image file to the canvas
     /// </summary>
-    /// <param name="bytes">Byte arry of an PNG image</param>
+    /// <param name="fileName">Filename of a bitmap image</param>
     /// <param name="left">Left position</param>
     /// <param name="top">Top position</param>
     /// <param name="right">Right position</param>
     /// <param name="bottom">Bottom position</param>
-    public void DrawPng(byte[] bytes, int left, int top, int right, int bottom)
+    public void DrawBitmap(string fileName, int left, int top, int right, int bottom)
+    {
+        var image = File.ReadAllBytes(fileName);
+        DrawBitmap(image, left, top, right, bottom);
+    }
+
+    /// <summary>
+    /// Draw a bitmap image as array to the canvas
+    /// </summary>
+    /// <param name="bytes">Byte array of a bitmap image</param>
+    /// <param name="left">Left position</param>
+    /// <param name="top">Top position</param>
+    /// <param name="right">Right position</param>
+    /// <param name="bottom">Bottom position</param>
+    public void DrawBitmap(byte[] bytes, int left, int top, int right, int bottom)
+    {
+        DrawBitmap(bytes, new SKRect(left, top, right, bottom));
+    }
+
+    /// <summary>
+    /// Draw a bitmap image as array to the canvas
+    /// </summary>
+    /// <param name="bytes">Byte array of a bitmap image</param>
+    /// <param name="rect">Rectangle to draw the image in</param>
+    public void DrawBitmap(byte[] bytes, SKRect rect)
     {
         using var b = SKBitmap.Decode(bytes);
-        CurrentCanvas.DrawBitmap(b, new SKRect(left, top, right, bottom));
+        CurrentCanvas.DrawBitmap(b, rect);
+    }
+
+    /// <summary>
+    /// Draw a bitmap image file to the canvas
+    /// </summary>
+    /// <param name="fileName">Filename of a bitmap image</param>
+    /// <param name="rect">Rectangle to draw the image in</param>
+    public void DrawBitmap(string fileName, SKRect rect)
+    {
+        var image = File.ReadAllBytes(fileName);
+        DrawBitmap(image, rect);
     }
 
     /// <summary>
@@ -463,9 +496,11 @@ public class BitmapService : IBitmapService
             fontSize = 12;
         }
 
-        var font = new SKFont();
-        font.Size = fontSize;
-        font.Typeface = typeFace;
+        var font = new SKFont
+        {
+            Size = fontSize,
+            Typeface = typeFace
+        };
         return font;
     }
 
@@ -525,7 +560,7 @@ public class BitmapService : IBitmapService
         /// <summary>
         /// The words in the line
         /// </summary>
-        public List<Word> Words { get; } = new();
+        public List<Word> Words { get; } = [];
 
         /// <summary>
         /// The total width of the words
@@ -750,13 +785,13 @@ public class BitmapService : IBitmapService
             using var paint = new SKPaint();
 
             // Define a grayscale color filter to apply to the image
-            paint.ColorFilter = SKColorFilter.CreateColorMatrix(new[]
-            {
+            paint.ColorFilter = SKColorFilter.CreateColorMatrix(
+            [
                 0.2126f, 0.7152f, 0.0722f, 0, 0,  // red channel weights
                 0.2126f, 0.7152f, 0.0722f, 0, 0,  // green channel weights
                 0.2126f, 0.7152f, 0.0722f, 0, 0,  // blue channel weights
                 0,       0,       0,       1, 0   // alpha channel weights
-            });
+            ]);
 
             // redraw the image using the color filter
             CurrentCanvas.DrawBitmap(CurrentBitmap, 0, 0, paint);
@@ -781,7 +816,7 @@ public class BitmapService : IBitmapService
         }
         catch (Exception ex)
         {
-            var msg = $"Core.GreyScale:Error:{_fullPath}:";
+            var msg = $"GreyScale:Error:{_fullPath}:";
             Trace.TraceError(msg + ex.Message);
             throw new Exception(msg, ex);
         }
@@ -1074,13 +1109,13 @@ public class BitmapService : IBitmapService
         var translatedContrast = amount + 1;
         var averageLuminance = 0.2f * (1 - amount);
 
-        return SKColorFilter.CreateColorMatrix(new[]
-        {
+        return SKColorFilter.CreateColorMatrix(
+        [
             translatedContrast, 0, 0, 0, averageLuminance,
             0, translatedContrast, 0, 0, averageLuminance,
             0, 0, translatedContrast, 0, averageLuminance,
             0, 0, 0, 1, 0
-        });
+        ]);
     }
 
 

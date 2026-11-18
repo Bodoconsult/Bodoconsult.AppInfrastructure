@@ -151,15 +151,39 @@ public interface IBitmapService : IDisposable
     void DrawRoundedRectangleWithVerticalGradient(int left, int top, int right, int bottom, SKColor topColor, SKColor bottomColor, SKColor borderColor, int radius, int borderWidth = 2);
 
     /// <summary>
-    /// Draw a PNG image as array to the canvas
+    /// Draw a bitmap image file to the canvas
     /// </summary>
-    /// <param name="bytes">Byte arry of an PNG image</param>
+    /// <param name="fileName">Filename of a bitmap image</param>
     /// <param name="left">Left position</param>
     /// <param name="top">Top position</param>
     /// <param name="right">Right position</param>
     /// <param name="bottom">Bottom position</param>
-    void DrawPng(byte[] bytes, int left, int top, int right, int bottom);
-    
+    void DrawBitmap(string fileName, int left, int top, int right, int bottom);
+
+    /// <summary>
+    /// Draw a bitmap image as array to the canvas
+    /// </summary>
+    /// <param name="bytes">Byte array of a bitmap image</param>
+    /// <param name="left">Left position</param>
+    /// <param name="top">Top position</param>
+    /// <param name="right">Right position</param>
+    /// <param name="bottom">Bottom position</param>
+    void DrawBitmap(byte[] bytes, int left, int top, int right, int bottom);
+
+    /// <summary>
+    /// Draw a bitmap image as array to the canvas
+    /// </summary>
+    /// <param name="bytes">Byte array of a bitmap image</param>
+    /// <param name="rect">Rectangle to draw the image in</param>
+    void DrawBitmap(byte[] bytes, SKRect rect);
+
+    /// <summary>
+    /// Draw a bitmap image file to the canvas
+    /// </summary>
+    /// <param name="fileName">Filename of a bitmap image</param>
+    /// <param name="rect">Rectangle to draw the image in</param>
+    void DrawBitmap(string fileName, SKRect rect);
+
     /// <summary>
     /// Draw a text
     /// </summary>

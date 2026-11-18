@@ -183,7 +183,7 @@ public class BitmapService : IBitmapService
 
 
     //=== determine image rotation
-    private RotateFlipType GetRotateFlipType(int rotateValue)
+    private static RotateFlipType GetRotateFlipType(int rotateValue)
     {
         var flipType = rotateValue switch
         {
@@ -694,7 +694,7 @@ public class BitmapService : IBitmapService
         CurrentBitmap.SetPixel(x + 1, y + 1, offsetPixel);
     }
 
-    private Color BlackAndWhiteColor(Color color)
+    private static Color BlackAndWhiteColor(Color color)
     {
         var gray = (byte)(0.299 * color.R + 0.587 * color.G + 0.114 * color.B);
 

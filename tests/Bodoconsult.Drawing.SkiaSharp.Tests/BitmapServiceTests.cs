@@ -80,8 +80,8 @@ internal class BitmapServiceTests
         var target = Path.Combine(TestHelper.TargetFolder, "test.jpg");
         TestHelper.DeleteFile(target);
 
-        _service.NewBitmap(600, 800);
-        _service.DrawRectangle(0, 0, 600, 800, SKColors.White, SKColors.White);
+        _service.NewBitmap(600, 800, SKColors.White);
+        //_service.DrawRectangle(0, 0, 600, 800, SKColors.White, SKColors.White);
 
         var rect = new SKRect(100, 100, 500, 700);
 
@@ -96,6 +96,51 @@ internal class BitmapServiceTests
 
         TestHelper.StartFile(target);
     }
+
+    [Test]
+    public void DrawBitmap_Rectangle_BitmapIsDrawn()
+    {
+        // Arrange 
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
+
+        var target = Path.Combine(TestHelper.TargetFolder, "test.jpg");
+        TestHelper.DeleteFile(target);
+
+        _service.NewBitmap(600, 800, SKColors.White);
+
+        var rect = new SKRect(100, 100, 500, 700);
+
+        // Act  
+        _service.DrawBitmap(source, rect);
+        _service.SaveAsJpeg(target);
+
+        // Assert
+        Assert.That(File.Exists(target));
+
+        TestHelper.StartFile(target);
+    }
+
+    [Test]
+    public void DrawBitmap_Coordinates_BitmapIsDrawn()
+    {
+        // Arrange 
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
+
+        var target = Path.Combine(TestHelper.TargetFolder, "test.jpg");
+        TestHelper.DeleteFile(target);
+
+        _service.NewBitmap(600, 800, SKColors.White);
+
+        // Act  
+        _service.DrawBitmap(source, 100, 100, 500, 700);
+        _service.SaveAsJpeg(target);
+
+        // Assert
+        Assert.That(File.Exists(target));
+
+        TestHelper.StartFile(target);
+    }
+
 
     [Test]
     public void ResizeImage_ValidImage_ImageResized()

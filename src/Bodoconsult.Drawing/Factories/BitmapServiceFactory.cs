@@ -1,12 +1,14 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
 using Bodoconsult.Drawing.Interfaces;
+using System.Runtime.Versioning;
 
 namespace Bodoconsult.Drawing.Factories;
 
 /// <summary>
 /// Factory for <see cref="BitmapService"/> instances
 /// </summary>
+[SupportedOSPlatform("windows")]
 public class BitmapServiceFactory : IBitmapServiceFactory
 {
     /// <summary>

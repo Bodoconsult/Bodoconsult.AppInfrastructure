@@ -35,5 +35,8 @@
 	<ItemGroup>
 		<PackageReference Include="ScottPlot" Version="5.1.59" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Bodoconsult.App.Abstractions\Bodoconsult.App.Abstractions.csproj" />
+	</ItemGroup>
 
 </Project>

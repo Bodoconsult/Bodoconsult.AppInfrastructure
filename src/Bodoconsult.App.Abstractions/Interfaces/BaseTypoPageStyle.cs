@@ -81,22 +81,22 @@ public abstract class BaseTypoPageStyle: ITypoPageStyle
     /// <summary>
     /// Height of the page header in cm
     /// </summary>
-    public double PageHeaderHeight { get; set; }
+    public double PageHeaderHeight { get; set; } = 1;
 
     /// <summary>
     /// Margin between page header and type area in cm
     /// </summary>
-    public double PageHeaderMargin { get; set; }
+    public double PageHeaderMargin { get; set; } = 0.5;
 
     /// <summary>
     /// Height of the page header in cm
     /// </summary>
-    public double PageFooterHeight { get; set; }
+    public double PageFooterHeight { get; set; } = 1;
 
     /// <summary>
     /// Margin between page header and type area in cm
     /// </summary>
-    public double PageFooterMargin { get; set; }
+    public double PageFooterMargin { get; set; } = 0.5;
 
     /// <summary>
     /// Paper format
