@@ -21,3 +21,6 @@ NOT intended for public use
 
 -   Added UnitHelper class to handle value conversion from cm or inch to pixels depending on dots per inch (dpi) setting
 
+-   Added IBitmapService implemented by BitmapService class
+
+-   Added IBitmapServiceFactory implemented by BitmapServiceFactory class

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-using Bodoconsult.Drawing.SkiaSharp.Helpers;
+using Bodoconsult.Drawing.Helpers;
 using NUnit.Framework;
 
 namespace Bodoconsult.Drawing.Test;

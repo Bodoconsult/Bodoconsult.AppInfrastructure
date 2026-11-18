@@ -33,7 +33,7 @@ public class ImageToolsTests
     {
 
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
 
         // Act
         var result = ImageTools.GetImageSize(source);
@@ -50,7 +50,7 @@ public class ImageToolsTests
     {
 
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
         var fi = new FileInfo(source);
 
         const int width = 500;
@@ -85,7 +85,7 @@ public class ImageToolsTests
     {
 
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
 
 
         const int width = 500;

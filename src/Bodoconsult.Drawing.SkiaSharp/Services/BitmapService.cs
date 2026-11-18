@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen. All rights reserved.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Bodoconsult.Drawing.SkiaSharp.Interfaces;
 using SkiaSharp;
 
@@ -56,9 +58,20 @@ public class BitmapService : IBitmapService
     /// <param name="height">Height in pixels</param>
     public void NewBitmap(int width, int height)
     {
+        NewBitmap(width, height, SKColors.Transparent);
+    }
+
+    /// <summary>
+    /// Create a new bitmap
+    /// </summary>
+    /// <param name="width">Width in pixels</param>
+    /// <param name="height">Height in pixels</param>
+    /// <param name="color">Background color</param>
+    public void NewBitmap(int width, int height, SKColor color)
+    {
         CurrentBitmap = new SKBitmap(width, height);
         CurrentCanvas = new SKCanvas(CurrentBitmap);
-        CurrentCanvas.Clear(SKColors.Transparent);
+        CurrentCanvas.Clear(color);
     }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
@@ -322,40 +335,224 @@ public class BitmapService : IBitmapService
     /// <param name="text">Text to print</param>
     /// <param name="rect">Rectangle to print the text in</param>
     /// <param name="font">Font to use for printing</param>
-    /// <param name="paint">Paint to use for the text</param>
-    public float DrawText(string text, SKRect rect, SKFont font, SKPaint paint)
+    /// <param name="color">Color to use for the text</param>
+    /// <param name="alignment">Alignment relative to x and y position</param>
+    /// <returns>Y position of the bottom of the last text line in the rectangle</returns>
+    public float DrawText(string text, SKRect rect, SKFont font, SKColor color, SKTextAlign alignment)
     {
+        using var paint = new SKPaint();
+        paint.IsAntialias = true;
+        paint.Color = color;
+        paint.IsStroke = false;
+
         var cleanText = text.Replace("\r\n", "\n", StringComparison.OrdinalIgnoreCase)
             .Replace("\r", "\n", StringComparison.OrdinalIgnoreCase)
-            .Replace("\n", " \n");
+            .Replace("\n", " \n ");
         var spaceWidth = font.MeasureText(" ");
         var wordX = rect.Left;
         var wordY = rect.Top + font.Size;
-        foreach (var word in text.Split(' '))
+
+        // Get the lines
+        var lines = GetLines(rect, font, cleanText, wordX, spaceWidth);
+
+        switch (alignment)
         {
-            if (word.Equals("\n", StringComparison.OrdinalIgnoreCase))
-            {
-                wordY += font.Spacing;
-                wordX = rect.Left;
-                continue;
-            }
+            // Print the lines
+            case SKTextAlign.Left:
+                foreach (var pline in lines)
+                {
+                    wordX = rect.Left;
+                    foreach (var word in pline.Words)
+                    {
+                        CurrentCanvas.DrawText(word.Content, wordX, wordY, font, paint);
 
-            var wordWidth = font.MeasureText(word);
-            if (wordWidth <= rect.Right - wordX)
-            {
-                CurrentCanvas.DrawText(word, wordX, wordY, font, paint);
-                wordX += wordWidth + spaceWidth;
-            }
-            else
-            {
-                wordY += font.Spacing;
-                wordX = rect.Left;
-            }
+                        if (word.Width <= rect.Right - wordX)
+                        {
+                            wordX += word.Width + spaceWidth;
+                        }
+                        else
+                        {
+                            wordX += word.Width;
+                        }
+                    }
+
+                    wordY += font.Spacing;
+                }
+
+                break;
+            case SKTextAlign.Right:
+                foreach (var pline in lines)
+                {
+                    wordX = rect.Right;
+                    for (var index = pline.Words.Count - 1; index >= 0; index--)
+                    {
+                        var word = pline.Words[index];
+
+                        wordX -= word.Width;
+
+                        CurrentCanvas.DrawText(word.Content, wordX, wordY, font, paint);
+
+                        wordX -= spaceWidth;
+                    }
+
+                    wordY += font.Spacing;
+                }
+
+                break;
+            case SKTextAlign.Center:
+                foreach (var pline in lines)
+                {
+                    var spacing = (rect.Right - rect.Left - pline.TotalWidth) / 2;
+                    wordX = rect.Left + spacing;
+
+                    //Debug.Print($"{rect.Right - rect.Left}: {pline.TotalWidth} => {spacing}");
+
+                    foreach (var word in pline.Words)
+                    {
+                        CurrentCanvas.DrawText(word.Content, wordX, wordY, font, paint);
+
+                        if (word.Width <= rect.Right - wordX)
+                        {
+                            wordX += word.Width + spaceWidth;
+                        }
+                        else
+                        {
+                            wordX += word.Width;
+                        }
+                    }
+
+                    wordY += font.Spacing;
+                }
+
+                break;
+            default:
+                throw new NotImplementedException();
         }
-
+        
         return wordY;
     }
 
+    /// <summary>
+    /// Draw a text in a rectangle
+    /// </summary>
+    /// <param name="text">Text to print</param>
+    /// <param name="rect">Rectangle to print the text in</param>
+    /// <param name="fontName">Current font name</param>
+    /// <param name="fontSize">Current font size in pt</param>
+    /// <param name="color">Current foreground color</param>
+    /// <param name="alignment">Alignment relative to x and y position</param>
+    /// <returns>Y position of the bottom of the last text line in the rectangle</returns>
+    public float DrawText(string text, SKRect rect, string fontName, float fontSize, SKColor color, SKTextAlign alignment)
+    {
+        var font = GetSkFont(fontName, fontSize);
+        return DrawText(text, rect, font, color, alignment);
+    }
+
+    /// <summary>
+    /// Get a <see cref="SKFont"/>
+    /// </summary>
+    /// <param name="fontName">Font name</param>
+    /// <param name="fontSize">Font size</param>
+    /// <returns><see cref="SKFont"/> instance</returns>
+    public static SKFont GetSkFont(string fontName, float fontSize)
+    {
+        var typeFace = SKTypeface.FromFamilyName(fontName);
+
+        if (fontSize < 0)
+        {
+            fontSize = 12;
+        }
+
+        var font = new SKFont();
+        font.Size = fontSize;
+        font.Typeface = typeFace;
+        return font;
+    }
+
+    private static List<Line> GetLines(SKRect rect, SKFont font, string cleanText, float wordX, float spaceWidth)
+    {
+        var lines = new List<Line>();
+
+        var line = new Line();
+        lines.Add(line);
+
+        var w = cleanText.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (var word in w)
+        {
+            var wordItem = new Word();
+
+            if (word.Equals("\n", StringComparison.OrdinalIgnoreCase))
+            {
+                wordItem.Content = string.Empty;
+                wordItem.Width = 0;
+                wordItem.X = 0;
+
+                line = new Line();
+                lines.Add(line);
+                line.Words.Add(wordItem);
+                continue;
+            }
+
+            wordItem.Content = word;
+            wordItem.Width = font.MeasureText(word);
+            
+            if (wordItem.Width <= rect.Right - wordX)
+            {
+                line.Words.Add(wordItem);
+                wordX += wordItem.Width + spaceWidth;
+            }
+            else
+            {
+                line = new Line();
+                lines.Add(line);
+                line.Words.Add(wordItem);
+                wordX = rect.Left;
+            }
+
+            // Let this line after the >if<. Otherwise wrong line gets the width of the word
+            line.TotalWidth += wordItem.Width;
+        }
+
+        return lines;
+    }
+
+    /// <summary>
+    /// A text line to print in a rectangle
+    /// </summary>
+    private class Line
+    {
+        /// <summary>
+        /// The words in the line
+        /// </summary>
+        public List<Word> Words { get; } = new();
+
+        /// <summary>
+        /// The total width of the words
+        /// </summary>
+        public float TotalWidth { get; set; }
+    }
+
+    /// <summary>
+    /// A word to print as text in a rectangle
+    /// </summary>
+    private struct Word
+    {
+        /// <summary>
+        /// The word
+        /// </summary>
+        public string Content { get; set; }
+
+        /// <summary>
+        /// The width of the word
+        /// </summary>
+        public float Width { get; set; }
+
+        /// <summary>
+        /// X coordinate of the word
+        /// </summary>
+        public float X { get; set; }
+    }
 
     /// <summary>
     /// Draw a text
@@ -369,16 +566,7 @@ public class BitmapService : IBitmapService
     /// <param name="alignment">Alignment relative to x and y position</param>
     public void DrawText(string text, int x, int y, string fontName, float fontSize, SKColor color, SKTextAlign alignment)
     {
-        var typeFace = SKTypeface.FromFamilyName(fontName);
-
-        if (fontSize < 0)
-        {
-            fontSize = 12;
-        }
-
-        var font = new SKFont();
-        font.Size = fontSize;
-        font.Typeface = typeFace;
+        var font = GetSkFont(fontName, fontSize);
         DrawText(text, x, y, font, color, alignment);
     }
 

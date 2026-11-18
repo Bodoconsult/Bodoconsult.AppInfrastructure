@@ -1,11 +1,10 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
+using Bodoconsult.Drawing.Test.Helpers;
+using NUnit.Framework;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Versioning;
-using Bodoconsult.Drawing.Test.Helpers;
-using NUnit.Framework;
 
 namespace Bodoconsult.Drawing.Test;
 
@@ -21,18 +20,91 @@ public class BitmapServiceTests
         _service = new BitmapService();
     }
 
-
     [TearDown]
     public void Cleanup()
     {
+        _service.Dispose();
     }
 
-    [Test]
-    public void TestResizeImage()
-    {
+    //[Test]
+    //public void DrawText_Rectangle_TextWrittenLeftBound()
+    //{
+    //    // Arrange 
+    //    var target = Path.Combine(TestHelper.TargetFolder, "test.jpg");
+    //    TestHelper.DeleteFile(target);
 
+    //    _service.NewBitmap(600, 800);
+    //    _service.DrawRectangle(0, 0, 600, 800, Colors.White, Colors.White);
+
+    //    var rect = new Rect(100, 100, 500, 700);
+
+    //    const string text = TestHelper.MassText;
+
+    //    // Act  
+    //    _service.DrawText(text, rect, "Arial", 11, Colors.Black, TextAlign.Left);
+    //    _service.SaveAsJpeg(target);
+
+    //    // Assert
+    //    Assert.That(File.Exists(target));
+
+    //    TestHelper.StartFile(target);
+    //}
+
+    //[Test]
+    //public void DrawText_Rectangle_TextWrittenRightBound()
+    //{
+    //    // Arrange 
+    //    var target = Path.Combine(TestHelper.TargetFolder, "test.jpg");
+    //    TestHelper.DeleteFile(target);
+
+    //    _service.NewBitmap(600, 800);
+    //    _service.DrawRectangle(0, 0, 600, 800, Colors.White, Colors.White);
+
+    //    var rect = new SKRect(100, 100, 500, 700);
+
+    //    const string text = TestHelper.MassText;
+
+    //    // Act  
+    //    _service.DrawText(text, rect, "Arial", 11, Colors.Black, TextAlign.Right);
+    //    _service.SaveAsJpeg(target);
+
+    //    // Assert
+    //    Assert.That(File.Exists(target));
+
+    //    TestHelper.StartFile(target);
+    //}
+
+    //[Test]
+    //public void DrawText_Rectangle_TextWrittenCentered()
+    //{
+    //    // Arrange 
+    //    var target = Path.Combine(TestHelper.TargetFolder, "test.jpg");
+    //    TestHelper.DeleteFile(target);
+
+       
+
+    //    _service.NewBitmap(600, 800);
+    //    _service.DrawRectangle(0, 0, 600, 800, Color.White, Color.White);
+
+    //    var rect = new SKRect(100, 100, 500, 700);
+
+    //    const string text = TestHelper.MassText;
+
+    //    // Act  
+    //    _service.DrawText(text, rect, "Arial", 11, Color.Black, SKTextAlign.Center);
+    //    _service.SaveAsJpeg(target);
+
+    //    // Assert
+    //    Assert.That(File.Exists(target));
+
+    //    TestHelper.StartFile(target);
+    //}
+
+    [Test]
+    public void ResizeImage_ValidImage_ImageResized()
+    {
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
 
         var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
@@ -58,9 +130,8 @@ public class BitmapServiceTests
     [Test]
     public void TestResizeImageAdjustBcg()
     {
-
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
 
         var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
@@ -91,13 +162,12 @@ public class BitmapServiceTests
         TestHelper.StartFile(target);
     }
 
-
     [Test]
-    public void TestResizeImageAdjustSaturation()
+    public void AdjustSaturation_ValidImage_ImageResizedAndSaturationChanged()
     {
 
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
 
         var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 
@@ -123,13 +193,11 @@ public class BitmapServiceTests
         TestHelper.StartFile(target);
     }
 
-
     [Test]
-    public void TestCaseWebReporting()
+    public void AdjustSaturation_ValidImageBodoWebReporting_ImageResizedAndSaturationChanged()
     {
-
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
 
         var target = Path.Combine( TestHelper.TargetFolder, "DSC_0187.jpg");
 
@@ -161,14 +229,11 @@ public class BitmapServiceTests
         TestHelper.StartFile(target);
     }
 
-
-
     [Test]
     public void TestRoundedCorners()
     {
-
         // Arrange
-        var source = Path.Combine(TestHelper.GetTestDataFolder(), "DSC_0187.JPG");
+        var source = Path.Combine(TestHelper.GetTestDataFolder, "DSC_0187.JPG");
 
         var target = Path.Combine(TestHelper.TargetFolder, "DSC_0187.jpg");
 

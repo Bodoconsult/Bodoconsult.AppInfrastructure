@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
-namespace Bodoconsult.Drawing.SkiaSharp.Helpers;
+namespace Bodoconsult.Drawing.Helpers;
 
 /// <summary>
 /// Helper class for converting common units like ch, mm, or inch to pixels depending on the requested dots per inch (dpi)

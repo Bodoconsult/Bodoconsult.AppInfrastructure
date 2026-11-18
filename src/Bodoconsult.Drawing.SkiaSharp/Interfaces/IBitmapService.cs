@@ -41,6 +41,14 @@ public interface IBitmapService : IDisposable
     void NewBitmap(int width, int height);
 
     /// <summary>
+    /// Create a new bitmap
+    /// </summary>
+    /// <param name="width">Width in pixels</param>
+    /// <param name="height">Height in pixels</param>
+    /// <param name="color">Background color</param>
+    public void NewBitmap(int width, int height, SKColor color);
+
+    /// <summary>
     /// Save the bitmap as PNG file
     /// </summary>
     /// <param name="fullPath">full file name of the target file</param>
@@ -181,9 +189,22 @@ public interface IBitmapService : IDisposable
     /// <param name="text">Text to print</param>
     /// <param name="rect">Rectangle to print the text in</param>
     /// <param name="font">Font to use for printing</param>
-    /// <param name="paint">Paint to use for the text</param>
+    /// <param name="color">Color to use for the text</param>
+    /// <param name="alignment">Alignment relative to x and y position</param>
     /// <returns>Y position of the bottom of the last text line in the rectangle</returns>
-    float DrawText(string text, SKRect rect, SKFont font, SKPaint paint);
+    float DrawText(string text, SKRect rect, SKFont font, SKColor color, SKTextAlign alignment);
+
+    /// <summary>
+    /// Draw a text in a rectangle
+    /// </summary>
+    /// <param name="text">Text to print</param>
+    /// <param name="rect">Rectangle to print the text in</param>
+    /// <param name="fontName">Current font name</param>
+    /// <param name="fontSize">Current font size in pt</param>
+    /// <param name="color">Current foreground color</param>
+    /// <param name="alignment">Alignment relative to x and y position</param>
+    /// <returns>Y position of the bottom of the last text line in the rectangle</returns>
+    float DrawText(string text, SKRect rect, string fontName, float fontSize, SKColor color, SKTextAlign alignment);
 
     #region Resize image
 

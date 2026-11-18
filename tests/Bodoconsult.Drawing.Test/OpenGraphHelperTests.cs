@@ -38,7 +38,7 @@ public class OpenGraphHelperTests
         }
         Assert.That(!File.Exists(target));
 
-        OpenGraphHelper.SourceFile = Path.Combine(TestHelper.GetTestDataFolder(), "OpenGraphBasis.png");
+        OpenGraphHelper.SourceFile = Path.Combine(TestHelper.GetTestDataFolder, "OpenGraphBasis.png");
 
         // Act
         OpenGraphHelper.Save("Test", "Test description", target);

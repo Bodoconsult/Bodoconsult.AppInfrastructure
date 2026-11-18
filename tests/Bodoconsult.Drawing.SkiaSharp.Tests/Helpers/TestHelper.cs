@@ -24,6 +24,10 @@ public static class TestHelper
         GetTestDataFolder = Path.Combine(dir.FullName, "TestData");
     }
 
+    public const string MassText =
+        "Lorem ipsum dolor ≥ = &gt; &#61; sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. \r\n\r\nAt vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+
+
     /// <summary>
     /// Target folder to store files in
     /// </summary>
@@ -51,5 +55,17 @@ public static class TestHelper
         var p = new Process { StartInfo = new ProcessStartInfo { UseShellExecute = true, FileName = fileName } };
 
         p.Start();
+    }
+
+    /// <summary>
+    /// Check if a file is existing and if yes delete it
+    /// </summary>
+    /// <param name="fileName">File to be deleted</param>
+    public static void DeleteFile(string fileName)
+    {
+        if (File.Exists(fileName))
+        {
+            File.Delete(fileName);
+        }
     }
 }

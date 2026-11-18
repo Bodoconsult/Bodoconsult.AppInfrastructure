@@ -6,6 +6,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Runtime.Versioning;
 using Bodoconsult.Drawing.Helpers;
+using Bodoconsult.Drawing.Interfaces;
 
 namespace Bodoconsult.Drawing;
 
@@ -13,7 +14,7 @@ namespace Bodoconsult.Drawing;
 /// Service class for working with bitmap images
 /// </summary>
 [SupportedOSPlatform("windows")]
-public class BitmapService : IDisposable
+public class BitmapService : IBitmapService
 {
     private string _fullPath;
 
@@ -23,6 +24,11 @@ public class BitmapService : IDisposable
     public Bitmap CurrentBitmap { get; private set; }
 
     /// <summary>
+    /// Current <see cref="Graphics"/> instance
+    /// </summary>
+    public Graphics Graphics { get; private set; }
+
+    /// <summary>
     /// Load a bitmap from a file
     /// </summary>
     /// <param name="fullPath">full file name of the source file to load</param>
@@ -30,6 +36,7 @@ public class BitmapService : IDisposable
     {
         _fullPath = fullPath;
         CurrentBitmap = new Bitmap(fullPath);
+        Graphics = Graphics.FromImage(CurrentBitmap);
     }
 
     /// <summary>
@@ -40,6 +47,29 @@ public class BitmapService : IDisposable
     {
         CurrentBitmap = bitmap;
     }
+
+    /// <summary>
+    /// Create a new bitmap
+    /// </summary>
+    /// <param name="width">Width in pixels</param>
+    /// <param name="height">Height in pixels</param>
+    public void NewBitmap(int width, int height)
+    {
+        NewBitmap(width, height, Color.Transparent);
+    }
+
+    /// <summary>
+    /// Create a new bitmap
+    /// </summary>
+    /// <param name="width">Width in pixels</param>
+    /// <param name="height">Height in pixels</param>
+    /// <param name="color">Background color</param>
+    public void NewBitmap(int width, int height, Color color)
+    {
+        CurrentBitmap = new Bitmap(width, height);
+
+    }
+
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()
@@ -196,12 +226,8 @@ public class BitmapService : IDisposable
     /// <param name="gamma">Gamma factor: default 1F means not change</param>
     public void AdjustBcg(float brightness = 1F, float contrast = 1F, float gamma = 1F)
     {
-
         var adjustedImage = new Bitmap(CurrentBitmap.Width, CurrentBitmap.Height);
-
-
         var adjustedBrightness = brightness - 1.0f;
-
 
         // create matrix that will brighten and contrast the image
         float[][] ptsArray =
@@ -226,6 +252,7 @@ public class BitmapService : IDisposable
 
         CurrentBitmap.Dispose();
         CurrentBitmap = adjustedImage;
+        Graphics = Graphics.FromImage(CurrentBitmap);
     }
 
     /// <summary>
@@ -253,34 +280,30 @@ public class BitmapService : IDisposable
 
         var bmp = (Bitmap)CurrentBitmap.Clone();
 
-
-        using (var gr = Graphics.FromImage(CurrentBitmap))
-        {
-            // ColorMatrix elements
-            float[][] ptsArray =
-            [
-                [a,  b,  c,  0, 0],
+        // ColorMatrix elements
+        float[][] ptsArray =
+        [
+            [a,  b,  c,  0, 0],
                 [d,  e,  f,  0, 0],
                 [g,  h,  i,  0, 0],
                 [0,  0,  0,  1, 0],
                 [0, 0, 0, 0, 1]
-            ];
-            // Create ColorMatrix
-            var clrMatrix = new ColorMatrix(ptsArray);
-            // Create ImageAttributes
-            var imgAttribs = new ImageAttributes();
-            // Set color matrix
-            imgAttribs.SetColorMatrix(clrMatrix,
-                ColorMatrixFlag.Default,
-                ColorAdjustType.Default);
-            // Draw Image with no effects
-            gr.DrawImage(bmp, 0, 0, bmp.Width, bmp.Height);
-            // Draw Image with image attributes
-            gr.DrawImage(bmp,
-                new Rectangle(0, 0, bmp.Width, bmp.Height),
-                0, 0, bmp.Width, bmp.Height,
-                GraphicsUnit.Pixel, imgAttribs);
-        }
+        ];
+        // Create ColorMatrix
+        var clrMatrix = new ColorMatrix(ptsArray);
+        // Create ImageAttributes
+        var imgAttribs = new ImageAttributes();
+        // Set color matrix
+        imgAttribs.SetColorMatrix(clrMatrix,
+            ColorMatrixFlag.Default,
+            ColorAdjustType.Default);
+        // Draw Image with no effects
+        Graphics.DrawImage(bmp, 0, 0, bmp.Width, bmp.Height);
+        // Draw Image with image attributes
+        Graphics.DrawImage(bmp,
+            new Rectangle(0, 0, bmp.Width, bmp.Height),
+            0, 0, bmp.Width, bmp.Height,
+            GraphicsUnit.Pixel, imgAttribs);
 
         bmp.Dispose();
     }
@@ -465,7 +488,7 @@ public class BitmapService : IDisposable
         roundedImageEnd.Dispose();
         CurrentBitmap.Dispose();
         CurrentBitmap = shadowedImageEnd;
-
+        Graphics = Graphics.FromImage(CurrentBitmap);
     }
 
     /// <summary>
@@ -570,9 +593,8 @@ public class BitmapService : IDisposable
         imageAttributes.ClearColorMatrix();
         imageAttributes.SetColorMatrix(colorMatrix);
 
-        using var g = Graphics.FromImage(CurrentBitmap);
         // Change brightness, contrast and gamma
-        g.DrawImage(CurrentBitmap, new Rectangle(0, 0, CurrentBitmap.Width, CurrentBitmap.Height)
+        Graphics.DrawImage(CurrentBitmap, new Rectangle(0, 0, CurrentBitmap.Width, CurrentBitmap.Height)
             , 0, 0, CurrentBitmap.Width, CurrentBitmap.Height,
             GraphicsUnit.Pixel, imageAttributes);
     }
@@ -677,6 +699,84 @@ public class BitmapService : IDisposable
         var gray = (byte)(0.299 * color.R + 0.587 * color.G + 0.114 * color.B);
 
         return gray < 128 ? Color.FromArgb(color.A, 0, 0, 0) : Color.FromArgb(color.A, 255, 255, 255);
+    }
+
+    /// <summary>
+    /// Draw a text left adjusted
+    /// </summary>
+    /// <param name="text">test to left adjust</param>
+    /// <param name="font">font to use</param>
+    /// <param name="brush">brush to use</param>
+    /// <param name="x1">left corner x-coordinate</param>
+    /// <param name="y1">left corner y-coordinate</param>
+    /// <param name="x2">right corner x-coordinate</param>
+    /// <param name="height">right corner y-coordinate</param>
+    /// <param name="xDistance">distance on the left end from left corner x-coordinate x1</param>
+    public void LeftText(string text, Font font, Brush brush, float x1, float y1, float x2, float height, float xDistance = 1F)
+    {
+        var stringFormat = new StringFormat(StringFormat.GenericTypographic) { Alignment = StringAlignment.Near };
+        Graphics.DrawString(text, font, brush, new RectangleF(x1, y1, x2 - x1 - xDistance, height), stringFormat);
+    }
+
+    /// <summary>
+    /// Draw a text right adjusted
+    /// </summary>
+    /// <param name="text">test to right adjust</param>
+    /// <param name="font">font to use</param>
+    /// <param name="brush">brush to use</param>
+    /// <param name="x1">left corner x-coordinate</param>
+    /// <param name="y1">left corner y-coordinate</param>
+    /// <param name="x2">right corner x-coordinate</param>
+    /// <param name="height">right corner y-coordinate</param>
+    /// <param name="xDistance">distance on the right end from right corner x-coordinate x2</param>
+    public void RightText(string text, Font font, Brush brush, float x1, float y1, float x2, float height, float xDistance = 1F)
+    {
+        var stringFormat = new StringFormat(StringFormat.GenericTypographic) { Alignment = StringAlignment.Far };
+        Graphics.DrawString(text, font, brush, new RectangleF(x1, y1, x2 - x1 - xDistance, height), stringFormat);
+    }
+
+    /// <summary>
+    /// Draw a text right adjusted
+    /// </summary>
+    /// <param name="text">test to draw centered</param>
+    /// <param name="font">font to use</param>
+    /// <param name="brush">brush to use</param>
+    /// <param name="x1">left corner x-coordinate</param>
+    /// <param name="y1">left corner y-coordinate</param>
+    /// <param name="x2">right corner x-coordinate</param>
+    /// <param name="height">height of the rectangle to draw in</param>
+    public void CenteredText(string text, Font font, Brush brush, float x1, float y1, float x2, float height)
+    {
+        var stringFormat = new StringFormat(StringFormat.GenericTypographic) { Alignment = StringAlignment.Center };
+        Graphics.DrawString(text, font, brush, new RectangleF(x1, y1, x2 - x1, height), stringFormat);
+    }
+
+    /// <summary>
+    /// Draw a rectangle
+    /// </summary>
+    /// <param name="pen">pen to use</param>
+    /// <param name="x1">left corner x-coordinate</param>
+    /// <param name="y1">left corner y-coordinate</param>
+    /// <param name="x2">right corner x-coordinate</param>
+    /// <param name="height">height of the rectangle to draw in</param>
+    public void DrawRectangle(Pen pen, float x1, float y1, float x2, float height)
+    {
+        Graphics.DrawRectangle(pen, x1, y1, x2 - x1, height);
+    }
+
+    /// <summary>
+    /// Draw an image with a frame around it
+    /// </summary>
+    /// <param name="img">Image to draw</param>
+    /// <param name="framePen">Pen to use for the frame around the image</param>
+    /// <param name="x">left corner x-coordinate</param>
+    /// <param name="y">left corner y-coordinate</param>
+    /// <param name="width">Width of the image to draw</param>
+    /// <param name="height">Height of the image to draw</param>
+    public void DrawImageWithFrame(Image img, Pen framePen, float x, float y, float width, float height)
+    {
+        Graphics.DrawImage(img, x, y, width, height);
+        Graphics.DrawRectangle(framePen, x, y, width, height);
     }
 
 
