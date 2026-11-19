@@ -1,0 +1,150 @@
+<Solution>
+  <Folder Name="/apps/" />
+  <Folder Name="/apps/BodoCms/" />
+  <Folder Name="/apps/BodoCms/BodoCmsConsole/">
+    <Project Path="apps/BodoCms/BodoCmsConsole/BodoCmsConsole.Business/BodoCmsConsole.Business.csproj" />
+    <Project Path="apps/BodoCms/BodoCmsConsole/BodoCmsConsole/BodoCmsConsole.csproj" />
+  </Folder>
+  <Folder Name="/apps/BodoCms/BodoWebReporting/">
+    <Project Path="apps/BodoCms/BodoWebReporting/BodoWebReporting.Dal/BodoWebReporting.Dal.csproj" />
+    <Project Path="apps/BodoCms/BodoWebReporting/BodoWebReporting/BodoWebReporting.csproj" />
+  </Folder>
+  <Folder Name="/apps/BodoCms/OpenSourceConnectorBodoCms/">
+    <Project Path="apps/BodoCms/OpenSourceConnectorBodoCms/OpenSourceConnectorBodoCms.Business/OpenSourceConnectorBodoCms.Business.csproj" />
+    <Project Path="apps/BodoCms/OpenSourceConnectorBodoCms/OpenSourceConnectorBodoCms/OpenSourceConnectorBodoCms.csproj" />
+  </Folder>
+  <Folder Name="/apps/BodoFileTransfer/">
+    <Project Path="apps/BodoFileTransfer/BodoFileTransfer.Business/BodoFileTransfer.Business.csproj" />
+    <Project Path="apps/BodoFileTransfer/BodoFileTransfer.Ui/BodoFileTransfer.Ui.csproj" />
+    <Project Path="apps/BodoFileTransfer/BodoFileTransfer/BodoFileTransfer.csproj" />
+  </Folder>
+  <Folder Name="/apps/BodoFtpTransfer/">
+    <Project Path="apps/BodoFtpTransfer/BodoFtpTransfer.Business/BodoFtpTransfer.Business.csproj" />
+    <Project Path="apps/BodoFtpTransfer/BodoFtpTransfer/BodoFtpTransfer.csproj" />
+  </Folder>
+  <Folder Name="/apps/BodoWebMailer/">
+    <Project Path="apps/BodoWebMailer/BodoWebMailer.Business/BodoWebMailer.Business.csproj" />
+    <Project Path="apps/BodoWebMailer/BodoWebMailer/BodoWebMailer.csproj" />
+  </Folder>
+  <Folder Name="/apps/EmergencyShutdown/">
+    <Project Path="apps/EmergencyShutdown/EmergencyShutdown.Business/EmergencyShutdown.Business.csproj" />
+    <Project Path="apps/EmergencyShutdown/EmergencyShutdown/EmergencyShutdown.csproj" />
+  </Folder>
+  <Folder Name="/apps/JobExecuter/">
+    <Project Path="apps/JobExecuter/JobExecuter.Base/JobExecuter.Base.csproj" />
+    <Project Path="apps/JobExecuter/JobExecuter.Dal/JobExecuter.Dal.csproj" />
+    <Project Path="apps/JobExecuter/JobExecuter.GpoPlugIn/JobExecuter.GpoPlugIn.csproj" />
+    <Project Path="apps/JobExecuter/JobExecuter/JobExecuter.csproj" />
+  </Folder>
+  <Folder Name="/docs/" />
+  <Folder Name="/Projektmappenelemente/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="nuget_publish.bat" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/AvaloniaApp1/AvaloniaApp1.csproj" />
+    <Project Path="samples/AvaloniaConsoleApp1/AvaloniaConsoleApp1.csproj" />
+    <Project Path="samples/AvaloniaReactiveUiDemoApp/AvaloniaReactiveUiDemoApp.csproj" />
+    <Project Path="samples/ConsoleApp1/ConsoleApp1.csproj" />
+    <Project Path="samples/ConsoleWpfApp1/ConsoleWpfApp1.csproj" />
+    <Project Path="samples/TestAvaloniaApplication1/TestAvaloniaApplication1.csproj" />
+    <Project Path="samples/WinFormsApp1/WinFormsApp1.csproj" />
+    <Project Path="samples/WinFormsConsoleApp1/WinFormsConsoleApp1.csproj" />
+    <Project Path="samples/WorkerService1/WorkerService1.csproj" />
+    <Project Path="samples/WpfApp1/WpfApp1.csproj" />
+    <Project Path="samples/WpfConsoleApp1/WpfConsoleApp1.csproj" />
+    <Project Path="samples/WpfReactiveDemoApp/WpfReactiveDemoApp.csproj" />
+    <Project Path="samples/WpfReactiveUiDemoApp/WpfReactiveUiDemoApp.csproj" />
+  </Folder>
+  <Folder Name="/samples/EntityFramework/">
+    <Project Path="samples/EntityFramework/EfConsoleApp1.Model/EfConsoleApp1.Model.csproj" />
+    <Project Path="samples/EntityFramework/EfConsoleApp1/EfConsoleApp1.csproj" />
+  </Folder>
+  <Folder Name="/samples/GrpcClientServer/" />
+  <Folder Name="/samples/GrpcClientServer/GrpcClientApp/" />
+  <Folder Name="/samples/GrpcClientServer/GrpcServerApp/">
+    <Project Path="samples/GrpcClientServer/GrpcServerApp/GrpcServerApp.BusinessLogic/GrpcServerApp.BusinessLogic.csproj" />
+    <Project Path="samples/GrpcClientServer/GrpcServerApp/GrpcServerApp.Common/GrpcServerApp.Common.csproj" />
+    <Project Path="samples/GrpcClientServer/GrpcServerApp/GrpcServerApp.Grpc.Common/GrpcServerApp.Grpc.Common.csproj" />
+    <Project Path="samples/GrpcClientServer/GrpcServerApp/GrpcServerApp.Grpc/GrpcServerApp.Grpc.csproj" />
+    <Project Path="samples/GrpcClientServer/GrpcServerApp/GrpcServerApp/GrpcServerApp.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Bodoconsult.App.Abstractions/Bodoconsult.App.Abstractions.csproj" />
+    <Project Path="src/Bodoconsult.App.Avalonia.ReactiveUI/Bodoconsult.App.Avalonia.ReactiveUI.csproj" />
+    <Project Path="src/Bodoconsult.App.Avalonia/Bodoconsult.App.Avalonia.csproj" />
+    <Project Path="src/Bodoconsult.App.BackgroundService/Bodoconsult.App.BackgroundService.csproj" />
+    <Project Path="src/Bodoconsult.App.DataProtection/Bodoconsult.App.DataProtection.csproj" />
+    <Project Path="src/Bodoconsult.App.GrpcBackgroundService/Bodoconsult.App.GrpcBackgroundService.csproj" />
+    <Project Path="src/Bodoconsult.App.ReactiveUI/Bodoconsult.App.ReactiveUI.csproj" />
+    <Project Path="src/Bodoconsult.App.Windows/Bodoconsult.App.Windows.csproj" />
+    <Project Path="src/Bodoconsult.App.WinForms/Bodoconsult.App.WinForms.csproj" />
+    <Project Path="src/Bodoconsult.App.Wpf.Documents/Bodoconsult.App.Wpf.Documents.csproj" />
+    <Project Path="src/Bodoconsult.App.Wpf.ReactiveUI/Bodoconsult.App.Wpf.ReactiveUI.csproj" />
+    <Project Path="src/Bodoconsult.App.Wpf/Bodoconsult.App.Wpf.csproj" />
+    <Project Path="src/Bodoconsult.App/Bodoconsult.App.csproj" />
+    <Project Path="src/Bodoconsult.Charting.Base/Bodoconsult.Charting.Base.csproj" />
+    <Project Path="src/Bodoconsult.Charting/Bodoconsult.Charting.csproj" />
+    <Project Path="src/Bodoconsult.Database.Dbase.Ef/Bodoconsult.Database.Dbase.Ef.csproj" />
+    <Project Path="src/Bodoconsult.Database.Dbase/Bodoconsult.Database.Dbase.csproj" />
+    <Project Path="src/Bodoconsult.Database.Ef.SqlServer/Bodoconsult.Database.Ef.SqlServer.csproj" />
+    <Project Path="src/Bodoconsult.Database.Ef/Bodoconsult.Database.Ef.csproj" />
+    <Project Path="src/Bodoconsult.Database.Postgres/Bodoconsult.Database.Postgres.csproj" />
+    <Project Path="src/Bodoconsult.Database.SqlClient/Bodoconsult.Database.SqlClient.csproj" />
+    <Project Path="src/Bodoconsult.Database.Sqlite/Bodoconsult.Database.Sqlite.csproj" />
+    <Project Path="src/Bodoconsult.Database/Bodoconsult.Database.csproj" />
+    <Project Path="src/Bodoconsult.Drawing.SkiaSharp/Bodoconsult.Drawing.SkiaSharp.csproj" />
+    <Project Path="src/Bodoconsult.Drawing/Bodoconsult.Drawing.csproj" />
+    <Project Path="src/Bodoconsult.I18N/Bodoconsult.I18N.csproj" />
+    <Project Path="src/Bodoconsult.Network.Windows/Bodoconsult.Network.Windows.csproj" />
+    <Project Path="src/Bodoconsult.Office/Bodoconsult.Office.csproj" />
+    <Project Path="src/Bodoconsult.Pdf/Bodoconsult.Pdf.csproj" />
+    <Project Path="src/Bodoconsult.Test/Bodoconsult.Test.csproj" />
+    <Project Path="src/Bodoconsult.Text/Bodoconsult.Text.csproj" />
+    <Project Path="src/Bodoconsult.Web.Ftp/Bodoconsult.Web.Ftp.csproj" />
+    <Project Path="src/Bodoconsult.Web.Html/Bodoconsult.Web.Html.csproj" />
+    <Project Path="src/Bodoconsult.Web.Mail/Bodoconsult.Web.Mail.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="samples/GrpcClientServer/Tests/GrpcServerApps.Tests/GrpcServerApps.Tests.csproj" />
+    <Project Path="tests/BaseTests/BaseTests.csproj" />
+    <Project Path="tests/BodoCmsConsole.Business.Test/BodoCmsConsole.Business.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Avalonia.ReactiveUI.Test/Bodoconsult.App.Avalonia.ReactiveUI.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Avalonia.Test/Bodoconsult.App.Avalonia.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.ReactiveUI.Test/Bodoconsult.App.ReactiveUI.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Test/Bodoconsult.App.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Windows.Test/Bodoconsult.App.Windows.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Wpf.Documents.Test/Bodoconsult.App.Wpf.Documents.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Wpf.ReactiveUI.Test/Bodoconsult.App.Wpf.ReactiveUI.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Wpf.Test/Bodoconsult.App.Wpf.Test.csproj" />
+    <Project Path="tests/Bodoconsult.AppInfrastructure.GrpcBackgroundService.Test/Bodoconsult.App.GrpcBackgroundService.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Charting.Test/Bodoconsult.Charting.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Database.Dbase.Test/Bodoconsult.Database.Dbase.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Database.Ef.Test/Bodoconsult.Database.Ef.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Database.Postgres.Test/Bodoconsult.Database.Postgres.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Database.SqlClient.Test/Bodoconsult.Database.SqlClient.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Database.Test.Utilities/Bodoconsult.Database.Test.Utilities.csproj" />
+    <Project Path="tests/Bodoconsult.Database.Test/Bodoconsult.Database.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Drawing.SkiaSharp.Tests/Bodoconsult.Drawing.SkiaSharp.Tests.csproj" />
+    <Project Path="tests/Bodoconsult.Drawing.Test/Bodoconsult.Drawing.Test.csproj" />
+    <Project Path="tests/Bodoconsult.I18N.Test/Bodoconsult.I18N.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Network.Windows.Tests/Bodoconsult.Network.Windows.Tests.csproj" />
+    <Project Path="tests/Bodoconsult.Office.Test/Bodoconsult.Office.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Pdf.Test/Bodoconsult.Pdf.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Test.Test/Bodoconsult.Test.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Text.Test/Bodoconsult.Text.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Web.Ftp/Bodoconsult.Web.Ftp.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Web.Html/Bodoconsult.Web.Html.Test.csproj" />
+    <Project Path="tests/Bodoconsult.Web.Mail/Bodoconsult.Web.Mail.Test.csproj" />
+    <Project Path="tests/BodoFileTransfer.Test/BodoFileTransfer.Test.csproj" />
+    <Project Path="tests/BodoWebMailer.Test/BodoWebMailer.Test.csproj" />
+    <Project Path="tests/BodoWebReporting.Test/BodoWebReporting.Test.csproj" />
+    <Project Path="tests/EmergencyShutdown.Test/EmergencyShutdown.Test.csproj" />
+    <Project Path="tests/EntityFrameworkSample.DbLayer/EntityFrameworkSample.DbLayer.csproj" />
+    <Project Path="tests/JobExecuter.GpoPlugIn.Test/JobExecuter.GpoPlugIn.Test.csproj" />
+    <Project Path="tests/JobExecuter.Test/JobExecuter.Test.csproj" />
+    <Project Path="tests/OpenSourceConnectorBodoCms.Test/OpenSourceConnectorBodoCms.Test.csproj" />
+  </Folder>
+</Solution>
