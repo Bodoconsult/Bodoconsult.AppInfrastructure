@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
 using Bodoconsult.App.Abstractions.Interfaces;
-
-using Bodoconsult.App.Wpf.ReactiveUI.App;
 using Bodoconsult.App.ReactiveUI.Interfaces;
+using Bodoconsult.App.Wpf.ReactiveUI.App;
+using ReactiveUI.Builder;
+using WpfReactiveUiDemoApp.AppData;
 using WpfReactiveUiDemoApp.DiContainerProvider;
 using WpfReactiveUiDemoApp.ViewModels;
 
@@ -31,11 +32,9 @@ public class WpfReactiveUiDemoAppAppBuilder : BaseWpfReactiveUiAppBuilder
     /// Load view location
     /// </summary>
     /// <param name="locator">The locator to use for the app instance</param>
-    public override void LoadViewLocation(DefaultViewLocator locator)
+    public override void LoadViewLocation(IReactiveUIBuilder locator)
     {
-        // ToDo : check
-        //locator.Map<FirstViewModel, FirstView>(() => new FirstView());
-        //locator.Map<SecondViewModel, SecondView>(() => new SecondView());
+        locator.WithViewModule<ViewModules>();
     }
 
     /// <summary>

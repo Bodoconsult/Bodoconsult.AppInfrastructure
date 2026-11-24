@@ -138,7 +138,6 @@ public class CachingProducerConsumerQueue2Tests
         pc.Enqueue([_data]);
         pc.StopConsumer();
 
-
         // Assert
         Wait.Until(() => _counter > 0);
         Assert.That(_counter, Is.EqualTo(1));

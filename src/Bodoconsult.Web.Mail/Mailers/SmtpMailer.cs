@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using MailKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Bodoconsult.Web.Mail.Mailers;
@@ -39,6 +40,11 @@ public sealed class SmtpMailer : BaseMailer
     public override void Init()
     {
         _smtpClient = new SmtpClient();
+
+        ArgumentNullException.ThrowIfNull(_currentMailAccount.SmtpServer);
+        ArgumentNullException.ThrowIfNull(_currentMailAccount.SmtpAccountName);
+        ArgumentNullException.ThrowIfNull(_currentMailAccount.SmtpPassword);
+
         _smtpClient.Connect(_currentMailAccount.SmtpServer, _currentMailAccount.SmtpPort);
 
         // Note: only needed if the SMTP server requires authentication
@@ -55,6 +61,8 @@ public sealed class SmtpMailer : BaseMailer
     {
         try
         {
+            ArgumentNullException.ThrowIfNull(_currentMailAccount.SmtpAccountName);
+
             var msg = new MimeMessage();
 
             msg.From.Add(new MailboxAddress(_currentMailAccount.SmtpAccountName, _currentMailAccount.SmtpAccountName));
@@ -105,6 +113,9 @@ public sealed class SmtpMailer : BaseMailer
 
         //try
         //{
+
+        ArgumentNullException.ThrowIfNull(_currentMailAccount.SmtpAccountName);
+
         var msg = new MimeMessage();
         msg.From.Add(new MailboxAddress(_currentMailAccount.SmtpAccountName, _currentMailAccount.SmtpAccountName));
         msg.Subject = mailItem.Subject;

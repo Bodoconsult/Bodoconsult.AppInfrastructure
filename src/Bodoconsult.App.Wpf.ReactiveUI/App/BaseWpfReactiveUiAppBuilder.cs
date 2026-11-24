@@ -48,7 +48,6 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
             .WithWpf(); // Register WPF platform services
 
         // View location
-        appB.ConfigureViewLocator(LoadViewLocation);
         var h = appB.BuildApp();
 
         if (dpr.ServiceProvider is null)
@@ -77,6 +76,9 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
         AppGlobals.DiContainer.LoadServiceProvider(dpr.ServiceProvider);
 
         DiContainerServiceProviderPackage.LateBindObjects(AppGlobals.DiContainer);
+
+        // View locations
+        LoadViewLocation(appB);
 
         //// For checking if DI container works
         //var service = AppLocator.Current.GetService<IAppLoggerProxy>();
@@ -120,8 +122,8 @@ public class BaseWpfReactiveUiAppBuilder : BaseAppBuilder
     /// <summary>
     /// Load view location
     /// </summary>
-    /// <param name="locator">The locator to use for the app instance</param>
-    public virtual void LoadViewLocation(DefaultViewLocator locator)
+    /// <param name="appBuilder">Current app builder</param>
+    public virtual void LoadViewLocation(IReactiveUIBuilder appBuilder)
     {
         // Do nothing
     }

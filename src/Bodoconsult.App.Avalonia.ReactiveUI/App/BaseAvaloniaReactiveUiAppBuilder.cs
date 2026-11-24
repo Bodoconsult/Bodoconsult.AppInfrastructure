@@ -65,9 +65,6 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
         var appB = dpr.CreateReactiveUIBuilder(); // Register Avalonia platform services
         appB.WithAvalonia();
 
-        // View locations
-        LoadViewLocation(appB);
-
         // Build the app now
         var h = appB.BuildApp();
 
@@ -91,6 +88,10 @@ public class BaseAvaloniaReactiveUiAppBuilder : BaseAppBuilder
         AppGlobals.DiContainer.LoadServiceProvider(dpr.ServiceProvider);
 
         DiContainerServiceProviderPackage.LateBindObjects(AppGlobals.DiContainer);
+
+        // View locations
+        LoadViewLocation(appB);
+
 
         //// For checking if DI container works
         //var service = AppLocator.Current.GetService<IAppLoggerProxy>();

@@ -107,66 +107,53 @@ public partial class WpfReactiveUiDemoAppMainWindowViewModel : MainWindowViewMod
 
     public Task<RxVoid> GoToFirstView()
     {
-        return new Task<RxVoid>(() =>
-        {
-            try
-            {
-                Region1?.Navigate(new FirstViewModel(Region1));
-                return RxVoid.Default;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        });
+        Region1?.Navigate(new FirstViewModel(Region1));
+        return Task.FromResult(RxVoid.Default);
+
+        //return new Task<RxVoid>(() =>
+        //{
+        //    try
+        //    {
+        //        Region1?.Navigate(new FirstViewModel(Region1));
+        //        return RxVoid.Default;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        throw;
+        //    }
+        //});
     }
 
     public Task<RxVoid> GoToWindow1()
     {
-        return new Task<RxVoid>(() =>
-        {
-            try
-            {
+        var windowViewModel = new Window1ViewModel(RegionManager);
 
-                var windowViewModel = new Window1ViewModel(RegionManager);
+        var vm = new FirstViewModel();
 
-                var vm = new FirstViewModel();
-
-                RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
-                return RxVoid.Default;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        });
+        RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+        return Task.FromResult(RxVoid.Default);
     }
 
     public Task<RxVoid> GoToWindow1Instance2()
     {
-        return new Task<RxVoid>(() =>
+        try
         {
-            try
+            Region1?.Navigate(new FirstViewModel(Region1));
+
+            var windowViewModel = new Window1ViewModel(RegionManager)
             {
-                Region1?.Navigate(new FirstViewModel(Region1));
+                InstanceName = "Window1Instance2"
+            };
 
-                var windowViewModel = new Window1ViewModel(RegionManager)
-                {
-                    InstanceName = "Window1Instance2"
-                };
-
-                var vm = new FirstViewModel();
-
-                RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
-                return RxVoid.Default;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        });
+            var vm = new FirstViewModel();
+            RegionManager.Navigate(windowViewModel, vm, "DocumentRegion");
+            return Task.FromResult(RxVoid.Default);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

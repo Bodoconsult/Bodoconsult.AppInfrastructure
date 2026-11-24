@@ -91,14 +91,14 @@ public class AvaloniaReactiveUiDemoAppAllServicesContainerServiceProvider : IDiC
         vm.LoadLogoFromFile(fileName);
     }
 
-    /// <summary>
-    /// Load view location
-    /// </summary>
-    /// <param name="appB">The app builder to use for the app instance</param>
-    public void LoadViewLocation(IReactiveUIBuilder appB)
-    {
-        appB.WithViewsFromAssembly(this.GetType().Assembly);
-        appB.WithViewsFromAssembly(typeof(LogoViewModel).Assembly);
-        appB.WithViewsFromAssembly(typeof(CopyrightViewModel).Assembly);
-    }
+    ///// <summary>
+    ///// Load view location
+    ///// </summary>
+    ///// <param name="appB">The app builder to use for the app instance</param>
+    //public void LoadViewLocation(IReactiveUIBuilder appB)
+    //{
+    //    appB.WithViewsFromAssembly(this.GetType().Assembly);
+    //    appB.WithViewsFromAssembly(typeof(LogoViewModel).Assembly);
+    //    appB.WithViewsFromAssembly(typeof(CopyrightViewModel).Assembly);
+    //}
 }

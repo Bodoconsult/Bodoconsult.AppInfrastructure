@@ -37,6 +37,8 @@ public class WpfReactiveUiDemoAppAllServicesContainerServiceProvider : IDiContai
         // View models
         diContainer.AddTransient<WpfReactiveUiDemoAppMainWindowViewModel, WpfReactiveUiDemoAppMainWindowViewModel>();
         diContainer.AddTransient<FirstViewModel, FirstViewModel>();
+        diContainer.AddTransient<SecondViewModel, SecondViewModel>();
+        diContainer.AddTransient<Window1ViewModel,  Window1ViewModel>();
 
         //diContainer.AddTransient<ViewModel1, ViewModel1>();
         //diContainer.AddTransient<ViewModel2, ViewModel2>();

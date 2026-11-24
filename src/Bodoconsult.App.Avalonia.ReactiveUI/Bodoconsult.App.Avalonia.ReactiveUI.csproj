@@ -75,7 +75,7 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ReactiveUI.Avalonia" Version="12.1.6" />
+		<PackageReference Include="ReactiveUI.Avalonia" Version="12.1.9" />
 		<PackageReference Include="ReactiveUI.SourceGenerators" Version="*" PrivateAssets="all" />
 		<!--<PackageReference Include="ReactiveUI.Primitives" Version="*" PrivateAssets="all" />-->
 		<PackageReference Include="ReactiveUI.Routing" Version="*" />

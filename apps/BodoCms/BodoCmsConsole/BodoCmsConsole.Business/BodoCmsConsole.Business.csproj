@@ -18,8 +18,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="WebMarkupMin.Core" Version="2.16.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="WebMarkupMin.Core" Version="2.24.2" />
 	</ItemGroup>
 
 	<ItemGroup>

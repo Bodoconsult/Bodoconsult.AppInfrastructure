@@ -1,4 +1,6 @@
-﻿using ReactiveUI.Builder;
+﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
+
+using ReactiveUI.Builder;
 using System.Windows;
 
 namespace WpfReactiveDemoApp;
@@ -15,7 +17,10 @@ public partial class App : Application
 
         var rxuiInstance = RxAppBuilder.CreateReactiveUIBuilder()
             .WithWpf() // Register WPF platform services
-            .WithViewsFromAssembly(typeof(App).Assembly) // Register views and view models
+
+            // ToDo: load views
+
+            //.WithViewsFromAssembly(typeof(App).Assembly) // Register views and view models
             .BuildApp();
 
         var mainUiThreadScheduler = rxuiInstance.MainThreadScheduler;

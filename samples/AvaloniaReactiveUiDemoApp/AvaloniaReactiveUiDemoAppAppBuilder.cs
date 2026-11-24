@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using AvaloniaReactiveUiDemoApp.AppData;
 using Bodoconsult.App.Abstractions.Interfaces;
 using Bodoconsult.App.Avalonia.ReactiveUI.App;
 using Bodoconsult.App.ReactiveUI.Interfaces;
@@ -35,9 +36,7 @@ public class AvaloniaReactiveUiDemoAppAppBuilder : BaseAvaloniaReactiveUiAppBuil
     /// <param name="appB">The app builder to use for the app instance</param>
     public override void LoadViewLocation(IReactiveUIBuilder appB)
     {
-        appB.WithViewsFromAssembly(this.GetType().Assembly);
-        appB.WithViewsFromAssembly(typeof(LogoViewModel).Assembly);
-        appB.WithViewsFromAssembly(typeof(CopyrightViewModel).Assembly);
+        appB.WithViewModule<ViewModules>();
     }
 
     /// <summary>
