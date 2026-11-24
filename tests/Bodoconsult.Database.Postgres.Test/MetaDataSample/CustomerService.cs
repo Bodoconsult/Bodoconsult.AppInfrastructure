@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH. All rights reserved.
 
-
 using System;
 using System.Collections.Generic;
 using Bodoconsult.Database.Interfaces;
@@ -159,7 +158,7 @@ public class CustomerService
     /// <summary>
     /// Delete a row from table Customer 
     /// </summary>
-    public void Delete(System.Int32 customerId)
+    public void Delete(int customerId)
     {
 
         var cmd = new NpgsqlCommand("DELETE FROM \"Customer\" WHERE \"CustomerId\" = @PK");
@@ -196,7 +195,7 @@ public class CustomerService
     /// <summary>
     /// Get all rows in table Customer
     /// </summary>
-    public Customer GetById(System.Int32 pkCustomerId)
+    public Customer GetById(int pkCustomerId)
     {
 
         Customer dto = null;
