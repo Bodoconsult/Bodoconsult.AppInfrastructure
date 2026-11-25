@@ -1,7 +1,7 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 
-namespace Bodoconsult.App.WinForms;
+namespace Bodoconsult.App.WinForms.DataBindings;
 
 /// <summary>
 /// Handler for data bindings

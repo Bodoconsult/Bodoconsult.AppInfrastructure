@@ -1,5 +1,6 @@
 // Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
 
+using Bodoconsult.App.WinForms.Helpers;
 using System.Reflection;
 
 namespace Bodoconsult.App.WinForms.Forms;
@@ -273,9 +274,9 @@ public sealed partial class AboutBox : Form
     {
         try
         {
-            Tools.DrawRoundedRectangle(e.Graphics, 0, 0, Width, Height, 50, new SolidBrush(Color.DimGray), null);
-            Tools.DrawRoundedRectangle(e.Graphics, 2, 2, Width - 4, Height - 4, 48, new SolidBrush(Color.Pink), null);
-            Tools.DrawRoundedRectangle(e.Graphics, 4, 4, Width - 8, Height - 8, 46, new SolidBrush(Color.DarkGray), null);
+            WinFormsHelper.DrawRoundedRectangle(e.Graphics, 0, 0, Width, Height, 50, new SolidBrush(Color.DimGray), null);
+            WinFormsHelper.DrawRoundedRectangle(e.Graphics, 2, 2, Width - 4, Height - 4, 48, new SolidBrush(Color.Pink), null);
+            WinFormsHelper.DrawRoundedRectangle(e.Graphics, 4, 4, Width - 8, Height - 8, 46, new SolidBrush(Color.DarkGray), null);
         }
         catch
         {

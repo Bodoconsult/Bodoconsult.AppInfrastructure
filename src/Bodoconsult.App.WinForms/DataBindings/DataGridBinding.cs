@@ -3,7 +3,7 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 
-namespace Bodoconsult.App.WinForms;
+namespace Bodoconsult.App.WinForms.DataBindings;
 
 /// <summary>
 /// Datenbindung an eine SQL-Datenbank für ein DataGridView

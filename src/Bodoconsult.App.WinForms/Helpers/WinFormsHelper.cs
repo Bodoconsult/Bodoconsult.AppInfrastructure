@@ -1,18 +1,20 @@
+// Copyright (c) Bodoconsult EDV-Dienstleistungen GmbH.  All rights reserved.
+
 using System.Drawing.Drawing2D;
 
-namespace Bodoconsult.App.WinForms;
+namespace Bodoconsult.App.WinForms.Helpers;
 
 /// <summary>
-/// Tools
+/// WinForms related tools
 /// </summary>
-public static class Tools
+public static class WinFormsHelper
 {
     /// <summary>
     /// Checks if the connected screens fullfill the min requirements of the form.
     /// Form.MinimumSize Property has to be set for that.
     /// </summary>
     /// <param name="form">The form that should be checked</param>
-    /// <returns></returns>
+    /// <returns>True if the screen resolution fullfills requirements</returns>
     public static bool IsScreenResolutionBigEnough(Form form)
     {
         if (form.MinimumSize.Width == 0 || form.MinimumSize.Height == 0)
@@ -25,29 +27,24 @@ public static class Tools
     /// <summary>
     /// Checks if the connected screens fullfill the min resolution requirements
     /// </summary>
-    /// <param name="width">width of app</param>
-    /// <param name="height">height of app</param>
-    /// <returns>True if the screen resolution fullfills requirement</returns>
+    /// <param name="width">Required minimum width of app</param>
+    /// <param name="height">Required minimum height of app</param>
+    /// <returns>True if the screen resolution fullfills requirements</returns>
     public static bool IsScreenResolutionBigEnough(int width, int height)
     {
-        // ToDo: Check screen resolution
+        // Check the resolution of all screens
+        foreach (var screen in Screen.AllScreens)
+        {
+            if (screen.WorkingArea.Height < height || screen.WorkingArea.Width < width)
+            {
+                // Too small
+                return false;
+            }
+        }
+
+        // OK
         return true;
-
-        //var oMs = new ManagementScope();
-
-        ////get Fixed disk stats
-        //var oQuery = new ObjectQuery("select * from Win32_VideoController");
-
-        ////Execute the query  
-        //var oSearcher = new ManagementObjectSearcher(oMs, oQuery);
-
-        ////Get the results
-        //var oReturnCollection = oSearcher.Get();
-
-        ////loop through found drives and write out info
-        //return !(from ManagementObject oReturn in oReturnCollection let sWidth = int.Parse(oReturn["CurrentHorizontalResolution"].ToString()) let sHeight = int.Parse(oReturn["CurrentVerticalResolution"].ToString()) where sWidth < width || sHeight < height select sWidth).Any();
     }
-
 
     /// <summary>
     /// Draw a rectangle with rounded corners
@@ -59,7 +56,7 @@ public static class Tools
     /// <param name="height">Height of rectangle</param>
     /// <param name="cornerRadius">Corner radius</param>
     /// <param name="fillBrush">Brush for filling or null.</param>
-    /// <param name="linePen">Pen for lines or null</param>
+    /// <param name="linePen">Pen for borders or null</param>
     public static void DrawRoundedRectangle(Graphics graphics,
         int x, int y, int width, int height,
         int cornerRadius, Brush fillBrush, Pen linePen)

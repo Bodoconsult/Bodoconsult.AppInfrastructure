@@ -2,43 +2,69 @@
 
 using System.Runtime.InteropServices;
 
-namespace Bodoconsult.App.WinForms;
+namespace Bodoconsult.App.WinForms.Helpers;
 
-public static class WindowControl
+/// <summary>
+/// Helper class for controlling windows
+/// </summary>
+public static class WindowControlHelper
 {
+    //private const int WmSetRedraw = 11;
+    private const int WmSetRedraw = 11;
+    private const int WmUser = 0x400;
+    private const int EmGetEventMask = WmUser + 59;
+    private const int EmSetEventMask = WmUser + 69;
+
+    /// <summary>
+    /// Send a message to a window
+    /// </summary>
+    /// <param name="hWnd">Window pointer</param>
+    /// <param name="wMsg">Message to send</param>
+    /// <param name="wParam">W parameter</param>
+    /// <param name="lParam">L parameter</param>
+    /// <returns>Return code</returns>
     [DllImport("user32.dll")]
     public static extern int SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
+    /// <summary>
+    /// Enum the child windows of a window
+    /// </summary>
+    /// <param name="window">Window pointer</param>
+    /// <param name="callback">Callback proc</param>
+    /// <param name="i">Parameter pointer given to callback proc</param>
+    /// <returns>Not used</returns>
     [DllImport("user32")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
+    public static extern bool EnumChildWindows(IntPtr window, EnumWindowProcDelegate callback, IntPtr i);
 
+    /// <summary>
+    /// Retrieves a handle to the top-level window whose class name or window title match the specified strings
+    /// </summary>
+    /// <param name="className">Class name or null</param>
+    /// <param name="windowTitle">Window title or null</param>
+    /// <returns>Window pointer</returns>
     [DllImport("user32.dll")]
     public static extern IntPtr FindWindow(string className, string windowTitle);
 
-
-    //private const int WmSetRedraw = 11;
-
-    private const int WmSetRedraw = 11;
-    private const int WM_USER = 0x400;
-
-    private const int EM_GETEVENTMASK = (WM_USER + 59);
-
-    private const int EM_SETEVENTMASK = (WM_USER + 69);
-
-
+    /// <summary>
+    /// Suspend the drawing of a window
+    /// </summary>
+    /// <param name="parent">Control in the window the drawing should be suspended</param>
     public static void SuspendDrawing(Control parent)
     {
         //SendMessage(parent.Handle, WmSetRedraw, false, 0);
 
-        var msgSuspendUpdate = Message.Create(parent.Handle, WmSetRedraw, IntPtr.Zero,
-            IntPtr.Zero);
+        var msgSuspendUpdate = Message.Create(parent.Handle, WmSetRedraw, IntPtr.Zero, IntPtr.Zero);
 
         var window = NativeWindow.FromHandle(parent.Handle);
-        window.DefWndProc(ref msgSuspendUpdate);
 
+        window?.DefWndProc(ref msgSuspendUpdate);
     }
 
+    /// <summary>
+    /// Suspend the drawing of a window
+    /// </summary>
+    /// <param name="window">Window the drawing should be suspended</param>
     public static void SuspendDrawing(IntPtr window)
     {
         SendMessage(window, WmSetRedraw, 0, 0);
@@ -48,10 +74,12 @@ public static class WindowControl
 
         //var w = NativeWindow.FromHandle(window);
         //w.DefWndProc(ref msgSuspendUpdate);
-
     }
 
-
+    /// <summary>
+    /// Resume the drawing of a window
+    /// </summary>
+    /// <param name="parent">Control in the window the drawing should be resumed</param>
     public static void ResumeDrawing(Control parent)
     {
         // Create a C "true" boolean as an IntPtr
@@ -60,15 +88,23 @@ public static class WindowControl
             IntPtr.Zero);
 
         var window = NativeWindow.FromHandle(parent.Handle);
+
+        if (window is null)
+        {
+            parent.Invalidate();
+            return;
+        }
+
         window.DefWndProc(ref msgResumeUpdate);
-
         parent.Invalidate();
-
     }
 
+    /// <summary>
+    /// Resume the drawing of a window
+    /// </summary>
+    /// <param name="window">The window the drawing should be resumed</param>
     public static void ResumeDrawing(IntPtr window)
     {
-
         SendMessage(window, WmSetRedraw, 1, 0);
         //// Create a C "true" boolean as an IntPtr
         //var wparam = new IntPtr(1);
@@ -80,16 +116,24 @@ public static class WindowControl
 
     }
 
-
+    /// <summary>
+    /// Stop event handling
+    /// </summary>
+    /// <param name="window">Window pointer</param>
+    /// <returns></returns>
     public static IntPtr StopEvents(IntPtr window)
     {
-        return (IntPtr)SendMessage(window, EM_GETEVENTMASK, 0, 0);
+        return SendMessage(window, EmGetEventMask, 0, 0);
     }
 
-
+    /// <summary>
+    /// Start event handling
+    /// </summary>
+    /// <param name="window">Window pointer</param>
+    /// <param name="eventMask">Event mask</param>
     public static void StartEvents(IntPtr window, IntPtr eventMask)
     {
-        SendMessage(window, EM_SETEVENTMASK, 0, (int)eventMask);
+        SendMessage(window, EmSetEventMask, 0, (int)eventMask);
     }
 
     /// <summary>
@@ -103,13 +147,15 @@ public static class WindowControl
         var listHandle = GCHandle.Alloc(result);
         try
         {
-            var childProc = new EnumWindowProc(EnumWindow);
+            var childProc = new EnumWindowProcDelegate(EnumWindow);
             EnumChildWindows(parent, childProc, GCHandle.ToIntPtr(listHandle));
         }
         finally
         {
             if (listHandle.IsAllocated)
+            {
                 listHandle.Free();
+            }
         }
         return result;
     }
@@ -123,8 +169,7 @@ public static class WindowControl
     private static bool EnumWindow(IntPtr handle, IntPtr pointer)
     {
         var gch = GCHandle.FromIntPtr(pointer);
-        var list = gch.Target as List<IntPtr>;
-        if (list == null)
+        if (gch.Target is not List<IntPtr> list)
         {
             throw new InvalidCastException("GCHandle Target could not be cast as List<IntPtr>");
         }
@@ -139,6 +184,5 @@ public static class WindowControl
     /// <param name="hWnd">Window handle</param>
     /// <param name="parameter">Caller-defined variable; we use it for a pointer to our list</param>
     /// <returns>True to continue enumerating, false to bail.</returns>
-    public delegate bool EnumWindowProc(IntPtr hWnd, IntPtr parameter);
-
+    public delegate bool EnumWindowProcDelegate(IntPtr hWnd, IntPtr parameter);
 }
