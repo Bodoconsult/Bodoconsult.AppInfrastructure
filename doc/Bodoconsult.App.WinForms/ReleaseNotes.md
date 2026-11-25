@@ -31,4 +31,13 @@ NOT intended for public use
 
 # 1.0.12
 
--  
+-	Added form AboutBox
+
+-	Added dialog InputBox
+
+-	Add classes DataBindingHandler and DataGrindBinding
+
+-	Added class WindowControlHelper for controlling windows actions like redrawing or event handling
+
+-	Added class WinFormsHelper with some methods for screen resolution checks and drawing rounded rectangles
+

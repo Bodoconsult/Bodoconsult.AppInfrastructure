@@ -104,7 +104,7 @@ public class ProducerConsumerQueue2Tests
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue([_data]);
+        pc.Enqueue((Memory<byte>[])[_data]);
 
         // Assert
         Wait.Until(() => _counter > 0);

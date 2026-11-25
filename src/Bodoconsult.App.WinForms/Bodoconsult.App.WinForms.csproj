@@ -29,6 +29,7 @@
 		<!-- Generate symbols package (.snupkg) -->
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<!-- Modern symbols package format -->
 	</PropertyGroup>
 

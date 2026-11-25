@@ -8,7 +8,7 @@ namespace Bodoconsult.App.WinForms.DataBindings;
 /// </summary>
 public class DataBindingHandler
 {
-    private readonly BindingSource _bs = new BindingSource();
+    private readonly BindingSource _bs = new();
     private SqlDataAdapter _da;
     private SqlCommandBuilder _cb;
 

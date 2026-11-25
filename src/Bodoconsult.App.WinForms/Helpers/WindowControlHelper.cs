@@ -24,7 +24,7 @@ public static class WindowControlHelper
     /// <param name="lParam">L parameter</param>
     /// <returns>Return code</returns>
     [DllImport("user32.dll")]
-    public static extern int SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+    private static extern int SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
     /// <summary>
     /// Enum the child windows of a window
@@ -35,7 +35,7 @@ public static class WindowControlHelper
     /// <returns>Not used</returns>
     [DllImport("user32")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool EnumChildWindows(IntPtr window, EnumWindowProcDelegate callback, IntPtr i);
+    private static extern bool EnumChildWindows(IntPtr window, EnumWindowProcDelegate callback, IntPtr i);
 
     /// <summary>
     /// Retrieves a handle to the top-level window whose class name or window title match the specified strings
@@ -44,7 +44,7 @@ public static class WindowControlHelper
     /// <param name="windowTitle">Window title or null</param>
     /// <returns>Window pointer</returns>
     [DllImport("user32.dll")]
-    public static extern IntPtr FindWindow(string className, string windowTitle);
+    private static extern IntPtr FindWindow(string className, string windowTitle);
 
     /// <summary>
     /// Suspend the drawing of a window
@@ -133,7 +133,7 @@ public static class WindowControlHelper
     /// <param name="eventMask">Event mask</param>
     public static void StartEvents(IntPtr window, IntPtr eventMask)
     {
-        SendMessage(window, EmSetEventMask, 0, (int)eventMask);
+        SendMessage(window, EmSetEventMask, 0, eventMask.ToInt32());
     }
 
     /// <summary>

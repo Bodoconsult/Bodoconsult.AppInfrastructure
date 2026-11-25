@@ -105,7 +105,7 @@ public class ProducerConsumerQueueTests
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue([s1]);
+        pc.Enqueue((string[])[s1]);
 
         // Assert
         Wait.Until(() => _counter > 0);
@@ -116,7 +116,6 @@ public class ProducerConsumerQueueTests
         pc.StopConsumer();
         Assert.That(pc.IsActivated, Is.False);
     }
-
 
     [Test]
     public void Enqueue_MultipleStrings_IsActivated()

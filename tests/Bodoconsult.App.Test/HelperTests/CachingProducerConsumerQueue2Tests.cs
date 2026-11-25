@@ -135,7 +135,7 @@ public class CachingProducerConsumerQueue2Tests
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue([_data]);
+        pc.Enqueue((Memory<byte>[])[_data]);
         pc.StopConsumer();
 
         // Assert

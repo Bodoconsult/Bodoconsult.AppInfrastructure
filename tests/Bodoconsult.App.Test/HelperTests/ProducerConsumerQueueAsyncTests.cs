@@ -106,7 +106,7 @@ public class ProducerConsumerQueueAsyncTests
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue([s1]);
+        pc.Enqueue((string[])[s1]);
 
         // Assert
         Wait.Until(() => _counter > 0);

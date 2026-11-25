@@ -144,7 +144,7 @@ public class CachingProducerConsumerQueueTests
         pc.StartConsumer();
 
         // Act  
-        pc.Enqueue([s1]);
+        pc.Enqueue((string[])[s1]);
         pc.StopConsumer();
 
         Task.Delay(200).Wait();
@@ -158,7 +158,6 @@ public class CachingProducerConsumerQueueTests
 
         Assert.That(pc.IsActivated, Is.False);
     }
-
 
     [Test]
     public void Enqueue_MultipleStrings_IsActivated()
