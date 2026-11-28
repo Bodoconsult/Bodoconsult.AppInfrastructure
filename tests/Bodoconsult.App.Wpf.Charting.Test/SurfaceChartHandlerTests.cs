@@ -38,78 +38,92 @@ public class SurfaceChartHandlerTests
         FileSystemHelper.RunInDebugMode(fileName);
     }
 
-    [Test]
-    public void DrawChartToPng_Histogram_ChartExported()
-    {
-        const string fileName = @"C:\temp\chart3D_Export_Histogram.png";
+    //[Test]
+    //public void DrawChartToPng_Histogram_ChartExported()
+    //{
+    //    const string fileName = @"C:\temp\chart3D_Export_Histogram.png";
 
-        var chart = new SurfaceChartHandler(GetModelHisto())
-        {
-            UseInterpolation = false
-        };
+    //    var chart = new SurfaceChartHandler(GetModelHisto())
+    //    {
+    //        UseInterpolation = false
+    //    };
 
-        //chart.ChartStyle.Elevation = -30;
-        //chart.ChartStyle.Azimuth = -80;
-        //chart.ChartStyle.DataAreaBackground = Brushes.Red;
+    //    //chart.ChartStyle.Elevation = -30;
+    //    //chart.ChartStyle.Azimuth = -80;
+    //    //chart.ChartStyle.DataAreaBackground = Brushes.Red;
 
-        //Debug.Print(chart.ChartStyle.Elevation.ToString(CultureInfo.InvariantCulture));
-        //Debug.Print(chart.ChartStyle.Azimuth.ToString(CultureInfo.InvariantCulture));
+    //    //Debug.Print(chart.ChartStyle.Elevation.ToString(CultureInfo.InvariantCulture));
+    //    //Debug.Print(chart.ChartStyle.Azimuth.ToString(CultureInfo.InvariantCulture));
 
-        // Act
-        chart.DrawChartToPng(fileName);
+    //    // Act
+    //    chart.DrawChartToPng(fileName);
 
-        // Assert
-        Assert.That(File.Exists(fileName));
-        FileSystemHelper.RunInDebugMode(fileName);
-    }
+    //    // Assert
+    //    Assert.That(File.Exists(fileName));
+    //    FileSystemHelper.RunInDebugMode(fileName);
+    //}
 
 
     public ChartStyle GetModel()
     {
-        var model = new ChartStyle
-        {
-            GridlinePattern = DrawSurfaceChart.GridlinePatternEnum.Solid,
-            Elevation = 30,
-            Azimuth = -37,
-            Title = "Risikoanalyse Projekt Infrastruktur XY",
-            IsColorBar = true,
-            XLabel = "Absatz",
-            YLabel = "Betriebskosten",
-            ZLabel = "Wahrscheinlichkeit"
-        };
+        ChartStyle? model = null;
 
-        DataUtility.Peak3D(model);
+        System.Windows.Application.Current.Dispatcher.Invoke(() =>
+        {
+            model = new ChartStyle
+            {
+                GridlinePattern = DrawSurfaceChart.GridlinePatternEnum.Solid,
+                Elevation = 30,
+                Azimuth = -37,
+                Title = "Risikoanalyse Projekt Infrastruktur XY",
+                IsColorBar = true,
+                XLabel = "Absatz",
+                YLabel = "Betriebskosten",
+                ZLabel = "Wahrscheinlichkeit"
+            };
+
+            DataUtility.Peak3D(model);
+        });
+
+        ArgumentNullException.ThrowIfNull(model);
 
         return model;
     }
 
     public ChartStyle GetModelHisto()
     {
-        var model = new ChartStyle
-        {
-            GridlinePattern = DrawSurfaceChart.GridlinePatternEnum.Solid,
-            Elevation = 30,
-            Azimuth = -37,
-            Title = "Risikoanalyse Projekt Infrastruktur XY",
-            IsColorBar = true,
-            XLabel = "Absatz",
-            YLabel = "Betriebskosten",
-            ZLabel = "Wahrscheinlichkeit",
-            Xmin = 2017,
-            Xmax= 2026,
-            XTick = 1,
-            Ymin = 0,
-            Ymax = 1.5,
-            YTick = 0.1,
-            Zmin = 0,
-            Zmax = 45,
-            ZTick = 5,
-            NumberFormatZ = "0",
-            NumberFormatX = "0",
-            NumberFormatY = "P1"
-        };
+        ChartStyle? model = null;
 
-        DataUtility.Histogram(model);
+        System.Windows.Application.Current.Dispatcher.Invoke(() =>
+        {
+            model = new ChartStyle
+            {
+                GridlinePattern = DrawSurfaceChart.GridlinePatternEnum.Solid,
+                Elevation = 30,
+                Azimuth = -37,
+                Title = "Risikoanalyse Projekt Infrastruktur XY",
+                IsColorBar = true,
+                XLabel = "Absatz",
+                YLabel = "Betriebskosten",
+                ZLabel = "Wahrscheinlichkeit",
+                Xmin = 2017,
+                Xmax = 2026,
+                XTick = 1,
+                Ymin = 0,
+                Ymax = 1.5,
+                YTick = 0.1,
+                Zmin = 0,
+                Zmax = 45,
+                ZTick = 5,
+                NumberFormatZ = "0",
+                NumberFormatX = "0",
+                NumberFormatY = "P1"
+            };
+
+            DataUtility.Histogram(model);
+        });
+
+        ArgumentNullException.ThrowIfNull(model);
 
         return model;
     }

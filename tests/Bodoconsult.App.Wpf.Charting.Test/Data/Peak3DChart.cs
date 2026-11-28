@@ -48,7 +48,7 @@ public class Peak3DChart: Base3DChart
             {
                 var x = ds.XLimitMin + i * ds.XSpacing;
                 var y = ds.YLimitMin + j * ds.YSpacing;
-                var z = 3 * Math.Pow((1 - x), 2) * Math.Exp(-x * x - (y + 1) * (y + 1)) - 10 *
+                var z = 3 * Math.Pow(1 - x, 2) * Math.Exp(-x * x - (y + 1) * (y + 1)) - 10 *
                     // ReSharper disable once PossibleLossOfFraction
                     (0.2 * x - Math.Pow(x, 3) - Math.Pow(y, 5)) * Math.Exp(-x * x - y * y) - 1 / 3 *
                     Math.Exp(-(x + 1) * (x + 1) - y * y);

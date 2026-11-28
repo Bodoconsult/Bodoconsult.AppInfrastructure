@@ -1,14 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0-windows10.0.17763</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0-windows10.0.17763</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>enable</ImplicitUsings>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Bodoconsult.App.Wpf\Bodoconsult.App.Wpf.csproj" />
-  </ItemGroup>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>False</Deterministic>
 
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageId>Bodoconsult.App.Wpf.Charting</PackageId>
+		<PackageTags>App;WPF;3D;charts</PackageTags>
+		<Description>Create 3D charts with WPF</Description>
+		<PackageReleaseNotes>First draft</PackageReleaseNotes>
+
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+		<!-- PDB Configuration -->
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<EmbedAllSources>false</EmbedAllSources>
+
+		<!-- Allow PDBs in the main package -->
+		<!--
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+		<!-- Generate symbols package (.snupkg) -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<!-- Modern symbols package format -->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Bodoconsult.App.Wpf\Bodoconsult.App.Wpf.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\doc\Bodoconsult.App.Wpf.Charting\LICENSE.md" Link="LICENSE.md" />
+		<None Include="..\..\doc\Bodoconsult.App.Wpf.Charting\README.md" Link="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 </Project>
