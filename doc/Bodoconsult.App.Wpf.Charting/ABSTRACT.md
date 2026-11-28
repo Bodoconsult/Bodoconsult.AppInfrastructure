@@ -1,0 +1,1 @@
+Bodoconsult.App.Wpf.Charting is a library providing functionality for creating 3D charts based on WPF. 

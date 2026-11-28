@@ -5,7 +5,7 @@
     <TargetFramework>net10.0-windows10.0.17763</TargetFramework>
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
     <Deterministic>False</Deterministic>
-    <AssemblyName>BodoWebReporting</AssemblyName>
+	  <IsPackable>false</IsPackable>
     <!--<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     <PublishReadyToRun>true</PublishReadyToRun>-->
   </PropertyGroup>

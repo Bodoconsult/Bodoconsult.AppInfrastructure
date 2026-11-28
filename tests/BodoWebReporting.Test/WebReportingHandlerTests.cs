@@ -10,7 +10,6 @@ using BodoWebReporting.Dal.Factories;
 using BodoWebReporting.Dal.Interfaces;
 using BodoWebReporting.Dal.ReportHandling;
 using NUnit.Framework;
-using System.Diagnostics;
 using System.Runtime.Versioning;
 
 namespace BodoWebReporting.Test;

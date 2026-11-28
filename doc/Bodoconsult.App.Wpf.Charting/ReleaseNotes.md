@@ -1,0 +1,37 @@
+Release notes for Bodoconsult.Wpf.Documents
+==========================
+
+With each release all the repository internal references are updated.
+
+## 1.0.5
+
+-   First draft
+
+## 1.0.6
+
+-   Bugfixing and improvements to central classes
+
+# 1.0.8
+
+-	Using Bodoconsult.App.Abstractions 1.0.8
+
+-	Added WpfTextDocumentRenderer for LDML export to FlowDocument
+
+-	Minor bugfixings
+
+# 1.0.9
+
+
+# 1.0.10
+
+NOT intended for public use
+
+# 1.0.11
+
+-   Better PDB handling
+
+-   Migration to Net10
+
+# 1.0.12
+
+-  

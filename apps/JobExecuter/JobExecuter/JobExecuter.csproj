@@ -7,6 +7,7 @@
 		<Deterministic>false</Deterministic>
 		<AssemblyName>JobExecuter</AssemblyName>
 		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<ItemGroup>

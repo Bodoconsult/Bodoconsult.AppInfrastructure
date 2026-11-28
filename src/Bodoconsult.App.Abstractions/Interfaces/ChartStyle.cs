@@ -89,7 +89,6 @@ public class ChartStyle: ICloneable
     /// </summary>
     public TypoColor PaperColor { get; set; }
 
-
     /// <summary>
     /// Gradient style for the chart background
     /// </summary>

@@ -81,6 +81,7 @@
     <Project Path="src/Bodoconsult.App.ReactiveUI/Bodoconsult.App.ReactiveUI.csproj" />
     <Project Path="src/Bodoconsult.App.Windows/Bodoconsult.App.Windows.csproj" />
     <Project Path="src/Bodoconsult.App.WinForms/Bodoconsult.App.WinForms.csproj" />
+    <Project Path="src/Bodoconsult.App.Wpf.3DCharts/Bodoconsult.App.Wpf.Charting.csproj" Id="3e20776f-4246-4dc2-88dd-523c6019d6da" />
     <Project Path="src/Bodoconsult.App.Wpf.Documents/Bodoconsult.App.Wpf.Documents.csproj" />
     <Project Path="src/Bodoconsult.App.Wpf.ReactiveUI/Bodoconsult.App.Wpf.ReactiveUI.csproj" />
     <Project Path="src/Bodoconsult.App.Wpf/Bodoconsult.App.Wpf.csproj" />
@@ -116,6 +117,7 @@
     <Project Path="tests/Bodoconsult.App.ReactiveUI.Test/Bodoconsult.App.ReactiveUI.Test.csproj" />
     <Project Path="tests/Bodoconsult.App.Test/Bodoconsult.App.Test.csproj" />
     <Project Path="tests/Bodoconsult.App.Windows.Test/Bodoconsult.App.Windows.Test.csproj" />
+    <Project Path="tests/Bodoconsult.App.Wpf.Charting.Test/Bodoconsult.App.Wpf.Charting.Test.csproj" Id="4d5c644c-e6bc-4ed4-82d4-d03565bdf4b7" />
     <Project Path="tests/Bodoconsult.App.Wpf.Documents.Test/Bodoconsult.App.Wpf.Documents.Test.csproj" />
     <Project Path="tests/Bodoconsult.App.Wpf.ReactiveUI.Test/Bodoconsult.App.Wpf.ReactiveUI.Test.csproj" />
     <Project Path="tests/Bodoconsult.App.Wpf.Test/Bodoconsult.App.Wpf.Test.csproj" />
